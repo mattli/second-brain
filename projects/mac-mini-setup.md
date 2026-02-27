@@ -76,13 +76,15 @@ ai-intelligence/
 
 ## Automation
 
-Cron jobs to run on Mac Mini (currently manual on MacBook):
+See [[intelligence-layers]] for full layer details.
+
+Cron schedule:
 
 ```
-7am weekdays       → daily briefing
-8am Sunday         → weekly summary
-8am 1st of month   → monthly summary
-9am 1st of month   → trend analysis + product ideas
+7am weekdays
+8am Sunday
+8am 1st of month
+9am 1st of month
 ```
 
 Each run:

@@ -1,0 +1,10 @@
+# Ignore everything except ai-intelligence/
+*
+!.gitignore
+!ai-intelligence/
+!ai-intelligence/**
+
+# Always ignore system/local files
+ai-intelligence/.DS_Store
+ai-intelligence/**/.DS_Store
+ai-intelligence/.claude/

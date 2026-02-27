@@ -2,7 +2,7 @@
 title: Mac Mini + OpenClaw Intelligence System
 status: in-progress
 created: 2026-02-26
-updated: 2026-02-26
+updated: 2026-02-27
 ---
 
 # Mac Mini + OpenClaw Intelligence System
@@ -24,7 +24,8 @@ An always-on personal intelligence system that keeps you informed, surfaces prod
 | Mac Mini | ⬜ Not yet arrived |
 | OpenClaw | ⬜ Not yet set up |
 | Telegram integration | ⬜ Not yet set up |
-| Cron jobs | ⬜ Not yet (manual for now) |
+| Cron jobs | ✅ Running (7am weekdays) |
+| Cron job logging | ✅ Logging to `~/logs/briefing.log` |
 | Weekly/monthly summaries | ⬜ Not yet built |
 
 ---
@@ -167,6 +168,7 @@ Access levels staged deliberately:
 ### This Week (MacBook) — in progress
 - [x] Set up private GitHub repo for `ai-intelligence`
 - [x] Get daily briefing running reliably
+- [x] Add cron job logging (`~/logs/briefing.log`)
 - [ ] Set up Obsidian Git plugin for auto-sync
 
 ### When Mac Mini Arrives

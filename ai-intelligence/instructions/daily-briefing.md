@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 1.6 | Last updated: 2026-02-26
+> Version: 1.7 | Last updated: 2026-02-27
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -63,6 +63,9 @@ Find 1–2 interesting conversations started or gaining significant momentum in 
 Summarize the core argument or question being discussed.
 
 **Section Summary:** End with 1–2 sentences on what these debates reveal about where the AI community's anxieties or excitement are concentrated right now.
+
+### 6. Final Check
+After completing all sections, do a final search for **AI news today** and **AI funding today** to catch any major stories that may have been missed. If anything significant is found that isn't already covered, add it to the most relevant section.
 
 ---
 

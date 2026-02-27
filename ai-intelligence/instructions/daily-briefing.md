@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 1.5 | Last updated: 2026-02-25
+> Version: 1.6 | Last updated: 2026-02-26
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -103,3 +103,18 @@ Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
 ```
 
 Keep each section tight. The Executive Summary should be the single most valuable 3-5 sentences in the document — written last, placed first. Section summaries should be interpretive and forward-looking, not just recapping what's above. The full briefing should be skimmable in ~2 minutes.
+
+---
+
+## After Saving
+
+Once the briefing file is written, commit and push it to GitHub:
+
+```bash
+cd "/Users/mattli/Library/Mobile Documents/iCloud~md~obsidian/Documents/mattli"
+git add ai-intelligence/briefings/YYYY-MM-DD.md
+git commit -m "Add briefing for YYYY-MM-DD"
+git push
+```
+
+Replace `YYYY-MM-DD` with today's actual date.

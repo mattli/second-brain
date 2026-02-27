@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 1.7 | Last updated: 2026-02-27
+> Version: 1.9 | Last updated: 2026-02-27
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -17,7 +17,9 @@ Each morning, research and compile a concise AI and tech intelligence briefing. 
 Search for the latest headlines from:
 - **The Verge** (theverge.com)
 - **TechCrunch** (techcrunch.com)
+- **Reuters** (reuters.com)
 - **Hacker News** (news.ycombinator.com — top stories and "Ask HN" threads relevant to AI)
+- **X/Twitter** (for breaking news and real-time signals)
 
 Pick the 3–5 most significant stories published or materially updated in the last 24 hours strictly. Summarize each in 1–2 sentences.
 
@@ -32,10 +34,12 @@ Check for any new model releases, research previews, API updates, or public anno
 
 Only include announcements made in the last 24 hours. If nothing new was released, say so briefly and note what that absence might mean.
 
+Also check for any significant model releases or announcements from other labs not listed above, including but not limited to Mistral, xAI, Cohere, Apple, Microsoft, and major Chinese labs such as DeepSeek and Qwen.
+
 **Section Summary:** End with 1–2 sentences on what today's releases suggest about where the frontier is moving — or if nothing was released, note what that absence might mean.
 
 ### 3. What Builders Are Talking About
-Search Hacker News, GitHub Trending, and indie hacker communities (indiehackers.com, reddit.com/r/MachineLearning, reddit.com/r/SideProject) for what developers and product people are actively building, discussing, or excited about.
+Search Hacker News, GitHub Trending, indiehackers.com, r/startups, r/vibecoding, r/ChatGPTCoding, and r/claudecode for what developers and product people are actively building, discussing, or excited about.
 
 Focus on:
 - Tools or libraries gaining rapid traction
@@ -58,7 +62,7 @@ Summarize each item in 1–2 sentences. If nothing significant occurred in the l
 **Section Summary:** End with 1–2 sentences interpreting where money and product activity is flowing — infrastructure vs applications, incumbents vs startups, any surprising bets being made.
 
 ### 5. Notable Discussions & Debates
-Find 1–2 interesting conversations started or gaining significant momentum in the last 24 hours — on Hacker News, Reddit (r/MachineLearning, r/artificial), X/Twitter, or elsewhere. These could be debates, critiques, thought experiments, or viral threads.
+Find 1–2 interesting conversations started or gaining significant momentum in the last 24 hours — on Hacker News or X/Twitter. These could be debates, critiques, thought experiments, or viral threads.
 
 Summarize the core argument or question being discussed.
 
@@ -114,8 +118,8 @@ Keep each section tight. The Executive Summary should be the single most valuabl
 Once the briefing file is written, commit and push it to GitHub:
 
 ```bash
-cd "/Users/mattli/Library/Mobile Documents/iCloud~md~obsidian/Documents/mattli"
-git add ai-intelligence/briefings/YYYY-MM-DD.md
+cd "/Users/mattli/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain"
+git add -A
 git commit -m "Add briefing for YYYY-MM-DD"
 git push
 ```

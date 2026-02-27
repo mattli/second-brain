@@ -1,8 +1,14 @@
-# Ignore everything except ai-intelligence/
+# Ignore everything except tracked folders
 *
 !.gitignore
 !ai-intelligence/
 !ai-intelligence/**
+!projects/
+!projects/**
+!areas/
+!areas/**
+!archives/
+!archives/**
 
 # Always ignore system/local files
 ai-intelligence/.DS_Store

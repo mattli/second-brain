@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-02-27 (rev 2)
+updated: 2026-02-27 (rev 3)
 ---
 
 # Intelligence Layers
@@ -31,7 +31,7 @@ A map of the planned intelligence layers for the second-brain system — from da
 
 ### Layer 4: Sector Intelligence ⬜
 - **Prompt:** `instructions/sector-[name].md` (to build per sector)
-- **Schedule:** TBD
+- **Schedule:** Weekly, rotating by sector — one sector per week, cycling through all sectors so each is covered once per month
 - **Sectors:** TBD — candidates include EdTech, climate, wellness, civic tech
 - **Goal:** Deep intelligence on specific sectors to combine with AI trends
 - **Status:** Not started — sectors not yet decided

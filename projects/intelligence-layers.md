@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-02-27 (rev 4)
+updated: 2026-02-28 (rev 5)
 ---
 
 # Intelligence Layers
@@ -22,6 +22,7 @@ A map of the planned intelligence layers for the second-brain system — from da
 - **Schedule:** 8am Sunday
 - **Goal:** Synthesize the week's briefings into patterns and signals
 - **Status:** Not started
+- **Note — Strategic Signals section:** The weekly summary should include a **Strategic Signals** section that monitors recent thesis posts from a16z, Sequoia, Kleiner Perkins, and Khosla Ventures. This section uses a **7-day lookback window** (not 24 hours). Include only forward-looking investment theses — exclude funding announcements.
 
 ### Layer 3: Monthly Summary ⬜
 - **Prompt:** `instructions/monthly-summary.md` (to build)

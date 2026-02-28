@@ -201,6 +201,10 @@ Access levels staged deliberately:
 
 ---
 
+## Notes
+
+- **Nested session limitation:** The daily briefing cron job cannot be triggered from within a Claude Code session — it must be run from a standalone terminal or via cron. This is a Claude Code restriction, not a bug.
+
 ## Open Questions
 
 - What's the expected delivery date for the Mac Mini?
@@ -213,10 +217,9 @@ Access levels staged deliberately:
 
 ## Next Steps
 
-1. Set up Obsidian Git plugin to auto-sync vault to `second-brain`
-2. Draft `instructions/weekly-summary.md` prompt file
-3. Decide on sectors for Layer 4 and build `instructions/sector-[name].md`
-4. Await Mac Mini delivery
+1. Draft `instructions/weekly-summary.md` prompt file
+2. Decide on sectors for Layer 4 and build `instructions/sector-[name].md`
+3. Await Mac Mini delivery
 
 ---
 

@@ -2,7 +2,7 @@
 title: Mac Mini + OpenClaw Intelligence System
 status: in-progress
 created: 2026-02-26
-updated: 2026-02-27
+updated: 2026-02-27 (rev 2)
 ---
 
 # Mac Mini + OpenClaw Intelligence System
@@ -17,10 +17,10 @@ An always-on personal intelligence system that keeps you informed, surfaces prod
 
 | Component | Status |
 |---|---|
-| Daily briefing | ✅ Running (MacBook) |
+| Daily briefing | ✅ Running (MacBook, v1.9) |
 | GitHub private repo (`second-brain`) | ✅ Set up |
-| Obsidian vault structure | ✅ Created today |
-| Obsidian Git plugin | ⬜ Not yet set up |
+| Obsidian vault structure | ✅ Set up 2026-02-26 |
+| Obsidian Git plugin | ✅ Set up |
 | Mac Mini | ⬜ Not yet arrived |
 | OpenClaw | ⬜ Not yet set up |
 | Telegram integration | ⬜ Not yet set up |
@@ -63,13 +63,18 @@ GitHub Private Repo (second-brain)
 ai-intelligence/
 ├── CLAUDE.md                  ← standing instructions
 ├── instructions/              ← prompt files
-│   ├── daily-briefing.md      ✅ exists
+│   ├── daily-briefing.md      ✅ v1.9 (running since 2026-02-24)
 │   ├── weekly-summary.md      ⬜ to build
-│   └── monthly-summary.md     ⬜ to build
-├── briefings/                 ← daily automated briefings ✅ running
+│   ├── monthly-summary.md     ⬜ to build
+│   └── sector-[name].md       ⬜ to build per sector (schedule: weekly rotating)
+├── briefings/                 ← daily automated briefings ✅ 4 generated
 ├── weekly-summaries/          ← weekly synthesis ⬜ to build
 ├── monthly-summaries/         ← monthly synthesis ⬜ to build
 └── trend-reports/             ← trends and product ideas ⬜ to build
+
+projects/
+├── mac-mini-setup.md          ✅ this file
+└── intelligence-layers.md     ✅ layer map
 ```
 
 ---
@@ -167,11 +172,13 @@ Access levels staged deliberately:
 
 ## Build Order
 
-### This Week (MacBook) — in progress
+### This Week (MacBook) — mostly complete
 - [x] Set up private GitHub repo for `ai-intelligence`
-- [x] Get daily briefing running reliably
+- [x] Get daily briefing running reliably (4 briefings generated, Feb 24–27)
 - [x] Add cron job logging (`~/logs/briefing.log`)
-- [ ] Set up Obsidian Git plugin for auto-sync
+- [x] Iterate daily briefing instructions to v1.9 (added sources, Final Check step, path fixes)
+- [x] Map intelligence layers in `projects/intelligence-layers.md`
+- [x] Set up Obsidian Git plugin for auto-sync
 
 ### When Mac Mini Arrives
 - [ ] Fresh macOS install
@@ -207,8 +214,9 @@ Access levels staged deliberately:
 ## Next Steps
 
 1. Set up Obsidian Git plugin to auto-sync vault to `second-brain`
-2. Await Mac Mini delivery
-3. Draft `instructions/weekly-summary.md` prompt file
+2. Draft `instructions/weekly-summary.md` prompt file
+3. Decide on sectors for Layer 4 and build `instructions/sector-[name].md`
+4. Await Mac Mini delivery
 
 ---
 

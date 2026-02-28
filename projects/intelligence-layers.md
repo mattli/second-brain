@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-02-27 (rev 3)
+updated: 2026-02-27 (rev 4)
 ---
 
 # Intelligence Layers
@@ -15,7 +15,7 @@ A map of the planned intelligence layers for the second-brain system — from da
 - **Prompt:** `instructions/daily-briefing.md`
 - **Schedule:** 7am weekdays
 - **Goal:** Stay current on AI and tech news daily
-- **Status:** Running, v1.6
+- **Status:** Running, v1.9
 
 ### Layer 2: Weekly Summary ⬜
 - **Prompt:** `instructions/weekly-summary.md` (to build)

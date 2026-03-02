@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 1.9 | Last updated: 2026-02-27
+> Version: 2.0 | Last updated: 2026-03-02
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -8,6 +8,8 @@ Each morning, research and compile a concise AI and tech intelligence briefing. 
 **Important:** Research and write all sections first, then write the Executive Summary last and place it at the top of the document. The Executive Summary should reflect the full picture after all sections are complete.
 
 **Overlap Prevention:** Only include a story or item if something materially new happened in the last 24 hours — new information, new data, new reaction, or a significant new development. Do not include stories simply because they are still being discussed or are generally important. If a story was covered yesterday and nothing new has happened, skip it.
+
+**Empty Sections:** If a section has no genuinely significant content in the last 24 hours, say so briefly and move on. Never pad sections with low-signal content or embellish the significance of sources to fill space.
 
 ---
 
@@ -64,7 +66,7 @@ Summarize each item in 1–2 sentences. If nothing significant occurred in the l
 ### 5. Notable Discussions & Debates
 Find 1–2 interesting conversations started or gaining significant momentum in the last 24 hours — on Hacker News or X/Twitter. These could be debates, critiques, thought experiments, or viral threads.
 
-Summarize the core argument or question being discussed.
+Summarize the core argument or question being discussed. Do not characterize how widely shared or discussed something is. Only summarize the content and argument — let the reader judge significance.
 
 **Section Summary:** End with 1–2 sentences on what these debates reveal about where the AI community's anxieties or excitement are concentrated right now.
 

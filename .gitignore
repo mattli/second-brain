@@ -11,6 +11,5 @@
 !archives/**
 
 # Always ignore system/local files
-ai-intelligence/.DS_Store
-ai-intelligence/**/.DS_Store
+**/.DS_Store
 ai-intelligence/.claude/

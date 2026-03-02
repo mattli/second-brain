@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-02-28 (rev 5)
+updated: 2026-03-02 (rev 6)
 ---
 
 # Intelligence Layers
@@ -15,14 +15,16 @@ A map of the planned intelligence layers for the second-brain system — from da
 - **Prompt:** `instructions/daily-briefing.md`
 - **Schedule:** 7am weekdays
 - **Goal:** Stay current on AI and tech news daily
-- **Status:** Running, v1.9
+- **Status:** Running, v2.0
+- **Cron fix (2026-03-02):** Added `unset CLAUDECODE &&` to cron command to prevent nested session error when running while a Claude Code session is open.
 
-### Layer 2: Weekly Summary ⬜
-- **Prompt:** `instructions/weekly-summary.md` (to build)
+### Layer 2: Weekly Summary ✅
+- **Prompt:** `instructions/weekly-summary.md`
 - **Schedule:** 8am Sunday
 - **Goal:** Synthesize the week's briefings into patterns and signals
-- **Status:** Not started
-- **Note — Strategic Signals section:** The weekly summary should include a **Strategic Signals** section that monitors recent thesis posts from a16z, Sequoia, Kleiner Perkins, and Khosla Ventures. This section uses a **7-day lookback window** (not 24 hours). Include only forward-looking investment theses — exclude funding announcements.
+- **Status:** Prompt built, v1.1 — not yet running
+- **Sections:** Week in Review, Signal vs Noise, Emerging Patterns, Money & Power, Builder Pulse, One Big Question, Product Observations, Strategic Signals
+- **Note:** Product Observations section prompts carry-through to `projects/product-vision.md` if observation is strong. Strategic Signals uses 5 weekday briefings as source (not 7 days), but VC thesis search is a 7-day lookback.
 
 ### Layer 3: Monthly Summary ⬜
 - **Prompt:** `instructions/monthly-summary.md` (to build)

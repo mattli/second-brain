@@ -1,9 +1,9 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 1.1 | Last updated: 2026-03-02
+> Version: 1.2 | Last updated: 2026-03-02
 
 ## Purpose
-Each Sunday morning, read all daily briefings from the past 7 days and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
+Each Sunday morning, read the last 5 weekday briefings (Monday–Friday) and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
 
 **Write all sections first, then write the Week in Review last** — it should reflect the full picture after synthesis is complete.
 

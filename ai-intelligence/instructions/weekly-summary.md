@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 1.0 | Last updated: 2026-03-02
+> Version: 1.1 | Last updated: 2026-03-02
 
 ## Purpose
 Each Sunday morning, read all daily briefings from the past 7 days and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
@@ -14,7 +14,7 @@ Each Sunday morning, read all daily briefings from the past 7 days and synthesiz
 ## Research Tasks
 
 ### 1. Read the Week's Briefings
-Read all files in the `briefings/` folder dated within the last 7 days. If a day has no briefing file (e.g. weekend or missed run), note it and continue.
+Read all files in the `briefings/` folder from the last 5 weekday briefings (Monday–Friday only). If a day has no briefing file (e.g. missed run), note it and continue.
 
 Use these briefings as your primary source. Do not re-research news independently — synthesize what was already captured.
 
@@ -54,7 +54,7 @@ What was the developer and product community building, debating, and struggling 
 The single most interesting unresolved tension from the week. Not a summary — a genuine open question the week raised but didn't answer.
 
 ### Product Observations
-Anything from the week that surfaced a potential product opportunity worth noting. Keep this grounded — only include observations backed by something concrete from the briefings.
+Anything from the week that surfaced a potential product opportunity worth noting. Keep this grounded — only include observations backed by something concrete from the briefings. If any observation is strong enough, add it to the Observations & Patterns section of `projects/product-vision.md`.
 
 ### Strategic Signals
 New investment thesis posts from a16z, Sequoia, Kleiner Perkins, or Khosla Ventures in the last 7 days (from Research Task 2 above). Forward-looking theses only — no funding announcements.

@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 1.2 | Last updated: 2026-03-02
+> Version: 1.3 | Last updated: 2026-03-02
 
 ## Purpose
 Each Sunday morning, read the last 5 weekday briefings (Monday–Friday) and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
@@ -8,6 +8,8 @@ Each Sunday morning, read the last 5 weekday briefings (Monday–Friday) and syn
 **Write all sections first, then write the Week in Review last** — it should reflect the full picture after synthesis is complete.
 
 **Empty Sections:** If a section has no genuinely significant content from the week, say so briefly and move on. Never pad sections with low-signal content to fill space.
+
+**Acronyms:** Spell out any acronym that is not widely known outside the AI/tech industry. Common acronyms like LLM, API, and AI do not need to be spelled out. Less common acronyms should be spelled out on first use. When in doubt about whether an acronym is widely known, spell it out — it is better to over-explain than to leave the reader confused.
 
 ---
 

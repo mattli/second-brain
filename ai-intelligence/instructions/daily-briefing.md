@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.0 | Last updated: 2026-03-02
+> Version: 2.1 | Last updated: 2026-03-02
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -10,6 +10,8 @@ Each morning, research and compile a concise AI and tech intelligence briefing. 
 **Overlap Prevention:** Only include a story or item if something materially new happened in the last 24 hours — new information, new data, new reaction, or a significant new development. Do not include stories simply because they are still being discussed or are generally important. If a story was covered yesterday and nothing new has happened, skip it.
 
 **Empty Sections:** If a section has no genuinely significant content in the last 24 hours, say so briefly and move on. Never pad sections with low-signal content or embellish the significance of sources to fill space.
+
+**Acronyms:** Spell out any acronym that is not widely known outside the AI/tech industry. Common acronyms like LLM, API, and AI do not need to be spelled out. Less common acronyms should be spelled out on first use. When in doubt about whether an acronym is widely known, spell it out — it is better to over-explain than to leave the reader confused.
 
 ---
 

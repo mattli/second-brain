@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-03-02 (rev 8)
+updated: 2026-03-02 (rev 9)
 ---
 
 # Intelligence Layers
@@ -30,7 +30,7 @@ A map of the planned intelligence layers for the second-brain system — from da
 ### Layer 3: Monthly Summary ⬜
 - **Prompt:** `instructions/monthly-summary.md` (to build)
 - **Schedule:** 8am 1st of month
-- **Goal:** Synthesize weekly summaries into longer-term trends
+- **Goal:** Synthesize weekly summaries, sector intelligence, and VC signals into longer-term trends and product observations — this layer serves the function previously planned for a separate Trend Reports layer
 - **Status:** Not started
 
 ### Layer 4: Sector Intelligence ⬜
@@ -39,9 +39,3 @@ A map of the planned intelligence layers for the second-brain system — from da
 - **Sectors:** TBD — candidates include EdTech, climate, wellness, civic tech
 - **Goal:** Deep intelligence on specific sectors to combine with AI trends
 - **Status:** Not started — sectors not yet decided
-
-### Layer 5: Trend Report & Product Ideas ⬜
-- **Prompt:** `instructions/trend-report.md` (to build)
-- **Schedule:** 9am 1st of month
-- **Goal:** Synthesize monthly summaries and sector intelligence to surface product opportunities at the intersection of AI trends and personal interest areas
-- **Status:** Not started

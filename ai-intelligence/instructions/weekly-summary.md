@@ -56,7 +56,7 @@ What was the developer and product community building, debating, and struggling 
 The single most interesting unresolved tension from the week. Not a summary — a genuine open question the week raised but didn't answer.
 
 ### Product Observations
-Anything from the week that surfaced a potential product opportunity worth noting. Keep this grounded — only include observations backed by something concrete from the briefings. If any observation is strong enough, add it to the Observations & Patterns section of `projects/product-vision.md`.
+Anything from the week that surfaced a potential product opportunity worth noting. Keep this grounded — only include observations backed by something concrete from the briefings. If any observation is strong enough, add it to the Observations & Patterns section of `projects/product-vision.md` in the vault root (one level up from `ai-intelligence/`).
 
 ### Strategic Signals
 New investment thesis posts from a16z, Sequoia, Kleiner Perkins, or Khosla Ventures in the last 7 days (from Research Task 2 above). Forward-looking theses only — no funding announcements.

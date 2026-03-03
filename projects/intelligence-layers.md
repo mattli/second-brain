@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-03-02 (rev 7)
+updated: 2026-03-02 (rev 8)
 ---
 
 # Intelligence Layers
@@ -22,9 +22,10 @@ A map of the planned intelligence layers for the second-brain system — from da
 - **Prompt:** `instructions/weekly-summary.md`
 - **Schedule:** 8am Sunday
 - **Goal:** Synthesize the week's briefings into patterns and signals
-- **Status:** Prompt built, v1.3 — not yet running
-- **Sections:** Week in Review, Signal vs Noise, Emerging Patterns, Money & Power, Builder Pulse, One Big Question, Product Observations, Strategic Signals
-- **Note:** Product Observations section prompts carry-through to `projects/product-vision.md` if observation is strong. Strategic Signals uses 5 weekday briefings as source (not 7 days), but VC thesis search is a 7-day lookback.
+- **Status:** Prompt built, v1.4 — not yet running
+- **Sections:** Week in Review, Signal vs Noise, Emerging Patterns, Money & Power, Builder Pulse, One Big Question, Strategic Signals
+- **Note:** Product Observations removed from weekly layer — product synthesis handled by monthly summary instead. Strategic Signals uses 5 weekday briefings as source; VC thesis search is a 7-day lookback.
+- **Open:** Sunday cron job not yet set up.
 
 ### Layer 3: Monthly Summary ⬜
 - **Prompt:** `instructions/monthly-summary.md` (to build)

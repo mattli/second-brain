@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-03-02 (rev 6)
+updated: 2026-03-02 (rev 7)
 ---
 
 # Intelligence Layers
@@ -15,14 +15,14 @@ A map of the planned intelligence layers for the second-brain system — from da
 - **Prompt:** `instructions/daily-briefing.md`
 - **Schedule:** 7am weekdays
 - **Goal:** Stay current on AI and tech news daily
-- **Status:** Running, v2.0
+- **Status:** Running, v2.1
 - **Cron fix (2026-03-02):** Added `unset CLAUDECODE &&` to cron command to prevent nested session error when running while a Claude Code session is open.
 
 ### Layer 2: Weekly Summary ✅
 - **Prompt:** `instructions/weekly-summary.md`
 - **Schedule:** 8am Sunday
 - **Goal:** Synthesize the week's briefings into patterns and signals
-- **Status:** Prompt built, v1.1 — not yet running
+- **Status:** Prompt built, v1.3 — not yet running
 - **Sections:** Week in Review, Signal vs Noise, Emerging Patterns, Money & Power, Builder Pulse, One Big Question, Product Observations, Strategic Signals
 - **Note:** Product Observations section prompts carry-through to `projects/product-vision.md` if observation is strong. Strategic Signals uses 5 weekday briefings as source (not 7 days), but VC thesis search is a 7-day lookback.
 

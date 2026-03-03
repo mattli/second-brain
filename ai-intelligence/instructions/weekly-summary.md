@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 1.3 | Last updated: 2026-03-02
+> Version: 1.4 | Last updated: 2026-03-02
 
 ## Purpose
 Each Sunday morning, read the last 5 weekday briefings (Monday–Friday) and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
@@ -55,9 +55,6 @@ What was the developer and product community building, debating, and struggling 
 ### One Big Question
 The single most interesting unresolved tension from the week. Not a summary — a genuine open question the week raised but didn't answer.
 
-### Product Observations
-Anything from the week that surfaced a potential product opportunity worth noting. Keep this grounded — only include observations backed by something concrete from the briefings. If any observation is strong enough, add it to the Observations & Patterns section of `projects/product-vision.md` in the vault root (one level up from `ai-intelligence/`).
-
 ### Strategic Signals
 New investment thesis posts from a16z, Sequoia, Kleiner Perkins, or Khosla Ventures in the last 7 days (from Research Task 2 above). Forward-looking theses only — no funding announcements.
 
@@ -91,9 +88,6 @@ Save to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number:
 
 ## One Big Question
 [The most interesting unresolved tension from the week]
-
-## Product Observations
-[Grounded opportunities surfaced by the week's content]
 
 ## Strategic Signals
 [Thesis posts from a16z, Sequoia, Kleiner Perkins, Khosla — or "Nothing published this week."]

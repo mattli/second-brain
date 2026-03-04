@@ -2,7 +2,7 @@
 title: Mac Mini + OpenClaw Intelligence System
 status: in-progress
 created: 2026-02-26
-updated: 2026-02-27 (rev 2)
+updated: 2026-03-03 (rev 3)
 ---
 
 # Mac Mini + OpenClaw Intelligence System
@@ -207,6 +207,7 @@ Access levels staged deliberately:
 
 ## Open Questions
 
+- **iCloud vs GitHub as source of truth** — Consider replacing iCloud sync with GitHub as the primary sync mechanism. Add a `git pull` step to cron jobs before each run. Benefits: explicit versioning, conflict detection, works without iCloud dependency. Review and decide before setting up NanoClaw.
 - What's the expected delivery date for the Mac Mini?
 - Which OpenClaw version / config to start with?
 - Telegram bot setup — personal bot or shared?

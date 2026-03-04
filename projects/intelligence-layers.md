@@ -2,7 +2,7 @@
 title: Intelligence Layers
 status: living
 created: 2026-02-27
-updated: 2026-03-02 (rev 9)
+updated: 2026-03-03 (rev 10)
 ---
 
 # Intelligence Layers
@@ -15,7 +15,7 @@ A map of the planned intelligence layers for the second-brain system — from da
 - **Prompt:** `instructions/daily-briefing.md`
 - **Schedule:** 7am weekdays
 - **Goal:** Stay current on AI and tech news daily
-- **Status:** Running, v2.1
+- **Status:** Running, v2.1 — cron fixed to pass "execute immediately" override, resolving plan-approval hang in automated runs
 - **Cron fix (2026-03-02):** Added `unset CLAUDECODE &&` to cron command to prevent nested session error when running while a Claude Code session is open.
 
 ### Layer 2: Weekly Summary ✅

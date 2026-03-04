@@ -3,7 +3,7 @@ title: NanoClaw Setup
 status: living
 created: 2026-03-03
 updated: 2026-03-03
-version: 1.0
+version: 1.1
 ---
 
 # NanoClaw Setup
@@ -32,6 +32,20 @@ The current briefing system runs sequentially — a single Claude Code session r
 - **Optimized model selection** — lighter/faster models for fetch tasks, more capable models for synthesis and writing
 
 This should significantly reduce total briefing runtime and allow each agent to be tuned for its specific task rather than using a single general-purpose session for everything.
+
+---
+
+## Vision
+
+Each agent should have a distinct name and voice via ElevenLabs. Voice and name combinations make agents feel like distinct collaborators rather than a generic AI. Examples:
+
+- **Briefing agent** — calm, authoritative
+- **Research agent** — thoughtful, measured
+- **Product thinking agent** — conversational
+
+Design agents as named entities from the start — not bolted on later.
+
+**End goal:** AirPods-in, hands-free interaction with the second brain while working. Voice in via iPhone microphone or Telegram. Voice out via ElevenLabs text-to-speech.
 
 ---
 

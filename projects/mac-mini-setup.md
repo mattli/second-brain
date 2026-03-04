@@ -69,8 +69,7 @@ ai-intelligence/
 │   └── sector-[name].md       ⬜ to build per sector
 ├── briefings/                 ← daily automated briefings ✅ running
 ├── weekly-summaries/          ← weekly synthesis ✅ running
-├── monthly-summaries/         ← monthly synthesis ⬜ to build
-└── _archive/                  ← archived files
+└── monthly-summaries/         ← monthly synthesis ⬜ to build
 
 projects/
 ├── mac-mini-setup.md          ✅ this file
@@ -205,6 +204,7 @@ Access levels staged deliberately:
 ## Open Questions
 
 - **iCloud vs GitHub as source of truth** — Consider replacing iCloud sync with GitHub as the primary sync mechanism. Add a `git pull` step to cron jobs before each run. Benefits: explicit versioning, conflict detection, works without iCloud dependency. Decide before setting up NanoClaw.
+- **Mac Mini CLAUDE.md audit** — Mac Mini CLAUDE.md is essentially empty. Needs end-of-session instructions and any other global instructions mirrored from MacBook. Part of a broader CLAUDE.md audit.
 - Which NanoClaw version / config to start with?
 - Telegram bot setup — personal bot or shared?
 - How to handle API key management on Mac Mini (Keychain vs env file)?

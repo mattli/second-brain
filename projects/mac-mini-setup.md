@@ -1,11 +1,11 @@
 ---
-title: Mac Mini + OpenClaw Intelligence System
+title: Mac Mini + NanoClaw Intelligence System
 status: in-progress
 created: 2026-02-26
-updated: 2026-03-03 (rev 3)
+updated: 2026-03-03 (rev 4)
 ---
 
-# Mac Mini + OpenClaw Intelligence System
+# Mac Mini + NanoClaw Intelligence System
 
 ## The Vision
 
@@ -17,16 +17,16 @@ An always-on personal intelligence system that keeps you informed, surfaces prod
 
 | Component | Status |
 |---|---|
-| Daily briefing | ✅ Running (MacBook, v1.9) |
+| Daily briefing | ✅ Running (Mac Mini, v2.1) |
+| Weekly summary | ✅ Running (Mac Mini, v1.4, Sundays 8am) |
 | GitHub private repo (`second-brain`) | ✅ Set up |
 | Obsidian vault structure | ✅ Set up 2026-02-26 |
 | Obsidian Git plugin | ✅ Set up |
-| Mac Mini | ⬜ Not yet arrived |
-| OpenClaw | ⬜ Not yet set up |
+| Mac Mini | ✅ Arrived and set up |
+| NanoClaw | ⬜ Not yet set up |
 | Telegram integration | ⬜ Not yet set up |
-| Cron jobs | ✅ Running (7am weekdays) |
-| Cron job logging | ✅ Logging to `~/logs/briefing.log` |
-| Weekly/monthly summaries | ⬜ Not yet built |
+| Cron jobs | ✅ Running on Mac Mini (daily + weekly) |
+| Monthly summary | ⬜ Not yet built |
 
 ---
 
@@ -63,18 +63,21 @@ GitHub Private Repo (second-brain)
 ai-intelligence/
 ├── CLAUDE.md                  ← standing instructions
 ├── instructions/              ← prompt files
-│   ├── daily-briefing.md      ✅ v1.9 (running since 2026-02-24)
-│   ├── weekly-summary.md      ⬜ to build
+│   ├── daily-briefing.md      ✅ v2.1 (running on Mac Mini)
+│   ├── weekly-summary.md      ✅ v1.4 (running on Mac Mini, Sundays)
 │   ├── monthly-summary.md     ⬜ to build
-│   └── sector-[name].md       ⬜ to build per sector (schedule: weekly rotating)
-├── briefings/                 ← daily automated briefings ✅ 4 generated
-├── weekly-summaries/          ← weekly synthesis ⬜ to build
+│   └── sector-[name].md       ⬜ to build per sector
+├── briefings/                 ← daily automated briefings ✅ running
+├── weekly-summaries/          ← weekly synthesis ✅ running
 ├── monthly-summaries/         ← monthly synthesis ⬜ to build
-└── trend-reports/             ← trends and product ideas ⬜ to build
+└── _archive/                  ← archived files
 
 projects/
 ├── mac-mini-setup.md          ✅ this file
-└── intelligence-layers.md     ✅ layer map
+├── intelligence-layers.md     ✅ layer map
+├── nanoclaw-setup.md          ✅ NanoClaw vision and setup plan
+├── product-vision.md          ✅ north star + active ideas
+└── ideas/                     ← individual idea files (empty)
 ```
 
 ---
@@ -83,29 +86,29 @@ projects/
 
 See [[intelligence-layers]] for full layer details.
 
-Cron schedule:
+Cron schedule (running on Mac Mini):
 
 ```
-7am weekdays
-8am Sunday
-8am 1st of month
-9am 1st of month
+7am weekdays  → daily briefing
+8am Sunday    → weekly summary
+8am 1st of month → monthly summary (to build)
 ```
 
 Each run:
-1. Generates markdown → saved to Obsidian vault
+1. Generates markdown → saved to vault
 2. Commits to GitHub → version history + backup
 
 ---
 
 ## Interface
 
-**Phase 1 — Now:** Claude Code on MacBook for interactive sessions
+**Now:** Claude Code on MacBook for interactive sessions + Mac Mini running automated cron jobs
 
-**Phase 2 — Mac Mini arrives:** OpenClaw on Mac Mini + Telegram
-- Morning briefing pushed to your phone
+**Next — NanoClaw + Telegram:**
+- Morning briefing pushed to phone
 - Message your agent from anywhere
 - Proactive alerts for things you're monitoring
+- Named agents with distinct ElevenLabs voices (see `nanoclaw-setup.md`)
 
 ---
 
@@ -116,9 +119,9 @@ Daily briefings
       ↓
 Weekly summaries
       ↓
-Monthly trend reports
+Monthly summaries (product observations surfaced here)
       ↓
-Product ideas (auto-surfaced)
+Product ideas → projects/ideas/
       ↓
 Product specs
       ↓
@@ -165,62 +168,46 @@ Access levels staged deliberately:
 | Claude Pro/Max | $20–200/month (already have) |
 | Electricity | ~$1–2/month |
 | Telegram | Free |
-| OpenClaw | Free (open source) |
+| NanoClaw | Free (open source) |
 | **Ongoing** | **~$21–202/month** |
 
 ---
 
 ## Build Order
 
-### This Week (MacBook) — mostly complete
-- [x] Set up private GitHub repo for `ai-intelligence`
-- [x] Get daily briefing running reliably (4 briefings generated, Feb 24–27)
-- [x] Add cron job logging (`~/logs/briefing.log`)
-- [x] Iterate daily briefing instructions to v1.9 (added sources, Final Check step, path fixes)
+### MacBook phase — complete
+- [x] Set up private GitHub repo for `second-brain`
+- [x] Get daily briefing running reliably
+- [x] Add cron job logging
+- [x] Iterate daily briefing instructions to v2.1
+- [x] Build weekly summary instructions (v1.4)
 - [x] Map intelligence layers in `projects/intelligence-layers.md`
 - [x] Set up Obsidian Git plugin for auto-sync
 
-### When Mac Mini Arrives
-- [ ] Fresh macOS install
-- [ ] Move cron jobs from MacBook to Mac Mini
-- [ ] Set up Claude Code and OpenClaw
+### Mac Mini — complete
+- [x] Set up Mac Mini
+- [x] Move daily cron job to Mac Mini
+- [x] Set up weekly summary cron job (Sundays 8am)
+
+### Next
+- [ ] Build `instructions/monthly-summary.md`
+- [ ] Set up NanoClaw (see `nanoclaw-setup.md`)
 - [ ] Connect Telegram
-- [ ] Test full automated pipeline
-
-### Phase 2 (as use cases emerge)
-- [ ] Build weekly summary automation
-- [ ] Build monthly summary + trend report automation
-- [ ] Expand OpenClaw capabilities deliberately
-- [ ] Add Google Workspace integration
-
-### Phase 3 (when ready)
-- [ ] Full product validation pipeline
-- [ ] Browser automation for research
-- [ ] Landing page generation
-- [ ] Whatever use cases have emerged
+- [ ] Decide iCloud vs GitHub as sync source of truth (before NanoClaw setup)
+- [ ] Decide sectors for Layer 4
 
 ---
 
 ## Notes
 
-- **Nested session limitation:** The daily briefing cron job cannot be triggered from within a Claude Code session — it must be run from a standalone terminal or via cron. This is a Claude Code restriction, not a bug.
+- **Nested session fix:** Cron commands prepend `unset CLAUDECODE &&` to prevent nested session errors. Prompts also include "Execute immediately — no plan approval needed" to override the global plan-first instruction.
 
 ## Open Questions
 
-- **iCloud vs GitHub as source of truth** — Consider replacing iCloud sync with GitHub as the primary sync mechanism. Add a `git pull` step to cron jobs before each run. Benefits: explicit versioning, conflict detection, works without iCloud dependency. Review and decide before setting up NanoClaw.
-- What's the expected delivery date for the Mac Mini?
-- Which OpenClaw version / config to start with?
+- **iCloud vs GitHub as source of truth** — Consider replacing iCloud sync with GitHub as the primary sync mechanism. Add a `git pull` step to cron jobs before each run. Benefits: explicit versioning, conflict detection, works without iCloud dependency. Decide before setting up NanoClaw.
+- Which NanoClaw version / config to start with?
 - Telegram bot setup — personal bot or shared?
 - How to handle API key management on Mac Mini (Keychain vs env file)?
-- Weekly summary format — same structure as daily briefing, or different?
-
----
-
-## Next Steps
-
-1. Draft `instructions/weekly-summary.md` prompt file
-2. Decide on sectors for Layer 4 and build `instructions/sector-[name].md`
-3. Await Mac Mini delivery
 
 ---
 

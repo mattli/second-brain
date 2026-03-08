@@ -200,6 +200,7 @@ Access levels staged deliberately:
 ## Notes
 
 - **Nested session fix:** Cron commands prepend `unset CLAUDECODE &&` to prevent nested session errors. Prompts also include "Execute immediately — no plan approval needed" to override the global plan-first instruction.
+- **2026-03-08:** Audited system-overview.md against other project docs. Fixed Key Files paths to reflect `projects/second-brain/` move, added mac-mini-setup.md to Key Files table. Updated intelligence-layers.md weekly summary status from "not yet running" to "Running". Added permissions audit step to `~/.claude/CLAUDE.md` end-of-session checklist.
 
 ## Open Questions
 

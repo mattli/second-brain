@@ -2,8 +2,8 @@
 title: NanoClaw Setup
 status: living
 created: 2026-03-03
-updated: 2026-03-03
-version: 1.1
+updated: 2026-03-05
+version: 1.2
 ---
 
 # NanoClaw Setup
@@ -32,6 +32,19 @@ The current briefing system runs sequentially — a single Claude Code session r
 - **Optimized model selection** — lighter/faster models for fetch tasks, more capable models for synthesis and writing
 
 This should significantly reduce total briefing runtime and allow each agent to be tuned for its specific task rather than using a single general-purpose session for everything.
+
+---
+
+## Cost Optimization Strategy
+
+The Future Architecture section outlines multi-model routing at a high level. This section captures the specific strategy:
+
+- **Haiku** (or a local open-weight model via Ollama) for fetch tasks and first-pass relevance filtering
+- **Sonnet** for deep reading, nuance detection, and synthesis
+- **Expected savings:** 30-40% vs current single-model approach where Sonnet handles everything
+- **Key tradeoff:** Haiku may miss subtle signals during filtering — tune the relevance threshold carefully to avoid discarding important material before Sonnet sees it
+- **Local open-weight models** (e.g. Llama, Mistral via Ollama) worth evaluating for fetch/classify tasks — zero API cost, full privacy, no data leaving the Mac Mini
+- **Best architecture:** local model for fetch/classify → Haiku for relevance filter → Sonnet for deep reading and synthesis
 
 ---
 

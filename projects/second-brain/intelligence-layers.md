@@ -20,14 +20,14 @@ A map of the planned intelligence layers for the second-brain system — from da
 
 ### Layer 2: Weekly Summary ✅
 - **Prompt:** `instructions/weekly-summary.md`
-- **Schedule:** 8am Sunday
+- **Schedule:** 7am Sunday
 - **Goal:** Synthesize the week's briefings into patterns and signals
 - **Status:** Running, v1.4 — cron job on Mac Mini, Sundays 8am
 - **Sections:** Week in Review, Signal vs Noise, Emerging Patterns, Money & Power, Builder Pulse, One Big Question, Strategic Signals
 - **Note:** Product Observations removed from weekly layer — product synthesis handled by monthly summary instead. Strategic Signals uses 5 weekday briefings as source; VC thesis search is a 7-day lookback.
 
-### Layer 3: Monthly Summary ⬜
+### Layer 3: Monthly Summary ✅
 - **Prompt:** `instructions/monthly-summary.md` (to build)
-- **Schedule:** 8am 1st of month
+- **Schedule:** 7am 1st of month
 - **Goal:** Synthesize weekly summaries, sector intelligence, and VC signals into longer-term trends and product observations — this layer serves the function previously planned for a separate Trend Reports layer
 - **Status:** Not started

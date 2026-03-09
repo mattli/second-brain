@@ -49,4 +49,8 @@ Ideas with enough signal to warrant their own file. Each links to a dedicated no
 
 Observations that have surfaced in monthly summaries but aren't strong enough to act on yet. No links — just a sentence or two per item.
 
-*None yet.*
+**[2026-03] AI security auditing for dev tooling:** AI coding tools are generating systematic security vulnerabilities (RCE, supply chain injection, privilege escalation) across every vendor simultaneously, with no runtime auditing or supply chain transparency tooling to address it — likely a new product category.
+
+**[2026-03] Agent evaluation and observability:** No reliable way exists to know if an autonomous AI system is doing the right thing in production — goal alignment, error detection, and action correctness over multi-step tasks are unsolved at the agent level.
+
+**[2026-03] Multi-agent coordination infrastructure:** Developers have converged on multi-agent architectures as the default pattern, but orchestration tooling (conflict resolution, context sharing, handoffs) doesn't work at production quality — multiple startups attempting, none solved.

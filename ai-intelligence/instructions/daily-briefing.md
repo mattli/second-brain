@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.1 | Last updated: 2026-03-02
+> Version: 2.2 | Last updated: 2026-03-09
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -84,11 +84,8 @@ Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
 ```
 # AI Intelligence Briefing — YYYY-MM-DD
 
-## Executive Summary
-**Bottom Line:** [The single most important story today]
-**Builders:** [One sentence on what the builder community is focused on]
-**Money:** [One sentence on where funding/launches are pointing]
-**Debate:** [One sentence on the key tension in the community]
+## Executive Summary 
+[3–5 sentences of flowing prose — no field labels, no bullet points. Lead with the single most important story. Add 1–2 sentences on what else matters today and why. Close with the key tension or open question the day raises. Written last, placed first.]
 
 ---
 

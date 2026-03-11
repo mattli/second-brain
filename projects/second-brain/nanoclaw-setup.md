@@ -2,42 +2,120 @@
 title: NanoClaw Setup
 status: living
 created: 2026-03-03
-updated: 2026-03-05
-version: 1.2
+updated: 2026-03-10
+version: 1.5
 ---
 
 # NanoClaw Setup
 
 ## What Is NanoClaw
 
-NanoClaw is a lightweight open-source AI agent framework — approximately 500 lines of code — focused on security and container isolation. It is designed to run agents in isolated environments, making it a safer foundation for automating tasks that touch sensitive systems or credentials.
+NanoClaw is an open-source AI agent framework written in TypeScript/Node.js, focused on security and container isolation. It runs as a single host process that spawns Docker containers, each running the Claude Agent SDK. Agents are sandboxed — API keys never enter containers (a credential proxy on port 3001 injects them), and filesystem IPC handles all communication between containers and the host.
+
+**Repo:** https://github.com/qwibitai/nanoclaw
+
+### Core architecture
+
+- **Host process** — polls for messages and scheduled tasks, manages container lifecycle, proxies credentials
+- **Containers** — isolated environments running Claude Agent SDK with tools (bash, web search, browser, MCP tools for scheduling and messaging)
+- **Task scheduler** — built-in cron/interval/one-time task support (replaces crontab)
+- **Credential proxy** — HTTP server on port 3001 that intercepts API calls from containers and injects auth tokens
+- **Filesystem IPC** — containers write JSON files to `data/ipc/{group}/` to send messages or create tasks; the host watches for these files
+- **Group folders** — each agent gets a `groups/{name}/` folder with a `CLAUDE.md` that serves as persistent memory and instructions
+
+### Key file paths once installed
+
+```
+nanoclaw/
+  src/                    # Host process source (TypeScript)
+  container/              # Dockerfile + agent-runner (runs inside containers)
+  groups/                 # Per-agent folders with CLAUDE.md memory
+  store/messages.db       # SQLite database
+  data/sessions/          # Agent session state
+  data/ipc/               # Container IPC directories
+  .env                    # Auth credentials (gitignored)
+  launchd/                # macOS launchd plist
+```
+
+---
+
+## Setup Plan
+
+### Prerequisites
+
+- [x] **Docker Desktop** installed and running
+- [x] **Node.js 20+** installed (v25.8.0)
+- [x] **Claude Code CLI** installed
+- [x] **Git credentials** — not needed inside containers; vault git sync handled by host-side cron
+
+### Phase 1 — Fork, clone, install ✓
+
+1. ~~`gh repo fork qwibitai/nanoclaw --clone`~~
+2. ~~`cd nanoclaw && claude` then run `/setup`~~
+3. ~~The `/setup` skill handles: npm install, Docker image build, `.env` creation, launchd plist setup~~
+
+Completed 2026-03-10. Fork at `mattli/nanoclaw`, upstream at `qwibitai/nanoclaw`. Node v25.8.0, Docker container built and tested. Auth via Claude subscription OAuth token. Service running via launchd.
+
+### Phase 1b — Telegram channel ✓
+
+Added Telegram as the primary channel (merged `nanoclaw-telegram` skill branch). Bot: **@matts_second_brain_bot**. Registered as main chat (`tg:8790860459`, no trigger prefix needed). Fixed test suite for Markdown parse_mode. Group Privacy still default (bot sees @mentions only in groups — fine for now since using direct chat).
+
+### Phase 2 — Configure for second-brain ✓
+
+4. ~~Add auth to `.env`~~ — done (OAuth token)
+5. ~~Add the second-brain vault to the mount allowlist~~ — done at `~/.config/nanoclaw/mount-allowlist.json` with `allowReadWrite: true`
+6. ~~Create a briefing group folder at `groups/briefing/` with a `CLAUDE.md` that contains or points to the daily-briefing instructions~~ — done. CLAUDE.md points to `/workspace/extra/second-brain/ai-intelligence/instructions/daily-briefing.md`, remaps paths to container mount, skips git (host handles sync).
+7. ~~Configure `containerConfig` for the main group to mount the vault at `/workspace/extra/second-brain`~~ — done (fixed allowlist format from plain strings to proper `AllowedRoot` objects, added `additionalMounts` to group's `container_config` in SQLite). Also set `nonMainReadOnly: false` in the allowlist so the briefing group can write to the vault.
+
+### Phase 3 — Schedule the daily briefing ✓
+
+8. ~~Create a scheduled task via NanoClaw's task scheduler with cron `0 7 * * 1-5` targeting the briefing group~~ — done. Task ID `daily-briefing`, results sent to Telegram (`tg:8790860459`).
+9. ~~The agent inside the container will: read the instructions, do web research, write the briefing markdown~~ — git commit/push handled by host-side cron instead of inside the container (see below).
+10. ~~This replaces the current crontab entry for daily briefings~~ — done. Old daily briefing cron removed.
+
+### Phase 4 — Launch as background service ✓
+
+11. ~~Install the launchd plist to `~/Library/LaunchAgents/com.nanoclaw.plist`~~
+12. ~~`launchctl load ~/Library/LaunchAgents/com.nanoclaw.plist`~~
+13. ~~Test with a manual trigger before relying on the schedule~~ — triggered test run from Telegram
+14. ~~Remove the old daily briefing crontab entry once confirmed working~~ — removed
+
+### Phase 4b — Vault git sync ✓
+
+Added a cron job (`*/30 * * * *`) that runs `git add -A && git commit && git push` on the Obsidian vault every 30 minutes. This replaces the need for git operations inside containers — the briefing agent just writes the file, and the cron picks it up. Logs to `~/logs/vault-sync.log`.
+
+### Migration order
+
+Migrate one cron job at a time. Keep the others on Claude Code until each is proven stable on NanoClaw.
+
+1. **Daily briefing** (first — highest frequency, fastest feedback loop)
+2. **Weekly summary** (after daily is stable for ~1 week)
+3. **Monthly summary** (after weekly is stable)
 
 ---
 
 ## Planned Integrations
 
-- **Telegram** — notifications and lightweight interactive control
+- **Telegram** ✓ — @matts_second_brain_bot, direct chat as main channel
 - **Gmail** — email reading and sending as agent actions
-- **Obsidian** — read and write to the second-brain vault
-- **GitHub** — commit, push, and repository operations
+- **Obsidian** ✓ — vault mounted at `/workspace/extra/second-brain` (read/write for main group)
+- **GitHub** — vault git sync via host-side cron (every 30 min); container git not needed for current workflows
 
 ---
 
 ## Future Architecture
 
-The current briefing system runs sequentially — a single Claude Code session reads instructions and executes all research and synthesis tasks in one pass. The planned NanoClaw architecture replaces this with parallel multi-agent orchestration:
+Once the basic setup is running, the briefing system can evolve from a single sequential agent to parallel multi-agent orchestration:
 
 - **Specialized fetch agents** — one agent per data source or section, running in parallel
 - **Orchestrator agent** — receives outputs from fetch agents and handles synthesis
 - **Optimized model selection** — lighter/faster models for fetch tasks, more capable models for synthesis and writing
 
-This should significantly reduce total briefing runtime and allow each agent to be tuned for its specific task rather than using a single general-purpose session for everything.
+This should significantly reduce total briefing runtime and allow each agent to be tuned for its specific task.
 
 ---
 
 ## Cost Optimization Strategy
-
-The Future Architecture section outlines multi-model routing at a high level. This section captures the specific strategy:
 
 - **Haiku** (or a local open-weight model via Ollama) for fetch tasks and first-pass relevance filtering
 - **Sonnet** for deep reading, nuance detection, and synthesis
@@ -62,6 +140,14 @@ Design agents as named entities from the start — not bolted on later.
 
 ---
 
+## Open Questions
+
+- ~~**Auth model:** Claude subscription OAuth token (free with Pro/Team) vs pay-per-use API key?~~ → OAuth token (subscription)
+- ~~**Telegram now or later?**~~ → Done during initial setup
+- ~~**Git inside containers:**~~ → Solved by host-side cron sync instead. Containers write files, cron commits and pushes every 30 min.
+
+---
+
 ## Status
 
-Not started — pending Mac Mini setup.
+**Phases 1–4 complete (2026-03-10).** NanoClaw is installed and running as a background service via launchd. Telegram bot (@matts_second_brain_bot) is the primary channel. Daily briefing migrated from crontab to NanoClaw scheduled task (cron `0 7 * * 1-5`). Obsidian vault mounted read/write into the briefing container. Host-side cron syncs the vault to GitHub every 30 minutes. Weekly and monthly summaries still on crontab — migrate after daily briefing is proven stable (~1 week).

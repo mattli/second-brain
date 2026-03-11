@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.2 | Last updated: 2026-03-09
+> Version: 2.3 | Last updated: 2026-03-09
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -19,7 +19,6 @@ Each morning, research and compile a concise AI and tech intelligence briefing. 
 
 ### 1. Top AI & Tech News
 Search for the latest headlines from:
-- **The Verge** (theverge.com)
 - **TechCrunch** (techcrunch.com)
 - **Reuters** (reuters.com)
 - **Hacker News** (news.ycombinator.com — top stories and "Ask HN" threads relevant to AI)
@@ -43,7 +42,10 @@ Also check for any significant model releases or announcements from other labs n
 **Section Summary:** End with 1–2 sentences on what today's releases suggest about where the frontier is moving — or if nothing was released, note what that absence might mean.
 
 ### 3. What Builders Are Talking About
-Search Hacker News, GitHub Trending, indiehackers.com, r/startups, r/vibecoding, r/ChatGPTCoding, and r/claudecode for what developers and product people are actively building, discussing, or excited about.
+Search the following for what developers and product people are actively building, discussing, or excited about:
+- **Hacker News** (news.ycombinator.com)
+- **GitHub Trending** (github.com/trending)
+- **r/vibecoding**, **r/ChatGPTCoding**, **r/claudecode** (reddit.com)
 
 Focus on:
 - Tools or libraries gaining rapid traction

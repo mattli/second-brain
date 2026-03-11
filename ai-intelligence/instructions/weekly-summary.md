@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 1.4 | Last updated: 2026-03-02
+> Version: 1.5 | Last updated: 2026-03-09
 
 ## Purpose
 Each Sunday morning, read the last 5 weekday briefings (Monday–Friday) and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
@@ -20,7 +20,19 @@ Read all files in the `briefings/` folder from the last 5 weekday briefings (Mon
 
 Use these briefings as your primary source. Do not re-research news independently — synthesize what was already captured.
 
-### 2. Strategic Signals
+### 2. Builder Pulse Research
+Do a 7-day lookback on what indie projects and new products are gaining traction. Search:
+- **Product Hunt** (producthunt.com) — top launches of the week by upvotes
+- **Hacker News Show HN** (news.ycombinator.com) — builder-posted projects gaining community traction
+- **Indie Hackers** (indiehackers.com) — revenue milestones, growth stories, and what's working
+
+Look for patterns in what product categories are being built, not just individual launches. What types of problems are founders choosing to solve this week? What's getting real user traction vs what's just getting attention?
+
+Synthesize findings into the Builder Pulse section alongside what the daily briefings captured.
+
+If nothing significant surfaced this week, say so briefly.
+
+### 3. Strategic Signals
 Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
@@ -50,7 +62,7 @@ Themes, technologies, or tensions that appeared more than once across the week's
 Where did funding and attention flow consistently this week? Look for direction, not just individual deals — is capital moving toward infrastructure or applications, incumbents or startups, one modality or another?
 
 ### Builder Pulse
-What was the developer and product community building, debating, and struggling with this week? What problems kept coming up without good solutions?
+What was the developer and product community building, debating, and struggling with this week? What problems kept coming up without good solutions? What indie projects or product categories gained real traction (from Research Task 2 above)?
 
 ### One Big Question
 The single most interesting unresolved tension from the week. Not a summary — a genuine open question the week raised but didn't answer.

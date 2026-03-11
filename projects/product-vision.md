@@ -45,6 +45,14 @@ Ideas with enough signal to warrant their own file. Each links to a dedicated no
 
 ---
 
+## The Right Question
+
+*Via Sequoia Capital, "Services: The New Software", March 5 2026*
+
+The valuable companies won't be tools — they'll be services that deliver outcomes. The moat isn't the software, it's the domain expertise, the data, and the trust built up by delivering results in a specific vertical. Instead of starting with a technical idea, start with a person and a result. Who is paying for something today — a service, a contractor, a subscription — where AI could deliver the same outcome better or cheaper?
+
+---
+
 ## Watching
 
 Observations that have surfaced in monthly summaries but aren't strong enough to act on yet. No links — just a sentence or two per item.

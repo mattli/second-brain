@@ -25,3 +25,15 @@
 **Revenue immediately:** Usage-based SaaS. Free tier (1 agent, 7-day history), $19/mo for indie devs (5 agents, 30-day history), $79/mo for teams. People will pay immediately because unmonitored agent costs are a real and present danger.
 
 **Solo feasibility:** Thin SDK in Python/TypeScript that wraps API calls, a Postgres backend, and a simple Next.js dashboard. No AI needed to build it — it's pure instrumentation.
+
+---
+
+## 3. CLAUDE.md Transparency Dashboard
+
+*Inspired by: personal pain point managing multiple CLAUDE.md files across machines, NanoClaw containers, and projects (March 2026)*
+
+**What it is:** A tool that maps every CLAUDE.md file across your entire Claude Code setup — global, project-level, and NanoClaw container groups — showing what each file applies to, its scope, and letting you view and edit them from a single interface.
+
+**Why now:** As Claude Code adoption grows and NanoClaw-style multi-agent setups become more common, the CLAUDE.md landscape gets complex fast. No tooling exists to manage it. Every developer hitting this problem is solving it manually.
+
+**Solo feasibility:** Read the filesystem, parse CLAUDE.md locations and scopes, simple UI or CLI. No AI needed to build it — pure developer tooling.

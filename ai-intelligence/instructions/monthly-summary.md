@@ -8,7 +8,7 @@ On the 1st of each month, read the last 4–5 weekly summaries and synthesize th
 
 Save output to `monthly-summaries/YYYY-MM.md` (e.g. `2026-03.md`).
 
-Then update `projects/product-vision.md` with any new observations surfaced this month (see After Saving).
+Then update `projects/product/product-vision.md` with any new observations surfaced this month (see After Saving).
 
 **Write all sections first, then write the Month in Review last** — it should reflect the full picture after synthesis is complete.
 
@@ -132,7 +132,7 @@ Keep the document tight. Prioritize insight over coverage. A sharp observation i
 
 ### 1. Update product-vision.md
 
-Read `projects/product-vision.md`. Under the `## Observations & Patterns` section, append any Product Observations from this month's summary that feel worth carrying forward. Use this format:
+Read `projects/product/product-vision.md`. Under the `## Observations & Patterns` section, append any Product Observations from this month's summary that feel worth carrying forward. Use this format:
 
 ```
 **[YYYY-MM] [Pattern name]:** [One sentence on what you observed and why it's relevant.]

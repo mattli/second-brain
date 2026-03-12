@@ -72,11 +72,15 @@ ai-intelligence/
 └── monthly-summaries/         ← monthly synthesis ⬜ to build
 
 projects/
-├── mac-mini-setup.md          ✅ this file
-├── intelligence-layers.md     ✅ layer map
-├── nanoclaw-setup.md          ✅ NanoClaw vision and setup plan
-├── product-vision.md          ✅ north star + active ideas
-└── ideas/                     ← individual idea files (empty)
+├── intelligence/              ✅ intelligence system architecture
+│   ├── intelligence-layers.md ✅ layer map
+│   └── system-overview.md     ✅ system overview
+├── nanoclaw/                  ✅ server setup and planning
+│   ├── mac-mini-setup.md      ✅ this file
+│   └── nanoclaw-setup.md      ✅ NanoClaw vision and setup plan
+├── product/                   ✅ product vision and ideas
+│   └── product-vision.md      ✅ north star + active ideas
+└── writing/                   ✅ writing system for Substack and X
 ```
 
 ---

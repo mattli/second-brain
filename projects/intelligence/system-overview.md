@@ -43,10 +43,10 @@ A personal AI-powered research and product development engine running on a Mac M
 | `ai-intelligence/instructions/weekly-summary.md` | Instructions for the weekly summary (current: v1.4) |
 | `ai-intelligence/briefings/` | Daily briefing outputs |
 | `ai-intelligence/weekly-summaries/` | Weekly summary outputs |
-| `projects/second-brain/intelligence-layers.md` | Architecture plan for the intelligence system |
-| `projects/second-brain/nanoclaw-setup.md` | Planning doc for the next phase (multi-agent architecture) |
-| `projects/second-brain/mac-mini-setup.md` | Mac Mini setup, build order, and open questions |
-| `projects/product-vision.md` | North star, active ideas, and trends worth watching |
+| `projects/intelligence/intelligence-layers.md` | Architecture plan for the intelligence system |
+| `projects/nanoclaw/nanoclaw-setup.md` | Planning doc for the next phase (multi-agent architecture) |
+| `projects/nanoclaw/mac-mini-setup.md` | Mac Mini setup, build order, and open questions |
+| `projects/product/product-vision.md` | North star, active ideas, and trends worth watching |
 
 ---
 
@@ -84,12 +84,15 @@ second-brain/
   areas/                — ongoing responsibilities and interests
   personal/             — private notes
   projects/             — active projects and documentation
-    second-brain/       — documentation for this system
+    intelligence/       — intelligence system architecture
       intelligence-layers.md
+      system-overview.md  — this file
+    nanoclaw/           — NanoClaw server setup and planning
       mac-mini-setup.md
       nanoclaw-setup.md
-      system-overview.md  — this file
-    product-vision.md   — north star, active ideas, trends watching
+    product/            — product vision and ideas
+      product-vision.md — north star, active ideas, trends watching
+    writing/            — writing system for Substack and X
 ```
 
 ---
@@ -102,7 +105,7 @@ The current system is Phase 1 — single-agent, sequential, cron-based. Phase 2 
 - Telegram integration — notifications and lightweight interactive control
 - Significant cost reduction — current daily briefing costs ~$1.00 due to growing context; multi-agent architecture should reduce this to $0.10–0.20
 
-See `projects/nanoclaw-setup.md` for full planning details.
+See `projects/nanoclaw/nanoclaw-setup.md` for full planning details.
 
 ---
 

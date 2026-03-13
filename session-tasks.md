@@ -1,4 +1,3 @@
-# Session Tasks
 
 ## To Do
 - [ ] Build writing capture workflow in NanoClaw — voice/text capture via Telegram, saves to writing/drafts/ in vault, shaping questions, polish in Obsidian

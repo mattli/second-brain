@@ -1,5 +1,3 @@
-# System Overview
-
 > Last updated: 2026-03-13
 
 This document explains how the second-brain system works — what runs, when, why, and how the pieces connect. Written for both future reference and to give Claude context at the start of a session.

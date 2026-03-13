@@ -1,4 +1,3 @@
-
 ## To Do
 - [ ] Build writing capture workflow in NanoClaw — voice/text capture via Telegram, saves to writing/drafts/ in vault, shaping questions, polish in Obsidian
 - [ ] Add end-of-session build-in-public prompt to MacBook Pro CLAUDE.md — Claude Code prompts for a 1-3 sentence tweet about what you did, saves to writing/drafts/

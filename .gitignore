@@ -1,6 +1,7 @@
 # Ignore everything except tracked folders
 *
 !.gitignore
+!system-overview.md
 !ai-intelligence/
 !ai-intelligence/**
 !projects/

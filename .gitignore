@@ -2,8 +2,7 @@
 *
 !.gitignore
 !system-overview.md
-!ai-intelligence/
-!ai-intelligence/**
+!session-tasks.md
 !projects/
 !projects/**
 !areas/
@@ -13,4 +12,3 @@
 
 # Always ignore system/local files
 **/.DS_Store
-ai-intelligence/.claude/

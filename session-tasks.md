@@ -1,7 +1,6 @@
 ## High Priority
 - [ ] Build writing capture workflow in NanoClaw — voice/text capture via Telegram, saves to writing/drafts/ in vault, shaping questions, polish in Obsidian
 - [ ] Set up @matttli on X and Substack — reactivate old account, create Substack as article host
-- [ ] Add Claude Code launch aliases to ~/.zshrc on Mac Mini — check existing vault/brain/nanoclaw aliases, add claude variants to open Claude Code directly in each directory
 - [ ] Set up GitHub Mobile app on phone — enable push notifications for second-brain vault repo to monitor git sync without cluttering Telegram
 
 ## Medium Priority
@@ -12,10 +11,15 @@
 ## Low Priority
 - [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
-- [ ] GitHub credentials inside NanoClaw containers — add a scoped personal access token so agents can commit and push from inside containers, enabling autonomous building
 - [ ] Build an on-demand AI business model research prompt
 
 ## Completed — March 16, 2026
+- [x] Add Claude Code launch aliases to ~/.zshrc on Mac Mini — claude variants added to open Claude Code directly in vault, nanoclaw directories
+- [x] GitHub credentials inside NanoClaw containers — fine-grained PAT in .env, served via credential proxy; git credential helper in container calls back to host
+- [x] CLAUDE.md end-of-session ritual simplified — consolidated steps 3/4/6 into one, removed tweet drafting step, deleted tweets.md
+- [x] Auth cleanup — removed ANTHROPIC_API_KEY and classic GITHUB_TOKEN from ~/.zshrc; Claude Code now uses OAuth, GitHub CLI uses keyring; classic token revoked on GitHub
+- [x] Committed and pushed 4 previously uncommitted changes (agent rename, git credential proxy, script tasks, telegram tests)
+- [x] End-of-session ritual updated — now checks for uncommitted changes first and updates session-tasks.md
 - [x] Git credential proxy extended — GITHUB_TOKEN in .env served via /git-credentials endpoint, containers get git access without token exposure; script task type added to NanoClaw scheduler for lightweight host-side tasks
 - [x] Vault git sync fixed — migrated from broken launchd to NanoClaw script task, runs every 30 minutes as host-side bash command, no container overhead
 

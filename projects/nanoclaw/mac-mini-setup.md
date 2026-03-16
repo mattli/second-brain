@@ -2,7 +2,7 @@
 title: Mac Mini + NanoClaw Intelligence System
 status: in-progress
 created: 2026-02-26
-updated: 2026-03-03 (rev 4)
+updated: 2026-03-16 (rev 5)
 ---
 
 # Mac Mini + NanoClaw Intelligence System
@@ -205,6 +205,7 @@ Access levels staged deliberately:
 
 - **Nested session fix:** Cron commands prepend `unset CLAUDECODE &&` to prevent nested session errors. Prompts also include "Execute immediately — no plan approval needed" to override the global plan-first instruction.
 - **2026-03-08:** Audited system-overview.md against other project docs. Fixed Key Files paths to reflect `projects/second-brain/` move, added mac-mini-setup.md to Key Files table. Updated intelligence-layers.md weekly summary status from "not yet running" to "Running". Added permissions audit step to `~/.claude/CLAUDE.md` end-of-session checklist.
+- **2026-03-16:** Auth cleanup — removed ANTHROPIC_API_KEY and GITHUB_TOKEN (classic) from ~/.zshrc. Claude Code now uses OAuth (claude.ai subscription). GitHub CLI uses macOS keyring. NanoClaw containers use OAuth token + fine-grained PAT from .env (gitignored). Classic GitHub token revoked. No API keys in plain text shell configs.
 
 ## Open Questions
 
@@ -212,7 +213,7 @@ Access levels staged deliberately:
 - **Mac Mini CLAUDE.md audit** — Mac Mini CLAUDE.md is essentially empty. Needs end-of-session instructions and any other global instructions mirrored from MacBook. Part of a broader CLAUDE.md audit.
 - Which NanoClaw version / config to start with?
 - Telegram bot setup — personal bot or shared?
-- How to handle API key management on Mac Mini (Keychain vs env file)?
+- ~~How to handle API key management on Mac Mini (Keychain vs env file)?~~ Resolved: OAuth for Claude Code, .env (gitignored) for NanoClaw container secrets, macOS keyring for GitHub CLI.
 
 ---
 

@@ -189,3 +189,5 @@ Design agents as named entities from the start — not bolted on later.
 ## Status
 
 **Phases 1–5c complete (2026-03-16).** NanoClaw running as a background service via launchd. Telegram bot (@matts_second_brain_bot) is the primary channel. Daily briefing, weekly summary, and monthly summary all running as NanoClaw scheduled tasks. Each briefing agent commits and pushes to GitHub after writing via the credential proxy. Vault-sync script task runs every 30 min to catch manual edits (no container, no AI tokens). Task scheduler sends deterministic confirmations. `GITHUB_TOKEN` added to `.env`.
+
+CLAUDE.md restructured: personal rules (plan first, never delete, vault path, end-of-session ritual, quick reference) moved to global `~/.claude/CLAUDE.md`. Project-level `~/nanoclaw/CLAUDE.md` now contains only NanoClaw developer context (architecture, key files, skills, development commands, troubleshooting).

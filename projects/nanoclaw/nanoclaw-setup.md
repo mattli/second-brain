@@ -3,7 +3,7 @@ title: NanoClaw Setup
 status: living
 created: 2026-03-03
 updated: 2026-03-16
-version: 1.6
+version: 1.7
 ---
 
 # NanoClaw Setup
@@ -18,8 +18,8 @@ NanoClaw is an open-source AI agent framework written in TypeScript/Node.js, foc
 
 - **Host process** — polls for messages and scheduled tasks, manages container lifecycle, proxies credentials
 - **Containers** — isolated environments running Claude Agent SDK with tools (bash, web search, browser, MCP tools for scheduling and messaging)
-- **Task scheduler** — built-in cron/interval/one-time task support (replaces crontab)
-- **Credential proxy** — HTTP server on port 3001 that intercepts API calls from containers and injects auth tokens
+- **Task scheduler** — built-in scheduling using cron expressions, intervals, or one-time timestamps (replaces crontab). Two task modes: container tasks (full Claude Agent SDK) and script tasks (direct bash on host, no AI tokens)
+- **Credential proxy** — HTTP server on port 3001 that injects Anthropic API keys into container requests and serves GitHub tokens to containers via a git credential helper
 - **Filesystem IPC** — containers write JSON files to `data/ipc/{group}/` to send messages or create tasks; the host watches for these files
 - **Group folders** — each agent gets a `groups/{name}/` folder with a `CLAUDE.md` that serves as persistent memory and instructions
 
@@ -70,7 +70,7 @@ Added Telegram as the primary channel (merged `nanoclaw-telegram` skill branch).
 ### Phase 3 — Schedule the daily briefing ✓
 
 8. ~~Create a scheduled task via NanoClaw's task scheduler with cron `0 7 * * 1-5` targeting the briefing group~~ — done. Task ID `daily-briefing`, results sent to Telegram (`tg:8790860459`).
-9. ~~The agent inside the container will: read the instructions, do web research, write the briefing markdown~~ — git commit/push handled by host-side cron instead of inside the container (see below).
+9. ~~The agent inside the container will: read the instructions, do web research, write the briefing markdown~~ — agent commits and pushes directly via credential proxy. Vault-sync script task catches any manual edits every 30 min.
 10. ~~This replaces the current crontab entry for daily briefings~~ — done. Old daily briefing cron removed.
 
 ### Phase 4 — Launch as background service ✓
@@ -101,7 +101,26 @@ How it works:
 
 **Why not mount `~/.git-credentials`?** Mount security blocks paths containing "credentials" by default.
 
-Replaces the broken launchd/VaultSync.app approach (removed). Briefing agents can now commit and push directly after writing files.
+Replaces the broken launchd/VaultSync.app approach (removed). Briefing agents now commit and push directly after writing files.
+
+### Phase 5b — Vault sync as script task ✓
+
+Added a `vault-sync` scheduled task that runs every 30 minutes (`*/30 * * * *`) to catch manual vault edits. Uses the new `script` context_mode — runs as a direct bash command on the host, no container, no AI tokens.
+
+**Why script tasks?** Spinning up a full Claude Code container for `git add && git commit && git push` wastes subscription tokens on a mechanical task. Script tasks (`context_mode: 'script'`) execute the prompt as a shell command via `execFile('/bin/bash', ...)` directly in the NanoClaw process.
+
+**Why this doesn't hit the old TCC issue:** The old VaultSync.app was a separate unsigned binary launched by launchd — macOS wouldn't grant it iCloud Drive access. Script tasks run inside the NanoClaw Node.js process, which inherits Terminal.app's Full Disk Access permissions.
+
+**Task config:**
+- ID: `vault-sync`
+- Schedule: `*/30 * * * *`
+- Context mode: `script`
+- Prompt: `cd "<vault-path>" && git add -A && (git diff --cached --quiet || git commit -m "vault sync $(date)") && git push`
+- Only notifies on failure
+
+### Phase 5c — Deterministic task confirmations ✓
+
+Task scheduler no longer forwards agent text to Telegram. Instead, it sends a deterministic status line after each task completes (e.g. `daily-briefing: ✅ completed`). This prevents issues where agents wrap output in `<internal>` tags (which get stripped by the router, resulting in no notification) or include unwanted summaries.
 
 ### Migration order
 
@@ -169,4 +188,4 @@ Design agents as named entities from the start — not bolted on later.
 
 ## Status
 
-**Phases 1–5 complete (2026-03-16).** NanoClaw is installed and running as a background service via launchd. Telegram bot (@matts_second_brain_bot) is the primary channel. Daily briefing, weekly summary, and monthly summary all running as NanoClaw scheduled tasks. Git credential proxy enables containers to push to GitHub without exposing tokens. Task scheduler sends deterministic confirmations (no longer relies on agent text). Next: add `GITHUB_TOKEN` to `.env` and update briefing agents to commit/push after writing.
+**Phases 1–5c complete (2026-03-16).** NanoClaw running as a background service via launchd. Telegram bot (@matts_second_brain_bot) is the primary channel. Daily briefing, weekly summary, and monthly summary all running as NanoClaw scheduled tasks. Each briefing agent commits and pushes to GitHub after writing via the credential proxy. Vault-sync script task runs every 30 min to catch manual edits (no container, no AI tokens). Task scheduler sends deterministic confirmations. `GITHUB_TOKEN` added to `.env`.

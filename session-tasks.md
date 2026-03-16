@@ -1,15 +1,29 @@
-## To Do
+## Do Next
 - [ ] Build writing capture workflow in NanoClaw — voice/text capture via Telegram, saves to writing/drafts/ in vault, shaping questions, polish in Obsidian
-- [ ] Add end-of-session build-in-public prompt to MacBook Pro CLAUDE.md — Claude Code prompts for a 1-3 sentence tweet about what you did, saves to writing/drafts/
 - [ ] Set up @matttli on X and Substack — reactivate old account, create Substack as article host
-- [ ] Rename NanoClaw bot from Andy to something personal — edit groups/global/CLAUDE.md in terminal
-- [ ] Migrate weekly and monthly summaries from cron to NanoClaw scheduled tasks — once daily briefing is proven stable
-- [ ] Test NanoClaw Reddit scraping — send bot a few Reddit thread URLs from communities of interest, evaluate comprehensiveness, identify which subreddits are worth monitoring regularly
-- [ ] Build an on-demand AI business model research prompt
-- [ ] Add project-level CLAUDE.md to ~/nanoclaw/ — gives Claude Code context when doing interactive NanoClaw development on the Mac Mini
-- [ ] Design project-level CLAUDE.md workflow — when to create them, what goes in them, how to keep them updated (automated end-of-session + on-demand refresh pattern)
-- [ ] GitHub credentials inside NanoClaw containers — add a scoped personal access token so agents can commit and push from inside containers, enabling autonomous building
 
+## Do Soon
+- [ ] Think through a better to-do list / task management workflow — current session-tasks.md approach is working but worth evaluating if there's a cleaner system
+- [ ] Design project-level CLAUDE.md workflow — when to create them, what goes in them, how to keep them updated (automated end-of-session + on-demand refresh pattern)
+
+## Do Eventually
+- [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
+- [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
+- [ ] GitHub credentials inside NanoClaw containers — add a scoped personal access token so agents can commit and push from inside containers, enabling autonomous building
+- [ ] Build an on-demand AI business model research prompt
+
+## Completed — March 16, 2026
+- [x] Git credential proxy extended — GITHUB_TOKEN in .env served via /git-credentials endpoint, containers get git access without token exposure; script task type added to NanoClaw scheduler for lightweight host-side tasks
+- [x] Vault git sync fixed — migrated from broken launchd to NanoClaw script task, runs every 30 minutes as host-side bash command, no container overhead
+
+## Completed — March 13, 2026
+- [x] Migrate weekly and monthly summaries from cron to NanoClaw scheduled tasks — all three intelligence jobs now running on NanoClaw, zero cron jobs remaining
+- [x] Add end-of-session build-in-public tweet draft to MacBook Pro CLAUDE.md — Claude Code drafts a tweet based on session work, saves to projects/writing/tweets.md
+- [x] Agent renamed from Andy to Second Brain
+- [x] Add project-level CLAUDE.md to ~/nanoclaw/ — already exists from upstream repo, sufficient as-is
+- [x] Tested NanoClaw Reddit scraping — Reddit blocks bots with CAPTCHA, not viable; web search works instead
+- [x] Researched sustainability pain points — greenwashing/trust and "just tell me what to do" are the clearest signals; product direction tabled for now
+- [x] Mac Mini crontab fully emptied — all scheduled tasks now in NanoClaw
 
 ## Completed — March 12, 2026
 - [x] Research writing frameworks — X + Substack strategy documented, goal reframed from audience building to finding your people

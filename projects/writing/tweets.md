@@ -1,2 +1,0 @@
-
-**2026-03-13:** Reorganized my entire Obsidian vault today — moved AI intelligence into proper project folders, fixed every stale path reference, and added automated doc checks to my end-of-session workflow. Small systems work compounds.

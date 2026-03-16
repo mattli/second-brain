@@ -53,6 +53,16 @@ The valuable companies won't be tools — they'll be services that deliver outco
 
 ---
 
+## The Business Model
+
+Aim for autopilot, not co-pilot. A co-pilot sells a tool that helps a human do work. An autopilot sells the outcome itself — the human sets the goal once and the system delivers results. The moat in an autopilot business isn't the software, it's the track record, the calibrated expertise, and the institutional trust built up over time. Tools get copied in weeks. Outcomes require years to replicate.
+
+This also sets the pricing ceiling: a tool competes on features and price against other tools. An autopilot competes against what it costs to get that outcome another way — a contractor, an agency, an employee. Structurally higher value, structurally harder to replace.
+
+For a solo founder, this is the right model: go deep on one vertical, build genuine expertise, and deliver results better than anyone else in that narrow domain. That's a defensible position that doesn't require out-resourcing a big company.
+
+---
+
 ## Watching
 
 Observations that have surfaced in monthly summaries but aren't strong enough to act on yet. No links — just a sentence or two per item.

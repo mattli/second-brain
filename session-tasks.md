@@ -1,12 +1,13 @@
-## Do Next
+## High Priority
 - [ ] Build writing capture workflow in NanoClaw — voice/text capture via Telegram, saves to writing/drafts/ in vault, shaping questions, polish in Obsidian
 - [ ] Set up @matttli on X and Substack — reactivate old account, create Substack as article host
 
-## Do Soon
+## Medium Priority
+- [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
 - [ ] Think through a better to-do list / task management workflow — current session-tasks.md approach is working but worth evaluating if there's a cleaner system
 - [ ] Design project-level CLAUDE.md workflow — when to create them, what goes in them, how to keep them updated (automated end-of-session + on-demand refresh pattern)
 
-## Do Eventually
+## Low Priority
 - [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
 - [ ] GitHub credentials inside NanoClaw containers — add a scoped personal access token so agents can commit and push from inside containers, enabling autonomous building

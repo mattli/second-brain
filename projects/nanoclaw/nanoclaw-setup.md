@@ -2,8 +2,8 @@
 title: NanoClaw Setup
 status: living
 created: 2026-03-03
-updated: 2026-03-10
-version: 1.5
+updated: 2026-03-16
+version: 1.6
 ---
 
 # NanoClaw Setup
@@ -46,7 +46,7 @@ nanoclaw/
 - [x] **Docker Desktop** installed and running
 - [x] **Node.js 20+** installed (v25.8.0)
 - [x] **Claude Code CLI** installed
-- [x] **Git credentials** — not needed inside containers; vault git sync handled by host-side cron
+- [x] **Git credentials** — served to containers via credential proxy (see Phase 5)
 
 ### Phase 1 — Fork, clone, install ✓
 
@@ -80,9 +80,28 @@ Added Telegram as the primary channel (merged `nanoclaw-telegram` skill branch).
 13. ~~Test with a manual trigger before relying on the schedule~~ — triggered test run from Telegram
 14. ~~Remove the old daily briefing crontab entry once confirmed working~~ — removed
 
-### Phase 4b — Vault git sync ✓
+### Phase 4b — Vault git sync ✓ → replaced by Phase 5
 
-Added a cron job (`*/30 * * * *`) that runs `git add -A && git commit && git push` on the Obsidian vault every 30 minutes. This replaces the need for git operations inside containers — the briefing agent just writes the file, and the cron picks it up. Logs to `~/logs/vault-sync.log`.
+~~Originally a host-side cron/launchd job. Removed — macOS TCC blocked iCloud Drive access from launchd processes, making it unreliable. Replaced by container-based git via the credential proxy (Phase 5).~~
+
+### Phase 5 — Git credential proxy ✓
+
+**Problem:** Containers need git access (vault sync now, autonomous coding soon), but tokens shouldn't live inside containers.
+
+**Solution:** Extended the existing credential proxy (port 3001) to serve git credentials. The same proxy that injects Anthropic API keys now also handles GitHub tokens — one place for all secrets.
+
+How it works:
+1. `GITHUB_TOKEN` in `.env` — a single GitHub PAT scoped to needed repos
+2. Credential proxy serves `GET /git-credentials` — returns the token in git credential helper format
+3. Container Dockerfile installs `git-credential-nanoclaw` — a shell script that calls `curl $NANOCLAW_CREDENTIAL_PROXY/git-credentials`
+4. Git is configured system-wide in the container to use this helper (`git config --system credential.helper nanoclaw`)
+5. Every container can `git clone/push/pull` any repo the PAT covers — token never enters the container environment or filesystem
+
+**Why not embed tokens in `.git/config` per-repo?** Doesn't scale. Adding repos means editing configs. The proxy approach: add repos to the PAT scope, done.
+
+**Why not mount `~/.git-credentials`?** Mount security blocks paths containing "credentials" by default.
+
+Replaces the broken launchd/VaultSync.app approach (removed). Briefing agents can now commit and push directly after writing files.
 
 ### Migration order
 
@@ -99,7 +118,7 @@ Migrate one cron job at a time. Keep the others on Claude Code until each is pro
 - **Telegram** ✓ — @matts_second_brain_bot, direct chat as main channel
 - **Gmail** — email reading and sending as agent actions
 - **Obsidian** ✓ — vault mounted at `/workspace/extra/second-brain` (read/write for main group)
-- **GitHub** — vault git sync via host-side cron (every 30 min); container git not needed for current workflows
+- **GitHub** — git access via credential proxy; containers can clone/push/pull any repo covered by the PAT in `.env`
 
 ---
 
@@ -144,10 +163,10 @@ Design agents as named entities from the start — not bolted on later.
 
 - ~~**Auth model:** Claude subscription OAuth token (free with Pro/Team) vs pay-per-use API key?~~ → OAuth token (subscription)
 - ~~**Telegram now or later?**~~ → Done during initial setup
-- ~~**Git inside containers:**~~ → Solved by host-side cron sync instead. Containers write files, cron commits and pushes every 30 min.
+- ~~**Git inside containers:**~~ → Solved via credential proxy. Containers use `git-credential-nanoclaw` helper that fetches tokens from the host proxy at request time.
 
 ---
 
 ## Status
 
-**Phases 1–4 complete (2026-03-10).** NanoClaw is installed and running as a background service via launchd. Telegram bot (@matts_second_brain_bot) is the primary channel. Daily briefing migrated from crontab to NanoClaw scheduled task (cron `0 7 * * 1-5`). Obsidian vault mounted read/write into the briefing container. Host-side cron syncs the vault to GitHub every 30 minutes. Weekly and monthly summaries still on crontab — migrate after daily briefing is proven stable (~1 week).
+**Phases 1–5 complete (2026-03-16).** NanoClaw is installed and running as a background service via launchd. Telegram bot (@matts_second_brain_bot) is the primary channel. Daily briefing, weekly summary, and monthly summary all running as NanoClaw scheduled tasks. Git credential proxy enables containers to push to GitHub without exposing tokens. Task scheduler sends deterministic confirmations (no longer relies on agent text). Next: add `GITHUB_TOKEN` to `.env` and update briefing agents to commit/push after writing.

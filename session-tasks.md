@@ -1,6 +1,8 @@
 ## High Priority
 - [ ] Build writing capture workflow in NanoClaw — voice/text capture via Telegram, saves to writing/drafts/ in vault, shaping questions, polish in Obsidian
 - [ ] Set up @matttli on X and Substack — reactivate old account, create Substack as article host
+- [ ] Add Claude Code launch aliases to ~/.zshrc on Mac Mini — check existing vault/brain/nanoclaw aliases, add claude variants to open Claude Code directly in each directory
+- [ ] Set up GitHub Mobile app on phone — enable push notifications for second-brain vault repo to monitor git sync without cluttering Telegram
 
 ## Medium Priority
 - [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild

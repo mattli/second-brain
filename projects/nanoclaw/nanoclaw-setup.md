@@ -115,8 +115,10 @@ Added a `vault-sync` scheduled task that runs every 30 minutes (`*/30 * * * *`) 
 - ID: `vault-sync`
 - Schedule: `*/30 * * * *`
 - Context mode: `script`
-- Prompt: `cd "<vault-path>" && git add -A && (git diff --cached --quiet || git commit -m "vault sync $(date)") && git push`
+- Prompt: `export GIT_DIR=~/vault-git-data && export GIT_WORK_TREE="<vault-path>" && git add -A && (git diff --cached --quiet || git commit -m "vault sync $(date)") && git push`
 - Only notifies on failure
+
+**iCloud mmap fix (2026-03-16):** Moved `.git` directory from inside the vault to `~/vault-git-data` to permanently eliminate `mmap failed: Resource deadlock avoided` errors caused by iCloud's file provider daemon locking `.git/index`. The script uses `GIT_DIR`/`GIT_WORK_TREE` env vars instead of `cd` (a `.git` pointer file doesn't work because iCloud renames it via conflict resolution).
 
 ### Phase 5c — Deterministic task confirmations ✓
 
@@ -164,7 +166,7 @@ Current skill branches: `skill/apple-container`, `skill/compact`, `skill/ollama-
 
 ### Vault sync and iCloud
 
-The vault lives inside iCloud Drive, so iCloud syncs everything including `.git/`. This occasionally causes lock contention when vault-sync runs at the same time iCloud is syncing `.git/index`. The vault-sync script retries up to 3 times with 10-second waits to handle this. If all retries fail, you get a Telegram notification — but the next run 30 minutes later will succeed.
+The vault lives inside iCloud Drive. The `.git` directory has been moved to `~/vault-git-data` (outside iCloud) to prevent iCloud's file provider daemon from locking git's index file — which caused persistent `mmap failed: Resource deadlock avoided` errors. The vault-sync script uses `GIT_DIR`/`GIT_WORK_TREE` env vars to point git at the external directory. A `.git` pointer file doesn't work because iCloud renames it via conflict resolution.
 
 ---
 

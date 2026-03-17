@@ -1,11 +1,9 @@
 ## High Priority
-- [ ] Build writing capture workflow in NanoClaw — voice/text capture via Telegram, saves to writing/drafts/ in vault, shaping questions, polish in Obsidian
-- [ ] Set up @matttli on X and Substack — reactivate old account, create Substack as article host
+- [ ] Set up @matttli on X — reactivate account and start posting
 - [ ] Set up GitHub Mobile app on phone — enable push notifications for second-brain vault repo to monitor git sync without cluttering Telegram
 
 ## Medium Priority
 - [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
-- [ ] Think through a better to-do list / task management workflow — current session-tasks.md approach is working but worth evaluating if there's a cleaner system
 - [ ] Design project-level CLAUDE.md workflow — when to create them, what goes in them, how to keep them updated (automated end-of-session + on-demand refresh pattern)
 
 ## Low Priority

@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.3 | Last updated: 2026-03-09
+> Version: 2.4 | Last updated: 2026-03-17
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -28,20 +28,25 @@ Pick the 3–5 most significant stories published or materially updated in the l
 
 **Section Summary:** End with 1–2 sentences interpreting what today's news collectively signals — are there patterns, a dominant theme, or a surprising absence? Be forward-looking, not just descriptive.
 
-### 2. Model Releases & Announcements
-Check for any new model releases, research previews, API updates, or public announcements from:
-- **Anthropic** (claude.ai, anthropic.com)
-- **OpenAI** (openai.com)
-- **Google DeepMind** (deepmind.google, blog.google)
-- **Meta AI** (ai.meta.com)
+### 2. Notable Model Releases
+Only include a model release if it clears at least one of these bars:
+- A flagship model from a major lab (Anthropic, OpenAI, Google DeepMind, Meta)
+- A release that meaningfully shifts the cost/capability tradeoff for builders
+- A release generating significant real-world builder discussion today
 
-Only include announcements made in the last 24 hours. If nothing new was released, say so briefly and note what that absence might mean.
+If nothing clears this bar, skip the section entirely — do not list minor model updates, fine-tunes, or incremental releases just to fill space.
 
-Also check for any significant model releases or announcements from other labs not listed above, including but not limited to Mistral, xAI, Cohere, Apple, Microsoft, and major Chinese labs such as DeepSeek and Qwen.
+**Section Summary:** End with 1–2 sentences on what today's notable release signals about where the frontier is moving. Omit this if the section is skipped.
 
-**Section Summary:** End with 1–2 sentences on what today's releases suggest about where the frontier is moving — or if nothing was released, note what that absence might mean.
+### 3. New Tools & Products
+Search for newly launched or newly trending tools, apps, or products in the AI/tech space:
+- **Product Hunt** (producthunt.com — top launches)
+- **Hacker News** (Show HN posts)
+- **GitHub Trending** (github.com/trending)
 
-### 3. What Builders Are Talking About
+Focus on tools builders are actually trying or recommending — not press releases. List 2–3 items max, 1 sentence each describing what it does and why it's getting attention. If nothing notable launched in the last 24 hours, skip this section.
+
+### 4. What Builders Are Talking About
 Search the following for what developers and product people are actively building, discussing, or excited about:
 - **Hacker News** (news.ycombinator.com)
 - **GitHub Trending** (github.com/trending)
@@ -57,7 +62,7 @@ List 2–3 items posted or gaining significant traction in the last 24 hours. In
 
 **Section Summary:** End with 1–2 sentences on what the builder community's focus today suggests about emerging opportunities or pain points — what problem keeps coming up that doesn't have a great solution yet?
 
-### 4. Funding, Acquisitions & Product Launches
+### 5. Funding, Acquisitions & Product Launches
 Search for major AI-related business news in the last 24 hours strictly:
 - Funding rounds (Series A and above, or notable seed rounds)
 - Acquisitions or mergers involving AI companies
@@ -67,14 +72,14 @@ Summarize each item in 1–2 sentences. If nothing significant occurred in the l
 
 **Section Summary:** End with 1–2 sentences interpreting where money and product activity is flowing — infrastructure vs applications, incumbents vs startups, any surprising bets being made.
 
-### 5. Notable Discussions & Debates
+### 6. Notable Discussions & Debates
 Find 1–2 interesting conversations started or gaining significant momentum in the last 24 hours — on Hacker News or X/Twitter. These could be debates, critiques, thought experiments, or viral threads.
 
 Summarize the core argument or question being discussed. Do not characterize how widely shared or discussed something is. Only summarize the content and argument — let the reader judge significance.
 
 **Section Summary:** End with 1–2 sentences on what these debates reveal about where the AI community's anxieties or excitement are concentrated right now.
 
-### 6. Final Check
+### 7. Final Check
 After completing all sections, do a final search for **AI news today** and **AI funding today** to catch any major stories that may have been missed. If anything significant is found that isn't already covered, add it to the most relevant section.
 
 ---
@@ -95,9 +100,12 @@ Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
 [3–5 stories, 1–2 sentences each]
 **Today's Signal:** [1–2 sentence interpretive summary]
 
-## Model Releases & Announcements
-[Releases with name, capabilities, significance]
-**Today's Signal:** [1–2 sentence interpretive summary]
+## Notable Model Releases
+[Only if a release clears the bar — flagship lab, meaningful cost/capability shift, or real builder traction. Skip section if nothing qualifies.]
+**Today's Signal:** [1–2 sentence interpretive summary — omit if section skipped]
+
+## New Tools & Products
+[2–3 newly launched or trending tools, 1 sentence each — what it does and why it's getting attention. Skip if nothing notable.]
 
 ## What Builders Are Talking About
 [2–3 items with why the community cares]

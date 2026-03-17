@@ -20,6 +20,10 @@
 - [x] Auth cleanup — removed ANTHROPIC_API_KEY and classic GITHUB_TOKEN from ~/.zshrc; Claude Code now uses OAuth, GitHub CLI uses keyring; classic token revoked on GitHub
 - [x] Committed and pushed 4 previously uncommitted changes (agent rename, git credential proxy, script tasks, telegram tests)
 - [x] End-of-session ritual updated — now checks for uncommitted changes first and updates session-tasks.md
+- [x] Merged upstream NanoClaw updates — resolved settings.json conflict, now includes /remote-control feature
+- [x] Vault sync retry — updated script to retry 3x with 10s delays to handle iCloud git lock contention
+- [x] Disabled upstream GitHub Actions workflows on fork — Bump version, Update token count, Sync/merge-forward all disabled; only CI remains active
+- [x] Documented fork maintenance in nanoclaw-setup.md — upstream sync, workflows, skill branches, vault sync/iCloud, /remote-control
 - [x] Git credential proxy extended — GITHUB_TOKEN in .env served via /git-credentials endpoint, containers get git access without token exposure; script task type added to NanoClaw scheduler for lightweight host-side tasks
 - [x] Vault git sync fixed — migrated from broken launchd to NanoClaw script task, runs every 30 minutes as host-side bash command, no container overhead
 

@@ -3,7 +3,7 @@ title: NanoClaw Setup
 status: living
 created: 2026-03-03
 updated: 2026-03-16
-version: 1.7
+version: 1.8
 ---
 
 # NanoClaw Setup
@@ -138,6 +138,33 @@ Migrate one cron job at a time. Keep the others on Claude Code until each is pro
 - **Gmail** — email reading and sending as agent actions
 - **Obsidian** ✓ — vault mounted at `/workspace/extra/second-brain` (read/write for main group)
 - **GitHub** — git access via credential proxy; containers can clone/push/pull any repo covered by the PAT in `.env`
+- **Remote Control** — `/remote-control` lets you start a Claude Code session on the Mac Mini from Telegram, running directly on the host (not in a container). Useful for NanoClaw admin tasks without SSH-ing in. Merged from upstream 2026-03-16, not yet configured.
+
+---
+
+## Fork Maintenance
+
+Your fork (`mattli/nanoclaw`) is a customized copy of the upstream repo (`qwibitai/nanoclaw`). It's where your code lives — pushing to it is how you back up changes to GitHub.
+
+### Upstream sync
+
+Upstream releases new features and fixes regularly. Your fork works independently — you don't need to stay in sync. When you want to pull in updates, use `/update-nanoclaw` from a Claude Code session. Aim to check roughly once a month, or when you hear about a feature you want.
+
+### GitHub Actions workflows
+
+Upstream's workflows (version bumps, token count badges, skill branch merging) came with the fork but don't apply to you. They were disabled on 2026-03-16 because they require upstream-specific secrets and caused failure emails on every push. Only the CI workflow remains active.
+
+If you ever need to re-enable them: `gh workflow enable <id> --repo mattli/nanoclaw`.
+
+### Skill branches
+
+Skill branches (`origin/skill/*`) are pre-built feature branches. If they fall behind `main` they can develop merge conflicts. If you're not using a skill branch, it's safe to delete it. You can always reinstall a skill fresh later.
+
+Current skill branches: `skill/apple-container`, `skill/compact`, `skill/ollama-tool` (has conflict — safe to delete if not using).
+
+### Vault sync and iCloud
+
+The vault lives inside iCloud Drive, so iCloud syncs everything including `.git/`. This occasionally causes lock contention when vault-sync runs at the same time iCloud is syncing `.git/index`. The vault-sync script retries up to 3 times with 10-second waits to handle this. If all retries fail, you get a Telegram notification — but the next run 30 minutes later will succeed.
 
 ---
 

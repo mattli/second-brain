@@ -101,7 +101,8 @@ A personal AI-powered research and product development engine running on a Mac M
 | Daily briefing | 7am Mon–Fri | Researches and writes intelligence briefing to vault |
 | Weekly summary | 7am Sunday | Synthesizes the week's briefings |
 | Monthly summary | 7am 1st of month | Synthesizes monthly trends, updates product-vision.md |
-| Daily to-do | 8am daily | Reads daily-to-do.md and sends contents to Telegram |
+| Daily to-do | 8am daily | Reads today's section from daily-to-do.md and sends it to Telegram |
+| Weekly to-do recap | 4pm Friday | Sends reflective weekly summary, then resets daily-to-do.md for next week |
 | Vault sync | Every 30 min | Commits and pushes vault changes to GitHub |
 | March 21 reminder | Once, Mar 21 9am | Check if "Check usage" note is still in briefing CLAUDE.md |
 

@@ -1,13 +1,44 @@
-**Morning**
+## March 17 — Tuesday
+
 - [x] Take a walk and get muesli from Bluey's
 - [x] Read daily digest
 - [x] Read Infinite Jest
 - [x] Send a tweet
 - [x] Purchase smog check on Groupon
-
-**Afternoon**
 - [x] Eat lunch leftovers
 - [x] Go to the gym
-- [ ] Write a summary of the NanoClaw/second brain system for coldmountain.ai — frame it around product management and use it for job applications
-  - Create `projects/product/coldmountain.md` — strategic brief for what goes on the site
-  - Add "System Roadmap" section to `product-vision.md` — where the system is headed as a product development tool
+- [x] Write a summary of the NanoClaw/second brain system for coldmountain.ai
+	- [ ] Create `projects/product/coldmountain.md`
+	- [ ] Add "System Roadmap" section to `product-vision.md`
+- [x] Make overnight oats
+
+---
+
+## March 18 — Wednesday
+
+- [ ] Eat overnight oats for breakfast
+- [ ] Read daily digest
+- [ ] Read Infinite Jest
+- [ ] Send a tweet
+- [ ] Eat quinoa, veggies, and flank steak for lunch (need to cook the steak)
+- [ ] Go swimming (if back feels okay)
+- [ ] Write Second Brain documentation for coldmountain.ai and save to vault (`projects/product/coldmountain.md`)
+- [ ] Add "System Roadmap" section to `projects/product/product-vision.md`
+
+---
+
+## March 19 — Thursday
+
+---
+
+## March 20 — Friday
+
+- [ ] Get smog check (tentative)
+
+---
+
+## March 21 — Saturday
+
+---
+
+## March 22 — Sunday

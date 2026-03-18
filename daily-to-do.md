@@ -24,6 +24,7 @@
 - [ ] Go swimming (if back feels okay)
 - [ ] Write Second Brain documentation for coldmountain.ai and save to vault (`projects/product/coldmountain.md`)
 - [ ] Add "System Roadmap" section to `projects/product/product-vision.md`
+- [ ] Reminder: do some medium and longer-term planning — goals and milestones
 
 ---
 

@@ -22,8 +22,8 @@
 
 - [x] Eat overnight oats for breakfast
 - [x] Read daily digest
-- [ ] Read Infinite Jest
-- [ ] Send a tweet
+- [x] Read Infinite Jest
+- [x] Send a tweet
 - [ ] Eat quinoa, veggies, and flank steak for lunch (need to cook the steak)
 - [ ] Go swimming (if back feels okay)
 - [ ] Write Second Brain documentation for coldmountain.ai and save to vault (`projects/product/coldmountain.md`)

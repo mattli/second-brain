@@ -11,6 +11,7 @@
 - [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
 - [ ] Build an on-demand AI business model research prompt
+- [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 
 ## Completed — March 16, 2026
 - [x] Add Claude Code launch aliases to ~/.zshrc on Mac Mini — claude variants added to open Claude Code directly in vault, nanoclaw directories

@@ -24,8 +24,8 @@
 - [x] Read daily digest
 - [x] Read Infinite Jest
 - [x] Send a tweet
-- [ ] Eat quinoa, veggies, and flank steak for lunch (need to cook the steak)
-- [ ] Go swimming (if back feels okay)
+- [x] Eat quinoa, veggies, and flank steak for lunch (need to cook the steak)
+- [ ] ~~Go swimming (if back feels okay)~~
 - [ ] Write Second Brain documentation for coldmountain.ai and save to vault (`projects/product/coldmountain.md`)
 - [ ] Add "System Roadmap" section to `projects/product/product-vision.md`
 - [ ] Reminder: do some medium and longer-term planning — goals and milestones

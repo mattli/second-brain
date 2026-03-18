@@ -20,8 +20,8 @@
 
 ## March 18 — Wednesday
 
-- [ ] Eat overnight oats for breakfast
-- [ ] Read daily digest
+- [x] Eat overnight oats for breakfast
+- [x] Read daily digest
 - [ ] Read Infinite Jest
 - [ ] Send a tweet
 - [ ] Eat quinoa, veggies, and flank steak for lunch (need to cook the steak)

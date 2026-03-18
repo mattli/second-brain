@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.4 | Last updated: 2026-03-17
+> Version: 2.6 | Last updated: 2026-03-18
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -9,9 +9,17 @@ Each morning, research and compile a concise AI and tech intelligence briefing. 
 
 **Overlap Prevention:** Only include a story or item if something materially new happened in the last 24 hours — new information, new data, new reaction, or a significant new development. Do not include stories simply because they are still being discussed or are generally important. If a story was covered yesterday and nothing new has happened, skip it.
 
+**Cross-Section Deduplication:** Each story, tool, or item should appear in at most one section. If an item could fit in multiple sections, place it in the most relevant one and do not repeat it elsewhere.
+
 **Empty Sections:** If a section has no genuinely significant content in the last 24 hours, say so briefly and move on. Never pad sections with low-signal content or embellish the significance of sources to fill space.
 
 **Acronyms:** Spell out any acronym that is not widely known outside the AI/tech industry. Common acronyms like LLM, API, and AI do not need to be spelled out. Less common acronyms should be spelled out on first use. When in doubt about whether an acronym is widely known, spell it out — it is better to over-explain than to leave the reader confused.
+
+---
+
+## Before You Start
+
+Read the last 5 briefings from `briefings/` (by date, most recent first). Note which stories, funding rounds, model releases, and tools were already covered. Do not include any of these in today's briefing unless there is a genuinely new development — new information, new data, or a significant update beyond continued discussion.
 
 ---
 
@@ -81,6 +89,9 @@ Summarize the core argument or question being discussed. Do not characterize how
 
 ### 7. Final Check
 After completing all sections, do a final search for **AI news today** and **AI funding today** to catch any major stories that may have been missed. If anything significant is found that isn't already covered, add it to the most relevant section.
+
+### 8. Deduplication Review
+Re-read the full briefing top to bottom. Remove any item that appears in more than one section — keep it in the most relevant section only. Then cross-check against the 5 previous briefings you read at the start. Remove any story that was already covered unless today's entry contains genuinely new information beyond what was previously reported.
 
 ---
 

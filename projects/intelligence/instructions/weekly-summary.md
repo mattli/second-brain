@@ -114,7 +114,7 @@ Keep the document tight and skimmable. Prioritize insight over coverage. A sharp
 Once the summary file is written, commit and push to GitHub:
 
 ```bash
-cd "/Users/mattli/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain"
+cd /Users/mattli/second-brain
 git add -A
 git commit -m "Add weekly summary for YYYY-WXX"
 git push

@@ -140,7 +140,7 @@ Keep each section tight. The Executive Summary should be the single most valuabl
 Once the briefing file is written, commit and push it to GitHub:
 
 ```bash
-cd "/Users/mattli/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain"
+cd /Users/mattli/second-brain
 git add -A
 git commit -m "Add briefing for YYYY-MM-DD"
 git push

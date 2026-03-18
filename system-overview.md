@@ -1,4 +1,4 @@
-> Last updated: 2026-03-16
+> Last updated: 2026-03-18
 
 This document explains how the second-brain system works — what runs, when, why, and how the pieces connect. Written for both future reference and to give Claude context at the start of a session.
 
@@ -20,7 +20,7 @@ A personal AI-powered research and product development engine running on a Mac M
 5. The briefing is saved to `projects/intelligence/briefings/YYYY-MM-DD.md`
 6. Results are sent to Telegram via @matts_second_brain_bot
 7. Host-side cron commits and pushes vault changes to GitHub every 30 minutes
-8. iCloud syncs to Obsidian on other devices
+8. Obsidian Sync syncs to other devices (MacBook Pro, iPhone)
 
 ### Weekly Summary (7am, Sunday)
 1. A cron job on the Mac Mini runs Claude Code (not yet migrated to NanoClaw)
@@ -28,7 +28,7 @@ A personal AI-powered research and product development engine running on a Mac M
 3. Claude synthesizes across the week — surfacing patterns, signal vs noise, builder pulse, money flows, and one big open question
 4. Claude also searches a16z, Sequoia, Kleiner Perkins, and Khosla Ventures for new investment thesis posts
 5. Summary is saved to `projects/intelligence/weekly-summaries/YYYY-WXX.md`
-6. Committed and pushed to GitHub, synced via iCloud
+6. Committed and pushed to GitHub, synced via Obsidian Sync
 
 ### Monthly Summary (7am, 1st of month)
 1. A cron job on the Mac Mini runs Claude Code (not yet migrated to NanoClaw)
@@ -36,7 +36,7 @@ A personal AI-powered research and product development engine running on a Mac M
 3. Claude synthesizes into longer-term trends, product observations, and strategic signals
 4. Summary is saved to `projects/intelligence/monthly-summaries/YYYY-MM.md`
 5. Product observations are written back to `projects/product/product-vision.md`
-6. Committed and pushed to GitHub, synced via iCloud
+6. Committed and pushed to GitHub, synced via Obsidian Sync
 
 ---
 
@@ -121,8 +121,8 @@ A personal AI-powered research and product development engine running on a Mac M
 | Claude subscription OAuth | Auth for NanoClaw containers via credential proxy |
 | Anthropic API key | Auth for cron-based Claude Code runs (weekly/monthly) |
 | GitHub | Version control — vault synced every 30 minutes via host-side cron |
-| Obsidian | Note-taking app — the vault lives here, synced via iCloud |
-| iCloud | Syncs the vault between Mac Mini, MacBook, and iPhone |
+| Obsidian | Note-taking app — vault at `~/second-brain/` on each machine |
+| Obsidian Sync | Syncs the vault between Mac Mini, MacBook Pro, and iPhone |
 
 ---
 

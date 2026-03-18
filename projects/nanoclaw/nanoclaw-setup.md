@@ -2,8 +2,8 @@
 title: NanoClaw Setup
 status: living
 created: 2026-03-03
-updated: 2026-03-16
-version: 1.8
+updated: 2026-03-18
+version: 1.9
 ---
 
 # NanoClaw Setup
@@ -109,16 +109,16 @@ Added a `vault-sync` scheduled task that runs every 30 minutes (`*/30 * * * *`) 
 
 **Why script tasks?** Spinning up a full Claude Code container for `git add && git commit && git push` wastes subscription tokens on a mechanical task. Script tasks (`context_mode: 'script'`) execute the prompt as a shell command via `execFile('/bin/bash', ...)` directly in the NanoClaw process.
 
-**Why this doesn't hit the old TCC issue:** The old VaultSync.app was a separate unsigned binary launched by launchd — macOS wouldn't grant it iCloud Drive access. Script tasks run inside the NanoClaw Node.js process, which inherits Terminal.app's Full Disk Access permissions.
+**Why this doesn't hit the old TCC issue:** The old VaultSync.app was a separate unsigned binary launched by launchd — macOS wouldn't grant it iCloud Drive access. Script tasks run inside the NanoClaw Node.js process, which inherits Terminal.app's Full Disk Access permissions. (Note: iCloud is no longer used for vault sync — replaced by Obsidian Sync on 2026-03-18.)
 
 **Task config:**
 - ID: `vault-sync`
 - Schedule: `*/30 * * * *`
 - Context mode: `script`
-- Prompt: `export GIT_DIR=~/vault-git-data && export GIT_WORK_TREE="<vault-path>" && git add -A && (git diff --cached --quiet || git commit -m "vault sync $(date)") && git push`
+- Prompt: `cd /Users/mattli/second-brain && git add -A && (git diff --cached --quiet || git commit -m "vault sync $(date)") && git push`
 - Only notifies on failure
 
-**iCloud mmap fix (2026-03-16):** Moved `.git` directory from inside the vault to `~/vault-git-data` to permanently eliminate `mmap failed: Resource deadlock avoided` errors caused by iCloud's file provider daemon locking `.git/index`. The script uses `GIT_DIR`/`GIT_WORK_TREE` env vars instead of `cd` (a `.git` pointer file doesn't work because iCloud renames it via conflict resolution).
+**iCloud mmap fix history:** Originally the vault lived inside iCloud Drive, which caused persistent `mmap failed: Resource deadlock avoided` errors. First fix (2026-03-16) moved `.git` to `~/vault-git-data` with `GIT_DIR`/`GIT_WORK_TREE` env vars. This reduced but didn't eliminate errors — iCloud also locked working tree files during `git add`. Permanent fix (2026-03-18): replaced iCloud with Obsidian Sync, moved vault to `~/second-brain/` as a plain local folder with `.git` inside it. No more env var hacks needed.
 
 ### Phase 5c — Deterministic task confirmations ✓
 
@@ -164,9 +164,9 @@ Skill branches (`origin/skill/*`) are pre-built feature branches. If they fall b
 
 Current skill branches: `skill/apple-container`, `skill/compact`, `skill/ollama-tool` (has conflict — safe to delete if not using).
 
-### Vault sync and iCloud
+### Vault sync
 
-The vault lives inside iCloud Drive. The `.git` directory has been moved to `~/vault-git-data` (outside iCloud) to prevent iCloud's file provider daemon from locking git's index file — which caused persistent `mmap failed: Resource deadlock avoided` errors. The vault-sync script uses `GIT_DIR`/`GIT_WORK_TREE` env vars to point git at the external directory. A `.git` pointer file doesn't work because iCloud renames it via conflict resolution.
+The vault lives at `~/second-brain/` — a plain local folder synced across devices via Obsidian Sync ($4/month). Previously the vault was in iCloud Drive, which caused persistent `mmap failed: Resource deadlock avoided` errors when git tried to read files iCloud was actively syncing. Migrated to Obsidian Sync on 2026-03-18. The vault-sync script is now a simple `cd ~/second-brain && git add -A && git commit && git push` — no `GIT_DIR`/`GIT_WORK_TREE` hacks needed. Obsidian is installed on the Mac Mini to receive sync updates from other devices.
 
 ---
 

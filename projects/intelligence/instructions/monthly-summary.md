@@ -143,7 +143,7 @@ Only add observations that are genuinely new or that strengthen an existing patt
 ### 2. Commit and push to GitHub
 
 ```bash
-cd "/Users/mattli/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain"
+cd /Users/mattli/second-brain
 git add -A
 git commit -m "Add monthly summary for YYYY-MM"
 git push

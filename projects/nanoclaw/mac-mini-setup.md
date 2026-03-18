@@ -2,7 +2,7 @@
 title: Mac Mini + NanoClaw Intelligence System
 status: in-progress
 created: 2026-02-26
-updated: 2026-03-16 (rev 5)
+updated: 2026-03-18 (rev 6)
 ---
 
 # Mac Mini + NanoClaw Intelligence System
@@ -46,7 +46,7 @@ An always-on personal intelligence system that keeps you informed, surfaces prod
 Two layers, each serving a different purpose:
 
 ```
-Obsidian Vault (iCloud)
+Obsidian Vault (~/second-brain/, synced via Obsidian Sync)
 └── For you to read and write personally
     └── personal/ ← stays here only, never leaves
 
@@ -138,7 +138,7 @@ Deployed via Vercel/Netlify
 ## Security Model
 
 ```
-Most private    Personal notes → iCloud only
+Most private    Personal notes → Obsidian Sync only
                 ai-intelligence → GitHub private repo
                 API keys → macOS Keychain
 Least private   Products → public when you choose
@@ -196,7 +196,7 @@ Access levels staged deliberately:
 - [ ] Build `instructions/monthly-summary.md`
 - [ ] Set up NanoClaw (see `nanoclaw-setup.md`)
 - [ ] Connect Telegram
-- [ ] Decide iCloud vs GitHub as sync source of truth (before NanoClaw setup)
+- [x] Decide sync source of truth — Obsidian Sync for device sync, GitHub for version history/backup (2026-03-18)
 - [ ] Decide sectors for Layer 4
 
 ---
@@ -209,7 +209,7 @@ Access levels staged deliberately:
 
 ## Open Questions
 
-- **iCloud vs GitHub as source of truth** — Consider replacing iCloud sync with GitHub as the primary sync mechanism. Add a `git pull` step to cron jobs before each run. Benefits: explicit versioning, conflict detection, works without iCloud dependency. Decide before setting up NanoClaw.
+- ~~**iCloud vs GitHub as source of truth**~~ — Resolved 2026-03-18: replaced iCloud with Obsidian Sync ($4/month) for device sync. Git/GitHub handles version history and backup. Vault moved to `~/second-brain/` on all machines.
 - **Mac Mini CLAUDE.md audit** — Mac Mini CLAUDE.md is essentially empty. Needs end-of-session instructions and any other global instructions mirrored from MacBook. Part of a broader CLAUDE.md audit.
 - Which NanoClaw version / config to start with?
 - Telegram bot setup — personal bot or shared?

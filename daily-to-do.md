@@ -19,7 +19,7 @@
 ---
 
 ## March 18 — Wednesday
-hello! Farts
+****
 - [x] Eat overnight oats for breakfast
 - [x] Read daily digest
 - [x] Read Infinite Jest

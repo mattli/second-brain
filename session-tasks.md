@@ -1,5 +1,5 @@
 ## High Priority
-- [ ] Set up @matttli on X — reactivate account and start posting
+- [x] Set up @matttli on X — reactivate account and start posting
 - [ ] Set up GitHub Mobile app on phone — enable push notifications for second-brain vault repo to monitor git sync without cluttering Telegram
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 

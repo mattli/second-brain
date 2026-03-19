@@ -32,10 +32,16 @@
 
 ## March 19 — Thursday
 
+- [ ] Eat leftover tofu and quinoa for breakfast
 - [ ] Read daily digest
 - [ ] Read Infinite Jest
 - [ ] Send a tweet
+- [ ] Eat something before the gym
+- [ ] Go to the gym
+- [ ] Therapy at 2pm
+- [ ] Add Second Brain description to coldmountain.ai website
 - [ ] Do some medium and longer-term planning — goals and milestones
+- [ ] Eat leftover flank steak for dinner
 
 ---
 

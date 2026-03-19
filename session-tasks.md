@@ -13,6 +13,7 @@
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 
 ## Completed — March 19, 2026
+- [x] Removed noisy task completion notifications — container agent tasks no longer send "task-xxx: ✅ completed" to Telegram on success; failure notifications kept
 - [x] Set up @matttli on X — reactivate account and start posting
 - [x] Grep vault for any remaining old iCloud paths — swept vault, nanoclaw, .claude, .config, .zshrc, LaunchAgents; all clean
 - [x] Check and update vault and brain aliases in ~/.zshrc

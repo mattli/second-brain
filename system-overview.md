@@ -45,7 +45,7 @@ A personal AI-powered research and product development engine running on a Mac M
 | File | Purpose |
 |------|---------|
 | `~/.claude/CLAUDE.md` | Global Claude Code instructions — applies to every session |
-| `projects/intelligence/instructions/daily-briefing.md` | Instructions for the daily briefing (current: v2.3) |
+| `projects/intelligence/instructions/daily-briefing.md` | Instructions for the daily briefing (current: v2.6) |
 | `projects/intelligence/instructions/weekly-summary.md` | Instructions for the weekly summary (current: v1.4) |
 | `projects/intelligence/instructions/monthly-summary.md` | Instructions for the monthly summary (current: v1.0) |
 | `projects/intelligence/briefings/` | Daily briefing outputs |

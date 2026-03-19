@@ -1,6 +1,7 @@
 ## High Priority
 - [x] Set up @matttli on X — reactivate account and start posting
-- [ ] Set up GitHub Mobile app on phone — enable push notifications for second-brain vault repo to monitor git sync without cluttering Telegram
+- [ ] Grep vault for any remaining old iCloud paths (iCloud~md~obsidian, Mobile Documents)
+- [ ] Check and update vault and brain aliases in ~/.zshrc
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 
 ## Medium Priority
@@ -14,6 +15,11 @@
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 
 ## Completed — March 18, 2026
+- [x] **Daily briefing v2.6** — added "Before You Start" (read last 5 briefings) and step 8 (dedup review)
+- [x] **Vault migration path updates** — updated paths in CLAUDE.md and version number in system-overview.md
+- [x] **.gitignore** — added daily-to-do.md to whitelist
+- [x] **End-of-session ritual (MacBook Pro)** — removed git steps (no git repo in vault anymore)
+- [x] **Cold Mountain project** — created projects/cold-mountain/ folder with README for coldmountain.ai portfolio site
 - [x] **Obsidian headless sync set up** — `obsidian-headless` installed, `ob sync --continuous` running as `com.obsidian-sync` launchd service on Mac Mini; Obsidian desktop app no longer required for sync
 - [x] **Obsidian sync health check** — NanoClaw script task (`obsidian-sync-check`) runs every 30 min, sends ❌ to Telegram if the service is down
 - [x] **Vault sync: replaced iCloud with Obsidian Sync** — vault moved to ~/second-brain/ on all machines; Obsidian Sync ($4/month) handles device sync (MacBook Pro, iPhone, Mac Mini); git on Mac Mini pushes to GitHub every 30 min; vault-sync script simplified to plain cd/git add/commit/push; all docs updated

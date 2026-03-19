@@ -68,8 +68,8 @@ A personal AI-powered research and product development engine running on a Mac M
 
 **Global CLAUDE.md** (`~/.claude/CLAUDE.md`)
 
-- MacBook Pro: exists — always plan first, never delete files, vault location, end-of-session ritual (4 steps: verify git log, check git status, update session-tasks.md + affected project docs, verify permissions), quick reference with aliases and commands
-- Mac Mini: exists — same structure, adapted for Mac Mini environment
+- MacBook Pro: exists — always plan first, never delete files, vault location, end-of-session ritual (4 steps: update session-tasks.md + affected project docs, verify permissions), quick reference with aliases and commands
+- Mac Mini: exists — same structure, adapted for Mac Mini environment + git status
 - Purpose: rules that apply to every Claude Code session on that machine
 
 **NanoClaw project** (`~/nanoclaw/CLAUDE.md`)

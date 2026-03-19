@@ -8,7 +8,7 @@ Reading can get you into a focused state too, but it feels wrong to go immediate
 
 ---
 
-### Too Many Fucking Cars
+### Too Many Cars
 A New Yorker-style article about driving in L.A. — the absurdity, the culture, the surrender.
 
 ---

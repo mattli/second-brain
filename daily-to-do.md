@@ -32,15 +32,15 @@
 
 ## March 19 — Thursday
 
-- [ ] Eat leftover tofu and quinoa for breakfast
-- [ ] Read daily digest
+- [x] Read daily digest
+- [x] Pampas
+- [x] Send a tweet
 - [ ] Read Infinite Jest
-- [ ] Send a tweet
-- [ ] Light mobility session at home
 - [ ] Therapy at 2pm
 - [ ] Add Second Brain description to coldmountain.ai website
 - [ ] Do some medium and longer-term planning — goals and milestones
 - [ ] Eat leftover flank steak for dinner
+- [ ] Light mobility session at home
 
 ---
 

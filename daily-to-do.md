@@ -35,7 +35,8 @@
 - [x] Read daily digest
 - [x] Pampas
 - [x] Send a tweet
-- [ ] Read Infinite Jest
+- [x] Read Infinite Jest
+- [ ] Watch Claude Code video
 - [ ] Therapy at 2pm
 - [ ] Add Second Brain description to coldmountain.ai website
 - [ ] Do some medium and longer-term planning — goals and milestones

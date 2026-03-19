@@ -1,19 +1,21 @@
 ## High Priority
-- [x] Set up @matttli on X — reactivate account and start posting
-- [x] Grep vault for any remaining old iCloud paths (iCloud~md~obsidian, Mobile Documents) — swept vault, nanoclaw, .claude, .config, .zshrc, LaunchAgents; all clean (only hits are Claude Code session history)
-- [ ] Check and update vault and brain aliases in ~/.zshrc
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 
 ## Medium Priority
-- [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
 - [ ] Design project-level CLAUDE.md workflow — when to create them, what goes in them, how to keep them updated (automated end-of-session + on-demand refresh pattern)
 - [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage
 
 ## Low Priority
 - [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
+- [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
 - [ ] Build an on-demand AI business model research prompt
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
+
+## Completed — March 19, 2026
+- [x] Set up @matttli on X — reactivate account and start posting
+- [x] Grep vault for any remaining old iCloud paths — swept vault, nanoclaw, .claude, .config, .zshrc, LaunchAgents; all clean
+- [x] Check and update vault and brain aliases in ~/.zshrc
 
 ## Completed — March 18, 2026
 - [x] **Fixed vault mounts in NanoClaw containers** — vault moved to ~/second-brain/ but mount allowlist and DB still pointed to old iCloud path; updated mount-allowlist.json and all 4 registered_groups in DB; restarted NanoClaw

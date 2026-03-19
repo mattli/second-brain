@@ -159,9 +159,23 @@ second-brain/
 
 ---
 
-## What's Next
+## Vision
 
-NanoClaw is running with the daily briefing migrated. Next steps:
+### Phase 2 — PM Best Practices Layer
+
+Extend Second Brain from an intelligence layer into an on-demand product management system. Query via Telegram, get structured PM output back.
+
+- **SWOT analysis** — strengths, weaknesses, opportunities, threats for any idea or competitor
+- **RICE scoring** — Reach, Impact, Confidence, Effort to prioritize ideas
+- **PRD generation** — ideal customer profile, TAM/SAM/SOM market sizing, competitive positioning, go-to-market channels, user stories, success metrics
+- **Technical requirements** — stack, APIs, integrations, acceptance criteria, level of effort estimation, structured for direct handoff to a coding agent
+
+### Phase 3 — Agent Swarm for Execution
+
+A coordinated swarm of specialized agents takes a vetted idea from decision to working prototype — compressing the time from market signal to shipped experiment from weeks to hours.
+
+### Infrastructure Improvements
+
 - Migrate weekly and monthly summaries from cron to NanoClaw scheduled tasks
 - Multi-agent orchestration — parallel fetch agents feeding a synthesis orchestrator
 - Model routing — lighter models for fetch/classify, Sonnet for deep reading and synthesis

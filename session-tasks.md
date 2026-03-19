@@ -1,6 +1,6 @@
 ## High Priority
 - [x] Set up @matttli on X — reactivate account and start posting
-- [ ] Grep vault for any remaining old iCloud paths (iCloud~md~obsidian, Mobile Documents)
+- [x] Grep vault for any remaining old iCloud paths (iCloud~md~obsidian, Mobile Documents) — swept vault, nanoclaw, .claude, .config, .zshrc, LaunchAgents; all clean (only hits are Claude Code session history)
 - [ ] Check and update vault and brain aliases in ~/.zshrc
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 
@@ -15,6 +15,7 @@
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 
 ## Completed — March 18, 2026
+- [x] **Fixed vault mounts in NanoClaw containers** — vault moved to ~/second-brain/ but mount allowlist and DB still pointed to old iCloud path; updated mount-allowlist.json and all 4 registered_groups in DB; restarted NanoClaw
 - [x] **Daily briefing v2.6** — added "Before You Start" (read last 5 briefings) and step 8 (dedup review)
 - [x] **Vault migration path updates** — updated paths in CLAUDE.md and version number in system-overview.md
 - [x] **.gitignore** — added daily-to-do.md to whitelist

@@ -27,12 +27,15 @@
 - [x] Eat quinoa, veggies, and flank steak for lunch (need to cook the steak)
 - [ ] ~~Go swimming (if back feels okay)~~
 - [x] Write Second Brain documentation for coldmountain.ai and save to vault (`projects/product/coldmountain.md`)
-- [ ] Add "System Roadmap" section to `projects/product/product-vision.md`
-- [ ] Reminder: do some medium and longer-term planning — goals and milestones
-
+- [x] Add "Vision" section to `system-overview.md` (moved from product-vision.md)
 ---
 
 ## March 19 — Thursday
+
+- [ ] Read daily digest
+- [ ] Read Infinite Jest
+- [ ] Send a tweet
+- [ ] Do some medium and longer-term planning — goals and milestones
 
 ---
 

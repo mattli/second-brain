@@ -4,6 +4,12 @@
 
 ---
 
+## March 23 — Monday
+
+- [ ] Update resume with Second Brain
+
+---
+
 ## March 20 — Friday
 
 - [x] Read daily briefing
@@ -57,5 +63,3 @@
 	- [ ] Create `projects/product/coldmountain.md`
 	- [ ] Add "System Roadmap" section to `product-vision.md`
 - [x] Make overnight oats
-
----

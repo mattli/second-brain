@@ -12,6 +12,10 @@
 - [ ] Build an on-demand AI business model research prompt
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 
+## Completed — March 20, 2026
+- [x] Fixed daily briefing Telegram notification — briefing agent CLAUDE.md was telling agent not to send confirmation ("system handles it") but system only notifies on failure; restored `send_message` instruction for `Briefing YYYY-MM-DD: ✅ saved` format
+- [x] Investigated Obsidian Sync delay — MacBook Pro sync log confirmed Mac Mini headless `ob` CLI took 17 min to push briefing file (07:11 written → 07:28 pushed); MacBook Pro pulled instantly once available; `ob` v0.0.7 continuous mode appears to poll every ~6-8 min rather than use filesystem watchers; monitoring for now
+
 ## Completed — March 19, 2026
 - [x] Added Second Brain project to Cold Mountain portfolio — new card with "AI Agent" tag, new /second-brain detail page with content from coldmountain.md brief
 - [x] Added subtle tag colors to portfolio — blue (iOS), purple (Web), green (AI Agent)

@@ -52,7 +52,7 @@
 - [x] Eat 
 - [x] Go to the gym
 - [x] Get smog check (tentative)
-- [ ] Groceries (tentative)
+- [x] Groceries (tentative)
 - [ ] Second Brain planning (research nanoclaw capabilities)
 - [ ] Relax
 

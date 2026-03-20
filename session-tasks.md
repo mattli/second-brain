@@ -13,6 +13,12 @@
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 
 ## Completed — March 19, 2026
+- [x] Added Second Brain project to Cold Mountain portfolio — new card with "AI Agent" tag, new /second-brain detail page with content from coldmountain.md brief
+- [x] Added subtle tag colors to portfolio — blue (iOS), purple (Web), green (AI Agent)
+- [x] Updated portfolio bio tagline
+- [x] Reordered Selected Work grid
+- [x] Deployed to Vercel via git push to main
+- [x] Updated global git email to noreply address for GitHub privacy
 - [x] Removed noisy task completion notifications — container agent tasks no longer send "task-xxx: ✅ completed" to Telegram on success; failure notifications kept
 - [x] Set up @matttli on X — reactivate account and start posting
 - [x] Grep vault for any remaining old iCloud paths — swept vault, nanoclaw, .claude, .config, .zshrc, LaunchAgents; all clean

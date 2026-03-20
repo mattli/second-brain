@@ -49,10 +49,11 @@
 
 - [x] Read daily briefing
 - [ ] Read IJ
-- [ ] Eat SND
+- [ ] Eat 
 - [ ] Go to the gym
 - [ ] Get smog check (tentative)
-- [ ] Second Brain roadmap (research nanoclaw capabilities)
+- [ ] Groceries (tentative)
+- [ ] Second Brain planning (research nanoclaw capabilities)
 - [ ] Relax
 
 ---

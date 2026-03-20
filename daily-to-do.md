@@ -40,7 +40,7 @@
 - [x] Therapy at 2pm
 - [x] Add Second Brain description to coldmountain.ai website
 - [ ] Do some medium and longer-term planning — goals and milestones
-- [ ] Eat leftover flank steak for dinner
+- [x] Eat leftover flank steak for dinner
 - [ ] Light mobility session at home
 
 ---
@@ -49,6 +49,7 @@
 
 - [ ] Get smog check (tentative)
 - [ ] Go to the gym
+- [ ] Read daily briefing
 - [ ] Relax
 
 ---

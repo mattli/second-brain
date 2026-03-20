@@ -47,9 +47,12 @@
 
 ## March 20 — Friday
 
-- [ ] Get smog check (tentative)
+- [x] Read daily briefing
+- [ ] Read IJ
+- [ ] Eat SND
 - [ ] Go to the gym
-- [ ] Read daily briefing
+- [ ] Get smog check (tentative)
+- [ ] Second Brain roadmap (research nanoclaw capabilities)
 - [ ] Relax
 
 ---

@@ -1,4 +1,5 @@
 ## High Priority
+- [ ] Disable iCloud on Mac Mini — vault has migrated to Obsidian Sync; iCloud no longer needed and may cause conflicts
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 
 ## Medium Priority

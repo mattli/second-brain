@@ -49,7 +49,7 @@
 
 - [x] Read daily briefing
 - [ ] Read IJ
-- [ ] Eat 
+- [x] Eat 
 - [ ] Go to the gym
 - [ ] Get smog check (tentative)
 - [ ] Groceries (tentative)

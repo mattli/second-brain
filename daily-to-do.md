@@ -50,8 +50,8 @@
 - [x] Read daily briefing
 - [ ] Read IJ
 - [x] Eat 
-- [ ] Go to the gym
-- [ ] Get smog check (tentative)
+- [x] Go to the gym
+- [x] Get smog check (tentative)
 - [ ] Groceries (tentative)
 - [ ] Second Brain planning (research nanoclaw capabilities)
 - [ ] Relax

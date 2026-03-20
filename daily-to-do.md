@@ -48,6 +48,8 @@
 ## March 20 — Friday
 
 - [ ] Get smog check (tentative)
+- [ ] Go to the gym
+- [ ] Relax
 
 ---
 

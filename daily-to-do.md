@@ -19,7 +19,7 @@
 ---
 
 ## March 18 — Wednesday
-****
+
 - [x] Eat overnight oats for breakfast
 - [x] Read daily digest
 - [x] Read Infinite Jest
@@ -38,7 +38,7 @@
 - [x] Read Infinite Jest
 - [x] Watch Claude Code video
 - [x] Therapy at 2pm
-- [ ] Add Second Brain description to coldmountain.ai website
+- [x] Add Second Brain description to coldmountain.ai website
 - [ ] Do some medium and longer-term planning — goals and milestones
 - [ ] Eat leftover flank steak for dinner
 - [ ] Light mobility session at home

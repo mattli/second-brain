@@ -1,6 +1,6 @@
 ## High Priority
 - [ ] Review Briefing instructions
-	- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage. **Finding from 2026-03-20:** last 5 briefings are heavily HN/GitHub-sourced; TechCrunch, Reuters, Reddit, Product Hunt, and X/Twitter are barely or never used. Sources Log added in v2.8 — review after ~1 week of data (around 2026-03-27). Perplexity, 
+	- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage. **Finding from 2026-03-20:** last 5 briefings are heavily HN/GitHub-sourced; TechCrunch, Reuters, Reddit, Product Hunt, and X/Twitter are barely or never used. Sources Log added in v2.8 — review after ~1 week of data (around 2026-03-27). Perplexity, particular individuals?
 	- [ ] Check/update monthly summary instructions — reframe product observations as "problem statements" rather than general observations
 	- [ ] Audit overlap between weekly and monthly summary instructions — both currently look at VC theses (a16z, Sequoia, KP, Khosla); determine if this is redundant and whether VC thesis research should live in only one of them
 
@@ -12,6 +12,7 @@
 ## Low Priority
 - [ ] Understand CLAUDE.md files — audit all existing CLAUDE.md files across machines and NanoClaw groups; understand what each one does, what's missing, and how they interact
 - [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
+- [ ] Design hybrid intelligence workflow — use inbox.md as manual curation layer throughout the week (HN, X, anything interesting); weekly summary reads inbox + daily briefings and synthesizes across both; clear inbox after each weekly summary runs
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
 - [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
 - [ ] Design monthly vault maintenance task — archive completed session-tasks, old briefings, and weekly summaries on a rolling window

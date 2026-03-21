@@ -41,9 +41,10 @@ The next phase extends Second Brain from an intelligence layer into a fully agen
 Second Brain will apply structured product management frameworks to any idea or market signal, automatically, on demand via Telegram.
 
 Planned capabilities:
-- **SWOT analysis:** strengths, weaknesses, opportunities, threats for any idea or competitor
+* **Discovery**: problem validation, ideal customer profile, competitive landscape 
 - **RICE scoring:** Reach, Impact, Confidence, Effort scoring to prioritize ideas
-- **PRD generation:** ideal customer profile, TAM/SAM/SOM market sizing, competitive positioning, go-to-market channels, user stories, and success metrics
+- **SWOT analysis:** strengths, weaknesses, opportunities, threats for any idea or competitor
+- **PRD generation:**  competitive positioning, go-to-market channels, user stories, and success metrics for an MVP
 - **Technical requirements:** stack, APIs, integrations, acceptance criteria, and level of effort estimation, structured for direct handoff to a coding agent
 
 The workflow: intelligence in, PM frameworks applied, prioritized and documented product decisions out.

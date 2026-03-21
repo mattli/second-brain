@@ -1,6 +1,6 @@
 ## High Priority
-- [ ] Update coldmountain.ai — move TAM/SAM/SOM market sizing out of the PRD bullet point and into its own line item under Phase 2
-- [ ] Update Phase 2 vision for Second Brain — revisit and refine what Phase 2 (PM Best Practices Layer) actually includes; update system-overview.md and coldmountain.md accordingly
+- [x] Update coldmountain.ai — move TAM/SAM/SOM market sizing out of the PRD bullet point and into its own line item under Phase 2
+- [x] Update Phase 2 vision for Second Brain — revisit and refine what Phase 2 (PM Best Practices Layer) actually includes; update system-overview.md and coldmountain.md accordingly
 - [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage
 
 ## Medium Priority

@@ -1,13 +1,15 @@
 ## High Priority
 - [ ] Disable iCloud on Mac Mini — vault has migrated to Obsidian Sync; iCloud no longer needed and may cause conflicts
 - [ ] Update coldmountain.ai — move TAM/SAM/SOM market sizing out of the PRD bullet point and into its own line item under Phase 2
+- [ ] Update Phase 2 vision for Second Brain — revisit and refine what Phase 2 (PM Best Practices Layer) actually includes; update system-overview.md and coldmountain.md accordingly
 - [ ] Understand CLAUDE.md files — audit all existing CLAUDE.md files across machines and NanoClaw groups; understand what each one does, what's missing, and how they interact
 - [ ] Check/update monthly summary instructions — reframe product observations as "problem statements" rather than general observations
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
+- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage
 
 ## Medium Priority
 - [ ] Design project-level CLAUDE.md workflow — when to create them, what goes in them, how to keep them updated (automated end-of-session + on-demand refresh pattern)
-- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage
+- [ ] Audit overlap between weekly and monthly summary instructions — both currently look at VC theses (a16z, Sequoia, KP, Khosla); determine if this is redundant and whether VC thesis research should live in only one of them
 
 ## Low Priority
 - [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach

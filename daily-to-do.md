@@ -1,22 +1,31 @@
-## March 24 — Tuesday
+# March 23 – March 29
+
+Goals: Start to apply to jobs with updated resume and portfolio. Conduct test runs of the product validation pipeline.
+
+### Tuesday, March 24
 
 - [ ] Apply to jobs
 
----
 
-## March 23 — Monday
+### Monday, March 23
 
 - [ ] Update resume with Second Brain
 
 ---
 
-## March 21 — Saturday
+# March 16 – March 22
 
+### Saturday, March 21
+
+- [ ] Breakfast at Bluey's
+- [ ] Read Infinite Jest
+- [ ] Go to the gym
 - [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
+- [ ] Evaluate briefing instructions
 
 ---
 
-## March 20 — Friday
+### Friday, March 20
 
 - [x] Read daily briefing
 - [ ] Read IJ
@@ -29,7 +38,7 @@
 
 ---
 
-## March 19 — Thursday
+### Thursday, March 19
 
 - [x] Read daily digest
 - [x] Pampas
@@ -44,7 +53,7 @@
 
 ---
 
-## March 18 — Wednesday
+### Wednesday, March 18
 
 - [x] Eat overnight oats for breakfast
 - [x] Read daily digest
@@ -54,9 +63,10 @@
 - [ ] ~~Go swimming (if back feels okay)~~
 - [x] Write Second Brain documentation for coldmountain.ai and save to vault (`projects/product/coldmountain.md`)
 - [x] Add "Vision" section to `system-overview.md` (moved from product-vision.md)
+
 ---
 
-## March 17 — Tuesday
+### Tuesday, March 17
 
 - [x] Take a walk and get muesli from Bluey's
 - [x] Read daily digest

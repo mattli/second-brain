@@ -1,9 +1,10 @@
 ## High Priority
-- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage
+- [ ] Review Briefing instructions
+	- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage
+	- [ ] Check/update monthly summary instructions — reframe product observations as "problem statements" rather than general observations
+	- [ ] Audit overlap between weekly and monthly summary instructions — both currently look at VC theses (a16z, Sequoia, KP, Khosla); determine if this is redundant and whether VC thesis research should live in only one of them
 
 ## Medium Priority
-- [ ] Check/update monthly summary instructions — reframe product observations as "problem statements" rather than general observations
-- [ ] Audit overlap between weekly and monthly summary instructions — both currently look at VC theses (a16z, Sequoia, KP, Khosla); determine if this is redundant and whether VC thesis research should live in only one of them
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 - [ ] Disable iCloud on Mac Mini — vault has migrated to Obsidian Sync; iCloud no longer needed and may cause conflicts

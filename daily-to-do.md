@@ -18,7 +18,7 @@
 - [x] Go to the gym
 - [x] Get smog check (tentative)
 - [x] Groceries (tentative)
-- [ ] Second Brain planning (research nanoclaw capabilities)
+- [x] Second Brain (research nanoclaw capabilities and phase 2 planning)
 - [ ] Relax
 
 ---

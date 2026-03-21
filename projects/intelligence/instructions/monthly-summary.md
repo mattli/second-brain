@@ -34,17 +34,6 @@ As you read, track:
 - Stories or beliefs from early in the month that the later weeks complicated or reversed
 - Anything that was missing from the weeklies but should have been there
 
-### 3. Strategic Signals Lookback
-
-Search for any new investment thesis posts published in the last 30 days from:
-- **a16z** (a16z.com)
-- **Sequoia** (sequoiacap.com)
-- **Kleiner Perkins** (kleinerperkins.com)
-- **Khosla Ventures** (khoslaventures.com)
-
-Include only forward-looking investment theses — pieces that articulate a belief about where a market or technology is heading. Exclude funding announcements, portfolio news, and press releases.
-
-If the weeklies already captured a thesis this month, include it but mark it as previously noted. Summarize each in 2–3 sentences: what they believe, why, and what it implies.
 
 ---
 

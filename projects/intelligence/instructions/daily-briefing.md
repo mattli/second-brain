@@ -28,16 +28,14 @@ Read the last 5 briefings from `briefings/` (by date, most recent first). Note w
 ### 1. Top AI & Tech News
 Search for the latest headlines from:
 - **TechCrunch** (techcrunch.com)
-- **Reuters** (reuters.com)
 - **Hacker News** (news.ycombinator.com — top stories and "Ask HN" threads relevant to AI)
-- **X/Twitter** (for breaking news and real-time signals)
 
 Pick the 3–5 most significant stories published or materially updated in the last 24 hours strictly. Summarize each in 1–2 sentences.
 
 **Section Summary:** End with 1–2 sentences interpreting what today's news collectively signals — are there patterns, a dominant theme, or a surprising absence? Be forward-looking, not just descriptive.
 
 ### 2. Notable Model Releases
-Only include a model release if it clears at least one of these bars:
+Keep this short. Only include a model release if it clears at least one of these bars:
 - A flagship model from a major lab (Anthropic, OpenAI, Google DeepMind, Meta)
 - A release that meaningfully shifts the cost/capability tradeoff for builders
 - A release generating significant real-world builder discussion today

@@ -10,6 +10,12 @@
 
 ---
 
+## March 21 — Saturday
+
+- [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
+
+---
+
 ## March 20 — Friday
 
 - [x] Read daily briefing

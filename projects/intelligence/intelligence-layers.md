@@ -19,9 +19,9 @@ A map of the planned intelligence layers for the second-brain system — from da
 
 ### Layer 2: Weekly Summary ✅
 - **Prompt:** `projects/intelligence/instructions/weekly-summary.md`
-- **Schedule:** 7am Sunday
+- **Schedule:** 7am Saturday
 - **Goal:** Synthesize the week's briefings into patterns and signals
-- **Status:** Running, v1.4 — cron job on Mac Mini, Sundays 7am, not yet migrated to NanoClaw
+- **Status:** Running, v1.4 — cron job on Mac Mini, Saturdays 7am, not yet migrated to NanoClaw
 - **Sections:** Week in Review, Signal vs Noise, Emerging Patterns, Money & Power, Builder Pulse, One Big Question, Strategic Signals
 - **Note:** Product Observations removed from weekly layer — product synthesis handled by monthly summary instead. Strategic Signals uses 5 weekday briefings as source; VC thesis search is a 7-day lookback.
 

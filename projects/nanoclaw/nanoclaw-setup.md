@@ -180,6 +180,14 @@ Once the basic setup is running, the briefing system can evolve from a single se
 
 This should significantly reduce total briefing runtime and allow each agent to be tuned for its specific task.
 
+### LCM — Lossless Context Management
+
+Based on Ehrlich & Blackman 2026 paper. A memory architecture for AI agents that compresses older conversation history into structured summary nodes while keeping recent messages verbatim. Originals are never deleted — just compressed in what the agent actively sees. Uses a DAG (directed acyclic graph) to allow summaries to be further condensed over time. Enables agents to maintain coherent memory across sessions without hitting context window limits.
+
+**Relevance to Second Brain:** Would give NanoClaw agents genuine long-term conversational memory beyond what's explicitly written to CLAUDE.md files. Particularly valuable for the Telegram agent and future PM research agent. Not a standard NanoClaw skill yet — requires fork-level implementation. Worth monitoring for upstream contribution.
+
+**Reference:** https://papers.voltropy.com/LCM
+
 ---
 
 ## Cost Optimization Strategy

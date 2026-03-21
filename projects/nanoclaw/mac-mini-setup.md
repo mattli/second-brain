@@ -18,7 +18,7 @@ An always-on personal intelligence system that keeps you informed, surfaces prod
 | Component | Status |
 |---|---|
 | Daily briefing | ✅ Running (Mac Mini, v2.1) |
-| Weekly summary | ✅ Running (Mac Mini, v1.4, Sundays 7am) |
+| Weekly summary | ✅ Running (Mac Mini, v1.4, Saturdays 7am) |
 | GitHub private repo (`second-brain`) | ✅ Set up |
 | Obsidian vault structure | ✅ Set up 2026-02-26 |
 | Obsidian Git plugin | ✅ Set up |
@@ -64,7 +64,7 @@ ai-intelligence/
 ├── CLAUDE.md                  ← standing instructions
 ├── instructions/              ← prompt files
 │   ├── daily-briefing.md      ✅ v2.1 (running on Mac Mini)
-│   ├── weekly-summary.md      ✅ v1.4 (running on Mac Mini, Sundays)
+│   ├── weekly-summary.md      ✅ v1.4 (running on Mac Mini, Saturdays)
 │   ├── monthly-summary.md     ⬜ to build
 │   └── sector-[name].md       ⬜ to build per sector
 ├── briefings/                 ← daily automated briefings ✅ running
@@ -190,7 +190,7 @@ Access levels staged deliberately:
 ### Mac Mini — complete
 - [x] Set up Mac Mini
 - [x] Move daily cron job to Mac Mini
-- [x] Set up weekly summary cron job (Sundays 7am)
+- [x] Set up weekly summary cron job (Saturdays 7am)
 
 ### Next
 - [ ] Build `instructions/monthly-summary.md`

@@ -1,11 +1,11 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.6 | Last updated: 2026-03-18
+> Version: 2.8 | Last updated: 2026-03-20
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
 
-**Important:** Research and write all sections first, then write the Executive Summary last and place it at the top of the document. The Executive Summary should reflect the full picture after all sections are complete.
+**Important:** Research and write all sections first, then write the Executive Summary last and place it at the top of the document. The Executive Summary should synthesize across sections — it is not a compressed version of Top News.
 
 **Overlap Prevention:** Only include a story or item if something materially new happened in the last 24 hours — new information, new data, new reaction, or a significant new development. Do not include stories simply because they are still being discussed or are generally important. If a story was covered yesterday and nothing new has happened, skip it.
 
@@ -103,7 +103,7 @@ Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
 # AI Intelligence Briefing — YYYY-MM-DD
 
 ## Executive Summary 
-[3–5 sentences of flowing prose — no field labels, no bullet points. Lead with the single most important story. Add 1–2 sentences on what else matters today and why. Close with the key tension or open question the day raises. Written last, placed first.]
+[3–5 sentences of flowing prose — no field labels, no bullet points. Identify the tension, pattern, or throughline that connects today's news, tools, builder discussion, and funding signals. Do not restate individual stories — synthesize across sections. What do they have in common? What contradiction or open question cuts across all of them? Close with the question the day raises. Written last, placed first.]
 
 ---
 
@@ -129,9 +129,25 @@ Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
 ## Discussions & Debates
 [1–2 online conversations summarized]
 **Today's Signal:** [1–2 sentence interpretive summary]
+
+---
+
+## Sources Log (temporary — diagnostic)
+| Source | Searched | Stories Used |
+|--------|----------|-------------|
+| TechCrunch | ✅/❌ | [story titles or "(nothing new)"] |
+| Reuters | ✅/❌ | |
+| Hacker News | ✅/❌ | |
+| X/Twitter | ✅/❌ | |
+| Product Hunt | ✅/❌ | |
+| GitHub Trending | ✅/❌ | |
+| r/vibecoding | ✅/❌ | |
+| r/ChatGPTCoding | ✅/❌ | |
+| r/claudecode | ✅/❌ | |
+| Other | — | [any sources not listed above] |
 ```
 
-Keep each section tight. The Executive Summary should be the single most valuable 3-5 sentences in the document — written last, placed first. Section summaries should be interpretive and forward-looking, not just recapping what's above. The full briefing should be skimmable in ~2 minutes.
+Keep each section tight. The Executive Summary should be the single most valuable 3–5 sentences in the document — a cross-section synthesis, not a recap of Top News. Written last, placed first. Section summaries should be interpretive and forward-looking, not just recapping what's above. The full briefing should be skimmable in ~2 minutes.
 
 ---
 

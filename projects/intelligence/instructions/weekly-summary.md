@@ -1,9 +1,9 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 1.5 | Last updated: 2026-03-09
+> Version: 1.6 | Last updated: 2026-03-20
 
 ## Purpose
-Each Sunday morning, read the last 5 weekday briefings (Monday–Friday) and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
+Each Saturday morning, read the last 5 weekday briefings (Monday–Friday) and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
 
 **Write all sections first, then write the Week in Review last** — it should reflect the full picture after synthesis is complete.
 
@@ -79,7 +79,7 @@ Save to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number:
 ```
 # AI Intelligence Weekly — YYYY-WXX
 
-> Week of [Monday date] – [Sunday date]
+> Week of [Monday date] – [Friday date]
 
 ## Week in Review
 [2–3 sentences on the overall character of the week]
@@ -103,6 +103,21 @@ Save to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number:
 
 ## Strategic Signals
 [Thesis posts from a16z, Sequoia, Kleiner Perkins, Khosla — or "Nothing published this week."]
+
+---
+
+## Sources Log (temporary — diagnostic)
+| Source | Searched | Content Used |
+|--------|----------|-------------|
+| Daily briefings (Mon–Fri) | ✅/❌ | [which days read] |
+| Product Hunt | ✅/❌ | [items or "(nothing notable)"] |
+| Hacker News Show HN | ✅/❌ | |
+| Indie Hackers | ✅/❌ | |
+| a16z | ✅/❌ | |
+| Sequoia | ✅/❌ | |
+| Kleiner Perkins | ✅/❌ | |
+| Khosla Ventures | ✅/❌ | |
+| Other | — | [any sources not listed above] |
 ```
 
 Keep the document tight and skimmable. Prioritize insight over coverage. A sharp observation in two sentences is better than a thorough recap in ten.

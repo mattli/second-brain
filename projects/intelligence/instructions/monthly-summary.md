@@ -1,6 +1,6 @@
 Monthly AI Intelligence Summary — Instructions
 
-> Version: 1.0 | Last updated: 2026-03-09
+> Version: 1.1 | Last updated: 2026-03-20
 
 ## Purpose
 
@@ -122,6 +122,18 @@ Compile all VC thesis posts from the last 30 days (from Research Task 3). If a t
 
 ## Strategic Signals — Monthly View
 [All VC thesis posts from the last 30 days]
+
+---
+
+## Sources Log (temporary — diagnostic)
+| Source | Searched | Content Used |
+|--------|----------|-------------|
+| Weekly summaries | ✅/❌ | [which weeks read] |
+| a16z | ✅/❌ | [items or "(nothing new)"] |
+| Sequoia | ✅/❌ | |
+| Kleiner Perkins | ✅/❌ | |
+| Khosla Ventures | ✅/❌ | |
+| Other | — | [any sources not listed above] |
 ```
 
 Keep the document tight. Prioritize insight over coverage. A sharp observation in two sentences is better than a thorough recap in ten.

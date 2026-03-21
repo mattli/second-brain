@@ -1,6 +1,6 @@
 ## High Priority
 - [ ] Review Briefing instructions
-	- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage
+	- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage. **Finding from 2026-03-20:** last 5 briefings are heavily HN/GitHub-sourced; TechCrunch, Reuters, Reddit, Product Hunt, and X/Twitter are barely or never used. Sources Log added in v2.8 — review after ~1 week of data (around 2026-03-27).
 	- [ ] Check/update monthly summary instructions — reframe product observations as "problem statements" rather than general observations
 	- [ ] Audit overlap between weekly and monthly summary instructions — both currently look at VC theses (a16z, Sequoia, KP, Khosla); determine if this is redundant and whether VC thesis research should live in only one of them
 
@@ -15,7 +15,11 @@
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
 - [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
 
-## Completed — March 20, 2026 (evening)
+## Completed — March 20, 2026
+- [x] Fix Executive Summary redundancy — changed from "lead with most important story" to cross-section synthesis (v2.7)
+- [x] Add Sources Log to briefing format — temporary diagnostic table at bottom of each briefing tracking which sources were searched and what they produced (v2.8). Run for ~1 week then audit.
+- [x] Add Sources Log to weekly summary (v1.6) and monthly summary (v1.1) instructions
+- [x] Move weekly summary schedule from Sunday to Saturday — updated all docs and Mac Mini cron job
 - [x] Update coldmountain.ai — move TAM/SAM/SOM market sizing out of the PRD bullet point and into its own line item under Phase 2
 - [x] Update Phase 2 vision for Second Brain — revisit and refine what Phase 2 (PM Best Practices Layer) actually includes; update system-overview.md and coldmountain.md accordingly
 - [x] Updated Phase 2 content on /second-brain — expanded bullets (Discovery, RICE, SWOT, PRD, Technical requirements), added workflow summary line
@@ -23,8 +27,6 @@
 - [x] Updated Second Brain description on homepage and /second-brain page — new copy emphasizing personal use, intelligence layer, knowledge vault, and autonomous agents
 - [x] Started but deferred: resume webpage and personal use mention in "What It Does Today" section
 - [x] Pushed changes to GitHub
-
-## Completed — March 20, 2026 (morning)
 - [x] Fixed daily briefing Telegram notification — briefing agent CLAUDE.md was telling agent not to send confirmation ("system handles it") but system only notifies on failure; restored `send_message` instruction for `Briefing YYYY-MM-DD: ✅ saved` format
 - [x] Investigated Obsidian Sync delay — MacBook Pro sync log confirmed Mac Mini headless `ob` CLI took 17 min to push briefing file (07:11 written → 07:28 pushed); MacBook Pro pulled instantly once available; `ob` v0.0.7 continuous mode appears to poll every ~6-8 min rather than use filesystem watchers; monitoring for now
 - [x] Simplified daily to-do workflow — removed auto-clear/reset behavior from agent CLAUDE.md; added instruction to create new date sections chronologically (most recent at top); reversed file order and removed empty days

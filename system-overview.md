@@ -22,7 +22,7 @@ A personal AI-powered research and product development engine running on a Mac M
 7. Host-side cron commits and pushes vault changes to GitHub every 30 minutes
 8. Obsidian Sync syncs to other devices (MacBook Pro, iPhone)
 
-### Weekly Summary (7am, Sunday)
+### Weekly Summary (7am, Saturday)
 1. A cron job on the Mac Mini runs Claude Code (not yet migrated to NanoClaw)
 2. Claude reads the last 5 weekday briefings from `projects/intelligence/briefings/`
 3. Claude synthesizes across the week — surfacing patterns, signal vs noise, builder pulse, money flows, and one big open question
@@ -99,7 +99,7 @@ A personal AI-powered research and product development engine running on a Mac M
 | Task | Schedule | What it does |
 |------|----------|--------------|
 | Daily briefing | 7am Mon–Fri | Researches and writes intelligence briefing to vault |
-| Weekly summary | 7am Sunday | Synthesizes the week's briefings |
+| Weekly summary | 7am Saturday | Synthesizes the week's briefings |
 | Monthly summary | 7am 1st of month | Synthesizes monthly trends, updates product-vision.md |
 | Daily to-do | 8am daily | Reads today's section from daily-to-do.md and sends it to Telegram |
 | Weekly to-do recap | 4pm Friday | Sends reflective weekly summary, then resets daily-to-do.md for next week |

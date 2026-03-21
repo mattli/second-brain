@@ -1,72 +1,89 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 1.6 | Last updated: 2026-03-20
+> Version: 2.0 | Last updated: 2026-03-21
 
 ## Purpose
-Each Saturday morning, read the last 5 weekday ai-briefings (Monday–Friday), the last 5 weekday product-briefings, and conduct research on any new investment thesis posts, essays, or perspective pieces published in the last 7 days from top VCs listed below. Synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
+Each Saturday morning, synthesize the week's AI briefings, product briefings, and VC investment theses into a structured analysis of the product landscape. The goal is not to recap what happened — it's to understand what types of products are being built, which ones are gaining traction, and how they fit into the broader picture of AI capability shifts and capital flows.
 
-**Write all sections first, then write the Week in Review last** — it should reflect the full picture after synthesis is complete.
+Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
 
-**Empty Sections:** If a section has no genuinely significant content from the week, say so briefly and move on. Never pad sections with low-signal content to fill space.
+**Write the Product Categories section first, then all other sections, then write the Week in Review last.**
 
-**Acronyms:** Spell out any acronym that is not widely known outside the AI/tech industry. Common acronyms like LLM, API, and AI do not need to be spelled out. Less common acronyms should be spelled out on first use. When in doubt about whether an acronym is widely known, spell it out — it is better to over-explain than to leave the reader confused.
+**Empty Sections:** If a section has no genuinely significant content from the week, say so briefly and move on. Never pad with low-signal content to fill space.
+
+**Acronyms:** Spell out any acronym that is not widely known outside the AI/tech industry. Common acronyms like LLM, API, and AI do not need to be spelled out. Less common acronyms should be spelled out on first use. When in doubt, spell it out.
 
 ---
 
 ## Research Tasks
 
-### 1. Read the Week's AI Briefings
-Read all files in the `ai-briefings/` folder from the last 5 weekday briefings (Monday–Friday only). If a day has no briefing file (e.g. missed run), note it and continue.
+### 1. Read the Previous 3 Weekly Summaries
+Read the last 3 files in `weekly-summaries/` before doing anything else. Note which product categories were tracked, their momentum signals, and any trends in early development. You will use this to assess whether this week's categories are new, continuing, or fading.
 
-Use these briefings as a primary source. Do not re-research news independently — synthesize what was already captured.
+### 2. Read the Week's AI Briefings
+Read all files in `ai-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
 
-### 2. Read the Week's Product Briefings
-Read all files in the `product-briefings/` folder from the last 5 weekday briefings (Monday–Friday only). If a day has no briefing file (e.g. missed run), note it and continue.
+Do not summarize these — extract only what's relevant as context for the product analysis: capability shifts, model releases, infrastructure changes, or industry moves that create or close product surface area.
 
-Use these briefings as a primary source. Do not re-research news independently — synthesize what was already captured.
+### 3. Read the Week's Product Briefings
+Read all files in `product-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
 
-### 3. Strategic Signals
+This is your primary source for product signal. For each product or project covered, note: what problem it solves, who it's for, and any evidence of traction.
+
+### 4. Builder Pulse Catch-Up
+After reading the product briefings, do a brief search to catch anything significant that may not have been covered:
+- **Product Hunt** (producthunt.com) — top launches of the week by upvotes
+- **Hacker News Show HN** (news.ycombinator.com) — builder-posted projects gaining traction
+- **Indie Hackers** (indiehackers.com) — revenue milestones, growth stories, what's working
+
+Only include items that add something not already captured in the product briefings. If the briefings covered the week well, this may have little to add — that's fine.
+
+### 5. Strategic Signals
 Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
 - **Kleiner Perkins** (kleinerperkins.com)
+- **Khosla Ventures** (khoslaventures.com)
 
 Include only forward-looking investment theses — pieces that articulate a belief about where a market or technology is heading. Exclude funding announcements, portfolio news, and press releases.
 
-Summarize each thesis in 2–3 sentences: what they believe, why, and what it implies.
-
-If nothing relevant was published this week, say so briefly.
+If nothing relevant was published this week, note it briefly.
 
 ---
 
 ## Output Sections
 
 ### Week in Review
-2–3 sentences on the overall character of the week. What kind of week was it — consolidation, acceleration, noise, a turning point? Written last, placed first.
+2–3 sentences on the overall character of the week from a product perspective. What was the dominant story — a new capability unlocking new product categories, capital concentrating in a particular area, builders converging on a problem? Written last, placed first.
 
-### Signal vs Noise
-What felt genuinely significant versus what was just chatter or hype? Be direct. Call out stories that got attention but don't hold up on reflection.
+### AI Context
+What shifted this week at the model or infrastructure layer that's relevant to product builders? Keep this short — 3–5 bullet points maximum. Focus only on changes that open or close product opportunities, not general AI news. Each bullet should connect directly to product implications.
 
-### Emerging Patterns
-Themes, technologies, or tensions that appeared more than once across the week's briefings. A pattern requires at least two independent data points. Name the pattern and explain what's driving it.
+### VC Lens
+Summarize any investment thesis pieces published this week (from Research Task 5). For each: what they believe, why, and which product categories it validates, challenges, or ignores. If nothing was published this week, note it briefly.
 
-### Money & Power
-Where did funding and attention flow consistently this week? Look for direction, not just individual deals — is capital moving toward infrastructure or applications, incumbents or startups, one modality or another?
+### Product Categories
+The heart of the document. Discover and describe the product categories active this week based on what you observed across the product briefings and catch-up research. Each category gets its own entry:
 
-### Builder Pulse
-What was the developer and product community building, debating, and struggling with this week? What problems kept coming up without good solutions? What indie projects or product categories gained real traction (from Research Task 2 above)?
+**[Category Name]**
+- **What's being built:** 1–2 sentences on the types of products and approaches appearing in this category
+- **Traction signal:** What evidence exists that products in this category are working — user interest, revenue, community discussion, repeat appearances? Be honest if traction is unclear.
+- **AI connection:** Which capability shift or infrastructure change is enabling this category right now? Reference the AI Context section where relevant.
+- **VC alignment:** Does any VC thesis this week (or in recent weeks) validate or challenge this category?
+- **Momentum:** One of — 🆕 New (first appearance) / 📈 Growing (stronger than last week) / ➡️ Stable (consistent presence) / 📉 Fading (less active than prior weeks)
+
+Use the previous weekly summaries (Research Task 1) to assess momentum accurately. Carry forward any category that appeared in prior weeks even if it was quieter this week — note it as Stable or Fading rather than dropping it silently. Retire a category only if it has been Fading for 3+ consecutive weeks, and note the retirement briefly.
+
+There is no fixed number of categories. Include as many as the week genuinely warrants. Quality over coverage.
 
 ### One Big Question
-The single most interesting unresolved tension from the week. Not a summary — a genuine open question the week raised but didn't answer.
-
-### Strategic Signals
-New investment thesis posts from a16z, Sequoia, Kleiner Perkins, or Khosla Ventures in the last 7 days (from Research Task 2 above). Forward-looking theses only — no funding announcements.
+The single most interesting unresolved tension from the week. Not a summary — a genuine open question the week raised but didn't answer. Ideally something worth watching in the weeks ahead.
 
 ---
 
 ## Output Format
 
-Save to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number:
+Save to `weekly-summaries/YYYY-WXX.md`:
 
 ```
 # AI Intelligence Weekly — YYYY-WXX
@@ -74,45 +91,48 @@ Save to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number:
 > Week of [Monday date] – [Friday date]
 
 ## Week in Review
-[2–3 sentences on the overall character of the week]
+[2–3 sentences on the overall character of the week from a product perspective]
 
 ---
 
-## Signal vs Noise
-[What held up vs what was chatter]
+## AI Context
+- [Capability or infrastructure shift → product implication]
+- [Repeat as needed, max 5]
 
-## Emerging Patterns
-[Themes that appeared 2+ times, with explanation]
+## VC Lens
+[Thesis summaries with category implications, or "Nothing published this week."]
 
-## Money & Power
-[Where funding and attention consistently flowed]
+## Product Categories
 
-## Builder Pulse
-[What the community was building and struggling with]
+### [Category Name]
+- **What's being built:** ...
+- **Traction signal:** ...
+- **AI connection:** ...
+- **VC alignment:** ...
+- **Momentum:** [🆕 New / 📈 Growing / ➡️ Stable / 📉 Fading]
+
+[Repeat for each category]
 
 ## One Big Question
 [The most interesting unresolved tension from the week]
-
-## Strategic Signals
-[Thesis posts from a16z, Sequoia, Kleiner Perkins, Khosla — or "Nothing published this week."]
 
 ---
 
 ## Sources Log (temporary — diagnostic)
 | Source | Searched | Content Used |
 |--------|----------|-------------|
-| Daily AI briefings (Mon–Fri) | ✅/❌ | [which days read] |
-| Daily Product briefings (Mon–Fri) | ✅/❌ | [which days read] |
-| Product Hunt | ✅/❌ | [items or "(nothing notable)"] |
-| Hacker News Show HN | ✅/❌ | |
-| Indie Hackers | ✅/❌ | |
-| a16z | ✅/❌ | |
-| Sequoia | ✅/❌ | |
-| Kleiner Perkins | ✅/❌ | |
+| Previous weekly summaries | ✅/❌ | [which weeks read] |
+| AI briefings (Mon–Fri) | ✅/❌ | [which days read] |
+| Product briefings (Mon–Fri) | ✅/❌ | [which days read] |
+| Product Hunt | ✅/❌ | [items or "(nothing new)"] |
+| Hacker News Show HN | ✅/❌ | [items or "(nothing new)"] |
+| Indie Hackers | ✅/❌ | [items or "(nothing new)"] |
+| a16z | ✅/❌ | [pieces or "(nothing published)"] |
+| Sequoia | ✅/❌ | [pieces or "(nothing published)"] |
+| Kleiner Perkins | ✅/❌ | [pieces or "(nothing published)"] |
+| Khosla Ventures | ✅/❌ | [pieces or "(nothing published)"] |
 | Other | — | [any sources not listed above] |
 ```
-
-Keep the document tight and skimmable. Prioritize insight over coverage. A sharp observation in two sentences is better than a thorough recap in ten.
 
 ---
 
@@ -128,4 +148,3 @@ git push
 ```
 
 Replace `YYYY-WXX` with the actual year and week number.
-

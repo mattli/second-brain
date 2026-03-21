@@ -137,14 +137,3 @@ git push
 
 Replace `YYYY-WXX` with the actual year and week number.
 
----
-
-## After Committing — Send Notification
-
-After the git push, send a Telegram notification using the `send_message` tool. Include:
-1. A header: `📊 Weekly Summary — YYYY-WXX`
-2. The full **Week in Review** section (2–3 sentences)
-3. The **One Big Question** from the summary
-4. A closing line: `Full summary saved to vault: weekly-summaries/YYYY-WXX.md`
-
-Keep the notification concise — it should be readable as a Telegram message, not a document.

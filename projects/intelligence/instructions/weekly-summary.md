@@ -16,7 +16,7 @@ Each Saturday morning, read the last 5 weekday briefings (Monday–Friday) and s
 ## Research Tasks
 
 ### 1. Read the Week's Briefings
-Read all files in the `briefings/` folder from the last 5 weekday briefings (Monday–Friday only). If a day has no briefing file (e.g. missed run), note it and continue.
+Read all files in the `ai-briefings/` folder from the last 5 weekday briefings (Monday–Friday only). If a day has no briefing file (e.g. missed run), note it and continue.
 
 Use these briefings as your primary source. Do not re-research news independently — synthesize what was already captured.
 

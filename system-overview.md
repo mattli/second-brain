@@ -17,14 +17,14 @@ A personal AI-powered research and product development engine running on a Mac M
 2. The agent reads `projects/intelligence/instructions/daily-briefing.md` for task instructions
 3. The agent searches 15+ sources — TechCrunch, The Verge, Reuters, Hacker News, Twitter/X, AI lab blogs, Reddit, GitHub Trending, and others (web fetch enabled in container)
 4. The agent synthesizes findings into a structured briefing covering: top news, model releases, what builders are talking about, funding and launches, and notable debates
-5. The briefing is saved to `projects/intelligence/briefings/YYYY-MM-DD.md`
+5. The briefing is saved to `projects/intelligence/ai-briefings/YYYY-MM-DD.md`
 6. Results are sent to Telegram via @matts_second_brain_bot
 7. Host-side cron commits and pushes vault changes to GitHub every 30 minutes
 8. Obsidian Sync syncs to other devices (MacBook Pro, iPhone)
 
 ### Weekly Summary (7am, Saturday)
 1. A cron job on the Mac Mini runs Claude Code (not yet migrated to NanoClaw)
-2. Claude reads the last 5 weekday briefings from `projects/intelligence/briefings/`
+2. Claude reads the last 5 weekday briefings from `projects/intelligence/ai-briefings/`
 3. Claude synthesizes across the week — surfacing patterns, signal vs noise, builder pulse, money flows, and one big open question
 4. Claude also searches a16z, Sequoia, Kleiner Perkins, and Khosla Ventures for new investment thesis posts
 5. Summary is saved to `projects/intelligence/weekly-summaries/YYYY-WXX.md`
@@ -48,7 +48,7 @@ A personal AI-powered research and product development engine running on a Mac M
 | `projects/intelligence/instructions/daily-briefing.md` | Instructions for the daily briefing (current: v2.6) |
 | `projects/intelligence/instructions/weekly-summary.md` | Instructions for the weekly summary (current: v1.4) |
 | `projects/intelligence/instructions/monthly-summary.md` | Instructions for the monthly summary (current: v1.0) |
-| `projects/intelligence/briefings/` | Daily briefing outputs |
+| `projects/intelligence/ai-briefings/` | Daily briefing outputs |
 | `projects/intelligence/weekly-summaries/` | Weekly summary outputs |
 | `projects/intelligence/monthly-summaries/` | Monthly summary outputs |
 | `projects/intelligence/intelligence-layers.md` | Architecture plan for the intelligence system |
@@ -144,7 +144,7 @@ second-brain/
   personal/             — private notes
   projects/             — active projects and documentation
     intelligence/       — intelligence system architecture
-      briefings/        — daily briefing outputs
+      ai-briefings/     — daily briefing outputs
       instructions/     — prompt files for Claude Code
       weekly-summaries/ — weekly summary outputs
       monthly-summaries/— monthly summary outputs

@@ -3,7 +3,7 @@ Daily AI Intelligence Briefing — Instructions
 > Version: 2.9 | Last updated: 2026-03-21
 
 ## Purpose
-Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
+Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `ai-briefings/YYYY-MM-DD.md` using today's actual date.
 
 **Important:** Research and write all sections first, then write the Executive Summary last and place it at the top of the document. The Executive Summary should synthesize across sections — it is not a compressed version of Top News.
 
@@ -19,7 +19,7 @@ Each morning, research and compile a concise AI and tech intelligence briefing. 
 
 ## Before You Start
 
-Read the last 5 briefings from `briefings/` (by date, most recent first). Note which stories, funding rounds, model releases, and tools were already covered. Do not include any of these in today's briefing unless there is a genuinely new development — new information, new data, or a significant update beyond continued discussion.
+Read the last 5 briefings from `ai-briefings/` (by date, most recent first). Note which stories, funding rounds, model releases, and tools were already covered. Do not include any of these in today's briefing unless there is a genuinely new development — new information, new data, or a significant update beyond continued discussion.
 
 ---
 
@@ -36,7 +36,7 @@ Pick the 3–5 most significant stories published or materially updated in the l
 **Section Summary:** End with 1–2 sentences interpreting what today's news collectively signals — are there patterns, a dominant theme, or a surprising absence? Be forward-looking, not just descriptive.
 
 ### 2. Notable Model Releases
-Keep this short. Only include a model release if it clears at least one of these bars:
+Keep this section short. Only include a model release if it clears at least one of these bars:
 - A flagship model from a major lab (Anthropic, OpenAI, Google DeepMind, Meta)
 - A release that meaningfully shifts the cost/capability tradeoff for builders
 - A release generating significant real-world builder discussion today
@@ -63,7 +63,7 @@ Summarize the core argument or question being discussed. Do not characterize how
 **Section Summary:** End with 1–2 sentences on what these debates reveal about where the AI community's anxieties or excitement are concentrated right now.
 
 ### 5. Final Check
-After completing all sections, do a final search for **AI news today** and **AI funding today** to catch any major stories that may have been missed. If anything significant is found that isn't already covered, add it to the most relevant section.
+After completing all sections, do a final search for **AI news today** to catch any major stories that may have been missed. If anything significant is found that isn't already covered, add it to the most relevant section.
 
 ### 6. Deduplication Review
 Re-read the full briefing top to bottom. Remove any item that appears in more than one section — keep it in the most relevant section only. Then cross-check against the 5 previous briefings you read at the start. Remove any story that was already covered unless today's entry contains genuinely new information beyond what was previously reported.
@@ -72,7 +72,7 @@ Re-read the full briefing top to bottom. Remove any item that appears in more th
 
 ## Output Format
 
-Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
+Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
 
 ```
 # AI Intelligence Briefing — YYYY-MM-DD

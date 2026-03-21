@@ -17,6 +17,13 @@
 - [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
 - [ ] Design monthly vault maintenance task — archive completed session-tasks, old briefings, and weekly summaries on a rolling window
 
+## Completed — March 21, 2026
+- [x] Renamed `projects/intelligence/briefings/` → `ai-briefings/` — updated all references across vault and NanoClaw
+- [x] Archived stale `projects/nanoclaw/claude-md-briefing.md` (old `ai-intelligence/` paths)
+- [x] Fixed task success notifications — scheduler now sends confirmations for non-main groups; main group tasks (daily to-do) handle their own output
+- [x] Added `display_name` column to scheduled tasks for human-readable notifications
+- [x] Triggered one-off daily briefing run
+
 ## Completed — March 20, 2026
 - [x] Fix Executive Summary redundancy — changed from "lead with most important story" to cross-section synthesis (v2.7)
 - [x] Add Sources Log to briefing format — temporary diagnostic table at bottom of each briefing tracking which sources were searched and what they produced (v2.8). Run for ~1 week then audit.

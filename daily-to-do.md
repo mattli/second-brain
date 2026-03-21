@@ -17,11 +17,11 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 
 ### Saturday, March 21
 
-- [ ] Breakfast at Bluey's
+- [x] Breakfast at Bluey's
+- [ ] Evaluate briefing instructions
 - [ ] Read Infinite Jest
 - [ ] Go to the gym
 - [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
-- [ ] Evaluate briefing instructions
 - [ ] Spend 20-30 min browsing HN and X — looking for pain, not ideas. Drop anything interesting into inbox.md.
 
 ---

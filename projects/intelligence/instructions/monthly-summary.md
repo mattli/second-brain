@@ -34,7 +34,7 @@ As you read, track:
 - Stories or beliefs from early in the month that the later weeks complicated or reversed
 - Anything that was missing from the weeklies but should have been there
 
-
+3. dfsdf
 ---
 
 ## Output Sections

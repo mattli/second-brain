@@ -5,7 +5,7 @@
 	- [ ] Audit overlap between weekly and monthly summary instructions — both currently look at VC theses (a16z, Sequoia, KP, Khosla); determine if this is redundant and whether VC thesis research should live in only one of them
 
 ## Medium Priority
-- [ ] Update CLAUDE.md for the main Telegram group — add communication style preferences (e.g. no value judgments on content); requires editing `~/nanoclaw/groups/main/CLAUDE.md` directly on the Mac Mini host
+- [ ] Update CLAUDE.md for the main Telegram group — add communication style preferences (e.g. no value judgments on content); requires editing `~/nanoclaw/groups/main/CLAUDE.md` directly on the Mac Mini host; before making changes, read all existing CLAUDE.md files across groups to understand the full picture and plan edits carefully
 - [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 - [ ] Disable iCloud on Mac Mini — vault has migrated to Obsidian Sync; iCloud no longer needed and may cause conflicts

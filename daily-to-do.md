@@ -24,7 +24,7 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 	- [ ] update weekly summary
 	- [ ] update monthly summary
 - [ ] Read Infinite Jest
-- [ ] Go to the gym
+- [x] Go to the gym
 - [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
 
 ---

@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 2.0 | Last updated: 2026-03-21
+> Version: 2.2 | Last updated: 2026-03-21
 
 ## Purpose
 Each Saturday morning, synthesize the week's AI briefings, product briefings, and VC investment theses into a structured analysis of the product landscape. The goal is not to recap what happened — it's to understand what types of products are being built, which ones are gaining traction, and how they fit into the broader picture of AI capability shifts and capital flows.
@@ -18,7 +18,7 @@ Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number
 ## Research Tasks
 
 ### 1. Read the Previous 3 Weekly Summaries
-Read the last 3 files in `weekly-summaries/` before doing anything else. Note which product categories were tracked, their momentum signals, and any trends in early development. You will use this to assess whether this week's categories are new, continuing, or fading.
+Read the last 3 files in `weekly-summaries/` before doing anything else. Note which product categories were tracked and which problems kept appearing. You will use this to maintain category name consistency week-to-week and to carry forward any active categories even if they were quieter this week.
 
 ### 2. Read the Week's AI Briefings
 Read all files in `ai-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
@@ -43,7 +43,6 @@ Search for any new investment thesis posts, essays, or perspective pieces publis
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
 - **Kleiner Perkins** (kleinerperkins.com)
-- **Khosla Ventures** (khoslaventures.com)
 
 Include only forward-looking investment theses — pieces that articulate a belief about where a market or technology is heading. Exclude funding announcements, portfolio news, and press releases.
 
@@ -66,13 +65,12 @@ Summarize any investment thesis pieces published this week (from Research Task 5
 The heart of the document. Discover and describe the product categories active this week based on what you observed across the product briefings and catch-up research. Each category gets its own entry:
 
 **[Category Name]**
-- **What's being built:** 1–2 sentences on the types of products and approaches appearing in this category
+- **Who it's for:** Who is experiencing this problem — what kind of person, role, or context?
+- **Problem it's solving:** What is the underlying pain? Focus on the problem, not the solution.
+- **What's being built:** 1–2 sentences on the types of products and approaches appearing in this category. If the problem and solution feel well-matched, note it. If builders seem to be solving the wrong thing or only part of the pain, note that too.
 - **Traction signal:** What evidence exists that products in this category are working — user interest, revenue, community discussion, repeat appearances? Be honest if traction is unclear.
-- **AI connection:** Which capability shift or infrastructure change is enabling this category right now? Reference the AI Context section where relevant.
-- **VC alignment:** Does any VC thesis this week (or in recent weeks) validate or challenge this category?
-- **Momentum:** One of — 🆕 New (first appearance) / 📈 Growing (stronger than last week) / ➡️ Stable (consistent presence) / 📉 Fading (less active than prior weeks)
 
-Use the previous weekly summaries (Research Task 1) to assess momentum accurately. Carry forward any category that appeared in prior weeks even if it was quieter this week — note it as Stable or Fading rather than dropping it silently. Retire a category only if it has been Fading for 3+ consecutive weeks, and note the retirement briefly.
+Use the previous weekly summaries (Research Task 1) to maintain consistent category names week-to-week. Carry forward any category that appeared in prior weeks even if it was quieter this week — a brief entry is better than dropping it silently. Retire a category only if it has been absent or negligible for 3+ consecutive weeks, and note the retirement briefly.
 
 There is no fixed number of categories. Include as many as the week genuinely warrants. Quality over coverage.
 
@@ -105,11 +103,10 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 ## Product Categories
 
 ### [Category Name]
+- **Who it's for:** ...
+- **Problem it's solving:** ...
 - **What's being built:** ...
 - **Traction signal:** ...
-- **AI connection:** ...
-- **VC alignment:** ...
-- **Momentum:** [🆕 New / 📈 Growing / ➡️ Stable / 📉 Fading]
 
 [Repeat for each category]
 
@@ -130,7 +127,6 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 | a16z | ✅/❌ | [pieces or "(nothing published)"] |
 | Sequoia | ✅/❌ | [pieces or "(nothing published)"] |
 | Kleiner Perkins | ✅/❌ | [pieces or "(nothing published)"] |
-| Khosla Ventures | ✅/❌ | [pieces or "(nothing published)"] |
 | Other | — | [any sources not listed above] |
 ```
 

@@ -20,10 +20,9 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 - [x] Breakfast at Bluey's
 - [ ] Evaluate briefing instructions
 	- [x] updated daily ai-briefing
-	- [ ] implement daily product-briefing
+	- [x] implement daily product-briefing
 	- [ ] update weekly summary
 	- [ ] update monthly summary
-- [ ] Read Infinite Jest
 - [x] Go to the gym
 - [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
 

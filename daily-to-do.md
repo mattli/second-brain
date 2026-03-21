@@ -19,7 +19,7 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 
 - [x] Breakfast at Bluey's
 - [ ] Evaluate briefing instructions
-	- [ ] updated daily ai-briefing
+	- [x] updated daily ai-briefing
 	- [ ] implement daily product-briefing
 	- [ ] update weekly summary
 	- [ ] update monthly summary

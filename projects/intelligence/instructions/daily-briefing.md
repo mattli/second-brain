@@ -27,7 +27,6 @@ Read the last 5 briefings from `ai-briefings/` (by date, most recent first). Not
 Search for the latest headlines from:
 - **TechCrunch** (techcrunch.com)
 - **Hacker News** (news.ycombinator.com — top stories and "Ask HN" threads relevant to AI)
-- **Reuters:** (reuters.com/technology)
 
 Pick the 3–5 most significant stories published or materially updated in the last 24 hours strictly. Summarize each in 1–2 sentences.
 
@@ -61,7 +60,7 @@ Summarize the core argument or question being discussed. Do not characterize how
 **Section Summary:** End with 1–2 sentences on what these debates reveal about where the AI community's anxieties or excitement are concentrated right now.
 
 ### 5. Final Check
-After completing all sections, do a final search for **AI news today** to catch any major stories that may have been missed. If anything significant is found that isn't already covered, add it to the most relevant section.
+After completing all sections, do a final search for **AI news today** to catch any major stories that may have been missed. Only include stories from established tech publications or primary sources (company blogs, official announcements). Skip aggregators, opinion sites, and low-quality blogs. If anything significant is found that isn't already covered, add it to the most relevant section.
 
 ### 6. Deduplication Review
 Re-read the full briefing top to bottom. Remove any item that appears in more than one section — keep it in the most relevant section only. Then cross-check against the 5 previous briefings you read at the start. Remove any story that was already covered unless today's entry contains genuinely new information beyond what was previously reported.

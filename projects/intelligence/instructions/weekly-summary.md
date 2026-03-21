@@ -3,7 +3,7 @@ Weekly AI Intelligence Summary — Instructions
 > Version: 1.6 | Last updated: 2026-03-20
 
 ## Purpose
-Each Saturday morning, read the last 5 weekday briefings (Monday–Friday) and synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
+Each Saturday morning, read the last 5 weekday ai-briefings (Monday–Friday), the last 5 weekday product-briefings, and conduct research on any new investment thesis posts, essays, or perspective pieces published in the last 7 days from top VCs listed below. Synthesize them into a weekly intelligence summary. The output should surface patterns, signal, and insight that aren't visible in any single day's briefing. Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
 
 **Write all sections first, then write the Week in Review last** — it should reflect the full picture after synthesis is complete.
 
@@ -15,25 +15,18 @@ Each Saturday morning, read the last 5 weekday briefings (Monday–Friday) and s
 
 ## Research Tasks
 
-### 1. Read the Week's Briefings
+### 1. Read the Week's AI Briefings
 Read all files in the `ai-briefings/` folder from the last 5 weekday briefings (Monday–Friday only). If a day has no briefing file (e.g. missed run), note it and continue.
 
-Use these briefings as your primary source. Do not re-research news independently — synthesize what was already captured.
+Use these briefings as a primary source. Do not re-research news independently — synthesize what was already captured.
 
-### 2. Builder Pulse Research
-Do a 7-day lookback on what indie projects and new products are gaining traction. Search:
-- **Product Hunt** (producthunt.com) — top launches of the week by upvotes
-- **Hacker News Show HN** (news.ycombinator.com) — builder-posted projects gaining community traction
-- **Indie Hackers** (indiehackers.com) — revenue milestones, growth stories, and what's working
+### 2. Read the Week's Product Briefings
+Read all files in the `product-briefings/` folder from the last 5 weekday briefings (Monday–Friday only). If a day has no briefing file (e.g. missed run), note it and continue.
 
-Look for patterns in what product categories are being built, not just individual launches. What types of problems are founders choosing to solve this week? What's getting real user traction vs what's just getting attention?
-
-Synthesize findings into the Builder Pulse section alongside what the daily briefings captured.
-
-If nothing significant surfaced this week, say so briefly.
+Use these briefings as a primary source. Do not re-research news independently — synthesize what was already captured.
 
 ### 3. Strategic Signals
-Search for any new investment thesis posts, esays, or perspective pieces published in the last 7 days from:
+Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
 - **Kleiner Perkins** (kleinerperkins.com)
@@ -108,14 +101,14 @@ Save to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number:
 ## Sources Log (temporary — diagnostic)
 | Source | Searched | Content Used |
 |--------|----------|-------------|
-| Daily briefings (Mon–Fri) | ✅/❌ | [which days read] |
+| Daily AI briefings (Mon–Fri) | ✅/❌ | [which days read] |
+| Daily Product briefings (Mon–Fri) | ✅/❌ | [which days read] |
 | Product Hunt | ✅/❌ | [items or "(nothing notable)"] |
 | Hacker News Show HN | ✅/❌ | |
 | Indie Hackers | ✅/❌ | |
 | a16z | ✅/❌ | |
 | Sequoia | ✅/❌ | |
 | Kleiner Perkins | ✅/❌ | |
-| Khosla Ventures | ✅/❌ | |
 | Other | — | [any sources not listed above] |
 ```
 

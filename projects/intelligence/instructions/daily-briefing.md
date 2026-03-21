@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.8 | Last updated: 2026-03-20
+> Version: 2.9 | Last updated: 2026-03-21
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `briefings/YYYY-MM-DD.md` using today's actual date.
@@ -29,6 +29,7 @@ Read the last 5 briefings from `briefings/` (by date, most recent first). Note w
 Search for the latest headlines from:
 - **TechCrunch** (techcrunch.com)
 - **Hacker News** (news.ycombinator.com — top stories and "Ask HN" threads relevant to AI)
+- **Reuters:** https://www.reuters.com/technology/
 
 Pick the 3–5 most significant stories published or materially updated in the last 24 hours strictly. Summarize each in 1–2 sentences.
 
@@ -44,31 +45,7 @@ If nothing clears this bar, skip the section entirely — do not list minor mode
 
 **Section Summary:** End with 1–2 sentences on what today's notable release signals about where the frontier is moving. Omit this if the section is skipped.
 
-### 3. New Tools & Products
-Search for newly launched or newly trending tools, apps, or products in the AI/tech space:
-- **Product Hunt** (producthunt.com — top launches)
-- **Hacker News** (Show HN posts)
-- **GitHub Trending** (github.com/trending)
-
-Focus on tools builders are actually trying or recommending — not press releases. List 2–3 items max, 1 sentence each describing what it does and why it's getting attention. If nothing notable launched in the last 24 hours, skip this section.
-
-### 4. What Builders Are Talking About
-Search the following for what developers and product people are actively building, discussing, or excited about:
-- **Hacker News** (news.ycombinator.com)
-- **GitHub Trending** (github.com/trending)
-- **r/vibecoding**, **r/ChatGPTCoding**, **r/claudecode** (reddit.com)
-
-Focus on:
-- Tools or libraries gaining rapid traction
-- Interesting projects people are shipping
-- Practical techniques or workflows being shared
-- Frustrations or problems that keep coming up
-
-List 2–3 items posted or gaining significant traction in the last 24 hours. Include a 1–2 sentence summary of why the community finds it interesting.
-
-**Section Summary:** End with 1–2 sentences on what the builder community's focus today suggests about emerging opportunities or pain points — what problem keeps coming up that doesn't have a great solution yet?
-
-### 5. Funding, Acquisitions & Product Launches
+### 3. Funding, Acquisitions & Product Launches
 Search for major AI-related business news in the last 24 hours strictly:
 - Funding rounds (Series A and above, or notable seed rounds)
 - Acquisitions or mergers involving AI companies
@@ -78,17 +55,17 @@ Summarize each item in 1–2 sentences. If nothing significant occurred in the l
 
 **Section Summary:** End with 1–2 sentences interpreting where money and product activity is flowing — infrastructure vs applications, incumbents vs startups, any surprising bets being made.
 
-### 6. Notable Discussions & Debates
-Find 1–2 interesting conversations started or gaining significant momentum in the last 24 hours — on Hacker News or X/Twitter. These could be debates, critiques, thought experiments, or viral threads.
+### 4. Notable Discussions & Debates
+Find 1–2 interesting conversations started or gaining significant momentum in the last 24 hours — on Hacker News. These could be debates, critiques, thought experiments, or viral threads.
 
 Summarize the core argument or question being discussed. Do not characterize how widely shared or discussed something is. Only summarize the content and argument — let the reader judge significance.
 
 **Section Summary:** End with 1–2 sentences on what these debates reveal about where the AI community's anxieties or excitement are concentrated right now.
 
-### 7. Final Check
+### 5. Final Check
 After completing all sections, do a final search for **AI news today** and **AI funding today** to catch any major stories that may have been missed. If anything significant is found that isn't already covered, add it to the most relevant section.
 
-### 8. Deduplication Review
+### 6. Deduplication Review
 Re-read the full briefing top to bottom. Remove any item that appears in more than one section — keep it in the most relevant section only. Then cross-check against the 5 previous briefings you read at the start. Remove any story that was already covered unless today's entry contains genuinely new information beyond what was previously reported.
 
 ---
@@ -113,13 +90,6 @@ Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
 [Only if a release clears the bar — flagship lab, meaningful cost/capability shift, or real builder traction. Skip section if nothing qualifies.]
 **Today's Signal:** [1–2 sentence interpretive summary — omit if section skipped]
 
-## New Tools & Products
-[2–3 newly launched or trending tools, 1 sentence each — what it does and why it's getting attention. Skip if nothing notable.]
-
-## What Builders Are Talking About
-[2–3 items with why the community cares]
-**Today's Signal:** [1–2 sentence interpretive summary]
-
 ## Funding & Launches
 [Business news items, 1–2 sentences each]
 **Today's Signal:** [1–2 sentence interpretive summary]
@@ -134,14 +104,8 @@ Save the briefing to `briefings/YYYY-MM-DD.md`. Use this structure:
 | Source | Searched | Stories Used |
 |--------|----------|-------------|
 | TechCrunch | ✅/❌ | [story titles or "(nothing new)"] |
-| Reuters | ✅/❌ | |
-| Hacker News | ✅/❌ | |
-| X/Twitter | ✅/❌ | |
-| Product Hunt | ✅/❌ | |
-| GitHub Trending | ✅/❌ | |
-| r/vibecoding | ✅/❌ | |
-| r/ChatGPTCoding | ✅/❌ | |
-| r/claudecode | ✅/❌ | |
+| Hacker News | ✅/❌ |
+| Reuters | ✅/❌ |
 | Other | — | [any sources not listed above] |
 ```
 

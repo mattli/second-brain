@@ -33,7 +33,7 @@ Synthesize findings into the Builder Pulse section alongside what the daily brie
 If nothing significant surfaced this week, say so briefly.
 
 ### 3. Strategic Signals
-Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
+Search for any new investment thesis posts, esays, or perspective pieces published in the last 7 days from:
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
 - **Kleiner Perkins** (kleinerperkins.com)

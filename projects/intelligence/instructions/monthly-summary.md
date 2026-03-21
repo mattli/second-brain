@@ -34,7 +34,10 @@ As you read, track:
 - Stories or beliefs from early in the month that the later weeks complicated or reversed
 - Anything that was missing from the weeklies but should have been there
 
-3. dfsdf
+### 3. Product Trends
+
+What types of products are gaining traction and buzz. How would you categorize them?
+
 ---
 
 ## Output Sections

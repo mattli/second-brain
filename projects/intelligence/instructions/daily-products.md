@@ -1,16 +1,9 @@
-### 1. New Tools & Products
-Search for newly launched or newly trending tools, apps, or products in the AI/tech space:
-- **Product Hunt** (producthunt.com — top launches)
-- **Hacker News** (Show HN posts)
-- **GitHub Trending** (github.com/trending)
-
-Focus on tools builders are actually trying or recommending — not press releases. List 2–3 items max, 1 sentence each describing what it does and why it's getting attention. If nothing notable launched in the last 24 hours, skip this section.
-
-### 2. What Builders Are Talking About
+### 1. What Builders Are Talking About
 Search the following for what developers and product people are actively building, discussing, or excited about:
+* **Product Hunt** (producthunt.com — top launches)
 - **Hacker News** (news.ycombinator.com)
 - **GitHub Trending** (github.com/trending)
-- **r/vibecoding**, **r/ChatGPTCoding**, **r/claudecode** (reddit.com)
+- **Indie Hackers** (indiehackers.com)
 
 Focus on:
 - Tools or libraries gaining rapid traction

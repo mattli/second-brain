@@ -5,8 +5,6 @@ Daily AI Intelligence Briefing — Instructions
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `ai-briefings/YYYY-MM-DD.md` using today's actual date.
 
-**Important:** Research and write all sections first, then write the Executive Summary last and place it at the top of the document. The Executive Summary should synthesize across sections — it is not a compressed version of Top News.
-
 **Overlap Prevention:** Only include a story or item if something materially new happened in the last 24 hours — new information, new data, new reaction, or a significant new development. Do not include stories simply because they are still being discussed or are generally important. If a story was covered yesterday and nothing new has happened, skip it.
 
 **Cross-Section Deduplication:** Each story, tool, or item should appear in at most one section. If an item could fit in multiple sections, place it in the most relevant one and do not repeat it elsewhere.
@@ -29,7 +27,7 @@ Read the last 5 briefings from `ai-briefings/` (by date, most recent first). Not
 Search for the latest headlines from:
 - **TechCrunch** (techcrunch.com)
 - **Hacker News** (news.ycombinator.com — top stories and "Ask HN" threads relevant to AI)
-- **Reuters:** https://www.reuters.com/technology/
+- **Reuters:** (reuters.com/technology)
 
 Pick the 3–5 most significant stories published or materially updated in the last 24 hours strictly. Summarize each in 1–2 sentences.
 
@@ -77,11 +75,6 @@ Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
 ```
 # AI Intelligence Briefing — YYYY-MM-DD
 
-## Executive Summary 
-[3–5 sentences of flowing prose — no field labels, no bullet points. Identify the tension, pattern, or throughline that connects today's news, tools, builder discussion, and funding signals. Do not restate individual stories — synthesize across sections. What do they have in common? What contradiction or open question cuts across all of them? Close with the question the day raises. Written last, placed first.]
-
----
-
 ## Top News
 [3–5 stories, 1–2 sentences each]
 **Today's Signal:** [1–2 sentence interpretive summary]
@@ -109,7 +102,7 @@ Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
 | Other | — | [any sources not listed above] |
 ```
 
-Keep each section tight. The Executive Summary should be the single most valuable 3–5 sentences in the document — a cross-section synthesis, not a recap of Top News. Written last, placed first. Section summaries should be interpretive and forward-looking, not just recapping what's above. The full briefing should be skimmable in ~2 minutes.
+Keep each section tight. Section summaries should be interpretive and forward-looking, not just recapping what's above. The full briefing should be skimmable in ~2 minutes.
 
 ---
 

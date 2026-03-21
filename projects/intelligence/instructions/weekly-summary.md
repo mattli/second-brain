@@ -37,7 +37,6 @@ Search for any new investment thesis posts, esays, or perspective pieces publish
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
 - **Kleiner Perkins** (kleinerperkins.com)
-- **Khosla Ventures** (khoslaventures.com)
 
 Include only forward-looking investment theses — pieces that articulate a belief about where a market or technology is heading. Exclude funding announcements, portfolio news, and press releases.
 

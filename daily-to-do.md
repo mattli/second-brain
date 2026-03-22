@@ -17,6 +17,8 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 
 ### Sunday, March 22
 
+- [x] Farmers market 
+- [x] Read IJ
 - [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
 
 ---

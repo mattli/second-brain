@@ -4,12 +4,13 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 
 ## Briefing Types
 
-| Type | Schedule | Output | Description |
-|------|----------|--------|-------------|
-| **Daily Briefing** | Mon–Fri 7am | `ai-briefings/YYYY-MM-DD.md` | Top AI/tech news, model releases, funding, discussions |
-| **Product Briefing** | Paused (test only) | `product-briefings/YYYY-MM-DD.md` | Product launches, builder activity, tools gaining traction |
-| **Weekly Summary** | Sat 7am | `weekly-summaries/YYYY-WXX.md` | Synthesizes the week's daily briefings into patterns and signal |
-| **Monthly Summary** | 1st of month 7am | `monthly-summaries/YYYY-MM.md` | Synthesizes weekly summaries into durable trends and product observations |
+| Type                 | Schedule           | Output                            | Description                                                               |
+| -------------------- | ------------------ | --------------------------------- | ------------------------------------------------------------------------- |
+| **AI Briefing**      | Mon–Fri 7am        | `ai-briefings/YYYY-MM-DD.md`      | Top AI/tech news, model releases, funding, discussions                    |
+| **Product Briefing** | Paused (test only) | `product-briefings/YYYY-MM-DD.md` | Product launches, builder activity, tools gaining traction                |
+| **Weekly Summary**   | Sat 7am            | `weekly-summaries/YYYY-WXX.md`    | Synthesizes the week's daily briefings into patterns and signal           |
+| **Monthly Summary**  | 1st of month 7am   | `monthly-summaries/YYYY-MM.md`    | Synthesizes weekly summaries into durable trends and product observations |
+|                      |                    |                                   |                                                                           |
 
 ## Directory Structure
 
@@ -50,6 +51,18 @@ What it does:
 
 The script lives at `~/nanoclaw/scripts/test-briefing.sh`.
 
+## Architecture
+
+The briefings form a layered synthesis pipeline — each layer distills the one below it:
+
+```
+AI Briefing + Product Briefing (raw signal)
+  → Weekly Summary (patterns across 5 days)
+    → Monthly Summary (durable trends across 4 weeks)
+```
+
+The daily briefing researches live sources. The weekly summary reads only the week's daily briefings (plus a builder pulse search). The monthly summary reads only the weekly summaries, then appends product observations back to `projects/product/product-vision.md`. The product briefing is a standalone daily layer focused on launches and builder activity.
+
 ## How It Works
 
 Each briefing type runs as a NanoClaw scheduled task:
@@ -59,3 +72,14 @@ Each briefing type runs as a NanoClaw scheduled task:
 4. A notification is sent to Telegram on completion
 
 Tasks are defined in NanoClaw's SQLite database (`~/nanoclaw/store/messages.db`). The `test-briefing` script temporarily modifies the task prompt and triggers it, then reverts after the run completes.
+
+## Archival
+
+Old briefing files are automatically archived every Sunday at midnight. Each folder has a retention rule defined in `~/nanoclaw/scripts/archive-briefings.conf`:
+
+```
+ai-briefings:keep=7
+product-briefings:keep=7
+```
+
+Files beyond the keep count are moved to `_archive/` within each folder. To add a new folder or change the retention, edit the config file — no script changes needed. The archive script lives at `~/nanoclaw/scripts/archive-briefings.sh`.

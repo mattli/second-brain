@@ -1,13 +1,13 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 2.2 | Last updated: 2026-03-21
+> Version: 2.3 | Last updated: 2026-03-21
 
 ## Purpose
-Each Saturday morning, synthesize the week's AI briefings, product briefings, and VC investment theses into a structured analysis of the product landscape. The goal is not to recap what happened — it's to understand what types of products are being built, which ones are gaining traction, and how they fit into the broader picture of AI capability shifts and capital flows.
+Each Saturday morning, synthesize the week's AI briefings, product briefings, and VC investment theses into a structured analysis of the product landscape. The goal is not to recap what happened — it's to understand what problem categories are emerging, which ones are gaining traction, and how they fit into the broader picture of AI capability shifts and capital flows.
 
 Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
 
-**Write the Product Categories section first, then all other sections, then write the Week in Review last.**
+**Write the Problem Categories section first, then all other sections, then write the Week in Review last.**
 
 **Empty Sections:** If a section has no genuinely significant content from the week, say so briefly and move on. Never pad with low-signal content to fill space.
 
@@ -18,7 +18,7 @@ Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number
 ## Research Tasks
 
 ### 1. Read the Previous 3 Weekly Summaries
-Read the last 3 files in `weekly-summaries/` before doing anything else. Note which product categories were tracked and which problems kept appearing. You will use this to maintain category name consistency week-to-week and to carry forward any active categories even if they were quieter this week.
+Read the last 3 files in `weekly-summaries/` before doing anything else. Note which problem categories were tracked and which problems kept appearing. You will use this to maintain category name consistency week-to-week and to carry forward any active categories even if they were quieter this week.
 
 ### 2. Read the Week's AI Briefings
 Read all files in `ai-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
@@ -61,8 +61,8 @@ What shifted this week at the model or infrastructure layer that's relevant to p
 ### VC Lens
 Summarize any investment thesis pieces published this week (from Research Task 5). For each: what they believe, why, and which product categories it validates, challenges, or ignores. If nothing was published this week, note it briefly.
 
-### Product Categories
-The heart of the document. Discover and describe the product categories active this week based on what you observed across the product briefings and catch-up research. Each category gets its own entry:
+### Problem Categories
+The heart of the document. Discover and describe the problem categories active this week based on what you observed across the product briefings and catch-up research. Each category gets its own entry:
 
 **[Category Name]**
 - **Who it's for:** Who is experiencing this problem — what kind of person, role, or context?
@@ -100,7 +100,7 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 ## VC Lens
 [Thesis summaries with category implications, or "Nothing published this week."]
 
-## Product Categories
+## Problem Categories
 
 ### [Category Name]
 - **Who it's for:** ...

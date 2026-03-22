@@ -1,3 +1,74 @@
-# Nanoclaw
+# NanoClaw
 
-Setup and configuration for the Nanoclaw Mac Mini home server.
+Personal AI assistant and automation engine running on a Mac Mini M4 home server. Manages intelligence briefings, scheduled tasks, and interactive chat via Telegram.
+
+## Infrastructure
+
+| Component | Role |
+|-----------|------|
+| Mac Mini M4 | Always-on home server — runs all automated jobs |
+| NanoClaw | Node.js orchestrator — spawns Docker containers running Claude Agent SDK |
+| Docker | Container runtime for agent isolation (each group gets its own filesystem) |
+| Telegram | Primary interface — @matts_second_brain_bot for briefing delivery and chat |
+| Claude subscription OAuth | Auth for containers via NanoClaw's credential proxy (port 3001) |
+| GitHub | Version control — vault synced every 30 minutes |
+| Obsidian | Note-taking app — vault at `~/second-brain/` |
+| Obsidian Sync | Syncs vault between Mac Mini, MacBook Pro, and iPhone |
+
+## Registered Groups
+
+| Group | Folder | Purpose |
+|-------|--------|---------|
+| telegram_main | `telegram_main` | Interactive Telegram chat (main group) |
+| Daily Briefing | `briefing` | Daily AI intelligence briefing agent |
+| Product Briefing | `product-briefing` | Daily product intelligence briefing agent |
+| Weekly Summary | `weekly-summary` | Weekly synthesis agent |
+| Monthly Summary | `monthly-summary` | Monthly synthesis agent |
+
+## Scheduled Tasks
+
+| Task | Schedule | Type | What it does |
+|------|----------|------|--------------|
+| 📋 Daily Briefing | 7am Mon–Fri | container | Researches and writes AI intelligence briefing |
+| 🛠 Product Briefing | Paused | container | Researches and writes product intelligence briefing |
+| 📊 Weekly Summary | 7am Saturday | container | Synthesizes the week's daily briefings |
+| 📅 Monthly Summary | 7am 1st of month | container | Synthesizes monthly trends, updates product-vision.md |
+| 📝 Daily To-Do | 8am daily | container | Reads today's section from daily-to-do.md, sends to Telegram |
+| 🗄 Archive Briefings | Midnight Sunday | script | Moves old briefing files to `_archive/` per retention rules |
+| Vault Sync | Every 30 min | script | Commits and pushes vault changes to GitHub |
+| Obsidian Sync Check | Every 30 min | script | Verifies Obsidian Sync is running |
+
+## Authentication
+
+- **Interactive Claude Code sessions** — Claude.ai Max subscription credentials, stored in macOS Keychain
+- **NanoClaw containers** — Claude subscription OAuth token, injected by credential proxy; API keys never enter containers
+- **Script tasks** — run directly on host, no AI tokens needed
+
+## Cost
+
+- Daily briefing: ~$1.00/run (Sonnet 4.6 via Claude subscription)
+- Weekly summary: ~$1.17/run
+- Estimated monthly: ~$25–26 (weekday briefings + weekly summaries)
+
+## Vision
+
+### Phase 2 — PM Best Practices Layer
+
+Extend from intelligence into on-demand product management. Query via Telegram, get structured PM output back — SWOT analysis, RICE scoring, PRD generation, technical requirements.
+
+### Phase 3 — Agent Swarm for Execution
+
+Coordinated specialized agents take a vetted idea from decision to working prototype — compressing market signal to shipped experiment from weeks to hours.
+
+### Infrastructure Improvements
+
+- Multi-agent orchestration — parallel fetch agents feeding a synthesis orchestrator
+- Model routing — lighter models for fetch/classify, heavier models for synthesis
+- Cost reduction via multi-agent architecture
+
+## Related Docs
+
+- [Intelligence README](../intelligence/README.md) — briefing types, instructions, test runs, architecture, archival
+- [NanoClaw source](~/nanoclaw/CLAUDE.md) — developer docs for working on the codebase
+- [mac-mini-setup.md](mac-mini-setup.md) — Mac Mini build order and setup
+- [nanoclaw-setup.md](nanoclaw-setup.md) — planning doc for multi-agent architecture

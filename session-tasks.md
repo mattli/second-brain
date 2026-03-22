@@ -1,29 +1,27 @@
 ## High Priority
-- [ ] Review Briefing instructions
-	- [ ] Evaluate briefing quality and source refinement — review whether the briefing is delivering the right signals; reverse-engineer specific stories to trace back to their sources and determine if better or more targeted sources could improve coverage. **Finding from 2026-03-20:** last 5 briefings are heavily HN/GitHub-sourced; TechCrunch, Reuters, Reddit, Product Hunt, and X/Twitter are barely or never used. Sources Log added in v2.8 — review after ~1 week of data (around 2026-03-27). Perplexity, particular individuals?
-	- [ ] Check/update monthly summary instructions — reframe product observations as "problem statements" rather than general observations
-	- [ ] Audit overlap between weekly and monthly summary instructions — both currently look at VC theses (a16z, Sequoia, KP, Khosla); determine if this is redundant and whether VC thesis research should live in only one of them
 
 ## Medium Priority
 - [ ] Update CLAUDE.md for the main Telegram group — add communication style preferences (e.g. no value judgments on content); requires editing `~/nanoclaw/groups/main/CLAUDE.md` directly on the Mac Mini host; before making changes, read all existing CLAUDE.md files across groups to understand the full picture and plan edits carefully
-- [ ] Improve briefing tool coverage — add explicit search for viral GitHub repos (repos crossing major star milestones in last 24 hours) to catch fast-moving projects that may not surface via GitHub Trending alone. Triggered by missing Superpowers repo (~90k stars).
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 - [ ] Disable iCloud on Mac Mini — vault has migrated to Obsidian Sync; iCloud no longer needed and may cause conflicts
 
 ## Low Priority
 - [ ] Understand CLAUDE.md files — audit all existing CLAUDE.md files across machines and NanoClaw groups; understand what each one does, what's missing, and how they interact
 - [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
-- [ ] Design hybrid intelligence workflow — use inbox.md as manual curation layer throughout the week (HN, X, anything interesting); weekly summary reads inbox + daily briefings and synthesizes across both; clear inbox after each weekly summary runs
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
-- [ ] Set up X integration in NanoClaw — post tweets, like, reply, retweet, quote via Telegram; uses Chrome browser automation (no expensive API needed); requires code changes + container rebuild
-- [ ] Design monthly vault maintenance task — archive completed session-tasks, old briefings, and weekly summaries on a rolling window
+- [ ] Design monthly vault maintenance task — archive completed session-tasks on a rolling window (old briefings now handled by archive-briefings script)
 
 ## Completed — March 21, 2026
+- [x] Review/Rewrite Briefing instructions
 - [x] Renamed `projects/intelligence/briefings/` → `ai-briefings/` — updated all references across vault and NanoClaw
 - [x] Archived stale `projects/nanoclaw/claude-md-briefing.md` (old `ai-intelligence/` paths)
 - [x] Fixed task success notifications — scheduler now sends confirmations for non-main groups; main group tasks (daily to-do) handle their own output
 - [x] Added `display_name` column to scheduled tasks for human-readable notifications
 - [x] Triggered one-off daily briefing run
+- [x] Created `test-briefing` script — ad-hoc test runs for daily/weekly/monthly/product briefings with dedup disabled and auto-suffix filenames; alias added to ~/.zshrc
+- [x] Set up product briefing — new group, container CLAUDE.md, scheduled task (paused), registered in DB with vault mounts
+- [x] Created `archive-briefings` script — moves old briefings to `_archive/` per configurable retention rules; runs Sundays at midnight as script task
+- [x] Consolidated vault docs — merged `system-overview.md` into `projects/nanoclaw/README.md` (updated for current state); archived `intelligence-layers.md` into `projects/intelligence/_archive/`; rewrote `projects/intelligence/README.md` with briefing types, test runs, architecture, and archival docs
 
 ## Completed — March 20, 2026
 - [x] Fix Executive Summary redundancy — changed from "lead with most important story" to cross-section synthesis (v2.7)

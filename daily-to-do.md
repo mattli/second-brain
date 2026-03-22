@@ -15,16 +15,21 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 
 # March 16 – March 22
 
+### Sunday, March 22
+
+- [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
+
+---
+
 ### Saturday, March 21
 
 - [x] Breakfast at Bluey's
-- [ ] Evaluate briefing instructions
+- [x] Evaluate briefing instructions
 	- [x] updated daily ai-briefing
 	- [x] implement daily product-briefing
-	- [ ] update weekly summary
-	- [ ] update monthly summary
+	- [x] update weekly summary
+	- [x] update monthly summary
 - [x] Go to the gym
-- [ ] Refine Second Brain content on coldmountain.ai. edit coldmountain.md first.
 
 ---
 

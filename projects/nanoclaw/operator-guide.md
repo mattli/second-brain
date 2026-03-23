@@ -41,9 +41,11 @@ There are multiple CLAUDE.md files. They layer on top of each other:
 
 1. `groups/global/CLAUDE.md` — applies to ALL agents. Contains "About Matt" and message formatting rules.
 2. `groups/main/CLAUDE.md` — applies only to the main Telegram chat agent.
-3. `groups/briefing/CLAUDE.md` — applies only to the daily briefing agent.
-4. `groups/weekly-summary/CLAUDE.md` — applies only to the weekly summary agent.
-5. `groups/monthly-summary/CLAUDE.md` — applies only to the monthly summary agent.
+3. `groups/telegram_main/CLAUDE.md` — applies to the Telegram main channel agent.
+4. `groups/briefing/CLAUDE.md` — applies only to the daily briefing agent.
+5. `groups/product-briefing/CLAUDE.md` — applies only to the product briefing agent.
+6. `groups/weekly-summary/CLAUDE.md` — applies only to the weekly summary agent.
+7. `groups/monthly-summary/CLAUDE.md` — applies only to the monthly summary agent.
 
 To edit any of these: SSH into the Mac Mini and edit the file directly. They're plain markdown.
 
@@ -80,6 +82,19 @@ The briefing pipeline has three layers:
 *Task prompt* — tells the agent to read the instructions file and run the briefing. Where the send-notification step lives.
 
 *Output* — saved to `projects/intelligence/ai-briefings/YYYY-MM-DD.md`. Committed to GitHub automatically.
+
+*Product briefing* — a separate daily briefing focused on product/tech news. Same three-layer structure:
+- Instructions: `projects/intelligence/instructions/daily-products.md`
+- Output: `projects/intelligence/product-briefings/YYYY-MM-DD.md`
+- Schedule: weekdays at 7am (same as daily briefing)
+
+*Archiving* — the `archive-briefings` task runs weekly (Sunday midnight) and keeps only the 7 most recent briefings in each folder, moving older ones to `_archive/`. Config is in `scripts/archive-briefings.conf`.
+
+*Test runs* — use `test-briefing.sh` to trigger a one-off briefing without affecting the schedule:
+```bash
+test-briefing daily|weekly|monthly|product
+```
+This creates a suffixed file (e.g. `2026-03-23b.md`), disables dedup, and auto-reverts the prompt.
 
 To change briefing content/structure: edit the instructions file.
 
@@ -130,7 +145,7 @@ Edit `projects/intelligence/instructions/daily-briefing.md` from Telegram or Cla
 Tell Second Brain: "Add [item] to tomorrow's to-do list."
 
 *Trigger a briefing now:*
-Ask Second Brain: "Trigger a one-off daily briefing."
+Ask Second Brain: "Trigger a one-off daily briefing." Or from the host: `test-briefing daily` (also works with `weekly`, `monthly`, `product`).
 
 *See all scheduled tasks:*
 Ask Second Brain: "Show me my scheduled tasks."
@@ -147,8 +162,11 @@ Ask Second Brain: "Remind me to [thing] every [day] at [time]."
 | `daily-to-do.md` | Daily to-do list, most recent week at top |
 | `session-tasks.md` | Running backlog of Second Brain improvements |
 | `projects/intelligence/inbox.md` | Links and things to read/explore later |
-| `projects/intelligence/instructions/daily-briefing.md` | Briefing instructions (current) |
+| `projects/intelligence/instructions/daily-briefing.md` | Daily briefing instructions |
+| `projects/intelligence/instructions/daily-products.md` | Product briefing instructions |
 | `projects/intelligence/instructions/weekly-summary.md` | Weekly summary instructions |
 | `projects/intelligence/instructions/monthly-summary.md` | Monthly summary instructions |
+| `~/nanoclaw/scripts/test-briefing.sh` | Ad-hoc briefing trigger script |
+| `~/nanoclaw/scripts/archive-briefings.conf` | Briefing archive retention config |
 | `projects/nanoclaw/README.md` | Infrastructure overview |
 | `projects/intelligence/README.md` | Intelligence layer overview |

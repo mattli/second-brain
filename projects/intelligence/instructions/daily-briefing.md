@@ -97,7 +97,6 @@ Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
 |--------|----------|-------------|
 | TechCrunch | ✅/❌ | [story titles or "(nothing new)"] |
 | Hacker News | ✅/❌ |
-| Reuters | ✅/❌ |
 | Other | — | [any sources not listed above] |
 ```
 

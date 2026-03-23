@@ -37,3 +37,17 @@
 **Why now:** As Claude Code adoption grows and NanoClaw-style multi-agent setups become more common, the CLAUDE.md landscape gets complex fast. No tooling exists to manage it. Every developer hitting this problem is solving it manually.
 
 **Solo feasibility:** Read the filesystem, parse CLAUDE.md locations and scopes, simple UI or CLI. No AI needed to build it — pure developer tooling.
+
+---
+
+## 4. Offline Local AI with GPS Context
+
+*Inspired by: half-baked idea, March 2026*
+
+**What it is:** An offline-first AI on your phone that uses GPS to give you context about your surroundings — no internet required. Two modes: urban (restaurants, retail, things to do nearby) and outdoor (trails, water sources, waterfalls, points of interest). The key differentiator is that it works without connectivity — useful exactly when you don't have signal.
+
+**Why interesting:** Every existing "what's around me" app requires internet. The outdoor use case is underserved — hikers and trail runners have no good AI companion that works off-grid. Urban mode is more competitive but the offline angle is still differentiated.
+
+**Open questions:** What model runs on-device at acceptable quality? How does the local database of POIs stay fresh without connectivity? Is the GPS/POI problem already solved by Apple Maps offline + Siri, or is there a real gap?
+
+**Status:** Half-baked — worth revisiting if on-device model quality improves significantly.

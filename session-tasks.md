@@ -1,4 +1,6 @@
 ## High Priority
+- [ ] Automated memory curation — conversation logs exist in `/workspace/group/conversations/` but are large raw files; design a process to summarize them into a `memory.md` file that captures key facts, preferences, decisions, and context; could run as a weekly NanoClaw task or end-of-session task; memory.md would then be read at the start of each session for continuity
+- [ ] Investigate last30days skill — evaluate https://github.com/mvanhorn/last30days-skill as a NanoClaw skill; could improve briefing source coverage for Reddit, X, and HN
 
 ## Medium Priority
 - [ ] Create a user.md file — capture key facts about Matt (preferences, context, goals) that agents can reference; plan how and when it gets updated (manually, automatically, or both)
@@ -8,7 +10,6 @@
 
 ## Low Priority
 - [ ] Understand CLAUDE.md files — audit all existing CLAUDE.md files across machines and NanoClaw groups; understand what each one does, what's missing, and how they interact
-- [ ] Automated CLAUDE.md memory curation — weekly/monthly NanoClaw task reads conversation history and proposes additions to global CLAUDE.md; continue brainstorming the right approach
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
 - [ ] Design monthly vault maintenance task — archive completed session-tasks on a rolling window (old briefings now handled by archive-briefings script)
 

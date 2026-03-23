@@ -9,6 +9,11 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 
 ### Monday, March 23
 
+- [ ] Eat breakfast
+- [ ] Read AI digests
+- [ ] Read Infinite Jest
+- [ ] Update coldmountain.ai
+- [ ] Check session tasks
 - [ ] Update resume with Second Brain
 
 ---

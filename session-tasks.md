@@ -1,6 +1,7 @@
 ## High Priority
 
 ## Medium Priority
+- [ ] Create a user.md file — capture key facts about Matt (preferences, context, goals) that agents can reference; plan how and when it gets updated (manually, automatically, or both)
 - [ ] Update CLAUDE.md for the main Telegram group — add communication style preferences (e.g. no value judgments on content); requires editing `~/nanoclaw/groups/main/CLAUDE.md` directly on the Mac Mini host; before making changes, read all existing CLAUDE.md files across groups to understand the full picture and plan edits carefully
 - [ ] Investigate new NanoClaw skills — check upstream for recently added skills (e.g. Perplexity); evaluate if Perplexity skill could replace or improve existing web search in briefing agent
 - [ ] Disable iCloud on Mac Mini — vault has migrated to Obsidian Sync; iCloud no longer needed and may cause conflicts
@@ -22,6 +23,7 @@
 - [x] Set up product briefing — new group, container CLAUDE.md, scheduled task (paused), registered in DB with vault mounts
 - [x] Created `archive-briefings` script — moves old briefings to `_archive/` per configurable retention rules; runs Sundays at midnight as script task
 - [x] Consolidated vault docs — merged `system-overview.md` into `projects/nanoclaw/README.md` (updated for current state); archived `intelligence-layers.md` into `projects/intelligence/_archive/`; rewrote `projects/intelligence/README.md` with briefing types, test runs, architecture, and archival docs
+- [x] Added "About Matt" section to `groups/global/CLAUDE.md` — all agent groups now inherit user context
 
 ## Completed — March 20, 2026
 - [x] Fix Executive Summary redundancy — changed from "lead with most important story" to cross-section synthesis (v2.7)

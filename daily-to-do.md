@@ -9,6 +9,7 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 
 ### Monday, March 23
 
+- [ ] Review operator-guide.md (`projects/nanoclaw/operator-guide.md`)
 - [ ] Eat breakfast
 - [ ] Read AI digests
 - [ ] Read Infinite Jest

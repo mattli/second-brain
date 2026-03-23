@@ -10,13 +10,13 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 ### Monday, March 23
 
 - [x] Read AI digests
-- [ ] Costco
-- [ ] Eat breakfast
-- [ ] Review operator-guide.md (`projects/nanoclaw/operator-guide.md`)
+- [x] Costco
+- [ ] Eat lunch
+- [x] Review operator-guide.md (`projects/nanoclaw/operator-guide.md`)
 - [ ] Read Infinite Jest
 - [ ] Update coldmountain.ai
-- [ ] Check session tasks
 - [ ] Update resume with Second Brain
+- [ ] Check session tasks
 
 ---
 

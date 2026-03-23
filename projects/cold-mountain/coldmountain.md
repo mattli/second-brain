@@ -2,22 +2,23 @@
 
 ## What Is Second Brain?
 
-Second Brain is a personal AI system for agentic product management. It synthesizes market signals and industry trends, applies product frameworks to evaluate ideas, and deploys specialized agents to generate testable deliverables.
+Second Brain is a personal AI assistant specialized in research, project management, and product development. It synthesizes market signals and industry trends, applies product frameworks to evaluate ideas, and deploys specialized agents to generate testable deliverables. 
 
-Second Brain runs in two modes: scheduled agents that deliver intelligence automatically, and on-demand agents you can query anytime via Telegram.
+The system runs in two modes: scheduled agents that deliver intelligence automatically, and on-demand agents you can query anytime via Telegram.
 
 ---
 
 ## What It Does Today
 
-Today, Second Brain functions as an intelligence layer. Built on Claude and a self-hosted agent framework called NanoClaw, it continuously monitors signals across AI, technology, and product. Every weekday morning an AI agent scans the web, synthesizes what matters, and delivers a structured briefing to my Obsidian vault. I get notified via Telegram when it's ready.
+Second Brain functions as an intelligence layer. Built on Claude and a self-hosted agent framework called NanoClaw, it continuously monitors signals across AI, technology, and product. Every weekday morning an AI agent scans the web, synthesizes what matters, and delivers a structured briefing to my Obsidian vault. I get notified via Telegram when it's ready.
 
 Weekly and monthly summaries build on those daily signals, surfacing trends and product observations over time. Everything the system learns and produces is written to a personal knowledge vault in the form of a structured set of markdown files. They are then synced to GitHub, serving as the long-term memory of the system.
 
 **Current capabilities:**
 - Daily AI and technology intelligence briefing (automated, 7am weekdays)
-- Weekly synthesis of key trends and signals
-- Monthly strategic summary with product observations
+- Daily product briefing tracking what builders are shipping and what's gaining traction
+- Weekly synthesis organized around emerging problem categories — who has them, what's being built, what's getting traction
+- Monthly summary identifying which problem categories are durable enough to build on
 - Persistent knowledge vault, searchable, versioned, always current
 - Telegram interface for on-demand queries and agent interaction
 
@@ -34,33 +35,18 @@ Weekly and monthly summaries build on those daily signals, surfacing trends and 
 
 ## What It's Becoming
 
-The next phase extends Second Brain from an intelligence layer into a fully agentic product development system.
+The next phase extends Second Brain from an intelligence layer into a system that can act on what it finds.
 
-### Phase 2: PM Best Practices Layer
+### Validation
 
-Second Brain will apply structured product management frameworks to any idea or market signal, automatically, on demand via Telegram.
+When something surfaces from the intelligence layer that's worth pursuing, Second Brain can run a structured research and validation process on demand via Telegram. The goal is to go deeper on a problem quickly — grounding it in real evidence before investing further.
 
-Planned capabilities:
-* **Discovery**: problem validation, ideal customer profile, competitive landscape 
-- **RICE scoring:** Reach, Impact, Confidence, Effort scoring to prioritize ideas
-- **SWOT analysis:** strengths, weaknesses, opportunities, threats for any idea or competitor
-- **PRD generation:**  competitive positioning, go-to-market channels, user stories, and success metrics for an MVP
-- **Technical requirements:** stack, APIs, integrations, acceptance criteria, and level of effort estimation, structured for direct handoff to a coding agent
+### Specification
 
-The workflow: intelligence in, PM frameworks applied, prioritized and documented product decisions out.
+Once a problem is validated, Second Brain can generate high-fidelity product specifications — detailed enough to hand off directly for prototyping or development. The goal is to eliminate the gap between a validated idea and something a developer or coding agent can act on.
 
-### Phase 3: Agent Swarm for Execution
+### Execution
 
-A coordinated swarm of specialized agents takes a vetted idea from decision to working prototype, compressing the time from market signal to shipped experiment from weeks to hours.
-
----
-
-## What I'm Learning
-
-Building Second Brain is as much about understanding how AI changes the way you work as it is about the system itself:
-
-- **Product and a tool.** Over time it reveals its own strengths and weaknesses. You notice where prompts need tightening and workflows could be improved. The same iteration loops you run on any product apply here. This takes time and effort, and can draw your focus away from what you actually want the system to do for you.
-- **Friction significantly decreases.** Conversational interactions via Telegram replace context switching across multiple tools and manual work. Moving files, creating documents, scheduling tasks, articulating notes, and setting reminders all happen in a single chat thread.
-- **Guardrails matter.** A system without them becomes unmanageable quickly. An effective pattern is having the system propose changes with you as the final decision maker. The system improves itself, but you stay in control.
+Agents that can take a validated idea and move it toward a working prototype. The specifics are still taking shape, but the direction is clear: compress the time from insight to shipped experiment.
 
 

@@ -16,7 +16,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [ ] Read Infinite Jest
 - [x] Update coldmountain.ai
 - [x] Update resume with Second Brain
-- [ ] Check session tasks
+- [x] Check session tasks
 
 ---
 

@@ -24,6 +24,10 @@
 - [x] Created `archive-briefings` script — moves old briefings to `_archive/` per configurable retention rules; runs Sundays at midnight as script task
 - [x] Consolidated vault docs — merged `system-overview.md` into `projects/nanoclaw/README.md` (updated for current state); archived `intelligence-layers.md` into `projects/intelligence/_archive/`; rewrote `projects/intelligence/README.md` with briefing types, test runs, architecture, and archival docs
 - [x] Added "About Matt" section to `groups/global/CLAUDE.md` — all agent groups now inherit user context
+- [x] Added "Your user is Matt" to `groups/main/CLAUDE.md`
+- [x] Fixed formatting inconsistency in global CLAUDE.md — switched `**bold**` to `*bold*` to match file's own rules
+- [x] Added `claudemd-read` function to ~/.zshrc — interactive numbered menu to pick and read any CLAUDE.md file
+- [x] Reviewed main group security posture per Cohen's recommendations — web tools are upstream default, main group is single-user only, no changes needed
 
 ## Completed — March 20, 2026
 - [x] Fix Executive Summary redundancy — changed from "lead with most important story" to cross-section synthesis (v2.7)

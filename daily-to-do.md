@@ -11,10 +11,10 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 
 - [x] Read AI digests
 - [x] Costco
-- [ ] Eat lunch
+- [x] Eat lunch
 - [x] Review operator-guide.md (`projects/nanoclaw/operator-guide.md`)
 - [ ] Read Infinite Jest
-- [ ] Update coldmountain.ai
+- [x] Update coldmountain.ai
 - [ ] Update resume with Second Brain
 - [ ] Check session tasks
 

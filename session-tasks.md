@@ -9,7 +9,6 @@
 - [ ] Disable iCloud on Mac Mini — vault has migrated to Obsidian Sync; iCloud no longer needed and may cause conflicts
 
 ## Low Priority
-- [ ] Understand CLAUDE.md files — audit all existing CLAUDE.md files across machines and NanoClaw groups; understand what each one does, what's missing, and how they interact
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
 - [ ] Design monthly vault maintenance task — archive completed session-tasks on a rolling window (old briefings now handled by archive-briefings script)
 

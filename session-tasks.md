@@ -1,4 +1,10 @@
 ### March 23, 2026
+- [x] Installed Parallel AI integration — Search and Task MCP servers available to all container agents
+- [x] Routed Parallel API key through credential proxy (not direct env var) — follows existing security pattern
+- [x] Added Parallel Search nudge to all 4 briefing group CLAUDE.md files (briefing, product-briefing, weekly-summary, monthly-summary)
+- [x] Added Parallel Search one-liner to main group CLAUDE.md
+- [x] Added Credential Proxy Pattern note to project CLAUDE.md for future integrations
+- [x] Test briefing confirmed working — 7 Search API + 5 Extract calls visible in Parallel dashboard; Reuters content retrieved that was previously blocked
 - [x] Unpaused product-briefing scheduled task and triggered test run
 - [x] Updated operator-guide.md — added product-briefing group, telegram_main, archive-briefings, test-briefing.sh, daily-products.md instructions
 - [x] Added permanent bash read permissions (cat, ls, grep) to ~/.claude/settings.json

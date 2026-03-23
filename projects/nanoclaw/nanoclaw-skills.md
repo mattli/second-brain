@@ -1,24 +1,31 @@
-# NanoClaw Skills Priority List
+# NanoClaw Skills
 
-## To Install
+## Installed
 
-### update-nanoclaw
-Pull upstream changes into the fork with preview, selective cherry-pick, and safe rollback. Run roughly once a month to stay current with new features and fixes. Does not require any ongoing setup — just run `/update-nanoclaw` in a Claude Code session from the NanoClaw directory.
+- **add-telegram** — Telegram channel integration. Powers all agent interaction via @matts_second_brain_bot.
+- **add-parallel** — Adds Search and Task MCP tools via credential proxy, enabling parallel agent execution. Installed 2026-03-23.
+- **agent-browser** — Gives agents browser capabilities for web research inside containers.
 
-### add-compact
-Adds a `/compact` command for manual context compaction in long-running agent sessions. Not needed for current scheduled tasks (briefing, weekly, monthly) since each run starts fresh. Will become relevant when Phase 2 PM agent is built — multi-step research and generation tasks in a single session can hit context limits.
+## Available (not installed)
 
-### add-telegram-swarm
-Adds agent teams to Telegram where each subagent gets its own bot identity in the group chat. Directly relevant to Phase 3 agent swarm vision. Worth understanding before building Phase 3 to avoid reinventing something that already exists.
-
-## To Investigate Further
-
-### add-parallel
-Not yet documented on the NanoClaw website. Likely enables parallel agent execution. Need to read the SKILL.md in the repo to understand what it actually does before deciding whether to install.
-
-### add-ollama-tool
-Adds local AI models (Llama, Gemma, etc.) as tools inside containers. Claude stays as orchestrator but can offload cheaper tasks to local models at zero API cost. Relevant to cost optimization plans but need to understand the tradeoffs before installing.
-
-### add-voice-transcription
-Transcribes voice messages automatically using OpenAI Whisper. Would enable hands-free interaction with the agent via Telegram. Worth evaluating whether the workflow improvement justifies the setup.
-
+- **add-whatsapp** — WhatsApp channel integration
+- **add-slack** — Slack channel integration
+- **add-discord** — Discord channel integration
+- **add-gmail** — Gmail channel integration
+- **x-integration** — X (Twitter) channel integration
+- **add-image-vision** — Image recognition and analysis inside containers
+- **add-voice-transcription** — Transcribes voice messages using OpenAI Whisper
+- **add-pdf-reader** — PDF reading and extraction inside containers
+- **add-reactions** — Emoji reactions and status tracking
+- **add-ollama-tool** — Local AI model inference (Llama, Gemma, etc.) via Ollama at zero API cost
+- **add-compact** — Manual `/compact` command for context compaction in long sessions
+- **add-telegram-swarm** — Agent teams in Telegram where each subagent gets its own bot identity
+- **convert-to-apple-container** — Switch container runtime from Docker to Apple Container
+- **use-local-whisper** — Local Whisper transcription (no OpenAI API needed)
+- **setup** — Scripted setup steps for new NanoClaw installs
+- **debug** — Diagnostics and troubleshooting tools
+- **customize** — Interactive customization of NanoClaw configuration
+- **update-nanoclaw** — Pull upstream changes into the fork with preview and safe rollback
+- **update-skills** — Bulk update installed skills
+- **get-qodo-rules** — Qodo codebase intelligence rules
+- **qodo-pr-resolver** — Qodo PR review and resolution

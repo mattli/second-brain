@@ -169,4 +169,5 @@ Ask Second Brain: "Remind me to [thing] every [day] at [time]."
 | `~/nanoclaw/scripts/test-briefing.sh` | Ad-hoc briefing trigger script |
 | `~/nanoclaw/scripts/archive-briefings.conf` | Briefing archive retention config |
 | `projects/nanoclaw/README.md` | Infrastructure overview |
+| `projects/nanoclaw/nanoclaw-skills.md` | Installed and available skills |
 | `projects/intelligence/README.md` | Intelligence layer overview |

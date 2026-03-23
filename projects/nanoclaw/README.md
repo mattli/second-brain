@@ -69,6 +69,7 @@ Coordinated specialized agents take a vetted idea from decision to working proto
 ## Related Docs
 
 - [Intelligence README](../intelligence/README.md) — briefing types, instructions, test runs, architecture, archival
+- [NanoClaw Skills](nanoclaw-skills.md) — installed and available skills
 - [NanoClaw source](~/nanoclaw/CLAUDE.md) — developer docs for working on the codebase
 - [mac-mini-setup.md](mac-mini-setup.md) — Mac Mini build order and setup
 - [nanoclaw-setup.md](nanoclaw-setup.md) — planning doc for multi-agent architecture

@@ -11,3 +11,4 @@ Articles, tools, and links I want to read or explore but haven't had time for ye
 - [2026-03-20] https://code.claude.com/docs/en/channels — Claude Agent SDK channels documentation, relevant to NanoClaw architecture
 - [2026-03-20] https://github.com/obra/superpowers — agentic skills framework and software development methodology (102k stars)
 - [2026-03-21] https://x.com/minchoi/status/2034998743112531998
+- [2026-03-22] https://x.com/mvanhorn/status/2035857346602340637

@@ -1,6 +1,6 @@
 # March 23 – March 29
 
-Goals: Start to apply to jobs with updated resume and portfolio. Conduct test runs of the product validation pipeline.
+Goals: Start to apply to jobs with updated resume and portfolio.
 
 ### Tuesday, March 24
 
@@ -15,7 +15,7 @@ Goals: Start to apply to jobs with updated resume and portfolio. Conduct test ru
 - [x] Review operator-guide.md (`projects/nanoclaw/operator-guide.md`)
 - [ ] Read Infinite Jest
 - [x] Update coldmountain.ai
-- [ ] Update resume with Second Brain
+- [x] Update resume with Second Brain
 - [ ] Check session tasks
 
 ---

@@ -1,6 +1,7 @@
 ## High Priority
 - [ ] Automated memory curation — conversation logs exist in `/workspace/group/conversations/` but are large raw files; design a process to summarize them into a `memory.md` file that captures key facts, preferences, decisions, and context; could run as a weekly NanoClaw task or end-of-session task; memory.md would then be read at the start of each session for continuity
 - [ ] Investigate last30days skill — evaluate https://github.com/mvanhorn/last30days-skill as a NanoClaw skill; could improve briefing source coverage for Reddit, X, and HN
+- [ ] Investigate Parallel AI skill integration
 
 ## Medium Priority
 - [ ] Create a user.md file — capture key facts about Matt (preferences, context, goals) that agents can reference; plan how and when it gets updated (manually, automatically, or both)
@@ -12,7 +13,19 @@
 - [ ] Investigate Readwise integration for NanoClaw — save paywalled articles via Readwise, query via API from Telegram instead of storing article text in vault
 - [ ] Design monthly vault maintenance task — archive completed session-tasks on a rolling window (old briefings now handled by archive-briefings script)
 
-## Completed — March 21, 2026
+## Completed
+
+### March 23, 2026
+- [x] Unpaused product-briefing scheduled task and triggered test run
+- [x] Updated operator-guide.md — added product-briefing group, telegram_main, archive-briefings, test-briefing.sh, daily-products.md instructions
+- [x] Added permanent bash read permissions (cat, ls, grep) to ~/.claude/settings.json
+- [x] Updated /second-brain page content to match revised coldmountain.md — new description, capabilities (added daily product briefing, updated weekly/monthly descriptions), and replaced Phase 1/2/3 roadmap with Validation/Specification/Execution sections
+- [x] Updated homepage Second Brain card — shortened to one-line teaser to avoid redundancy with detail page
+- [x] Replaced homepage tagline with "Learning by building."
+- [x] Added social links (LinkedIn, X, Email) with SVG icons to homepage header
+- [x] Pushed to GitHub/Vercel
+
+### March 21, 2026
 - [x] Review/Rewrite Briefing instructions
 - [x] Renamed `projects/intelligence/briefings/` → `ai-briefings/` — updated all references across vault and NanoClaw
 - [x] Archived stale `projects/nanoclaw/claude-md-briefing.md` (old `ai-intelligence/` paths)
@@ -29,7 +42,7 @@
 - [x] Added `claudemd-read` function to ~/.zshrc — interactive numbered menu to pick and read any CLAUDE.md file
 - [x] Reviewed main group security posture per Cohen's recommendations — web tools are upstream default, main group is single-user only, no changes needed
 
-## Completed — March 20, 2026
+### March 20, 2026
 - [x] Fix Executive Summary redundancy — changed from "lead with most important story" to cross-section synthesis (v2.7)
 - [x] Add Sources Log to briefing format — temporary diagnostic table at bottom of each briefing tracking which sources were searched and what they produced (v2.8). Run for ~1 week then audit.
 - [x] Add Sources Log to weekly summary (v1.6) and monthly summary (v1.1) instructions
@@ -46,7 +59,7 @@
 - [x] Simplified daily to-do workflow — removed auto-clear/reset behavior from agent CLAUDE.md; added instruction to create new date sections chronologically (most recent at top); reversed file order and removed empty days
 - [x] Added next week's to-do items — Monday (update resume), Tuesday (apply to jobs)
 
-## Completed — March 19, 2026
+### March 19, 2026
 - [x] Added Second Brain project to Cold Mountain portfolio — new card with "AI Agent" tag, new /second-brain detail page with content from coldmountain.md brief
 - [x] Added subtle tag colors to portfolio — blue (iOS), purple (Web), green (AI Agent)
 - [x] Updated portfolio bio tagline
@@ -58,7 +71,7 @@
 - [x] Grep vault for any remaining old iCloud paths — swept vault, nanoclaw, .claude, .config, .zshrc, LaunchAgents; all clean
 - [x] Check and update vault and brain aliases in ~/.zshrc
 
-## Completed — March 18, 2026
+### March 18, 2026
 - [x] **Fixed vault mounts in NanoClaw containers** — vault moved to ~/second-brain/ but mount allowlist and DB still pointed to old iCloud path; updated mount-allowlist.json and all 4 registered_groups in DB; restarted NanoClaw
 - [x] **Daily briefing v2.6** — added "Before You Start" (read last 5 briefings) and step 8 (dedup review)
 - [x] **Vault migration path updates** — updated paths in CLAUDE.md and version number in system-overview.md
@@ -72,7 +85,7 @@
 - [x] Daily to-do workflow simplified — Mon–Sun file, 8am Telegram send, no automated reset; agent asks before clearing week when adding out-of-bounds items; Friday summary task paused
 - [x] Agent CLAUDE.md updated with daily to-do list handling instructions
 
-## Completed — March 16, 2026
+### March 16, 2026
 - [x] Add Claude Code launch aliases to ~/.zshrc on Mac Mini — claude variants added to open Claude Code directly in vault, nanoclaw directories
 - [x] GitHub credentials inside NanoClaw containers — fine-grained PAT in .env, served via credential proxy; git credential helper in container calls back to host
 - [x] CLAUDE.md end-of-session ritual simplified — consolidated steps 3/4/6 into one, removed tweet drafting step, deleted tweets.md
@@ -87,7 +100,7 @@
 - [x] Git credential proxy extended — GITHUB_TOKEN in .env served via /git-credentials endpoint, containers get git access without token exposure; script task type added to NanoClaw scheduler for lightweight host-side tasks
 - [x] Vault git sync fixed — migrated from broken launchd to NanoClaw script task, runs every 30 minutes as host-side bash command, no container overhead
 
-## Completed — March 13, 2026
+### March 13, 2026
 - [x] Migrate weekly and monthly summaries from cron to NanoClaw scheduled tasks — all three intelligence jobs now running on NanoClaw, zero cron jobs remaining
 - [x] Add end-of-session build-in-public tweet draft to MacBook Pro CLAUDE.md — Claude Code drafts a tweet based on session work, saves to projects/writing/tweets.md
 - [x] Agent renamed from Andy to Second Brain
@@ -96,7 +109,7 @@
 - [x] Researched sustainability pain points — greenwashing/trust and "just tell me what to do" are the clearest signals; product direction tabled for now
 - [x] Mac Mini crontab fully emptied — all scheduled tasks now in NanoClaw
 
-## Completed — March 12, 2026
+### March 12, 2026
 - [x] Research writing frameworks — X + Substack strategy documented, goal reframed from audience building to finding your people
 - [x] Trim groups/main/CLAUDE.md — split into CLAUDE.md (~30 lines) and nanoclaw-admin.md
 - [x] Web fetch capability added to briefing agent
@@ -104,7 +117,7 @@
 - [x] Mac Mini ~/.claude/settings.json created
 - [x] claudemd-list alias added to ~/.zshrc
 
-## Completed — March 10, 2026
+### March 10, 2026
 - [x] NanoClaw installed and running on Mac Mini — forked, Docker configured, Telegram connected
 - [x] Daily briefing migrated to NanoClaw scheduled task — runs 7am weekdays, results sent to Telegram
 - [x] Git sync cron job added — every 30 minutes, auto-commits and pushes vault changes
@@ -113,17 +126,17 @@
 - [x] Sequoia thesis and product framing saved to product-vision.md
 - [x] Two product ideas documented in ideas.md
 
-## Completed — March 9, 2026
+### March 9, 2026
 - [x] Build monthly summary prompt (`instructions/monthly-summary.md`) — v1.0, saved to vault
 - [x] Set up monthly cron job — 7am on 1st of each month
 - [x] Test monthly summary — ran against W09 and W10, strong first output, product-vision.md updated automatically
 
-## Completed — March 8, 2026
+### March 8, 2026
 - [x] Document how the system works — wrote system-overview.md, saved to projects/second-brain/
 - [x] Check `~/.claude/settings.json` to review permanent permissions — clean, only effortLevel set; added permissions check to end of session ritual in CLAUDE.md
 - [x] CLAUDE.md audit — global file on MacBook Pro is clean and sufficient; Mac Mini has no CLAUDE.md by design (cron-only environment); no project-level files needed yet; revisit when NanoClaw development starts
 
-## Completed — March 3-4, 2026
+### March 3-4, 2026
 - [x] Setup Mac Mini — keyboard, trackpad, Screen Sharing enabled
 - [x] Claude Code installed and authenticated with API key
 - [x] API key added to ~/.zshrc (console.anthropic.com)
@@ -136,7 +149,7 @@
 - [x] trend-reports/ folder deleted — monthly summary serves that function
 - [x] intelligence-layers.md updated
 
-## Completed — March 2, 2026
+### March 2, 2026
 - [x] Add `vault` and `brain` aliases to `~/.zshrc`
 - [x] Verify `.gitignore` is correct after rename
 - [x] Daily briefing updated to v2.1 (acronym rule, no padding, no embellished engagement)
@@ -150,7 +163,7 @@
 - [x] product-vision.md merged — W09 observations folded in, duplicate files cleaned up
 - [x] ai-intelligence/_archive/ deleted
 
-## Completed — February 27, 2026
+### February 27, 2026
 - [x] Daily briefing v1.5 with overlap prevention
 - [x] `second-brain` private GitHub repo live
 - [x] Auto-commit step added to briefing instructions

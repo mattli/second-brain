@@ -4,7 +4,12 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 
 ### Tuesday, March 24
 
+- [ ] Eggs
+- [ ] Read AI digests (now using Parallel)
+- [ ] Read Infinite Jest
 - [ ] Apply to jobs
+- [ ] Gym
+- [ ] 
 
 
 ### Monday, March 23
@@ -17,6 +22,8 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [x] Update coldmountain.ai
 - [x] Update resume with Second Brain
 - [x] Check session tasks
+- [x] Cook dinner
+- [x] Store produce
 
 ---
 

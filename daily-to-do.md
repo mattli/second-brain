@@ -24,6 +24,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [x] Check session tasks
 - [x] Cook dinner
 - [x] Store produce
+- [x] Practice guitar
 
 ---
 

@@ -1,3 +1,9 @@
+### Everyone Suffers Differently
+
+Just as everyone loves differently, everyone suffers differently. Observed: guy talking to himself at lodge bread. Is he having a “real” conversation? He’s brown. Ponytail, gray in a slight beard. Wearing a Coltrane on tour shirt. Japan tour 1966. Ripped jeans, really ripped. Puts sunglasses on before leaving, still sitting. “If you’re up all night writing music…” “this is Van Morrison, right?” Grooving to the music. “I like this music, it’s very nostalgic”. Wonder what his story is. I imagine he took a lot of drugs while on tour. That can happen, when someone explores the edges of reality. [2026-03-24]
+
+---
+
 ### Why I Play Guitar in the Morning
 
 Playing guitar in the morning keeps me present. It's a good way to start the day doing something that engages your ability to listen, to think, and to keep your eyes open — after all, you just spent eight hours with them closed.

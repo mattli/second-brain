@@ -4,8 +4,8 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 
 ### Tuesday, March 24
 
-- [ ] Eggs
-- [ ] Read AI digests (now using Parallel)
+- [x] Walk and breakfast at lodge bread
+- [x] Read AI digests (now using Parallel)
 - [ ] Read Infinite Jest
 - [ ] Apply to jobs
 - [ ] Gym

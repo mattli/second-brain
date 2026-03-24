@@ -1,3 +1,9 @@
+### March 24, 2026
+- [x] Changed homepage name from "Mathew Thomas Li" to "Matt Li"
+- [x] Updated tagline to "Building AI-enabled products across discovery, prototyping, and execution."
+- [x] Moved Seasons Journaling to second position (right below Second Brain) in project list
+- [x] Committed and pushed to main (auto-deploys to Vercel)
+
 ### March 23, 2026
 - [x] Installed Parallel AI integration — Search and Task MCP servers available to all container agents
 - [x] Routed Parallel API key through credential proxy (not direct env var) — follows existing security pattern

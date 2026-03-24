@@ -9,7 +9,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [ ] Read Infinite Jest
 - [ ] Apply to jobs
 - [ ] Gym
-- [ ] 
+- [ ] Second Brain (last30days, README)
 
 
 ### Monday, March 23

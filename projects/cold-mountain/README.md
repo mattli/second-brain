@@ -1,11 +1,13 @@
-# Cold Mountain
+# Cold Mountain — Design Docs & Content Briefs
 
-Personal portfolio website at coldmountain.ai. Next.js 16, deployed on Vercel, repo at github.com/mattli/cold-mountain.
+Design documentation and content briefs for the Cold Mountain portfolio website (coldmountain.ai).
 
-## Current state
+> The actual website codebase (Next.js 16, deployed on Vercel) lives in a separate repo: github.com/mattli/cold-mountain.
+
+## Current site design
 
 - Homepage with Selected Work grid (6 projects: Second Brain, Seasons Journaling, School Search AI, FreshNotes, CIEG, ListenBack)
-- /second-brain detail page with capabilities, tech stack, and roadmap (content from coldmountain.md)
+- /second-brain detail page with capabilities, tech stack, and roadmap (content sourced from coldmountain.md)
 - Roadmap sections: Validation, Specification, Execution (no status badges — simpler layout)
 - Subtle color-coded tags: blue (iOS), purple (Web), green (AI Agent)
 - Name: "Matt Li" (changed from Mathew Thomas Li)
@@ -20,4 +22,5 @@ Personal portfolio website at coldmountain.ai. Next.js 16, deployed on Vercel, r
 
 ## Contents
 
-- **coldmountain.md** — Second Brain feature brief (source content for /second-brain page)
+- **README.md** — This file; overview of the site's design and structure
+- **coldmountain.md** — Second Brain feature brief (source content for the /second-brain page)

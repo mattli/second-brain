@@ -3,6 +3,7 @@
 - [x] Updated tagline to "Building AI-enabled products across discovery, prototyping, and execution."
 - [x] Moved Seasons Journaling to second position (right below Second Brain) in project list
 - [x] Committed and pushed to main (auto-deploys to Vercel)
+- [x] Updated global ~/.claude/CLAUDE.md — "Always Plan First" now reads project README.md before planning; "End of Session" now includes updating project README.md if session changed setup/status/structure
 
 ### March 23, 2026
 - [x] Installed Parallel AI integration — Search and Task MCP servers available to all container agents

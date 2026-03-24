@@ -7,7 +7,7 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 | Type                 | Schedule           | Output                            | Description                                                               |
 | -------------------- | ------------------ | --------------------------------- | ------------------------------------------------------------------------- |
 | **AI Briefing**      | Mon–Fri 7am        | `ai-briefings/YYYY-MM-DD.md`      | Top AI/tech news, model releases, funding, discussions                    |
-| **Product Briefing** | Paused (test only) | `product-briefings/YYYY-MM-DD.md` | Product launches, builder activity, tools gaining traction                |
+| **Product Briefing** | Mon–Fri 7am        | `product-briefings/YYYY-MM-DD.md` | Product launches, builder activity, tools gaining traction                |
 | **Weekly Summary**   | Sat 7am            | `weekly-summaries/YYYY-WXX.md`    | Synthesizes the week's daily briefings into patterns and signal           |
 | **Monthly Summary**  | 1st of month 7am   | `monthly-summaries/YYYY-MM.md`    | Synthesizes weekly summaries into durable trends and product observations |
 |                      |                    |                                   |                                                                           |

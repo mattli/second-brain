@@ -1,10 +1,16 @@
-# Writing System
+# Writing
 
-This folder supports a writing system for publishing on Substack and X. The goal is to turn daily AI intelligence briefings and product thinking into regular published writing without losing personal voice.
+Turn daily AI intelligence briefings and product thinking into regular published writing on Substack and X.
 
-## Planned Contents
+## Current
 
-- **writing-system.md** — Workflow and framework for the writing process
+- **[ideas.md](ideas.md)** — Seed essays and writing prompts (5 ideas so far)
+
+## Planned
+
+These haven't been built yet:
+
+- **writing-system.md** — Workflow and framework for drafting and publishing
 - **brand-voice.md** — Voice rules and guidelines
-- **drafts/** — Raw captured thoughts
+- **drafts/** — Raw captured thoughts and works in progress
 - **published/** — Links and notes on published pieces

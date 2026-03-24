@@ -30,7 +30,7 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 | Task | Schedule | Type | What it does |
 |------|----------|------|--------------|
 | 📋 Daily Briefing | 7am Mon–Fri | container | Researches and writes AI intelligence briefing |
-| 🛠 Product Briefing | Paused | container | Researches and writes product intelligence briefing |
+| 🛠 Product Briefing | 7am Mon–Fri | container | Researches and writes product intelligence briefing |
 | 📊 Weekly Summary | 7am Saturday | container | Synthesizes the week's daily briefings |
 | 📅 Monthly Summary | 7am 1st of month | container | Synthesizes monthly trends, updates product-vision.md |
 | 📝 Daily To-Do | 8am daily | container | Reads today's section from daily-to-do.md, sends to Telegram |
@@ -73,3 +73,4 @@ Coordinated specialized agents take a vetted idea from decision to working proto
 - [NanoClaw source](~/nanoclaw/CLAUDE.md) — developer docs for working on the codebase
 - [mac-mini-setup.md](mac-mini-setup.md) — Mac Mini build order and setup
 - [nanoclaw-setup.md](nanoclaw-setup.md) — planning doc for multi-agent architecture
+- [operator-guide.md](operator-guide.md) — operator reference for managing NanoClaw

@@ -8,7 +8,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [x] Read morning digest
 - [x] Continue watching the last 30 days interview
 - [ ] Check backlog
-- [ ] Order lunch
+- [x] Order lunch
 - [ ] Read Infinite Jest
 - [ ] Stretch and recovery at home
 

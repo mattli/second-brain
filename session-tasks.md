@@ -1,3 +1,8 @@
+### ⚡ Don't Forget
+- Use Second Brain to expand half-baked ideas into full articles — give it a rough thought, have it write a whole piece. Set this up.
+
+---
+
 ### March 24, 2026
 - [x] Changed homepage name from "Mathew Thomas Li" to "Matt Li"
 - [x] Updated tagline to "Building AI-enabled products across discovery, prototyping, and execution."

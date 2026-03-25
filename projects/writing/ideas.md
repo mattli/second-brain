@@ -1,3 +1,17 @@
+### The City Is Not Nature
+
+A big city is entirely paved over — asphalt, concrete, nothing. Even the patches of grass, are they even on soil or just concrete underneath? There's almost no actual dirt. You'd have to dig straight down to find it under the foundations.
+
+It's crazy to think of living in a big city as being part of nature. Everything is out of place. The plants outside the window — none of them are native. Random species from different continents crammed together that would never coexist naturally. It looks like a mess because it is one. The whole thing is, on some level, insane. [2026-03-24]
+
+---
+
+### My AI Chatbot Started a Blog
+
+Give Second Brain half-baked thoughts and have it expand them into full articles. The agent takes a rough idea — a stoner thought, a one-liner, an observation — and writes a whole piece on it. Do this. [2026-03-24]
+
+---
+
 ### Am I Becoming the Machine or Is the Machine Becoming Me?
 
 [2026-03-24]

@@ -4,12 +4,13 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 
 ### Wednesday, March 25
 
-- [ ] Sun Nong Dan
+- [x] Bluey’s
+- [ ] Read morning digest
 - [ ] Continue watching the last 30 days interview
 - [ ] Read Infinite Jest
+- [ ] Tofu and eggs
 - [ ] Stretch and recovery at home
 - [ ] Check session tasks
-- [ ] Investigate persistent memory + last30days skill
 
 ---
 

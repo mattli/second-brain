@@ -4,6 +4,7 @@
 ---
 
 ### March 25, 2026
+- [x] Tested last30days skill research on "nanoclaw" (X only, 22 posts) — validated as weak-to-moderate signal; strongest pain points are token cost management and inter-agent communication
 - [x] Updated all 5 project READMEs to reflect current state (cold-mountain, intelligence, nanoclaw, product, writing)
 - [x] Added CLAUDE.md review step (#3) to end-of-session ritual in global CLAUDE.md
 - [x] Added `claudemd-list` and `claudemd-read` functions to ~/.zshrc on MacBook Pro

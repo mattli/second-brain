@@ -2,6 +2,17 @@
 
 Goals: Start to apply to jobs with updated resume and portfolio.
 
+### Wednesday, March 25
+
+- [ ] Sun Nong Dan
+- [ ] Continue watching the last 30 days interview
+- [ ] Read Infinite Jest
+- [ ] Stretch and recovery at home
+- [ ] Check session tasks
+- [ ] Investigate persistent memory + last30days skill
+
+---
+
 ### Tuesday, March 24
 
 - [x] Walk and breakfast at lodge bread
@@ -9,7 +20,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [x] Read Infinite Jest
 - [x] Gym
 - [x] Apply to jobs
-- [ ] Second Brain (last30days, README)
+- [x] Second Brain (last30days, README)
 
 
 ### Monday, March 23

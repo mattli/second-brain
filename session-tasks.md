@@ -3,6 +3,13 @@
 
 ---
 
+### March 25, 2026
+- [x] Updated all 5 project READMEs to reflect current state (cold-mountain, intelligence, nanoclaw, product, writing)
+- [x] Added CLAUDE.md review step (#3) to end-of-session ritual in global CLAUDE.md
+- [x] Added `claudemd-list` and `claudemd-read` functions to ~/.zshrc on MacBook Pro
+- [x] Updated global ~/.claude/CLAUDE.md (Mac Mini) — "Always Plan First" reads project README before planning; end-of-session updates project README if setup/status/structure changed; moved git steps to end of ritual
+- [x] Updated groups/main/CLAUDE.md — replaced Memory section with memory.md read/write workflow; added no-editorializing rule to Communication section
+
 ### March 24, 2026
 - [x] Changed homepage name from "Mathew Thomas Li" to "Matt Li"
 - [x] Updated tagline to "Building AI-enabled products across discovery, prototyping, and execution."

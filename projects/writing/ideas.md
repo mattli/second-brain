@@ -1,3 +1,17 @@
+### Am I Becoming the Machine or Is the Machine Becoming Me?
+
+[2026-03-24]
+
+---
+
+### A Personal AI Assistant Is a Mirror
+
+One of the most exciting things about working on NanoClaw is that it's open source — not in the sense that I'm contributing wild new features, but in the sense that it's customizable. The fact that I can use something like Claude Code to shape it to fit how I actually work reveals something: the ideal personal AI assistant is different for everyone. No two people operate the same way.
+
+That's what makes this worth paying attention to. Building your own system forces you to understand how you work, how you think, what you prioritize. It's flexible enough to be a mirror. The choices you make — what to automate, what to keep manual, what to track, what to ignore — are a reflection of how your mind works. [2026-03-24]
+
+---
+
 ### Everyone Suffers Differently
 
 Just as everyone loves differently, everyone suffers differently. Observed: guy talking to himself at lodge bread. Is he having a “real” conversation? He’s brown. Ponytail, gray in a slight beard. Wearing a Coltrane on tour shirt. Japan tour 1966. Ripped jeans, really ripped. Puts sunglasses on before leaving, still sitting. “If you’re up all night writing music…” “this is Van Morrison, right?” Grooving to the music. “I like this music, it’s very nostalgic”. Wonder what his story is. I imagine he took a lot of drugs while on tour. That can happen, when someone explores the edges of reality. [2026-03-24]

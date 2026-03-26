@@ -34,7 +34,7 @@ Pick the 3–5 most significant stories published or materially updated in the l
 
 ### 2. Notable Model Releases
 Keep this section short. Only include a model release if it clears at least one of these bars:
-- A flagship model from a major lab (Anthropic, OpenAI, Google DeepMind, Meta)
+- A flagship model from a major lab (Anthropic, OpenAI, Google DeepMind, Meta) or a notable open source release.
 - A release that meaningfully shifts the cost/capability tradeoff for builders
 - A release generating significant real-world builder discussion today
 

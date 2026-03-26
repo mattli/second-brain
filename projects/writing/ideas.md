@@ -1,3 +1,9 @@
+### Is the Human Experience Replaceable?
+
+In a future where we can't tell what's real — whether a video, audio recording, or piece of writing was made by a human — will people accept AI-generated content as a substitute? Or will they crave something genuinely human even more? The question isn't just about authenticity. It's about whether the human experience itself is replaceable, or whether scarcity makes it more valuable. [2026-03-26]
+
+---
+
 ### The City Is Not Nature
 
 A big city is entirely paved over — asphalt, concrete, nothing. Even the patches of grass, are they even on soil or just concrete underneath? There's almost no actual dirt. You'd have to dig straight down to find it under the foundations.

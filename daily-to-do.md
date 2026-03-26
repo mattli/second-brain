@@ -13,10 +13,10 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 
 - [x] Sun Nong Dan
 - [x] Read morning AI digests and briefings
-- [ ] Read Infinite Jest
-- [ ] Play guitar
-- [ ] Eat lunch
-- [ ] Therapy at 2pm
+- [x] Read Infinite Jest
+- [x] Play guitar
+- [x] Eat lunch
+- [x] Therapy at 2pm
 - [ ] Second Brain
 - [ ] Stretch and recovery
 

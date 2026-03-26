@@ -1,6 +1,6 @@
 Daily Product Briefing — Instructions
 
-> Version: 1.0 | Last updated: 2026-03-21
+> Version: 2.0 | Last updated: 2026-03-26
 
 ## Purpose
 Each morning, research and compile a concise product intelligence briefing focused on what builders and product people are actively shipping, discussing, and excited about. The output should be readable in approximately 2 minutes and saved to `projects/intelligence/product-briefings/YYYY-MM-DD.md` using today's actual date.
@@ -19,20 +19,74 @@ Read the last 5 product briefings from `projects/intelligence/product-briefings/
 
 ---
 
-## Research Tasks
+## Research Method: last30days IPC Tool
 
-Search the following sources for what builders and product people are actively shipping or discussing:
+Your primary research tool is the **last30days engine**, accessed via IPC. It searches X (Twitter) for real-time product/builder signal.
 
-- **Product Hunt** (producthunt.com — top launches of the day)
-- **Hacker News** (news.ycombinator.com — Show HN posts and relevant discussions)
-- **GitHub Trending** (github.com/trending)
-- **Indie Hackers** (indiehackers.com — recent milestones and launches)
+### How to Run Research
 
-Focus on:
-- Tools or projects gaining rapid traction
-- Interesting products people are shipping
-- Practical techniques or workflows being shared
-- Problems or frustrations that keep coming up across multiple sources
+For each topic, write a JSON file to `/workspace/ipc/tasks/` and poll for results:
+
+```bash
+# Generate unique request ID
+REQ_ID="l30d-$(date +%s)-$(head -c 4 /dev/urandom | xxd -p)"
+GROUP="${NANOCLAW_GROUP_FOLDER}"
+NOW=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
+
+# Write IPC request
+cat > "/workspace/ipc/tasks/$(date +%s)-$(head -c 4 /dev/urandom | xxd -p).json" <<EOF
+{
+  "type": "last30days_research",
+  "requestId": "${REQ_ID}",
+  "topics": "TOPIC_HERE",
+  "flags": "--search x",
+  "groupFolder": "${GROUP}",
+  "timestamp": "${NOW}"
+}
+EOF
+
+# Wait for result (poll every 2s, up to 10 min)
+for i in $(seq 1 300); do
+  if [ -f "/workspace/ipc/last30days_results/${REQ_ID}.json" ]; then
+    cat "/workspace/ipc/last30days_results/${REQ_ID}.json"
+    rm "/workspace/ipc/last30days_results/${REQ_ID}.json"
+    break
+  fi
+  sleep 2
+done
+```
+
+### Research Topics
+
+Run 3-5 IPC requests with focused topics. Good topic examples:
+- `new developer tools launching 2026`
+- `AI product launches trending`
+- `open source projects gaining traction`
+- `indie hacker shipping milestones`
+- `product hunt trending today`
+
+You can also combine multiple topics in one request using `|||`:
+```
+"topics": "new developer tools ||| AI product launches ||| indie hacker milestones"
+```
+
+### Important
+- Each research call takes 1-5 minutes — be patient waiting for results
+- The result is a JSON object: `{ "success": true, "message": "...research output..." }`
+- Read the **full** message content — it contains X posts with engagement stats, quotes, and handles
+- If a request fails or times out, try again with a simpler/shorter topic
+- Use `--search x` to search X only (default is Reddit + X)
+
+---
+
+## Synthesizing Results
+
+After collecting research from last30days:
+
+1. **Read all the raw data carefully.** Pay attention to exact product names, @handles, engagement metrics (likes, reposts), and direct quotes.
+2. **Do not substitute your own knowledge for what the research says.** Ground everything in the actual data returned.
+3. **Prioritize by signal strength:** high engagement, multiple mentions, real user excitement > press releases or bot-like posts.
+4. **Select 3-5 products/projects** with the strongest signal for the briefing.
 
 ---
 
@@ -49,6 +103,8 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 **Is the solution complete, or does it address only part of the pain?**
 **What would a better solution look like?**
 
+*Source: X — @handle (N likes), @handle2 (N reposts)*
+
 [Repeat for 3–5 products]
 
 ---
@@ -58,13 +114,10 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 
 ---
 
-## Sources Log (temporary — diagnostic)
+## Sources Log
 | Source | Searched | Items Used |
 |--------|----------|------------|
-| Product Hunt | ✅/❌ | [product names or "(nothing new)"] |
-| Hacker News | ✅/❌ | |
-| GitHub Trending | ✅/❌ | |
-| Indie Hackers | ✅/❌ | |
+| X (via last30days) | ✅/❌ | [product names or "(nothing new)"] |
 ```
 
 ---
@@ -81,3 +134,6 @@ git push
 ```
 
 Replace `YYYY-MM-DD` with today's actual date.
+
+<!-- ARCHIVED: Original v1.0 sources (Product Hunt, HN, GitHub Trending, Indie Hackers via web search)
+     Replaced with last30days X research in v2.0. Restore these if reverting. -->

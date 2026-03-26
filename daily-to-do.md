@@ -12,9 +12,9 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 ### Thursday, March 26
 
 - [x] Sun Nong Dan
-- [ ] Read morning AI digests and briefings
-- [ ] Play guitar
+- [x] Read morning AI digests and briefings
 - [ ] Read Infinite Jest
+- [ ] Play guitar
 - [ ] Eat lunch
 - [ ] Therapy at 2pm
 - [ ] Second Brain (late afternoon)

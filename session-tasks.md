@@ -10,6 +10,8 @@
 - [x] Deployed SKILL.md changes via sync.sh to ~/.claude/skills, ~/.agents/skills, ~/.codex/skills
 - [x] Verified fix — nanoclaw research now returns 30 Reddit threads + 32 X posts (previously 0 Reddit, timeout)
 - [x] Ran "Claude Code" research (X only — Reddit IncompleteRead error pre-fix)
+- [x] Added last30days validation tool section to projects/product/README.md
+- [x] Modified last30days skill for product validation — reoriented from general research toward validating product ideas (pain points, demand signals, competitive landscape)
 
 ### March 25, 2026 (session 1)
 - [x] Tested last30days skill research on "nanoclaw" (X only, 22 posts) — validated as weak-to-moderate signal; strongest pain points are token cost management and inter-agent communication

@@ -11,8 +11,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 
 ### Thursday, March 26
 
-- [ ] Eat eggs for breakfast
-- [ ] Walk to Boy and the Bear
+- [x] Sun Nong Dan
 - [ ] Read morning AI digests and briefings
 - [ ] Play guitar
 - [ ] Read Infinite Jest

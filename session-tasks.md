@@ -3,7 +3,15 @@
 
 ---
 
-### March 25, 2026
+### March 25, 2026 (session 2)
+- [x] Diagnosed last30days timeout issue — Reddit OpenAI fallback burns 2+ min in retry backoff; identified root cause in http.py retry logic + ThreadPoolExecutor can't kill stalled threads
+- [x] Added ScrapeCreators API key to ~/.config/last30days/.env — Reddit now uses fast ScrapeCreators API instead of OpenAI fallback
+- [x] Updated SKILL.md default command with --timeout 600 and Bash timeout to 600000
+- [x] Deployed SKILL.md changes via sync.sh to ~/.claude/skills, ~/.agents/skills, ~/.codex/skills
+- [x] Verified fix — nanoclaw research now returns 30 Reddit threads + 32 X posts (previously 0 Reddit, timeout)
+- [x] Ran "Claude Code" research (X only — Reddit IncompleteRead error pre-fix)
+
+### March 25, 2026 (session 1)
 - [x] Tested last30days skill research on "nanoclaw" (X only, 22 posts) — validated as weak-to-moderate signal; strongest pain points are token cost management and inter-agent communication
 - [x] Updated all 5 project READMEs to reflect current state (cold-mountain, intelligence, nanoclaw, product, writing)
 - [x] Added CLAUDE.md review step (#3) to end-of-session ritual in global CLAUDE.md

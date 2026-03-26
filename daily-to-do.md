@@ -2,6 +2,27 @@
 
 Goals: Start to apply to jobs with updated resume and portfolio.
 
+### Friday, March 27
+
+- [ ] Apply to jobs
+- [ ] Go to the gym
+
+---
+
+### Thursday, March 26
+
+- [ ] Eat eggs for breakfast
+- [ ] Walk to Boy and the Bear
+- [ ] Read morning AI digests and briefings
+- [ ] Play guitar
+- [ ] Read Infinite Jest
+- [ ] Eat lunch
+- [ ] Therapy at 2pm
+- [ ] Second Brain (late afternoon)
+- [ ] Stretch and recovery
+
+---
+
 ### Wednesday, March 25
 
 - [x] Bluey’s
@@ -9,6 +30,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [x] Continue watching the last 30 days interview
 - [x] Check backlog
 - [x] Order lunch
+- [x] Second Brain
 - [ ] Read Infinite Jest
 - [ ] Stretch and recovery at home
 

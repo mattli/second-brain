@@ -17,7 +17,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [x] Play guitar
 - [x] Eat lunch
 - [x] Therapy at 2pm
-- [ ] Second Brain
+- [x] Second Brain
 - [ ] Stretch and recovery
 
 ---

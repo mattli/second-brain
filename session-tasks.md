@@ -1,8 +1,3 @@
-### ⚡ Don't Forget
-- Use Second Brain to expand half-baked ideas into full articles — give it a rough thought, have it write a whole piece. Set this up.
-
----
-
 ### March 26, 2026
 - [x] Created SKILL-briefing.md on MacBook Pro — stripped-down unattended variant of last30days SKILL.md; keeps research execution + Judge Agent synthesis + anti-pattern guards; removes all interactive conversation flow (intent parsing, user prompts, follow-ups, context memory)
 - [x] Installed last30days SKILL-briefing.md on Mac Mini — replaced default SKILL.md with unattended product research version, synced to all skill locations

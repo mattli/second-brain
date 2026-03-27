@@ -6,7 +6,7 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 
 - [x] Lodge Bread
 - [x] Read daily briefings
-- [ ] Go to the gym
+- [x] Go to the gym
 - [ ] Apply to jobs
 
 ---

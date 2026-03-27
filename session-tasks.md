@@ -3,6 +3,18 @@
 
 ---
 
+### March 26, 2026
+- [x] Created SKILL-briefing.md on MacBook Pro — stripped-down unattended variant of last30days SKILL.md; keeps research execution + Judge Agent synthesis + anti-pattern guards; removes all interactive conversation flow (intent parsing, user prompts, follow-ups, context memory)
+- [x] Installed last30days SKILL-briefing.md on Mac Mini — replaced default SKILL.md with unattended product research version, synced to all skill locations
+- [x] Built IPC bridge for last30days — `src/skill-handlers/last30days.ts` (host handler) + `container/skills/last30days-research/SKILL.md` (container instructions); wired into `src/ipc.ts` default case
+- [x] Fixed PATH issue — launchd process missing `/opt/homebrew/bin`, Bird CLI couldn't find Node; handler now augments PATH
+- [x] Fixed `--search` flag parsing — argparse received split args; switched to `--search=x` format
+- [x] Updated product briefing to use last30days — `daily-products.md` v2.0, X-only research via IPC; group CLAUDE.md updated
+- [x] Added X_AUTH_TOKEN/X_CT0 to .env with remapping in handler (clearer than raw AUTH_TOKEN/CT0)
+- [x] Verified end-to-end — test briefing produced 5 X-sourced product items with @handle citations
+- [x] Set initial research keywords: buildinpublic, building in public, MRR, claude code
+- [ ] Research topics still need tuning — current keywords are too broad; need specific pain-oriented or activity-oriented queries for X
+
 ### March 25, 2026 (session 2)
 - [x] Diagnosed last30days timeout issue — Reddit OpenAI fallback burns 2+ min in retry backoff; identified root cause in http.py retry logic + ThreadPoolExecutor can't kill stalled threads
 - [x] Added ScrapeCreators API key to ~/.config/last30days/.env — Reddit now uses fast ScrapeCreators API instead of OpenAI fallback

@@ -7,7 +7,7 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 | Type                 | Schedule           | Output                            | Description                                                               |
 | -------------------- | ------------------ | --------------------------------- | ------------------------------------------------------------------------- |
 | **AI Briefing**      | Mon–Fri 7am        | `ai-briefings/YYYY-MM-DD.md`      | Top AI/tech news, model releases, funding, discussions                    |
-| **Product Briefing** | Mon–Fri 7am        | `product-briefings/YYYY-MM-DD.md` | Product launches, builder activity, tools gaining traction                |
+| **Product Briefing** | Mon–Fri 7am        | `product-briefings/YYYY-MM-DD.md` | Product launches, builder activity via last30days X/Reddit research       |
 | **Weekly Summary**   | Sat 7am            | `weekly-summaries/YYYY-WXX.md`    | Synthesizes the week's daily briefings into patterns and signal           |
 | **Monthly Summary**  | 1st of month 7am   | `monthly-summaries/YYYY-MM.md`    | Synthesizes weekly summaries into durable trends and product observations |
 |                      |                    |                                   |                                                                           |
@@ -61,7 +61,7 @@ AI Briefing + Product Briefing (raw signal)
     → Monthly Summary (durable trends across 4 weeks)
 ```
 
-The daily briefing researches live sources. The weekly summary reads only the week's daily briefings (plus a builder pulse search). The monthly summary reads only the weekly summaries, then appends product observations back to `projects/product/product-vision.md`. The product briefing is a standalone daily layer focused on launches and builder activity.
+The daily briefing researches live sources. The weekly summary reads only the week's daily briefings (plus a builder pulse search). The monthly summary reads only the weekly summaries, then appends product observations back to `projects/product/product-vision.md`. The product briefing uses the last30days skill (IPC bridge) to search X and Reddit for builder activity, product launches, and market signals.
 
 ## How It Works
 

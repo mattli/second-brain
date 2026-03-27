@@ -30,15 +30,7 @@ Read all files in `product-briefings/` from the last 5 weekday briefings (Monday
 
 This is your primary source for product signal. For each product or project covered, note: what problem it solves, who it's for, and any evidence of traction.
 
-### 4. Builder Pulse Catch-Up
-After reading the product briefings, do a brief search to catch anything significant that may not have been covered:
-- **Product Hunt** (producthunt.com) — top launches of the week by upvotes
-- **Hacker News Show HN** (news.ycombinator.com) — builder-posted projects gaining traction
-- **Indie Hackers** (indiehackers.com) — revenue milestones, growth stories, what's working
-
-Only include items that add something not already captured in the product briefings. If the briefings covered the week well, this may have little to add — that's fine.
-
-### 5. Strategic Signals
+### 4. Strategic Signals
 Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
@@ -127,6 +119,7 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 | a16z | ✅/❌ | [pieces or "(nothing published)"] |
 | Sequoia | ✅/❌ | [pieces or "(nothing published)"] |
 | Kleiner Perkins | ✅/❌ | [pieces or "(nothing published)"] |
+| X | ✅/❌ | [items or "(nothing new)"] |
 | Other | — | [any sources not listed above] |
 ```
 

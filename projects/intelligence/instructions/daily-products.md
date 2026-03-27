@@ -58,17 +58,11 @@ done
 
 ### Research Topics
 
-Run 3-5 IPC requests with focused topics. Good topic examples:
-- `new developer tools launching 2026`
-- `AI product launches trending`
-- `open source projects gaining traction`
-- `indie hacker shipping milestones`
-- `product hunt trending today`
+Run exactly 3 IPC requests with these topics:
 
-You can also combine multiple topics in one request using `|||`:
-```
-"topics": "new developer tools ||| AI product launches ||| indie hacker milestones"
-```
+1. `"topics": "buildinpublic ||| building in public"` — catches the hashtag and natural phrasing
+2. `"topics": "MRR"` — revenue milestones, indie traction
+3. `"topics": "claude code"` — AI coding tools
 
 ### Important
 - Each research call takes 1-5 minutes — be patient waiting for results

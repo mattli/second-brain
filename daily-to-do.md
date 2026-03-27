@@ -4,8 +4,10 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 
 ### Friday, March 27
 
-- [ ] Apply to jobs
+- [x] Lodge Bread
+- [x] Read daily briefings
 - [ ] Go to the gym
+- [ ] Apply to jobs
 
 ---
 

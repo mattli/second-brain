@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 3.0 | Last updated: 2026-03-28
+> Version: 3.2 | Last updated: 2026-03-28
 
 ## Purpose
 Each Saturday morning, synthesize the week's AI briefings and weekly product briefing into an analysis of where the product landscape is moving. The goal is not to recap what happened or re-categorize products — the daily briefings and weekly product briefing already did that. The goal is to layer on context (capability shifts, capital flows, VC theses) and surface the gaps between what's being invested in and what's actually being built.
@@ -60,6 +60,8 @@ Take the problem categories from the weekly product briefing as your starting po
 - Are the products in this category actually solving the problem, or are they clustering around a surface-level version of it?
 
 You don't need to comment on every category. Focus on the ones where something interesting is happening — movement, contradiction, or insight. Carry forward any category from prior weeks that is notably absent this week and flag it.
+
+The weekly product briefing includes X engagement metrics (likes). Do not treat these as traction signals. They measure visibility in a thread, not product usage, revenue, or growth. When discussing products from the weekly briefing, describe what's being built and how categories are shifting — do not claim traction unless there is evidence beyond social engagement (e.g. funding, reported revenue, user counts from the product itself).
 
 ### Capital vs. Builder Gaps
 This is the most important section. Cross-reference the VC Lens and funding activity (where capital is flowing) with the product briefing categories (where builders are clustering). Identify 1–3 mismatches:

@@ -58,11 +58,10 @@ done
 
 ### Research Topics
 
-Run exactly 3 IPC requests with these topics:
+Run exactly 2 IPC requests with these topics:
 
-1. `"topics": "drop your product ||| share your product"` — surfaces actual product showcases
-2. `"topics": "MRR"` — revenue milestones, indie traction
-3. `"topics": "claude code"` — AI coding tools
+1. `"topics": "just launched ||| just shipped ||| I built"` — builder launch announcements
+2. `"topics": "claude code ||| codex"` — AI coding tools
 
 ### Important
 - Each research call takes 1-5 minutes — be patient waiting for results

@@ -52,7 +52,7 @@ Be concrete. "People struggle with X" is not enough — name the context, the fr
 What looked like a trend this month but didn't hold up? What got attention early and faded, or turned out to be one product's moment rather than a category? Keep this brief — 2–3 items maximum. Knowing what not to build on is as useful as knowing what to build on.
 
 ### Build Candidates
-2–3 specific product ideas grounded in the month's durable problems and persistent gaps. These are prompts for thinking, not business plans.
+2–3 high signal specific product ideas grounded in the month's durable problems and persistent gaps. These are prompts for thinking, not business plans.
 
 For each:
 - **What to build:** One sentence.

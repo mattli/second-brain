@@ -39,7 +39,7 @@ cat > "/workspace/ipc/tasks/$(date +%s)-$(head -c 4 /dev/urandom | xxd -p).json"
   "type": "last30days_research",
   "requestId": "${REQ_ID}",
   "topics": "TOPIC_HERE",
-  "flags": "--search x --min-likes=10 --days=1",
+  "flags": "--search x --days=1",
   "groupFolder": "${GROUP}",
   "timestamp": "${NOW}"
 }
@@ -60,7 +60,7 @@ done
 
 Run exactly 3 IPC requests with these topics:
 
-1. `"topics": "buildinpublic ||| building in public"` — catches the hashtag and natural phrasing
+1. `"topics": "drop your product ||| share your product"` — surfaces actual product showcases
 2. `"topics": "MRR"` — revenue milestones, indie traction
 3. `"topics": "claude code"` — AI coding tools
 

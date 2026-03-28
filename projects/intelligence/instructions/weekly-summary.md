@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 3.2 | Last updated: 2026-03-28
+> Version: 3.3 | Last updated: 2026-03-28
 
 ## Purpose
 Each Saturday morning, synthesize the week's AI briefings and weekly product briefing into an analysis of where the product landscape is moving. The goal is not to recap what happened or re-categorize products — the daily briefings and weekly product briefing already did that. The goal is to layer on context (capability shifts, capital flows, VC theses) and surface the gaps between what's being invested in and what's actually being built.
@@ -24,6 +24,8 @@ Read the last 3 files in `weekly-summaries/` before doing anything else. Note wh
 Read all files in `ai-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
 
 Extract only what's relevant as context for the analysis: capability shifts, model releases, infrastructure changes, funding rounds, acquisitions, notable Product Hunt launches, or industry moves that create or close product surface area. Do not summarize the briefings — distill them into the context that matters for understanding what's changing.
+
+Pay specific attention to Product Hunt launches captured in the daily briefings — these represent products with more polish and ambition than X thread replies and may warrant mention in Category Movement if they map to active categories.
 
 ### 3. Read the Weekly Product Briefing
 Read the most recent file in `weekly-products/` (the weekly product briefing produced earlier today). This file already contains products grouped into problem categories with source data.

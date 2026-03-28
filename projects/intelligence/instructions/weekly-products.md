@@ -1,6 +1,6 @@
 Weekly Product Briefing — Instructions
 
-> Version: 1.0 | Last updated: 2026-03-28
+> Version: 1.1 | Last updated: 2026-03-28
 
 ## Purpose
 Each Saturday morning (before the weekly summary), research and compile a product intelligence briefing focused on what builders are actively shipping and promoting on X. The output should identify problem categories emerging from real builder activity and be saved to `projects/intelligence/weekly-products/YYYY-MM-DD.md` using today's actual date.
@@ -67,6 +67,8 @@ For each product reply that contains a URL:
 
 Group all products into problem categories. Each category should represent a real problem that multiple builders are trying to solve.
 
+If a category has fewer than 3 products, fold it into the most related category or drop the products into a general "Other" section at the end. Prefer fewer, thicker categories over many thin ones.
+
 ---
 
 ## Output Format
@@ -84,14 +86,14 @@ Save to `projects/intelligence/weekly-products/YYYY-MM-DD.md`:
 - **What's being built:** 1–2 sentences on the types of products appearing in this category.
   - [Product Name](url) — one-line description (@handle, N likes)
   - [repeat for each product in category]
-- **Traction signal:** What evidence exists — likes, engagement. Be honest if traction is unclear.
+- **Engagement signal:** X engagement metrics (likes, replies). These measure thread visibility, not product traction. Note them for reference but do not draw conclusions about product-market fit from them.
 
 [Repeat for each category, sorted by number of products — largest first]
 
 ---
 
 ## Summary Observations
-[3–5 sentences on what this week's builder activity reveals: which problem spaces are crowded, where real traction exists, what patterns are emerging]
+[3–5 sentences on what this week's builder activity reveals: which problem spaces are crowded, where builder energy is concentrating, what patterns are emerging]
 
 ---
 

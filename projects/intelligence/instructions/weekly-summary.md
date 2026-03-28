@@ -51,7 +51,7 @@ If nothing relevant was published this week, note it briefly.
 What shifted this week at the model or infrastructure layer that's relevant to product builders? Keep this short — 3–5 bullet points maximum. Focus only on changes that open or close product opportunities, not general AI news. Each bullet should connect directly to product implications.
 
 ### VC Lens
-Summarize any investment thesis pieces published this week (from Research Task 5). For each: what they believe, why, and which product categories it validates, challenges, or ignores. If nothing was published this week, note it briefly.
+Summarize any investment thesis pieces published this week (from Research Task 4). For each: what they believe, why, and which product categories it validates, challenges, or ignores. If nothing was published this week, note it briefly.
 
 ### Problem Categories
 The heart of the document. Discover and describe the problem categories active this week based on what you observed across the product briefings and catch-up research. Each category gets its own entry:
@@ -113,14 +113,9 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 | Previous weekly summaries | ✅/❌ | [which weeks read] |
 | AI briefings (Mon–Fri) | ✅/❌ | [which days read] |
 | Product briefings (Mon–Fri) | ✅/❌ | [which days read] |
-| Product Hunt | ✅/❌ | [items or "(nothing new)"] |
-| Hacker News Show HN | ✅/❌ | [items or "(nothing new)"] |
-| Indie Hackers | ✅/❌ | [items or "(nothing new)"] |
 | a16z | ✅/❌ | [pieces or "(nothing published)"] |
 | Sequoia | ✅/❌ | [pieces or "(nothing published)"] |
 | Kleiner Perkins | ✅/❌ | [pieces or "(nothing published)"] |
-| X | ✅/❌ | [items or "(nothing new)"] |
-| Other | — | [any sources not listed above] |
 ```
 
 ---

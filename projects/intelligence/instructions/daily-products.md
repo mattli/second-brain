@@ -5,7 +5,7 @@ Daily Product Briefing — Instructions
 ## Purpose
 Each morning, research and compile a concise product intelligence briefing focused on what builders and product people are actively shipping, discussing, and excited about. The output should be readable in approximately 2 minutes and saved to `projects/intelligence/product-briefings/YYYY-MM-DD.md` using today's actual date.
 
-Cover 3–5 of the most interesting products, tools, or projects gaining traction in the last 24 hours. Quality over quantity — skip anything that is not genuinely interesting or new.
+Cover 3–5 products per source (Product Hunt and X threads), for a total of 6–10 items. Quality over quantity — skip anything that is not genuinely interesting or new.
 
 **Overlap Prevention:** Only include a product or project if it launched or gained significant new traction in the last 24 hours. Do not include items simply because they are still being discussed. If something was covered yesterday and nothing new has happened, skip it.
 

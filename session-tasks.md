@@ -1,3 +1,21 @@
+### March 27, 2026 (session 2)
+- Reviewed all 4 product briefing instruction files + 4 group CLAUDE.md files for consistency
+- Fixed daily-products.md — changed "3-5 total" to "3-5 per source (6-10 total)"
+- Fixed weekly-summary.md — corrected Research Task 5→4 reference; removed stale Sources Log entries (Product Hunt, HN, Indie Hackers, X)
+- Fixed groups/weekly-summary/CLAUDE.md — corrected `briefings/` path to `ai-briefings/` + `product-briefings/`; replaced stale "Builder Pulse" with "Strategic Signals"
+- Fixed groups/monthly-summary/CLAUDE.md — removed product-vision.md references, removed Strategic Signals research step, removed irrelevant Research Quality section
+- Fixed groups/product-briefing/CLAUDE.md — switched IPC type from `last30days_research` to `last30days_thread_search`; aligned research strategy with 2-source approach (X threads + Product Hunt)
+
+### March 27, 2026
+- Diagnosed product briefing wrong-date bug — stale test prompt from `test-briefing.sh` revert failure; `product-briefing` DB prompt still had hardcoded `2026-03-26b.md`; restored original prompt
+- Fixed `test-briefing.sh` revert reliability — replaced fragile `date -j` timestamp parsing with string comparison; added `nohup`/`disown` so background revert survives terminal close; added crash recovery via `/tmp/test-briefing-revert/` files
+- Built `--min-likes` and `--require-url` post filters in IPC handler — strip low-engagement and URL-less posts before agent sees them
+- Built X thread reply search (`last30days_thread_search` IPC type) — two-phase: finds "drop your product" threads, fetches replies via `conversation_id:`, filters to product URLs; calls Bird search directly from Node, bypasses Python pipeline
+- Overhauled product briefing instructions (daily-products.md v3) — switched from keyword search to thread reply scraping + Product Hunt web search; separate sections for each source; engagement metrics and source attribution on every item
+- Iterated on X search keywords — tested buildinpublic, MRR, claude code, just launched, built with AI, vibe coded; discovered query preprocessor strips noise words; settled on thread replies as primary X source
+- Added `--days=1` flag to narrow X search to last 24 hours
+- Archived 7 test briefing files (2026-03-27 a-g), kept final version as 2026-03-27.md
+
 ### March 26, 2026
 - Created SKILL-briefing.md on MacBook Pro — stripped-down unattended variant of last30days SKILL.md; keeps research execution + Judge Agent synthesis + anti-pattern guards; removes all interactive conversation flow (intent parsing, user prompts, follow-ups, context memory)
 - Installed last30days SKILL-briefing.md on Mac Mini — replaced default SKILL.md with unattended product research version, synced to all skill locations

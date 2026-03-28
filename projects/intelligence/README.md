@@ -61,7 +61,7 @@ AI Briefing + Product Briefing (raw signal)
     → Monthly Summary (durable trends across 4 weeks)
 ```
 
-The daily briefing researches live sources. The weekly summary reads only the week's daily briefings (plus a builder pulse search). The monthly summary reads only the weekly summaries, then appends product observations back to `projects/product/product-vision.md`. The product briefing uses the last30days skill (IPC bridge) to search X and Reddit for builder activity, product launches, and market signals.
+The daily briefing researches live sources. The weekly summary reads the week's AI and product briefings plus VC thesis searches. The monthly summary reads only the weekly summaries — no independent research. The product briefing uses the last30days skill (IPC bridge) to search X "drop your product" threads, supplemented by Product Hunt via web search.
 
 ## How It Works
 

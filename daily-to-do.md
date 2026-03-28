@@ -7,7 +7,8 @@ Goals: Start to apply to jobs with updated resume and portfolio.
 - [x] Lodge Bread
 - [x] Read daily briefings
 - [x] Go to the gym
-- [ ] Apply to jobs
+- [x] Quick job search
+- [x] Second Brain
 
 ---
 

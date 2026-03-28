@@ -39,7 +39,7 @@ cat > "/workspace/ipc/tasks/$(date +%s)-$(head -c 4 /dev/urandom | xxd -p).json"
   "type": "last30days_research",
   "requestId": "${REQ_ID}",
   "topics": "TOPIC_HERE",
-  "flags": "--search x --days=1",
+  "flags": "--search x --days=1 --require-url",
   "groupFolder": "${GROUP}",
   "timestamp": "${NOW}"
 }
@@ -61,7 +61,7 @@ done
 Run exactly 2 IPC requests with these topics:
 
 1. `"topics": "just launched ||| just shipped ||| I built"` — builder launch announcements
-2. `"topics": "claude code ||| codex"` — AI coding tools
+2. `"topics": "built with claude ||| built with AI ||| vibe coded"` — products built with AI tools
 
 ### Important
 - Each research call takes 1-5 minutes — be patient waiting for results
@@ -97,7 +97,7 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 **Is the solution complete, or does it address only part of the pain?**
 **What would a better solution look like?**
 
-*Source: X — @handle (N likes), @handle2 (N reposts)*
+*Source: X — @handle (N likes, N reposts) | Keyword: "which search keyword found this"*
 
 [Repeat for 3–5 products]
 

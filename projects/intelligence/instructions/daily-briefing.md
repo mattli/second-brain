@@ -1,6 +1,6 @@
 Daily AI Intelligence Briefing — Instructions
 
-> Version: 2.9 | Last updated: 2026-03-21
+> Version: 3.0 | Last updated: 2026-03-28
 
 ## Purpose
 Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `ai-briefings/YYYY-MM-DD.md` using today's actual date.
@@ -47,6 +47,7 @@ Search for major AI-related business news in the last 24 hours strictly:
 - Funding rounds (Series A and above, or notable seed rounds)
 - Acquisitions or mergers involving AI companies
 - Significant new product or feature launches
+- **Product Hunt** (producthunt.com) — check today's top 3–5 launches. Include any that are genuinely notable in the AI/tech space. Skip generic or low-signal launches.
 
 Summarize each item in 1–2 sentences. If nothing significant occurred in the last 24 hours, say so briefly.
 
@@ -97,6 +98,7 @@ Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
 |--------|----------|-------------|
 | TechCrunch | ✅/❌ | [story titles or "(nothing new)"] |
 | Hacker News | ✅/❌ |
+| Product Hunt | ✅/❌ | [product names or "(nothing notable)"] |
 | Other | — | [any sources not listed above] |
 ```
 

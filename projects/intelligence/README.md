@@ -6,11 +6,10 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 
 | Type                 | Schedule           | Output                            | Description                                                               |
 | -------------------- | ------------------ | --------------------------------- | ------------------------------------------------------------------------- |
-| **AI Briefing**      | Mon–Fri 7am        | `ai-briefings/YYYY-MM-DD.md`      | Top AI/tech news, model releases, funding, discussions                    |
-| **Product Briefing** | Mon–Fri 7am        | `product-briefings/YYYY-MM-DD.md` | Product launches, builder activity via last30days X/Reddit research       |
-| **Weekly Summary**   | Sat 7am            | `weekly-summaries/YYYY-WXX.md`    | Synthesizes the week's daily briefings into patterns and signal           |
+| **AI Briefing**      | Mon–Fri 7am        | `ai-briefings/YYYY-MM-DD.md`      | Top AI/tech news, model releases, funding, Product Hunt launches          |
+| **Product Briefing** | Sat 6am            | `weekly-products/YYYY-MM-DD.md`   | X thread product extraction and categorization into problem buckets       |
+| **Weekly Summary**   | Sat 8am            | `weekly-summaries/YYYY-WXX.md`    | Synthesizes AI briefings + product briefing into patterns and signal      |
 | **Monthly Summary**  | 1st of month 7am   | `monthly-summaries/YYYY-MM.md`    | Synthesizes weekly summaries into durable trends and product observations |
-|                      |                    |                                   |                                                                           |
 
 ## Directory Structure
 
@@ -18,11 +17,11 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 intelligence/
 ├── instructions/           # Briefing instructions (edit these to change output)
 │   ├── daily-briefing.md
-│   ├── daily-products.md
+│   ├── weekly-products.md
 │   ├── weekly-summary.md
 │   └── monthly-summary.md
 ├── ai-briefings/           # Daily briefing output
-├── product-briefings/      # Product briefing output
+├── weekly-products/        # Weekly product briefing output
 ├── weekly-summaries/       # Weekly summary output
 ├── monthly-summaries/      # Monthly summary output
 └── README.md
@@ -56,12 +55,13 @@ The script lives at `~/nanoclaw/scripts/test-briefing.sh`.
 The briefings form a layered synthesis pipeline — each layer distills the one below it:
 
 ```
-AI Briefing + Product Briefing (raw signal)
-  → Weekly Summary (patterns across 5 days)
-    → Monthly Summary (durable trends across 4 weeks)
+AI Briefing (Mon-Fri, includes Product Hunt)
+  + Weekly Product Briefing (Sat 6am, X thread extraction)
+    → Weekly Summary (Sat 8am, synthesizes both)
+      → Monthly Summary (durable trends across 4 weeks)
 ```
 
-The daily briefing researches live sources. The weekly summary reads the week's AI and product briefings plus VC thesis searches. The monthly summary reads only the weekly summaries — no independent research. The product briefing uses the last30days skill (IPC bridge) to search X "drop your product" threads, supplemented by Product Hunt via web search.
+The daily AI briefing researches live sources including Product Hunt. The weekly product briefing searches X for high-engagement "share your product" threads (50+ replies), extracts product URLs, resolves them, and categorizes into problem buckets. The weekly summary reads both the AI briefings and the product briefing plus VC thesis searches. The monthly summary reads only the weekly summaries — no independent research.
 
 ## How It Works
 
@@ -79,7 +79,7 @@ Old briefing files are automatically archived every Sunday at midnight. Each fol
 
 ```
 ai-briefings:keep=7
-product-briefings:keep=7
+weekly-products:keep=4
 ```
 
 Files beyond the keep count are moved to `_archive/` within each folder. To add a new folder or change the retention, edit the config file — no script changes needed. The archive script lives at `~/nanoclaw/scripts/archive-briefings.sh`.

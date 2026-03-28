@@ -1,3 +1,15 @@
+### March 28, 2026
+- Tested Bird search with `--sort top` vs `Latest` — `Top` mode matches too broadly (non-English, unrelated tweets); `Latest` with exact phrases + `min_replies` is the right approach
+- Built one-off X thread product extraction pipeline — 6 keywords, `min_replies:50`, `lang:en`, last 24h; found 24 high-engagement threads, extracted 237 products from top 10
+- Resolved t.co URLs via curl (171/209), GitHub API (3/7), WebFetch (29/35) — 97% coverage; remaining 6 are truly empty pages
+- Categorized 209 products into 28 problem categories using weekly summary format
+- Consolidated product briefing from daily to weekly — archived `daily-products.md`, created `weekly-products.md` (v1.0) with X thread pipeline
+- Added Product Hunt as a source to daily AI briefing (`daily-briefing.md` v3.0)
+- Updated weekly summary instructions (`weekly-summary.md` v2.4) to read weekly product briefing instead of 5 daily ones
+- Renamed `product-briefings/` folder to `weekly-products/`; archived old daily briefings
+- Updated scheduled tasks in DB: `product-briefing` changed from `0 7 * * 1-5` to `0 6 * * 6`; `weekly-summary` changed from `0 7 * * 6` to `0 8 * * 6`
+- Added 3 new X search keywords to instructions: "drop your project", "what are you shipping", "what are you building"
+
 ### March 27, 2026 (session 2)
 - Reviewed all 4 product briefing instruction files + 4 group CLAUDE.md files for consistency
 - Fixed daily-products.md — changed "3-5 total" to "3-5 per source (6-10 total)"

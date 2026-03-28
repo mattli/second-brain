@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 2.3 | Last updated: 2026-03-21
+> Version: 2.4 | Last updated: 2026-03-28
 
 ## Purpose
 Each Saturday morning, synthesize the week's AI briefings, product briefings, and VC investment theses into a structured analysis of the product landscape. The goal is not to recap what happened — it's to understand what problem categories are emerging, which ones are gaining traction, and how they fit into the broader picture of AI capability shifts and capital flows.
@@ -25,10 +25,10 @@ Read all files in `ai-briefings/` from the last 5 weekday briefings (Monday–Fr
 
 Do not summarize these — extract only what's relevant as context for the product analysis: capability shifts, model releases, infrastructure changes, or industry moves that create or close product surface area.
 
-### 3. Read the Week's Product Briefings
-Read all files in `product-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
+### 3. Read the Weekly Product Briefing
+Read the most recent file in `weekly-products/` (the weekly product briefing produced earlier today). This file already contains products grouped into problem categories with traction signals.
 
-This is your primary source for product signal. For each product or project covered, note: what problem it solves, who it's for, and any evidence of traction.
+This is your primary source for product signal. Use the problem categories as a starting point — you may merge, split, or rename them based on what the AI briefings and VC lens reveal.
 
 ### 4. Strategic Signals
 Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
@@ -112,7 +112,7 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 |--------|----------|-------------|
 | Previous weekly summaries | ✅/❌ | [which weeks read] |
 | AI briefings (Mon–Fri) | ✅/❌ | [which days read] |
-| Product briefings (Mon–Fri) | ✅/❌ | [which days read] |
+| Weekly product briefing | ✅/❌ | [date of briefing read] |
 | a16z | ✅/❌ | [pieces or "(nothing published)"] |
 | Sequoia | ✅/❌ | [pieces or "(nothing published)"] |
 | Kleiner Perkins | ✅/❌ | [pieces or "(nothing published)"] |

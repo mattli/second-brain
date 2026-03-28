@@ -61,7 +61,7 @@ done
 Run exactly 2 IPC requests with these topics:
 
 1. `"topics": "just launched ||| just shipped ||| I built"` — builder launch announcements
-2. `"topics": "built with claude ||| built with AI ||| vibe coded"` — products built with AI tools
+2. `"topics": "built with claude ||| built with AI"` — products built with AI tools
 
 ### Important
 - Each research call takes 1-5 minutes — be patient waiting for results

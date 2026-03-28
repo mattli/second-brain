@@ -1,13 +1,13 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 2.4 | Last updated: 2026-03-28
+> Version: 3.0 | Last updated: 2026-03-28
 
 ## Purpose
-Each Saturday morning, synthesize the week's AI briefings, product briefings, and VC investment theses into a structured analysis of the product landscape. The goal is not to recap what happened — it's to understand what problem categories are emerging, which ones are gaining traction, and how they fit into the broader picture of AI capability shifts and capital flows.
+Each Saturday morning, synthesize the week's AI briefings and weekly product briefing into an analysis of where the product landscape is moving. The goal is not to recap what happened or re-categorize products — the daily briefings and weekly product briefing already did that. The goal is to layer on context (capability shifts, capital flows, VC theses) and surface the gaps between what's being invested in and what's actually being built.
 
-Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W10`).
+Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W13`).
 
-**Write the Problem Categories section first, then all other sections, then write the Week in Review last.**
+**Write the Category Movement section first, then Capital vs. Builder Gaps, then all other sections, then write the Week in Review last.**
 
 **Empty Sections:** If a section has no genuinely significant content from the week, say so briefly and move on. Never pad with low-signal content to fill space.
 
@@ -18,19 +18,19 @@ Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number
 ## Research Tasks
 
 ### 1. Read the Previous 3 Weekly Summaries
-Read the last 3 files in `weekly-summaries/` before doing anything else. Note which problem categories were tracked and which problems kept appearing. You will use this to maintain category name consistency week-to-week and to carry forward any active categories even if they were quieter this week.
+Read the last 3 files in `weekly-summaries/` before doing anything else. Note which categories were tracked, which gaps were identified, and what the open questions were. You will use this to maintain continuity week-to-week.
 
 ### 2. Read the Week's AI Briefings
 Read all files in `ai-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
 
-Do not summarize these — extract only what's relevant as context for the product analysis: capability shifts, model releases, infrastructure changes, or industry moves that create or close product surface area.
+Extract only what's relevant as context for the analysis: capability shifts, model releases, infrastructure changes, funding rounds, acquisitions, notable Product Hunt launches, or industry moves that create or close product surface area. Do not summarize the briefings — distill them into the context that matters for understanding what's changing.
 
 ### 3. Read the Weekly Product Briefing
-Read the most recent file in `weekly-products/` (the weekly product briefing produced earlier today). This file already contains products grouped into problem categories with traction signals.
+Read the most recent file in `weekly-products/` (the weekly product briefing produced earlier today). This file already contains products grouped into problem categories with source data.
 
-This is your primary source for product signal. Use the problem categories as a starting point — you may merge, split, or rename them based on what the AI briefings and VC lens reveal.
+**Do not re-categorize these products.** The product briefing owns the categorization. Your job is to analyze what those categories mean when you overlay the AI briefing context and VC lens.
 
-### 4. Strategic Signals
+### 4. VC Thesis Search
 Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
 - **a16z** (a16z.com)
 - **Sequoia** (sequoiacap.com)
@@ -45,26 +45,31 @@ If nothing relevant was published this week, note it briefly.
 ## Output Sections
 
 ### Week in Review
-2–3 sentences on the overall character of the week from a product perspective. What was the dominant story — a new capability unlocking new product categories, capital concentrating in a particular area, builders converging on a problem? Written last, placed first.
+2–3 sentences on the overall character of the week from a product perspective. What was the dominant story — a new capability unlocking new product categories, capital concentrating in a particular area, a gap becoming visible between investment and builder activity? Written last, placed first.
 
 ### AI Context
-What shifted this week at the model or infrastructure layer that's relevant to product builders? Keep this short — 3–5 bullet points maximum. Focus only on changes that open or close product opportunities, not general AI news. Each bullet should connect directly to product implications.
+What shifted this week at the model or infrastructure layer that's relevant to product builders? Keep this short — 3–5 bullet points maximum. Each bullet should connect a capability or infrastructure change to its product implication. Skip general AI news that doesn't affect what's buildable.
 
 ### VC Lens
-Summarize any investment thesis pieces published this week (from Research Task 4). For each: what they believe, why, and which product categories it validates, challenges, or ignores. If nothing was published this week, note it briefly.
+Summarize any investment thesis pieces published this week (from Research Task 4). For each: what they believe, why, and which product categories it validates, challenges, or opens up. If nothing was published this week, note it briefly. Also note any significant funding rounds or acquisitions from the daily briefings that signal where capital is concentrating.
 
-### Problem Categories
-The heart of the document. Discover and describe the problem categories active this week based on what you observed across the product briefings and catch-up research. Each category gets its own entry:
+### Category Movement
+Take the problem categories from the weekly product briefing as your starting point. For each notable category, provide brief commentary:
+- Is this category growing, shrinking, or steady compared to prior weeks?
+- Did anything in the AI briefings this week (a new capability, a platform change, a funding round) reinforce or undercut this category?
+- Are the products in this category actually solving the problem, or are they clustering around a surface-level version of it?
 
-**[Category Name]**
-- **Who it's for:** Who is experiencing this problem — what kind of person, role, or context?
-- **Problem it's solving:** What is the underlying pain? Focus on the problem, not the solution.
-- **What's being built:** 1–2 sentences on the types of products and approaches appearing in this category. If the problem and solution feel well-matched, note it. If builders seem to be solving the wrong thing or only part of the pain, note that too.
-- **Traction signal:** What evidence exists that products in this category are working — user interest, revenue, community discussion, repeat appearances? Be honest if traction is unclear.
+You don't need to comment on every category. Focus on the ones where something interesting is happening — movement, contradiction, or insight. Carry forward any category from prior weeks that is notably absent this week and flag it.
 
-Use the previous weekly summaries (Research Task 1) to maintain consistent category names week-to-week. Carry forward any category that appeared in prior weeks even if it was quieter this week — a brief entry is better than dropping it silently. Retire a category only if it has been absent or negligible for 3+ consecutive weeks, and note the retirement briefly.
+### Capital vs. Builder Gaps
+This is the most important section. Cross-reference the VC Lens and funding activity (where capital is flowing) with the product briefing categories (where builders are clustering). Identify 1–3 mismatches:
 
-There is no fixed number of categories. Include as many as the week genuinely warrants. Quality over coverage.
+- **Capital without builders:** Where are VCs investing or publishing theses that indie builders aren't building toward yet? Why might the gap exist — is the problem too hard, too enterprise, too early, or just not visible to solo builders?
+- **Builders without capital:** Where are builders crowding that VCs aren't validating? Is this because the market is too small, the business model isn't there, or VCs are wrong?
+
+For each gap, briefly note whether it looks like an opportunity or a warning.
+
+If the data this week doesn't reveal clear gaps, say so — don't manufacture them. Some weeks the signal won't be there.
 
 ### One Big Question
 The single most interesting unresolved tension from the week. Not a summary — a genuine open question the week raised but didn't answer. Ideally something worth watching in the weeks ahead.
@@ -90,17 +95,13 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 - [Repeat as needed, max 5]
 
 ## VC Lens
-[Thesis summaries with category implications, or "Nothing published this week."]
+[Thesis summaries with category implications, or "Nothing published this week." Plus notable funding/acquisitions.]
 
-## Problem Categories
+## Category Movement
+[Commentary on notable categories from the product briefing — what's growing, shrinking, reinforced, or undercut]
 
-### [Category Name]
-- **Who it's for:** ...
-- **Problem it's solving:** ...
-- **What's being built:** ...
-- **Traction signal:** ...
-
-[Repeat for each category]
+## Capital vs. Builder Gaps
+[1–3 mismatches between where capital is flowing and where builders are clustering, with analysis of each gap]
 
 ## One Big Question
 [The most interesting unresolved tension from the week]

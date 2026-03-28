@@ -36,10 +36,7 @@ Write the spec as well as possible before handing to agents. The better the spec
 
 **Tools:**
 - Claude.ai — think through the problem, explore edge cases, make product decisions, refine feature set
-- Compound engineering `/ce:brainstorm` — for unclear requirements, brainstorm before planning
-- Superpowers `/sp:brainstorm` — brainstorm skills for spec writing and subagent-driven development
-- Compound engineering `/ce:plan` — transforms the spec into a detailed implementation plan with data models, file references, architectural decisions. Output is a markdown file specific enough that an agent can execute it without asking questions.
-- Superpowers `/sp:plan` — plan skills and subagent architecture for execution
+- Superpowers `/sp:brainstorm` then `/sp:plan` — brainstorm skills and subagent architecture, then generate a structured implementation plan. Handles spec writing and execution planning in one workflow.
 
 **Spec should include:**
 - Problem statement
@@ -63,8 +60,7 @@ Hand the plan to agents and monitor rather than type.
 **Remote workflow:** SSH into Mac Mini via Tailscale, run Claude Code in tmux so sessions persist if the connection drops. Commit before starting any major phase for clean rollback. For status checks, SSH from phone or message Second Brain on Telegram.
 
 **Tools:**
-- Compound engineering `/ce:work` — executes the plan, writes code, generates tests
-- Superpowers `/sp:work` — subagent-driven execution for parallelizable tasks
+- Superpowers `/sp:work` — subagent-driven execution, handles parallelizable tasks naturally.
 - Claude Code with `--dangerously-skip-permissions` — for unattended execution on Mac Mini where trust is established
 - Compound engineering `/ce:review` — parallel subagents review output from multiple angles (security, performance, overbuilding, test coverage) before shipping
 
@@ -110,13 +106,14 @@ Before this workflow can run on any project, the following must be in place:
 - [ ] Compound engineering plugin installed — `/plugin marketplace add https://github.com/EveryInc/every-marketplace` then `/plugin install compound-engineering`
 - [ ] Superpowers plugin installed
 - [ ] `--dangerously-skip-permissions` alias configured on Mac Mini
-- [ ] Tailscale configured for SSH access to Mac Mini
+- [x] Tailscale configured for SSH access to Mac Mini (2026-03-28)
 - [ ] NanoClaw Telegram channel set up for alerts
 - [ ] Parallel AI API key configured for better research quality
 
 ---
 
 ## Notes
-- Claude.ai is for thinking and planning. Claude Code with compound engineering and superpowers is for building. NanoClaw is for notifications and monitoring.
+- Superpowers owns the build workflow (brainstorm → spec → plan → execute). Compound Engineering owns the learning loop (review → capture learnings → update CLAUDE.md).
+- NanoClaw is for notifications and monitoring, not build orchestration.
 - Build for yourself first. Open source when it works. Find out if others have the problem after it exists.
 - The spec is the most important artifact. Time spent on the spec pays back in reduced correction during build.

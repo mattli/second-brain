@@ -79,8 +79,9 @@ After collecting research from last30days:
 
 1. **Read all the raw data carefully.** Pay attention to exact product names, @handles, engagement metrics (likes, reposts), and direct quotes.
 2. **Do not substitute your own knowledge for what the research says.** Ground everything in the actual data returned.
-3. **Prioritize by signal strength:** high engagement, multiple mentions, real user excitement > press releases or bot-like posts.
-4. **Select 3-5 products/projects** with the strongest signal for the briefing.
+3. **Pool all results from all searches into a single list.** Rank by engagement (likes, reposts, multiple independent mentions) across all keywords. Do not feel obligated to include items from every keyword — if one search returned only low-signal posts, skip it entirely.
+4. **Minimum engagement threshold:** Skip any post with fewer than 10 likes unless it has multiple independent mentions or is from a notably established account. A 5-like post should never make the briefing when 30+ like posts exist in another search.
+5. **Select the top 3-5 products/projects** from the combined, globally ranked list.
 
 ---
 

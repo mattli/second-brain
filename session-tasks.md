@@ -1,3 +1,10 @@
+### March 28, 2026 (session 2)
+- Upgraded weekly-summary instructions from v2.4 to v3.0 — new structure: Category Movement + Capital vs. Builder Gaps replace Problem Categories; archived v2.4
+- Iterated weekly-summary to v3.3 — removed then restored AI Context section; added X engagement caveat to Category Movement; added Product Hunt note to Research Task 2
+- Updated monthly-summary v2.1→v2.3 — research tasks now read Category Movement + Capital vs. Builder Gaps from weeklies + product briefings; added Build Candidates section; removed traction language; updated writing order
+- Updated weekly-products v1.0→v1.1 — 3-product minimum per category; renamed Traction signal→Engagement signal; "builder energy" language
+- Triggered weekly summary test run (2026-W13b) against new v3.0 instructions
+
 ### March 28, 2026
 - Tested Bird search with `--sort top` vs `Latest` — `Top` mode matches too broadly (non-English, unrelated tweets); `Latest` with exact phrases + `min_replies` is the right approach
 - Built one-off X thread product extraction pipeline — 6 keywords, `min_replies:50`, `lang:en`, last 24h; found 24 high-engagement threads, extracted 237 products from top 10

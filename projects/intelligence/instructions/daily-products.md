@@ -1,6 +1,6 @@
 Daily Product Briefing — Instructions
 
-> Version: 2.0 | Last updated: 2026-03-26
+> Version: 2.0 | Last updated: 2026-03-27
 
 ## Purpose
 Each morning, research and compile a concise product intelligence briefing focused on what builders and product people are actively shipping, discussing, and excited about. The output should be readable in approximately 2 minutes and saved to `projects/intelligence/product-briefings/YYYY-MM-DD.md` using today's actual date.
@@ -19,7 +19,9 @@ Read the last 5 product briefings from `projects/intelligence/product-briefings/
 
 ---
 
-## Research Method: X Thread Replies via last30days IPC
+## Research Methods
+
+### Source 1: X Thread Replies via last30days IPC
 
 Search for "drop your product" threads on X and scrape replies containing product URLs. This catches products that builders promote in community threads.
 
@@ -56,17 +58,20 @@ done
 - Read the **full** message content — it contains X posts with engagement stats, quotes, and handles
 - If a request fails or times out, try again with a simpler/shorter topic
 - The thread search does two phases internally (find threads, then fetch replies) — just wait for the single result
+- Run the IPC request and the Product Hunt web search in parallel to save time
+
+### Source 2: Product Hunt (web search)
+
+Search for today's Product Hunt daily leaderboard using web search. Find the top 5 products launched today with their upvote counts.
 
 ---
 
 ## Synthesizing Results
 
-After collecting thread replies:
+Keep the two sources **separate** in the output — do not merge them into one list. Each source gets its own section:
 
-1. **Read all the raw data carefully.** Pay attention to exact product names, @handles, engagement metrics (likes, reposts), product URLs, and what the builder says about their product.
-2. **Do not substitute your own knowledge for what the research says.** Ground everything in the actual data returned.
-3. **Rank replies by engagement** (likes, reposts) and quality of the product pitch. Products that include a working URL and a clear description of what they do rank higher.
-4. **Select the top 3-5 products** from the ranked list.
+1. **X Thread Replies**: Read all reply data carefully. Rank by engagement and quality of pitch. Select the top 3-5 products with working URLs.
+2. **Product Hunt**: List the top 3-5 products from today's leaderboard with upvote counts and a one-line summary of what each does.
 
 ---
 
@@ -77,7 +82,23 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 ```
 # Product Briefing — YYYY-MM-DD
 
-## [Product or Project Name]
+## Product Hunt: Top Launches
+
+### [Product or Project Name]
+**Who has this problem?** [developer / PM / non-technical user / enterprise team / etc.]
+**What problem does it attempt to solve?**
+**Is the solution complete, or does it address only part of the pain?**
+**What would a better solution look like?**
+
+*Source: Product Hunt — #N (N upvotes)*
+
+[Repeat for 3–5 products]
+
+---
+
+## X: Indie Builder Threads
+
+### [Product or Project Name]
 **Who has this problem?** [developer / PM / non-technical user / enterprise team / etc.]
 **What problem does it attempt to solve?**
 **Is the solution complete, or does it address only part of the pain?**
@@ -90,7 +111,7 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 ---
 
 ## Today's Signal
-[1–2 sentences synthesizing what today's product activity reveals — what kinds of problems are builders choosing to solve, what does the pattern of launches suggest about where the market is heading?]
+[1–2 sentences synthesizing what today's product activity reveals across both sources]
 
 ---
 
@@ -98,6 +119,7 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 | Source | Searched | Items Used |
 |--------|----------|------------|
 | X — thread replies ("drop your product") | ✅/❌ | [product names or "(nothing new)"] |
+| Product Hunt — daily leaderboard | ✅/❌ | [product names or "(nothing new)"] |
 ```
 
 ---

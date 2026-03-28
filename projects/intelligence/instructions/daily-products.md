@@ -39,7 +39,7 @@ cat > "/workspace/ipc/tasks/$(date +%s)-$(head -c 4 /dev/urandom | xxd -p).json"
   "type": "last30days_research",
   "requestId": "${REQ_ID}",
   "topics": "TOPIC_HERE",
-  "flags": "--search x",
+  "flags": "--search x --min-likes=10",
   "groupFolder": "${GROUP}",
   "timestamp": "${NOW}"
 }

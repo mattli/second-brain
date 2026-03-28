@@ -19,27 +19,21 @@ Read the last 5 product briefings from `projects/intelligence/product-briefings/
 
 ---
 
-## Research Method: last30days IPC Tool
+## Research Method: X Thread Replies via last30days IPC
 
-Your primary research tool is the **last30days engine**, accessed via IPC. It searches X (Twitter) for real-time product/builder signal.
-
-### How to Run Research
-
-For each topic, write a JSON file to `/workspace/ipc/tasks/` and poll for results:
+Search for "drop your product" threads on X and scrape replies containing product URLs. This catches products that builders promote in community threads.
 
 ```bash
-# Generate unique request ID
-REQ_ID="l30d-$(date +%s)-$(head -c 4 /dev/urandom | xxd -p)"
+REQ_ID="thread-$(date +%s)-$(head -c 4 /dev/urandom | xxd -p)"
 GROUP="${NANOCLAW_GROUP_FOLDER}"
 NOW=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
 
-# Write IPC request
 cat > "/workspace/ipc/tasks/$(date +%s)-$(head -c 4 /dev/urandom | xxd -p).json" <<EOF
 {
-  "type": "last30days_research",
+  "type": "last30days_thread_search",
   "requestId": "${REQ_ID}",
-  "topics": "TOPIC_HERE",
-  "flags": "--search x --days=1 --require-url",
+  "keywords": "drop your product ||| share your product ||| show me what you built",
+  "days": 1,
   "groupFolder": "${GROUP}",
   "timestamp": "${NOW}"
 }
@@ -56,31 +50,23 @@ for i in $(seq 1 300); do
 done
 ```
 
-### Research Topics
-
-Run exactly 2 IPC requests with these topics:
-
-1. `"topics": "just launched ||| just shipped ||| I built"` — builder launch announcements
-2. `"topics": "built with claude ||| built with AI"` — products built with AI tools
-
-### Important
+#### Important
 - Each research call takes 1-5 minutes — be patient waiting for results
 - The result is a JSON object: `{ "success": true, "message": "...research output..." }`
 - Read the **full** message content — it contains X posts with engagement stats, quotes, and handles
 - If a request fails or times out, try again with a simpler/shorter topic
-- Use `--search x` to search X only (default is Reddit + X)
+- The thread search does two phases internally (find threads, then fetch replies) — just wait for the single result
 
 ---
 
 ## Synthesizing Results
 
-After collecting research from last30days:
+After collecting thread replies:
 
-1. **Read all the raw data carefully.** Pay attention to exact product names, @handles, engagement metrics (likes, reposts), and direct quotes.
+1. **Read all the raw data carefully.** Pay attention to exact product names, @handles, engagement metrics (likes, reposts), product URLs, and what the builder says about their product.
 2. **Do not substitute your own knowledge for what the research says.** Ground everything in the actual data returned.
-3. **Pool all results from all searches into a single list.** Rank by engagement (likes, reposts, multiple independent mentions) across all keywords. Do not feel obligated to include items from every keyword — if one search returned only low-signal posts, skip it entirely.
-4. **Minimum engagement threshold:** Skip any post with fewer than 10 likes unless it has multiple independent mentions or is from a notably established account. A 5-like post should never make the briefing when 30+ like posts exist in another search.
-5. **Select the top 3-5 products/projects** from the combined, globally ranked list.
+3. **Rank replies by engagement** (likes, reposts) and quality of the product pitch. Products that include a working URL and a clear description of what they do rank higher.
+4. **Select the top 3-5 products** from the ranked list.
 
 ---
 
@@ -97,7 +83,7 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 **Is the solution complete, or does it address only part of the pain?**
 **What would a better solution look like?**
 
-*Source: X — @handle (N likes, N reposts) | Keyword: "which search keyword found this"*
+*Source: X thread reply — @handle (N likes) | Thread: @thread_starter "drop your product"*
 
 [Repeat for 3–5 products]
 
@@ -111,7 +97,7 @@ Save to `projects/intelligence/product-briefings/YYYY-MM-DD.md`. Use this struct
 ## Sources Log
 | Source | Searched | Items Used |
 |--------|----------|------------|
-| X (via last30days) | ✅/❌ | [product names or "(nothing new)"] |
+| X — thread replies ("drop your product") | ✅/❌ | [product names or "(nothing new)"] |
 ```
 
 ---

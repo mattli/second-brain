@@ -34,7 +34,7 @@ cat > "/workspace/ipc/tasks/$(date +%s)-$(head -c 4 /dev/urandom | xxd -p).json"
 {
   "type": "last30days_thread_search",
   "requestId": "${REQ_ID}",
-  "keywords": "drop your product ||| share your product ||| show me what you built",
+  "keywords": "drop your product ||| share your product ||| show me what you built ||| drop your project ||| what are you shipping ||| what are you building",
   "days": 1,
   "groupFolder": "${GROUP}",
   "timestamp": "${NOW}"

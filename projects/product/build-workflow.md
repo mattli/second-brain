@@ -102,13 +102,13 @@ The step that separates compound engineering from regular AI-assisted coding. Fe
 
 Before this workflow can run on any project, the following must be in place:
 
-- [ ] `last30days` skill installed — `git clone https://github.com/mvanhorn/last30days-skill.git ~/.claude/skills/last30days`
-- [ ] Compound engineering plugin installed — `/plugin marketplace add https://github.com/EveryInc/every-marketplace` then `/plugin install compound-engineering`
-- [ ] Superpowers plugin installed
+- [x] `last30days` skill installed (2026-03-28)
+- [x] Compound engineering plugin installed (2026-03-28)
+- [x] Superpowers plugin installed (2026-03-28)
 - [ ] `--dangerously-skip-permissions` alias configured on Mac Mini
 - [x] Tailscale configured for SSH access to Mac Mini (2026-03-28)
 - [ ] NanoClaw Telegram channel set up for alerts
-- [ ] Parallel AI API key configured for better research quality
+- [x] Parallel AI API key configured via credential proxy (2026-03-23)
 
 ---
 

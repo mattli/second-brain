@@ -75,3 +75,17 @@
 **Why interesting:** The problem isn't collecting links — it's that they pile up and never get reviewed. An agent that knows your active projects can do the triage you keep putting off. The value is in what it discards, not what it keeps.
 
 **Solo feasibility:** Scheduled NanoClaw task + vault file reading + project context from CLAUDE.md files. No new infrastructure needed.
+
+---
+
+## 7. Left vs. Right Wing Debate Chatbots
+
+*Inspired by: political discourse gap, March 2026*
+
+**What it is:** Paired chatbots that argue opposing political perspectives — one left-leaning, one right-leaning. Users can watch them debate a topic, jump in to challenge either side, or use them to stress-test their own views. Could be a web app, a social media format, or an interactive tool for civic education.
+
+**Why interesting:** Political discourse online is tribal and low-quality. Most people never engage seriously with the strongest version of the opposing argument. Two well-constructed bots that steelman each side could be genuinely useful for understanding policy trade-offs — or just entertaining. The format (adversarial AI debate) is novel and shareable.
+
+**Open questions:** How do you keep the bots from being bland centrists or caricatures? What's the moderation story — topics like abortion, immigration, and gun control are exactly where this is most valuable but also most dangerous for brand risk. Is this a standalone product, a content format (YouTube/TikTok clips of bot debates), or an educational tool? Revenue model is unclear — could be ad-supported content, a paid "debate simulator" tool, or licensed to schools/media orgs.
+
+**Risks:** AI safety policies at major providers actively resist taking political stances — you'd need to carefully prompt-engineer or fine-tune to get substantive arguments rather than hedged non-answers. Public backlash risk if either bot says something inflammatory. The "both sides" framing itself is politically charged.

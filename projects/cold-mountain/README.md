@@ -11,7 +11,7 @@ Design documentation and content briefs for the Cold Mountain portfolio website 
 - Roadmap sections: Validation, Specification, Execution (no status badges — simpler layout)
 - Subtle color-coded tags: blue (iOS), purple (Web), green (AI Agent)
 - Name: "Matt Li" (changed from Mathew Thomas Li)
-- Tagline: "Building AI-enabled products across discovery, prototyping, and execution."
+- Tagline: "Building systems. Shipping products."
 - Project order: Second Brain, Seasons Journaling, School Search AI, FreshNotes, CIEG, ListenBack
 - Social links in header: LinkedIn, X, Email (SVG icons)
 - "What I'm Learning" section written but removed from the live page for now — could be re-added later

@@ -1,3 +1,7 @@
+### March 28, 2026 (session 3)
+- Updated homepage tagline — iterated through several options, settled on "Building systems. Shipping products."
+- Committed and pushed twice to main (auto-deploys to Vercel)
+
 ### March 28, 2026 (session 2)
 - Upgraded weekly-summary instructions from v2.4 to v3.0 — new structure: Category Movement + Capital vs. Builder Gaps replace Problem Categories; archived v2.4
 - Iterated weekly-summary to v3.3 — removed then restored AI Context section; added X engagement caveat to Category Movement; added Product Hunt note to Research Task 2

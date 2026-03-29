@@ -51,3 +51,27 @@
 **Open questions:** What model runs on-device at acceptable quality? How does the local database of POIs stay fresh without connectivity? Is the GPS/POI problem already solved by Apple Maps offline + Siri, or is there a real gap?
 
 **Status:** Half-baked — worth revisiting if on-device model quality improves significantly.
+
+---
+
+## 5. NanoClaw Telegram Build Workflow
+
+*Inspired by: existing NanoClaw infrastructure, March 2026*
+
+**What it is:** Kick off Claude Code builds from Telegram, get progress updates at checkpoints, respond with feedback from your phone, and let the build continue. Async, mobile-first coding workflow where NanoClaw orchestrates containers and Telegram is the interface.
+
+**Why interesting:** Pieces already exist — NanoClaw containers, Telegram channel, credential proxy, IPC. The missing piece is the pause-and-wait loop for human input. This turns dead time (commutes, walks, waiting rooms) into productive coding sessions without needing a laptop.
+
+**Solo feasibility:** Built on top of existing NanoClaw infrastructure. Main new work is a checkpoint/feedback IPC loop between the container agent and Telegram, plus a way to present diffs and plan summaries in a mobile-readable format.
+
+---
+
+## 6. Inbox Review Agent
+
+*Inspired by: link hoarding problem, March 2026*
+
+**What it is:** A NanoClaw scheduled task that reads links from the vault inbox, cross-references them against current project goals and context, and surfaces the few that are most relevant right now. Filters, not summarizes. Could run weekly.
+
+**Why interesting:** The problem isn't collecting links — it's that they pile up and never get reviewed. An agent that knows your active projects can do the triage you keep putting off. The value is in what it discards, not what it keeps.
+
+**Solo feasibility:** Scheduled NanoClaw task + vault file reading + project context from CLAUDE.md files. No new infrastructure needed.

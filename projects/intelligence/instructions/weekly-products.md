@@ -9,6 +9,8 @@ Each Saturday morning (before the weekly summary), research and compile a produc
 
 **Empty Sections:** If a source has no significant activity, move on. Never pad with low-signal content.
 
+**Sources:** Use only the sources described below. Do not use Product Hunt, TechCrunch, or any other source not explicitly listed in these instructions.
+
 ---
 
 ## Before You Start

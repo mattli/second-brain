@@ -21,7 +21,7 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 |-------|--------|---------|
 | telegram_main | `telegram_main` | Interactive Telegram chat (main group) |
 | Daily Briefing | `briefing` | Daily AI intelligence briefing agent |
-| Product Briefing | `product-briefing` | Daily product intelligence briefing agent |
+| Product Briefing | `product-briefing` | Weekly product intelligence briefing agent |
 | Weekly Summary | `weekly-summary` | Weekly synthesis agent |
 | Monthly Summary | `monthly-summary` | Monthly synthesis agent |
 
@@ -30,7 +30,7 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 | Task | Schedule | Type | What it does |
 |------|----------|------|--------------|
 | 📋 Daily Briefing | 7am Mon–Fri | container | Researches and writes AI intelligence briefing |
-| 🛠 Product Briefing | 7am Mon–Fri | container | Researches and writes product intelligence briefing |
+| 🛠 Product Briefing | 6am Saturday | container | Researches and writes weekly product intelligence briefing |
 | 📊 Weekly Summary | 7am Saturday | container | Synthesizes the week's daily briefings |
 | 📅 Monthly Summary | 7am 1st of month | container | Synthesizes monthly trends, updates product-vision.md |
 | 📝 Daily To-Do | 8am daily | container | Reads today's section from daily-to-do.md, sends to Telegram |

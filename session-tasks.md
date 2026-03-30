@@ -1,3 +1,7 @@
+### March 30, 2026
+- [x] Fixed stale cron task bug in NanoClaw — product briefing ran on Monday instead of Saturday because `next_run` was stuck in the past after a missed window; added staleness check in scheduler loop (`task-scheduler.ts`) to skip cron tasks >10min overdue and advance to next occurrence (2026-03-30)
+- [x] Fixed product briefing sourcing — agent was using Product Hunt despite instructions specifying X-only; old archived briefings (which used PH) were contaminating the agent's context; added explicit "use only listed sources" guardrail to `weekly-products.md` instructions
+
 ### March 29, 2026
 - Integrated Readwise MCP into NanoClaw main group — OAuth via `mcp-remote` stdio bridge with tokens mounted from `~/.mcp-auth`; credential proxy pattern doesn't work here (Readwise uses OAuth, not API keys)
 - Fixed stale weekly-summary group CLAUDE.md — `product-briefings/` path corrected to `weekly-products/`

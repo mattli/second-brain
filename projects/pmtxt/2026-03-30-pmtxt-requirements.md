@@ -9,6 +9,8 @@ topic: pmtxt
 
 The first PM at a 2-15 person startup is overwhelmed and under-tooled. They're drowning in scattered customer feedback, competitive signals, and internal requests — and their hardest job is answering "what should we build next?" Existing tools (Jira, Productboard, Notion) manage work but don't help make product decisions. Meanwhile, coding agents can build features faster than ever, but they need structured specs to execute on. The bottleneck has shifted from engineering throughput to product clarity.
 
+A validated secondary problem (see reddit-feedback.md): AI-generated PRDs and specs consistently fail because the AI lacks product context — it doesn't know your customers, stack, past decisions, or tradeoffs, and fills those gaps with hallucinations. The most effective current workarounds are structured Q&A before generation and constraining AI with specific context. pmtxt solves this architecturally by maintaining a governed, always-current product knowledge base that the AI reads from rather than invents.
+
 ## Requirements
 
 **Core Decision Engine**
@@ -16,18 +18,23 @@ The first PM at a 2-15 person startup is overwhelmed and under-tooled. They're d
 - R2. Recommendations are grounded in the product knowledge base, not generic — they reflect the specific company's customers, market position, and goals
 
 **Product Knowledge Base**
-- R3. Product context is stored in structured plain-text/markdown files (e.g., customers.md, competitors.md, goals.md, roadmap.md) as the underlying data layer
+- R3. Product context is stored in structured plain-text/markdown files (e.g., customers.md, competitors.md, goals.md, roadmap.md, decisions.md) as the underlying data layer
+- R3a. `decisions.md` is a first-class file that captures past product decisions and rationale, solving the "continuity across sessions" problem identified in user research
 - R4. The system builds and maintains these files through a hybrid of PM conversations, integrations with existing tools, and manual input
 - R5. All updates to the knowledge base go through a PR-style approval workflow — the system proposes changes, the PM reviews and approves before anything becomes the source of truth
 
+**Structured Exploration Before Generation**
+- R6. Before generating any spec or recommendation, the system runs a structured Q&A step — surfacing clarifying questions, constraints, and gaps for the PM to resolve first
+- R7. The system acts as a thinking partner: it challenges assumptions, identifies missing decisions, and surfaces edge cases rather than just generating documents
+
 **Agent-Ready Spec Output**
-- R6. The system generates structured feature specs from product decisions that coding agents (Cursor, Claude Code, etc.) can directly execute on
-- R7. Specs are detailed enough for an agent to begin implementation without the PM needing to translate further
+- R8a. The system generates structured feature specs from product decisions that coding agents (Cursor, Claude Code, etc.) can directly execute on
+- R8b. Specs are detailed enough for an agent to begin implementation without the PM needing to translate further
 
 **Interaction Model**
-- R8. The PM interacts with the system primarily through a CLI chat interface to explore decisions, review context, and approve changes
-- R9. A web dashboard provides a shared view of the knowledge base and specs for both the PM and stakeholders (engineers, founders, investors)
-- R10. The PM can perform approval workflows (reviewing and accepting/rejecting proposed knowledge base changes) from either the CLI or the web dashboard
+- R9. The PM interacts with the system primarily through a CLI chat interface to explore decisions, review context, and approve changes
+- R10. A web dashboard provides a shared view of the knowledge base and specs for both the PM and stakeholders (engineers, founders, investors)
+- R11. The PM can perform approval workflows (reviewing and accepting/rejecting proposed knowledge base changes) from either the CLI or the web dashboard
 
 ## Success Criteria
 
@@ -42,8 +49,18 @@ The first PM at a 2-15 person startup is overwhelmed and under-tooled. They're d
 - Not a dashboard/analytics product — does not visualize usage data, though it may consume analytics as input
 - V1 does not need to support multi-PM collaboration or team permissions
 
+## Competitive Landscape
+
+From user research (reddit-feedback.md):
+- **Traycer** — Forces structured Q&A before generating specs; produces consistent spec + tickets. Multiple positive mentions. Closest to pmtxt's interaction model but lacks the persistent knowledge base
+- **Motionode** — "Cursor for technical planning." Deterministic engine for deliverables, dependencies, and timelines. More structured/rigid than pmtxt's conversational approach
+- **Rakenne** — Repeatable workflows with step-by-step output structure. Targets non-developers
+
+pmtxt's differentiator: none of these maintain a governed, persistent product knowledge base. They generate documents from scratch each time, which is why they hit the hallucination/context problem.
+
 ## Key Decisions
 
+- **Thinking partner, not document generator:** The system challenges, questions, and surfaces gaps before generating anything. AI as reviewer > AI as author (validated by user research)
 - **Outcome over tool:** The product delivers PM outcomes (prioritization decisions, specs), not a file format. Plain-text files are the substrate, not the product
 - **PR-style governance:** All knowledge base changes require PM approval. No auto-commits, even for minor updates. This ensures the PM stays in control and the knowledge base is trustworthy
 - **Target user is first PM at small startup:** Not solo founders (too small a market for this level of product), not enterprise PMs (too entrenched in existing tools)

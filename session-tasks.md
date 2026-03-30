@@ -1,3 +1,11 @@
+### March 29, 2026
+- Integrated Readwise MCP into NanoClaw main group — OAuth via `mcp-remote` stdio bridge with tokens mounted from `~/.mcp-auth`; credential proxy pattern doesn't work here (Readwise uses OAuth, not API keys)
+- Fixed stale weekly-summary group CLAUDE.md — `product-briefings/` path corrected to `weekly-products/`
+- Fixed `container/build.sh` — now auto-prunes builder cache and uses `--no-cache` to prevent stale COPY layers
+- Removed stale agent-runner session copies for briefing, weekly-summary, product-briefing groups
+- Documented MCP servers in vault NanoClaw README (Parallel + Readwise, transport types, re-auth instructions)
+- Audited all 13 CLAUDE.md files on the machine
+
 ### March 28, 2026 (session 3)
 - Updated homepage tagline — iterated through several options, settled on "Building systems. Shipping products."
 - Committed and pushed twice to main (auto-deploys to Vercel)

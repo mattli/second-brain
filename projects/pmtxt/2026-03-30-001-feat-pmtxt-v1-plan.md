@@ -498,6 +498,8 @@ Traycer, Motionode, and Rakenne generate documents from scratch each time. pmtxt
   - The dashboard needs to know the KB path — configurable via environment variable or `.pmtxt/config.yaml`
   - Read-only for stakeholders by default; PM can approve/reject from the web too
 
+  **Design:** Use the `/frontend-design` skill during implementation for design quality. Alternatives: create Figma mockups beforehand and use `/figma-design-sync` to match them, or bring your own designs from another tool. The dashboard is stakeholder-facing, so design matters here more than in the CLI.
+
   **Patterns to follow:**
   - Next.js App Router with server components for data fetching
   - Tailwind CSS for styling (already in the project)

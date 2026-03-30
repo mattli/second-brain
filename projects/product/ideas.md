@@ -105,3 +105,7 @@
 **Open questions:** Is this a file format/spec + CLI tool, a VS Code/Cursor extension, or a full web app? Who's the initial user — solo founders, small teams, or PMs at larger companies? How does the AI layer work — does it read the files and answer questions, generate new sections, or actively propose changes?
 
 **Status:** Early concept — revisit in context of YC RFS "Cursor for PMs."
+
+**Connection to open source file management idea:** These two ideas are the same concept from different angles. pmtxt defines the *format and spec* — what files exist (customers.md, competitors.md, team.md, etc.) and how they're structured. The file management tool provides the *tooling* — how you navigate, manage, and sync those files. Together they form a full stack: spec + tooling. The NanoClaw vault is a working proof of concept of this approach for a single person. The product leap is making it work for a team building a product together.
+
+**Approval system note:** The core mechanic is less about pmtxt itself and more about the MD file management layer — specifically, an approval workflow for updates to each file. When a file like customers.md or competitors.md is proposed to change, it goes through a review/approval step before being committed. This turns plain markdown files into a governed, collaborative source of truth — not just a shared folder.

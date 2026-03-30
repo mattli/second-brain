@@ -80,6 +80,12 @@ The open source dimension matters here too. You're not just customizing a tool �
 
 **Anthropic's stack:** Dispatch can trigger reading, moving, or deleting local files based on phone instructions. Anthropic warns explicitly about prompt injection risks. Permissions are coarser. Claude Code Channels with `--dangerously-skip-permissions` enabled — common in practice because permission grants require terminal access — removes most guardrails.
 
+### Credential Security — A Deeper Look
+
+NanoClaw is the only agent framework where agents never see API keys. The credential proxy (port 3001) sits outside the container — agents make requests, the proxy attaches the secret, and the key never enters the container environment or filesystem. Even a successful prompt injection attack inside a container cannot exfiltrate credentials because they don't exist there.
+
+OpenClaw stores API keys in plain text config files. Palo Alto Networks called its security model a "lethal trifecta." Hermes Agent stores credentials in environment variables or config files accessible to the agent process. Both frameworks give the agent direct access to secrets. NanoClaw does not.
+
 ### Cost
 
 **NanoClaw:** Covered by your existing Claude subscription via OAuth. No additional infrastructure cost.
@@ -102,6 +108,28 @@ The open source dimension matters here too. You're not just customizing a tool �
 - You want OS-level container isolation between agents
 - You want full customization — a system that bends to your workflow, not Anthropic's vision
 - You want Telegram integration that doesn't require your computer to be on and doesn't require granting permissions from a terminal
+
+---
+
+## NanoClaw vs Hermes Agent
+
+Hermes Agent (Nous Research, launched February 2026) is the strongest alternative for a personal AI agent. Its key advantage is self-improving memory: it auto-generates skill documents from repeated tasks, maintains persistent memory across sessions via MEMORY.md and USER.md, and searches past conversations with FTS5. It supports any LLM provider, not just Claude.
+
+NanoClaw's advantages over Hermes: container isolation (agents never touch credentials), a codebase small enough to modify yourself (~2,000 lines vs a research-grade Python framework), and tight integration with Claude's 200K context and tool calling.
+
+The self-improving memory gap is narrower than it appears. NanoClaw's main group CLAUDE.md already instructs the agent to read and write memory.md each session. The difference is automation — Hermes does it more aggressively by default. A more aggressive memory policy in CLAUDE.md would approximate Hermes's behavior without a platform switch.
+
+Hermes is model-agnostic, which provides flexibility but means it's not optimized for any single model. NanoClaw on Claude is a tighter, more reliable integration.
+
+Bottom line: Hermes is the better choice if self-improving memory is the primary need and you don't require container isolation. NanoClaw is the better choice if security, customizability, and Claude-native integration matter more.
+
+## MCP Extensibility
+
+Adding new MCP integrations to NanoClaw follows a repeatable pattern. The credential proxy was refactored (March 2026) from hardcoded Parallel API key routing to a generic route-to-key mapping. Adding a new MCP server now requires one line in the route table, one line in the agent-runner permissions, and the API key in .env. Readwise MCP was added in a single session following this pattern. This extensibility compounds — each integration makes the next one trivial.
+
+## Claude Code Build Tools (Different Layer)
+
+Tools like gstack (Garry Tan/YC), Superpowers (Jesse Vincent), and Compound Engineering (Every/Kieran Klaassen) operate at the Claude Code layer — they structure how you build with Claude Code through slash commands, subagent dispatch, TDD enforcement, and learning loops. They are not competitors to NanoClaw. They complement it. NanoClaw handles always-on infrastructure (briefings, monitoring, Telegram interface, scheduled tasks). Claude Code plugins handle the interactive build process. Both can run on the same Mac Mini.
 
 ---
 

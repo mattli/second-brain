@@ -89,3 +89,19 @@
 **Open questions:** How do you keep the bots from being bland centrists or caricatures? What's the moderation story — topics like abortion, immigration, and gun control are exactly where this is most valuable but also most dangerous for brand risk. Is this a standalone product, a content format (YouTube/TikTok clips of bot debates), or an educational tool? Revenue model is unclear — could be ad-supported content, a paid "debate simulator" tool, or licensed to schools/media orgs.
 
 **Risks:** AI safety policies at major providers actively resist taking political stances — you'd need to carefully prompt-engineer or fine-tune to get substantive arguments rather than hedged non-answers. Public backlash risk if either bot says something inflammatory. The "both sides" framing itself is politically charged.
+
+---
+
+## 8. Plain-Text PM Tool (pmtxt)
+
+*Inspired by: YC Spring 2026 RFS "Cursor for Product Managers", March 2026*
+
+**What it is:** A product management system built entirely in plain text / markdown files. Core files: `customers.md`, `competitors.md`, `team.md`, `roadmap.md`, `goals.md`, etc. Lives in a git repo, works with any editor, and is readable by AI agents. The anti-Jira — no dashboards, no SaaS lock-in, just structured text that you and your AI can reason over.
+
+**Why interesting:** YC is actively looking to fund "Cursor for Product Managers" — a system that helps teams figure out *what to build*, not just how to build it. A plain-text PM system is a natural substrate for that: it's AI-readable by design, version-controlled, and portable. As coding agents take over implementation, the artifact that matters most is the product definition layer — and that's exactly what this is.
+
+**Connection to existing work:** Matt has an existing landing page concept at pmtxt.com. The NanoClaw vault itself is a version of this idea applied to a personal system.
+
+**Open questions:** Is this a file format/spec + CLI tool, a VS Code/Cursor extension, or a full web app? Who's the initial user — solo founders, small teams, or PMs at larger companies? How does the AI layer work — does it read the files and answer questions, generate new sections, or actively propose changes?
+
+**Status:** Early concept — revisit in context of YC RFS "Cursor for PMs."

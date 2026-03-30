@@ -100,7 +100,7 @@
 
 **Why interesting:** YC is actively looking to fund "Cursor for Product Managers" — a system that helps teams figure out *what to build*, not just how to build it. A plain-text PM system is a natural substrate for that: it's AI-readable by design, version-controlled, and portable. As coding agents take over implementation, the artifact that matters most is the product definition layer — and that's exactly what this is.
 
-**Connection to existing work:** Matt has an existing landing page concept at pmtxt.com. The NanoClaw vault itself is a version of this idea applied to a personal system.
+**Connection to existing work:** Matt is considering buying pmtxt.ai to build this out. The NanoClaw vault itself is a version of this idea applied to a personal system.
 
 **Open questions:** Is this a file format/spec + CLI tool, a VS Code/Cursor extension, or a full web app? Who's the initial user — solo founders, small teams, or PMs at larger companies? How does the AI layer work — does it read the files and answer questions, generate new sections, or actively propose changes?
 

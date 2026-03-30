@@ -38,6 +38,18 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 | Vault Sync | Every 30 min | script | Commits and pushes vault changes to GitHub |
 | Obsidian Sync Check | Every 30 min | script | Verifies Obsidian Sync is running |
 
+## MCP Servers (Container)
+
+| Server | Transport | Auth | Purpose |
+|--------|-----------|------|---------|
+| parallel-search | HTTP via credential proxy | Bearer API key | Web search with ranked results and excerpts |
+| parallel-task | HTTP via credential proxy | Bearer API key | Task management |
+| readwise | stdio via `mcp-remote` | OAuth (tokens in `~/.mcp-auth/`) | Access saved articles, highlights, and notes |
+
+Parallel servers use the credential proxy pattern — API key in `.env`, proxy injects auth headers, containers never see secrets. Readwise uses OAuth which requires `mcp-remote` as a stdio bridge; tokens were obtained via SSH port-forwarded OAuth flow and are mounted read-write into containers at `/home/node/.mcp-auth`.
+
+To re-authenticate Readwise (e.g. after token expiry): `ssh -L 3334:localhost:3334 <mac-mini>` then on the Mini run `npx -y mcp-remote https://mcp2.readwise.io/mcp 3334` and authorize in browser.
+
 ## Authentication
 
 - **Interactive Claude Code sessions** — Claude.ai Max subscription credentials, stored in macOS Keychain

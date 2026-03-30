@@ -1,6 +1,6 @@
 # NanoClaw vs Anthropic's Agent Stack
 
-*Updated March 25, 2026 — reflects Claude Code Channels, Dispatch, Cowork scheduled tasks, cloud scheduling, and computer use*
+*Updated March 30, 2026 — reflects computer use now in Claude Code (research preview)*
 
 ## What Anthropic Has Shipped (Last 6 Weeks)
 
@@ -10,7 +10,8 @@ The landscape has changed faster than almost anyone expected. Anthropic shipped 
 - **Claude Code cloud scheduled tasks** (March 17) — cron-style scheduling on Anthropic's servers, no local hardware required
 - **Dispatch** (March 17) — mobile remote control for Cowork desktop sessions via the Claude app
 - **Claude Code Channels** (March 19) — official Telegram and Discord integration for Claude Code
-- **Computer use** (March 24) — full desktop control, Claude can operate any app on your computer
+- **Computer use via Dispatch** (March 24) — full desktop control via the Cowork/Dispatch stack
+- **Computer use in Claude Code** (March 30) — computer use now available directly in the CLI, not just Dispatch/Cowork; Claude can open apps, click through UIs, and test what it built from the terminal; research preview on Pro and Max plans
 - **Obsidian plugins** — multiple community plugins now connect Claude Code directly to Obsidian vaults
 
 Two gaps that previously made NanoClaw clearly superior — Telegram integration and vault access — have both been closed. This document reflects that honestly.
@@ -71,7 +72,7 @@ The open source dimension matters here too. You're not just customizing a tool �
 
 **NanoClaw:** Browser automation via `agent-browser`. Agents can open pages, click, fill forms, take screenshots. Scoped to browser only.
 
-**Dispatch + Cowork:** Full desktop control launched March 24 — Claude can operate any app, not just the browser. For workflows requiring native desktop app interaction, Dispatch has a capability NanoClaw doesn't currently match.
+**Anthropic's stack:** Full desktop control via Dispatch/Cowork (March 24), and now computer use directly in Claude Code CLI (March 30, research preview on Pro/Max). Claude can operate any app, not just the browser. This capability now exists in both the mobile-controlled desktop stack and the CLI — NanoClaw's browser-only automation is the weaker option here.
 
 ### Security Posture
 

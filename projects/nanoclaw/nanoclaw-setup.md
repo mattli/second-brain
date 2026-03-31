@@ -86,6 +86,8 @@ Added Telegram as the primary channel (merged `nanoclaw-telegram` skill branch).
 
 ### Phase 5 — Git credential proxy ✓
 
+> **Upstream note:** As of v1.2.35, upstream replaced the built-in credential proxy with OneCLI Agent Vault. Your fork still uses the original credential proxy. See Fork Maintenance → Upstream sync before running `/update-nanoclaw`.
+
 **Problem:** Containers need git access (vault sync now, autonomous coding soon), but tokens shouldn't live inside containers.
 
 **Solution:** Extended the existing credential proxy (port 3001) to serve git credentials. The same proxy that injects Anthropic API keys now also handles GitHub tokens — one place for all secrets.
@@ -151,6 +153,15 @@ Your fork (`mattli/nanoclaw`) is a customized copy of the upstream repo (`qwibit
 ### Upstream sync
 
 Upstream releases new features and fixes regularly. Your fork works independently — you don't need to stay in sync. When you want to pull in updates, use `/update-nanoclaw` from a Claude Code session. Aim to check roughly once a month, or when you hear about a feature you want.
+
+**⚠️ v1.2.35 breaking change — read before updating:**
+OneCLI Agent Vault replaces the built-in credential proxy. You're on Docker (not Apple Container), so you'll hit the full migration path. What migrates automatically: Anthropic and OpenAI API keys. What does NOT migrate automatically: Readwise and Parallel API keys (custom route table entries). Steps when ready:
+1. Run `/update-nanoclaw`
+2. Run `/init-onecli` to do the base migration
+3. Manually re-add Readwise and Parallel API keys into OneCLI Vault
+4. Test both MCPs are still working
+
+Escape hatch if things break: install the `/use-native-credential-proxy` skill to revert to the old behavior while you sort it out.
 
 ### GitHub Actions workflows
 

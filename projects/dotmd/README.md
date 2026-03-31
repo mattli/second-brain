@@ -1,60 +1,40 @@
 # dotmd
 
-Track changes to AI instruction files (CLAUDE.md, AGENTS.md, memory files, skill configs) across your entire setup. Periodic snapshots capture change history for files that live outside git repos. Open-source developer tool that also serves as the technical foundation for pmtxt.
+CLI-first tool that tracks changes to AI instruction files (CLAUDE.md, AGENTS.md, memory files) across your Claude Code setup, with a local web dashboard for visualization. Periodic snapshots capture change history for files that live outside git repos. Open-source developer tool that also serves as the technical foundation for pmtxt.
 
 ## Status
 
-Planning complete. Not yet started.
+Planning reviewed and updated. Ready to implement. Next step: build Unit 1 (core).
 
 ## Key Docs
 
-- **[Requirements](2026-03-30-dotmd-requirements.md)** — problem frame, requirements, scope boundaries
-- **[V1 Implementation Plan](2026-03-30-001-feat-dotmd-v1-plan.md)** — 5 units, tech decisions, architecture
+- **[Requirements](2026-03-31-dotmd-requirements.md)** — problem frame, 12 requirements (R1-R12), scope boundaries
+- **[V1 Implementation Plan](2026-03-30-001-feat-dotmd-v1-plan.md)** — 4 units, tech decisions, architecture
+- **[Requirements Review](2026-03-31-requirements-review.md)** — 6-persona review, 22 findings
+- **[Plan Review](2026-03-31-plan-review.md)** — 6-persona review, 12 findings after auto-fixes
 - **[Market Validation](last30days-validation.md)** — Reddit/X research on the problem space
+
+## Key Decisions
+
+- **CLI-first, dashboard-supported** — core value in CLI, web dashboard is optional visualization
+- **OSS-first** — when OSS users and pmtxt reuse conflict, OSS user wins
+- **Claude Code first** — V1 targets Claude Code only; other tools via custom config
+- **Explicit scan roots** — config specifies directories to scan, not `**/` from CWD
 
 ## Stack
 
 - TypeScript, Next.js (App Router), Tailwind CSS
-- SQLite for snapshot storage (`~/.dotmd/history.db`)
+- SQLite with WAL mode (`~/.dotmd/history.db`)
 - Commander.js for CLI
-
-## Architecture
-
-```
-  Session Start (shell hook)
-       │
-       v
-  dotmd scan ──> Read config.yaml (tracked patterns)
-       │              │
-       v              v
-  Glob for files  Load last snapshot from SQLite
-       │              │
-       v              v
-  Read current    Compare with previous
-  file contents        │
-       │              v
-       └──> Store new snapshot + diff if changed
-                      │
-                      v
-              SQLite (~/.dotmd/history.db)
-                      │
-                      v
-              dotmd serve (Next.js)
-                      │
-       ┌──────────────┼──────────────┐
-       v              v              v
-  File list      File viewer     Timeline
-  (by scope)     (markdown +     (diffs by
-                  history)        date)
-```
 
 ## How It Works
 
-- Configure tracked file patterns in `~/.dotmd/config.yaml`
+- `dotmd init` auto-discovers Claude Code instruction files, shows what was found, runs first snapshot
 - `dotmd scan` snapshots tracked files, diffs against previous, stores in SQLite
+- `dotmd status` shows tracked files, recent changes, and coverage gaps
+- Shell hook runs scan on new terminal sessions and prints a change summary
 - `dotmd serve` launches a web dashboard on localhost:3333
-- Shell hook runs scan automatically on new terminal sessions
-- Git history enrichment when tracked files are inside a repo
+- Config at `~/.dotmd/config.yaml` with scan roots, patterns, and exclusions
 
 ## Related
 

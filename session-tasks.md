@@ -1,3 +1,10 @@
+### March 31, 2026
+- [x] Reviewed dotmd requirements doc — 6-persona document review; 22 findings; resolved P0 (R8 editing cut), made three strategic decisions: CLI-first, OSS-first, Claude Code first (2026-03-31)
+- [x] Updated dotmd requirements — added R10 (session-start notifications), R11 (npm packaging), R12 (auto-discovery onboarding); scoped R2 to Claude Code only; renamed to 2026-03-31-dotmd-requirements.md (2026-03-31)
+- [x] Reviewed dotmd implementation plan — 6-persona review; 12 findings after 7 auto-fixes; plan was stale vs updated requirements (2026-03-31)
+- [x] Rewrote dotmd implementation plan — merged Units 1+2 into single Core unit (config+scanner+storage+init); restructured to 4 units; added scan_roots config format, glob exclusions, `dotmd status` CLI command, R10 notification format, auto-discovery init flow, "projects without CLAUDE.md" coverage gaps; fixed default patterns to match real Claude Code filesystem (2026-03-31)
+- [x] Saved review artifacts — `projects/dotmd/2026-03-31-requirements-review.md` and `projects/dotmd/2026-03-31-plan-review.md` (2026-03-31)
+
 ### March 30, 2026 (session 4)
 - [x] Rewrote coldmountain.md — replaced "What It Does Today / What It's Becoming" framing with five capability sections: Intelligence, Research, Validation, Specification, Execution (2026-03-30)
 - [x] Updated /second-brain page on coldmountain.ai — restructured to match; added inline links to Bird, Readwise, Parallel, Last 30 Days, Superpowers, G-Stack, Compound Engineering (2026-03-30)

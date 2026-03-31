@@ -13,6 +13,8 @@ A validated secondary problem (see reddit-feedback.md): AI-generated PRDs and sp
 
 The core thesis: as AI automates coding, the bottleneck moves upstream to product judgment — deciding *what* to build and *why*. That judgment depends on deeply knowing your customers, competitors, constraints, and past decisions. pmtxt doesn't replace the PM; it gives their judgment better inputs. The human-in-the-loop approval workflow isn't just a safety feature — it's the product thesis. The PM's judgment is the value; pmtxt makes it faster and better-informed.
 
+Engineering AI tools (like Compound Engineering, Superpowers, Cursor) already do structured brainstorming, planning, and execution — but they're **session-scoped**. They help you build *a thing* well, then the artifacts go stale. pmtxt is **product-scoped**: the knowledge base persists and compounds over months. The 50th spec is better than the 1st because the system knows your customers, past decisions, and competitive landscape. Engineering tools *can* pull in prior context, but they're not designed for it. pmtxt is purpose-built for compounding product intelligence over time.
+
 ## Requirements
 
 **Core Decision Engine**

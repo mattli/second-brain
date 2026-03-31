@@ -1,14 +1,15 @@
 # pmtxt Product Validation — Last 30 Days Research
 
-Generated: 2026-03-30 | Sources: X (Reddit blocked — 403 on all queries)
+Generated: 2026-03-30 | Sources: Reddit, X
 
 ## Key Findings
 
 1. **"Cursor for PM" is an active category** — Seattle startup **Aligno** is explicitly building "Cursor for Product Management" — AI that turns feedback, meetings, and GitHub data into product roadmaps (@MohitdeepSing14). YC's RFS has triggered real entrants.
 2. **Spec-driven development is gaining traction** — Multiple builders describe workflows where specs/PRDs come first, then AI builds from them. @geniusnanda: "Anyone here trying spec-driven development while coding with AI? Instead of the usual 'vibe coding' workflow." @shubh19 describes a ChatGPT → specs → Codex pipeline. This validates pmtxt's core loop (decide what to build → generate spec → agent builds it).
-3. **Traycer is active but niche** — @TraycerAI is responding to support issues on X. @chilaxdev open-sourced a "Traycer-style AI dev workflow skill" for agents (idea → plan → detailed plan → implementation → verification). Traycer has mindshare in the dev community but appears focused on engineering specs, not PM decision-making.
-4. **The PRD-to-code pipeline is real** — @wuwu270231: "Going from PRD to deployed product in a weekend changes what's possible for solo builders." Chinese PM community (@marky_ylq) lists PRD generators and product toolkits as the top 5 categories of PM skills, including auto-generated PRDs, competitive analysis, user feedback aggregation, and roadmaps.
-5. **Limited public conversation** — only 14 relevant posts across 3 searches. This suggests either a very early market or the conversation is happening in private communities (Slack groups, Discord, private forums).
+3. **The context transfer problem is real** — r/ClaudeAI post: "Best practices for transferring context from Claude.ai chat → Claude Code? Specifically business/planning context, not just code specs." This is *exactly* the problem pmtxt solves — business context lives in the PM's head or in chat sessions, and there's no good way to make it available to coding agents.
+4. **Traycer is active but niche** — @TraycerAI is responding to support issues on X. @chilaxdev open-sourced a "Traycer-style AI dev workflow skill" for agents (idea → plan → detailed plan → implementation → verification). Traycer has mindshare in the dev community but appears focused on engineering specs, not PM decision-making.
+5. **Pre-planning is becoming a recognized best practice** — r/ClaudeAI threads: "Why pre-planning is crucial to scale AI-coding in production" and "My evolving AI dev stack: combining spec planning + coding + reviews — inspired by a16z's 'The Trillion Dollar AI Software Development Stack'". People are discovering that specs-first beats vibe coding, but they're stitching together tools manually.
+6. **The PRD-to-code pipeline is real** — @wuwu270231: "Going from PRD to deployed product in a weekend changes what's possible for solo builders." Chinese PM community (@marky_ylq) lists PRD generators and product toolkits as the top 5 categories of PM skills.
 
 ## Problem Validation
 
@@ -16,9 +17,12 @@ Generated: 2026-03-30 | Sources: X (Reddit blocked — 403 on all queries)
 Signal is present but thin. The spec-driven development pattern is gaining traction (multiple independent builders describing it), and at least one funded startup (Aligno) is building in this exact space. The YC RFS explicitly calling it out adds institutional validation. However, public conversation volume is low — this isn't a trending topic yet.
 
 **How people describe the pain**
+- r/ClaudeAI: "Best practices for transferring context from Claude.ai chat → Claude Code? Specifically business/planning context, not just code specs" — the context transfer gap is felt acutely
+- r/ClaudeAI: "Why pre-planning is crucial to scale AI-coding in production" — developers are learning the hard way that jumping straight to code doesn't scale
+- r/ClaudeAI: "My evolving AI dev stack: combining spec planning + coding + reviews" — people manually assembling the pipeline pmtxt would productize
+- r/vibecoding: "4 distinct patterns for how solo founders actually build with AI" — the market is segmenting, suggesting different tools for different workflows
 - @geniusnanda describes moving away from "vibe coding" toward spec-driven development — suggesting the unstructured approach is failing
-- @shubh19 shares a "simple workflow" for using ChatGPT + specs + Codex — suggesting people are stitching together tools manually because no single product does this
-- @marky_ylq (Chinese PM community) identifies PRD generation, competitive analysis, user feedback aggregation, and roadmaps as the top PM tool categories — these map directly to pmtxt's knowledge base files
+- @shubh19 shares a "simple workflow" for using ChatGPT + specs + Codex — stitching together tools manually because no single product does this
 
 **Existing solutions people mention**
 - **Aligno** — "Cursor for Product Management" (Seattle startup, early stage)
@@ -33,13 +37,9 @@ Signal is present but thin. The spec-driven development pattern is gaining tract
 - PM-specific AI tools are notably absent from developer tool lists, despite PMs being the bottleneck
 
 **Verdict**
-**Moderate signal** — The problem is real (validated by YC RFS, manual workarounds, at least one funded competitor), but public conversation is thin. This could mean:
-- The market is very early and hasn't consolidated terminology yet
-- The conversation is happening in private channels (PM Slack groups, company-internal)
-- PMs are less vocal on Reddit/X than developers
-- Reddit API blocking may have hidden significant signal
+**Moderate-to-strong signal** — The problem is real and multi-sourced: validated by YC RFS, at least one funded competitor (Aligno), manual workarounds on Reddit and X, and explicit pain around context transfer between PM thinking and coding agents. The r/ClaudeAI community is actively discussing spec-first workflows and the business-context gap — these are pmtxt's exact target users describing pmtxt's exact problem.
 
-The strongest validation comes from the **manual workarounds** people are building — when users stitch together ChatGPT + specs + coding agents, that's a clear sign they want the integrated product but it doesn't exist yet.
+The strongest validation: people are manually building the workflow pmtxt would productize (ChatGPT for specs → coding agents for building), and explicitly asking how to transfer business/planning context to coding tools. That's a clear product-market gap.
 
 ## Competitive Intelligence
 
@@ -51,14 +51,14 @@ The strongest validation comes from the **manual workarounds** people are buildi
 
 ## Raw Data Stats
 
+- Reddit: 19 threads across 4 searches | top threads from r/ClaudeAI (1586pts, 245cmt), r/vibecoding, r/cscareerquestions
 - X: 14 posts across 3 searches | ~543 likes | ~21 reposts
-- Reddit: 0 threads (all queries returned HTTP 403 — public Reddit API blocked)
-- Top voices: @andrewchen (313 likes), @RSimpton325 (107 likes), @DeRonin_ (96 likes)
+- Top X voices: @andrewchen (313 likes), @RSimpton325 (107 likes), @DeRonin_ (96 likes)
 - Top relevant voices: @MohitdeepSing14 (Aligno coverage), @geniusnanda (spec-driven dev), @shubh19 (ChatGPT+specs workflow)
+- Most relevant subreddits: r/ClaudeAI, r/vibecoding
 
 ## Limitations
 
-- Reddit was completely blocked (HTTP 403 on all queries). The earlier reddit-feedback.md file contains manually saved Reddit research that fills this gap
-- X search returned limited results — the topic may not have consolidated terminology yet
-- No ScrapeCreators API key configured, which would have enabled richer Reddit search
+- Reddit ScrapeCreators API returns results but subreddit discovery is noisy (picks r/gaming, r/movies alongside r/ClaudeAI). More targeted subreddit-specific searches would improve signal
 - Chinese-language PM content (@marky_ylq) suggests there may be significant discussion in non-English communities not captured here
+- The earlier reddit-feedback.md file (manually saved from a Feb 2026 r/startups thread) contains the most directly relevant Reddit discussion

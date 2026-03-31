@@ -38,6 +38,8 @@
 
 **Solo feasibility:** Read the filesystem, parse CLAUDE.md locations and scopes, simple UI or CLI. No AI needed to build it — pure developer tooling.
 
+**Connection to pmtxt:** The core technical problem (discover, parse, render, and manage structured markdown files in a web UI) is shared with pmtxt's web dashboard. Building this first as open source would: (1) validate the shared technical foundation (monorepo, markdown parsing, Next.js dashboard), (2) build an audience in the Claude Code community — who are likely the same technical PMs that pmtxt targets, and (3) produce reusable code for pmtxt Units 1, 2, and 8. The open-source tool is a file viewer; pmtxt's value layer (governed knowledge base, LLM synthesis, compounding product intelligence) sits on top and is not something someone would build from a file viewer.
+
 ---
 
 ## 4. Offline Local AI with GPS Context

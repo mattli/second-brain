@@ -1,3 +1,12 @@
+### March 30, 2026 (session 2)
+- [x] Brainstormed pmtxt product concept — full CE brainstorm workflow; defined problem frame, target user (first PM at 2-15 person startup), core outcome ("what to build next"), approval governance, CLI-first form factor (2026-03-30)
+- [x] Created pmtxt requirements doc — `projects/pmtxt/2026-03-30-pmtxt-requirements.md`; integrated reddit-feedback.md research (2026-03-30)
+- [x] Created pmtxt implementation plan — `projects/pmtxt/2026-03-30-001-feat-pmtxt-v1-plan.md`; 8 units across 5 phases; TypeScript monorepo, Ink CLI, Next.js dashboard, Anthropic API (2026-03-30)
+- [x] Ran last30days product validation — `projects/pmtxt/last30days-validation.md`; moderate-to-strong signal; found competitor Aligno; r/ClaudeAI context-transfer thread validates core problem (2026-03-30)
+- [x] Fixed last30days Reddit enrichment timeout — `~/.claude/skills/last30days/scripts/last30days.py`; enrichment calls were missing timeout/retries params; now passes profile-based timeout + 2 retries (2026-03-30)
+- [x] Added ScrapeCreators API key to `~/.config/last30days/.env` (2026-03-30)
+- [x] Added project file structure override to global CLAUDE.md — brainstorm/plan docs go to `~/second-brain/projects/<project>/` instead of default `docs/` directories (2026-03-30)
+
 ### March 30, 2026
 - [x] Fixed stale cron task bug in NanoClaw — product briefing ran on Monday instead of Saturday because `next_run` was stuck in the past after a missed window; added staleness check in scheduler loop (`task-scheduler.ts`) to skip cron tasks >10min overdue and advance to next occurrence (2026-03-30)
 - [x] Fixed product briefing sourcing — agent was using Product Hunt despite instructions specifying X-only; old archived briefings (which used PH) were contaminating the agent's context; added explicit "use only listed sources" guardrail to `weekly-products.md` instructions

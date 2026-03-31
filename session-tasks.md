@@ -1,3 +1,11 @@
+### March 30, 2026 (session 4)
+- [x] Rewrote coldmountain.md — replaced "What It Does Today / What It's Becoming" framing with five capability sections: Intelligence, Research, Validation, Specification, Execution (2026-03-30)
+- [x] Updated /second-brain page on coldmountain.ai — restructured to match; added inline links to Bird, Readwise, Parallel, Last 30 Days, Superpowers, G-Stack, Compound Engineering (2026-03-30)
+- [x] Deployed to Vercel via git push to main (2026-03-30)
+
+### March 30, 2026 (session 3)
+- [x] Created dotmd project README — `projects/dotmd/README.md`; matches existing README conventions (scannable sections, internal doc links, minimal tone) (2026-03-30)
+
 ### March 30, 2026 (session 2)
 - [x] Brainstormed pmtxt product concept — full CE brainstorm workflow; defined problem frame, target user (first PM at 2-15 person startup), core outcome ("what to build next"), approval governance, CLI-first form factor (2026-03-30)
 - [x] Created pmtxt requirements doc — `projects/pmtxt/2026-03-30-pmtxt-requirements.md`; integrated reddit-feedback.md research (2026-03-30)

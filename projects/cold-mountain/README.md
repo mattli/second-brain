@@ -7,8 +7,8 @@ Design documentation and content briefs for the Cold Mountain portfolio website 
 ## Current site design
 
 - Homepage with Selected Work grid (6 projects: Second Brain, Seasons Journaling, School Search AI, FreshNotes, CIEG, ListenBack)
-- /second-brain detail page with capabilities, tech stack, and roadmap (content sourced from coldmountain.md)
-- Roadmap sections: Validation, Specification, Execution (no status badges — simpler layout)
+- /second-brain detail page organized by capability: Intelligence, Research, Validation, Specification, Execution (content sourced from coldmountain.md)
+- Tool links throughout: Bird, Readwise, Parallel, Last 30 Days, Superpowers, G-Stack, Compound Engineering
 - Subtle color-coded tags: blue (iOS), purple (Web), green (AI Agent)
 - Name: "Matt Li" (changed from Mathew Thomas Li)
 - Tagline: "Building systems. Shipping products."

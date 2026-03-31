@@ -11,6 +11,8 @@ The first PM at a 2-15 person startup is overwhelmed and under-tooled. They're d
 
 A validated secondary problem (see reddit-feedback.md): AI-generated PRDs and specs consistently fail because the AI lacks product context — it doesn't know your customers, stack, past decisions, or tradeoffs, and fills those gaps with hallucinations. The most effective current workarounds are structured Q&A before generation and constraining AI with specific context. pmtxt solves this architecturally by maintaining a governed, always-current product knowledge base that the AI reads from rather than invents.
 
+The core thesis: as AI automates coding, the bottleneck moves upstream to product judgment — deciding *what* to build and *why*. That judgment depends on deeply knowing your customers, competitors, constraints, and past decisions. pmtxt doesn't replace the PM; it gives their judgment better inputs. The human-in-the-loop approval workflow isn't just a safety feature — it's the product thesis. The PM's judgment is the value; pmtxt makes it faster and better-informed.
+
 ## Requirements
 
 **Core Decision Engine**

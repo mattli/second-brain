@@ -1,3 +1,18 @@
+### March 31, 2026 (session 2)
+- [x] Created how-it-works.md technical walkthrough for dotmd (2026-03-31)
+- [x] Rewrote "How It Works" section in dotmd README for plain language (2026-03-31)
+- [x] Built web-based setup wizard — 3-step flow: pick folders, pick patterns, preview/confirm with checkboxes (2026-03-31)
+- [x] `dotmd init` now starts server and opens browser to setup wizard (2026-03-31)
+- [x] Added folder browser to setup wizard for picking custom directories (2026-03-31)
+- [x] Added collapsible tree view to dashboard files page with localStorage persistence (2026-03-31)
+- [x] Added tree/category view toggle with localStorage persistence (2026-03-31)
+- [x] Made scanner case-insensitive and deep-search by default (`**/` prefix) (2026-03-31)
+- [x] Removed git metadata collection — unnecessary for dotmd's purpose (2026-03-31)
+- [x] Only show folders that exist on machine in setup wizard suggestions (2026-03-31)
+- [x] Timestamps only show on files that have actually changed (not initial snapshots) (2026-03-31)
+- [x] Added select/deselect by group on step 3 preview (2026-03-31)
+- [x] Updated dotmd project README with current status, decisions, upcoming features (2026-03-31)
+
 ### March 31, 2026
 - [x] Reviewed dotmd requirements doc — 6-persona document review; 22 findings; resolved P0 (R8 editing cut), made three strategic decisions: CLI-first, OSS-first, Claude Code first (2026-03-31)
 - [x] Updated dotmd requirements — added R10 (session-start notifications), R11 (npm packaging), R12 (auto-discovery onboarding); scoped R2 to Claude Code only; renamed to 2026-03-31-dotmd-requirements.md (2026-03-31)

@@ -1,3 +1,15 @@
+### April 1, 2026
+- [x] Built Settings page — new `/settings` route with chip-based UI for toggling scan roots/patterns, folder browser, live file preview, save (2026-04-01)
+- [x] Per-project categorization — changed flat "project" category to `project:<dirname>` in CLI status, dashboard views, and `categorizeFile()` (2026-04-01)
+- [x] Unseen changes indicator — yellow dot on files changed since last viewed; `last_viewed_at` DB column; marks viewed on open (2026-04-01)
+- [x] Collapsible diffs — timeline and file detail show diffs collapsed with +/- stats, click to expand (2026-04-01)
+- [x] Tree view compression — single-child directory chains collapsed (e.g., `a/b/` instead of nested) (2026-04-01)
+- [x] Nav restructure — dashboard default changed to timeline; added Settings nav link (2026-04-01)
+- [x] File root grouping — wizard preview and settings group files by scan root instead of category (2026-04-01)
+- [x] Scanner auto-cleanup — removes tracked files no longer on disk or not in current config (2026-04-01)
+- [x] Category update on rescan — `upsertTrackedFile` now updates category on conflict (2026-04-01)
+- [x] Added `dev:serve` script with `--watch` for hot-reload development (2026-04-01)
+
 ### March 31, 2026 (session 2)
 - [x] Created how-it-works.md technical walkthrough for dotmd (2026-03-31)
 - [x] Rewrote "How It Works" section in dotmd README for plain language (2026-03-31)

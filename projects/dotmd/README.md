@@ -4,7 +4,7 @@ CLI-first tool that tracks changes to AI instruction files (CLAUDE.md, AGENTS.md
 
 ## Status
 
-Units 1-4 implemented. Web-based setup wizard added (replaces CLI init). Currently iterating on dashboard UX.
+Units 1-4 implemented. Web-based setup wizard and settings page added. Dashboard now has collapsible diffs, unseen-change indicators, per-project categorization, and tree compression. Currently iterating on dashboard UX.
 
 ## Key Docs
 
@@ -41,14 +41,24 @@ Units 1-4 implemented. Web-based setup wizard added (replaces CLI init). Current
 
 ## Upcoming Features
 
-- **Settings page** — reuse the wizard folder/pattern picker as a settings page, pre-populated with current config, so users can add/remove folders and patterns after initial setup
 - **Open in editor** — click a file in the dashboard to open it in the user's default text editor
 - **File size in files view** — show line count or character count for each tracked file
 - **End-of-session scanning** — scan when a Claude Code session ends (not just on terminal open) to capture changes immediately
 - **Tests** — no test suite yet; need coverage for scanner, snapshots, and config
 - **Frontend architecture** — current inline JS / server-rendered HTML may need to move to a lightweight framework as interactivity grows
 
-## Recent Changes (2026-03-31)
+## Recent Changes (2026-04-01)
+
+- Settings page — chip-based UI for toggling scan roots/patterns, folder browser, live file preview
+- Per-project categorization (`project:<dirname>` instead of flat "project")
+- Unseen changes indicator (yellow dot) with `last_viewed_at` tracking
+- Collapsible diffs with +/- stats on timeline and file detail pages
+- Tree view compression (single-child chains collapsed)
+- Default dashboard page changed to timeline
+- Scanner auto-cleanup of files no longer on disk or in config
+- `dev:serve` script with hot-reload
+
+### Previous (2026-03-31)
 
 - Web-based setup wizard with 3-step flow: pick folders, pick patterns, preview/confirm
 - Folder browser in setup wizard for adding custom directories

@@ -13,6 +13,7 @@ Planning reviewed and updated. Ready to implement. Next step: build Unit 1 (core
 - **[Requirements Review](2026-03-31-requirements-review.md)** — 6-persona review, 22 findings
 - **[Plan Review](2026-03-31-plan-review.md)** — 6-persona review, 12 findings after auto-fixes
 - **[Market Validation](last30days-validation.md)** — Reddit/X research on the problem space
+- **[How It Works](how-it-works.md)** — technical walkthrough of internals and data flow
 
 ## Key Decisions
 

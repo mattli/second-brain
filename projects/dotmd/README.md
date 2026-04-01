@@ -30,12 +30,12 @@ Planning reviewed and updated. Ready to implement. Next step: build Unit 1 (core
 
 ## How It Works
 
-- `dotmd init` auto-discovers Claude Code instruction files, shows what was found, runs first snapshot
-- `dotmd scan` snapshots tracked files, diffs against previous, stores in SQLite
-- `dotmd status` shows tracked files, recent changes, and coverage gaps
-- Shell hook runs scan on new terminal sessions and prints a change summary
-- `dotmd serve` launches a web dashboard on localhost:3333
-- Config at `~/.dotmd/config.yaml` with scan roots, patterns, and exclusions
+1. Run `dotmd init` to set up. It searches your machine for CLAUDE.md, AGENTS.md, and memory files, saves their locations to a config file, and takes a first snapshot of each one.
+2. Run `dotmd scan` anytime to check if any tracked files have changed. If they have, it saves the new version and a diff showing what changed.
+3. Run `dotmd status` to see which files are being tracked and what changed recently.
+4. Run `dotmd install-hook` to add a line to your shell config so that scanning happens automatically every time you open a new terminal.
+5. Run `dotmd serve` to open a web UI at localhost:3333 where you can browse files and see a timeline of changes.
+6. All config lives at `~/.dotmd/config.yaml` — you can edit it to add/remove directories or change which file patterns to track.
 
 ## Related
 

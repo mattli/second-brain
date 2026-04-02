@@ -39,7 +39,11 @@ Units 1-4 implemented. Dashboard UX polished: scan-on-page-load, unseen indicato
 
 ## Upcoming Features
 
-- **Tests** — no test suite yet; need coverage for scanner, snapshots, and config
+1. **Tests** — enough coverage for scanner, snapshots, and config to refactor and publish with confidence
+2. **Build and publish to npm** — verify build output, bin entry, and package.json metadata so `npm install -g dotmd` works
+3. **Fresh install test** — install from npm on a clean machine or have someone else try it. The setup wizard is the first impression
+4. **README polish** — add a screenshot or GIF of the dashboard to the GitHub README
+5. **Launch** — post on r/ClaudeAI, r/ChatGPTPro, X, maybe Hacker News
 
 ## Recent Changes (2026-04-02)
 

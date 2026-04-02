@@ -10,7 +10,10 @@
 - [x] CLI cleanup — `scan` and `install-hook` hidden from `--help`; `status` now scans before showing results; public commands are just `init`, `status`, `serve` (2026-04-02)
 - [x] Config cleanup — trimmed suggested roots to `~/.claude`, `~/projects`, `~/dev`; added `SKILL.md` to suggested patterns; changed placeholder to `*.md` (2026-04-02)
 - [x] Cache-Control header — `no-store` on all responses to prevent stale dashboard pages (2026-04-02)
-- [x] GitHub README — wrote public-facing README.md for the repo with install, quick start, commands, and uninstall (2026-04-02)
+- [x] GitHub README — wrote public-facing README.md for the repo with install, quick start, commands, feedback link, and uninstall (2026-04-02)
+- [x] Filter "No newline at end of file" from diff display (2026-04-02)
+- [x] Updated MacBook Pro global CLAUDE.md — added git status step to end-of-session ritual, removed shell alias references (2026-04-02)
+- [x] Updated vault project README with 5-step launch roadmap (2026-04-02)
 
 ### April 1, 2026
 - [x] Built Settings page — new `/settings` route with chip-based UI for toggling scan roots/patterns, folder browser, live file preview, save (2026-04-01)

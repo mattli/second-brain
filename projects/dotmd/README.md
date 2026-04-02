@@ -4,7 +4,7 @@ CLI-first tool that tracks changes to AI instruction files (CLAUDE.md, AGENTS.md
 
 ## Status
 
-Units 1-4 implemented. Web-based setup wizard and settings page added. Dashboard now has collapsible diffs, unseen-change indicators, per-project categorization, and tree compression. Currently iterating on dashboard UX.
+Units 1-4 implemented. Dashboard UX polished: scan-on-page-load, unseen indicators on both files and timeline, Load More pagination, consistent styling. CLI simplified to three public commands (`init`, `status`, `serve`). GitHub README written. Development now happening on MacBook Pro (cloned from GitHub).
 
 ## Key Docs
 
@@ -33,21 +33,28 @@ Units 1-4 implemented. Web-based setup wizard and settings page added. Dashboard
 ## How It Works
 
 1. Run `dotmd init` to set up. It launches a web-based setup wizard where you pick folders and file patterns, preview discovered files, and confirm what to track.
-2. Run `dotmd scan` anytime to check if any tracked files have changed. If they have, it saves the new version and a diff showing what changed.
-3. Run `dotmd status` to see which files are being tracked and what changed recently.
-4. Run `dotmd install-hook` to add a line to your shell config so that scanning happens automatically every time you open a new terminal.
-5. Run `dotmd serve` to open a web UI at localhost:3333 where you can browse files and see a timeline of changes.
-6. All config lives at `~/.dotmd/config.yaml` — you can edit it to add/remove directories or change which file patterns to track.
+2. Run `dotmd status` to scan tracked files and see what changed recently.
+3. Run `dotmd serve` to open a web UI at localhost:3333 where you can browse files and see a timeline of changes. The dashboard rescans on every page load.
+4. Settings are managed through the dashboard settings page. Config is stored at `~/.dotmd/config.yaml`.
 
 ## Upcoming Features
 
-- ~~**Open in editor**~~ — done (uses `VISUAL`/`EDITOR` env var, falls back to `open -t`)
-- **Scanning audit** — full review of when dotmd should scan and what the right behavior is for each trigger point
 - **Tests** — no test suite yet; need coverage for scanner, snapshots, and config
-- **Tests** — no test suite yet; need coverage for scanner, snapshots, and config
-- **Frontend architecture** — current inline JS / server-rendered HTML may need to move to a lightweight framework as interactivity grows
 
-## Recent Changes (2026-04-01)
+## Recent Changes (2026-04-02)
+
+- Open in Editor button — uses `VISUAL`/`EDITOR` env var
+- Scanning audit — scan on page load, shell hook debounce, Scan Now button in nav
+- Unseen indicators on timeline — yellow dots matching files page
+- Load More pagination on timeline and file detail
+- CLI simplified — public commands are `init`, `status`, `serve`; `scan` and `install-hook` hidden
+- `status` now scans before showing results
+- Back-forward cache fix for unseen indicators
+- Font/margin consistency across pages
+- Trimmed suggested roots and added `SKILL.md` pattern
+- GitHub README.md written
+
+### Previous (2026-04-01)
 
 - Settings page — chip-based UI for toggling scan roots/patterns, folder browser, live file preview
 - Per-project categorization (`project:<dirname>` instead of flat "project")

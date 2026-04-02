@@ -1,3 +1,17 @@
+### April 2, 2026
+- [x] Open in Editor — uses `VISUAL`/`EDITOR` env var with `open -t` fallback; label changed from "Edit" to "Open in Editor" (2026-04-02)
+- [x] Scanning audit — scan on dashboard page load (timeline, files, file detail); debounce shell hook scans (60s); wired up Scan Now refresh button in nav (2026-04-02)
+- [x] Back-forward cache fix — `pageshow` listener reloads on browser back so unseen indicators update (2026-04-02)
+- [x] Unseen indicators on timeline — yellow dots for changes not yet viewed, matching files page behavior (2026-04-02)
+- [x] Font/margin consistency — aligned timestamp styling (`text-xs text-gray-400`) and padding (`px-4`) across timeline and files pages (2026-04-02)
+- [x] View toggle label — renamed "Category" to "Group" (2026-04-02)
+- [x] Load More pagination — timeline and file detail pages load 50 items, "Load More" button fetches next batch via API (2026-04-02)
+- [x] Settings page scroll fix — preview container preserves min-height during refresh to prevent scroll jump (2026-04-02)
+- [x] CLI cleanup — `scan` and `install-hook` hidden from `--help`; `status` now scans before showing results; public commands are just `init`, `status`, `serve` (2026-04-02)
+- [x] Config cleanup — trimmed suggested roots to `~/.claude`, `~/projects`, `~/dev`; added `SKILL.md` to suggested patterns; changed placeholder to `*.md` (2026-04-02)
+- [x] Cache-Control header — `no-store` on all responses to prevent stale dashboard pages (2026-04-02)
+- [x] GitHub README — wrote public-facing README.md for the repo with install, quick start, commands, and uninstall (2026-04-02)
+
 ### April 1, 2026
 - [x] Built Settings page — new `/settings` route with chip-based UI for toggling scan roots/patterns, folder browser, live file preview, save (2026-04-01)
 - [x] Per-project categorization — changed flat "project" category to `project:<dirname>` in CLI status, dashboard views, and `categorizeFile()` (2026-04-01)

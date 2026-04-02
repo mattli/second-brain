@@ -41,9 +41,9 @@ Units 1-4 implemented. Web-based setup wizard and settings page added. Dashboard
 
 ## Upcoming Features
 
-- **Open in editor** — click a file in the dashboard to open it in the user's default text editor
-- **File size in files view** — show line count or character count for each tracked file
-- **End-of-session scanning** — scan when a Claude Code session ends (not just on terminal open) to capture changes immediately
+- ~~**Open in editor**~~ — done (uses `VISUAL`/`EDITOR` env var, falls back to `open -t`)
+- **Scanning audit** — full review of when dotmd should scan and what the right behavior is for each trigger point
+- **Tests** — no test suite yet; need coverage for scanner, snapshots, and config
 - **Tests** — no test suite yet; need coverage for scanner, snapshots, and config
 - **Frontend architecture** — current inline JS / server-rendered HTML may need to move to a lightweight framework as interactivity grows
 

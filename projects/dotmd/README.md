@@ -4,7 +4,7 @@ CLI-first tool that tracks changes to AI instruction files (CLAUDE.md, AGENTS.md
 
 ## Status
 
-Units 1-4 implemented. Dashboard UX polished: scan-on-page-load, unseen indicators on both files and timeline, Load More pagination, consistent styling. CLI simplified to three public commands (`init`, `status`, `serve`). GitHub README written. Development now happening on MacBook Pro (cloned from GitHub).
+**Launched.** Published to npm as `@mattli/dotmd` (v0.1.6). GitHub repo public. First launch post submitted to r/ClaudeAI (pending mod approval). Fresh install tested on Mac Mini.
 
 ## Key Docs
 
@@ -37,49 +37,38 @@ Units 1-4 implemented. Dashboard UX polished: scan-on-page-load, unseen indicato
 3. Run `dotmd serve` to open a web UI at localhost:3333 where you can browse files and see a timeline of changes. The dashboard rescans on every page load.
 4. Settings are managed through the dashboard settings page. Config is stored at `~/.dotmd/config.yaml`.
 
-## Upcoming Features
+## Upcoming
 
-1. ~~Tests~~ — done (44 tests covering scanner, snapshots, config)
-2. ~~Build and publish to npm~~ — done (`@mattli/dotmd@0.1.0`)
-3. **Fresh install test on Mac Mini** — `rm -rf ~/.dotmd` to clear existing data, then `npm install -g @mattli/dotmd && dotmd init` and run through the full flow
-4. **README polish** — add a screenshot or GIF of the dashboard to the GitHub README
-5. **Launch** — post on r/ClaudeAI, r/ChatGPTPro, X, maybe Hacker News
+- Post to X, r/VibeCodersNest, r/GithubCopilot based on r/ClaudeAI reception
+- Show HN if Reddit traction is strong
+- MCP server (from marketing plan — zero-CAC discovery channel)
 
-## Recent Changes (2026-04-02)
+## Recent Changes (2026-04-03)
 
-- Open in Editor button — uses `VISUAL`/`EDITOR` env var
-- Scanning audit — scan on page load, shell hook debounce, Scan Now button in nav
-- Unseen indicators on timeline — yellow dots matching files page
-- Load More pagination on timeline and file detail
-- CLI simplified — public commands are `init`, `status`, `serve`; `scan` and `install-hook` hidden
-- `status` now scans before showing results
-- Back-forward cache fix for unseen indicators
-- Font/margin consistency across pages
-- Trimmed suggested roots and added `SKILL.md` pattern
-- GitHub README.md written
+- Merged 3-step wizard into single-page setup (shared with settings)
+- Folder browser with Add/Remove per row, grayed-out covered subfolders
+- Pattern chips with X buttons, restorable suggestions
+- Subdirectory grouping in file preview
+- Help page, section dividers, right-aligned save
+- Auto-open browser on serve/init, friendly port-in-use message
+- Open in Editor error handling, 24-hour status window
+- Dashboard screenshot in README, amber refresh button
+- Published v0.1.1–v0.1.6, GitHub repo public
+
+### Previous (2026-04-02)
+
+- Open in Editor, scanning audit, unseen indicators on timeline
+- Load More pagination, CLI cleanup, GitHub README
+- Test suite (44 tests), published to npm as `@mattli/dotmd@0.1.0`
 
 ### Previous (2026-04-01)
 
-- Settings page — chip-based UI for toggling scan roots/patterns, folder browser, live file preview
-- Per-project categorization (`project:<dirname>` instead of flat "project")
-- Unseen changes indicator (yellow dot) with `last_viewed_at` tracking
-- Collapsible diffs with +/- stats on timeline and file detail pages
-- Tree view compression (single-child chains collapsed)
-- Default dashboard page changed to timeline
-- Scanner auto-cleanup of files no longer on disk or in config
-- `dev:serve` script with hot-reload
+- Settings page, per-project categorization, unseen changes indicator
+- Collapsible diffs, tree view, scanner auto-cleanup
 
 ### Previous (2026-03-31)
 
-- Web-based setup wizard with 3-step flow: pick folders, pick patterns, preview/confirm
-- Folder browser in setup wizard for adding custom directories
-- Tree view on files page (collapsible, with localStorage persistence)
-- Toggle between tree view and category view
-- Case-insensitive file matching
-- Deep search (`**/` prefix) so patterns match at any depth
-- Removed git metadata collection (unnecessary)
-- Only suggested patterns that exist on the machine are shown
-- Timestamps only show on files that have actually changed
+- Web-based setup wizard, folder browser, tree view, case-insensitive matching
 
 ## Related
 

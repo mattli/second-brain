@@ -3,13 +3,12 @@
 Goals: Build/launch Dotmd. Recover from burnout.
 ### Thursday, April 3
 
-- [ ] Eggs and avocado toast at home
 - [x] Read AI digest
 - [x] Read Infinite Jest
+- [ ] Eggs and avocado toast at home
+- [ ] Gym
 - [ ] dotmd launch — initial post
 - [ ] Noodle soup for lunch
-- [ ] Gym
-- [ ] dotmd launch — finish the rollout
 
 ---
 

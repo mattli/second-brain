@@ -1,3 +1,18 @@
+# April 1 – April 7
+
+Goals: Build/launch Dotmd. Recover from burnout.
+### Thursday, April 3
+
+- [ ] Eggs and avocado toast at home
+- [ ] Read AI digest
+- [ ] Read Infinite Jest
+- [ ] dotmd launch — initial post
+- [ ] Noodle soup for lunch
+- [ ] Gym
+- [ ] dotmd launch — finish the rollout
+
+---
+
 # March 23 – March 29
 
 Goals: Start to apply to jobs with updated resume and portfolio.

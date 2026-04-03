@@ -39,9 +39,9 @@ Units 1-4 implemented. Dashboard UX polished: scan-on-page-load, unseen indicato
 
 ## Upcoming Features
 
-1. **Tests** — enough coverage for scanner, snapshots, and config to refactor and publish with confidence
-2. **Build and publish to npm** — verify build output, bin entry, and package.json metadata so `npm install -g dotmd` works
-3. **Fresh install test** — install from npm on a clean machine or have someone else try it. The setup wizard is the first impression
+1. ~~Tests~~ — done (44 tests covering scanner, snapshots, config)
+2. ~~Build and publish to npm~~ — done (`@mattli/dotmd@0.1.0`)
+3. **Fresh install test on Mac Mini** — `rm -rf ~/.dotmd` to clear existing data, then `npm install -g @mattli/dotmd && dotmd init` and run through the full flow
 4. **README polish** — add a screenshot or GIF of the dashboard to the GitHub README
 5. **Launch** — post on r/ClaudeAI, r/ChatGPTPro, X, maybe Hacker News
 

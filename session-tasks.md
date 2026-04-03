@@ -14,6 +14,12 @@
 - [x] Filter "No newline at end of file" from diff display (2026-04-02)
 - [x] Updated MacBook Pro global CLAUDE.md — added git status step to end-of-session ritual, removed shell alias references (2026-04-02)
 - [x] Updated vault project README with 5-step launch roadmap (2026-04-02)
+- [x] Test suite — 44 tests for snapshots, config, scanner using vitest + in-memory SQLite (2026-04-02)
+- [x] Code review via compound-engineering:ce-review — 9 findings; applied 2 safe_auto fixes (pagination validation, test assertion) (2026-04-02)
+- [x] Fixed unseen indicators on Load More — /api/timeline now returns unseenIds, client renders yellow dots on paginated items (2026-04-02)
+- [x] Fixed snapshot query ordering — added `id DESC` tiebreaker for same-timestamp rows (2026-04-02)
+- [x] Published to npm as `@mattli/dotmd@0.1.0` — scoped package, 41.6 kB, public access (2026-04-02)
+- [x] npm account setup — created account, enabled 2FA, published with automation token (2026-04-02)
 
 ### April 1, 2026
 - [x] Built Settings page — new `/settings` route with chip-based UI for toggling scan roots/patterns, folder browser, live file preview, save (2026-04-01)

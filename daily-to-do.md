@@ -5,7 +5,7 @@ Goals: Build/launch Dotmd. Recover from burnout.
 
 - [ ] Eggs and avocado toast at home
 - [x] Read AI digest
-- [ ] Read Infinite Jest
+- [x] Read Infinite Jest
 - [ ] dotmd launch — initial post
 - [ ] Noodle soup for lunch
 - [ ] Gym

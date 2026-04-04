@@ -1,6 +1,16 @@
 # April 1 – April 7
 
 Goals: Build/launch Dotmd. Recover from burnout.
+
+### Friday, April 4
+
+- [ ] Gym
+- [ ] Smoothie
+- [ ] Read briefings
+- [ ] Brainstorm pmtxt
+
+---
+
 ### Thursday, April 3
 
 - [x] Read AI digest

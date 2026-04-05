@@ -25,17 +25,19 @@ Read the last 3 weekly product briefings from `projects/intelligence/weekly-prod
 
 Search for "share your product" threads on X with 50+ replies. These are the threads where builders promote their products to each other.
 
+The query MUST include `min_replies:50` to filter to high-engagement threads only. Construct a proper Twitter search query with OR operators, quoted phrases, and a `since:` date for the last 7 days.
+
 ```bash
 REQ_ID="thread-$(date +%s)-$(head -c 4 /dev/urandom | xxd -p)"
 GROUP="${NANOCLAW_GROUP_FOLDER}"
 NOW=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
+SINCE=$(date -u -v-7d +%Y-%m-%d)
 
 cat > "/workspace/ipc/tasks/$(date +%s)-$(head -c 4 /dev/urandom | xxd -p).json" <<EOF
 {
   "type": "last30days_thread_search",
   "requestId": "${REQ_ID}",
-  "query": "drop your product ||| share your product ||| show me what you built ||| drop your project ||| what are you shipping ||| what are you building",
-  "days": 7,
+  "query": "(\"drop your product\" OR \"share your product\" OR \"show me what you built\" OR \"drop your project\" OR \"what are you shipping\" OR \"what are you building\") min_replies:50 since:${SINCE}",
   "groupFolder": "${GROUP}",
   "timestamp": "${NOW}"
 }
@@ -59,9 +61,9 @@ done
 - If a request fails or times out, try again
 - **Only use the thread search IPC call defined above.** Do not run any `last30days_research` searches or invent additional search queries. All product discovery must come from the thread search results.
 
-### Step 2: Visit Product URLs
+### Step 2: Extract ALL Products
 
-For each product reply that contains a URL:
+Extract every product from every thread reply. Do not filter by quality, engagement, or relevance — include everything. For each reply that contains a URL:
 1. Visit the URL to understand what the product actually does
 2. Note the product name, one-line description, and who it's for
 3. Skip replies that are just bare links with no product behind them (dead pages, login walls, empty SPAs)

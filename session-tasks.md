@@ -1,3 +1,9 @@
+### April 4, 2026 (session 4)
+- [x] Diagnosed why weekly product briefing yields ~12-20 products vs 209 in March 28 run — agent was freelancing `last30days_research` searches instead of using thread search; render cap of 15 items on research path; agent cherry-picking instead of cataloging all replies (2026-04-04)
+- [x] Fixed: added instruction to block `last30days_research`, added `min_replies:50` to thread search query, bumped reply fetch from 100→300, told agent to extract all products not cherry-pick (2026-04-04)
+- [x] Added backlog item: Readwise wiki compiler (weekly scheduled task, Karpathy LLM wiki pattern) (2026-04-04)
+- [x] Un-ignored backlog.md in second-brain .gitignore (2026-04-04)
+
 ### April 4, 2026 (session 3)
 - [x] Diagnosed low product count in weekly briefing (18 vs expected 100+) — three bugs: `--count=N` flag silently ignored by bird-search.mjs (equals vs space parsing), `keywords` vs `query` field mismatch in IPC handler, Twitter API caps at ~40 replies per conversation_id (2026-04-04)
 - [x] Fixed all three: split `--count` into two spawn args, added `data.query || data.keywords` fallback, renamed `keywords` to `query` in instructions and group CLAUDE.md (2026-04-04)

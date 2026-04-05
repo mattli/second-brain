@@ -1,0 +1,38 @@
+### Memory & CLAUDE.md
+- [ ] Create `/workspace/group/context.md` and update main group CLAUDE.md to read it at session start — context.md lives alongside memory.md in the group directory and serves as volatile, fast-changing session state (current lean on active problems, decisions in flight, half-formed ideas) vs. memory.md which holds stable long-term facts. I update it during conversations as decisions get made, same pattern as memory.md. Requires one Claude Code change: add context.md to the session start reads in CLAUDE.md.
+- [ ] Update main chat group behavior — think through how Second Brain should ask clarifying questions and follow best practices before making changes (e.g. confirm scope, warn about side effects, suggest alternatives)
+- [ ] Add session start instructions to main group CLAUDE.md — at session start, read three sources directly: (1) backlog.md for active priorities, (2) session-tasks.md for changelog of what's been built, (3) recent git log from both the NanoClaw fork and second-brain vault for what actually changed in the system. Also read context.md if it exists as a volatile supplement for current mental state, decisions in flight, and open questions that don't fit the other files. At session end, update context.md with anything that would be lost at cold start — current lean on active problems, half-formed ideas, decisions being sat with. context.md differs from memory.md in that memory.md is stable long-term facts; context.md is fast-changing state that goes stale quickly. Anything in context.md that hasn't changed in weeks should migrate to memory.md or backlog.md.
+
+### Skills
+- [ ] Install update-nanoclaw — pull upstream changes with preview and selective cherry-pick; run roughly once a month
+- [ ] Install add-compact — adds /compact command for context compaction; needed when Phase 2 PM agent is built
+- [ ] Install add-telegram-swarm — agent teams in Telegram, each subagent gets its own bot identity; relevant to Phase 3
+- [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
+
+### Prompts
+- [ ] Figure out how to use YC RFS in intelligence system — doc saved at `projects/product/yc-rfs.md`; options include injecting as context into weekly briefing prompt, using as idea validation framework, or scheduling quarterly refresh
+- [ ] Evaluate weekly product briefing after first Saturday run — verify thread search, URL resolution, and categorization work end-to-end unattended; first test run (W13b) triggered 2026-03-28 with v3.0 instructions
+- [ ] AI Daily Briefing: Consider improving Product Hunt section in daily briefing. Sometimes "leaderboard not available" for current day. Is the current detail sufficient?
+- [ ] AI Daily Briefing: Is the new models section too dense?
+- [ ] Consider adding hyperlinks to product names/companies in the product briefing
+
+### Infrastructure
+- [ ] **Readwise wiki compiler** — New NanoClaw scheduled task (weekly, Sunday). Reads recent Readwise saves (last 7 days) via Readwise MCP. For each save, identifies key topics and either creates or updates wiki pages in a new `wiki/` directory in the vault. Maintains `wiki/index.md` as a catalog of all pages with one-line summaries. The agent decides what pages to create based on content — no pre-defined categories. Follows Karpathy's LLM wiki pattern: ingest → compile into persistent interlinked markdown → maintain index. Good answers from queries get filed back into the wiki so explorations compound. Readwise MCP is already wired up in NanoClaw. Scope: create `wiki/` dir, write compiler instructions, create scheduled task, iterate. See April 4 claude.ai brainstorm chat for full context and Karpathy's gist (saved in Readwise).
+- [ ] Update NanoClaw carefully — v1.2.35 (OneCLI Agent Vault) is a breaking change for Docker users. Migration only handles Anthropic and OpenAI keys automatically; Readwise and Parallel API keys in the credential proxy route table must be manually migrated into OneCLI Vault after running `/init-onecli`. Use `/use-native-credential-proxy` skill as escape hatch if things break. Don't run `/update-nanoclaw` without a plan.
+- [ ] Configure /remote-control — NanoClaw feature already merged, not yet configured. Starts a Claude Code session on the Mac Mini directly from Telegram, returns a browser URL. Full host access without SSH. Priority: next time at Mac Mini.
+- [ ] Set up a dotfiles repo — put shared ~/.zshrc aliases and functions in a private GitHub repo so changes sync across MacBook Pro and Mac Mini without manual duplication. Machine-specific things (vault path, NanoClaw directory) stay in a local file sourced by the shared one.
+
+### Completed
+- [x] Set up tmux on Mac Mini — keeps SSH sessions alive if connection drops; useful for long Claude Code sessions
+- [x] Readwise MCP integration — connected to NanoClaw main group via mcp-remote stdio bridge + OAuth (2026-03-29)
+- [x] Investigate Parallel AI MCP skill — installed Search + Task MCP via credential proxy; confirmed working (2026-03-23)
+- [x] Add start instruction to check README to global claude.md files (both machines) (2026-03-25)
+- [x] Add end instruction to update README "Check if any README.md files in projects you touched need updating to reflect what was done this session" (2026-03-25)
+- [x] Automated memory curation — Practical starting point is a curated memory.md read at session start
+- [x] Update main Telegram group CLAUDE.md — add communication style preferences (no value judgments on content)
+- [x] Investigate last30days skill — better briefing source coverage for Reddit, X, HN (Phase 2)
+- [x] Explore using last30days for a new product briefing — installed IPC bridge, X-only research working (2026-03-26)
+- [x] Disable iCloud on Mac Mini — no longer needed, may cause conflicts
+- [x] Include detected keyword in product briefing export, link, signal? — source attribution added to each product entry (2026-03-27)
+- [x] Tune product briefing research topics — switched from keyword search to thread reply scraping (2026-03-27)
+- [x] Bird search product aggregation — built full pipeline: thread search → product extraction → URL resolution → categorization; consolidated to weekly schedule (2026-03-28)

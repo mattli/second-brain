@@ -1,3 +1,10 @@
+### April 4, 2026 (session 3)
+- [x] Diagnosed low product count in weekly briefing (18 vs expected 100+) — three bugs: `--count=N` flag silently ignored by bird-search.mjs (equals vs space parsing), `keywords` vs `query` field mismatch in IPC handler, Twitter API caps at ~40 replies per conversation_id (2026-04-04)
+- [x] Fixed all three: split `--count` into two spawn args, added `data.query || data.keywords` fallback, renamed `keywords` to `query` in instructions and group CLAUDE.md (2026-04-04)
+- [x] Ran oneoff product briefing (2026-04-04c) to verify fixes — reply counts up (88, 57, 40 per search vs previous 20); dedup against earlier runs limited new products but pipeline is working (2026-04-04)
+- [x] Added tmux to nanoclaw alias in ~/.zshrc — prevents SSH broken pipe from killing Claude Code sessions (2026-04-04)
+- [x] Killed stale dotmd tmux session from March 31 (2026-04-04)
+
 ### April 4, 2026 (session 2)
 - [x] Restored original morning product briefing (2026-04-04.md) after oneoff afternoon run overwrote it; renamed afternoon version to 2026-04-04b.md following existing a/b/c convention (2026-04-04)
 

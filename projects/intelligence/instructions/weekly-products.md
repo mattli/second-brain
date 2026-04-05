@@ -57,6 +57,7 @@ done
 - The result is a JSON object: `{ "success": true, "message": "...research output..." }`
 - Read the **full** message content — it contains X posts with engagement stats, quotes, and handles
 - If a request fails or times out, try again
+- **Only use the thread search IPC call defined above.** Do not run any `last30days_research` searches or invent additional search queries. All product discovery must come from the thread search results.
 
 ### Step 2: Visit Product URLs
 

@@ -37,6 +37,8 @@ For each document, use `mcp__readwise__reader_get_document_details` to get the f
 
 Skip documents that are trivial bookmarks or have no substantive content.
 
+However, do NOT ignore product/tool bookmarks entirely — even if a save is just a landing page with no deep content, note the tool's name, what it does, and its URL on the relevant topic page. The goal is to never lose a bookmarked tool, but to file it as a data point rather than a standalone page.
+
 ### 4. Update or Create Wiki Pages
 
 For each meaningful topic identified across the saves:
@@ -58,6 +60,7 @@ For each meaningful topic identified across the saves:
 - A person doing notable work that comes up repeatedly → page
 - A technique, framework, or tool with enough substance → page
 - A broad theme (e.g., "AI agents", "open source models") that many sources touch → page
+- A tool or product you bookmarked → don't create a standalone page, but mention it on the relevant topic page as a data point (e.g., a payment tool gets noted on the payments infrastructure page, a marketing tool gets noted on the AI marketing page). Bookmarks are landscape awareness — they should be captured but not given their own wiki entries.
 
 Don't create a page for every minor mention. Create pages when there's enough substance to make a useful reference.
 

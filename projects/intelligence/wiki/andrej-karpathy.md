@@ -24,6 +24,10 @@ Proposed sharing ideas as text files rather than code/apps, since in the agent e
 
 ## Sources
 
-- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 2026)
-- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (commentary on Karpathy, Apr 2026)
-- "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online (Karpathy referenced as context)
+- "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026)
+- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 4, 2026)
+- "llm-wiki" — Andrej Karpathy (GitHub gist, Apr 4, 2026; 1,066 stars)
+- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (commentary, Apr 2026)
+- "karpathy is showing one of the simplest AI architectures..." — JUMPERZ (tweet, Apr 2026)
+- "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary
+- "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online

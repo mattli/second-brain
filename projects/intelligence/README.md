@@ -10,6 +10,7 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 | **Product Briefing** | Sat 6am            | `weekly-products/YYYY-MM-DD.md`   | X thread product extraction and categorization into problem buckets       |
 | **Weekly Summary**   | Sat 8am            | `weekly-summaries/YYYY-WXX.md`    | Synthesizes AI briefings + product briefing into patterns and signal      |
 | **Monthly Summary**  | 1st of month 7am   | `monthly-summaries/YYYY-MM.md`    | Synthesizes weekly summaries into durable trends and product observations |
+| **Readwise Wiki**    | Fri 10pm           | `wiki/*.md`                        | Persistent knowledge base compiled from Readwise saves                    |
 
 ## Directory Structure
 
@@ -19,11 +20,15 @@ intelligence/
 │   ├── daily-briefing.md
 │   ├── weekly-products.md
 │   ├── weekly-summary.md
-│   └── monthly-summary.md
+│   ├── monthly-summary.md
+│   └── readwise-wiki.md
 ├── ai-briefings/           # Daily briefing output
 ├── weekly-products/        # Weekly product briefing output
 ├── weekly-summaries/       # Weekly summary output
 ├── monthly-summaries/      # Monthly summary output
+├── wiki/                   # Persistent knowledge base (Readwise wiki)
+│   ├── index.md            # Topic index with links and one-line summaries
+│   └── *.md                # Individual topic pages
 └── README.md
 ```
 
@@ -63,7 +68,34 @@ AI Briefing (Mon-Fri, includes Product Hunt)
 
 The daily AI briefing researches live sources including Product Hunt. The weekly product briefing searches X for high-engagement "share your product" threads (50+ replies), extracts product URLs, resolves them, and categorizes into problem buckets. The weekly summary reads both the AI briefings and the product briefing plus VC thesis searches. The monthly summary reads only the weekly summaries — no independent research.
 
-## How It Works
+## Readwise Wiki
+
+A persistent, interlinked knowledge base compiled from Readwise saves — following Andrej Karpathy's "LLM Wiki" pattern. Unlike the briefings (which are time-series outputs on a schedule), the wiki is a living reference that gets updated over time, not replaced.
+
+### How It Works
+
+1. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved in the last 7 days (or all documents on first run)
+2. **Read and extract** — for each document, extracts key concepts, claims, connections to existing pages, and notable people/tools
+3. **Update or create pages** — integrates new information into existing topic pages, or creates new pages when a topic has enough substance. Pages are about *topics* (not individual articles) and may draw from multiple sources.
+4. **Maintain the index** — `wiki/index.md` is updated with links and one-line summaries for every page, loosely grouped by domain
+5. **Lint** — scans for orphan pages, missing pages, and stale content on every run
+
+### Page Design
+
+- Each page starts with a TLDR, has content organized by the natural structure of the topic, and ends with a Sources section citing which Readwise saves informed it
+- Pages interlink with standard markdown links (works in both Obsidian and GitHub)
+- File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
+- Tool/product bookmarks don't get standalone pages — they're noted as data points on the relevant topic page
+
+### When It Runs
+
+The wiki runs as a **scheduled task every Friday at 10pm**, processing the week's Readwise saves. Instructions live in `instructions/readwise-wiki.md`.
+
+### Current Pages
+
+The wiki currently has 12 topic pages across concepts, tools, landscape analysis, and people profiles. See `wiki/index.md` for the full list.
+
+## Briefing Execution
 
 Each briefing type runs as a NanoClaw scheduled task:
 1. The scheduler detects a due task and spawns an isolated container

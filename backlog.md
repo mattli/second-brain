@@ -10,6 +10,7 @@
 - [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
 
 ### Prompts
+- [ ] **Readwise wiki → weekly summary integration** — After ~4 weekly wiki runs (~mid-May), evaluate whether to add a wiki-update step to the weekly summary agent. Check: (1) Is the wiki being referenced by agents during searches or Q&A? (2) Are there obvious gaps where weekly briefing signals (funding rounds, capability shifts, VC theses) would have made wiki pages more useful? (3) Has the lint step surfaced real issues, or is the wiki too small for it to matter? If yes to 1 or 2, build the pipeline — scope it to factual signals only (AI Context, VC Lens, durable category patterns from Category Movement). Skip analysis, skip indie product listings. If no, the wiki needs more mass from Readwise first.
 - [ ] Figure out how to use YC RFS in intelligence system — doc saved at `projects/product/yc-rfs.md`; options include injecting as context into weekly briefing prompt, using as idea validation framework, or scheduling quarterly refresh
 - [ ] Evaluate weekly product briefing after first Saturday run — verify thread search, URL resolution, and categorization work end-to-end unattended; first test run (W13b) triggered 2026-03-28 with v3.0 instructions
 - [ ] AI Daily Briefing: Consider improving Product Hunt section in daily briefing. Sometimes "leaderboard not available" for current day. Is the current detail sufficient?

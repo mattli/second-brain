@@ -18,7 +18,7 @@ An always-on personal intelligence system that keeps you informed, surfaces prod
 | Component | Status |
 |---|---|
 | Daily briefing | ✅ Running (Mac Mini, v2.1) |
-| Weekly summary | ✅ Running (Mac Mini, v1.4, Saturdays 7am) |
+| Weekly summary | ✅ Running (Mac Mini, v3.3, Saturdays 8am) |
 | GitHub private repo (`second-brain`) | ✅ Set up |
 | Obsidian vault structure | ✅ Set up 2026-02-26 |
 | Obsidian Git plugin | ✅ Set up |
@@ -93,8 +93,9 @@ Cron schedule (running on Mac Mini):
 
 ```
 7am weekdays  → daily briefing
-7am Sunday    → weekly summary
-8am 1st of month → monthly summary (to build)
+6am Saturday  → product briefing
+8am Saturday  → weekly summary (reads product briefing)
+8am 1st of month → monthly summary
 ```
 
 Each run:

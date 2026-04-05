@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 3.3 | Last updated: 2026-03-28
+> Version: 3.4 | Last updated: 2026-04-04
 
 ## Purpose
 Each Saturday morning, synthesize the week's AI briefings and weekly product briefing into an analysis of where the product landscape is moving. The goal is not to recap what happened or re-categorize products — the daily briefings and weekly product briefing already did that. The goal is to layer on context (capability shifts, capital flows, VC theses) and surface the gaps between what's being invested in and what's actually being built.
@@ -32,15 +32,31 @@ Read the most recent file in `weekly-products/` (the weekly product briefing pro
 
 **Do not re-categorize these products.** The product briefing owns the categorization. Your job is to analyze what those categories mean when you overlay the AI briefing context and VC lens.
 
-### 4. VC Thesis Search
-Search for any new investment thesis posts, essays, or perspective pieces published in the last 7 days from:
-- **a16z** (a16z.com)
+### 4. Strategic Signals
+
+#### 4a. VC & Analyst Thesis Search
+Search for forward-looking essays or analysis pieces published in the last 7 days from the following sources. Look for pieces that articulate a belief about where a market, technology, or product category is heading. Exclude funding announcements, portfolio news, press releases, and tactical how-to content.
+
+**VC Firms:**
+- **a16z** — search a16z.news (their Substack) and substack publications like a16z speedrun. Do NOT search a16z.com — thesis content has moved to Substack.
 - **Sequoia** (sequoiacap.com)
 - **Kleiner Perkins** (kleinerperkins.com)
+- **NFX** (nfx.com/essays) — network effects and market dynamics essays
 
-Include only forward-looking investment theses — pieces that articulate a belief about where a market or technology is heading. Exclude funding announcements, portfolio news, and press releases.
+**Independent Analysts:**
+- **Benedict Evans** (ben-evans.com) — weekly tech/market analysis
+- **Stratechery** by Ben Thompson (stratechery.com) — tech strategy analysis
+- **Ethan Mollick** (oneusefulthing.substack.com) — AI impact and implications
 
-If nothing relevant was published this week, note it briefly.
+**Practitioner:**
+- **First Round Review** (review.firstround.com) — operator-level essays, often thesis-adjacent
+
+For each relevant piece found: what they believe, why, and how it connects to the product categories being tracked.
+
+If a source published nothing relevant this week, skip it — do not list every source with "nothing published." Only note the absence if ALL sources came up empty.
+
+#### 4b. Overnight Catch-Up
+Search for any significant AI developments in the last 24 hours that were not covered by the weekday daily briefings (e.g., major announcements from Friday afternoon/evening). Include only if genuinely significant — do not let recency bias inflate their importance relative to the rest of the week's news.
 
 ---
 
@@ -53,7 +69,7 @@ If nothing relevant was published this week, note it briefly.
 What shifted this week at the model or infrastructure layer that's relevant to product builders? Keep this short — 3–5 bullet points maximum. Each bullet should connect a capability or infrastructure change to its product implication. Skip general AI news that doesn't affect what's buildable.
 
 ### VC Lens
-Summarize any investment thesis pieces published this week (from Research Task 4). For each: what they believe, why, and which product categories it validates, challenges, or opens up. If nothing was published this week, note it briefly. Also note any significant funding rounds or acquisitions from the daily briefings that signal where capital is concentrating.
+Summarize any forward-looking essays or analysis pieces found in Research Task 4a. For each: what they believe, why, and which product categories it validates, challenges, or opens up. Include pieces from both VC firms and independent analysts — the distinction matters less than whether the piece contains a genuine thesis about where the market is heading. Also note any significant funding rounds or acquisitions from the daily briefings that signal where capital is concentrating. If nothing relevant was found across all sources, note it briefly.
 
 ### Category Movement
 Take the problem categories from the weekly product briefing as your starting point. For each notable category, provide brief commentary:
@@ -118,9 +134,15 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 | Previous weekly summaries | ✅/❌ | [which weeks read] |
 | AI briefings (Mon–Fri) | ✅/❌ | [which days read] |
 | Weekly product briefing | ✅/❌ | [date of briefing read] |
-| a16z | ✅/❌ | [pieces or "(nothing published)"] |
-| Sequoia | ✅/❌ | [pieces or "(nothing published)"] |
-| Kleiner Perkins | ✅/❌ | [pieces or "(nothing published)"] |
+| a16z (a16z.news) | ✅/❌ | [pieces or "(nothing relevant)"] |
+| Sequoia | ✅/❌ | [pieces or "(nothing relevant)"] |
+| Kleiner Perkins | ✅/❌ | [pieces or "(nothing relevant)"] |
+| NFX | ✅/❌ | [pieces or "(nothing relevant)"] |
+| Benedict Evans | ✅/❌ | [pieces or "(nothing relevant)"] |
+| Stratechery | ✅/❌ | [pieces or "(nothing relevant)"] |
+| Ethan Mollick | ✅/❌ | [pieces or "(nothing relevant)"] |
+| First Round Review | ✅/❌ | [pieces or "(nothing relevant)"] |
+| Overnight catch-up | ✅/❌ | [developments or "(nothing significant)"] |
 ```
 
 ---

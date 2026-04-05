@@ -1,3 +1,9 @@
+### April 4, 2026
+- [x] Diagnosed broken X thread reply fetching in weekly product briefing — `last30days_thread_search` IPC handler was never committed to git, lost during March 28 rebuild; both March 30 and April 4 briefings affected (2026-04-04)
+- [x] Rebuilt thread search handler in `src/skill-handlers/last30days.ts` — two-phase flow: bird-search finds starters, then fetches replies via `conversation_id:`; tested end-to-end with live credentials (2026-04-04)
+- [x] Added "Commit Before Ending a Session" rule to project CLAUDE.md to prevent recurrence (2026-04-04)
+- [x] Updated weekly-summary.md v3.3→v3.4 — replaced "VC Thesis Search" (Task 4) with expanded "Strategic Signals" section (4a: 8 sources including NFX, Benedict Evans, Stratechery, Ethan Mollick, First Round Review; 4b: overnight catch-up scan); updated VC Lens output section; expanded Sources Log template; fixed a16z URL to a16z.news (2026-04-04)
+
 ### April 3, 2026
 - [x] Merged 3-step setup wizard into single-page settings — shared code for /setup (init) and /settings (2026-04-03)
 - [x] Folder browser UX — Add/Remove buttons per row, grayed-out covered subfolders, all chips have X buttons (2026-04-03)

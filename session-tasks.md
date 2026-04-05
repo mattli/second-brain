@@ -1,3 +1,11 @@
+### April 5, 2026
+- [x] Bootstrapped Readwise wiki — processed all 65 saves, created 12 wiki pages (LLM Knowledge Bases, Agent Proficiency, AI Careers, Andrej Karpathy, Claude Code Skill Frameworks, Agentic Engineering, AI-Native Product Development, AI Startup Distribution, AI Organization Design, Business Moats in AI, YC AI Thesis, Peter Steinberger) at `intelligence/wiki/` (2026-04-05)
+- [x] Wrote readwise-wiki instructions file (`intelligence/instructions/readwise-wiki.md`) — fixed vault git path, added tool bookmark guidance (2026-04-05)
+- [x] Scheduled Readwise wiki as weekly NanoClaw task — Fridays 10pm, isolated container, incremental (last 7 days only) (2026-04-05)
+- [x] Updated NanoClaw README with Readwise Wiki group and scheduled task (2026-04-05)
+- [x] Added `set -g mouse on` to `~/.tmux.conf` for trackpad scrolling in tmux (2026-04-05)
+- [x] Split nanoclaw alias into `nanoclaw` (no tmux) and `nanoclaw-tmux` (with tmux) in `~/.zshrc` (2026-04-05)
+
 ### April 4, 2026 (session 4)
 - [x] Diagnosed why weekly product briefing yields ~12-20 products vs 209 in March 28 run — agent was freelancing `last30days_research` searches instead of using thread search; render cap of 15 items on research path; agent cherry-picking instead of cataloging all replies (2026-04-04)
 - [x] Fixed: added instruction to block `last30days_research`, added `min_replies:50` to thread search query, bumped reply fetch from 100→300, told agent to extract all products not cherry-pick (2026-04-04)

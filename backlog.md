@@ -17,12 +17,12 @@
 - [ ] Consider adding hyperlinks to product names/companies in the product briefing
 
 ### Infrastructure
-- [ ] **Readwise wiki compiler** — New NanoClaw scheduled task (weekly, Sunday). Reads recent Readwise saves (last 7 days) via Readwise MCP. For each save, identifies key topics and either creates or updates wiki pages in a new `wiki/` directory in the vault. Maintains `wiki/index.md` as a catalog of all pages with one-line summaries. The agent decides what pages to create based on content — no pre-defined categories. Follows Karpathy's LLM wiki pattern: ingest → compile into persistent interlinked markdown → maintain index. Good answers from queries get filed back into the wiki so explorations compound. Readwise MCP is already wired up in NanoClaw. Scope: create `wiki/` dir, write compiler instructions, create scheduled task, iterate. See April 4 claude.ai brainstorm chat for full context and Karpathy's gist (saved in Readwise).
 - [ ] Update NanoClaw carefully — v1.2.35 (OneCLI Agent Vault) is a breaking change for Docker users. Migration only handles Anthropic and OpenAI keys automatically; Readwise and Parallel API keys in the credential proxy route table must be manually migrated into OneCLI Vault after running `/init-onecli`. Use `/use-native-credential-proxy` skill as escape hatch if things break. Don't run `/update-nanoclaw` without a plan.
 - [ ] Configure /remote-control — NanoClaw feature already merged, not yet configured. Starts a Claude Code session on the Mac Mini directly from Telegram, returns a browser URL. Full host access without SSH. Priority: next time at Mac Mini.
 - [ ] Set up a dotfiles repo — put shared ~/.zshrc aliases and functions in a private GitHub repo so changes sync across MacBook Pro and Mac Mini without manual duplication. Machine-specific things (vault path, NanoClaw directory) stay in a local file sourced by the shared one.
 
 ### Completed
+- [x] **Readwise wiki compiler** — Bootstrapped wiki with 12 pages from 65 saves, scheduled as weekly NanoClaw task (Fridays 10pm). Instructions at `intelligence/instructions/readwise-wiki.md`, output at `intelligence/wiki/`. (2026-04-05)
 - [x] Set up tmux on Mac Mini — keeps SSH sessions alive if connection drops; useful for long Claude Code sessions
 - [x] Readwise MCP integration — connected to NanoClaw main group via mcp-remote stdio bridge + OAuth (2026-03-29)
 - [x] Investigate Parallel AI MCP skill — installed Search + Task MCP via credential proxy; confirmed working (2026-03-23)

@@ -39,13 +39,12 @@ If the CLAUDE.md and the task prompt conflict, the task prompt usually wins for 
 
 There are multiple CLAUDE.md files. They layer on top of each other:
 
-1. `groups/global/CLAUDE.md` — applies to ALL agents. Contains "About Matt" and message formatting rules.
-2. `groups/main/CLAUDE.md` — applies only to the main Telegram chat agent.
-3. `groups/telegram_main/CLAUDE.md` — applies to the Telegram main channel agent.
-4. `groups/briefing/CLAUDE.md` — applies only to the daily briefing agent.
-5. `groups/product-briefing/CLAUDE.md` — applies only to the product briefing agent.
-6. `groups/weekly-summary/CLAUDE.md` — applies only to the weekly summary agent.
-7. `groups/monthly-summary/CLAUDE.md` — applies only to the monthly summary agent.
+1. `groups/global/CLAUDE.md` — applies to ALL agents. Identity, capabilities, communication rules.
+2. `groups/telegram_main/CLAUDE.md` — applies to the main Telegram channel agent. Matt-specific tools, formatting, memory, vault access, admin privileges.
+3. `groups/briefing/CLAUDE.md` — applies only to the daily briefing agent.
+4. `groups/product-briefing/CLAUDE.md` — applies only to the product briefing agent.
+5. `groups/weekly-summary/CLAUDE.md` — applies only to the weekly summary agent.
+6. `groups/monthly-summary/CLAUDE.md` — applies only to the monthly summary agent.
 
 To edit any of these: SSH into the Mac Mini and edit the file directly. They're plain markdown.
 

@@ -1,3 +1,6 @@
+### April 4, 2026 (session 2)
+- [x] Restored original morning product briefing (2026-04-04.md) after oneoff afternoon run overwrote it; renamed afternoon version to 2026-04-04b.md following existing a/b/c convention (2026-04-04)
+
 ### April 4, 2026
 - [x] Diagnosed broken X thread reply fetching in weekly product briefing — `last30days_thread_search` IPC handler was never committed to git, lost during March 28 rebuild; both March 30 and April 4 briefings affected (2026-04-04)
 - [x] Rebuilt thread search handler in `src/skill-handlers/last30days.ts` — two-phase flow: bird-search finds starters, then fetches replies via `conversation_id:`; tested end-to-end with live credentials (2026-04-04)

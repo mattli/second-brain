@@ -4,8 +4,9 @@ Goals: Build/launch Dotmd. Recover from burnout.
 
 ### Sunday, April 6
 
+- [x] Scan updated weekly summary
 - [ ] Second Brain wiki — set up wiki/ directory and NanoClaw task (see backlog)
-- [ ] Create a Wikipedia-style bio page for myself
+- [ ] Continue working through pmtxt specs
 
 ---
 

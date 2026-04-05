@@ -2,12 +2,18 @@
 
 Goals: Build/launch Dotmd. Recover from burnout.
 
+### Saturday, April 5
+
+- [ ] Second Brain wiki — set up wiki/ directory and NanoClaw task (see backlog)
+
+---
+
 ### Friday, April 4
 
-- [ ] Gym
-- [ ] Smoothie
-- [ ] Read briefings
-- [ ] Brainstorm pmtxt
+- [x] Gym
+- [x] Smoothie
+- [x] Read briefings
+- [x] Brainstorm pmtxt
 
 ---
 
@@ -18,7 +24,7 @@ Goals: Build/launch Dotmd. Recover from burnout.
 - [x] Eggs and avocado toast at home
 - [x] Noodle soup for lunch
 - [x] dotmd launch — initial post
-- [ ] Ratboys Concert
+- [x] Ratboys Concert
 
 ---
 

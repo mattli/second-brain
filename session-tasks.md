@@ -1,3 +1,7 @@
+### April 5, 2026 (session 3)
+- [x] Created `wiki/README.md` — explains wiki purpose, use case, maintenance, and how it fits the intelligence system (2026-04-05)
+- [x] Fixed stale `index.md` → `_index.md` references in intelligence README (2026-04-05)
+
 ### April 5, 2026 (session 2)
 - [x] Committed and pushed NanoClaw: migrated main group → telegram_main, cleaned up global CLAUDE.md, added gitignore rules for compiled skill files and nanoclaw.db (2026-04-05)
 - [x] Added `created_at` and `last_updated` frontmatter to all 12 wiki pages (2026-04-05)

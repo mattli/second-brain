@@ -10,12 +10,17 @@
 - [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
 
 ### Prompts
+- [ ] Key figure publishing alerts — figure out a way to get notified when people like Dario Amodei or DHH publish a new long-form piece or thesis. Could be RSS monitoring, a periodic agent task that checks their blogs/sites, or Readwise feed subscriptions. Goal is to catch essays and posts worth reading without having to actively follow them.
+
 - [ ] **Readwise wiki → weekly summary integration** — After ~4 weekly wiki runs (~mid-May), evaluate whether to add a wiki-update step to the weekly summary agent. Check: (1) Is the wiki being referenced by agents during searches or Q&A? (2) Are there obvious gaps where weekly briefing signals (funding rounds, capability shifts, VC theses) would have made wiki pages more useful? (3) Has the lint step surfaced real issues, or is the wiki too small for it to matter? If yes to 1 or 2, build the pipeline — scope it to factual signals only (AI Context, VC Lens, durable category patterns from Category Movement). Skip analysis, skip indie product listings. If no, the wiki needs more mass from Readwise first.
 - [ ] Figure out how to use YC RFS in intelligence system — doc saved at `projects/product/yc-rfs.md`; options include injecting as context into weekly briefing prompt, using as idea validation framework, or scheduling quarterly refresh
 - [ ] Evaluate weekly product briefing after first Saturday run — verify thread search, URL resolution, and categorization work end-to-end unattended; first test run (W13b) triggered 2026-03-28 with v3.0 instructions
 - [ ] AI Daily Briefing: Consider improving Product Hunt section in daily briefing. Sometimes "leaderboard not available" for current day. Is the current detail sufficient?
 - [ ] AI Daily Briefing: Is the new models section too dense?
 - [ ] Consider adding hyperlinks to product names/companies in the product briefing
+
+### Cold Mountain (coldmountain.ai)
+- [ ] Update Second Brain page — reflect current state of the system (Readwise wiki, pmtxt, dotmd all launched/in progress since last update). Consider pinning Second Brain to the top of the projects list. Add dotmd as an open source project. Consider adding a shipped count or rethinking the layout to better surface what's been built.
 
 ### Infrastructure
 - [ ] Update NanoClaw carefully — v1.2.35 (OneCLI Agent Vault) is a breaking change for Docker users. Migration only handles Anthropic and OpenAI keys automatically; Readwise and Parallel API keys in the credential proxy route table must be manually migrated into OneCLI Vault after running `/init-onecli`. Use `/use-native-credential-proxy` skill as escape hatch if things break. Don't run `/update-nanoclaw` without a plan.

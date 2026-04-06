@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # Andrej Karpathy
 
 > TLDR: AI researcher and educator whose recent focus has shifted from model internals to knowledge management — advocating for LLM-compiled personal wikis, file-over-app data ownership, and agent proficiency as core skills.

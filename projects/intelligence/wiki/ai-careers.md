@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # AI Careers
 
 > TLDR: The AI job market is bifurcating into "big AI" (frontier model companies pushing toward AGI) and "small AI" (fine-tuned, self-hosted models for privacy-sensitive domains) — surviving either path requires deep fundamentals, business focus, and delivery skills over hype.

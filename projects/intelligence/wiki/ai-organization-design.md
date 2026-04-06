@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # AI Organization Design
 
 > TLDR: Block (Jack Dorsey) proposes replacing corporate hierarchy with an "intelligence layer" — a company organized as a mini-AGI where AI handles coordination that previously required layers of management, enabled by a "world model" of operations and customer data.

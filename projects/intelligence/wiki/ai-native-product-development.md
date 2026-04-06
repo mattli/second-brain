@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # AI-Native Product Development
 
 > TLDR: The shift from traditional PRDs and sprint planning to rapid prototyping with AI agents — "docs to demos" — where the bottleneck moves from engineering to deciding what to build.

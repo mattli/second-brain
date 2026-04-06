@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # Y Combinator AI Thesis (2026)
 
 > TLDR: YC's 2026 Requests for Startups reveal their bet areas — AI-native agencies with software margins, "Cursor for product management," AI-native hedge funds, government AI tools, spatial reasoning models, and reindustrialized American manufacturing.

@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # Peter Steinberger
 
 > TLDR: Prolific builder of AI developer tools and creator of OpenClaw. Ex-PSPDFKit founder who pivoted to "polyagentmorous" development — building 50+ open-source tools at extreme velocity using AI agents.

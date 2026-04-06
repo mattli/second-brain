@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # Agent Proficiency
 
 > TLDR: The skill of effectively managing and directing AI agents — structuring inputs, evaluating outputs, maintaining knowledge bases — is emerging as a core competency of the AI era, distinct from both coding and prompting.

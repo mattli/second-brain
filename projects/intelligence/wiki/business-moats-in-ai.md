@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # Business Moats in AI
 
 > TLDR: As AI commoditizes everything "hard to do," the only durable moats are things "hard to get" — compounding proprietary data, network effects, regulatory permission, capital at scale, and physical infrastructure. Time that can't be parallelized is the meta-moat.

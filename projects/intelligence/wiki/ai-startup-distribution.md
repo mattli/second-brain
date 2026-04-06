@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # AI Startup Distribution
 
 > TLDR: Code is commoditized — 200K+ vibe-coded projects created daily but almost none get customers. Distribution, not building, is now the bottleneck for AI-era startups.

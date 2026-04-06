@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # Claude Code Skill Frameworks
 
 > TLDR: Three major skill frameworks — gstack, Superpowers, and Compound Engineering — have emerged to add structured workflows on top of Claude Code, each solving a different layer: decisions/QA, process discipline, and cross-session knowledge accumulation.

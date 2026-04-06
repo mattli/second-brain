@@ -1,3 +1,8 @@
+---
+created_at: 2026-04-05
+last_updated: 2026-04-05
+---
+
 # LLM Knowledge Bases
 
 > TLDR: Using LLMs to compile and maintain personal knowledge bases from raw sources — markdown wikis that the LLM writes, organizes, and queries, replacing traditional RAG with file-system-native agent navigation.

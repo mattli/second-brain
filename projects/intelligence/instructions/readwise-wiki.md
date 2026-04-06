@@ -16,7 +16,7 @@ Output goes to `wiki/` relative to the intelligence project directory.
 
 ### 1. Read the Wiki Index
 
-Read `wiki/index.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information. If the index is empty (first run), you'll be building from scratch.
+Read `wiki/_index.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information. If the index is empty (first run), you'll be building from scratch.
 
 ### 2. Fetch Readwise Saves
 
@@ -54,6 +54,7 @@ For each meaningful topic identified across the saves:
 - Interlink pages with standard markdown links: `[topic name](topic-slug.md)`. Use relative links so they work in Obsidian and GitHub.
 - Each page has a `## Sources` section at the bottom listing which Readwise saves informed it (title + author). This is a citation trail, not a bibliography — keep it brief.
 - File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
+- Each page has YAML frontmatter with `created_at` (set once when the page is created) and `last_updated` (set to today's date whenever you modify a page's content, not for trivial formatting fixes).
 
 **What pages to create is your decision.** There are no pre-defined categories. Look at the content and decide what topics deserve their own page. Some heuristics:
 - A concept that appears across multiple sources → page
@@ -66,7 +67,7 @@ Don't create a page for every minor mention. Create pages when there's enough su
 
 ### 5. Update the Index
 
-After every change, update `wiki/index.md`. Every page gets:
+After every change, update `wiki/_index.md`. Every page gets:
 - A link to the file
 - A one-line summary of what the page covers
 
@@ -86,6 +87,11 @@ Fix what you find. This keeps the wiki healthy as it grows.
 ## Page Template
 
 ```markdown
+---
+created_at: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+---
+
 # Page Title
 
 > TLDR: One or two sentences summarizing this topic.

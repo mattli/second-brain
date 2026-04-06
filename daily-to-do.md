@@ -5,6 +5,12 @@ Goals: Build/launch Dotmd. Recover from burnout.
 ### Sunday, April 6
 
 - [x] Scan updated weekly summary
+- [ ] Overnight oats for breakfast
+- [ ] Office hours with G-Stack (pmtxt)
+- [ ] Post dotmd in Vibe Coders Nest
+- [ ] Gym
+- [ ] Order sous vide
+- [ ] Read Infinite Jest
 - [ ] Second Brain wiki — set up wiki/ directory and NanoClaw task (see backlog)
 - [ ] Continue working through pmtxt specs
 

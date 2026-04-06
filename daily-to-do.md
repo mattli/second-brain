@@ -1,6 +1,6 @@
 # April 6 – April 12
 
-### Monday, April 7
+### Monday, April 6
 
 - [ ] Tweet about my Karpathy-inspired wiki
 - [ ] Office hours with G-Stack (pmtxt)

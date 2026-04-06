@@ -1,18 +1,27 @@
-# April 1 – April 7
+# April 6 – April 12
 
-Goals: Build/launch Dotmd. Recover from burnout.
+### Monday, April 7
 
-### Sunday, April 6
-
-- [x] Scan updated weekly summary
-- [ ] Overnight oats for breakfast
+- [ ] Tweet about my Karpathy-inspired wiki
 - [ ] Office hours with G-Stack (pmtxt)
 - [ ] Post dotmd in Vibe Coders Nest
 - [ ] Gym
 - [ ] Order sous vide
 - [ ] Read Infinite Jest
+- [ ] Guitar — True Fire lesson with Brad Carlton
 - [ ] Second Brain wiki — set up wiki/ directory and NanoClaw task (see backlog)
-- [ ] Continue working through pmtxt specs
+
+---
+
+# March 30 – April 5
+
+Goals: Build/launch Dotmd. Recover from burnout.
+
+### Sunday, April 5
+
+- [x] Scan updated weekly summary
+- [x] Overnight oats for breakfast
+- [x] Continue working through pmtxt specs
 
 ---
 

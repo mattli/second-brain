@@ -2,6 +2,7 @@
 
 ### Monday, April 6
 
+- [x] Read digest
 - [ ] Tweet about my Karpathy-inspired wiki
 - [ ] Office hours with G-Stack (pmtxt)
 - [ ] Post dotmd in Vibe Coders Nest

@@ -6,7 +6,7 @@
 ### Skills
 - [ ] Install update-nanoclaw — pull upstream changes with preview and selective cherry-pick; run roughly once a month
 - [ ] Install add-compact — adds /compact command for context compaction; needed when Phase 2 PM agent is built
-- [ ] Install add-telegram-swarm — agent teams in Telegram, each subagent gets its own bot identity; relevant to Phase 3
+- [ ] Install add-telegram-swarm — agent teams in Telegram, each subagent gets its own bot identity; relevant to Phase 3. Potential use case: adversarial agent debates — one optimistic, one pessimistic, one focused on execution risk — for stress-testing product decisions like pmtxt direction or YC application strategy. Related to the debate-perspectives project in the vault.
 - [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
 
 ### Prompts
@@ -22,6 +22,7 @@
 - [ ] Update Second Brain page — reflect current state of the system (Readwise wiki, pmtxt, dotmd all launched/in progress since last update). Consider pinning Second Brain to the top of the projects list. Add dotmd as an open source project. Consider adding a shipped count or rethinking the layout to better surface what's been built.
 
 ### Infrastructure
+- [ ] Investigate how to reliably inject current date/time into LLM context — agents and scheduled tasks sometimes work off stale or missing date context. Options include injecting timestamp into CLAUDE.md at session start, passing it as a system prompt variable, or using a pre-task hook. Goal: every agent always knows the correct date without relying on the model's internal assumptions.
 - [ ] Update NanoClaw carefully — v1.2.35 (OneCLI Agent Vault) is a breaking change for Docker users. Migration only handles Anthropic and OpenAI keys automatically; Readwise and Parallel API keys in the credential proxy route table must be manually migrated into OneCLI Vault after running `/init-onecli`. Use `/use-native-credential-proxy` skill as escape hatch if things break. Don't run `/update-nanoclaw` without a plan.
 - [ ] Configure /remote-control — NanoClaw feature already merged, not yet configured. Starts a Claude Code session on the Mac Mini directly from Telegram, returns a browser URL. Full host access without SSH. Priority: next time at Mac Mini.
 - [ ] Set up a dotfiles repo — put shared ~/.zshrc aliases and functions in a private GitHub repo so changes sync across MacBook Pro and Mac Mini without manual duplication. Machine-specific things (vault path, NanoClaw directory) stay in a local file sourced by the shared one.

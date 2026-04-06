@@ -94,6 +94,24 @@
 
 ---
 
+## 9. Book Reading Companion
+
+*Inspired by: reading Infinite Jest, wanting contextual help without being pulled out of the experience (April 2026)*
+
+**What it is:** An AI companion that has already "read" the book — not a summary app, but a deep reference. Ask it what's happening on page 277, who a character is, what happened three chapters ago that connects to what you just read, what a concept or reference means. It answers from full knowledge of the text, not a summary.
+
+**Why interesting:** Book summaries exist everywhere. This is different — it's a reading companion for people who are *in the middle of the book* and want context without spoilers, without Googling, without leaving the experience. The value is depth and specificity: it knows the exact passage, the exact character's history, the exact thematic thread.
+
+**How it works:** Ingest the full book text (ePub or plain text), run the Karpathy wiki pattern — compile character pages, chapter summaries, thematic threads, key passages into a persistent wiki. Query against that wiki as you read. The wiki is built once, stays current, and compounds as you ask questions (good answers get filed back in).
+
+**Personal validation:** Matt would pay for this for Infinite Jest specifically. That's a strong signal — it's not a hypothetical user, it's a real present need.
+
+**Open questions:** DRM is the hard constraint — Audible and Spotify audiobooks are locked. Works cleanly for ePubs (DRM-free or public domain). How do you handle spoilers — does the companion know where you are in the book and limit answers accordingly? Is this a standalone app, a Readwise feature, or a NanoClaw skill?
+
+**Status:** Strong personal desire. Others are likely working on this. Worth building for personal use first as a dog-food test of the Karpathy wiki pattern.
+
+---
+
 ## 8. Plain-Text PM Tool (pmtxt)
 
 *Inspired by: YC Spring 2026 RFS "Cursor for Product Managers", March 2026*

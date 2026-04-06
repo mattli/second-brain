@@ -3,9 +3,9 @@
 ### Monday, April 6
 
 - [x] Read digest
-- [ ] Tweet about my Karpathy-inspired wiki
+- [x] Tweet about my Karpathy-inspired wiki
 - [ ] Office hours with G-Stack (pmtxt)
-- [ ] Post dotmd in Vibe Coders Nest
+- [x] Post dotmd in Vibe Coders Nest
 - [ ] Order sous vide
 - [x] Read Infinite Jest
 - [ ] Guitar — True Fire lesson with Brad Carlton

@@ -6,9 +6,8 @@
 - [ ] Tweet about my Karpathy-inspired wiki
 - [ ] Office hours with G-Stack (pmtxt)
 - [ ] Post dotmd in Vibe Coders Nest
--
 - [ ] Order sous vide
-- [ ] Read Infinite Jest
+- [x] Read Infinite Jest
 - [ ] Guitar — True Fire lesson with Brad Carlton
 - [ ] Second Brain wiki — set up wiki/ directory and NanoClaw task (see backlog)
 

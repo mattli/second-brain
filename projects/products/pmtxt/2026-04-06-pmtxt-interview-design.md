@@ -129,7 +129,7 @@ Build the full product as specced: web dashboard, KB maintenance, evaluation eng
    - Rationale: "Relay Logistics' ops manager Sarah manually tracks 200+ certification expiry dates (customers.md). Your two other logistics customers described the same pain. Low technical complexity, high expansion revenue potential (revenue-model.md)."
    - Generated prompt: "Build a CSV import feature for certification records. Context: users are ops managers at logistics companies tracking driver certifications. Current workaround is manual spreadsheet tracking. Must handle: cert type, holder name, issue date, expiry date, issuing authority. Validate date formats and flag duplicates. Show import preview before committing. Success criteria: an ops manager can import 200 certifications in under 2 minutes."
 
-**Wireframe:** HTML wireframe generated and reviewed at `/tmp/gstack-sketch-pmtxt.html`. Directionally approved.
+**Wireframe:** HTML wireframe at `2026-04-06-pmtxt-interview-wireframe.html` (sibling file in this folder, also described in `2026-04-06-pmtxt-interview-wireframe.md`). Directionally approved.
 
 **Tech stack:** Next.js (existing repo), Anthropic API with prompt caching, no database needed for V1 (KB is generated in-session, output as downloadable markdown files + JSON). Session state stored in localStorage as a zero-cost mitigation against page refresh/connection loss during the 15-minute interview. On interview completion, auto-trigger a download of the generated KB files so the user has a local copy regardless of browser state (handles incognito/private browsing where localStorage is cleared on tab close).
 

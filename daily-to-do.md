@@ -9,8 +9,6 @@
 - [ ] Order sous vide
 - [x] Read Infinite Jest
 - [ ] Guitar — True Fire lesson with Brad Carlton
-- [ ] Second Brain wiki — set up wiki/ directory and NanoClaw task (see backlog)
-
 ---
 
 # March 30 – April 5
@@ -22,6 +20,7 @@ Goals: Build/launch Dotmd. Recover from burnout.
 - [x] Scan updated weekly summary
 - [x] Overnight oats for breakfast
 - [x] Continue working through pmtxt specs
+- [x] Second Brain wiki — set up wiki/ directory and NanoClaw task
 
 ---
 

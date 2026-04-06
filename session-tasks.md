@@ -1,3 +1,11 @@
+### April 5, 2026 (session 2)
+- [x] Committed and pushed NanoClaw: migrated main group → telegram_main, cleaned up global CLAUDE.md, added gitignore rules for compiled skill files and nanoclaw.db (2026-04-05)
+- [x] Added `created_at` and `last_updated` frontmatter to all 12 wiki pages (2026-04-05)
+- [x] Updated readwise-wiki compiler instructions to include both date fields in template (2026-04-05)
+- [x] Renamed wiki `index.md` → `_index.md` for top-sort in file explorers (2026-04-05)
+- [x] Deleted stale `docs/brainstorms/` and `docs/plans/` from NanoClaw repo (2026-04-05)
+- [x] Deleted accidental `SELECT * FROM scheduled_tasks;` file (2026-04-05)
+
 ### April 5, 2026
 - [x] Bootstrapped Readwise wiki — processed all 65 saves, created 12 wiki pages (LLM Knowledge Bases, Agent Proficiency, AI Careers, Andrej Karpathy, Claude Code Skill Frameworks, Agentic Engineering, AI-Native Product Development, AI Startup Distribution, AI Organization Design, Business Moats in AI, YC AI Thesis, Peter Steinberger) at `intelligence/wiki/` (2026-04-05)
 - [x] Wrote readwise-wiki instructions file (`intelligence/instructions/readwise-wiki.md`) — fixed vault git path, added tool bookmark guidance (2026-04-05)

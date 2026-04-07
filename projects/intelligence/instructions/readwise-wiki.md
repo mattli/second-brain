@@ -16,7 +16,7 @@ Output goes to `wiki/` relative to the intelligence project directory.
 
 ### 1. Read the Wiki Index
 
-Read `wiki/_index.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information. If the index is empty (first run), you'll be building from scratch.
+Read `wiki/INDEX.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information. If the index is empty (first run), you'll be building from scratch.
 
 ### 2. Fetch Readwise Saves
 
@@ -67,7 +67,7 @@ Don't create a page for every minor mention. Create pages when there's enough su
 
 ### 5. Update the Index
 
-After every change, update `wiki/_index.md`. Every page gets:
+After every change, update `wiki/INDEX.md`. Every page gets:
 - A link to the file
 - A one-line summary of what the page covers
 

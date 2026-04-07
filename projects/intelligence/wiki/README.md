@@ -20,6 +20,6 @@ The intelligence system has two modes: briefings (dated logs — daily, weekly, 
 
 ## Reference
 
-- **Index:** [`_index.md`](_index.md)
+- **Index:** [`INDEX.md`](INDEX.md)
 - **Compiler instructions:** [`../instructions/readwise-wiki.md`](../instructions/readwise-wiki.md)
 - **Parent project:** [`../README.md`](../README.md)

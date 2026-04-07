@@ -27,7 +27,7 @@ intelligence/
 ├── weekly-summaries/       # Weekly summary output
 ├── monthly-summaries/      # Monthly summary output
 ├── wiki/                   # Persistent knowledge base (Readwise wiki)
-│   ├── _index.md           # Topic index with links and one-line summaries
+│   ├── INDEX.md            # Topic index with links and one-line summaries
 │   └── *.md                # Individual topic pages
 └── README.md
 ```
@@ -77,7 +77,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves — follow
 1. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved in the last 7 days (or all documents on first run)
 2. **Read and extract** — for each document, extracts key concepts, claims, connections to existing pages, and notable people/tools
 3. **Update or create pages** — integrates new information into existing topic pages, or creates new pages when a topic has enough substance. Pages are about *topics* (not individual articles) and may draw from multiple sources.
-4. **Maintain the index** — `wiki/_index.md` is updated with links and one-line summaries for every page, loosely grouped by domain
+4. **Maintain the index** — `wiki/INDEX.md` is updated with links and one-line summaries for every page, loosely grouped by domain
 5. **Lint** — scans for orphan pages, missing pages, and stale content on every run
 
 ### Page Design
@@ -93,7 +93,7 @@ The wiki runs as a **scheduled task every Friday at 10pm**, processing the week'
 
 ### Current Pages
 
-The wiki currently has 12 topic pages across concepts, tools, landscape analysis, and people profiles. See `wiki/_index.md` for the full list.
+The wiki currently has 12 topic pages across concepts, tools, landscape analysis, and people profiles. See `wiki/INDEX.md` for the full list.
 
 ## Briefing Execution
 

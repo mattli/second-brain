@@ -5,22 +5,23 @@ Goals: Ship pmtxt V0.1 privately.
 ### Tuesday, April 7
 
 *Morning*
-- [ ] Lodge Bread — sourdough
-- [ ] Read AI digest
-- [ ] Read Infinite Jest
+- [x] Read AI digest
+- [x] Send tweet out
+- [ ] Eat
+- [ ] Gym
+
+Afternoon
 - [ ] Watch startup videos from Readwise (G-Stack suggestions)
 
-*Non-negotiable*
-- [ ] Gym
+*Work (max 2 hrs)*
+- [ ] Work on pmtxt prompts
 
 *Errands*
 - [ ] Buy sous vide
 - [ ] Update car registration sticker
 
-*Work (max 2 hrs)*
-- [ ] Work on pmtxt prompts
-
 *Evening*
+- [ ] Read Infinite Jest
 - [ ] Guitar — 30 min True Fire with Brad Carlton
 - [ ] Slow down and relax
 

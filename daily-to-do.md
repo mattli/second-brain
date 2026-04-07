@@ -4,7 +4,7 @@
 
 - [x] Read digest
 - [x] Tweet about my Karpathy-inspired wiki
-- [ ] Office hours with G-Stack (pmtxt)
+- [x] Office hours with G-Stack (pmtxt)
 - [x] Post dotmd in Vibe Coders Nest
 - [ ] Order sous vide
 - [x] Read Infinite Jest

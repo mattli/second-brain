@@ -1,13 +1,27 @@
 # April 6 – April 12
 
+Goals: Ship pmtxt V0.1 privately.
+
 ### Tuesday, April 7
 
-- [ ] Lodge Bread — sourdough in the morning
+*Morning*
+- [ ] Lodge Bread — sourdough
+- [ ] Read AI digest
+- [ ] Read Infinite Jest
+- [ ] Watch startup videos from Readwise (G-Stack suggestions)
+
+*Non-negotiable*
 - [ ] Gym
-- [ ] Guitar — True Fire lesson with Brad Carlton
-- [ ] Work on pmtxt prompts
+
+*Errands*
 - [ ] Buy sous vide
 - [ ] Update car registration sticker
+
+*Work (max 2 hrs)*
+- [ ] Work on pmtxt prompts
+
+*Evening*
+- [ ] Guitar — 30 min True Fire with Brad Carlton
 - [ ] Slow down and relax
 
 ---

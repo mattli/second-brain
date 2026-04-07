@@ -1,5 +1,17 @@
 # April 6 – April 12
 
+### Tuesday, April 7
+
+- [ ] Lodge Bread — sourdough in the morning
+- [ ] Gym
+- [ ] Guitar — True Fire lesson with Brad Carlton
+- [ ] Work on pmtxt prompts
+- [ ] Buy sous vide
+- [ ] Update car registration sticker
+- [ ] Slow down and relax
+
+---
+
 ### Monday, April 6
 
 - [x] Read digest

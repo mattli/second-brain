@@ -7,8 +7,8 @@ Goals: Ship pmtxt V0.1 privately.
 *Morning*
 - [x] Read AI digest
 - [x] Send tweet out
-- [ ] Eat
-- [ ] Gym
+- [x] Eat
+- [x] Gym
 
 Afternoon
 - [ ] Watch startup videos from Readwise (G-Stack suggestions)

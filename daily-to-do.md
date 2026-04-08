@@ -11,7 +11,7 @@ Goals: Ship pmtxt V0.1 privately.
 - [x] Gym
 
 Afternoon
-- [ ] Watch startup videos from Readwise (G-Stack suggestions)
+- [x] Watch startup videos from Readwise (G-Stack suggestions)
 
 *Work (max 2 hrs)*
 - [ ] Work on pmtxt prompts

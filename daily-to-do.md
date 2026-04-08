@@ -2,6 +2,19 @@
 
 Goals: Ship pmtxt V0.1 privately.
 
+### Wednesday, April 8
+
+- [ ] Muesli at Bluey's
+- [ ] Read AI digest
+- [ ] Clean up pmtxt files
+- [ ] Read Infinite Jest
+- [ ] Swimming (afternoon)
+- [ ] Play guitar
+- [ ] Buy sous vide
+- [ ] Update car registration sticker
+
+---
+
 ### Tuesday, April 7
 
 *Morning*
@@ -14,7 +27,7 @@ Afternoon
 - [x] Watch startup videos from Readwise (G-Stack suggestions)
 
 *Work (max 2 hrs)*
-- [ ] Work on pmtxt prompts
+- [x] Work on pmtxt prompts
 
 *Errands*
 - [ ] Buy sous vide
@@ -22,7 +35,7 @@ Afternoon
 
 *Evening*
 - [ ] Read Infinite Jest
-- [ ] Guitar — 30 min True Fire with Brad Carlton
+- [x] Guitar
 - [ ] Slow down and relax
 
 ---

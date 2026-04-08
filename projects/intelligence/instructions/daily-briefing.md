@@ -46,8 +46,7 @@ If nothing clears this bar, skip the section entirely — do not list minor mode
 Search for major AI-related business news in the last 24 hours strictly:
 - Funding rounds (Series A and above, or notable seed rounds)
 - Acquisitions or mergers involving AI companies
-- Significant new product or feature launches
-- **Product Hunt** (producthunt.com) — check today's top 3–5 launches. Include any that are genuinely notable in the AI/tech space. Skip generic or low-signal launches.
+- **Notable product launches** — bigger consumer or developer products from funded startups or established companies. Primary source: **TechCrunch** (techcrunch.com). Secondary: scan **Show HN** on Hacker News for launches from funded or well-known teams (especially developer tools that ship quietly via GitHub without press coverage). Explicitly skip: frontier model releases (covered in Section 2), and indie/solo-dev launches (covered separately in weekly X indie product scraping). Do not use Product Hunt — too noisy for this tier.
 
 Summarize each item in 1–2 sentences. If nothing significant occurred in the last 24 hours, say so briefly.
 
@@ -97,8 +96,8 @@ Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
 | Source | Searched | Stories Used |
 |--------|----------|-------------|
 | TechCrunch | ✅/❌ | [story titles or "(nothing new)"] |
-| Hacker News | ✅/❌ |
-| Product Hunt | ✅/❌ | [product names or "(nothing notable)"] |
+| Hacker News | ✅/❌ | [story titles; note any Show HN launches used in Section 3] |
+| TechCrunch (launches) | ✅/❌ | [launch names or "(nothing notable)"] |
 | Other | — | [any sources not listed above] |
 ```
 

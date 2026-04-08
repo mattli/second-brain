@@ -6,11 +6,11 @@ Goals: Ship pmtxt V0.1 privately.
 
 - [x] Muesli at Bluey's
 - [x] Read AI digest
-- [ ] Read Infinite Jest
-- [ ] Work on AI Digest Product Hunt section
+- [x] Read Infinite Jest
+- [x] Work on AI Digest Product Hunt section
+- [ ] Switch Readwise wiki compiler to twice a week (Wed 10pm + Sat 10pm) — NanoClaw task config change
 - [ ] Clean up pmtxt files
 - [ ] Play guitar
-- [ ] Switch Readwise wiki compiler to twice a week (Wed 10pm + Sat 10pm) — NanoClaw task config change
 - [ ] Buy sous vide
 - [ ] Update car registration sticker
 - [ ] Buy new router

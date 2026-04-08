@@ -1,0 +1,308 @@
+---
+title: pmtxt — Interview Conversation Spec
+status: scaffolding
+date: 2026-04-07
+author: Matt Li
+parent: 2026-04-06-pmtxt-interview-design.md
+---
+
+# pmtxt — Interview Conversation Spec (v0.1 Draft)
+
+**Status:** scaffolding — to be filled in
+**Date drafted:** 2026-04-07
+**Parent doc:** `2026-04-06-pmtxt-interview-design.md` (the v0.1 product spec for "The Interview" — three screens, wireframe, KB format, recommendations format, distribution)
+**Purpose of this doc:** Specify the conversational design of the interview itself — the questions, the operating principles, the anti-sycophancy rules, the pushback patterns. This is one level deeper than the April 6 design doc: that doc specifies *what* the interview is as a product; this doc specifies *how* the conversation actually runs.
+
+---
+
+## 0. Design Constraints (decided upfront, hold the line)
+
+These are non-negotiable for v0.1. Every decision in the rest of the doc serves these.
+
+- **5 questions maximum in the interview.** Not 5 categories with sub-questions — 5 actual prompts the PM sees.
+- **15 minutes target completion time, end to end.** Pre-interview + interview + output review. If it routinely runs longer, something is too broad.
+- **3 recommendations as output, max.** With copy-pasteable agent prompts attached to each.
+- **First value, not full coverage.** The interview's job is to get the PM to one useful output. Depth comes from subsequent sessions.
+- **Explicit gaps in the output.** Tell the PM what would improve recommendations next time. Make the empty KB slots visible without making this session longer.
+- **One target user in mind throughout.** [Sarah, first PM at a 12-person logistics SaaS — to be fleshed out in Section 1.] Every question, principle, and pushback rule is written for her, not for "PMs in general."
+
+---
+
+## 0.5 Pre-Interview Context
+
+Before the interview begins, capture the minimum context that lets the AI ask sharper questions from question 1. All fields are optional — a PM should be able to skip straight to the interview if they want.
+
+### Field 1: Website URL (optional, single field)
+
+If provided, the AI fetches the page before the interview starts and uses it to ground questions in real context. The website typically reveals what the company does, who it's for, the language they use to describe themselves, and often the team size and stage.
+
+- **Why one field instead of many:** A URL is high-value-per-friction. One field, ~5 seconds to paste, massive context lift.
+- **What the AI does with it:** Reads the page, extracts likely product description, target customer language, and any visible team/stage signals. References these naturally during the interview.
+- **If skipped:** The interview proceeds normally.
+
+### Field 2: One-line "where you are" (optional, single text input)
+
+A single sentence the PM types in their own words. Not a dropdown of stages. Example placeholder text: *"In one sentence, where is your company today? (e.g., 'Series A, 18 people, B2B logistics SaaS, ~40 paying customers')"*
+
+- **Why a sentence instead of structured fields:** A free-text sentence captures stage, size, vertical, and customer-acquisition state in a way structured fields can't, and it does it in ~15 seconds. It also reveals how the PM talks about their own company.
+- **What the AI does with it:** Parses for stage signals, team size, vertical, and customer count. Uses these to calibrate question phrasing and skip questions that don't apply.
+- **If skipped:** First interview question becomes the implicit stage-detection question.
+
+### Field 3: Optional file upload (text only)
+
+A single optional file upload accepting plain text formats — `.txt`, `.md`, anything the PM can paste into a text editor. Examples of what a PM might upload: an internal product one-pager, a strategy doc they wrote, exported notes from a recent customer interview, a paste of their roadmap, a copy of their CLAUDE.md, a list of recent feature requests.
+
+- **Why text-only for v0.1:** Plain text is easy to handle — no parsing libraries, no PDF extraction, no docx complexity. Read it, feed it to the AI as additional context, done.
+- **What the AI does with it:** Reads the file before the interview, treats it as background context, and references specific details from it during the interview ("Your strategy doc mentions you're prioritizing retention over acquisition — does that still hold?").
+- **What it does NOT do:** Try to be authoritative. The PM's interview answers always override the file. The file is supplementary context, not source of truth.
+- **Size limit:** Reasonable cap (e.g., 50KB / ~10K words). Above that, ask the PM to paste a relevant excerpt instead.
+- **If skipped:** No effect on the interview flow.
+
+### What is NOT collected pre-interview
+
+These were considered and rejected for v0.1:
+
+- **Number of employees as a structured field.** Captured in the one-liner if the PM mentions it, otherwise not needed for v0.1.
+- **Funding status dropdown.** Same — comes through naturally if relevant, no need to ask explicitly.
+- **Industry / vertical picker.** The website and one-liner cover this.
+- **Rich document upload (PDF, docx, slide deck).** Plain text upload is included; structured document parsing is a future upgrade.
+
+### Time budget for pre-interview
+
+Combined target: under 90 seconds. If a PM spends more than 90 seconds on this section, the form is too heavy and needs to be cut.
+
+---
+
+## 1. Purpose & Target User
+
+### What this interview produces
+*[One sentence. The single output that defines success. Draft next.]*
+
+### Who this is for
+*[2-3 sentences describing the target user concretely. Use a fictional PM with name, company, situation. Draft next.]*
+
+### What state they walk away in
+*[2-3 sentences describing what's different about how they think after the session. Draft next.]*
+
+### What this is NOT
+*[Bullet list of things the interview deliberately doesn't try to do. Important for scope discipline.]*
+
+---
+
+## 2. Operating Principles
+
+The non-negotiables that shape every AI response during the interview. 4-6 short statements. Each one is something you actually believe about good PM thinking.
+
+*[Draft next. These are the hardest section because they require commitment to a point of view.]*
+
+Placeholder examples to react to:
+
+1. A customer is a name, not a category.
+2. Pain beats wishlist.
+3. Observed behavior beats stated preference.
+4. The cobbled-together workaround is the real competitor.
+5. Specificity over coverage.
+
+*[Replace these with your own. The discipline is articulating what you actually think makes PM thinking good or bad.]*
+
+---
+
+## 3. The Question Sequence
+
+5 questions, in order. For each one, four things must be specified:
+
+- **The question** — actual text the PM sees
+- **What a good answer looks like** — the criteria for "real answer received"
+- **What a bad answer looks like** — patterns to push back on
+- **Pushback phrasing** — how the AI responds when the answer is too vague
+
+### Question 1: Product context — what does your product actually do?
+*[Draft next. This question grounds every subsequent recommendation in real product context. Without it, recommendations are abstract ("add bulk import") instead of specific ("add bulk import on the certifications page that uses your existing CSV parser"). The pre-interview file upload and website URL feed into this question — if either was provided, the AI starts with what it already knows and asks for confirmation/correction rather than asking from scratch.]*
+- Question:
+- Good answer looks like: named features, who uses each one, how they connect, key data entities, technical stack basics
+- Bad answer looks like: marketing language, abstract category descriptions, "it's a SaaS for X"
+- Pushback (first): ask for the three main things a user does in the product, in order
+- Pushback (second, if needed): ask them to walk through what a typical user does in their first session
+
+### Question 2: Customer pain — three named customers and what they recently asked for
+*[Draft next. Replaces the RFS's "upload customer interviews" with externalized customer knowledge. The PM names real customers and recalls real conversations — the act of naming forces specificity.]*
+- Question:
+- Good answer looks like: three names (people or companies), specific recent requests or complaints, dates if possible
+- Bad answer looks like: "customers want X," category-level requests, hypothetical users
+- Pushback (first):
+- Pushback (second, if needed):
+
+### Question 3: Recent decisions — what you shipped or chose not to ship, and why
+*[Draft next. Anchors the PM's actual taste and judgment. Reveals their decision history, which becomes context for future recommendations.]*
+- Question:
+- Good answer looks like:
+- Bad answer looks like:
+- Pushback (first):
+- Pushback (second, if needed):
+
+### Question 4: Current friction — what's nagging you right now?
+*[Draft next. Open-ended pain capture. Where the PM's current frustration lives.]*
+- Question:
+- Good answer looks like:
+- Bad answer looks like:
+- Pushback (first):
+- Pushback (second, if needed):
+
+### Question 5: Constraints — what limits what you can build?
+*[Draft next. Grounds recommendations in feasibility. Team size, technical stack, time constraints, political constraints.]*
+- Question:
+- Good answer looks like:
+- Bad answer looks like:
+- Pushback (first):
+- Pushback (second, if needed):
+
+### Question selection rationale
+
+Five questions chosen to fill these KB slots in priority order:
+
+1. **Product context** (Q1) — without this, recommendations are abstract. The hardest question to skip.
+2. **Customer knowledge** (Q2) — replaces uploaded interview data with externalized customer memory.
+3. **Decision history** (Q3) — anchors recommendations in the PM's actual taste, prevents generic advice.
+4. **Current pain** (Q4) — captures the texture of what's nagging the PM right now.
+5. **Constraints** (Q5) — keeps recommendations feasible, not aspirational.
+
+KB slots intentionally left empty in v0.1, with "add later" prompts in the gap report:
+
+- Competitive landscape
+- Detailed customer segmentation
+- Team and stakeholder context
+- Quantitative usage data
+- Strategic / vision-level context
+
+---
+
+## 4. Anti-Sycophancy Rules
+
+A "never say this" / "always do this" list for the AI's behavior during the interview. Steal-and-adapt directly from G-Stack's office-hours pattern. ~10 lines total.
+
+### Never say
+*[Draft next. Specific phrases the AI must never use. Examples to react to:]*
+- "That's a great point"
+- "Many PMs struggle with this"
+- "You might want to consider..."
+- "There are several ways to think about this"
+
+### Always do
+*[Draft next.]*
+- Take a position on every answer
+- State what evidence would change the position
+- Quote the PM's own words back to them
+- Push twice on vague answers, then accept and move on
+
+---
+
+## 5. Pushback Patterns
+
+4-6 examples of bad answer → BAD response → GOOD response. These teach the AI by example what good pushback feels like. More important than they look — two or three good examples generalize across the whole interview.
+
+### Pattern 1: [name]
+*[Draft next.]*
+- PM says:
+- BAD response:
+- GOOD response:
+- Why it works:
+
+### Pattern 2: [name]
+
+### Pattern 3: [name]
+
+### Pattern 4: [name]
+
+---
+
+## 6. Output Spec
+
+What the interview produces when complete. **Note:** The full output format (KB file structure, recommendation format, gap report layout) is specified in the April 6 design doc. This section only captures interview-conversation-level handoff concerns.
+
+### Handoff from interview to KB generation
+*[What does the interview transcript look like when it's handed off to the KB generation step? Structured? Raw? Annotated with which answers triggered pushback?]*
+
+### Handoff from interview to recommendation generation
+*[Does the recommendation step get the raw transcript, the generated KB, or both?]*
+
+---
+
+## 7. Open Questions
+
+*[Things to resolve during drafting, not now.]*
+
+- How does the AI handle a PM who clearly doesn't want to be pushed?
+- What happens if the PM abandons mid-interview? Is partial state saved?
+- Should the AI explain *why* it's pushing back, or just push?
+- How much does the AI explain itself vs. just do the work?
+- For the website URL field: how does the AI handle a site that 404s, redirects, or blocks fetching? Does it tell the user, or silently proceed?
+- For the one-liner field: does the AI show what it parsed back to the PM for confirmation, or just use it silently?
+- For the file upload: what's the right size limit? How does the AI handle a file that's obviously irrelevant?
+- For Q1 specifically: how detailed should the product description be? Is there a "good enough" threshold the AI recognizes, or does it always push for more?
+- *[Add as they come up while drafting.]*
+
+---
+
+## 8. What This Spec Is Not
+
+- Not the full v0.1 product spec — that's the April 6 design doc. This doc is one level deeper: specifically the conversational design of the interview itself.
+- Not a technical spec. Wiring, UI, state management, deployment — separate concern.
+- Not the full pmtxt vision. That's the April 5 v1 spec.
+- Not exhaustive. Designed for one user (Sarah), not all PMs.
+- Not final. Expected to change after first 5 PM conversations.
+
+---
+
+## 9. Belongs Elsewhere — Extract Later
+
+These decisions came up while drafting this spec but are not really interview-conversation concerns. They're broader pmtxt product decisions that ended up here because this was the only doc open. Extract them into the appropriate doc (existing April 5 v1 spec, a new strategy doc, or a roadmap doc) when time allows.
+
+### YC RFS thesis decision
+
+**Decision:** Mold to the YC RFS thesis (upstream of code, output executable by coding agents), not to its implementation (upload customer interviews and usage data). The interview *creates* the structured data the RFS assumes already exists.
+
+**Why it's not interview-conversation:** This is a strategic decision about what pmtxt *is* as a product. It affects positioning, roadmap, and the entire product, not just how the interview conversation runs.
+
+**Where it belongs:** A pmtxt strategy or positioning doc, or as a section in the April 5 v1 spec.
+
+### GitHub repo connection (deferred to v0.2)
+
+**Decision:** GitHub repo connection is deferred to v0.2. v0.1 uses Question 1 (product description) and the optional file upload as the MVP path to product context.
+
+**Why it's not interview-conversation:** This is a roadmap decision about a future feature. The reasoning (privacy concerns, engineering effort, marginal value vs. file upload for v0.1) is product-wide, not interview-conversation-specific.
+
+**Where it belongs:** A pmtxt roadmap doc, or the v0.2 planning section of the broader product spec.
+
+**Notes for future doc:** Real privacy and security concerns (auth, scopes, repo access) require careful design. Engineering effort is significant (OAuth flow, repo scanning, structure extraction, ongoing sync). The file upload (Field 3) and Question 1 cover ~60% of the value at ~5% of the cost for v0.1. v0.2 plan: PM connects their repo, pmtxt scans for major features, data entities, and route structure, and uses that as the foundation for product context — replacing or supplementing Question 1.
+
+### v0.1 single-session architecture
+
+**Decision:** v0.1 has no persistence, no accounts, no email. Single-session, downloadable output, PM leaves with their KB. Persistence is v0.2.
+
+**Why it's not interview-conversation:** This is a fundamental product architecture decision that affects the entire pmtxt experience, not just the interview itself. Persistence (or its absence) shapes how the KB compounds, how recommendations evolve, whether the PM can come back, etc.
+
+**Where it belongs:** The April 5 v1 spec (which already discusses the broader architecture), or a separate v0.1 scoping doc. Note: the April 6 design doc already commits to single-session localStorage for v0.1, so this may already be covered.
+
+### Coding-agent-ready output format
+
+**Decision:** Recommendations should include prompts detailed enough that a coding agent (Cursor, Claude Code, etc.) can build a working prototype from the prompt alone, referencing specific product context (component names, data entities, existing patterns).
+
+**Why it's not interview-conversation:** This is about what pmtxt *produces* across all sessions, not specifically how the interview conversation runs. The recommendation format is a pmtxt-wide concern that affects every output.
+
+**Where it belongs:** The April 5 v1 spec's recommendation format section, or the April 6 design doc's Recommendations screen section.
+
+### The v0.1 → v0.2 → v0.3 growth path
+
+**Decision:** pmtxt grows toward the full RFS vision incrementally based on real user feedback, not by trying to build the full thing on day one. v0.1 = interview + lightweight context. v0.2 = persistence, accounts, document parsing, GitHub repo connection. v0.3+ = usage data integration, deeper integrations.
+
+**Why it's not interview-conversation:** This is a roadmap, not an interview-conversation spec.
+
+**Where it belongs:** A pmtxt roadmap doc, or a dedicated v0.x planning section in the broader strategy doc.
+
+### Direct integrations (Notion, Linear, Slack, etc.)
+
+**Decision:** Direct integrations with Notion, Linear, Slack, and similar tools are deferred to v0.2 along with GitHub repo connection. Same reasoning — real engineering work, deferred until core value is validated.
+
+**Why it's not interview-conversation:** Same as GitHub repo connection. Roadmap decision, not interview-conversation design.
+
+**Where it belongs:** Same as GitHub repo connection — roadmap doc or v0.2 planning section.

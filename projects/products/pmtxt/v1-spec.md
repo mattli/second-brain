@@ -18,6 +18,8 @@ As AI automates coding, the bottleneck moves upstream to product judgment — de
 
 Engineering AI tools (Cursor, Claude Code, Compound Engineering, Superpowers, G-Stack) are session-scoped — they help you build a thing well, then the artifacts go stale. pmtxt is product-scoped — the knowledge base persists and compounds over time. The 50th recommendation is better than the 1st because the system knows your customers, past decisions, competitive landscape, and what worked and what didn't.
 
+**Relationship to the YC RFS:** The YC Request for Startups in this space describes a tool where PMs upload customer interviews and product usage data and ask "what should we build next?" pmtxt molds to this thesis — upstream of code, output executable by coding agents — but not to the RFS's specific implementation. The RFS as written assumes the PM already has clean customer interviews and structured usage data sitting in files, ready to upload. In reality, most PMs don't. That data lives in Notion docs, Slack threads, Mixpanel dashboards, and people's heads. pmtxt's interview *creates* the structured data the RFS assumes already exists. That's a stronger product position than the RFS implies: the RFS assumes the data is the easy part and the synthesis is hard; pmtxt's insight is that getting the data into existence at all is the hard part. The RFS thesis is the destination; the interview is the on-ramp.
+
 ## Target User
 
 First PM at a 2-15 person startup. Overwhelmed, under-tooled. Drowning in scattered customer feedback, competitive signals, and internal requests. Needs help deciding what to build, not managing tasks. Already using or willing to use AI coding agents for execution.
@@ -55,7 +57,9 @@ This is valuable because PMs don't operate in isolation. The CEO has strategic c
 
 The system tracks who provided what input, enabling provenance-aware recommendations: "This recommendation is strongly supported by customer data but hasn't been validated with engineering on feasibility."
 
-**What V1 does NOT do:** Direct integrations with Slack, Intercom, Linear, analytics tools, or any external service. The PM exports from those tools and uploads here. Integrations are V2.
+**What V1 does NOT do:** Direct integrations with Slack, Intercom, Linear, Notion, analytics tools, or any external service — including GitHub repo connection. The PM exports from those tools and uploads here. All integrations are deferred to V2 or later.
+
+GitHub repo connection specifically was considered for V1 as a way to scan the actual product structure (files, components, schemas, routes) and ground recommendations in real codebase context. It is deferred because real privacy and security concerns (auth, scopes, repo access) require careful design, the engineering effort is significant (OAuth flow, repo scanning, structure extraction, ongoing sync), and for v0.1 specifically, the interview's product-context question plus the optional plain-text file upload cover most of the value at a fraction of the cost. V2 plan: PM connects their repo, pmtxt scans for major features, data entities, and route structure, and uses that as the foundation for product context — replacing or supplementing what the interview captures manually.
 
 ### 2. Knowledge Base
 
@@ -124,7 +128,7 @@ The primary output is a prioritized list of feature recommendations. Each recomm
 - **Feature description** — What to build, in clear language.
 - **Rationale** — Why this is the priority right now, grounded in KB data. Which customers need it, what competitive pressure exists, how it aligns with goals, what past decisions support or complicate it.
 - **Impact assessment** — Expected effect on key metrics, revenue, customer segments. Honest about uncertainty.
-- **Ready-to-go prompt** — A prompt the PM can paste directly into a coding agent framework (Compound Engineering, G-Stack, Superpowers, Cursor, Claude Code) to begin technical planning and execution. Not a full PRD — a clear, contextualized starting point that includes what to build, why, key constraints, and success criteria. Detailed enough to be actionable, lightweight enough that the coding agent takes it from there.
+- **Ready-to-go prompt** — A prompt the PM can paste directly into a coding agent framework (Compound Engineering, G-Stack, Superpowers, Cursor, Claude Code) to begin technical planning and execution. Not a full PRD — a clear, contextualized starting point that includes what to build, why, key constraints, and success criteria. **The prompt should be detailed enough that a coding agent can produce a working prototype from it alone, without requiring the PM to translate or add missing context.** That means referencing specific product context from the KB — component names, data entities, existing patterns — so the agent knows exactly where in the codebase to work. Detailed enough to be actionable, lightweight enough that the coding agent takes it from there. This is the bar that separates pmtxt's output from generic feature descriptions: a PM using pmtxt should be able to go from recommendation to working prototype in one hop, not two.
 - **Suggested scope** — What's in V1, what's deferred. Helps the PM avoid scope creep.
 
 **Customizable output format:** The default output structure (description, rationale, constraints, success criteria, scope) should work well out of the box. But PMs should be able to customize the output format to match their workflow — add sections, remove sections, change the level of detail, specify which coding agent framework they use so the output is shaped accordingly. A solo founder building in Cursor needs different output than an enterprise PM handing specs to a team using G-Stack. These preferences persist as part of the PM's profile — set once, applied to every recommendation. The output format is itself part of the PM's product intelligence, refined over time as they learn what works for their specific workflow.
@@ -195,11 +199,23 @@ This historical context is logged in `decisions.md` and shapes future recommenda
 ## Scope Boundaries for V1
 
 - Single PM user, no multi-user collaboration or team permissions
-- No direct integrations with external tools
+- No direct integrations with external tools (including GitHub repo connection, Notion, Linear, Slack, analytics platforms — all deferred to V2)
 - No raw analytics ingestion — PM provides interpreted data
 - Advisory only — recommends what to build, does not execute
 - No visual mockup generation — the prompt describes the feature, the coding agent generates visuals
 - Execution bridge (spec → coding agent handoff) designed into the architecture but not automated in V1
+
+## Version Roadmap
+
+pmtxt grows toward the full vision incrementally based on real user feedback, not by trying to build the full thing on day one. The v0.1 build target is a narrow slice that tests the core hypothesis; subsequent versions earn their way in based on what users do after their first session.
+
+**v0.1 — The Interview (build target, shipping April 2026).** A standalone, single-session web experience. Pre-interview context capture (URL + one-liner + optional plain-text file upload), 5-question interview with AI pushback, generated KB, 3 recommendations with coding-agent-ready prompts. **Single-session by design:** no persistence, no accounts, no email. The PM gets value, downloads their output, and leaves. Persistence shapes how the KB compounds, how recommendations evolve, whether the PM can come back — all of which are real concerns, but v0.1 defers them to keep the scope tight and the validation loop fast. Session state lives in localStorage as a zero-cost mitigation against connection loss during the interview. Full v0.1 product spec in `v0.1-spec.md`; conversational design in `v0.1-conversation-spec.md`.
+
+**v0.2 — Persistence & richer inputs.** Accounts, persistent KB across sessions, document parsing beyond plain text (PDF, docx, slide decks), GitHub repo connection for product context, and the first version of the quick-capture and document-upload input modes described earlier in this spec. This is the version that starts compounding in the way the long-term thesis requires.
+
+**v0.3+ — Integrations & the full loop.** Direct integrations with Notion, Linear, Slack, and analytics tools. Usage data ingestion. Stakeholder input flows. The evaluation engine's continuous re-ranking. The execution bridge that dispatches work directly to coding agents. This is where pmtxt starts becoming the product development operating system described in the Long-Term Vision section.
+
+The v0.1 → v0.2 → v0.3 sequence is deliberate: each version adds depth in a direction that real users have asked for, rather than building the full spec speculatively. If v0.1 users don't ask for persistence, v0.2 gets rethought. If they do, the existing spec's architecture (markdown KB, SQLite ideas layer, approval workflow) is what v0.2 ships.
 
 ## Long-Term Vision
 

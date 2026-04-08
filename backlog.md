@@ -9,6 +9,9 @@
 - [ ] Install add-telegram-swarm — agent teams in Telegram, each subagent gets its own bot identity; relevant to Phase 3. Potential use case: adversarial agent debates — one optimistic, one pessimistic, one focused on execution risk — for stress-testing product decisions like pmtxt direction or YC application strategy. Related to the debate-perspectives project in the vault.
 - [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
 
+### Readwise Enhancements
+- [ ] Set up RSS feeds in Readwise Reader for key frontier lab blogs and thought leader sites — candidates: Anthropic blog, OpenAI blog, DeepMind blog, Dario Amodei, DHH, Paul Graham essays, Andrej Karpathy, Ben Thompson (Stratechery). Goal is to have new posts land in Reader automatically rather than relying on X or manual saves.
+
 ### Prompts
 - [ ] Key figure publishing alerts — figure out a way to get notified when people like Dario Amodei or DHH publish a new long-form piece or thesis. Could be RSS monitoring, a periodic agent task that checks their blogs/sites, or Readwise feed subscriptions. Goal is to catch essays and posts worth reading without having to actively follow them.
 - [ ] Readwise wiki → weekly summary integration — After ~4 weekly wiki runs (~mid-May), evaluate whether to add a wiki-update step to the weekly summary agent. Check: (1) Is the wiki being referenced by agents during searches or Q&A? (2) Are there obvious gaps where weekly briefing signals (funding rounds, capability shifts, VC theses) would have made wiki pages more useful? (3) Has the lint step surfaced real issues, or is the wiki too small for it to matter? If yes to 1 or 2, build the pipeline — scope it to factual signals only (AI Context, VC Lens, durable category patterns from Category Movement). Skip analysis, skip indie product listings. If no, the wiki needs more mass from Readwise first.

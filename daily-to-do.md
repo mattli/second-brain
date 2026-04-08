@@ -10,6 +10,7 @@ Goals: Ship pmtxt V0.1 privately.
 - [ ] Read Infinite Jest
 - [ ] Swimming (afternoon)
 - [ ] Play guitar
+- [ ] Switch Readwise wiki compiler to twice a week (Wed 10pm + Sat 10pm) — NanoClaw task config change
 - [ ] Buy sous vide
 - [ ] Update car registration sticker
 

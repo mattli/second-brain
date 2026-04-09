@@ -42,11 +42,20 @@ If nothing clears this bar, skip the section entirely — do not list minor mode
 
 **Section Summary:** End with 1–2 sentences on what today's notable release signals about where the frontier is moving. Omit this if the section is skipped.
 
-### 3. Funding, Acquisitions & Product Launches
+### 3. Funding, Acquisitions & Product News
 Search for major AI-related business news in the last 24 hours strictly:
 - Funding rounds (Series A and above, or notable seed rounds)
 - Acquisitions or mergers involving AI companies
-- **Notable product launches** — bigger consumer or developer products from funded startups or established companies. Primary source: **TechCrunch** (techcrunch.com). Secondary: scan **Show HN** on Hacker News for launches from funded or well-known teams (especially developer tools that ship quietly via GitHub without press coverage). Explicitly skip: frontier model releases (covered in Section 2), and indie/solo-dev launches (covered separately in weekly X indie product scraping). Do not use Product Hunt — too noisy for this tier.
+- **Product news** — new products, major features, significant updates, notable integrations, or access/pricing changes from funded startups or established companies. The test: did something real and usable ship (or materially change) in the last 24 hours from a company people have heard of? Primary source: **TechCrunch** (techcrunch.com). Secondary: scan **Show HN** on Hacker News for launches from funded or well-known teams.
+
+**Explicitly skip:**
+- Frontier model releases (covered in Section 2 — do not double-count)
+- Indie/solo-dev launches (covered in weekly X indie product scraping)
+- Blog posts describing features that shipped weeks or months ago
+- Minor version bumps, bug fixes, or incremental updates without a real capability change
+- Roadmap announcements or "coming soon" teasers
+
+Do not use Product Hunt — too noisy for this tier.
 
 Summarize each item in 1–2 sentences. If nothing significant occurred in the last 24 hours, say so briefly.
 
@@ -82,7 +91,7 @@ Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
 [Only if a release clears the bar — flagship lab, meaningful cost/capability shift, or real builder traction. Skip section if nothing qualifies.]
 **Today's Signal:** [1–2 sentence interpretive summary — omit if section skipped]
 
-## Funding & Launches
+## Funding & Product News
 [Business news items, 1–2 sentences each]
 **Today's Signal:** [1–2 sentence interpretive summary]
 

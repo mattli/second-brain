@@ -4,8 +4,8 @@ Goals: Ship pmtxt V0.1 privately.
 
 ### Thursday, April 9
 
-- [ ] Read AI digest
-- [ ] Check AI digest page (Product Hunt section removed)
+- [x] Read AI digest
+- [x] Check AI digest page (Product Hunt section removed)
 - [x] Check wiki — confirm Wednesday 3am run completed
 - [ ] Read Infinite Jest
 - [ ] TrueFire lesson (guitar)

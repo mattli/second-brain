@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # Peter Steinberger
@@ -30,9 +30,26 @@ Notable tools (50+ repos):
 - **SOUL.md** — Created personality configuration guide for OpenClaw agents. Key principle: "Sharp beats vague." Good rules: "have a take, skip filler, call out bad ideas." Bad rules: "maintain professionalism at all times."
 - **Agent proficiency** — Exemplifies the [builder archetype](agent-proficiency.md) Karpathy describes: extreme velocity through agent orchestration.
 
+## Notable OpenClaw Use Cases
+
+**Ryan Sarver's "Stella" (chief of staff):** A VC managing fundraise + board roles + portfolio built an AI chief of staff named Stella on OpenClaw. Stella:
+- Sends pre-meeting briefs 60 minutes before external meetings via WhatsApp, with prior notes, open action items, and LP pipeline context
+- Processes all meeting notes via Granola API; extracts action items to Todoist; tracks commitments per person in markdown files
+- Runs a Friday research scan of OpenClaw community for new patterns, and Sunday review loop to continuously improve the system
+- Provides morning and evening briefs via WhatsApp
+
+Key architectural principle: LLMs handle judgment (synthesis, prioritization, drafting); Python scripts handle deterministic work (reading files, calling APIs, comparing timestamps). "When you push deterministic work through an LLM, things break in unpredictable ways and you stop trusting the system."
+
+Memory layer: flat markdown files (daily notes + MEMORY.md). Observable, git-backable, no abstraction layer. The human can open any file, see exactly what the AI knows, and fix it instantly.
+
+**Lex Fridman Podcast appearance (Podcast #491):** Peter discussed OpenClaw's rapid growth, its self-modifying capability, and his vision of it as "a powerful tool that works like a helpful coworker." See also the a16z Show interview with Peter Yang.
+
 ## Sources
 
 - "steipete (Peter Steinberger)" — GitHub profile
 - "I never use plan mode" — Peter Steinberger (tweet, Apr 2026)
 - "Your @openclaw is too boring?" — Peter Steinberger (tweet, Apr 2026)
 - "SOUL.md Personality Guide" — OpenClaw docs
+- "How I built a chief of staff on OpenClaw that's better than any human I've hired" — Ryan Sarver (tweet thread, Apr 2026)
+- "OpenClaw: The Viral AI Agent that Broke the Internet" — Lex Fridman Podcast #491
+- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang on The a16z Show

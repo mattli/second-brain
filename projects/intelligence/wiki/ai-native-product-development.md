@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # AI-Native Product Development
@@ -52,6 +52,23 @@ Strong opinions on both sides:
 
 Y Combinator's 2026 RFS explicitly calls out this gap: "There's no system that supports the full loop of product discovery." They want a tool where you upload customer interviews and usage data, ask "what should we build next?", and get feature outlines backed by customer feedback — with development tasks broken down for coding agents.
 
+## Community PDLC Adoption
+
+A team adapted Anthropic's PDLC approach and reported outcomes (marsel040, Apr 2026):
+- Enabled product engineers to plan and ship code with minimal developer reliance
+- Used AI tools to replace much of the spec/planning overhead
+- Result: higher output and better morale — fewer people stuck in planning paralysis
+
+The pattern: AI for structure and synthesis, humans for accuracy and decisions.
+
+## AI-Native PM Tools
+
+New tools designed for AI-augmented product development workflows:
+
+- **Linear** — Redesigned as "the product development system for teams and agents." Supports AI agent workflows natively in planning/tracking.
+- **Canny** — AI-powered customer feedback collection. Auto-captures, summarizes, and categorizes ideas from multiple sources. Helps teams prioritize features and close the feedback loop with users.
+- **Spark (Productboard)** — AI platform for PMs. Connects customer feedback to product ideas, helps teams make data-backed decisions.
+
 ## Risks
 
 - **Adoption fatigue** — "Shipping more stuff does not equal more product value. If users can't keep up, what's the point?"
@@ -60,6 +77,9 @@ Y Combinator's 2026 RFS explicitly calls out this gap: "There's no system that s
 
 ## Sources
 
-- "Anthropic shipped 74 features in 52 days..." — marsel040 (Reddit, Apr 2026)
+- "Anthropic shipped 74 features in 52 days. How we tried to adopt their PDLC to our org" — marsel040 (Apr 2026)
 - "Anyone using AI for specs/technical planning?" — ml8020 (Reddit, Feb 2026)
 - "Requests for Startups" — Y Combinator (2026)
+- "The productdevelopmentsystem for teams and agents" — linear.app
+- "Build better products with customer feedback" — canny.io
+- "Spark, the AI platform for product managers" — productboard.com

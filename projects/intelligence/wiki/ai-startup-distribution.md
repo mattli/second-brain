@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # AI Startup Distribution
@@ -39,6 +39,30 @@ Atomik Growth launched 3 startups in 1 week on X: 5.2M+ views, hundreds of US sa
 - Timing so the algorithm sees density, not noise
 - "The story is the strategy. Great story/content beats hype every time"
 
+## AI-Powered Performance Marketing
+
+Austin (Anthropic) uses a custom Claude Cowork plugin for managing Google Ads:
+- Plugin connects directly to Google Ads API for search term analysis, budget optimization, and campaign control from mobile or desktop
+- Saves hours weekly with full audit trails for every action
+
+His framework for where AI provides most value in growth:
+1. **Automate repetitive tasks** — Already common
+2. **Partner for new ideas** — AI as creative/strategic collaborator
+3. **Unlock previously cost-prohibitive experiments** — Things that weren't worth the human time budget at $150/hr are worth trying at $0.01/task
+4. **Build custom tools** — Personalized solutions even if they're just for you
+
+Key insight: Most people focus only on speed for existing work. The biggest value is in exploring new opportunities.
+
+## LinkedIn Growth (2026 Algorithm)
+
+Logan Gott's framework for LinkedIn in 2026:
+- Post from personal profile, not company page
+- Target a specific, well-defined audience and create content only for them
+- Best formats: PDF carousels, short videos, text posts with strong hooks
+- Reply to comments fast (first 60 minutes matter most for algorithm)
+- Optimize for saves and DMs, not just likes — these signal higher value to the algorithm
+- Post 3-5x per week minimum for compounding effect
+
 ## Tools Noted
 
 - **Origami** — AI-powered lead generation. "One prompt to find what Apollo, ZoomInfo, and hours in Clay can't." Searches 50+ sources in real-time.
@@ -50,3 +74,7 @@ Atomik Growth launched 3 startups in 1 week on X: 5.2M+ views, hundreds of US sa
 - "200,000+ new vibe coding projects..." — Greg Isenberg (tweet, Mar 2026)
 - "Now that we're done at YCombinator..." — Finn Mallery (tweet, Mar 2026)
 - "I Launched 3 Startups in 7 Days..." — Subah Wadhwani (tweet, Mar 2026)
+- "if you're a performance marketer, here's how I use a..." — austin (tweet, Apr 2026)
+- "some more ramblings from working at @AnthropicAI" — austin (tweet, Apr 2026)
+- "How to BEAT the new LinkedIn algorithm in 10 steps" — Logan Gott (tweet, Apr 2026)
+- "Making $$ with AI Marketing" — The Startup Ideas Podcast (tweet, Apr 2026)

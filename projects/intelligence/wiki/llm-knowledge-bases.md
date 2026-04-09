@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # LLM Knowledge Bases
@@ -64,6 +64,10 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 - **Dataview** — Obsidian plugin for queries over page frontmatter
 - **TLDR at top of pages** — Helps both humans and LLMs decide whether to read full article (saves tokens)
 
+## LLM Wiki as Infrastructure for Agent Research
+
+Karpathy's autoresearch project extends this pattern into scientific research: an AI agent autonomously modifies ML training code, runs 5-minute experiments, checks results, and iterates — ~100 experiments per overnight GPU session. The human edits `program.md` (instructions), the agent modifies `train.py` (code). The same principles apply: file-based, explicit, navigable — but now the "wiki" is an evolving codebase and research log, and the LLM is the researcher. See [Andrej Karpathy](andrej-karpathy.md).
+
 ## Open Questions
 
 - How well does this scale beyond ~100 articles / 400K words? At what point does agent navigation break down and you need search tooling like qmd?
@@ -78,3 +82,6 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 - "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (tweet, Apr 2026)
 - "karpathy is showing one of the simplest AI architectures..." — JUMPERZ (tweet, Apr 2026)
 - "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary
+- "Wow, this tweet went very viral!" — Andrej Karpathy (tweet, Apr 2026)
+- "llm-wiki · GitHub" — GitHub (Apr 2026)
+- "Build your own knowledge base with the /add-karpathy-llm-wiki skill!" — tweet (Apr 2026)

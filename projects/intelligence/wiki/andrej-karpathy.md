@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # Andrej Karpathy
@@ -26,6 +26,17 @@ Called this a "CORE SKILL of the 21st century." His framing: agents speak Englis
 
 ### Idea Files Over Code
 Proposed sharing ideas as text files rather than code/apps, since in the agent era, the recipient's agent can customize and build it for their specific needs. Published his LLM wiki concept as a GitHub gist "idea file."
+
+### Autoresearch
+New project (March 2026): a framework for AI agents that autonomously experiment with training code overnight on a single GPU. The agent modifies `train.py`, runs 5-minute training experiments, checks if loss improved, and repeats — ~100 experiments per 8-hour sleep cycle. The human edits `program.md` (agent instructions), not the code directly.
+
+Key design choices:
+- Fixed 5-minute time budget per experiment — makes results directly comparable regardless of what the agent changes (architecture, batch size, etc.)
+- Single file for the agent to modify — keeps scope manageable
+- Metric: val_bpb (validation bits per byte), vocab-size-independent for fair architectural comparisons
+- "You're not touching any Python files like you normally would as a researcher. Instead, you are programming the Markdown files."
+
+Released on GitHub as `karpathy/autoresearch`. Framed aspirationally in the README intro as the origin story of fully autonomous AI research. See also [Agentic Engineering](agentic-engineering.md) for related self-improving agent work.
 
 ## Sources
 

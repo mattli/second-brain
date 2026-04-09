@@ -1,7 +1,5 @@
 ### Memory & CLAUDE.md
 - [ ] Update main chat group behavior — think through how Second Brain should ask clarifying questions and follow best practices before making changes (e.g. confirm scope, warn about side effects, suggest alternatives)
-- [x] Add session start instructions to main group CLAUDE.md (both machines)
-
 ### Skills
 - [ ] Install update-nanoclaw — pull upstream changes with preview and selective cherry-pick; run roughly once a month
 - [ ] Install add-compact — adds /compact command for context compaction; needed when Phase 2 PM agent is built
@@ -26,6 +24,7 @@
 - [ ] Set up a dotfiles repo — put shared ~/.zshrc aliases and functions in a private GitHub repo so changes sync across MacBook Pro and Mac Mini without manual duplication. Machine-specific things (vault path, NanoClaw directory) stay in a local file sourced by the shared one.
 
 ### Completed
+- [x] Add session start instructions to main group CLAUDE.md (both machines)
 - [x] **Readwise wiki compiler** — Bootstrapped wiki with 12 pages from 65 saves, scheduled as weekly NanoClaw task (Fridays 10pm). Instructions at `intelligence/instructions/readwise-wiki.md`, output at `intelligence/wiki/`. (2026-04-05)
 - [x] Set up tmux on Mac Mini — keeps SSH sessions alive if connection drops; useful for long Claude Code sessions
 - [x] Readwise MCP integration — connected to NanoClaw main group via mcp-remote stdio bridge + OAuth (2026-03-29)

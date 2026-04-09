@@ -35,7 +35,7 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 | 📊 Weekly Summary | 7am Saturday | container | Synthesizes the week's daily briefings |
 | 📅 Monthly Summary | 7am 1st of month | container | Synthesizes monthly trends, updates product-vision.md |
 | 📝 Daily To-Do | 8am daily | container | Reads today's section from daily-to-do.md, sends to Telegram |
-| 📚 Readwise Wiki | 10pm Friday | container | Processes week's Readwise saves into wiki pages at `intelligence/wiki/` |
+| 📚 Readwise Wiki | 3am Mon + Thu | container | Processes week's Readwise saves into wiki pages at `intelligence/wiki/` |
 | 🗄 Archive Briefings | Midnight Sunday | script | Moves old briefing files to `_archive/` per retention rules |
 | Vault Sync | Every 30 min | script | Commits and pushes vault changes to GitHub |
 | Obsidian Sync Check | Every 30 min | script | Verifies Obsidian Sync is running |

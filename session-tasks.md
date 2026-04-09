@@ -1,3 +1,7 @@
+### April 9, 2026
+- [x] Fixed readwise-wiki scheduled task failure — group was in DB but not in-memory because it was registered after the process started. Added scheduler group refresh from DB each tick to prevent stale-group bugs. Added pause+notify on group-not-found (same pattern as invalid folder). Re-triggered missed wiki run manually. (2026-04-09)
+- [x] Added auto-restart to `npm run build` — `tsc && launchctl kickstart -k` so NanoClaw always picks up new compiled code. Use `npm run typecheck` for type-only checks. (2026-04-09)
+
 ### April 8, 2026
 - [x] Updated `intelligence/instructions/daily-briefing.md` Section 3: replaced Product Hunt with TechCrunch (primary) + Show HN secondary pass for funded/well-known team dev tool launches; explicitly excludes frontier model releases and indie/solo-dev launches (handled by Section 2 and weekly X scrape). Updated Sources Log table accordingly. (2026-04-08)
 - [x] Rescheduled `readwise-wiki` NanoClaw task from `0 22 * * 5` (Fri 10pm) to `0 3 * * 1,4` (Mon + Thu 3am local). Twice-weekly to handle increased Readwise volume; 3am chosen to avoid collision with own Claude Code usage. Confirmed scheduler parses cron in local TZ via `src/config.ts` → `TIMEZONE`. (2026-04-08)

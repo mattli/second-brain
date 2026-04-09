@@ -10,7 +10,7 @@ Goals: Ship pmtxt V0.1 privately.
 - [ ] Read Infinite Jest
 - [ ] TrueFire lesson (guitar)
 - [ ] Wrist rehab + stretching/mobility at home
-- [ ] Therapy at 2pm
+- [x] Therapy at 2pm
 - [ ] Figure out food
 - [ ] Buy sous vide
 - [ ] Update car registration sticker

@@ -10,7 +10,7 @@ Goals: Ship pmtxt V0.1 privately.
 - [x] Work on AI Digest Product Hunt section
 - [x] Switch Readwise wiki compiler to twice a week (Wed 10pm + Sat 10pm) — NanoClaw task config change
 - [x] Clean up pmtxt files
-- [ ] Work on pmtxt specs
+- [x] Work on pmtxt specs
 - [ ] Practice guitar
 - [ ] Buy sous vide
 - [ ] Update car registration sticker

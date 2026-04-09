@@ -2,6 +2,21 @@
 
 Goals: Ship pmtxt V0.1 privately.
 
+### Thursday, April 9
+
+- [ ] Read AI digest
+- [ ] Check AI digest page (Product Hunt section removed)
+- [ ] Check wiki — confirm Wednesday 3am run completed
+- [ ] Read Infinite Jest
+- [ ] TrueFire lesson (guitar)
+- [ ] Wrist rehab + stretching/mobility at home
+- [ ] Therapy at 2pm
+- [ ] Figure out food
+- [ ] Buy sous vide
+- [ ] Update car registration sticker
+
+---
+
 ### Wednesday, April 8
 
 - [x] Muesli at Bluey's
@@ -11,7 +26,7 @@ Goals: Ship pmtxt V0.1 privately.
 - [x] Switch Readwise wiki compiler to twice a week (Wed 10pm + Sat 10pm) — NanoClaw task config change
 - [x] Clean up pmtxt files
 - [x] Work on pmtxt specs
-- [ ] Practice guitar
+- [x] Practice guitar
 - [ ] Buy sous vide
 - [ ] Update car registration sticker
 - [x] Buy new router

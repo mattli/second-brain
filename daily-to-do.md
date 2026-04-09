@@ -6,7 +6,7 @@ Goals: Ship pmtxt V0.1 privately.
 
 - [ ] Read AI digest
 - [ ] Check AI digest page (Product Hunt section removed)
-- [ ] Check wiki — confirm Wednesday 3am run completed
+- [x] Check wiki — confirm Wednesday 3am run completed
 - [ ] Read Infinite Jest
 - [ ] TrueFire lesson (guitar)
 - [ ] Wrist rehab + stretching/mobility at home

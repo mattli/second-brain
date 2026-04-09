@@ -1,3 +1,8 @@
+### April 9, 2026 (session 2)
+- [x] Assessed wiki compiler v2.0 first run via LAST_RUN_MANIFEST.md — 20 pages, 0 orphans, 0 broken links, Tier C references correct, video transcripts processed. Identified two issues: context exhaustion during Tier B with temp file loss on resume, and manifest not itemizing skipped documents. (2026-04-09)
+- [x] Implemented wiki compiler v2.1 — Tier B processing changed to one-at-a-time (was batched 2-3), per-batch/per-document git commits (was end-of-run only), state persistence to `/workspace/state/` with `pending.json` checkpoint (was `/tmp`), manifest skip list now itemizes every skipped document with ID/title/category/words/reason. Updated both `readwise-wiki.md` instructions and group `CLAUDE.md`. (2026-04-09)
+- [x] Updated wiki README — fixed stale schedule (was "every Friday at 10pm", now "3am Monday and Thursday"), added deferred items list (unorganized.md page, prior-session rename, per-doc time tracking, cadence review, manual Tier C synthesis). (2026-04-09)
+
 ### April 9, 2026
 - [x] Fixed readwise-wiki scheduled task failure — group was in DB but not in-memory because it was registered after the process started. Added scheduler group refresh from DB each tick to prevent stale-group bugs. Added pause+notify on group-not-found (same pattern as invalid folder). Re-triggered missed wiki run manually. (2026-04-09)
 - [x] Added auto-restart to `npm run build` — `tsc && launchctl kickstart -k` so NanoClaw always picks up new compiled code. Use `npm run typecheck` for type-only checks. (2026-04-09)

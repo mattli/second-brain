@@ -12,11 +12,19 @@ Matt saves articles, tweets, GitHub repos, and other content to Readwise — oft
 
 ## How It's Maintained
 
-A NanoClaw scheduled task runs every Friday at 10pm. It fetches the last 7 days of Readwise saves, updates existing pages or creates new ones, maintains the index, and lints for orphans and stale content. Each page has `created_at` and `last_updated` frontmatter.
+A NanoClaw scheduled task runs at 3am Monday and Thursday. It fetches the last 7 days of Readwise saves, updates existing pages or creates new ones, maintains the index, and lints for orphans and stale content. Each page has `created_at` and `last_updated` frontmatter. Runs on Opus with a 90-minute timeout.
 
 ## How It Fits
 
 The intelligence system has two modes: briefings (dated logs — daily, weekly, monthly) and the wiki (persistent compiled knowledge). Briefings answer "what happened this week." The wiki answers "what do I know about this topic."
+
+## Deferred Items
+
+- [ ] `unorganized.md` catch-all page for non-AI content (don't discard Beatles-video-type saves — give them a home)
+- [ ] Rename "(prior session)" attribution to "(existing context)" or similar — confusing wording, not a bug
+- [ ] Per-document time tracking in manifest (wall-clock duration per Tier B document, total per Tier A batch)
+- [ ] Revisit nightly vs twice-weekly cadence after observing the next few v2.1 runs
+- [ ] Manual Tier C synthesis for specific long PDFs if needed (one-off Claude Code sessions, not the scheduled compiler)
 
 ## Reference
 

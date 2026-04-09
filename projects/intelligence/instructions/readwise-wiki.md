@@ -1,6 +1,6 @@
 Readwise Wiki Compiler — Instructions
 
-> Version: 2.0 | Last updated: 2026-04-09
+> Version: 2.1 | Last updated: 2026-04-09
 
 ## Purpose
 
@@ -24,7 +24,7 @@ Fetch ALL documents via `reader_list_documents` with `updated_after` set to 7 da
 
 Record the current time as the run start time — you'll need this for timeout awareness later.
 
-Also check `wiki/LAST_RUN_MANIFEST.md` for any documents that were partially processed in a previous run.
+Also check `wiki/LAST_RUN_MANIFEST.md` for any documents that were partially processed in a previous run, and check the state directory (`state/` relative to the readwise-wiki group directory — inside the container this is `/workspace/state/`) for any intermediate state from a crashed or context-exhausted session.
 
 ### Phase 2 — Triage
 
@@ -34,6 +34,8 @@ Classify each document into processing tiers:
 - **Tier B (full read, large):** 20K-50K words. Fetch full content directly. Fits comfortably in Opus's 200K context. Processed the same way as Tier A but tracked separately for batch-size differentiation.
 - **Tier C (reference only):** Over 50K words. Not synthesized by this compiler. A metadata-only reference is attached to the most relevant existing wiki topic page. See Phase 4 below.
 - **Tier D (bookmark):** Minimal content (landing pages, tool repos, short bookmarks with no substantive body). Note on the relevant topic page with name, URL, and one-line description.
+
+Skip decisions are recorded per-document for the manifest (see Phase 6). For each document not assigned to a tier, record its ID, title, category, word_count, and the skip reason (one of: `already_in_wiki`, `duplicate_in_run`, `off_topic`, `no_content`, `fetch_failed`).
 
 ### Phase 3 — Batched reading (Tiers A, B, D)
 
@@ -45,11 +47,36 @@ Classify each document into processing tiers:
 
 Start conservative with batch size. Increase in future runs only after confirming context headroom.
 
-**Tier B:** Process after Tier A. These are larger (20K-50K words), so process individually or in batches of 2-3. Same extraction and update process as Tier A.
+**Tier B:** Process after Tier A. These are larger (20K-50K words) — typically video transcripts that can be 100K-150K+ characters. Process **one document at a time**. For each Tier B document:
+1. Fetch full content via `reader_get_document_details`
+2. Extract key concepts, claims, connections to existing wiki pages
+3. Update or create wiki pages
+4. **Commit wiki updates to git immediately** (same commit command as the After Writing section, but with message: `"readwise wiki: processed <title> $(date +%Y-%m-%d)"`)
+5. Move to the next document
+
+Do NOT batch Tier B documents together. A single 150K-character transcript plus existing wiki context plus your response can approach the context limit. One-at-a-time processing ensures each document is committed before the next begins, so context exhaustion never loses completed work.
+
+**Tier A commit cadence:** Commit wiki updates to git at the end of each Tier A batch (not just at the end of the run). This ensures a mid-run failure preserves all completed batches.
 
 **Tier D:** Process last. For each bookmark, note the tool/product on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, skip with a manifest entry.
 
 **Timeout check:** Before starting each new batch, check elapsed time since run start. If less than 15 minutes remain (this threshold is a tunable heuristic — adjust based on observed integration phase duration), skip to Phase 5.
+
+---
+
+## State Persistence
+
+Intermediate state that must survive across sessions (context exhaustion, crashes, resumed runs) goes in the **state directory**: `state/` relative to the readwise-wiki group directory. Inside the container, this is `/workspace/state/`.
+
+On each run:
+1. **Check for existing state** at startup (Phase 1). If `state/pending.json` exists, it contains the document inventory and triage from a previous incomplete run. Resume from where it left off rather than re-fetching and re-triaging.
+2. **Write state after triage** (end of Phase 2). Save `state/pending.json` with the full document list, tier classifications, and skip decisions. This is the resumption checkpoint.
+3. **Update state after each commit** (during Phase 3). Remove processed documents from `pending.json` so a resumed run doesn't reprocess them.
+4. **Delete state on clean completion** (end of Phase 6). If the run completes all phases normally, delete `state/pending.json`. A clean manifest is the record; intermediate state is only for crash recovery.
+
+Do NOT use `/tmp` for any state that needs to survive across sessions. `/tmp` is ephemeral and will be empty if the session is resumed.
+
+---
 
 ### Phase 4 — Tier C: Reference attachment
 
@@ -197,8 +224,17 @@ documents_failed: N
 
 ## Skipped
 
-| Title | Category | Words | Reason |
-|-------|----------|-------|--------|
+| ID | Title | Category | Words | Reason |
+|----|-------|----------|-------|--------|
+
+Skip reasons:
+- `already_in_wiki` — document content already represented in an existing wiki page (matched by title, URL, or Readwise ID against sources sections)
+- `duplicate_in_run` — same document appeared more than once in the fetch results
+- `off_topic` — content not relevant to any wiki topic (e.g., entertainment, non-AI/tech content)
+- `no_content` — no transcript available, empty fetch, or trivially short body
+- `fetch_failed` — MCP tool returned an error when fetching document details
+
+Every skipped document must appear in this table. A count-only summary is not acceptable.
 
 ## Failed
 

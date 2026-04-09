@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # Agent Proficiency
@@ -35,7 +35,15 @@ Gupta's metaphor: "The 21st century power user looks less like a programmer and 
 
 The [Stanford CS230 lecture](ai-careers.md) reinforces this from a different angle — the AI job market increasingly values people who can deliver business outcomes with AI tools, not just demonstrate technical knowledge. Agent proficiency is the practical manifestation of that shift.
 
+## Corporate Adoption
+
+Companies are now evaluating employees on AI proficiency directly. Zapier and Shopify rate employees specifically on AI tool usage. Aakash Gupta's framework for PM AI tool proficiency identifies three tiers: (1) chat-based agents (ChatGPT agent mode), (2) no-code/low-code agent builders (Lindy, Relay.app, Zapier, Make.com), and (3) coding agents (Claude Code, Cursor). The shift from "prompt engineering" to "context engineering" reflects the same evolution: the skill is in structuring what the agent knows, not just what you ask it.
+
+[DHH](dhh.md) frames it from the senior developer angle: agent proficiency lets senior developers "5x 10x their individual productivity" — the skill is knowing what to direct agents toward and how to evaluate their output. See [Knowledge Work Future](knowledge-work-future.md) for the broader implications.
+
 ## Sources
 
 - "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 2026)
 - "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (tweet, Apr 2026)
+- "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026)
+- "The Claude Code Setup Nobody Shows You" — Aakash Gupta (video, Apr 2026)

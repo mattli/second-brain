@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # AI Organization Design
@@ -47,6 +47,14 @@ The constraint is unchanged: narrowing span of control means adding layers, but 
 
 When the intelligence layer can't compose a solution because a capability doesn't exist, that failure signal IS the future roadmap. "The traditional roadmap, where product managers hypothesize about what to build next, is any company's ultimate limiting factor."
 
+## Small Teams + Agents
+
+Peter Yang (PM at Roblox, a16z Show): "Instead of having like a 10 person product team, you have like a two or three person product team and you just have a bunch of agents help you." The prediction: the shape of the economy shifts from concentrated large companies to more solopreneurs and small teams. AI handles the coordination overhead that previously required headcount.
+
+The counter-view (from the same conversation): getting to 100% automation of any job function is "really rare." Almost every AI product provides "dramatic lift" but can't do the last 10%. The efficiency gain may show up as "European-style 4-day work weeks" or "companies getting twice as productive" rather than mass job elimination.
+
+[DHH](dhh.md) reinforces this from practice: at 37signals, "you actually go slower if you pour a bunch of people into a direction that is uncertain." AI lets tiny teams prototype faster, expanding what's feasible without expanding headcount.
+
 ## Broader Implications
 
 Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = difficult for error-prone people. Such domains = where AI agents will do best."
@@ -55,3 +63,4 @@ Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = 
 
 - "From Hierarchy to Intelligence" — Jack Dorsey / Block (tweet, Mar 2026)
 - "Thesis: the problem with AI working in every domain..." — Marc Andreessen (tweet)
+- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026)

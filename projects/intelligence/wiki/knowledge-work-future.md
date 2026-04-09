@@ -48,6 +48,20 @@ See [Agent Proficiency](agent-proficiency.md) — agent management is arguably t
 - **Google's Search Inside Yourself** — Mindfulness and emotional intelligence program for engineers. Measurable: lower stress, higher engagement, faster innovation. Now licensed to external executive teams.
 - **OpenAI executives** — Actively investing in wisdom skills through coaching, with awareness that their technical skills face obsolescence.
 
+## Knowledge Types Taxonomy
+
+The classic framework (Polanyi, via Bloomfire):
+
+- **Explicit knowledge** — Easy to articulate, write down, share. Manuals, policies, documentation. AI makes this easier to capture, organize, and retrieve.
+- **Implicit knowledge** — The *application* of explicit knowledge. Transferable skills: negotiation techniques, sales approaches, conflict resolution, organizational culture absorption. Shared through social interaction; hard to document because it's performed subconsciously.
+- **Tacit knowledge** — Gained from personal experience; the hardest to express. Gut feelings, intuition, "the exact feel for the dough." Non-verbal and context-dependent — experts may not realize they possess it. Requires long-term mentorship, storytelling, and high-trust culture to transfer. This is the knowledge most at risk of being lost when employees leave.
+
+**Polanyi's deeper point (often misunderstood):** The business KM community (via Nonaka) reduced Polanyi's epistemology to a simple bifurcation: knowledge is either tacit or explicit. But Polanyi's actual framework is about *tacit knowing* as a process, not a category. "We know more than we can tell" means knowing is always *from* subsidiary awareness *to* focal awareness — a dynamic process of indwelling, not a static bucket. The conversion model (tacit → explicit → tacit) that dominates KM literature misrepresents this entirely. This matters for AI: models can capture explicit knowledge and some implicit knowledge, but the *process* of tacit knowing — the embodied, contextual, indwelling experience — is fundamentally different from retrievable information.
+
+The key challenge: most organizations use tools suited only for explicit knowledge (intranets, folders), while the most valuable knowledge (tacit) requires completely different capture methods — socialization, apprenticeship, narrative exchange.
+
+**Every job becomes a software job:** Anish Acharya's observation: the ambitious view of coding agents is that almost any problem/solution can be expressed in software, making coding capability upstream of all knowledge work. Legal, comms, marketing, HR, and finance will increasingly be software-first. This shifts which knowledge types matter: procedural knowledge becomes executable code; tacit knowledge about *when and why* to act becomes the human differentiator.
+
 ## What This Doesn't Mean
 
 This isn't a soft-skills argument against technical depth. The framing is about what becomes *differentiating* when AI can match technical performance. Deep technical knowledge still matters — it's just no longer sufficient on its own.
@@ -58,3 +72,7 @@ Also relevant: [AI Careers](ai-careers.md) (where this connects to the bifurcati
 
 - "Knowledge Work Is Dying—Here's What Comes Next" — Joe Hudson (Every, Apr 2026)
 - "Unpacking AI at work: Data work, knowledge work, and values work" — Elmira van den Broek (Apr 2026)
+- "Different Types of Knowledge: Implicit, Tacit, and Explicit" — Bloomfire (Betsy Anderson)
+- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026)
+- "Knowledge Management and Polanyi" — Eric M. Straw (academic paper)
+- "Knowledge About Knowledge" — [Tier C reference: 131K-word PDF, not fully synthesized. Covers epistemology of knowledge management.]

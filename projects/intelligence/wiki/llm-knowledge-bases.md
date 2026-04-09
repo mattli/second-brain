@@ -68,6 +68,20 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 
 Karpathy's autoresearch project extends this pattern into scientific research: an AI agent autonomously modifies ML training code, runs 5-minute experiments, checks results, and iterates — ~100 experiments per overnight GPU session. The human edits `program.md` (instructions), the agent modifies `train.py` (code). The same principles apply: file-based, explicit, navigable — but now the "wiki" is an evolving codebase and research log, and the LLM is the researcher. See [Andrej Karpathy](andrej-karpathy.md).
 
+## File > App
+
+Anish Acharya (a16z) identifies an emerging paradigm: local files are the durable and preferred way to capture data, with apps/intelligence as a dynamic overlay. Evidence:
+
+- **Claude Cowork** — file-centric architecture where the agent works with your files directly
+- **OpenClaw** — memory architecture based on flat markdown files (SOUL.md, MEMORY.md, DREAMS.md — see [Peter Steinberger](peter-steinberger.md))
+- **Dwarkesh Patel's observation** — coding agents made rapid progress because source code is an "external scaffold of memory"
+
+This architecture particularly benefits enterprise users: agents running on laptops inherit employee permissions, internal systems are accessible via browser, and memory can cascade from employees → teams → enterprise through simple file sharing.
+
+Related: Balaji Srinivasan's thesis that local files outlast apps, and Paul Graham's observation that "the best designs are often simple." HTTP was controversial for being plain text on the wire — turned out to be one of the best design decisions ever made.
+
+The [Obsidian Second Brain](https://twitter.com/CyrilXBT) pattern (CyrilXBT) demonstrates this in practice: using Obsidian + Claude to build a personal knowledge system where the agent reads and writes to the same markdown files the human uses.
+
 ## Open Questions
 
 - How well does this scale beyond ~100 articles / 400K words? At what point does agent navigation break down and you need search tooling like qmd?
@@ -85,3 +99,5 @@ Karpathy's autoresearch project extends this pattern into scientific research: a
 - "Wow, this tweet went very viral!" — Andrej Karpathy (tweet, Apr 2026)
 - "llm-wiki · GitHub" — GitHub (Apr 2026)
 - "Build your own knowledge base with the /add-karpathy-llm-wiki skill!" — tweet (Apr 2026)
+- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026)
+- "How I Turned Obsidian Into a Second Brain That Runs on Claude" — CyrilXBT (tweet, Apr 2026)

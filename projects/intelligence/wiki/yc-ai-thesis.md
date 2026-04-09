@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # Y Combinator AI Thesis (2026)
@@ -40,6 +40,16 @@ The GENIUS and CLARITY Acts are placing stablecoins between DeFi and TradFi. Roo
 ### LLM Training Tooling
 "Training large language models is still surprisingly difficult." Broken SDKs, busted GPU instances, major bugs in open-source tooling. Need: training APIs, large dataset databases, ML-native dev environments.
 
+## The PG Foundation: "Live in the Future"
+
+Paul Graham's classic essay "How to Get Startup Ideas" (2012) remains the philosophical foundation underlying YC's thesis. Key principles that map directly to the AI moment:
+
+- **"Live in the future, then build what's missing."** People at the leading edge of AI are living in the future right now — they see gaps others can't.
+- **The well, not the crater.** Good startup ideas start narrow and deep (small number of people who want it desperately), not broad and shallow. This explains why vertical AI (Harvey for law, coding agents for developers) beats horizontal "AI for everything."
+- **Schlep blindness.** The best ideas involve schleps (hard, messy work) that scare away competitors. Processing payments (Stripe), processing legal documents (Harvey), automating manufacturing scheduling — the schlep is the moat.
+- **Organic > manufactured.** The best ideas come from founders solving their own problems, not brainstorming "startup ideas." Career-Ops (evaluating 740+ job offers to land a role) is a textbook example.
+
 ## Sources
 
 - "Requests for Startups" — Y Combinator (2026)
+- "How to Get Startup Ideas" — Paul Graham (2012, saved Apr 2026)

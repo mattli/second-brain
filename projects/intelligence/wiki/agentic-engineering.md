@@ -66,9 +66,31 @@ Anthropic's hosted agent infrastructure (April 2026). The key insight: harnesses
 
 The design philosophy mirrors Unix: virtualize components into general interfaces (like `read()` being agnostic to disk hardware) that outlast any specific implementation underneath. See the Anthropic engineering blog: "Scaling Managed Agents: Decoupling the brain from the hands."
 
+## The Great Convergence
+
+Nicholas Charriere's thesis (Apr 2026): app companies, model companies, and infrastructure companies are all converging on the same product shape — **self-improving agents that do knowledge work**.
+
+**Why it's happening:** The general harness (model + loop + tools) turns out to be a general-purpose problem-solving machine. Claude Code was the breakthrough — initially built for coding, it generalizes to any computer-based task with the right tools. The prize is enterprise knowledge work, which dwarfs B2C AI use cases.
+
+**Who's converging:**
+- **Systems of record** (Salesforce, Notion, Linear) — own the data and workflow; just need to productize the harness
+- **Model companies** (Anthropic, OpenAI) — own intelligence but face commoditization; moving up-stack into applications. OpenAI deprioritized Sora to focus entirely on Codex
+- **Communication platforms** (Slack, Teams) — agents need to communicate with each other and humans; these companies have already solved that
+- **Infrastructure companies** (Databricks, Vercel, Cloudflare) — repositioning as "infrastructure for agents," providing sandboxes, compute, monitoring, orchestration
+
+**The self-improvement loop:** Drive → collect data → retrain (autonomous vehicles) maps to: run → monitor → improve harness code and context engineering → run again. The difference: the agent itself can close this loop, writing code to improve its own performance. Yoonho Lee (Stanford) formalized this as "Meta-Harness" — autonomously optimizing harnesses end-to-end.
+
+**Prediction:** By end of 2026, many software companies will look like they're selling the same thing. Winners will have distribution, trusted workflow positioning, proprietary context, and the shortest path from observation to improvement.
+
+## "The Decade of Agents" (Karpathy)
+
+[Andrej Karpathy](andrej-karpathy.md) argues the industry is over-predicting agent timelines: "this is the decade of agents, not the year of agents." Current agents are impressive but still cognitively lacking — no continual learning, insufficient multimodality, unreliable computer use. Different parts of the coding stack suit different interaction modes: autocomplete for high-bandwidth specification, agents for larger scoped tasks, but "these are all tools available to you and you have to learn what they're good at."
+
+His "ghosts, not animals" metaphor: LLMs are trained by imitation, not evolution, producing "ethereal spirit entities" that mimic humans rather than develop through embodied experience. This has implications for agent design — the failure modes and capabilities are fundamentally different from what biological analogies would predict.
+
 ## Tools Noted
 
-- **X API** (Apr 2026 update) — Pay-per-use pricing, XMCP Server for native MCP support, official Python & TypeScript SDKs, API playground for testing
+- **X API** (Apr 2026 update) — Pay-per-use pricing, official XMCP Server (`xdevplatform/xmcp`) for native MCP support via FastMCP, official Python & TypeScript SDKs, API playground for testing. The MCP server exposes the full X API OpenAPI spec as tools — 100+ endpoints including post creation, search, DMs, analytics
 - **Factory.ai** — "Agent-native software development" platform. Agents for refactors, incident response, migrations across IDE, CI/CD, CLI, Slack
 - **MuleRun** — No-code AI agent platform for business automation. Dedicated compute per agent, runs 24/7
 - **Base44 Superagent** — 130+ built-in skills, stack skills into workflows
@@ -80,3 +102,10 @@ The design philosophy mirrors Unix: virtualize components into general interface
 - "GitHub - paperclipai/paperclip..." — Paperclip AI
 - "Hermes Agent" — Nous Research
 - "The X API just got a massive update..." — X Freeze (tweet, Apr 2026)
+- "Scaling Managed Agents: Decoupling the brain from the hands" — Anthropic (Apr 2026)
+- "The Great Convergence" — Nicholas Charriere (tweet thread, Apr 2026)
+- "xdevplatform/xmcp: MCP server for the X API" — X Developer Platform (GitHub)
+- "Introducing Claude Managed Agents" — Claude (tweet, Apr 2026)
+- "Anthropic just mass-obsoleted every agent orchestration startup" — Aakash Gupta (tweet, Apr 2026)
+- "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026)
+- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026)

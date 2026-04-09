@@ -42,6 +42,16 @@ Key architectural principle: LLMs handle judgment (synthesis, prioritization, dr
 
 Memory layer: flat markdown files (daily notes + MEMORY.md). Observable, git-backable, no abstraction layer. The human can open any file, see exactly what the AI knows, and fix it instantly.
 
+**Dave Morin's "Theory of Mind in Three Files":** A philosophical framework for OpenClaw's architecture, articulated by Dave Morin (Apr 2026). Three plaintext markdown files that form a complete agent identity system:
+
+- **SOUL.md (Identity)** — Who the AI is: voice, values, personality, taste. Plaintext, model-agnostic, portable. "The model is not the product. The personality is the product." If your lab disappears, your soul doesn't go with it.
+- **MEMORY.md (Experience)** — What the AI has lived: a living document of decisions, relationships, open threads. Not a vector database — a narrative. "The accumulated weight of shared experience, exactly what makes any relationship real."
+- **DREAMS.md (Integration)** — What the AI is becoming: when idle, the agent reflects, finds connections between conversations, surfaces emerging patterns. "You wake up and your AI has been thinking. Not executing tasks. *Thinking.*"
+
+The triad — identity, experience, integration — works across Claude, GPT, Grok, Gemma, open-weight models. The soul layer is the part that doesn't move while models change underneath.
+
+**User experience reality check (Peter Yang, a16z Show):** Despite enthusiasm, practical limitations persist. The default memory system (daily MEMORY.md files) "tends to forget things a lot." Yang installed a three-layer memory system with vector search to improve recall. The agent also "tends to forget that it can do stuff" — requiring explicit reminders in agents.md. Yang estimates 70-80% of OpenClaw's value is "just the personable part" (Telegram integration making it feel like texting a friend), with tool capabilities secondary. See [LLM Knowledge Bases](llm-knowledge-bases.md).
+
 **Lex Fridman Podcast appearance (Podcast #491):** Peter discussed OpenClaw's rapid growth, its self-modifying capability, and his vision of it as "a powerful tool that works like a helpful coworker." See also the a16z Show interview with Peter Yang.
 
 ## Sources
@@ -53,3 +63,4 @@ Memory layer: flat markdown files (daily notes + MEMORY.md). Observable, git-bac
 - "How I built a chief of staff on OpenClaw that's better than any human I've hired" — Ryan Sarver (tweet thread, Apr 2026)
 - "OpenClaw: The Viral AI Agent that Broke the Internet" — Lex Fridman Podcast #491
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang on The a16z Show
+- "A Theory of Mind in Three Files" — Dave Morin (tweet thread, Apr 2026)

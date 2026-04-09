@@ -69,6 +69,33 @@ New tools designed for AI-augmented product development workflows:
 - **Canny** — AI-powered customer feedback collection. Auto-captures, summarizes, and categorizes ideas from multiple sources. Helps teams prioritize features and close the feedback loop with users.
 - **Spark (Productboard)** — AI platform for PMs. Connects customer feedback to product ideas, helps teams make data-backed decisions.
 
+## AI Transformation Model (Notion)
+
+A four-level maturity model for organizational AI adoption, created with Ben Levick (Ramp) and Geoffrey Litt (Notion):
+
+| Level | AI Role | What Changes | Impact |
+|-------|---------|--------------|--------|
+| 1. Thought Partner | Explore ideas, improve decisions | Individuals prompt AI ad-hoc | Faster output, better decisions |
+| 2. Assistant | Complete tasks, save time | Context-aware AI tools embedded in workflow | Hours saved per employee/week |
+| 3. Teammates | Automate recurring workflows | Teams deploy configurable agents with checkpoints | 10-40% team capacity reclaimed |
+| 4. The System | Run critical workflows at scale | Multi-agent orchestration, self-improving | Operational leverage, revenue per employee |
+
+Key insights: companies operate at multiple levels simultaneously (engineering at L3 while marketing is at L2). Context is the foundation — consolidating tools and connecting data unlocks every level. Typically 10-20% of employees create agents that benefit the whole team. Levels build on each other, they don't replace each other.
+
+## AI Evals as the New PRD
+
+Aneesh Chukla's framework (via Aakash Gupta): for AI features, evals *are* the PRD. "The way the best AI companies work is that the AI PM defines these evals and that is basically the PRD for the AI engineers." The workflow: define success criteria and expected behavior → build offline evals → only then launch to real users with online evals (observability platforms like Arise, TruLens). If offline evals fail, "you have not even created a product that can be actually launched."
+
+This shifts PM work from spec writing to evaluation design — a fundamentally different skill. See [Agent Proficiency](agent-proficiency.md).
+
+## "Team OS" Pattern
+
+Hannah Stalberg (DoorDash PM, 1,500+ hours in Claude Code) coined "Team OS" — a team-level knowledge base that helps everyone move faster. Claude Code becomes the interface to this shared context. Her key observation: "Claude Code is the most misleading name in AI" — it's not just for code, it's a general-purpose agent for product work. See [Claude Code Skill Frameworks](claude-code-skill-frameworks.md).
+
+## Vibe Experimentation
+
+Aakash Gupta's concept (ProductCon 2025): the intersection of vibe coding and experimentation. Three implementation stacks: (1) prototype in Lovable → engineer in Cursor → experiment in LaunchDarkly/Amplitude, (2) full-stack vibe coding with integrated experimentation, (3) Claude Code-driven rapid prototyping with A/B testing. The idea: PMs and designers can prototype and test hypotheses without waiting for engineering sprints.
+
 ## Risks
 
 - **Adoption fatigue** — "Shipping more stuff does not equal more product value. If users can't keep up, what's the point?"
@@ -83,3 +110,7 @@ New tools designed for AI-augmented product development workflows:
 - "The productdevelopmentsystem for teams and agents" — linear.app
 - "Build better products with customer feedback" — canny.io
 - "Spark, the AI platform for product managers" — productboard.com
+- "The AI Transformation Model" — John Hurley / Notion (Apr 2026)
+- "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026)
+- "The Most Important New Skill for Product Managers in 2026: AI Evals Masterclass" — Aakash Gupta / Aneesh Chukla (video, Apr 2026)
+- "How this PM Used Claude Code to Support 20 People" — Aakash Gupta / Hannah Stalberg (video, Apr 2026)

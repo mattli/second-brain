@@ -42,8 +42,22 @@ Current mainstream techniques:
 
 [Dario Amodei's "Adolescence of Technology" essay](dario-amodei.md) argues current training methods are insufficient and we need substantially better alignment techniques before capabilities advance further.
 
+## OpenAI's Safety Mission Controversy
+
+A major New Yorker investigation (Ronan Farrow & Andrew Marantz, Apr 2026) documented allegations that OpenAI has departed from its founding safety mission:
+
+- **The founding premise:** OpenAI was established as a nonprofit whose board had a duty to prioritize the safety of humanity over company success. Accepted charitable donations; employees took pay cuts for the mission.
+- **The internal memos:** In 2023, chief scientist Ilya Sutskever compiled ~70 pages of memos about CEO Sam Altman alleging a "consistent pattern of lying." Separately, [Dario Amodei](dario-amodei.md) (who left to co-found Anthropic) kept years of private notes; 200+ pages of related documents circulated in Silicon Valley.
+- **Safety commitments abandoned:** Several safety-related teams dissolved. Future of Life Institute gave OpenAI an F on existential safety (Anthropic got a D, Google DeepMind got a D-).
+- **Nonprofit → for-profit:** Internal records show founders had private doubts about the nonprofit structure as early as 2017. OpenAI has since recapitalized as a for-profit entity.
+- **The stakes:** AI is already deployed in military operations; researchers have documented its power to rapidly identify chemical warfare agents; OpenAI faces seven wrongful-death lawsuits.
+
+The piece raises broader questions about whether the AI industry's current anti-regulation trajectory is prudent, and whether safety-focused governance structures can survive commercial pressures.
+
 ## Sources
 
 - "Interpretability: Understanding how AI models think" — Anthropic (video, Apr 2026)
 - "The Adolescence of Technology" — Dario Amodei (darioamodei.com)
 - "Before limited-releasing Claude Mythos Preview, we investigated its internal mechanisms..." — tweet thread
+- "Sam Altman May Control Our Future—Can He Be Trusted?" — Ronan Farrow & Andrew Marantz (The New Yorker, Apr 2026)
+- "(🧵1/11) For the past year and a half, I've been investigating OpenAI..." — Ronan Farrow (tweet thread, Apr 2026)

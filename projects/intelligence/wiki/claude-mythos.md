@@ -62,5 +62,5 @@ Related: [AI Safety & Interpretability](ai-safety-interpretability.md)
 - "Introducing Project Glasswing: an urgent initiative..." — tweet thread
 - "Before limited-releasing Claude Mythos Preview, we investigated..." — tweet thread
 - "Mythos Preview seems to be the best-aligned model out there..." — tweet thread
-- System Card: Claude Mythos Preview — Anthropic
+- System Card: Claude Mythos Preview — Anthropic [Tier C reference: 70K-word PDF, not fully synthesized. Full safety evaluation including benchmark results, red-teaming findings, and responsible scaling assessment.]
 - "Assessing Claude Mythos Preview's cybersecurity capabilities" — Anthropic

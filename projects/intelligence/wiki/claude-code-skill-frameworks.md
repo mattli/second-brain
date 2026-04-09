@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 
 # Claude Code Skill Frameworks
@@ -68,6 +68,28 @@ Key insight: "Closing notes solve continuity. A recipe binder solves accumulatio
 - [Agentic Engineering](agentic-engineering.md) — The broader field these frameworks operate in
 - Anthropic's harness architecture blog (Nov 2025) — The formal framework Vox used to compare these tools
 
+## Domain-Specific Skill Libraries
+
+### MarketingSkills (Corey Haines)
+
+35+ marketing skills for AI agents. Works with Claude Code, Codex, Cursor, Windsurf via the Agent Skills spec. Skills include CRO, copywriting, SEO audit, AI SEO, analytics tracking, cold email, paid ads, A/B testing, churn prevention, referral programs, RevOps, sales enablement, pricing strategy. All skills cross-reference each other and build on a shared `product-marketing-context` skill — the foundation every other skill checks first.
+
+Key architecture: skills trigger automatically when the agent recognizes a marketing task. The `product-marketing-context.md` file (explicit knowledge about the product, audience, positioning) is read by every skill before execution.
+
+### Career-Ops (Santiago Ferrer)
+
+AI-powered job search pipeline built on Claude Code. 14 skill modes for evaluating offers (A-F scoring, 10 weighted dimensions), generating ATS-optimized CVs, scanning 45+ company job portals, batch processing, and interview prep (STAR+R story bank). Built by someone who used it to evaluate 740+ offers and land a Head of Applied AI role. Includes a Go TUI dashboard.
+
+Key design: the system is designed for Claude to customize itself — modes, scoring weights, and negotiation scripts are all readable/writable markdown files.
+
+### Obsidian Skills (kepano)
+
+Agent skills for Obsidian — teaching AI agents to read, write, and navigate Obsidian vaults. See [LLM Knowledge Bases](llm-knowledge-bases.md).
+
+### Skills Ecosystem Note
+
+The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across agents. The Minimalist Entrepreneur skills (`slavingia/skills`) and Base44 Superagent (130+ built-in skills) suggest an emerging marketplace pattern where skills are shared as open-source markdown files.
+
 ## Tools Noted
 
 - **Codex plugin for Claude Code** (OpenAI) — `/codex:review`, `/codex:adversarial-review`, `/codex:rescue` for delegating to Codex from within Claude Code
@@ -81,3 +103,8 @@ Key insight: "Closing notes solve continuity. A recipe binder solves accumulatio
 - "How Claude Code actually works..." — Suryansh Tiwari / Nainsi Dwivedi (tweet, Mar 2026)
 - "openai/codex-plugin-cc..." — OpenAI
 - "SOUL.md Personality Guide" — OpenClaw
+- "coreyhaines31/marketingskills" — Corey Haines (GitHub)
+- "santifer/career-ops" — Santiago Ferrer (GitHub)
+- "kepano/obsidian-skills" — kepano (GitHub)
+- "slavingia/skills" — Sahil Lavingia (GitHub)
+- "The Claude Code Setup Nobody Shows You" — Aakash Gupta / Carl Votti (video, Apr 2026)

@@ -38,6 +38,16 @@ Key design choices:
 
 Released on GitHub as `karpathy/autoresearch`. Framed aspirationally in the README intro as the origin story of fully autonomous AI research. See also [Agentic Engineering](agentic-engineering.md) for related self-improving agent work.
 
+### "The Decade of Agents"
+In a Dwarkesh Patel interview (Apr 2026), Karpathy pushed back on "year of agents" framing: "There's some over-prediction going on in the industry. In my mind, this is more accurately described as the decade of agents." Early agents like Claude Code and Codex are "extremely impressive" but still cognitively lacking — no continual learning, insufficient multimodality, unreliable computer use. "It will take about a decade to work through all of those issues."
+
+### "We're Not Building Animals"
+Central metaphor from the same interview: LLMs are "ghosts" or "spirits," not animals. "We're not doing training by evolution. We're doing training by imitation of humans and the data that they've put on the Internet. You end up with these ethereal spirit entities because they're fully digital and they're mimicking humans." This is a fundamentally different kind of intelligence — starting from a different point in the space of possible intelligences. But it's "possible to make them a bit more animal-like over time."
+
+On memorization vs. abstraction: LLMs can "regurgitate word-for-word what is the next thing in a Wikipedia page" but their ability to learn abstract concepts quickly (the way a child can) is limited. Humans are "not actually that good at memorization, which is actually a feature" — it forces finding patterns in a more general sense.
+
+On the coding stack: autocomplete is high-bandwidth ("you point to the code where you want it, you type out the first few pieces, and the model will complete it") while typing instructions in English is "too much typing." Different modes work for different parts of the coding workflow. See [Agentic Engineering](agentic-engineering.md).
+
 ## Sources
 
 - "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026)
@@ -47,3 +57,4 @@ Released on GitHub as `karpathy/autoresearch`. Framed aspirationally in the READ
 - "karpathy is showing one of the simplest AI architectures..." — JUMPERZ (tweet, Apr 2026)
 - "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary
 - "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online
+- "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026)

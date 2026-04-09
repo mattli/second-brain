@@ -1,6 +1,6 @@
 Readwise Wiki Compiler — Instructions
 
-> Version: 1.0 | Last updated: 2026-04-05
+> Version: 2.0 | Last updated: 2026-04-09
 
 ## Purpose
 
@@ -14,75 +14,91 @@ Output goes to `wiki/` relative to the intelligence project directory.
 
 ## Workflow
 
-### 1. Read the Wiki Index
+### Phase 1 — Inventory
 
-Read `wiki/INDEX.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information. If the index is empty (first run), you'll be building from scratch.
+Read `wiki/INDEX.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information.
 
-### 2. Fetch Readwise Saves
+Fetch ALL documents via `reader_list_documents` with `updated_after` set to 7 days ago (for incremental runs) or without it (for bootstrap). Record every document's ID, title, category, word_count, and author.
 
-Use the Readwise MCP tools to get documents to process.
+> **IMPORTANT: Video transcripts.** Videos show `word_count: 0` in the list API response. This does NOT mean they have no content. Readwise stores full video transcripts. ALWAYS fetch document details for videos regardless of word_count. Classify them by actual content length after fetching.
 
-**First run (bootstrap):** Use `mcp__readwise__reader_list_documents` to list all saved documents. Process everything to build the initial wiki.
+Record the current time as the run start time — you'll need this for timeout awareness later.
 
-**Subsequent runs:** Use `mcp__readwise__reader_list_documents` with `updated_after` set to 7 days ago to get only recent saves. If nothing new was saved, stop early — don't reprocess existing content.
+Also check `wiki/LAST_RUN_MANIFEST.md` for any documents that were partially processed in a previous run.
 
-### 3. Read Each Save's Content
+### Phase 2 — Triage
 
-For each document, use `mcp__readwise__reader_get_document_details` to get the full content. Extract:
+Classify each document into processing tiers:
 
-- **Key concepts and ideas** — what is this about at a conceptual level?
-- **Notable claims, findings, or arguments** — what does this say that's worth remembering?
-- **Connections to existing wiki pages** — does this relate to topics already in the wiki?
-- **People, projects, or entities** worth tracking
+- **Tier A (full read):** Under ~20K words. The bulk of most runs — articles, tweets, videos with transcripts.
+- **Tier B (full read, large):** 20K-50K words. Fetch full content directly. Fits comfortably in Opus's 200K context. Processed the same way as Tier A but tracked separately for batch-size differentiation.
+- **Tier C (reference only):** Over 50K words. Not synthesized by this compiler. A metadata-only reference is attached to the most relevant existing wiki topic page. See Phase 4 below.
+- **Tier D (bookmark):** Minimal content (landing pages, tool repos, short bookmarks with no substantive body). Note on the relevant topic page with name, URL, and one-line description.
 
-Skip documents that are trivial bookmarks or have no substantive content.
+### Phase 3 — Batched reading (Tiers A, B, D)
 
-However, do NOT ignore product/tool bookmarks entirely — even if a save is just a landing page with no deep content, note the tool's name, what it does, and its URL on the relevant topic page. The goal is to never lose a bookmarked tool, but to file it as a data point rather than a standalone page.
+**Tier A batches:** Process in batches of **5-8 documents**. For each batch:
+1. Fetch full content via `reader_get_document_details` for each document in the batch
+2. Extract key concepts, claims, connections to existing wiki pages, and notable entities
+3. Update or create wiki pages (see Page Guidelines below)
+4. Move to the next batch
 
-### 4. Update or Create Wiki Pages
+Start conservative with batch size. Increase in future runs only after confirming context headroom.
 
-For each meaningful topic identified across the saves:
+**Tier B:** Process after Tier A. These are larger (20K-50K words), so process individually or in batches of 2-3. Same extraction and update process as Tier A.
 
-**If a relevant page exists:** Update it with the new information. Add new sections, refine existing content, add the source to the page's source list. Don't duplicate information already on the page.
+**Tier D:** Process last. For each bookmark, note the tool/product on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, skip with a manifest entry.
 
-**If no relevant page exists:** Create a new one. The page should be a useful reference — not a summary of a single article, but a page about a *topic* that may draw from multiple sources.
+**Timeout check:** Before starting each new batch, check elapsed time since run start. If less than 15 minutes remain (this threshold is a tunable heuristic — adjust based on observed integration phase duration), skip to Phase 5.
 
-**Page guidelines:**
+### Phase 4 — Tier C: Reference attachment
+
+For each Tier C document (over 50K words):
+
+1. **Metadata only.** Use the document's title, author, category, word count, and ID from the inventory. Do NOT fetch full content.
+2. **Match against INDEX.md.** Identify the most relevant existing topic page by matching title keywords against the wiki index.
+3. **If a match exists:** Append a reference line to that page under a `## Long-form sources` section (create the section if it doesn't exist). Format:
+   ```
+   - **Knowledge About Knowledge** (131K words, saved 2026-04-06, Readwise: 01knjemvdkrdqgy21tz280tbav) — long-form source, not synthesized by compiler
+   ```
+4. **If no match exists:** Skip the document. Do NOT create a new topic page solely to house a reference. References are strictly opportunistic — they attach to existing pages or they don't.
+5. **Log in manifest:** Either "referenced on `<page>.md`" or "skipped — no matching topic page."
+
+### Phase 5 — Integration
+
+After all tiers are processed (or timeout forces early completion):
+
+1. Update `wiki/INDEX.md` with any new pages and updated summaries
+2. Run the lint pass:
+   - **Orphan pages** — pages not linked from any other page (add links where relevant)
+   - **Missing pages** — topics mentioned frequently across pages but lacking their own page
+   - **Stale content** — claims that newer sources have superseded
+3. Fix what you find
+
+### Phase 6 — Manifest
+
+Write `wiki/LAST_RUN_MANIFEST.md` with the full audit trail. See the Manifest Schema section below.
+
+---
+
+## Page Guidelines
+
 - Pages are about **topics**, not about individual articles. A page on "retrieval-augmented generation" draws from every source that discusses RAG.
 - Keep pages concise and scannable — use headers, bullet points, short paragraphs.
-- Each page starts with a 1-2 sentence TLDR at the top (helps both humans and LLMs scan quickly).
-- Interlink pages with standard markdown links: `[topic name](topic-slug.md)`. Use relative links so they work in Obsidian and GitHub.
-- Each page has a `## Sources` section at the bottom listing which Readwise saves informed it (title + author). This is a citation trail, not a bibliography — keep it brief.
+- Each page starts with a 1-2 sentence TLDR at the top.
+- Interlink pages with standard markdown links: `[topic name](topic-slug.md)`.
+- Each page has a `## Sources` section at the bottom listing which Readwise saves informed it (title + author).
 - File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
-- Each page has YAML frontmatter with `created_at` (set once when the page is created) and `last_updated` (set to today's date whenever you modify a page's content, not for trivial formatting fixes).
+- Each page has YAML frontmatter with `created_at` (set once) and `last_updated` (set to today's date when content changes).
 
-**What pages to create is your decision.** There are no pre-defined categories. Look at the content and decide what topics deserve their own page. Some heuristics:
+**What pages to create is your decision.** Heuristics:
 - A concept that appears across multiple sources → page
 - A person doing notable work that comes up repeatedly → page
 - A technique, framework, or tool with enough substance → page
-- A broad theme (e.g., "AI agents", "open source models") that many sources touch → page
-- A tool or product you bookmarked → don't create a standalone page, but mention it on the relevant topic page as a data point (e.g., a payment tool gets noted on the payments infrastructure page, a marketing tool gets noted on the AI marketing page). Bookmarks are landscape awareness — they should be captured but not given their own wiki entries.
+- A broad theme that many sources touch → page
+- A tool or product bookmark → don't create a standalone page; mention it on the relevant topic page as a data point
 
 Don't create a page for every minor mention. Create pages when there's enough substance to make a useful reference.
-
-### 5. Update the Index
-
-After every change, update `wiki/INDEX.md`. Every page gets:
-- A link to the file
-- A one-line summary of what the page covers
-
-Group pages loosely by domain if natural groupings emerge, but don't force a taxonomy. A flat list is fine if that's what the content calls for.
-
-### 6. Periodic Lint (On Every Run)
-
-Before finishing, scan the wiki for:
-- **Orphan pages** — pages not linked from any other page (add links where relevant)
-- **Missing pages** — topics mentioned frequently across pages but lacking their own page
-- **Stale content** — claims that newer sources have superseded
-
-Fix what you find. This keeps the wiki healthy as it grows.
-
----
 
 ## Page Template
 
@@ -112,6 +128,90 @@ Content organized by the natural structure of the topic.
 
 ---
 
+## Error Handling
+
+**Rate limit errors:** On any rate limit from the Anthropic API or Readwise MCP:
+1. Write the manifest with current progress (whichever documents have been processed so far)
+2. Commit any wiki updates completed: `cd /workspace/extra/second-brain && git add -A && git diff --cached --quiet || git commit -m "readwise wiki partial update $(date +%Y-%m-%d)" && git push`
+3. Exit cleanly — do not retry in a loop
+
+The next scheduled run picks up where this one stopped.
+
+**Failed document fetch:** If `reader_get_document_details` fails or returns empty for a document, log it to the manifest with the failure reason and move on to the next document. Do not halt the run.
+
+**Timeout awareness:** Before starting each new batch or Tier B document, check elapsed time:
+- If less than 15 minutes remain, skip to Phase 5 (integration) and Phase 6 (manifest)
+- The 15-minute threshold is a tunable heuristic — adjust based on observed integration phase duration
+
+---
+
+## Manifest Schema
+
+**`wiki/LAST_RUN_MANIFEST.md`** — Overwritten each run. Git history preserves previous runs.
+
+```markdown
+---
+run_date: YYYY-MM-DD
+run_start: "YYYY-MM-DDTHH:MM:SSZ"
+run_end: "YYYY-MM-DDTHH:MM:SSZ"
+documents_total: N
+documents_processed: N
+documents_referenced: N
+documents_skipped: N
+documents_failed: N
+---
+
+# Run Manifest — YYYY-MM-DD
+
+## Time Breakdown
+
+| Phase | Duration |
+|-------|----------|
+| Inventory + Triage | Xm |
+| Tier A (N docs, N batches) | Xm |
+| Tier B (N docs) | Xm |
+| Tier D (N docs) | Xm |
+| Tier C references (N docs) | Xm |
+| Integration + Lint | Xm |
+| **Total** | **Xm** |
+
+## Tier A — Processed
+
+| Title | Category | Words | Wiki Pages Updated |
+|-------|----------|-------|--------------------|
+
+## Tier B — Processed
+
+| Title | Category | Words | Wiki Pages Updated |
+|-------|----------|-------|--------------------|
+
+## Tier C — References
+
+| Title | Words | Action |
+|-------|-------|--------|
+
+## Tier D — Bookmarks
+
+| Title | URL | Noted On |
+|-------|-----|----------|
+
+## Skipped
+
+| Title | Category | Words | Reason |
+|-------|----------|-------|--------|
+
+## Failed
+
+| Title | Category | Error |
+|-------|----------|-------|
+
+## New Pages Created
+
+## Pages Updated
+```
+
+---
+
 ## After Writing
 
 Once wiki pages are written/updated, commit and push to the vault:
@@ -124,3 +224,22 @@ git push
 ```
 
 Do not send a confirmation message — the system handles notifications automatically.
+
+---
+
+## Design Decisions
+
+**Why Tier C is metadata-only references, not full synthesis:**
+The user's Readwise library as of April 2026 contains ~4 PDFs total, with only 1-2 exceeding the 50K-word Tier C threshold. Building chunking infrastructure (structure detection, JSON extraction, merge passes, per-chunk resumability) is disproportionate to this volume. However, completely skipping large documents loses useful signal — the user saved them for a reason. The compromise: a single reference line on an existing relevant topic page, so the user sees "this source exists" when reading related material. Long PDFs that need real synthesis are handled as one-off manual Claude Code sessions outside the scheduled compiler.
+
+**Why Tier C references only attach to existing pages, never create new ones:**
+Without this constraint, the compiler might create new topic pages solely to house references for documents it hasn't read. This is cargo-cult page creation — pages that exist only as reference holders, with no synthesized content. References are strictly opportunistic: they attach to pages that already exist for other reasons, or they're skipped with a manifest entry.
+
+**Why Tier B has no highlight-first logic:**
+The user doesn't highlight anything in Readwise. Any plan depending on extracting signal from highlights is broken from the start. Tier B fetches full content directly, same as Tier A. The distinction between Tier A and Tier B is currently cosmetic (batch-size differentiation) — they may merge in a future iteration.
+
+**Why the scheduled compiler doesn't handle all document sizes:**
+The scheduled compiler is optimized for the common case: dozens of articles, tweets, and videos per week that need to be synthesized into wiki pages. Rare, very large documents (100K+ words) are outside this sweet spot. The compiler notes their existence (Tier C reference) so they're not invisible, but real synthesis of book-length content is a manual session where the user can guide the process.
+
+**Readwise library composition (April 9, 2026):**
+~105 documents in the weekly window. Breakdown: mostly articles, tweets, and videos (with full transcripts). ~4 PDFs, ~2 of which exceed 50K words. No highlights. No bookmarks. If this composition changes materially (user starts highlighting, long PDFs become frequent), this design should be revisited.

@@ -64,7 +64,7 @@ Key insight: "Closing notes solve continuity. A recipe binder solves accumulatio
 
 ## Related Concepts
 
-- [Agent Proficiency](agent-proficiency.md) — The skill of managing these frameworks effectively
+- [Agent Proficiency](../concepts/agent-proficiency.md) — The skill of managing these frameworks effectively
 - [Agentic Engineering](agentic-engineering.md) — The broader field these frameworks operate in
 - Anthropic's harness architecture blog (Nov 2025) — The formal framework Vox used to compare these tools
 
@@ -84,7 +84,7 @@ Key design: the system is designed for Claude to customize itself — modes, sco
 
 ### Obsidian Skills (kepano)
 
-Agent skills for Obsidian — teaching AI agents to read, write, and navigate Obsidian vaults. See [LLM Knowledge Bases](llm-knowledge-bases.md).
+Agent skills for Obsidian — teaching AI agents to read, write, and navigate Obsidian vaults. See [LLM Knowledge Bases](../concepts/llm-knowledge-bases.md).
 
 ### Skills Ecosystem Note
 

@@ -49,11 +49,11 @@ The dotcom bubble analogy: it burst, but Amazon and Google survived because they
 
 ## Relationship to Agent Proficiency
 
-Ng's personal advice aligns with the [agent proficiency](agent-proficiency.md) thesis: spend time building with agentic tools rather than consuming content passively. The practical skill of directing AI agents toward real problems is what separates hype participants from builders.
+Ng's personal advice aligns with the [agent proficiency](../concepts/agent-proficiency.md) thesis: spend time building with agentic tools rather than consuming content passively. The practical skill of directing AI agents toward real problems is what separates hype participants from builders.
 
 ## Generalists vs. Specialists
 
-A related debate: Grok-summarized X discussion found that broad thinkers who link ideas across fields hold power amid AI's rise. Supporters cite examples like Matthew Gallagher building a $401M telehealth business with broad skills and two employees. The emerging consensus favors hybrids who go wide then deepen strategically as AI handles routine tasks. See also [Agent Proficiency](agent-proficiency.md) — agent management may be the ultimate generalist skill.
+A related debate: Grok-summarized X discussion found that broad thinkers who link ideas across fields hold power amid AI's rise. Supporters cite examples like Matthew Gallagher building a $401M telehealth business with broad skills and two employees. The emerging consensus favors hybrids who go wide then deepen strategically as AI handles routine tasks. See also [Agent Proficiency](../concepts/agent-proficiency.md) — agent management may be the ultimate generalist skill.
 
 ## Sources
 

@@ -42,7 +42,7 @@ The essay frames the current period as critical — decisions made in the next f
 
 **With Demis Hassabis (Google DeepMind CEO):** Both agreed that AI models are rapidly improving toward human-level and beyond. Both emphasized risks of controllability and stressed the need for careful collaboration between labs. Both expressed optimism that human ingenuity can navigate the risks if the best minds work together.
 
-**On Mythos Preview:** Described Claude Mythos as "the starting point for what we think will be an industry change point." His characterization of holding back the model publicly while giving access to security researchers represents a rare moment of a leading AI lab voluntarily constrained its commercial deployment for safety reasons. See [Claude Mythos](claude-mythos.md).
+**On Mythos Preview:** Described Claude Mythos as "the starting point for what we think will be an industry change point." His characterization of holding back the model publicly while giving access to security researchers represents a rare moment of a leading AI lab voluntarily constrained its commercial deployment for safety reasons. See [Claude Mythos](../models-safety/claude-mythos.md).
 
 **Recurring phrase:** "This is the least capable model we'll have access to in the future." Used to underline the accelerating trajectory and why safety work now matters so much.
 
@@ -55,9 +55,9 @@ The essay frames the current period as critical — decisions made in the next f
 
 ## Related
 
-- [Claude Mythos](claude-mythos.md) — The latest model Amodei's team built
-- [Business Moats in AI](business-moats-in-ai.md) — Where Anthropic fits in the competitive landscape
-- [AI Safety & Interpretability](ai-safety-interpretability.md)
+- [Claude Mythos](../models-safety/claude-mythos.md) — The latest model Amodei's team built
+- [Business Moats in AI](../concepts/business-moats-in-ai.md) — Where Anthropic fits in the competitive landscape
+- [AI Safety & Interpretability](../models-safety/ai-safety-interpretability.md)
 
 ## Sources
 

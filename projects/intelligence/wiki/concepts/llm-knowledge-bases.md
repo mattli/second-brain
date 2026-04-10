@@ -9,7 +9,7 @@ last_updated: 2026-04-09
 
 ## Overview
 
-A pattern popularized by [Andrej Karpathy](andrej-karpathy.md) in April 2026: instead of relying on RAG pipelines or app-locked AI memory, you collect raw source material (articles, papers, notes, images) and have an LLM "compile" it into an interlinked wiki of markdown files. The LLM maintains the wiki — writing articles, adding backlinks, categorizing concepts — and you rarely edit it directly. The wiki becomes both a reference for you and a structured knowledge base your AI agent can navigate.
+A pattern popularized by [Andrej Karpathy](../people/andrej-karpathy.md) in April 2026: instead of relying on RAG pipelines or app-locked AI memory, you collect raw source material (articles, papers, notes, images) and have an LLM "compile" it into an interlinked wiki of markdown files. The LLM maintains the wiki — writing articles, adding backlinks, categorizing concepts — and you rarely edit it directly. The wiki becomes both a reference for you and a structured knowledge base your AI agent can navigate.
 
 Karpathy published a formal "idea file" as a GitHub gist (1,000+ stars in the first day) — intentionally abstract so anyone's agent can customize and build it for their specific needs. The concept: in the agent era, you share ideas as text, not code.
 
@@ -66,14 +66,14 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 
 ## LLM Wiki as Infrastructure for Agent Research
 
-Karpathy's autoresearch project extends this pattern into scientific research: an AI agent autonomously modifies ML training code, runs 5-minute experiments, checks results, and iterates — ~100 experiments per overnight GPU session. The human edits `program.md` (instructions), the agent modifies `train.py` (code). The same principles apply: file-based, explicit, navigable — but now the "wiki" is an evolving codebase and research log, and the LLM is the researcher. See [Andrej Karpathy](andrej-karpathy.md).
+Karpathy's autoresearch project extends this pattern into scientific research: an AI agent autonomously modifies ML training code, runs 5-minute experiments, checks results, and iterates — ~100 experiments per overnight GPU session. The human edits `program.md` (instructions), the agent modifies `train.py` (code). The same principles apply: file-based, explicit, navigable — but now the "wiki" is an evolving codebase and research log, and the LLM is the researcher. See [Andrej Karpathy](../people/andrej-karpathy.md).
 
 ## File > App
 
 Anish Acharya (a16z) identifies an emerging paradigm: local files are the durable and preferred way to capture data, with apps/intelligence as a dynamic overlay. Evidence:
 
 - **Claude Cowork** — file-centric architecture where the agent works with your files directly
-- **OpenClaw** — memory architecture based on flat markdown files (SOUL.md, MEMORY.md, DREAMS.md — see [Peter Steinberger](peter-steinberger.md))
+- **OpenClaw** — memory architecture based on flat markdown files (SOUL.md, MEMORY.md, DREAMS.md — see [Peter Steinberger](../people/peter-steinberger.md))
 - **Dwarkesh Patel's observation** — coding agents made rapid progress because source code is an "external scaffold of memory"
 
 This architecture particularly benefits enterprise users: agents running on laptops inherit employee permissions, internal systems are accessible via browser, and memory can cascade from employees → teams → enterprise through simple file sharing.

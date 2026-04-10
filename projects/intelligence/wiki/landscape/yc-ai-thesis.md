@@ -14,7 +14,7 @@ YC's RFS document represents their current view of where the biggest opportuniti
 ## Key RFS Areas
 
 ### Cursor for Product Management
-"Writing code is only part of building a product. The most important part is figuring out what to build." YC wants a tool where you upload customer interviews and usage data, ask "what should we build next?", and get feature outlines backed by customer feedback with development tasks broken down for coding agents. See [AI-Native Product Development](ai-native-product-development.md).
+"Writing code is only part of building a product. The most important part is figuring out what to build." YC wants a tool where you upload customer interviews and usage data, ask "what should we build next?", and get feature outlines backed by customer feedback with development tasks broken down for coding agents. See [AI-Native Product Development](../tools/ai-native-product-development.md).
 
 ### AI-Native Agencies
 "Instead of selling software to customers to help them do the work, you can charge way more by using the software yourself and selling the finished product at 100x the price." Design firms, ad agencies, law firms — AI agencies will have software margins and scale far bigger than traditional agencies.

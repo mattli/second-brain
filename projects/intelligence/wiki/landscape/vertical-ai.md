@@ -72,7 +72,7 @@ Harvey ($0 → $200M+ ARR in 36 months; ~$11B valuation) is the canonical vertic
 - Look for high model capability but no breakout company yet (the company that builds early when capabilities arrive + has market awareness when they mature wins)
 - Watch where labs focus research: long-horizon agents, computer use, spreadsheet/presentation interfaces signal next unlocks
 
-See also: [Business Moats in AI](business-moats-in-ai.md), [AI Startup Distribution](ai-startup-distribution.md)
+See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Startup Distribution](ai-startup-distribution.md)
 
 ## Sources
 

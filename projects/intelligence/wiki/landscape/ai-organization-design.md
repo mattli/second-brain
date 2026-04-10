@@ -53,7 +53,7 @@ Peter Yang (PM at Roblox, a16z Show): "Instead of having like a 10 person produc
 
 The counter-view (from the same conversation): getting to 100% automation of any job function is "really rare." Almost every AI product provides "dramatic lift" but can't do the last 10%. The efficiency gain may show up as "European-style 4-day work weeks" or "companies getting twice as productive" rather than mass job elimination.
 
-[DHH](dhh.md) reinforces this from practice: at 37signals, "you actually go slower if you pour a bunch of people into a direction that is uncertain." AI lets tiny teams prototype faster, expanding what's feasible without expanding headcount.
+[DHH](../people/dhh.md) reinforces this from practice: at 37signals, "you actually go slower if you pour a bunch of people into a direction that is uncertain." AI lets tiny teams prototype faster, expanding what's feasible without expanding headcount.
 
 ## Broader Implications
 

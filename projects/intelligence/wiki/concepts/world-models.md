@@ -26,7 +26,7 @@ Yann LeCun (who left Meta to start AMI, seeking ~$5B valuation) argues LLMs "don
 - Multimodal LLMs (GPT-4, Gemini) blur the boundary by adding vision capabilities via cross-attention
 - Vision-Language-Action (VLA) models combine vision transformers with LLMs to create action tokens — powering systems like the Neo humanoid robot
 
-[Andrej Karpathy](andrej-karpathy.md) offers a middle view: LLMs can "regurgitate word-for-word" Wikipedia pages but struggle with abstract concept learning compared to children. Humans' poor memorization is "actually a feature" — it forces pattern-finding at a more general level.
+[Andrej Karpathy](../people/andrej-karpathy.md) offers a middle view: LLMs can "regurgitate word-for-word" Wikipedia pages but struggle with abstract concept learning compared to children. Humans' poor memorization is "actually a feature" — it forces pattern-finding at a more general level.
 
 ## Key Players
 
@@ -37,7 +37,7 @@ Yann LeCun (who left Meta to start AMI, seeking ~$5B valuation) argues LLMs "don
 
 ## Relevance
 
-Y Combinator's [2026 RFS](yc-ai-thesis.md) explicitly calls out spatial reasoning models as a major opportunity — "unlocking the next wave of AI capability" and potentially defining the next foundation model company on the scale of OpenAI or Anthropic.
+Y Combinator's [2026 RFS](../landscape/yc-ai-thesis.md) explicitly calls out spatial reasoning models as a major opportunity — "unlocking the next wave of AI capability" and potentially defining the next foundation model company on the scale of OpenAI or Anthropic.
 
 ## Sources
 

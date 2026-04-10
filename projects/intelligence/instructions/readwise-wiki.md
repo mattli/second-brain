@@ -8,7 +8,15 @@ Compile Readwise saves into a persistent, interlinked wiki. This is a knowledge 
 
 This follows Karpathy's LLM Wiki pattern: you read the sources, extract key information, and integrate it into the existing wiki — updating pages, noting where new data connects to or contradicts existing content, and keeping cross-references current. The knowledge is compiled once and kept current.
 
-Output goes to `wiki/` relative to the intelligence project directory.
+Output goes to `wiki/` relative to the intelligence project directory. The wiki is organized into category folders:
+
+- `wiki/concepts/` — Concepts & Patterns
+- `wiki/tools/` — Tools & Frameworks
+- `wiki/models-safety/` — Models & Safety
+- `wiki/landscape/` — Landscape
+- `wiki/people/` — People
+
+Place new pages in the matching existing folder. If no folder fits, leave the page at the `wiki/` root. Never create new folders — that requires user approval.
 
 ---
 
@@ -122,7 +130,7 @@ Write `wiki/LAST_RUN_MANIFEST.md` with the full audit trail. See the Manifest Sc
 - Pages are about **topics**, not about individual articles. A page on "retrieval-augmented generation" draws from every source that discusses RAG.
 - Keep pages concise and scannable — use headers, bullet points, short paragraphs.
 - Each page starts with a 1-2 sentence TLDR at the top.
-- Interlink pages with standard markdown links: `[topic name](topic-slug.md)`.
+- Interlink pages with relative markdown links. Within the same folder: `[topic](file.md)`. Across folders: `[topic](../other-folder/file.md)`. Always resolve paths relative to the linking page's location.
 - Each page has a `## Sources` section at the bottom listing which Readwise saves informed it (title, author, and URL). URLs go in the Sources section only, not inline in page content — the wiki pages are synthesized knowledge and inline links would clutter the prose.
 - File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
 - Each page has YAML frontmatter with `created_at` (set once) and `last_updated` (set to today's date when content changes).

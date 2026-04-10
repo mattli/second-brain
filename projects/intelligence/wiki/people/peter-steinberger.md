@@ -26,9 +26,9 @@ Notable tools (50+ repos):
 
 ## Opinions
 
-- **"I never use plan mode"** — Claims plan mode was added for "claude-pilled people who struggle with changing their habits." Advocates conversational interaction over structured planning. Contrasts with [gstack's](claude-code-skill-frameworks.md) structured workflow approach.
+- **"I never use plan mode"** — Claims plan mode was added for "claude-pilled people who struggle with changing their habits." Advocates conversational interaction over structured planning. Contrasts with [gstack's](../tools/claude-code-skill-frameworks.md) structured workflow approach.
 - **SOUL.md** — Created personality configuration guide for OpenClaw agents. Key principle: "Sharp beats vague." Good rules: "have a take, skip filler, call out bad ideas." Bad rules: "maintain professionalism at all times."
-- **Agent proficiency** — Exemplifies the [builder archetype](agent-proficiency.md) Karpathy describes: extreme velocity through agent orchestration.
+- **Agent proficiency** — Exemplifies the [builder archetype](../concepts/agent-proficiency.md) Karpathy describes: extreme velocity through agent orchestration.
 
 ## Notable OpenClaw Use Cases
 
@@ -50,7 +50,7 @@ Memory layer: flat markdown files (daily notes + MEMORY.md). Observable, git-bac
 
 The triad — identity, experience, integration — works across Claude, GPT, Grok, Gemma, open-weight models. The soul layer is the part that doesn't move while models change underneath.
 
-**User experience reality check (Peter Yang, a16z Show):** Despite enthusiasm, practical limitations persist. The default memory system (daily MEMORY.md files) "tends to forget things a lot." Yang installed a three-layer memory system with vector search to improve recall. The agent also "tends to forget that it can do stuff" — requiring explicit reminders in agents.md. Yang estimates 70-80% of OpenClaw's value is "just the personable part" (Telegram integration making it feel like texting a friend), with tool capabilities secondary. See [LLM Knowledge Bases](llm-knowledge-bases.md).
+**User experience reality check (Peter Yang, a16z Show):** Despite enthusiasm, practical limitations persist. The default memory system (daily MEMORY.md files) "tends to forget things a lot." Yang installed a three-layer memory system with vector search to improve recall. The agent also "tends to forget that it can do stuff" — requiring explicit reminders in agents.md. Yang estimates 70-80% of OpenClaw's value is "just the personable part" (Telegram integration making it feel like texting a friend), with tool capabilities secondary. See [LLM Knowledge Bases](../concepts/llm-knowledge-bases.md).
 
 **Lex Fridman Podcast appearance (Podcast #491):** Peter discussed OpenClaw's rapid growth, its self-modifying capability, and his vision of it as "a powerful tool that works like a helpful coworker." See also the a16z Show interview with Peter Yang.
 

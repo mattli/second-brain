@@ -27,7 +27,7 @@ As AI handles more execution, the people who care about taste, design, and craft
 
 Key observation: senior developers "can 5x 10x their individual productivity" with agent acceleration. "Now take that hour instead of that person spending it with the agents just shipping stuff — they spend that hour as they would before teaching a junior human."
 
-The implication: agent acceleration is "really changing the bargain between junior developers and senior developers." Senior developers who can architect, review, and direct agents are dramatically more valuable. See [AI Careers](ai-careers.md), [Knowledge Work Future](knowledge-work-future.md).
+The implication: agent acceleration is "really changing the bargain between junior developers and senior developers." Senior developers who can architect, review, and direct agents are dramatically more valuable. See [AI Careers](../landscape/ai-careers.md), [Knowledge Work Future](../concepts/knowledge-work-future.md).
 
 ## AI-Augmented Development at 37signals
 
@@ -40,7 +40,7 @@ Practical patterns from 37signals:
 
 ## Ruby on Rails and AI Agents
 
-DHH argues Ruby on Rails (and similar high-level frameworks) become *more* relevant in the AI era because they're well-suited to working with AI agents. The abstraction level matches how agents process and generate code. See [Agentic Engineering](agentic-engineering.md).
+DHH argues Ruby on Rails (and similar high-level frameworks) become *more* relevant in the AI era because they're well-suited to working with AI agents. The abstraction level matches how agents process and generate code. See [Agentic Engineering](../tools/agentic-engineering.md).
 
 ## Sources
 

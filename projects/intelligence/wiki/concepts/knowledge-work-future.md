@@ -66,7 +66,7 @@ The key challenge: most organizations use tools suited only for explicit knowled
 
 This isn't a soft-skills argument against technical depth. The framing is about what becomes *differentiating* when AI can match technical performance. Deep technical knowledge still matters — it's just no longer sufficient on its own.
 
-Also relevant: [AI Careers](ai-careers.md) (where this connects to the bifurcation into big vs. small AI tracks) and [Business Moats in AI](business-moats-in-ai.md) (where the durable moats increasingly involve human judgment and relationships, not technical capability alone).
+Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to the bifurcation into big vs. small AI tracks) and [Business Moats in AI](business-moats-in-ai.md) (where the durable moats increasingly involve human judgment and relationships, not technical capability alone).
 
 ## Sources
 

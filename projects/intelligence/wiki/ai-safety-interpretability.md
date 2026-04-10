@@ -56,8 +56,8 @@ The piece raises broader questions about whether the AI industry's current anti-
 
 ## Sources
 
-- "Interpretability: Understanding how AI models think" — Anthropic (video, Apr 2026)
-- "The Adolescence of Technology" — Dario Amodei (darioamodei.com)
-- "Before limited-releasing Claude Mythos Preview, we investigated its internal mechanisms..." — tweet thread
-- "Sam Altman May Control Our Future—Can He Be Trusted?" — Ronan Farrow & Andrew Marantz (The New Yorker, Apr 2026)
-- "(🧵1/11) For the past year and a half, I've been investigating OpenAI..." — Ronan Farrow (tweet thread, Apr 2026)
+- "Interpretability: Understanding how AI models think" — Anthropic (video, Apr 2026) ([link](https://www.youtube.com/watch?v=fGKNUvivvnc))
+- "The Adolescence of Technology" — Dario Amodei (darioamodei.com) ([link](https://darioamodei.com/essay/the-adolescence-of-technology))
+- "Before limited-releasing Claude Mythos Preview, we investigated its internal mechanisms..." — tweet thread ([link](https://x.com/jack_w_lindsey/status/2041588505701388648/?s=12&rw_tt_thread=True))
+- "Sam Altman May Control Our Future—Can He Be Trusted?" — Ronan Farrow & Andrew Marantz (The New Yorker, Apr 2026) ([link](https://www.newyorker.com/magazine/2026/04/13/sam-altman-may-control-our-future-can-he-be-trusted))
+- "(🧵1/11) For the past year and a half, I've been investigating OpenAI..." — Ronan Farrow (tweet thread, Apr 2026) ([link](https://x.com/RonanFarrow/status/2041213917611856067/?rw_tt_thread=True))

@@ -90,14 +90,14 @@ The [Obsidian Second Brain](https://twitter.com/CyrilXBT) pattern (CyrilXBT) dem
 
 ## Sources
 
-- "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026)
-- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 4, 2026)
-- "llm-wiki" — Andrej Karpathy (GitHub gist, Apr 4, 2026)
-- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (tweet, Apr 2026)
-- "karpathy is showing one of the simplest AI architectures..." — JUMPERZ (tweet, Apr 2026)
-- "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary
-- "Wow, this tweet went very viral!" — Andrej Karpathy (tweet, Apr 2026)
-- "llm-wiki · GitHub" — GitHub (Apr 2026)
-- "Build your own knowledge base with the /add-karpathy-llm-wiki skill!" — tweet (Apr 2026)
-- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026)
-- "How I Turned Obsidian Into a Second Brain That Runs on Claude" — CyrilXBT (tweet, Apr 2026)
+- "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026) ([link](https://x.com/karpathy/status/2039805659525644595/?s=12&rw_tt_thread=True))
+- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 4, 2026) ([link](https://x.com/karpathy/status/2040572272944324650/?s=12&rw_tt_thread=True))
+- "llm-wiki" — Andrej Karpathy (GitHub gist, Apr 4, 2026) ([link](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f))
+- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (tweet, Apr 2026) ([link](https://x.com/aakashgupta/status/2040662476862394592/?s=12&rw_tt_thread=True))
+- "karpathy is showing one of the simplest AI architectures..." — JUMPERZ (tweet, Apr 2026) ([link](https://x.com/jumperz/status/2039826228224430323/?rw_tt_thread=True))
+- "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary ([link](https://x.com/i/trending/2039841987067617664))
+- "Wow, this tweet went very viral!" — Andrej Karpathy (tweet, Apr 2026) ([link](https://x.com/karpathy/status/2040470801506541998/?s=12&rw_tt_thread=True))
+- "llm-wiki · GitHub" — GitHub (Apr 2026) ([link](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f))
+- "Build your own knowledge base with the /add-karpathy-llm-wiki skill!" — tweet (Apr 2026) ([link](https://x.com/nanoclaw_ai/status/2041409400946950485/?s=12&rw_tt_thread=True))
+- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
+- "How I Turned Obsidian Into a Second Brain That Runs on Claude" — CyrilXBT (tweet, Apr 2026) ([link](https://x.com/cyrilxbt/status/2040988306154901742/?s=12&rw_tt_thread=True))

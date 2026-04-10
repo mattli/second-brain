@@ -104,13 +104,13 @@ Aakash Gupta's concept (ProductCon 2025): the intersection of vibe coding and ex
 
 ## Sources
 
-- "Anthropic shipped 74 features in 52 days. How we tried to adopt their PDLC to our org" — marsel040 (Apr 2026)
-- "Anyone using AI for specs/technical planning?" — ml8020 (Reddit, Feb 2026)
-- "Requests for Startups" — Y Combinator (2026)
-- "The productdevelopmentsystem for teams and agents" — linear.app
-- "Build better products with customer feedback" — canny.io
-- "Spark, the AI platform for product managers" — productboard.com
-- "The AI Transformation Model" — John Hurley / Notion (Apr 2026)
-- "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026)
-- "The Most Important New Skill for Product Managers in 2026: AI Evals Masterclass" — Aakash Gupta / Aneesh Chukla (video, Apr 2026)
-- "How this PM Used Claude Code to Support 20 People" — Aakash Gupta / Hannah Stalberg (video, Apr 2026)
+- "Anthropic shipped 74 features in 52 days. How we tried to adopt their PDLC to our org" — marsel040 (Apr 2026) ([link](https://www.reddit.com/r/ProductManagement/comments/1s9zj02/anthropic_shipped_74_features_in_52_days_how_we/))
+- "Anyone using AI for specs/technical planning?" — ml8020 (Reddit, Feb 2026) ([link](https://www.reddit.com/r/startups/comments/1r173f3/anyone_using_ai_for_specstechnical_planning_whats/))
+- "Requests for Startups" — Y Combinator (2026) ([link](https://www.ycombinator.com/rfs))
+- "The productdevelopmentsystem for teams and agents" — linear.app ([link](https://linear.app/))
+- "Build better products with customer feedback" — canny.io ([link](https://canny.io/))
+- "Spark, the AI platform for product managers" — productboard.com ([link](https://www.productboard.com/))
+- "The AI Transformation Model" — John Hurley / Notion (Apr 2026) ([link](https://notion.notion.site/official-the-ai-transformation-model))
+- "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=YKYQ-z6A9Fs&si=rM4oFGmcIRcItGyh))
+- "The Most Important New Skill for Product Managers in 2026: AI Evals Masterclass" — Aakash Gupta / Aneesh Chukla (video, Apr 2026) ([link](https://youtube.com/watch?v=Raa3qjEBvKE&si=co2skoDymT1ghfH-))
+- "How this PM Used Claude Code to Support 20 People" — Aakash Gupta / Hannah Stalberg (video, Apr 2026) ([link](https://youtube.com/watch?v=0UArKLQ6bXA&si=KfeHZk0OACA34T6a))

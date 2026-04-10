@@ -41,4 +41,4 @@ Y Combinator's [2026 RFS](yc-ai-thesis.md) explicitly calls out spatial reasonin
 
 ## Sources
 
-- "World Models explained in 10min" — Caleb Writes Code (video, Apr 2026)
+- "World Models explained in 10min" — Caleb Writes Code (video, Apr 2026) ([link](https://youtube.com/watch?v=ECWC-YlAk1o&si=JtFcOyR1f29mfqpi))

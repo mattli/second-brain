@@ -57,10 +57,10 @@ Related: [AI Safety & Interpretability](ai-safety-interpretability.md)
 
 ## Sources
 
-- "Anthropic Claims Its New A.I. Model, Mythos, Is a Cybersecurity 'Reckoning'" — Kevin Roose (NYT, Apr 2026)
-- "Project Glasswing: Securing critical software for the AI era" — Anthropic
-- "Introducing Project Glasswing: an urgent initiative..." — tweet thread
-- "Before limited-releasing Claude Mythos Preview, we investigated..." — tweet thread
-- "Mythos Preview seems to be the best-aligned model out there..." — tweet thread
+- "Anthropic Claims Its New A.I. Model, Mythos, Is a Cybersecurity 'Reckoning'" — Kevin Roose (NYT, Apr 2026) ([link](https://www.nytimes.com/2026/04/07/technology/anthropic-claims-its-new-ai-model-mythos-is-a-cybersecurity-reckoning.html?smid=nytcore-ios-share))
+- "Project Glasswing: Securing critical software for the AI era" — Anthropic ([link](https://www.anthropic.com/glasswing))
+- "Introducing Project Glasswing: an urgent initiative..." — tweet thread ([link](https://x.com/anthropicai/status/2041578392852517128/?s=12&rw_tt_thread=True))
+- "Before limited-releasing Claude Mythos Preview, we investigated..." — tweet thread ([link](https://x.com/jack_w_lindsey/status/2041588505701388648/?s=12&rw_tt_thread=True))
+- "Mythos Preview seems to be the best-aligned model out there..." — tweet thread ([link](https://x.com/sleepinyourhat/status/2041584799929004045/?s=12&rw_tt_thread=True))
 - System Card: Claude Mythos Preview — Anthropic [Tier C reference: 70K-word PDF, not fully synthesized. Full safety evaluation including benchmark results, red-teaming findings, and responsible scaling assessment.]
-- "Assessing Claude Mythos Preview's cybersecurity capabilities" — Anthropic
+- "Assessing Claude Mythos Preview's cybersecurity capabilities" — Anthropic ([link](https://red.anthropic.com/2026/mythos-preview/))

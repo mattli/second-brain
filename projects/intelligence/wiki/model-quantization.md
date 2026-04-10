@@ -67,4 +67,4 @@ Three ways to measure quantization impact:
 
 ## Sources
 
-- "Quantization from the ground up" — Sam Rose (Apr 2026)
+- "Quantization from the ground up" — Sam Rose (Apr 2026) ([link](https://ngrok.com/blog/quantization))

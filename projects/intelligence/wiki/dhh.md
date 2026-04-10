@@ -44,4 +44,4 @@ DHH argues Ruby on Rails (and similar high-level frameworks) become *more* relev
 
 ## Sources
 
-- "DHH's new way of writing code" — The Pragmatic Engineer / DHH (video, Apr 2026)
+- "DHH's new way of writing code" — The Pragmatic Engineer / DHH (video, Apr 2026) ([link](https://youtube.com/watch?v=JiWgKRgdgpI&si=aXXPl8vlQLvfLDqn))

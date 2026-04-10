@@ -70,9 +70,9 @@ Also relevant: [AI Careers](ai-careers.md) (where this connects to the bifurcati
 
 ## Sources
 
-- "Knowledge Work Is Dying—Here's What Comes Next" — Joe Hudson (Every, Apr 2026)
-- "Unpacking AI at work: Data work, knowledge work, and values work" — Elmira van den Broek (Apr 2026)
-- "Different Types of Knowledge: Implicit, Tacit, and Explicit" — Bloomfire (Betsy Anderson)
-- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026)
-- "Knowledge Management and Polanyi" — Eric M. Straw (academic paper)
-- "Knowledge About Knowledge" — [Tier C reference: 131K-word PDF, not fully synthesized. Covers epistemology of knowledge management.]
+- "Knowledge Work Is Dying—Here's What Comes Next" — Joe Hudson (Every, Apr 2026) ([link](https://every.to/thesis/knowledge-work-is-dying-here-s-what-comes-next))
+- "Unpacking AI at work: Data work, knowledge work, and values work" — Elmira van den Broek (Apr 2026) ([link](https://www.sciencedirect.com/science/article/pii/S1471772725000302))
+- "Different Types of Knowledge: Implicit, Tacit, and Explicit" — Bloomfire (Betsy Anderson) ([link](https://bloomfire.com/blog/implicit-tacit-explicit-knowledge/))
+- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
+- "Knowledge Management and Polanyi" — Eric M. Straw (academic paper) ([link](https://polanyisociety.org/Nashotah%20House/Papers/Straw-original-pdf-KnowlMgmnt%20&Polanyi-5-23-16.pdf))
+- "Knowledge About Knowledge" — [Tier C reference: 131K-word PDF, not fully synthesized. Covers epistemology of knowledge management.] ([link](https://eclipse.rutgers.edu/wp-content/uploads/sites/30/2014/04/Knowledge.pdf))

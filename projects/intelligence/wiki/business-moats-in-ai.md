@@ -67,7 +67,7 @@ Their internal growth program "CASH" (Claude Accelerated Sustainable Hypergrowth
 
 ## Sources
 
-- "The Only Moats That Matter" — Michael Bloch (tweet, Mar 2026)
-- "There are only two paths left for software" — David George (a16z, Apr 2026)
-- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026)
-- "Claude is growing itself at this point" — Head of Growth, Anthropic / Lenny's Podcast (video, Apr 2026)
+- "The Only Moats That Matter" — Michael Bloch (tweet, Mar 2026) ([link](https://x.com/michaelxbloch/status/2038753872890778029/?rw_tt_thread=True))
+- "There are only two paths left for software" — David George (a16z, Apr 2026) ([link](https://a16z.com/there-are-only-two-paths-left-for-software/))
+- "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
+- "Claude is growing itself at this point" — Head of Growth, Anthropic / Lenny's Podcast (video, Apr 2026) ([link](https://www.youtube.com/watch?v=k-H4nsOTuxU))

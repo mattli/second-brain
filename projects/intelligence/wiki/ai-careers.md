@@ -57,5 +57,5 @@ A related debate: Grok-summarized X discussion found that broad thinkers who lin
 
 ## Sources
 
-- "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online (Andrew Ng, Laurence Moroney)
-- "Generalists Poised to Thrive in AI Era" — X discussion summary
+- "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online (Andrew Ng, Laurence Moroney) ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
+- "Generalists Poised to Thrive in AI Era" — X discussion summary ([link](https://x.com/i/trending/2040140222386909626))

@@ -76,5 +76,5 @@ See also: [Business Moats in AI](business-moats-in-ai.md), [AI Startup Distribut
 
 ## Sources
 
-- "Harvey AI went from $0 to $200M+ ARR in 36 months" — Ivan Landabaso (tweet thread, Apr 2026)
-- "AI Adoption by the Numbers" — Kimberly Tan (a16z, Apr 2026)
+- "Harvey AI went from $0 to $200M+ ARR in 36 months" — Ivan Landabaso (tweet thread, Apr 2026) ([link](https://x.com/ivanlandabaso/status/2042179119325082087/?s=12&rw_tt_thread=True))
+- "AI Adoption by the Numbers" — Kimberly Tan (a16z, Apr 2026) ([link](https://www.a16z.news/p/ai-adoption-by-the-numbers?r=1xuh9&utm_medium=ios&triedRedirect=true))

@@ -51,5 +51,5 @@ Paul Graham's classic essay "How to Get Startup Ideas" (2012) remains the philos
 
 ## Sources
 
-- "Requests for Startups" — Y Combinator (2026)
-- "How to Get Startup Ideas" — Paul Graham (2012, saved Apr 2026)
+- "Requests for Startups" — Y Combinator (2026) ([link](https://www.ycombinator.com/rfs))
+- "How to Get Startup Ideas" — Paul Graham (2012, saved Apr 2026) ([link](https://paulgraham.com/startupideas.html))

@@ -61,6 +61,6 @@ Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = 
 
 ## Sources
 
-- "From Hierarchy to Intelligence" — Jack Dorsey / Block (tweet, Mar 2026)
-- "Thesis: the problem with AI working in every domain..." — Marc Andreessen (tweet)
-- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026)
+- "From Hierarchy to Intelligence" — Jack Dorsey / Block (tweet, Mar 2026) ([link](https://x.com/jack/status/2039003879841362278/?s=12&rw_tt_thread=True))
+- "Thesis: the problem with AI working in every domain..." — Marc Andreessen (tweet) ([link](https://x.com/pmarca/status/2038350516875595924/?s=12&rw_tt_thread=True))
+- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))

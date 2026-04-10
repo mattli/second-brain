@@ -71,10 +71,10 @@ Logan Gott's framework for LinkedIn in 2026:
 
 ## Sources
 
-- "200,000+ new vibe coding projects..." — Greg Isenberg (tweet, Mar 2026)
-- "Now that we're done at YCombinator..." — Finn Mallery (tweet, Mar 2026)
-- "I Launched 3 Startups in 7 Days..." — Subah Wadhwani (tweet, Mar 2026)
-- "if you're a performance marketer, here's how I use a..." — austin (tweet, Apr 2026)
-- "some more ramblings from working at @AnthropicAI" — austin (tweet, Apr 2026)
-- "How to BEAT the new LinkedIn algorithm in 10 steps" — Logan Gott (tweet, Apr 2026)
-- "Making $$ with AI Marketing" — The Startup Ideas Podcast (tweet, Apr 2026)
+- "200,000+ new vibe coding projects..." — Greg Isenberg (tweet, Mar 2026) ([link](https://x.com/gregisenberg/status/2038706332119797894/?rw_tt_thread=True))
+- "Now that we're done at YCombinator..." — Finn Mallery (tweet, Mar 2026) ([link](https://x.com/fin465/status/2039021693050691596/?rw_tt_thread=True))
+- "I Launched 3 Startups in 7 Days..." — Subah Wadhwani (tweet, Mar 2026) ([link](https://x.com/subahwadhwani/status/2039353929562231194/?rw_tt_thread=True))
+- "if you're a performance marketer, here's how I use a..." — austin (tweet, Apr 2026) ([link](https://x.com/helloitsaustin/status/2036553581625745511/?rw_tt_thread=True))
+- "some more ramblings from working at @AnthropicAI" — austin (tweet, Apr 2026) ([link](https://x.com/helloitsaustin/status/2041218663827812815/?rw_tt_thread=True))
+- "How to BEAT the new LinkedIn algorithm in 10 steps" — Logan Gott (tweet, Apr 2026) ([link](https://x.com/LoganTGott/status/2040465091225645231/?rw_tt_thread=True))
+- "Making $$ with AI Marketing" — The Startup Ideas Podcast (tweet, Apr 2026) ([link](https://x.com/startupideaspod/status/2038697353855787133/?rw_tt_thread=True))

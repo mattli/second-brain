@@ -43,7 +43,7 @@ Companies are now evaluating employees on AI proficiency directly. Zapier and Sh
 
 ## Sources
 
-- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 2026)
-- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (tweet, Apr 2026)
-- "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026)
-- "The Claude Code Setup Nobody Shows You" — Aakash Gupta (video, Apr 2026)
+- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 2026) ([link](https://x.com/karpathy/status/2040572272944324650/?s=12&rw_tt_thread=True))
+- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (tweet, Apr 2026) ([link](https://x.com/aakashgupta/status/2040662476862394592/?s=12&rw_tt_thread=True))
+- "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=YKYQ-z6A9Fs&si=rM4oFGmcIRcItGyh))
+- "The Claude Code Setup Nobody Shows You" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=Eqh2iwSl570&si=CgkjC-SZIXj-KR8C))

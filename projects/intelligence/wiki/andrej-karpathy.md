@@ -50,11 +50,11 @@ On the coding stack: autocomplete is high-bandwidth ("you point to the code wher
 
 ## Sources
 
-- "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026)
-- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 4, 2026)
-- "llm-wiki" — Andrej Karpathy (GitHub gist, Apr 4, 2026; 1,066 stars)
-- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (commentary, Apr 2026)
-- "karpathy is showing one of the simplest AI architectures..." — JUMPERZ (tweet, Apr 2026)
-- "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary
-- "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online
-- "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026)
+- "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026) ([link](https://x.com/karpathy/status/2039805659525644595/?s=12&rw_tt_thread=True))
+- "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 4, 2026) ([link](https://x.com/karpathy/status/2040572272944324650/?s=12&rw_tt_thread=True))
+- "llm-wiki" — Andrej Karpathy (GitHub gist, Apr 4, 2026; 1,066 stars) ([link](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f))
+- "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (commentary, Apr 2026) ([link](https://x.com/aakashgupta/status/2040662476862394592/?s=12&rw_tt_thread=True))
+- "karpathy is showing one of the simplest AI architectures..." — JUMPERZ (tweet, Apr 2026) ([link](https://x.com/jumperz/status/2039826228224430323/?rw_tt_thread=True))
+- "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary ([link](https://x.com/i/trending/2039841987067617664))
+- "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
+- "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026) ([link](https://www.youtube.com/watch?v=lXUZvyajciY&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=12))

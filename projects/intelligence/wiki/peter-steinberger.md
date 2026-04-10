@@ -56,11 +56,11 @@ The triad — identity, experience, integration — works across Claude, GPT, Gr
 
 ## Sources
 
-- "steipete (Peter Steinberger)" — GitHub profile
-- "I never use plan mode" — Peter Steinberger (tweet, Apr 2026)
-- "Your @openclaw is too boring?" — Peter Steinberger (tweet, Apr 2026)
-- "SOUL.md Personality Guide" — OpenClaw docs
-- "How I built a chief of staff on OpenClaw that's better than any human I've hired" — Ryan Sarver (tweet thread, Apr 2026)
-- "OpenClaw: The Viral AI Agent that Broke the Internet" — Lex Fridman Podcast #491
-- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang on The a16z Show
-- "A Theory of Mind in Three Files" — Dave Morin (tweet thread, Apr 2026)
+- "steipete (Peter Steinberger)" — GitHub profile ([link](https://github.com/steipete))
+- "I never use plan mode" — Peter Steinberger (tweet, Apr 2026) ([link](https://twitter.com/steipete/status/2039551079621566812/?rw_tt_thread=True))
+- "Your @openclaw is too boring?" — Peter Steinberger (tweet, Apr 2026) ([link](https://x.com/steipete/status/2020704611640705485/?s=12&rw_tt_thread=True))
+- "SOUL.md Personality Guide" — OpenClaw docs ([link](https://docs.openclaw.ai/concepts/soul))
+- "How I built a chief of staff on OpenClaw that's better than any human I've hired" — Ryan Sarver (tweet thread, Apr 2026) ([link](https://x.com/rsarver/status/2041148425366843500/?rw_tt_thread=True))
+- "OpenClaw: The Viral AI Agent that Broke the Internet" — Lex Fridman Podcast #491 ([link](https://www.youtube.com/watch?v=YFjfBk8HI5o&t=351s))
+- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang on The a16z Show ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
+- "A Theory of Mind in Three Files" — Dave Morin (tweet thread, Apr 2026) ([link](https://x.com/davemorin/status/2040999146694553761/?rw_tt_thread=True))

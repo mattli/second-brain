@@ -61,9 +61,9 @@ The essay frames the current period as critical — decisions made in the next f
 
 ## Sources
 
-- "Machines of Loving Grace" — Dario Amodei (darioamodei.com)
-- "The Adolescence of Technology" — Dario Amodei (darioamodei.com)
-- "FULL DISCUSSION: Google's Demis Hassabis, Anthropic's Dario Amodei Debate the World After AGI" — DRM News (video)
-- "Anthropic Claims Its New A.I. Model, Mythos, Is a Cybersecurity 'Reckoning'" — Kevin Roose (NYT, Apr 2026)
-- "Dario Amodei — 'We are near the end of the exponential'" — video
-- "Head of Growth (Anthropic): 'Claude is growing itself at this point'" — video
+- "Machines of Loving Grace" — Dario Amodei (darioamodei.com) ([link](https://darioamodei.com/essay/machines-of-loving-grace))
+- "The Adolescence of Technology" — Dario Amodei (darioamodei.com) ([link](https://darioamodei.com/essay/the-adolescence-of-technology))
+- "FULL DISCUSSION: Google's Demis Hassabis, Anthropic's Dario Amodei Debate the World After AGI" — DRM News (video) ([link](https://www.youtube.com/watch?v=02YLwsCKUww))
+- "Anthropic Claims Its New A.I. Model, Mythos, Is a Cybersecurity 'Reckoning'" — Kevin Roose (NYT, Apr 2026) ([link](https://www.nytimes.com/2026/04/07/technology/anthropic-claims-its-new-ai-model-mythos-is-a-cybersecurity-reckoning.html?smid=nytcore-ios-share))
+- "Dario Amodei — 'We are near the end of the exponential'" — video ([link](https://www.youtube.com/watch?v=n1E9IZfvGMA&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=5))
+- "Head of Growth (Anthropic): 'Claude is growing itself at this point'" — video ([link](https://www.youtube.com/watch?v=k-H4nsOTuxU))

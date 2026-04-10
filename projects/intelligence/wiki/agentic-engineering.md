@@ -98,14 +98,14 @@ His "ghosts, not animals" metaphor: LLMs are trained by imitation, not evolution
 ## Sources
 
 - "Lessons from Building Claude Code: Seeing like an Agent" — Thariq (Anthropic, Feb 2026)
-- "autoagent: the first library for self optimizing agent harnesses" — Kevin Gu (tweet, Apr 2026)
-- "GitHub - paperclipai/paperclip..." — Paperclip AI
-- "Hermes Agent" — Nous Research
-- "The X API just got a massive update..." — X Freeze (tweet, Apr 2026)
-- "Scaling Managed Agents: Decoupling the brain from the hands" — Anthropic (Apr 2026)
-- "The Great Convergence" — Nicholas Charriere (tweet thread, Apr 2026)
-- "xdevplatform/xmcp: MCP server for the X API" — X Developer Platform (GitHub)
-- "Introducing Claude Managed Agents" — Claude (tweet, Apr 2026)
-- "Anthropic just mass-obsoleted every agent orchestration startup" — Aakash Gupta (tweet, Apr 2026)
-- "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026)
-- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026)
+- "autoagent: the first library for self optimizing agent harnesses" — Kevin Gu (tweet, Apr 2026) ([link](https://x.com/kevingu/status/2039843234760073341/?s=12&rw_tt_thread=True))
+- "GitHub - paperclipai/paperclip..." — Paperclip AI ([link](https://github.com/paperclipai/paperclip))
+- "Hermes Agent" — Nous Research ([link](https://hermes-agent.nousresearch.com/docs/))
+- "The X API just got a massive update..." — X Freeze (tweet, Apr 2026) ([link](https://x.com/XFreeze/status/2040808375118692394/?rw_tt_thread=True))
+- "Scaling Managed Agents: Decoupling the brain from the hands" — Anthropic (Apr 2026) ([link](https://www.anthropic.com/engineering/managed-agents))
+- "The Great Convergence" — Nicholas Charriere (tweet thread, Apr 2026) ([link](https://x.com/nichochar/status/2039739581772554549/?s=12&rw_tt_thread=True))
+- "xdevplatform/xmcp: MCP server for the X API" — X Developer Platform (GitHub) ([link](https://github.com/xdevplatform/xmcp))
+- "Introducing Claude Managed Agents" — Claude (tweet, Apr 2026) ([link](https://x.com/claudeai/status/2041927687460024721/?rw_tt_thread=True))
+- "Anthropic just mass-obsoleted every agent orchestration startup" — Aakash Gupta (tweet, Apr 2026) ([link](https://x.com/aakashgupta/status/2041940149328834748/?rw_tt_thread=True))
+- "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026) ([link](https://www.youtube.com/watch?v=lXUZvyajciY&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=12))
+- "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))

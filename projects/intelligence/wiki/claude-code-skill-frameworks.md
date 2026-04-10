@@ -97,14 +97,14 @@ The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across 
 
 ## Sources
 
-- "I Compared gstack, Superpowers, and Compound Engineering..." — Vox (tweet, Mar 2026)
-- "GitHub - garrytan/gstack..." — Garry Tan
-- "obra/superpowers..." — Jesse Vincent
-- "How Claude Code actually works..." — Suryansh Tiwari / Nainsi Dwivedi (tweet, Mar 2026)
-- "openai/codex-plugin-cc..." — OpenAI
-- "SOUL.md Personality Guide" — OpenClaw
-- "coreyhaines31/marketingskills" — Corey Haines (GitHub)
-- "santifer/career-ops" — Santiago Ferrer (GitHub)
-- "kepano/obsidian-skills" — kepano (GitHub)
-- "slavingia/skills" — Sahil Lavingia (GitHub)
-- "The Claude Code Setup Nobody Shows You" — Aakash Gupta / Carl Votti (video, Apr 2026)
+- "I Compared gstack, Superpowers, and Compound Engineering..." — Vox (tweet, Mar 2026) ([link](https://x.com/Voxyz_ai/status/2038237755654783107/?rw_tt_thread=True))
+- "GitHub - garrytan/gstack..." — Garry Tan ([link](https://github.com/garrytan/gstack))
+- "obra/superpowers..." — Jesse Vincent ([link](https://github.com/obra/superpowers))
+- "How Claude Code actually works..." — Suryansh Tiwari / Nainsi Dwivedi (tweet, Mar 2026) ([link](https://x.com/suryanshti777/status/2038633532852158745/?s=12&rw_tt_thread=True))
+- "openai/codex-plugin-cc..." — OpenAI ([link](https://github.com/openai/codex-plugin-cc))
+- "SOUL.md Personality Guide" — OpenClaw ([link](https://docs.openclaw.ai/concepts/soul))
+- "coreyhaines31/marketingskills" — Corey Haines (GitHub) ([link](https://github.com/coreyhaines31/marketingskills))
+- "santifer/career-ops" — Santiago Ferrer (GitHub) ([link](https://github.com/santifer/career-ops))
+- "kepano/obsidian-skills" — kepano (GitHub) ([link](https://github.com/kepano/obsidian-skills))
+- "slavingia/skills" — Sahil Lavingia (GitHub) ([link](https://github.com/slavingia/skills))
+- "The Claude Code Setup Nobody Shows You" — Aakash Gupta / Carl Votti (video, Apr 2026) ([link](https://youtube.com/watch?v=Eqh2iwSl570&si=CgkjC-SZIXj-KR8C))

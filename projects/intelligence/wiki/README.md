@@ -12,7 +12,7 @@ Matt saves articles, tweets, GitHub repos, and other content to Readwise — oft
 
 ## How It's Maintained
 
-A NanoClaw scheduled task runs at 3am Monday and Thursday. It fetches the last 7 days of Readwise saves, updates existing pages or creates new ones, maintains the index, and lints for orphans and stale content. Each page has `created_at` and `last_updated` frontmatter. Runs on Opus with a 90-minute timeout.
+A NanoClaw scheduled task runs at 3am Monday and Thursday. It fetches the Readwise saves since the last update, updates existing pages or creates new ones, maintains the index, and lints for orphans and stale content. Each page has `created_at` and `last_updated` frontmatter. Runs on Opus with a 90-minute timeout.
 
 ## How It Fits
 

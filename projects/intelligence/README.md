@@ -4,13 +4,13 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 
 ## Briefing Types
 
-| Type                 | Schedule           | Output                            | Description                                                               |
-| -------------------- | ------------------ | --------------------------------- | ------------------------------------------------------------------------- |
-| **AI Briefing**      | Mon–Fri 7am        | `ai-briefings/YYYY-MM-DD.md`      | Top AI/tech news, model releases, funding, Product Hunt launches          |
-| **Product Briefing** | Sat 6am            | `weekly-products/YYYY-MM-DD.md`   | X thread product extraction and categorization into problem buckets       |
-| **Weekly Summary**   | Sat 8am            | `weekly-summaries/YYYY-WXX.md`    | Synthesizes AI briefings + product briefing into patterns and signal      |
-| **Monthly Summary**  | 1st of month 7am   | `monthly-summaries/YYYY-MM.md`    | Synthesizes weekly summaries into durable trends and product observations |
-| **Readwise Wiki**    | Fri 10pm           | `wiki/*.md`                        | Persistent knowledge base compiled from Readwise saves                    |
+| Type                 | Schedule                | Output                          | Description                                                               |
+| -------------------- | ----------------------- | ------------------------------- | ------------------------------------------------------------------------- |
+| **AI Briefing**      | Mon–Fri 7am             | `ai-briefings/YYYY-MM-DD.md`    | Top AI/tech news, model releases, funding, Product Hunt launches          |
+| **Product Briefing** | Sat 6am                 | `weekly-products/YYYY-MM-DD.md` | X thread product extraction and categorization into problem buckets       |
+| **Weekly Summary**   | Sat 8am                 | `weekly-summaries/YYYY-WXX.md`  | Synthesizes AI briefings + product briefing into patterns and signal      |
+| **Monthly Summary**  | 1st of month 7am        | `monthly-summaries/YYYY-MM.md`  | Synthesizes weekly summaries into durable trends and product observations |
+| **Readwise Wiki**    | Monday and Thursday 3am | `wiki/*.md`                     | Persistent knowledge base compiled from Readwise saves                    |
 
 ## Directory Structure
 

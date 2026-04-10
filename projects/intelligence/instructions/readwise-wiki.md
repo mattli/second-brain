@@ -1,6 +1,6 @@
 Readwise Wiki Compiler — Instructions
 
-> Version: 2.1 | Last updated: 2026-04-09
+> Version: 2.2 | Last updated: 2026-04-09
 
 ## Purpose
 
@@ -18,7 +18,12 @@ Output goes to `wiki/` relative to the intelligence project directory.
 
 Read `wiki/INDEX.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information.
 
-Fetch ALL documents via `reader_list_documents` with `updated_after` set to 7 days ago (for incremental runs) or without it (for bootstrap). Record every document's ID, title, category, word_count, and author.
+Determine the fetch window:
+1. Read `wiki/LAST_RUN_MANIFEST.md` and extract the `run_start` timestamp from the frontmatter.
+2. Use that timestamp as the `updated_after` parameter when calling `reader_list_documents`.
+3. If no manifest exists (first run, or manifest was deleted), fall back to 30 days ago as `updated_after`. Note this fallback in the manifest's run notes (add a `## Run Notes` section before the Skipped table).
+
+Fetch ALL documents via `reader_list_documents` with the determined `updated_after` value. Record every document's ID, title, category, word_count, and author.
 
 > **IMPORTANT: Video transcripts.** Videos show `word_count: 0` in the list API response. This does NOT mean they have no content. Readwise stores full video transcripts. ALWAYS fetch document details for videos regardless of word_count. Classify them by actual content length after fetching.
 
@@ -33,9 +38,9 @@ Classify each document into processing tiers:
 - **Tier A (full read):** Under ~20K words. The bulk of most runs — articles, tweets, videos with transcripts.
 - **Tier B (full read, large):** 20K-50K words. Fetch full content directly. Fits comfortably in Opus's 200K context. Processed the same way as Tier A but tracked separately for batch-size differentiation.
 - **Tier C (reference only):** Over 50K words. Not synthesized by this compiler. A metadata-only reference is attached to the most relevant existing wiki topic page. See Phase 4 below.
-- **Tier D (bookmark):** Minimal content (landing pages, tool repos, short bookmarks with no substantive body). Note on the relevant topic page with name, URL, and one-line description.
+- **Tier D (bookmark):** Minimal content (landing pages, tool repos, short bookmarks with no substantive body). Note on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, append to `wiki/unorganized.md` under `## Bookmarks` instead (see Phase 3). Tier D documents are never skipped for relevance — only for mechanical reasons (`already_in_wiki`, `duplicate_in_run`, `no_content`, `fetch_failed`).
 
-Skip decisions are recorded per-document for the manifest (see Phase 6). For each document not assigned to a tier, record its ID, title, category, word_count, and the skip reason (one of: `already_in_wiki`, `duplicate_in_run`, `off_topic`, `no_content`, `fetch_failed`).
+Skip decisions are recorded per-document for the manifest (see Phase 6). For each document not assigned to a tier, record its ID, title, category, word_count, and the skip reason (one of: `already_in_wiki`, `duplicate_in_run`, `no_content`, `fetch_failed`).
 
 ### Phase 3 — Batched reading (Tiers A, B, D)
 
@@ -58,7 +63,11 @@ Do NOT batch Tier B documents together. A single 150K-character transcript plus 
 
 **Tier A commit cadence:** Commit wiki updates to git at the end of each Tier A batch (not just at the end of the run). This ensures a mid-run failure preserves all completed batches.
 
-**Tier D:** Process last. For each bookmark, note the tool/product on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, skip with a manifest entry.
+**Tier D:** Process last. For each bookmark, note the tool/product on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, append to `wiki/unorganized.md` under a `## Bookmarks` section (create the file/section if it doesn't exist). Format:
+
+```
+- **Title** (category, saved YYYY-MM-DD, Readwise: <id>) — URL or one-line description
+```
 
 **Timeout check:** Before starting each new batch, check elapsed time since run start. If less than 15 minutes remain (this threshold is a tunable heuristic — adjust based on observed integration phase duration), skip to Phase 5.
 
@@ -88,8 +97,8 @@ For each Tier C document (over 50K words):
    ```
    - **Knowledge About Knowledge** (131K words, saved 2026-04-06, Readwise: 01knjemvdkrdqgy21tz280tbav) — long-form source, not synthesized by compiler
    ```
-4. **If no match exists:** Skip the document. Do NOT create a new topic page solely to house a reference. References are strictly opportunistic — they attach to existing pages or they don't.
-5. **Log in manifest:** Either "referenced on `<page>.md`" or "skipped — no matching topic page."
+4. **If no match exists:** Append the reference line to `wiki/unorganized.md` under a `## Long-form sources` section (create the file/section if it doesn't exist). Same format as step 3.
+5. **Log in manifest:** Either "referenced on `<page>.md`" or "added to `unorganized.md`."
 
 ### Phase 5 — Integration
 
@@ -97,7 +106,7 @@ After all tiers are processed (or timeout forces early completion):
 
 1. Update `wiki/INDEX.md` with any new pages and updated summaries
 2. Run the lint pass:
-   - **Orphan pages** — pages not linked from any other page (add links where relevant)
+   - **Orphan pages** — pages not linked from any other page (add links where relevant). Exempt `unorganized.md` — it is a holding page, not a topic page.
    - **Missing pages** — topics mentioned frequently across pages but lacking their own page
    - **Stale content** — claims that newer sources have superseded
 3. Fix what you find
@@ -114,7 +123,7 @@ Write `wiki/LAST_RUN_MANIFEST.md` with the full audit trail. See the Manifest Sc
 - Keep pages concise and scannable — use headers, bullet points, short paragraphs.
 - Each page starts with a 1-2 sentence TLDR at the top.
 - Interlink pages with standard markdown links: `[topic name](topic-slug.md)`.
-- Each page has a `## Sources` section at the bottom listing which Readwise saves informed it (title + author).
+- Each page has a `## Sources` section at the bottom listing which Readwise saves informed it (title, author, and URL). URLs go in the Sources section only, not inline in page content — the wiki pages are synthesized knowledge and inline links would clutter the prose.
 - File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
 - Each page has YAML frontmatter with `created_at` (set once) and `last_updated` (set to today's date when content changes).
 
@@ -149,8 +158,8 @@ Content organized by the natural structure of the topic.
 
 ## Sources
 
-- "Article Title" — Author Name
-- "Another Article" — Another Author
+- "Article Title" — Author Name ([link](URL))
+- "Another Article" — Another Author ([link](URL))
 ```
 
 ---
@@ -222,6 +231,18 @@ documents_failed: N
 | Title | URL | Noted On |
 |-------|-----|----------|
 
+## Unorganized
+
+### Bookmarks added
+
+| Title | Readwise ID |
+|-------|-------------|
+
+### Long-form sources added
+
+| Title | Readwise ID |
+|-------|-------------|
+
 ## Skipped
 
 | ID | Title | Category | Words | Reason |
@@ -230,7 +251,6 @@ documents_failed: N
 Skip reasons:
 - `already_in_wiki` — document content already represented in an existing wiki page (matched by title, URL, or Readwise ID against sources sections)
 - `duplicate_in_run` — same document appeared more than once in the fetch results
-- `off_topic` — content not relevant to any wiki topic (e.g., entertainment, non-AI/tech content)
 - `no_content` — no transcript available, empty fetch, or trivially short body
 - `fetch_failed` — MCP tool returned an error when fetching document details
 
@@ -268,8 +288,8 @@ Do not send a confirmation message — the system handles notifications automati
 **Why Tier C is metadata-only references, not full synthesis:**
 The user's Readwise library as of April 2026 contains ~4 PDFs total, with only 1-2 exceeding the 50K-word Tier C threshold. Building chunking infrastructure (structure detection, JSON extraction, merge passes, per-chunk resumability) is disproportionate to this volume. However, completely skipping large documents loses useful signal — the user saved them for a reason. The compromise: a single reference line on an existing relevant topic page, so the user sees "this source exists" when reading related material. Long PDFs that need real synthesis are handled as one-off manual Claude Code sessions outside the scheduled compiler.
 
-**Why Tier C references only attach to existing pages, never create new ones:**
-Without this constraint, the compiler might create new topic pages solely to house references for documents it hasn't read. This is cargo-cult page creation — pages that exist only as reference holders, with no synthesized content. References are strictly opportunistic: they attach to pages that already exist for other reasons, or they're skipped with a manifest entry.
+**Why `unorganized.md` exists as a holding page:**
+Documents are saved to Readwise intentionally — the compiler should preserve that signal rather than discarding it via "no matching page" skips. When no existing topic page matches a Tier C reference or Tier D bookmark, the document lands on `unorganized.md` instead of being silently dropped. This is a holding pattern: when a cluster of unorganized documents accumulates around a topic, that's the signal to promote the cluster to its own topic page. This applies only to Tier C and Tier D. Tier A and Tier B documents that don't match existing topics should result in new topic pages being created — they have enough substance to warrant their own pages.
 
 **Why Tier B has no highlight-first logic:**
 The user doesn't highlight anything in Readwise. Any plan depending on extracting signal from highlights is broken from the start. Tier B fetches full content directly, same as Tier A. The distinction between Tier A and Tier B is currently cosmetic (batch-size differentiation) — they may merge in a future iteration.

@@ -12,7 +12,9 @@ Matt saves articles, tweets, GitHub repos, and other content to Readwise — oft
 
 ## How It's Maintained
 
-A NanoClaw scheduled task runs at 3am Monday and Thursday. It fetches the Readwise saves since the last update, updates existing pages or creates new ones, maintains the index, and lints for orphans and stale content. Each page has `created_at` and `last_updated` frontmatter. Runs on Opus with a 90-minute timeout.
+A NanoClaw scheduled task runs at 3am Monday and Thursday. It fetches Readwise saves since the last successful run, updates existing pages or creates new ones, maintains the index, and lints for orphans and stale content. Each page has `created_at` and `last_updated` frontmatter. Runs on Opus with a 90-minute timeout.
+
+Pages are organized into category folders: `concepts/`, `tools/`, `models-safety/`, `landscape/`, `people/`. New pages go in the matching folder; if nothing fits, they stay at the wiki root. Documents that don't match any topic page land on `unorganized.md` as a holding pattern until a cluster warrants promotion to its own page.
 
 ## How It Fits
 
@@ -20,11 +22,11 @@ The intelligence system has two modes: briefings (dated logs — daily, weekly, 
 
 ## Deferred Items
 
-- [ ] `unorganized.md` catch-all page for non-AI content (don't discard Beatles-video-type saves — give them a home)
 - [ ] Rename "(prior session)" attribution to "(existing context)" or similar — confusing wording, not a bug
 - [ ] Per-document time tracking in manifest (wall-clock duration per Tier B document, total per Tier A batch)
-- [ ] Revisit nightly vs twice-weekly cadence after observing the next few v2.1 runs
 - [ ] Manual Tier C synthesis for specific long PDFs if needed (one-off Claude Code sessions, not the scheduled compiler)
+- [x] `unorganized.md` holding page for Tier C/D documents with no matching topic page (2026-04-09, v2.2)
+- [x] Cadence-decoupled fetch window — reads previous manifest timestamp instead of hardcoded "7 days" (2026-04-09, v2.2)
 
 ## Reference
 

@@ -10,7 +10,7 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 | **Product Briefing** | Sat 6am                 | `weekly-products/YYYY-MM-DD.md` | X thread product extraction and categorization into problem buckets       |
 | **Weekly Summary**   | Sat 8am                 | `weekly-summaries/YYYY-WXX.md`  | Synthesizes AI briefings + product briefing into patterns and signal      |
 | **Monthly Summary**  | 1st of month 7am        | `monthly-summaries/YYYY-MM.md`  | Synthesizes weekly summaries into durable trends and product observations |
-| **Readwise Wiki**    | Monday and Thursday 3am | `wiki/*.md`                     | Persistent knowledge base compiled from Readwise saves                    |
+| **Readwise Wiki**    | Monday and Thursday 3am | `wiki/<category>/*.md`          | Persistent knowledge base compiled from Readwise saves                    |
 
 ## Directory Structure
 
@@ -28,7 +28,11 @@ intelligence/
 ├── monthly-summaries/      # Monthly summary output
 ├── wiki/                   # Persistent knowledge base (Readwise wiki)
 │   ├── INDEX.md            # Topic index with links and one-line summaries
-│   └── *.md                # Individual topic pages
+│   ├── concepts/           # Concepts & Patterns
+│   ├── tools/              # Tools & Frameworks
+│   ├── models-safety/      # Models & Safety
+│   ├── landscape/          # Landscape
+│   └── people/             # People
 └── README.md
 ```
 
@@ -74,7 +78,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves — follow
 
 ### How It Works
 
-1. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved in the last 7 days (or all documents on first run)
+1. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved since the last successful run (or last 30 days on first run)
 2. **Read and extract** — for each document, extracts key concepts, claims, connections to existing pages, and notable people/tools
 3. **Update or create pages** — integrates new information into existing topic pages, or creates new pages when a topic has enough substance. Pages are about *topics* (not individual articles) and may draw from multiple sources.
 4. **Maintain the index** — `wiki/INDEX.md` is updated with links and one-line summaries for every page, loosely grouped by domain
@@ -89,11 +93,11 @@ A persistent, interlinked knowledge base compiled from Readwise saves — follow
 
 ### When It Runs
 
-The wiki runs as a **scheduled task every Friday at 10pm**, processing the week's Readwise saves. Instructions live in `instructions/readwise-wiki.md`.
+The wiki runs as a **scheduled task Monday and Thursday at 3am**, processing Readwise saves since the last run. Instructions live in `instructions/readwise-wiki.md`.
 
 ### Current Pages
 
-The wiki currently has 12 topic pages across concepts, tools, landscape analysis, and people profiles. See `wiki/INDEX.md` for the full list.
+The wiki has 20 topic pages organized into 5 category folders (concepts, tools, models-safety, landscape, people). See `wiki/INDEX.md` for the full list.
 
 ## Briefing Execution
 

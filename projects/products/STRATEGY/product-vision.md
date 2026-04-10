@@ -72,3 +72,24 @@ Observations that have surfaced in monthly summaries but aren't strong enough to
 **[2026-03] Agent evaluation and observability:** No reliable way exists to know if an autonomous AI system is doing the right thing in production — goal alignment, error detection, and action correctness over multi-step tasks are unsolved at the agent level.
 
 **[2026-03] Multi-agent coordination infrastructure:** Developers have converged on multi-agent architectures as the default pattern, but orchestration tooling (conflict resolution, context sharing, handoffs) doesn't work at production quality — multiple startups attempting, none solved.
+
+---
+
+## Architectural Principles
+
+**[2026-04-10] LLM apps are loop + tools + prompts. Don't innovate over this.**
+
+A tweet making the deliberately reductive claim: any successful LLM-powered product, underneath the surface, is the same shape — *a model in a for loop, calling tools, guided by prompts, running until the task is done*.
+
+Unpacked:
+- **Loop** — the model isn't called once. It thinks, calls a tool, gets a result, thinks again, repeats until done. This is the agent pattern. Claude Code, Cursor, NanoClaw agents, the wiki compiler — all this shape.
+- **Tools** — functions the model can call (search, read files, run code, query APIs, send messages). MCP is one way to wire tools in; built-in tools are another.
+- **Prompts** — instructions, system prompts, skills, context that shape *how* the model uses the tools. The wiki compiler instructions file is exactly this.
+
+The punchline: **products like these scale with intelligence automatically.** Because the architecture is just `loop + tools + prompts`, the product gets better as the underlying model gets smarter — no rewrite required. Contrast with traditional software, where improvements require engineering work.
+
+The warning: people keep trying to invent clever architectures (complex multi-agent orchestration, novel memory systems, custom reasoning frameworks) and most of those things either get absorbed into the base model's capabilities a few months later, or turn out to be unnecessary because the simple loop already works.
+
+**Implication for what I build:** stop worrying about needing a novel AI architecture. The hard part isn't engineering — it's figuring out what to build, for whom, and wiring the right tools and prompts into the basic loop. Every product I build should look like this at the core. The differentiation lives in the use case and the quality of the prompts/tools, not in cleverness of the wiring.
+
+The wiki compiler I built is already exactly this pattern: scheduled loop + Readwise/Filesystem MCP tools + the instructions file as the prompt. That's the template.

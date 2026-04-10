@@ -11,7 +11,7 @@ Goals: Ship pmtxt V0.1 privately.
 - [ ] TrueFire lesson (guitar)
 - [ ] Wrist rehab + stretching/mobility at home
 - [x] Therapy at 2pm
-- [ ] Figure out food
+- [x] Figure out food
 - [ ] Buy sous vide
 - [ ] Update car registration sticker
 

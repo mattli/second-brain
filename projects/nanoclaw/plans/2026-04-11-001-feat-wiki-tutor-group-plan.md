@@ -357,6 +357,29 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 - **First-session retrospective:** After the first real tutor session, briefly note anywhere in the vault (or in the `wiki-tutor` group's CLAUDE.md as a comment) what worked and what felt off. The first iteration of the persona is almost certain to need tuning. Expect and budget for this.
 - **Sunset conditions:** If after, say, 2–3 weeks the tutor has not been opened voluntarily, the honest move is to delete the group row rather than add features to attract the user. The plan should not treat removal as failure — a clean "this shape was wrong" outcome is more valuable than a persistent unused feature.
 
+## V2 Direction (deferred, captured 2026-04-11)
+
+V1 ships as permissive-by-default: the tutor may supplement from training knowledge or web search during conversation, and there is no labeled-provenance rule in the CLAUDE.md (Option C from the 2026-04-11 implementation session was considered and deferred). V1 is meant for exploration, not as the final form.
+
+The intended V2 shape is a Socratic research partner where the tutor doesn't just serve nuggets from the wiki — it responds to questions not covered by the wiki by doing web research, then **proposes additions to the wiki itself** so the knowledge base grows through use. The hard constraint is that anything landing in the wiki must have citable sources; Matt does not want uncited Claude-training content polluting the curated wiki. Four architectural notes captured now so V2 doesn't paint itself into a corner:
+
+1. **Write path should reuse the `readwise-wiki` compiler, not give the tutor direct write access.** The V1 tutor is read-only at the mount layer and that safety should stay. V2 should hand proposed updates off via IPC (or a staging file) to the existing compiler, which already has write access, a citation-aware workflow, and the lint/orphan-check machinery. Two writers with independent semantics is the failure mode to avoid.
+
+2. **Source capture must happen at research time, not be reconstructed later.** When the tutor runs a web search, it should keep a scratchpad of `claim → source URL` as it goes. When it proposes a wiki update, the citations are already attached. Asking the model to "remember where it got each sentence" after the fact is unreliable.
+
+3. **"Must have sources" should be mechanically enforced, not aspirational.** The write-back tool or handoff path should refuse uncited content outright — same way the V1 mount is read-only at the filesystem layer rather than "please don't write." A prompt instruction is not enough; the model will eventually slip. If a proposed update has no source URLs attached, it's rejected before it reaches the wiki.
+
+4. **Cooperation with the existing Mon/Thu 3am compiler run needs a story.** If both the tutor (on demand) and the compiler (scheduled) write to the same wiki, the compiler could clobber tutor additions on its next run — or vice versa. Options: (a) tutor additions live in a designated section of a page (e.g. "Explored in conversation") that the compiler is told to preserve, (b) tutor additions land in a staging file that the next compiler run merges in, (c) tutor additions go to `unorganized.md` with a provenance note and the compiler promotes them on subsequent runs. Option (b) is probably the cleanest — single merge point, compiler remains the authoritative writer.
+
+**Open questions for V2:**
+
+- Should the tutor propose wiki updates proactively ("I learned something new in this conversation, want me to draft an addition?") or only on explicit request? The librarian-posture rule from V1 would push toward "only on request" — unsolicited proposals are teacher-like, not librarian-like.
+- How should the user review and approve proposed updates? Inline in the Telegram chat (diff rendered in-message)? A review queue in the main channel? A markdown file in the vault that Obsidian can show?
+- Does the write-back tool check against already-cited sources in the wiki, so the same URL doesn't get re-cited under multiple claims across pages? (Minor, but relevant for lint.)
+- What's the minimum threshold for a "wiki-worthy" claim — a single factual assertion with one source, or a cluster of related claims forming a coherent addition? Over-eager single-sentence additions would fragment pages.
+
+V2 is not scheduled. Revisit after 2–3 weeks of V1 use, provided V1 actually gets used.
+
 ## Sources & References
 
 - **Origin document:** None. This plan derives from the design conversation with the user across multiple turns, synthesized into the requirements trace above. No `ce:brainstorm` was run because the design converged interactively through iteration and rejection of earlier shapes (daily nugget push, per-folder split, briefing cross-references, quiz-style TA).

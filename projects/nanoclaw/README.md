@@ -25,6 +25,7 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 | Weekly Summary | `weekly-summary` | Weekly synthesis agent |
 | Monthly Summary | `monthly-summary` | Monthly synthesis agent |
 | Readwise Wiki | `readwise-wiki` | Compiles Readwise saves into interlinked wiki (Karpathy LLM Wiki pattern) |
+| Wiki Tutor | `wiki-tutor` | Reference librarian over the Readwise wiki — menu-first drill-down, nuggets not summaries, read-only mount, `requiresTrigger: false` |
 
 ## Scheduled Tasks
 

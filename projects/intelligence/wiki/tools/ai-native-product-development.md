@@ -65,6 +65,8 @@ The pattern: AI for structure and synthesis, humans for accuracy and decisions.
 
 New tools designed for AI-augmented product development workflows:
 
+- **Stitch** (Google Labs) — AI UI design tool that turns text, voice, or image prompts into high-fidelity web/mobile designs with production-ready HTML/CSS. https://stitch.withgoogle.com
+- **Monologue** (Every / Dan Shipper) — AI-powered voice dictation for Mac and iOS. Cleans up speech, understands context, works 3x faster than typing. https://twitter.com/@usemonologue
 - **Linear** — Redesigned as "the product development system for teams and agents." Supports AI agent workflows natively in planning/tracking.
 - **Canny** — AI-powered customer feedback collection. Auto-captures, summarizes, and categorizes ideas from multiple sources. Helps teams prioritize features and close the feedback loop with users.
 - **Spark (Productboard)** — AI platform for PMs. Connects customer feedback to product ideas, helps teams make data-backed decisions.

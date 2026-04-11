@@ -38,3 +38,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [DHH](people/dhh.md) — Ruby on Rails creator; 180-turn on AI tools; taste/craft as differentiator; senior developer 5-10x amplification
 - [Peter Steinberger](people/peter-steinberger.md) — OpenClaw creator, prolific AI tool builder; SOUL.md/MEMORY.md/DREAMS.md agent identity
 - [Dario Amodei](people/dario-amodei.md) — Anthropic CEO; "Machines of Loving Grace" and "Adolescence of Technology" essays; safety-first AI scaling
+
+## Holding
+
+- [Unorganized](unorganized.md) — Bookmarks and references not yet matched to a topic page

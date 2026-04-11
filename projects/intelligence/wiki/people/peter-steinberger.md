@@ -64,3 +64,4 @@ The triad — identity, experience, integration — works across Claude, GPT, Gr
 - "OpenClaw: The Viral AI Agent that Broke the Internet" — Lex Fridman Podcast #491 ([link](https://www.youtube.com/watch?v=YFjfBk8HI5o&t=351s))
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang on The a16z Show ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
 - "A Theory of Mind in Three Files" — Dave Morin (tweet thread, Apr 2026) ([link](https://x.com/davemorin/status/2040999146694553761/?rw_tt_thread=True))
+- "OpenClaw FULL COURSE" — Min Choi (tweet, Mar 2026) — from installed to actually working ([link](https://x.com/minchoi/status/2034998743112531998))

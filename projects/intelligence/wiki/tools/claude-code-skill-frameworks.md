@@ -94,6 +94,12 @@ The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across 
 
 - **Codex plugin for Claude Code** (OpenAI) — `/codex:review`, `/codex:adversarial-review`, `/codex:rescue` for delegating to Codex from within Claude Code
 - **SOUL.md** (OpenClaw) — Agent personality configuration. Sharp rules beat corporate guidelines. "Be the assistant you'd actually want to talk to at 2am."
+- **claude-plugins-official** (Anthropic) — Official Anthropic-managed directory of Claude Code plugins, including internal and third-party community plugins. https://github.com/anthropics/claude-plugins-official
+- **EveryInc/compound-engineering-plugin** — Installable Claude Code plugin version of Compound Engineering. https://github.com/EveryInc/compound-engineering-plugin
+- **everything-claude-code** — Performance optimization system for Claude Code with 28 specialized agents, 125+ skills, and 60+ commands. https://github.com/affaan-m/everything-claude-code
+- **ShopClawMart** — Marketplace for browsing, purchasing, and installing pre-built AI personas and skills for agents. https://www.shopclawmart.com
+- **"Every Claude Code Hack I Know" (Matt Van Horn)** — Curated thread of Claude Code tips and workflows, March 2026. https://x.com/mvanhorn/status/2035857346602340637
+- **Claude Code Cheat Sheet** (storyfox.cz) — Quick reference for keyboard shortcuts, slash commands, and workflow patterns. https://cc.storyfox.cz
 
 ## Sources
 

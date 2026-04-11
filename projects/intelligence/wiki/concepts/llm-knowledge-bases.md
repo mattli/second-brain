@@ -54,6 +54,7 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 - Context Lattice — meta-RAG system combining MongoDB, graph, vector, and semantic services
 - Engram — always-on agent with MEMORY.md persistence + wiki compilation
 - GitCMS — CMS for markdown-based wiki management via MCP
+- **Readwise MCP** — Readwise Reader integration via MCP, enabling agents to read, search, and manage saved articles and highlights directly. https://readwise.io/mcp
 
 ## Tooling Tips
 

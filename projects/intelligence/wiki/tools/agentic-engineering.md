@@ -90,6 +90,9 @@ His "ghosts, not animals" metaphor: LLMs are trained by imitation, not evolution
 
 ## Tools Noted
 
+- **agents.md** — Agent instruction file spec/community resource. https://agents.md
+- **Claude Agent SDK — Channels docs** — Official Anthropic documentation for Claude Agent SDK channels architecture. https://code.claude.com/docs/en/channels
+- **mozilla-ai/cq** — "Stack Overflow for agents" — shared knowledge commons where agents query and contribute learnings to avoid repeating solved problems. https://github.com/mozilla-ai/cq
 - **X API** (Apr 2026 update) — Pay-per-use pricing, official XMCP Server (`xdevplatform/xmcp`) for native MCP support via FastMCP, official Python & TypeScript SDKs, API playground for testing. The MCP server exposes the full X API OpenAPI spec as tools — 100+ endpoints including post creation, search, DMs, analytics
 - **Factory.ai** — "Agent-native software development" platform. Agents for refactors, incident response, migrations across IDE, CI/CD, CLI, Slack
 - **MuleRun** — No-code AI agent platform for business automation. Dedicated compute per agent, runs 24/7

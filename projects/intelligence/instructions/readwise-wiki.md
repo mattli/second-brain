@@ -22,6 +22,33 @@ Place new pages in the matching existing folder. If no folder fits, leave the pa
 
 ## Workflow
 
+### Phase 0 — Research Log
+
+Before fetching Readwise content, check `wiki/raw/research-log.md` for new entries.
+
+Each entry has a structured format:
+
+```
+## YYYY-MM-DD — <title>
+
+- **Source:** <URL>
+- **Why it came up:** <conversation context>
+- **Related wiki pages:** <page1.md>, <page2.md>
+- **Notes:** <pre-summarized content, typically 3-8 sentences for substantive sources>
+```
+
+Processing rules:
+
+1. Read `wiki/raw/research-log.md`. If it contains only the file header (no entries below the `---`), skip to Phase 1.
+2. Treat each entry as **Tier A-equivalent** — short, pre-summarized, high signal. The notes are already distilled; your job is to integrate them into existing wiki pages or create new ones, same as any Tier A document.
+3. If an entry doesn't cleanly fit an existing page and isn't substantial enough to justify a new page, log it in the manifest as "logged, not integrated" with a one-line reason. Don't force-create stub pages — mirror Tier D's reference-only treatment.
+4. Process all entries before moving to Phase 1. These are typically 1-5 entries per week and take minimal context.
+5. After processing, archive the entries:
+   - Move all processed entries (everything below the `---` separator) to `wiki/raw/_archive/research-log-YYYY-WW.md` (ISO year and week number, e.g. `research-log-2026-W15.md`). If the archive file already exists (multiple runs in the same week), append to it.
+   - Leave `research-log.md` with only its original header (the `# Research Log` line, description, and `---` separator).
+   - Create the `_archive/` directory if it doesn't exist.
+6. Commit wiki updates after processing research log entries (same cadence as Tier A batches).
+
 ### Phase 1 — Inventory
 
 Read `wiki/INDEX.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information.
@@ -203,6 +230,7 @@ documents_processed: N
 documents_referenced: N
 documents_skipped: N
 documents_failed: N
+research_log_entries: N
 ---
 
 # Run Manifest — YYYY-MM-DD
@@ -211,6 +239,7 @@ documents_failed: N
 
 | Phase | Duration |
 |-------|----------|
+| Research Log (N entries) | Xm |
 | Inventory + Triage | Xm |
 | Tier A (N docs, N batches) | Xm |
 | Tier B (N docs) | Xm |
@@ -218,6 +247,11 @@ documents_failed: N
 | Tier C references (N docs) | Xm |
 | Integration + Lint | Xm |
 | **Total** | **Xm** |
+
+## Research Log — Processed
+
+| Entry | Source URL | Wiki Pages Updated |
+|-------|-----------|---------------------|
 
 ## Tier A — Processed
 

@@ -1,9 +1,10 @@
 ---
 title: "feat: Multi-Bot Telegram Channel"
 type: feat
-status: active
+status: complete
 date: 2026-04-11
 deepened: 2026-04-11
+completed: 2026-04-11
 ---
 
 # feat: Multi-Bot Telegram Channel
@@ -490,3 +491,55 @@ If tokens has only 'default' and groupBotMap is empty (or file missing):
   - "Telegram Bot Privacy Mode" — privacy-off requirement for `requiresTrigger: false` groups.
   - "Commit Before Ending a Session" — mandatory commit of `src/` changes.
   - "Credential Proxy Pattern" — why Telegram tokens are NOT a credential-proxy concern.
+
+## Implementation Results
+
+Shipped on 2026-04-11. Three commits plus a prettier touch-up:
+
+| Commit | Unit | What landed |
+|---|---|---|
+| `750a88c` | Unit 1 | `readEnvFilePrefix` in `src/env.ts`; `TelegramChannel` constructor takes `Map<botId, token>` + `Map<groupFolder, botId>`; factory scans `process.env` + `.env` for `TELEGRAM_BOT_TOKEN_<ID>`; `loadGroupBotMap()` reads `~/.config/nanoclaw/telegram-bots.json` (missing/empty/malformed → empty map); orphan validation logs + falls back; new test scenarios for all error shapes. |
+| `7fef372` | Unit 2 | `this.bot` → `this.bots: Map<string, Bot>`; handlers extracted to `registerHandlers(bot, botId)`; inbound filter drops cross-bot messages before `onMessage`; `sendMessage`/`setTyping` resolve target bot via group→bot map with `default` fallback; `isConnected()` returns true when ≥1 bot up; `disconnect()` stops all bots; `connect()` uses `Promise.allSettled` so one bot failing doesn't take down the others; mock upgraded to track bots by constructor token; 12 new test scenarios. |
+| `0203592` | — | post-commit prettier touch-up. |
+
+Unit 3 (documentation): added a "Bot Identity" section to `groups/wiki-tutor/CLAUDE.md` (not committed — `groups/` is gitignored).
+
+**Test results:** 293/293 passing. Full typecheck clean.
+
+**Merge-conflict surface:** exactly two `src/` files touched (`src/channels/telegram.ts` + `src/env.ts`). The `env.ts` touch was the single approved deviation from the plan's 1-file commitment — forced because launchd does NOT populate `process.env` with secrets, so a pure-`process.env` prefix scan would have silently failed in production. Option A (adding a new `readEnvFilePrefix` export to `env.ts`) was chosen over Option B (inlining parse logic in `telegram.ts`) because `env.ts` is a 42-line stable utility that upstream almost never touches, and duplicating parse logic in two files would be worse long-term.
+
+**OneCLI Vault v1.2.35 isolation:** confirmed zero overlap. The Vault upgrade's likely targets (`credential-proxy.ts`, `env.ts`, `db.ts`) intersect this plan only at `readEnvFile`/`readEnvFilePrefix`, both in `src/env.ts`. Both functions share the same parse shape, so if Vault rewrites `env.ts` they can be updated together in one file.
+
+**Smoke test (all 7 phases passed in production):**
+
+| Phase | Test | Proof |
+|---|---|---|
+| 0 | Regression baseline: single-token setup unchanged | Post-Unit-2 restart logs `botCount: 1, botIds: [default]`, default bot connected to `@matts_second_brain_bot`, no regressions |
+| 1 | BotFather bot creation + privacy off + `.env` addition | User action; `@matts_wiki_tutor_bot` created with group privacy disabled |
+| 2 | Config file + rebuild → two bots load | Restart logs `botCount: 2, botIds: [default, wiki_tutor], assignedGroups: [wiki-tutor→wiki_tutor]` |
+| 3 | First message to Wiki Tutor chat via new bot | `16:55:13 Telegram message stored { botId: wiki_tutor }` → `16:55:23 Telegram message sent { botId: wiki_tutor }`; user confirmed reply came from `@matts_wiki_tutor_bot` avatar |
+| 4 | Both bots in same chat, `phase4 bothbots` test message | Log diff: `Telegram message stored` +1 (from `wiki_tutor`), zero default-bot delivery, zero double-delivery. The critical cross-bot regression case is proven fixed in live traffic |
+| 5 | Main chat default-bot regression via `phase5 main` | `16:59:02 Telegram message stored { botId: default }` → `17:02:29 Telegram message sent { botId: default }`. Note: the 3m26s latency was agent-compute time (ambiguous prompt triggered extensive skill/command search on main group with 8 mounts and `isMain: true`), not routing overhead — multi-bot dispatch is nanoseconds |
+| 6 | Reboot persistence | After `launchctl kickstart`, both bots reconnected and map preserved. Live `hi` message to Wiki Tutor chat: `17:03:54 Telegram message stored { botId: wiki_tutor }` → `17:04:05 Telegram message sent { botId: wiki_tutor }`, 11s cold start |
+
+**Lessons for future sessions:**
+
+1. **Launchd does NOT populate `process.env` with secrets.** The plist only exports `PATH` and `HOME`. All secrets (including `TELEGRAM_BOT_TOKEN`) come from `.env` via `readEnvFile`. Any future code that introduces new env-var scanning must also read the `.env` file, not just `process.env` — a pure `process.env` scan will work in dev (`npm run dev` inherits the shell env) and silently fail in production. The new `readEnvFilePrefix` helper is the blessed path for prefix scans.
+
+2. **`/ce-plan` architecture pressure-testing is load-bearing.** The original scoping pass reached for the DB-column design because it was the most obvious. Running it through `/ce-plan` with explicit alternatives (DB column, second process, JSON config) against the user's constraint set (merge-conflict surface, OneCLI Vault isolation, 2-bot scope) changed the recommendation completely. The JSON config file reduced the core-file surface from 4 to 1, which matters every single upstream merge. Pattern worth repeating for any fork-customization work.
+
+3. **Bad smoke-test prompt: `phase5 main`.** The main-group agent persona tries hard to be helpful on ambiguous input — it interpreted "phase5 main" as possibly a skill or command name, burned 3+ minutes searching files, listing skills, and reading `nanoclaw-setup.md` before replying. Use simple greetings like `hi` for functional smoke tests on the main group; save distinctive strings for grep-only log diffs where the agent reply content doesn't matter.
+
+4. **Agent responses and log grep do not overlap.** `Telegram message stored` / `Telegram message sent` log lines contain only metadata (chatJid, sender, botId, length) — never message content. To find evidence of a specific test message, grep on `botId` and timestamp, not on the message text.
+
+## Known Limitations
+
+**1:1 DMs with multiple bots collide on chat JID.** Discovered post-ship while trying to move the Wiki Tutor group from a group chat to a cleaner 1:1 DM. In Telegram's API, a 1:1 DM between a user and a bot has `chat.id = <user's Telegram user ID>` — the chat is keyed by the user, not by the bot. NanoClaw's `chatJid = tg:${ctx.chat.id}` is bot-agnostic, and `registered_groups.jid` is a PRIMARY KEY. The result: if user U has a DM with bot A (already registered as group G₁) and tries to DM bot B (wanting to register as group G₂), both DMs have `chatJid = tg:${U}`, which means they collide at the DB layer. You can only register ONE group per chat JID.
+
+Practically: if the user already has a `telegram_main` DM registered at `tg:<user_id>`, they cannot also register a 1:1 DM with a second bot at the same JID without clobbering the main group's row.
+
+**Workaround:** use Telegram groups (negative IDs, globally unique across the user's account) instead of 1:1 DMs for each persona. A group of two — user + single bot — is functionally identical to a DM from the user's typing perspective. This is what the Wiki Tutor chat ended up being: a `tg:-5181885783` group with only `@matts_wiki_tutor_bot` as the other member.
+
+**Proper fix (not in this plan's scope):** change the JID scheme to include bot identity, e.g. `tg:${botId}:${chat_id}`. Would touch `ownsJid`, every inbound/outbound path, the `registered_groups` PRIMARY KEY, every existing `chat_jid` column value in `messages`, `chats`, `scheduled_tasks`, and `router_state`, and would require a data migration for the existing `telegram_main` row. Substantive architectural change — warrants its own `/ce-plan` pass if a real use case ever demands it. As of this plan, the group-chat workaround is the recommended path and the only one exercised in production.
+
+**Don't retry the 1:1 DM path without fixing the JID scheme first.** The multi-bot filter correctly protects against cross-bot misfires at the dispatch layer (proven in Phase 4 live testing), but it cannot help when two logical groups genuinely share a single JID — the DB layer only has room for one row, and any attempt to register a second DM at that JID will either be rejected or clobber the existing row.

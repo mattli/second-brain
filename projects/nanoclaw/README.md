@@ -9,7 +9,7 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 | Mac Mini M4 | Always-on home server — runs all automated jobs |
 | NanoClaw | Node.js orchestrator — spawns Docker containers running Claude Agent SDK |
 | Docker | Container runtime for agent isolation (each group gets its own filesystem) |
-| Telegram | Primary interface — @matts_second_brain_bot for briefing delivery and chat |
+| Telegram | Primary interface — `@matts_second_brain_bot` (default) and `@matts_wiki_tutor_bot` (Wiki Tutor persona). Per-group bot assignment via `~/.config/nanoclaw/telegram-bots.json` |
 | Claude subscription OAuth | Auth for containers via NanoClaw's credential proxy (port 3001) |
 | GitHub | Version control — vault synced every 30 minutes |
 | Obsidian | Note-taking app — vault at `~/second-brain/` |
@@ -25,7 +25,7 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 | Weekly Summary | `weekly-summary` | Weekly synthesis agent |
 | Monthly Summary | `monthly-summary` | Monthly synthesis agent |
 | Readwise Wiki | `readwise-wiki` | Compiles Readwise saves into interlinked wiki (Karpathy LLM Wiki pattern) |
-| Wiki Tutor | `wiki-tutor` | Reference librarian over the Readwise wiki — menu-first drill-down, nuggets not summaries, read-only mount, `requiresTrigger: false` |
+| Wiki Tutor | `wiki-tutor` | Reference librarian over the Readwise wiki — menu-first drill-down, nuggets not summaries, read-only mount, `requiresTrigger: false`. Dedicated Telegram bot persona `@matts_wiki_tutor_bot` (assigned via `~/.config/nanoclaw/telegram-bots.json`) |
 
 ## Scheduled Tasks
 

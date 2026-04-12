@@ -203,7 +203,7 @@ Content organized by the natural structure of the topic.
 
 **Rate limit errors:** On any rate limit from the Anthropic API or Readwise MCP:
 1. Write the manifest with current progress (whichever documents have been processed so far)
-2. Commit any wiki updates completed: `cd /workspace/extra/second-brain && git add -A && git diff --cached --quiet || git commit -m "readwise wiki partial update $(date +%Y-%m-%d)" && git push`
+2. Commit any wiki updates completed: `cd /workspace/extra/vault && git add -A && git diff --cached --quiet || git commit -m "readwise wiki partial update $(date +%Y-%m-%d)" && git push`
 3. Exit cleanly — do not retry in a loop
 
 The next scheduled run picks up where this one stopped.
@@ -315,7 +315,7 @@ Every skipped document must appear in this table. A count-only summary is not ac
 Once wiki pages are written/updated, commit and push to the vault:
 
 ```bash
-cd /workspace/extra/second-brain
+cd /workspace/extra/vault
 git add -A
 git diff --cached --quiet || git commit -m "readwise wiki update $(date +%Y-%m-%d)"
 git push

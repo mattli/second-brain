@@ -14,6 +14,8 @@ Matt saves articles, tweets, GitHub repos, and other content to Readwise — oft
 
 A NanoClaw scheduled task runs at 3am Monday and Thursday. It fetches Readwise saves since the last successful run, updates existing pages or creates new ones, maintains the index, and lints for orphans and stale content. Each page has `created_at` and `last_updated` frontmatter. Runs on Opus with a 90-minute timeout.
 
+The compiler also processes entries from `raw/research-log.md` — an append-only log written by Wiki Tutor during conversations. Research log entries are processed first (Phase 0), before Readwise content, as Tier A-equivalent items. Processed entries are archived to `raw/_archive/`.
+
 Pages are organized into category folders: `concepts/`, `tools/`, `models-safety/`, `landscape/`, `people/`. New pages go in the matching folder; if nothing fits, they stay at the wiki root. Documents that don't match any topic page land on `unorganized.md` as a holding pattern until a cluster warrants promotion to its own page.
 
 ## How It Fits

@@ -32,7 +32,10 @@ intelligence/
 │   ├── tools/              # Tools & Frameworks
 │   ├── models-safety/      # Models & Safety
 │   ├── landscape/          # Landscape
-│   └── people/             # People
+│   ├── people/             # People
+│   └── raw/                # Research log (Wiki Tutor → compiler pipeline)
+│       ├─�� research-log.md # Append-only log of web research from Wiki Tutor
+│       └── _archive/       # Processed entries archived by week
 └── README.md
 ```
 
@@ -78,11 +81,12 @@ A persistent, interlinked knowledge base compiled from Readwise saves — follow
 
 ### How It Works
 
-1. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved since the last successful run (or last 30 days on first run)
-2. **Read and extract** — for each document, extracts key concepts, claims, connections to existing pages, and notable people/tools
-3. **Update or create pages** — integrates new information into existing topic pages, or creates new pages when a topic has enough substance. Pages are about *topics* (not individual articles) and may draw from multiple sources.
-4. **Maintain the index** — `wiki/INDEX.md` is updated with links and one-line summaries for every page, loosely grouped by domain
-5. **Lint** — scans for orphan pages, missing pages, and stale content on every run
+1. **Process research log** — checks `wiki/raw/research-log.md` for entries logged by Wiki Tutor during conversations; processes these first as Tier A-equivalent items, then archives them to `wiki/raw/_archive/`
+2. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved since the last successful run (or last 30 days on first run)
+3. **Read and extract** — for each document, extracts key concepts, claims, connections to existing pages, and notable people/tools
+4. **Update or create pages** �� integrates new information into existing topic pages, or creates new pages when a topic has enough substance. Pages are about *topics* (not individual articles) and may draw from multiple sources.
+5. **Maintain the index** — `wiki/INDEX.md` is updated with links and one-line summaries for every page, loosely grouped by domain
+6. **Lint** — scans for orphan pages, missing pages, and stale content on every run
 
 ### Page Design
 

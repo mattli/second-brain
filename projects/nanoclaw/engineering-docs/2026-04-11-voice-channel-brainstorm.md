@@ -7,22 +7,43 @@ date: 2026-04-11
 
 # Speech-to-Speech Voice Channel
 
+## Mission
+
+Voice provides one capability: conversation with an agent. Everything else (learning, briefing Q&A, capture, brainstorming, asking questions) is what the agents already do, accessed through a new surface. The voice app is small because the agents are powerful. When tempted to add features, return to this sentence.
+
 ## Framing
 
 **It's Telegram, but voice.** Add a new channel to NanoClaw that lets Matt talk to his existing agents (Second Brain, Wiki Tutor, future personas) using speech, from his phone, anywhere he isn't at his laptop. Same agents, same memory, same vault access — different I/O modality.
 
 Not a new product. A new channel alongside the existing Telegram channel.
 
+## Voice and Telegram are complementary, not competing
+
+Voice and Telegram aren't two clients fighting for the same job — they're two surfaces tuned for different moments, backed by the same agents and the same state.
+
+**Voice wins when hands and eyes are busy.** Walking, driving, making coffee, listening to a briefing, thinking out loud on the way somewhere. Anywhere the friction of pulling out a phone and typing is the difference between having the conversation and not having it. Voice is the "ambient, moving, away from the laptop" surface.
+
+**Telegram wins at the desk.** Sending images, pasting links, async back-and-forth, scrolling through history, triggering tasks with long quoted context, anything involving attachments or visual output. Telegram is the "sitting down, screen available, precise" surface.
+
+**The voice app should not build non-audio features.** No image support, no file browser, no history scrollback UI, no task list view. Telegram already handles those, and the two surfaces share state — if it belongs on a screen, it belongs in Telegram. The voice app stays small on purpose: its only job is to make talking to an agent feel natural.
+
 ## Use Cases
 
-1. **Talk to an agent** — pick a persona, have a real conversation. Walking, driving, anywhere away from the laptop.
-2. **Listen to briefings** — TTS playback of the daily briefing markdown, then drop into Q&A with Second Brain about what was just heard.
-3. **Capture into the vault** — talk to Second Brain naturally ("add this to the pmtxt backlog under infrastructure"), agent figures out where it goes because the vault is mounted and it has context. Replaces Wispr Flow for vault capture specifically.
+All five intuitive "use cases" collapse into one thing: **voice conversation with an agent.**
 
-All three collapse into "talk to an agent." Capture isn't a separate mode — it's just Second Brain doing what it already does in Telegram, via voice instead of text.
+1. **Learning** — talk to Wiki Tutor about a topic.
+2. **Brainstorming** — talk to Second Brain (or a brainstorming persona) to work an idea out loud.
+3. **Briefing Q&A** — listen to the daily briefing, then ask Second Brain follow-ups about what was just heard.
+4. **Asking questions** — any "what do I know about X" query that would otherwise go to Telegram.
+5. **Capture** — tell Second Brain something worth saving to the vault.
+
+These are not separate modes in the app. They're different **topics** and different **personas** using the same surface. The app itself has no concept of "briefing mode" vs "capture mode" vs "learning mode" — it just connects you to an agent and lets you talk.
+
+Capture isn't a separate mode either. It's the agent writing to the vault at the end of a conversation, exactly the way it already does from Telegram today. The user doesn't say "enter capture mode" — they have a conversation, and if something from that conversation belongs in the vault, the agent puts it there. Same mechanism, different input modality.
 
 ## Decisions Made
 
+- **Scope:** Voice surface only, not a second AI client. Telegram remains the desk-based client.
 - **Surface:** Phone-based, ambient. Not laptop.
 - **Persona selection:** Tap to pick (not voice-activated wake word).
 - **Investment level:** Building toward something durable, not a throwaway test.

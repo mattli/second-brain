@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NanoClaw & Vault — Instruction File Map</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --green: #3fb950;
+    --green-bg: rgba(63,185,80,0.1);
+    --blue: #58a6ff;
+    --blue-bg: rgba(88,166,255,0.1);
+    --yellow: #d29922;
+    --yellow-bg: rgba(210,153,34,0.1);
+    --orange: #f0883e;
+    --orange-bg: rgba(240,136,62,0.1);
+    --purple: #bc8cff;
+    --purple-bg: rgba(188,140,255,0.1);
+    --line: #30363d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+    padding: 40px;
+    line-height: 1.5;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .column {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .column-header {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .column-path {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-bottom: 20px;
+    word-break: break-all;
+  }
+
+  .tree {
+    list-style: none;
+    font-size: 13px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .tree ul {
+    list-style: none;
+    margin-left: 20px;
+    border-left: 1px solid var(--line);
+  }
+
+  .tree li {
+    position: relative;
+    padding: 3px 0 3px 16px;
+  }
+
+  .tree ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tree ul > li:last-child::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 14px;
+    bottom: 0;
+    width: 2px;
+    background: var(--surface);
+  }
+
+  .node {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .node-file {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    position: relative;
+    cursor: default;
+    word-break: break-all;
+    display: inline;
+  }
+
+  .node-dir {
+    color: var(--text-muted);
+  }
+
+  .node-label {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .t-green .node-file { background: var(--green-bg); color: var(--green); }
+  .t-blue .node-file { background: var(--blue-bg); color: var(--blue); }
+  .t-yellow .node-file { background: var(--yellow-bg); color: var(--yellow); }
+  .t-orange .node-file { background: var(--orange-bg); color: var(--orange); }
+  .t-purple .node-file { background: var(--purple-bg); color: var(--purple); }
+
+  /* Tooltip styles */
+  .has-tip {
+    position: relative;
+  }
+
+  .has-tip .tip {
+    display: none;
+    position: fixed;
+    background: #1c2128;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text);
+    white-space: normal;
+    width: 320px;
+    max-width: 90vw;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    pointer-events: none;
+  }
+
+  .has-tip:hover .tip {
+    display: block;
+  }
+
+  .tip-path {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    word-break: break-all;
+  }
+
+  .tip-desc {
+    color: var(--text);
+  }
+
+  .flow-section {
+    margin-top: 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .flow-section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .flow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .flow-box {
+    flex-shrink: 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    min-width: 140px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .flow-box strong {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .flow-box code {
+    font-size: 11px;
+    color: var(--text-muted);
+    word-break: break-all;
+  }
+
+  .flow-arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    color: var(--text-muted);
+    font-size: 20px;
+    align-self: center;
+  }
+
+  .flow-row {
+    margin-bottom: 16px;
+  }
+
+  .flow-row-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .fb-green { border-color: var(--green); }
+  .fb-blue { border-color: var(--blue); }
+  .fb-yellow { border-color: var(--yellow); }
+  .fb-orange { border-color: var(--orange); }
+  .fb-purple { border-color: var(--purple); }
+
+  @media (max-width: 1000px) {
+    .columns { grid-template-columns: 1fr; }
+    body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>NanoClaw & Vault — Instruction File Map</h1>
+<p class="subtitle">Where Claude reads its instructions, memory, and task prompts — hover any file for details<br>Last updated: 2026-04-12</p>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Claude Code instructions (your terminal)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Memory files (persist across conversations)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div> Agent persona files (container agents)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Task instructions (scheduled agents read at runtime)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> Wiki / research log (read & written by agents)</div>
+</div>
+
+<div class="columns">
+
+  <!-- Column 1: ~/.claude -->
+  <div class="column">
+    <div class="column-header">Claude Code Config</div>
+    <div class="column-path">~/.claude/</div>
+    <ul class="tree">
+      <li>
+        <span class="node t-green"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">~/.claude/CLAUDE.md</span><span class="tip-desc">Your global instructions loaded into every Claude Code session regardless of project. Contains: session start/end rituals, plan-before-acting rule, never-delete-files policy, vault location, walkthrough pacing preferences, and end-of-session checklist.</span></span></span></span>
+        <span class="node-label">global instructions, all projects</span>
+      </li>
+      <li>
+        <span class="node node-dir">projects/</span>
+        <ul>
+          <li>
+            <span class="node node-dir">-Users-mattli/memory/</span>
+            <span class="node-label">home directory scope</span>
+            <ul>
+              <li><span class="node t-blue"><span class="node-file has-tip">MEMORY.md<span class="tip"><span class="tip-path">~/.claude/projects/-Users-mattli/memory/MEMORY.md</span><span class="tip-desc">Memory index for Claude Code sessions launched from ~/. Currently contains one entry: user prefers medium reasoning effort for Opus 4.6.</span></span></span></span> <span class="node-label">index</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">-Users-mattli-nanoclaw/memory/</span>
+            <span class="node-label">nanoclaw scope</span>
+            <ul>
+              <li><span class="node t-blue"><span class="node-file has-tip">MEMORY.md<span class="tip"><span class="tip-path">~/.claude/projects/-Users-mattli-nanoclaw/memory/MEMORY.md</span><span class="tip-desc">Memory index for NanoClaw Claude Code sessions. Points to 6 memory files covering feedback, project state, references, and user preferences.</span></span></span></span> <span class="node-label">index</span></li>
+              <li><span class="node t-blue"><span class="node-file has-tip">feedback_no_auto_superpowers.md<span class="tip"><span class="tip-path">feedback_no_auto_superpowers.md</span><span class="tip-desc">Don't auto-invoke superpowers skills (brainstorming, TDD, etc.) unless explicitly requested. User wants control over when structured skill flows are used.</span></span></span></span></li>
+              <li><span class="node t-blue"><span class="node-file has-tip">feedback_rebuild_after_changes.md<span class="tip"><span class="tip-path">feedback_rebuild_after_changes.md</span><span class="tip-desc">After modifying any TypeScript source, always run npm run build to rebuild and restart NanoClaw. Don't wait for user to ask — the running service uses compiled JS in dist/.</span></span></span></span></li>
+              <li><span class="node t-blue"><span class="node-file has-tip">project_daily_todo.md<span class="tip"><span class="tip-path">project_daily_todo.md</span><span class="tip-desc">Daily to-do list workflow: daily-to-do.md in vault root, dated sections (most recent at top), sent to Telegram at 8am. No automated reset — user manages cleanup manually.</span></span></span></span></li>
+              <li><span class="node t-blue"><span class="node-file has-tip">project_vault_sync.md<span class="tip"><span class="tip-path">project_vault_sync.md</span><span class="tip-desc">Vault git sync setup: vault moved out of iCloud to ~/second-brain/ to fix mmap errors. Two sync layers: Obsidian Sync (headless, continuous) for devices, vault-sync NanoClaw task (every 30 min) for GitHub.</span></span></span></span></li>
+              <li><span class="node t-blue"><span class="node-file has-tip">reference_obsidian_sync.md<span class="tip"><span class="tip-path">reference_obsidian_sync.md</span><span class="tip-desc">Reference for headless Obsidian Sync launchd service commands: log path, restart, stop, and start commands for com.obsidian-sync on Mac Mini.</span></span></span></span></li>
+              <li><span class="node t-blue"><span class="node-file has-tip">user_readwise_usage.md<span class="tip"><span class="tip-path">user_readwise_usage.md</span><span class="tip-desc">Matt doesn't highlight or bookmark in Readwise — he only saves articles/videos/tweets. Any feature depending on highlights is broken by design. Only depend on document metadata and full content.</span></span></span></span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Column 2: ~/nanoclaw -->
+  <div class="column">
+    <div class="column-header">NanoClaw Codebase</div>
+    <div class="column-path">~/nanoclaw/</div>
+    <ul class="tree">
+      <li>
+        <span class="node t-green"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">~/nanoclaw/CLAUDE.md</span><span class="tip-desc">NanoClaw project instructions for Claude Code sessions. Key files map, dev commands (npm run build, typecheck), troubleshooting (WhatsApp, Telegram privacy mode), credential proxy pattern, launchd PATH/env gotchas, agent-runner session copies.</span></span></span></span>
+        <span class="node-label">project-level instructions</span>
+      </li>
+      <li>
+        <span class="node node-dir">groups/</span>
+        <ul>
+          <li>
+            <span class="node node-dir">global/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/global/CLAUDE.md</span><span class="tip-desc">Shared base persona for all container agents. Defines the "Second Brain" identity: answer questions, search the web, browse with agent-browser, read/write workspace files, manage tasks, and send messages.</span></span></span></span> <span class="node-label">shared, all agents</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">briefing/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/briefing/CLAUDE.md</span><span class="tip-desc">Daily briefing agent persona. Points the agent to read the full briefing instructions from the vault at /workspace/extra/intelligence/instructions/daily-briefing.md.</span></span></span></span> <span class="node-label">daily briefing persona</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">monthly-summary/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/monthly-summary/CLAUDE.md</span><span class="tip-desc">Monthly summary agent persona. Synthesizes the month's weekly summaries into a monthly intelligence summary. Reads instructions from the vault.</span></span></span></span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">product-briefing/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/product-briefing/CLAUDE.md</span><span class="tip-desc">Weekly product briefing agent. Researches and compiles product intelligence every Saturday. Reads instructions from the vault.</span></span></span></span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">readwise-wiki/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/readwise-wiki/CLAUDE.md</span><span class="tip-desc">Readwise wiki compiler persona. Reads Readwise saves and compiles them into a persistent, interlinked wiki following Karpathy's LLM Wiki pattern. Reads full instructions from the vault.</span></span></span></span> <span class="node-label">wiki compiler persona</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">weekly-summary/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/weekly-summary/CLAUDE.md</span><span class="tip-desc">Weekly summary agent persona. Synthesizes the week's daily briefings into a weekly intelligence summary. Reads instructions from the vault.</span></span></span></span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">wiki-tutor/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/wiki-tutor/CLAUDE.md</span><span class="tip-desc">Wiki tutor persona — a reference librarian for the personal knowledge wiki. Presents categories and pages on demand, serves "nuggets" (sharp claims, not TLDRs). Can write to the research log with user approval. Uses a dedicated Telegram bot.</span></span></span></span> <span class="node-label">wiki tutor persona</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">telegram_main/</span>
+            <ul>
+              <li><span class="node t-yellow"><span class="node-file has-tip">CLAUDE.md<span class="tip"><span class="tip-path">groups/telegram_main/CLAUDE.md</span><span class="tip-desc">Main Telegram channel persona with elevated privileges. Has access to parallel search and Readwise MCP tools. This is the primary conversational channel where Matt interacts with Second Brain.</span></span></span></span> <span class="node-label">main chat persona</span></li>
+              <li><span class="node t-blue"><span class="node-file has-tip">MEMORY.md<span class="tip"><span class="tip-path">groups/telegram_main/MEMORY.md</span><span class="tip-desc">Agent-side persistent memory for the main Telegram channel. Contains: Matt's profile (product person, LA-based, job searching), preferences (concise, no value judgments), vault structure, product focus (dotmd launched, pmtxt parked), and tool notes.</span></span></span></span> <span class="node-label">agent memory</span></li>
+              <li><span class="node t-yellow"><span class="node-file has-tip">nanoclaw-admin.md<span class="tip"><span class="tip-path">groups/telegram_main/nanoclaw-admin.md</span><span class="tip-desc">Admin commands reference for the main channel agent. Documents available NanoClaw administration commands the agent can use from within conversations.</span></span></span></span> <span class="node-label">admin commands</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span class="node node-dir">data/sessions/</span>
+        <span class="node-label">gitignored, per-machine</span>
+        <ul>
+          <li>
+            <span class="node node-dir">wiki-tutor/.claude/.../memory/</span>
+            <ul>
+              <li><span class="node t-blue"><span class="node-file has-tip">MEMORY.md<span class="tip"><span class="tip-path">data/sessions/wiki-tutor/.claude/projects/-workspace-group/memory/MEMORY.md</span><span class="tip-desc">Auto-generated by the Claude Agent SDK. Wiki-tutor has no explicit memory instructions in its CLAUDE.md, so the SDK's auto-memory kicks in and the agent writes memories here on its own. Contains learned context: Matt's background, retro.ai product idea, research log approval preference.</span></span></span></span> <span class="node-label">SDK auto-memory</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">telegram_main/.claude/.../memory/</span>
+            <ul>
+              <li><span class="node t-blue"><span class="node-file has-tip">(empty)<span class="tip"><span class="tip-path">data/sessions/telegram_main/.claude/projects/-workspace-group/memory/</span><span class="tip-desc">SDK auto-memory is enabled but unused. The telegram_main CLAUDE.md explicitly tells the agent to manage groups/telegram_main/MEMORY.md instead, so the agent writes there and ignores the SDK's auto-memory directory.</span></span></span></span> <span class="node-label">unused, agent uses group-level MEMORY.md</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Column 3: ~/second-brain -->
+  <div class="column">
+    <div class="column-header">Obsidian Vault</div>
+    <div class="column-path">~/second-brain/</div>
+    <ul class="tree">
+      <li>
+        <span class="node node-dir">projects/intelligence/</span>
+        <ul>
+          <li>
+            <span class="node node-dir">instructions/</span>
+            <ul>
+              <li><span class="node t-orange"><span class="node-file has-tip">daily-briefing.md<span class="tip"><span class="tip-path">projects/intelligence/instructions/daily-briefing.md</span><span class="tip-desc">Daily AI Intelligence Briefing instructions (v3.0). Full prompt for the briefing agent: what to research, how to structure sections, source quality rules, formatting requirements. Read by the briefing group agent at runtime.</span></span></span></span> <span class="node-label">briefing group</span></li>
+              <li><span class="node t-orange"><span class="node-file has-tip">weekly-summary.md<span class="tip"><span class="tip-path">projects/intelligence/instructions/weekly-summary.md</span><span class="tip-desc">Weekly AI Intelligence Summary instructions (v3.4). Tells the weekly-summary agent how to synthesize daily briefings into a coherent weekly narrative. Read by the weekly-summary group agent.</span></span></span></span> <span class="node-label">weekly group</span></li>
+              <li><span class="node t-orange"><span class="node-file has-tip">weekly-products.md<span class="tip"><span class="tip-path">projects/intelligence/instructions/weekly-products.md</span><span class="tip-desc">Weekly Product Briefing instructions (v1.1). Saturday product intelligence run — research and compile product-focused briefing. Read by the product-briefing group agent.</span></span></span></span> <span class="node-label">product group</span></li>
+              <li><span class="node t-orange"><span class="node-file has-tip">monthly-summary.md<span class="tip"><span class="tip-path">projects/intelligence/instructions/monthly-summary.md</span><span class="tip-desc">Monthly AI Intelligence Summary instructions (v2.3). Synthesizes weekly summaries into a monthly overview. Read by the monthly-summary group agent.</span></span></span></span> <span class="node-label">monthly group</span></li>
+              <li><span class="node t-orange"><span class="node-file has-tip">readwise-wiki.md<span class="tip"><span class="tip-path">projects/intelligence/instructions/readwise-wiki.md</span><span class="tip-desc">Readwise Wiki Compiler instructions (v2.2). Multi-phase pipeline: process research log entries (Phase 0), fetch Readwise saves, tier by signal strength, compile into interlinked wiki pages. Read by the readwise-wiki group agent.</span></span></span></span> <span class="node-label">wiki compiler</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node node-dir">wiki/</span>
+            <ul>
+              <li><span class="node t-purple"><span class="node-file has-tip">INDEX.md<span class="tip"><span class="tip-path">projects/intelligence/wiki/INDEX.md</span><span class="tip-desc">Top-level index of all wiki pages organized by category (Concepts, Tools, Models, Landscape, People, etc.) with one-line summaries. The wiki tutor reads this at session start to present the menu. The readwise-wiki compiler uses it to find related pages.</span></span></span></span> <span class="node-label">wiki-tutor reads at start</span></li>
+              <li>
+                <span class="node node-dir">raw/</span>
+                <ul>
+                  <li><span class="node t-purple"><span class="node-file has-tip">research-log.md<span class="tip"><span class="tip-path">projects/intelligence/wiki/raw/research-log.md</span><span class="tip-desc">Append-only log of web research from wiki tutor conversations. Entries include source URL, conversation context, related wiki pages, and notes. Processed weekly by the readwise-wiki compiler (Phase 0) and archived to raw/_archive/.</span></span></span></span> <span class="node-label">wiki-tutor writes here</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Flow diagrams -->
+<div class="flow-section">
+  <h2>What loads when?</h2>
+
+  <div class="flow-row">
+    <div class="flow-row-label">Claude Code session (this terminal)</div>
+    <div class="flow">
+      <div class="flow-box fb-green"><strong>Global</strong><code>~/.claude/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-green"><strong>Project</strong><code>~/nanoclaw/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-blue"><strong>Memory</strong><code>...nanoclaw/memory/MEMORY.md</code></div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-row-label">Container agent spawn (e.g. telegram_main)</div>
+    <div class="flow">
+      <div class="flow-box fb-yellow"><strong>Global persona</strong><code>groups/global/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-yellow"><strong>Group persona</strong><code>groups/telegram_main/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-blue"><strong>Agent memory</strong><code>groups/telegram_main/MEMORY.md</code></div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-row-label">Scheduled task (e.g. daily briefing)</div>
+    <div class="flow">
+      <div class="flow-box fb-yellow"><strong>Global persona</strong><code>groups/global/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-yellow"><strong>Group persona</strong><code>groups/briefing/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-orange"><strong>Task instructions</strong><code>instructions/daily-briefing.md</code></div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-row-label">Wiki tutor conversation</div>
+    <div class="flow">
+      <div class="flow-box fb-yellow"><strong>Global persona</strong><code>groups/global/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-yellow"><strong>Tutor persona</strong><code>groups/wiki-tutor/CLAUDE.md</code></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-box fb-purple"><strong>Wiki index</strong><code>wiki/INDEX.md</code></div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-box fb-purple"><strong>Research log</strong><code>wiki/raw/research-log.md</code></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.has-tip').forEach(el => {
+  const tip = el.querySelector('.tip');
+  el.addEventListener('mouseenter', () => {
+    const rect = el.getBoundingClientRect();
+    const tipW = 320;
+    let left = rect.left;
+    if (left + tipW > window.innerWidth - 16) left = window.innerWidth - tipW - 16;
+    if (left < 16) left = 16;
+    tip.style.left = left + 'px';
+    tip.style.top = (rect.top - 8) + 'px';
+    tip.style.transform = 'translateY(-100%)';
+  });
+});
+</script>
+</body>
+</html>

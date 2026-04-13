@@ -89,3 +89,4 @@ Coordinated specialized agents take a vetted idea from decision to working proto
 - [mac-mini-setup.md](mac-mini-setup.md) — Mac Mini build order and setup
 - [nanoclaw-setup.md](nanoclaw-setup.md) — planning doc for multi-agent architecture
 - [operator-guide.md](operator-guide.md) — operator reference for managing NanoClaw
+- [instruction-map-2026-04-12.html](instruction-map-2026-04-12.html) — visual map of all CLAUDE.md, MEMORY.md, and instruction files across NanoClaw, ~/.claude, and the vault (open in browser)

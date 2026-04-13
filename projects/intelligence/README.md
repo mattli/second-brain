@@ -60,33 +60,10 @@ AI Briefing (Mon-Fri, includes Product Hunt)
 
 The daily AI briefing researches live sources including Product Hunt. The weekly product briefing searches X for high-engagement "share your product" threads (50+ replies), extracts product URLs, resolves them, and categorizes into problem buckets. The weekly summary reads both the AI briefings and the product briefing plus VC thesis searches. The monthly summary reads only the weekly summaries — no independent research.
 
-## Readwise Wiki
+## Related Pipelines
 
-A persistent, interlinked knowledge base compiled from Readwise saves — following Andrej Karpathy's "LLM Wiki" pattern. Unlike the briefings (which are time-series outputs on a schedule), the wiki is a living reference that gets updated over time, not replaced.
-
-### How It Works
-
-1. **Process research log** — checks `resources/wiki/raw/research-log.md` for entries logged by Wiki Tutor during conversations; processes these first as Tier A-equivalent items, then archives them to `resources/wiki/raw/_archive/`
-2. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved since the last successful run (or last 30 days on first run)
-3. **Read and extract** — for each document, extracts key concepts, claims, connections to existing pages, and notable people/tools
-4. **Update or create pages** �� integrates new information into existing topic pages, or creates new pages when a topic has enough substance. Pages are about *topics* (not individual articles) and may draw from multiple sources.
-5. **Maintain the index** — `resources/wiki/INDEX.md` is updated with links and one-line summaries for every page, loosely grouped by domain
-6. **Lint** — scans for orphan pages, missing pages, and stale content on every run
-
-### Page Design
-
-- Each page starts with a TLDR, has content organized by the natural structure of the topic, and ends with a Sources section citing which Readwise saves informed it
-- Pages interlink with standard markdown links (works in both Obsidian and GitHub)
-- File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
-- Tool/product bookmarks don't get standalone pages — they're noted as data points on the relevant topic page
-
-### When It Runs
-
-The wiki runs as a **scheduled task Monday and Thursday at 3am**, processing Readwise saves since the last run. Instructions live in `instructions/readwise-wiki.md`.
-
-### Current Pages
-
-See `resources/wiki/INDEX.md` for the full list of pages. The compiler creates new category folders as needed — the wiki covers all topics the user saves, not just AI/tech.
+- **Wiki pipeline** — moved to [`projects/wiki/`](../wiki/README.md) (2026-04-13)
+- **Atomic notes pipeline** — at [`projects/atomic-notes/`](../atomic-notes/README.md) (2026-04-13)
 
 ## Briefing Execution
 

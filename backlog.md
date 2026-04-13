@@ -2,13 +2,14 @@
 - [ ] Update main chat group behavior — think through how Second Brain should ask clarifying questions and follow best practices before making changes (e.g. confirm scope, warn about side effects, suggest alternatives)
 
 ### Skills & Tools
-- [ ] Install update-nanoclaw — pull upstream changes with preview and selective cherry-pick; run roughly once a month
+- [x] Install update-nanoclaw — pull upstream changes with preview and selective cherry-pick; run roughly once a month
 - [ ] Update Last 30 Days (Matt Van Horn) research topics when needed — revisit search keywords and parameters as product focus shifts (e.g. pmtxt launch, new categories)
 - [ ] Install add-compact — adds /compact command for context compaction; needed when Phase 2 PM agent is built
 - [ ] Install add-telegram-swarm — agent teams in Telegram, each subagent gets its own bot identity; relevant to Phase 3. Potential use case: adversarial agent debates — one optimistic, one pessimistic, one focused on execution risk — for stress-testing product decisions like pmtxt direction or YC application strategy. Related to the debate-perspectives project in the vault.
 - [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
 
 ### Intelligence Pipeline
+- [ ] Schedule atomic notes compiler — weekly NanoClaw task that compiles atomic notes from the previous 7 days of Telegram conversation history (main group). Output to resources/atomic-notes/. Pipeline scaffold already exists at projects/atomic-notes/; one-off experiment ran 2026-04-13 and produced 13 usable notes. Decide cadence, prompt format, and whether notes should update in place or append new. Evaluate after ~4 runs whether output is actually useful or just noise.
 - [ ] Set up RSS feeds in Readwise Reader for key frontier lab blogs and thought leader sites — candidates: Anthropic blog, OpenAI blog, DeepMind blog, Dario Amodei, DHH, Paul Graham essays, Andrej Karpathy, Ben Thompson (Stratechery). Goal is to have new posts land in Reader automatically rather than relying on X or manual saves.
 - [ ] Key figure publishing alerts — figure out a way to get notified when people like Dario Amodei or DHH publish a new long-form piece or thesis. Could be RSS monitoring, a periodic agent task that checks their blogs/sites, or Readwise feed subscriptions. Goal is to catch essays and posts worth reading without having to actively follow them.
 - [ ] Evaluate weekly product briefing after first Saturday run — verify thread search, URL resolution, and categorization work end-to-end unattended; first test run (W13b) triggered 2026-03-28 with v3.0 instructions
@@ -18,6 +19,7 @@
 - [ ] Update Second Brain page — reflect current state of the system (Readwise wiki, dotmd all launched/in progress since last update). Consider pinning Second Brain to the top of the projects list. Add dotmd as an open source project. Consider adding a shipped count or rethinking the layout to better surface what's been built.
 
 ### NanoClaw
+- [ ] Diagnose Telegram response latency — messages to the main group take 10–20+ seconds to get a response. Unknown whether it's container cold start, context loading, MCP startup, model latency, or tool calls within the response. Run diagnostic: send a trivial message ("hi") and a vault-lookup message back to back, compare times. If both slow → cold start or model latency. If only complex one slow → context/tool overhead. Possible knobs: warm containers, lower MAX_MESSAGES_PER_PROMPT, trim CLAUDE.md, route simple tasks to Haiku.
 - [ ] Update Phase 2 in the NanoClaw README — current vision (PM Best Practices Layer) no longer reflects actual plans; revisit when clearer on what, if anything, replaces it.
 - [ ] Investigate silent wiki task failure — 3am run failed (root cause: WiFi DNS failure, not API issue) with no Telegram notification. Container exited non-zero but NanoClaw treated it as complete. Fix: catch non-zero container exits and notify. Separate from the network issue — hardwiring to ethernet should prevent the DNS failures, but the missing notification is still a bug.
 - [ ] Configure /remote-control — NanoClaw feature already merged, not yet configured. Starts a Claude Code session on the Mac Mini directly from Telegram, returns a browser URL. Full host access without SSH. Priority: next time at Mac Mini.

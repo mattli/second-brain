@@ -18,7 +18,7 @@
 - [ ] Update Second Brain page — reflect current state of the system (Readwise wiki, dotmd all launched/in progress since last update). Consider pinning Second Brain to the top of the projects list. Add dotmd as an open source project. Consider adding a shipped count or rethinking the layout to better surface what's been built.
 
 ### NanoClaw
-- [ ] Weekly upstream NanoClaw check — agent task that fetches new upstream releases since last check, flags anything with BREAKING/deprecation/migration in the notes, posts summary to Telegram. Pair with rule: 1 breaking change behind = update within ~2 weeks; 2 stacked = update now. Goal: never discover I'm 30+ commits behind by accident again. (Monitoring half; `update-nanoclaw` skill is the execution half.)
+- [ ] Update Phase 2 in the NanoClaw README — current vision (PM Best Practices Layer) no longer reflects actual plans; revisit when clearer on what, if anything, replaces it.
 - [ ] Investigate silent wiki task failure — 3am run failed (root cause: WiFi DNS failure, not API issue) with no Telegram notification. Container exited non-zero but NanoClaw treated it as complete. Fix: catch non-zero container exits and notify. Separate from the network issue — hardwiring to ethernet should prevent the DNS failures, but the missing notification is still a bug.
 - [ ] Configure /remote-control — NanoClaw feature already merged, not yet configured. Starts a Claude Code session on the Mac Mini directly from Telegram, returns a browser URL. Full host access without SSH. Priority: next time at Mac Mini.
 
@@ -30,6 +30,7 @@
 - [ ] Set up a dotfiles repo — put shared ~/.zshrc aliases and functions in a private GitHub repo so changes sync across MacBook Pro and Mac Mini without manual duplication. Machine-specific things (vault path, NanoClaw directory) stay in a local file sourced by the shared one.
 
 ### Completed
+- [x] Upstream NanoClaw release monitoring — subscribed to the NanoClaw GitHub repo with Watch → Custom → Releases only. Email arrives on every upstream release; glance at notes, act if "BREAKING" or "migration" appears. Rule: 1 breaking change behind = update within ~2 weeks; 2 stacked = update now. (2026-04-13)
 - [x] Update NanoClaw v1.2.15 → v1.2.52 — merged 365 upstream commits, kept native credential proxy (Parallel AI, GitHub token, Readwise MCP routes), preserved Telegram multi-bot, per-group model config. OneCLI migration deferred. (2026-04-13)
 - [x] Add session start instructions to main group CLAUDE.md (both machines)
 - [x] **Readwise wiki compiler** — Bootstrapped wiki with 12 pages from 65 saves, scheduled as weekly NanoClaw task (Fridays 10pm). Instructions at `intelligence/instructions/readwise-wiki.md`, output at `intelligence/wiki/`. (2026-04-05)

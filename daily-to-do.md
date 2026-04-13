@@ -12,8 +12,7 @@ Goals: Find one product to work on
 - [x] Salmon toast
 - [x] Read Daily Digest
 - [ ] Read Infinite Jest
-- [ ] Install update nanoclaw
-- [ ] Install compact
+- [x] Install update nanoclaw
 - [ ] Update Coldmountain.ai
 - [ ] Continue to think through product ideas
 

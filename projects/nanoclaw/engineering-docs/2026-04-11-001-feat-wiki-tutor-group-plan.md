@@ -9,7 +9,7 @@ date: 2026-04-11
 
 ## Overview
 
-Add a new NanoClaw group, `wiki-tutor`, that acts as a chat-based reference librarian for the user's personal Readwise-compiled wiki at `~/second-brain/projects/intelligence/wiki/`. The group is accessed via a dedicated Telegram chat. Interaction is user-initiated and menu-first: the tutor starts from `wiki/INDEX.md`, walks the user down the category → page tree, and serves a short "nugget" (2–4 sentences of the single most interesting claim) from each page. The user then drives tempo and direction conversationally — ask for more detail, move sideways to a connected page, pick a new category, or stop.
+Add a new NanoClaw group, `wiki-tutor`, that acts as a chat-based reference librarian for the user's personal Readwise-compiled wiki at `~/second-brain/resources/wiki/`. The group is accessed via a dedicated Telegram chat. Interaction is user-initiated and menu-first: the tutor starts from `wiki/INDEX.md`, walks the user down the category → page tree, and serves a short "nugget" (2–4 sentences of the single most interesting claim) from each page. The user then drives tempo and direction conversationally — ask for more detail, move sideways to a connected page, pick a new category, or stop.
 
 No code changes. This is a config and filesystem change patterned exactly on the existing `readwise-wiki` group, plus a new per-group `CLAUDE.md` that defines the librarian persona.
 
@@ -87,7 +87,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 
 - **`requiresTrigger: false` for this group only.** Every message in the tutor chat is a conversational turn — no `@Second Brain` prefix on each message. *Rationale:* The librarian UX is a back-and-forth dialogue. Forcing `@Second Brain` on each turn would make the flow feel like a command line, not a conversation, and would violate R1. The token cost tradeoff is acceptable because (a) the user opts into these sessions deliberately, (b) sessions are short (5–15 turns), and (c) this group has no passive-listener use case where accumulating context without response would matter. This is a per-group opt-out, not a global change.
 
-- **Mount the wiki read-only at `/workspace/extra/wiki`.** Use `{"hostPath": "~/second-brain/projects/intelligence/wiki", "containerPath": "wiki", "readonly": true}`. *Rationale:* The tutor is explicitly a read-only consumer (R7). Making this a mount-level guarantee rather than a prompt instruction removes an entire class of failure (prompt drift causing accidental writes). Mount allowlist already supports the `readonly` flag — this is a configuration choice, not a code change.
+- **Mount the wiki read-only at `/workspace/extra/wiki`.** Use `{"hostPath": "~/second-brain/resources/wiki", "containerPath": "wiki", "readonly": true}`. *Rationale:* The tutor is explicitly a read-only consumer (R7). Making this a mount-level guarantee rather than a prompt instruction removes an entire class of failure (prompt drift causing accidental writes). Mount allowlist already supports the `readonly` flag — this is a configuration choice, not a code change.
 
 - **Scope the mount to `wiki/` specifically, not the whole `intelligence/` folder.** The existing `readwise-wiki` group mounts `intelligence/` because the compiler writes briefings, manifests, and state outside of `wiki/`. The tutor needs *only* the wiki, and giving it less is strictly better for safety and for context economy. *Rationale:* Least privilege. Also keeps the tutor from accidentally reading briefings, manifests, or other compiler state that would confuse its librarian posture.
 
@@ -116,14 +116,14 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 
 - **Telegram chat ID.** Can only be captured after the user creates the new Telegram chat, adds the bot, and runs `/chatid`. Recorded at Unit 3 execution time.
 - **Exact wording of the librarian persona.** The CLAUDE.md content needs iteration. The first draft should capture menu-first, nugget-first, prose-follow-ups, no-quizzing — but wording will almost certainly need tuning after the first real session. Plan to revisit after 3–5 sessions of actual use.
-- **Whether `wiki/` needs a separate mount-allowlist entry.** The existing `readwise-wiki` group mounts `intelligence/` as read-write. Whether the allowlist already covers `intelligence/wiki/` as a distinct entry, or whether the existing parent entry is sufficient, will be clear when running the allowlist validator. If a new entry is needed, add it at Unit 1 execution time.
+- **Whether `wiki/` needs a separate mount-allowlist entry.** The existing `readwise-wiki` group mounts `intelligence/` as read-write and `resources/` for wiki output. Whether the allowlist already covers `resources/wiki/` as a distinct entry, or whether the existing parent entry is sufficient, will be clear when running the allowlist validator. If a new entry is needed, add it at Unit 1 execution time.
 - **Whether follow-up moves should be offered as bullet points or inline prose.** Directional guidance says prose. May switch to bullets if prose turns out to read as too dense in Telegram's rendering. Revisit after first real session.
 
 ## Implementation Units
 
 - [ ] **Unit 1: Mount allowlist verification**
 
-**Goal:** Ensure the host path `~/second-brain/projects/intelligence/wiki` is permitted by the NanoClaw mount allowlist, so the registered group can spawn containers without failing validation.
+**Goal:** Ensure the host path `~/second-brain/resources/wiki` is permitted by the NanoClaw mount allowlist, so the registered group can spawn containers without failing validation.
 
 **Requirements:** R7
 
@@ -136,7 +136,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 **Approach:**
 - Read the existing allowlist file.
 - Confirm whether `~/second-brain/projects/intelligence` (parent of the wiki) is already listed as an allowed root, which would implicitly cover `wiki/`, or whether a more specific entry is needed.
-- If not covered, add a new entry permitting `~/second-brain/projects/intelligence/wiki` (read-only mounts permitted).
+- If not covered, add a new entry permitting `~/second-brain/resources/wiki` (read-only mounts permitted).
 - Do not remove or relax any existing entries.
 
 **Patterns to follow:**
@@ -144,7 +144,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 - `src/mount-security.ts:54-119` for how validation actually runs, if something behaves unexpectedly.
 
 **Test scenarios:**
-- *Happy path:* After the allowlist is saved, running the mount validator against the intended mount spec (`{hostPath: ~/second-brain/projects/intelligence/wiki, containerPath: wiki, readonly: true}`) returns success.
+- *Happy path:* After the allowlist is saved, running the mount validator against the intended mount spec (`{hostPath: ~/second-brain/resources/wiki, containerPath: wiki, readonly: true}`) returns success.
 - *Edge case:* The existing allowlist already covers the path implicitly via a parent entry — in which case no change is needed and the unit is still satisfied.
 - *Error path:* If the validator rejects the mount, the error message clearly identifies which allowlist entry is missing, not just a generic failure. (If not, flag this as a follow-up — but don't fix it in this unit.)
 
@@ -254,7 +254,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
   - `isMain`: `false`
   - `containerConfig`:
     - `additionalMounts`:
-      - `{hostPath: "~/second-brain/projects/intelligence/wiki", containerPath: "wiki", readonly: true}`
+      - `{hostPath: "~/second-brain/resources/wiki", containerPath: "wiki", readonly: true}`
     - `model`: `"opus"` (matches other intelligence groups; revisit with data if cost is an issue)
     - `timeout`: reasonable conversational default — match whatever the main channel or readwise-wiki uses rather than inventing a new value
 - Do **not** hand-edit `store/messages.db`. Use the IPC path that's already in place (`src/ipc.ts`, `registerGroup` in `src/index.ts:98-120`). This ensures validation runs and the `groups/wiki-tutor/logs/` directory gets auto-created if missed in Unit 2.
@@ -396,7 +396,7 @@ V2 is not scheduled. Revisit after 2–3 weeks of V1 use, provided V1 actually g
 - **Related files on disk:**
   - `~/.config/nanoclaw/mount-allowlist.json` — mount allowlist, modified in Unit 1 if needed
   - `store/messages.db` — contains `registered_groups` table, modified in Unit 4 via IPC
-  - `~/second-brain/projects/intelligence/wiki/` — the mount target, read-only
-  - `~/second-brain/projects/intelligence/wiki/INDEX.md` — the curriculum root the tutor reads first
+  - `~/second-brain/resources/wiki/` — the mount target, read-only
+  - `~/second-brain/resources/wiki/INDEX.md` — the curriculum root the tutor reads first
 - **Related PRs/issues:** None. This is a personal customization.
 - **External docs:** None. No external research was needed — the entire feature is local-only, config-only, and well-patterned on an existing group.

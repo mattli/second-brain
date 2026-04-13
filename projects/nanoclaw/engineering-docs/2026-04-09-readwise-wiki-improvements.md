@@ -58,7 +58,7 @@ Sets model to Opus and timeout to 90 minutes (up from 30). Expect to tune timeou
 
 ### 3. Rewrite processing instructions
 
-**`/Users/mattli/second-brain/projects/intelligence/instructions/readwise-wiki.md`** — Replace the current sequential workflow with a phased, context-aware approach.
+**`/Users/mattli/second-brain/projects/wiki/instructions/readwise-wiki.md`** — Replace the current sequential workflow with a phased, context-aware approach.
 
 #### Phase 1 — Inventory
 
@@ -262,7 +262,7 @@ The scheduled compiler is optimized for the common case: dozens of articles, twe
 | `src/container-runner.ts` | Add `model` to `ContainerInput`, inject from group config |
 | `container/agent-runner/src/index.ts` | Add `model` to `ContainerInput`, pass to `query()` |
 | `groups/readwise-wiki/CLAUDE.md` | Add processing strategy with tiers, errors, manifest |
-| `second-brain/projects/intelligence/instructions/readwise-wiki.md` | Full rewrite: phased workflow, Tier C reference-only, error handling, manifest schema, design decisions |
+| `second-brain/projects/wiki/instructions/readwise-wiki.md` | Full rewrite: phased workflow, Tier C reference-only, error handling, manifest schema, design decisions |
 | `store/messages.db` | Update readwise-wiki group config (model + timeout) |
 | `data/sessions/readwise-wiki/agent-runner-src/` | Delete stale copy |
 

@@ -3,7 +3,7 @@ Weekly Product Briefing — Instructions
 > Version: 1.1 | Last updated: 2026-03-28
 
 ## Purpose
-Each Saturday morning (before the weekly summary), research and compile a product intelligence briefing focused on what builders are actively shipping and promoting on X. The output should identify problem categories emerging from real builder activity and be saved to `projects/intelligence/weekly-products/YYYY-MM-DD.md` using today's actual date.
+Each Saturday morning (before the weekly summary), research and compile a product intelligence briefing focused on what builders are actively shipping and promoting on X. The output should identify problem categories emerging from real builder activity and be saved to `weekly-products/YYYY-MM-DD.md` using today's actual date.
 
 **Overlap Prevention:** Only include products that were shared in the last 7 days. Do not carry forward products from previous weeks unless there is genuinely new traction.
 
@@ -15,7 +15,7 @@ Each Saturday morning (before the weekly summary), research and compile a produc
 
 ## Before You Start
 
-Read the last 3 weekly product briefings from `projects/intelligence/weekly-products/` (by date, most recent first). Note which products and problem categories were already covered. Do not repeat products unless there is a genuinely new development.
+Read the last 3 weekly product briefings from `weekly-products/` (by date, most recent first). Note which products and problem categories were already covered. Do not repeat products unless there is a genuinely new development.
 
 ---
 
@@ -78,7 +78,7 @@ If a category has fewer than 3 products, fold it into the most related category 
 
 ## Output Format
 
-Save to `projects/intelligence/weekly-products/YYYY-MM-DD.md`:
+Save to `weekly-products/YYYY-MM-DD.md`:
 
 ```
 # Weekly Product Briefing — YYYY-MM-DD

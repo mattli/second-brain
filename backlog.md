@@ -33,7 +33,7 @@
 - [x] Upstream NanoClaw release monitoring — subscribed to the NanoClaw GitHub repo with Watch → Custom → Releases only. Email arrives on every upstream release; glance at notes, act if "BREAKING" or "migration" appears. Rule: 1 breaking change behind = update within ~2 weeks; 2 stacked = update now. (2026-04-13)
 - [x] Update NanoClaw v1.2.15 → v1.2.52 — merged 365 upstream commits, kept native credential proxy (Parallel AI, GitHub token, Readwise MCP routes), preserved Telegram multi-bot, per-group model config. OneCLI migration deferred. (2026-04-13)
 - [x] Add session start instructions to main group CLAUDE.md (both machines)
-- [x] **Readwise wiki compiler** — Bootstrapped wiki with 12 pages from 65 saves, scheduled as weekly NanoClaw task (Fridays 10pm). Instructions at `intelligence/instructions/readwise-wiki.md`, output at `intelligence/wiki/`. (2026-04-05)
+- [x] **Readwise wiki compiler** — Bootstrapped wiki with 12 pages from 65 saves, scheduled as weekly NanoClaw task (Fridays 10pm). Instructions at `wiki/instructions/readwise-wiki.md`, output at `resources/wiki/`. (2026-04-05)
 - [x] Set up tmux on Mac Mini — keeps SSH sessions alive if connection drops; useful for long Claude Code sessions
 - [x] Readwise MCP integration — connected to NanoClaw main group via mcp-remote stdio bridge + OAuth (2026-03-29)
 - [x] Investigate Parallel AI MCP skill — installed Search + Task MCP via credential proxy; confirmed working (2026-03-23)

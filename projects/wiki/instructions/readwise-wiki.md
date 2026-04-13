@@ -8,7 +8,7 @@ Compile Readwise saves into a persistent, interlinked wiki. This is a knowledge 
 
 This follows Karpathy's LLM Wiki pattern: you read the sources, extract key information, and integrate it into the existing wiki — updating pages, noting where new data connects to or contradicts existing content, and keeping cross-references current. The knowledge is compiled once and kept current.
 
-Output goes to `wiki/` relative to the intelligence project directory. The wiki is organized into category folders. Check `wiki/INDEX.md` for the current folder structure.
+Output goes to the wiki directory (see CLAUDE.md path mapping for the container mount path). The wiki is organized into category folders. Check `wiki/INDEX.md` for the current folder structure.
 
 **Folder management:** Place new pages in the best-fitting existing folder. If no folder fits, create a new one — use a short, descriptive kebab-case name (e.g., `writing/`, `marketing/`, `health/`). Add the new folder as a section in `INDEX.md`. Don't over-fragment: a folder should represent a broad topic area, not a single article's subject.
 

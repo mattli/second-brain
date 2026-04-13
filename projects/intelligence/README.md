@@ -6,12 +6,10 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 
 | Type                 | Schedule                | Output                          | Description                                                               |
 | -------------------- | ----------------------- | ------------------------------- | ------------------------------------------------------------------------- |
-| **AI Briefing**      | Mon–Fri 7am             | `ai-briefings/YYYY-MM-DD.md`    | Top AI/tech news, model releases, funding, Product Hunt launches          |
-| **Product Briefing** | Sat 6am                 | `weekly-products/YYYY-MM-DD.md` | X thread product extraction and categorization into problem buckets       |
-| **Weekly Summary**   | Sat 8am                 | `weekly-summaries/YYYY-WXX.md`  | Synthesizes AI briefings + product briefing into patterns and signal      |
-| **Monthly Summary**  | 1st of month 7am        | `monthly-summaries/YYYY-MM.md`  | Synthesizes weekly summaries into durable trends and product observations |
-| **Readwise Wiki**    | Monday and Thursday 3am | `wiki/<category>/*.md`          | Persistent knowledge base compiled from Readwise saves                    |
-
+| **AI Briefing**      | Mon–Fri 7am             | `resources/ai-briefings/YYYY-MM-DD.md`    | Top AI/tech news, model releases, funding, Product Hunt launches     |
+| **Product Briefing** | Sat 6am                 | `resources/weekly-products/YYYY-MM-DD.md` | X thread product extraction and categorization into problem buckets  |
+| **Weekly Summary**   | Sat 8am                 | `resources/weekly-summaries/YYYY-WXX.md`  | Synthesizes AI briefings + product briefing into patterns and signal |
+| **Monthly Summary**  | 1st of month 7am        | `resources/monthly-summaries/YYYY-MM.md`  | Synthesizes weekly summaries into durable trends and product observations |
 ## Directory Structure
 
 ```
@@ -20,24 +18,10 @@ intelligence/
 │   ├── daily-briefing.md
 │   ├── weekly-products.md
 │   ├── weekly-summary.md
-│   ├── monthly-summary.md
-│   └── readwise-wiki.md
-├── ai-briefings/           # Daily briefing output
-├── weekly-products/        # Weekly product briefing output
-├── weekly-summaries/       # Weekly summary output
-├── monthly-summaries/      # Monthly summary output
-├── wiki/                   # Persistent knowledge base (Readwise wiki)
-│   ├── INDEX.md            # Topic index with links and one-line summaries
-│   ├── concepts/           # Concepts & Patterns
-│   ├── tools/              # Tools & Frameworks
-│   ├── models-safety/      # Models & Safety
-│   ├── landscape/          # Landscape
-│   ├── people/             # People
-│   ├── <new>/              # Compiler creates new folders as needed
-│   └── raw/                # Research log (Wiki Tutor → compiler pipeline)
-│       ├─�� research-log.md # Append-only log of web research from Wiki Tutor
-│       └── _archive/       # Processed entries archived by week
+│   └── monthly-summary.md
 └── README.md
+# Output folders live at resources/ (vault root). Moved 2026-04-13.
+# Wiki pipeline moved to projects/wiki/. Moved 2026-04-13.
 ```
 
 ## Editing Instructions
@@ -82,11 +66,11 @@ A persistent, interlinked knowledge base compiled from Readwise saves — follow
 
 ### How It Works
 
-1. **Process research log** — checks `wiki/raw/research-log.md` for entries logged by Wiki Tutor during conversations; processes these first as Tier A-equivalent items, then archives them to `wiki/raw/_archive/`
+1. **Process research log** — checks `resources/wiki/raw/research-log.md` for entries logged by Wiki Tutor during conversations; processes these first as Tier A-equivalent items, then archives them to `resources/wiki/raw/_archive/`
 2. **Fetch recent saves** — uses Readwise MCP tools to pull documents saved since the last successful run (or last 30 days on first run)
 3. **Read and extract** — for each document, extracts key concepts, claims, connections to existing pages, and notable people/tools
 4. **Update or create pages** �� integrates new information into existing topic pages, or creates new pages when a topic has enough substance. Pages are about *topics* (not individual articles) and may draw from multiple sources.
-5. **Maintain the index** — `wiki/INDEX.md` is updated with links and one-line summaries for every page, loosely grouped by domain
+5. **Maintain the index** — `resources/wiki/INDEX.md` is updated with links and one-line summaries for every page, loosely grouped by domain
 6. **Lint** — scans for orphan pages, missing pages, and stale content on every run
 
 ### Page Design
@@ -102,7 +86,7 @@ The wiki runs as a **scheduled task Monday and Thursday at 3am**, processing Rea
 
 ### Current Pages
 
-See `wiki/INDEX.md` for the full list of pages. The compiler creates new category folders as needed — the wiki covers all topics the user saves, not just AI/tech.
+See `resources/wiki/INDEX.md` for the full list of pages. The compiler creates new category folders as needed — the wiki covers all topics the user saves, not just AI/tech.
 
 ## Briefing Execution
 

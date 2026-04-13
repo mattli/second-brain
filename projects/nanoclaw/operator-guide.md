@@ -80,11 +80,11 @@ The briefing pipeline has three layers:
 
 *Task prompt* — tells the agent to read the instructions file and run the briefing. Where the send-notification step lives.
 
-*Output* — saved to `projects/intelligence/ai-briefings/YYYY-MM-DD.md`. Committed to GitHub automatically.
+*Output* — saved to `resources/ai-briefings/YYYY-MM-DD.md`. Committed to GitHub automatically.
 
-*Product briefing* — a separate daily briefing focused on product/tech news. Same three-layer structure:
-- Instructions: `projects/intelligence/instructions/daily-products.md`
-- Output: `projects/intelligence/product-briefings/YYYY-MM-DD.md`
+*Product briefing* — a separate weekly briefing focused on product/builder activity. Same three-layer structure:
+- Instructions: `projects/intelligence/instructions/weekly-products.md`
+- Output: `resources/weekly-products/YYYY-MM-DD.md`
 - Schedule: weekdays at 7am (same as daily briefing)
 
 *Archiving* — the `archive-briefings` task runs weekly (Sunday midnight) and keeps only the 7 most recent briefings in each folder, moving older ones to `_archive/`. Config is in `scripts/archive-briefings.conf`.

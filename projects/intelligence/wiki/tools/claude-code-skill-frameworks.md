@@ -95,6 +95,22 @@ Key design: the system is designed for Claude to customize itself — modes, sco
 
 Agent skills for Obsidian — teaching AI agents to read, write, and navigate Obsidian vaults. See [LLM Knowledge Bases](../concepts/llm-knowledge-bases.md).
 
+### Dex (Dave Khaled)
+
+Open-source personal operating system (POS) built on Claude Code. ~60 skills that compound over time via a `session_start` hook injecting weekly goals, projects, and learnings into every new chat. Used by the field CPO of Pendo.io to manage enterprise accounts, synthesize market intelligence, and generate PRDs.
+
+Key skills:
+- *Daily plan* — morning briefing pulling calendar, CRM (Clary), meeting notes (Granola), YouTube, LinkedIn, newsletters into a unified situational report with prioritized actions
+- *Health score* — account health across all enterprise deals; surfaces where help is most needed proactively
+- *X-ray* — explains how any Dex command works via mermaid diagrams, teaching the user AI fluency as they use the system
+- *Backlog* — collects ideas, ranks by impact/alignment/token efficiency, competes human vs. AI ideas
+
+MCP architecture: Dave creates a custom MCP server for each new integration by pointing Claude at the API documentation with an API key: "Hey, read the API docs for this tool. Create me an MCP server." MCP preferred over raw API calls because it provides better guardrails and context representation.
+
+CLAUDE.md philosophy: keep it short (progressive disclosure to other files), version-control via git for regression recovery, periodically audit with Claude itself. Key test: "Is this system for you or for others?"
+
+See [Agent Harness](agent-harness.md) for the `session_start` hook pattern that makes Dex compound over time.
+
 ### Content-Skill-Graph (Ronin)
 
 A content production system built entirely on markdown skill files with wikilinks. Replaces a content team or $5-8K/month agency retainer with a folder of 17 interconnected `.md` files.
@@ -144,3 +160,4 @@ The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across 
 - "slavingia/skills" — Sahil Lavingia (GitHub) ([link](https://github.com/slavingia/skills))
 - "The Claude Code Setup Nobody Shows You" — Aakash Gupta / Carl Votti (video, Apr 2026) ([link](https://youtube.com/watch?v=Eqh2iwSl570&si=CgkjC-SZIXj-KR8C))
 - "How To Build Own Content Engine? (FULL COURSE)" — Ronin (tweet thread, Apr 2026)
+- "Automate Your Entire Work Life With Claude Code — No Coding Needed" — Aakash Gupta / Dave Khaled (video, Apr 2026)

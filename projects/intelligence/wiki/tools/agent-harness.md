@@ -156,6 +156,18 @@ Agents operate through APIs, scripts, and structured commands — bypassing GUIs
 
 Linear's error: built an embedded agent (GUI-first), but customers wanted MCP support so external agents could connect to Linear's data. Basecamp's success: full CLI + revamped API with structured JSON output.
 
+## Claude Code Hooks in Practice
+
+Claude Code exposes hooks that fire at specific lifecycle points — `session_start`, `pre_tool_use`, `post_tool_use`, `stop`. These are a concrete implementation of the harness-as-context-manager concept.
+
+The `session_start` hook is particularly powerful for personal operating systems: it fires when a new Claude Code session opens and can inject structured context (weekly priorities, active projects, past learnings, constraints) before the user types a word. This makes the system compound over time — every session builds on everything from previous sessions, rather than starting from an empty context window.
+
+*Practical demonstration* (Dave Khaled, "Dex" personal OS, Apr 2026): Session start hook loads weekly goals, quarterly priorities, account health data, and a list of mistakes made in previous sessions. The CLAUDE.md file for this system deliberately stays short and acts as a map (progressive disclosure) — but the hook ensures the key context always lands, regardless of the CLAUDE.md content.
+
+Key insight: CLAUDE.md is good guidance but *not always adhered to*. Session start hooks are adhered to every single time because they fire programmatically. For time-sensitive context (current priorities, recent learnings), hooks are more reliable than CLAUDE.md alone.
+
+Operational tip: version-control your CLAUDE.md via git. In high-iteration systems, CLAUDE.md regressions are common — you'll want the ability to revert to a previous version that worked.
+
 ## Harness Coevolution with Models
 
 Models are now post-trained with specific harnesses in the loop. Claude Code's model learned to use the specific harness it was trained with. Changing tool implementations can degrade performance.
@@ -174,3 +186,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Harness engineering: leveraging Codex in an agent-first world" — Ryan Lopopolo, OpenAI (Feb 2026) ([link](https://openai.com/news/engineering/))
 - "Harness, Memory, Context Fragments, & the Bitter Lesson" — Viv (tweet, Apr 2026) ([link](https://x.com))
 - "The New Software: CLI, Skills & Vertical Models" — Sandhya (tweet thread, Apr 2026) ([link](https://x.com))
+- "Automate Your Entire Work Life With Claude Code — No Coding Needed" — Aakash Gupta / Dave Khaled (video, Apr 2026) ([link](https://www.youtube.com/watch?v=...))

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # DHH (David Heinemeier Hansson)
@@ -42,6 +42,23 @@ Practical patterns from 37signals:
 
 DHH argues Ruby on Rails (and similar high-level frameworks) become *more* relevant in the AI era because they're well-suited to working with AI agents. The abstraction level matches how agents process and generate code. See [Agentic Engineering](../tools/agentic-engineering.md).
 
+## Nuances and Tensions (Lex Fridman Interview)
+
+DHH's AI enthusiasm is genuine but has clear limits — especially visible in the longer Lex Fridman conversation.
+
+*Speed as the bottleneck:* "When I use Claude Code, the terminal version, I get too impatient. It feels like I'm going back to a time where code had to compile." He's been writing Ruby for 20 years without compile waits — the latency interrupts his flow state in a way compiled languages never had to.
+
+*Competence preservation:* This is DHH's deepest concern. Programming has intrinsic value to him, not just instrumental value. He's watched great programmers who got promoted lose touch with coding the moment they stopped writing it daily. He worries AI creates the same degradation pattern for developers who over-delegate. *"If you don't have your fingers in the sauce, you're going to lose touch with it."*
+
+*On learning to program with AI:* "I don't know what the advice is. It's not enough to just use Cursor or Copilot to generate code." The Lex corollary: if you become a "tap monkey," that's not a marketable skill — "Can anyone just tap?" This directly contradicts the simple "AI amplifies juniors" narrative.
+
+*The VR parallel:* "In 1995, 'The Lawnmower Man' had me convinced we were five years from living in VR. We're 30 years later, VR is still not here." Applied directly to AI hype — the promise is real, but "nobody fucking knows anything" about the timeline or where it leads.
+
+*DeepSeek's think box:* More impressed by DeepSeek's visible chain-of-thought reasoning than by ChatGPT or Claude: "I almost wanted to think, is this a gimmick? This is incredibly human how it thinks." The discomfort is meaningful — the humanness is real and slightly frightening.
+
+*Gratitude framing:* "I've been a programmer for nearly 30 years. If that's over tomorrow, I shouldn't look at that with regret. I should look at it with gratitude." This is a notably mature stance — 30 years of economically valuable work doing exactly what he loved.
+
 ## Sources
 
 - "DHH's new way of writing code" — The Pragmatic Engineer / DHH (video, Apr 2026) ([link](https://youtube.com/watch?v=JiWgKRgdgpI&si=aXXPl8vlQLvfLDqn))
+- "DHH: Future of Programming, AI, Ruby on Rails..." — Lex Fridman Podcast (video, 2026)

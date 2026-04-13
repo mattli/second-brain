@@ -85,6 +85,15 @@ Related: Balaji Srinivasan's thesis that local files outlast apps, and Paul Grah
 
 The [Obsidian Second Brain](https://twitter.com/CyrilXBT) pattern (CyrilXBT) demonstrates this in practice: using Obsidian + Claude to build a personal knowledge system where the agent reads and writes to the same markdown files the human uses.
 
+**Defileo's "Claude + Obsidian" implementation** takes this further with a full operational playbook. Key additions beyond the basic pattern:
+
+- *Morning briefing automation* — A Python script on a cron job reads Memory.md for due actions, checks /raw-sources for new files from the last 24 hours, and prints a clean terminal briefing at 7:30am daily. Set up once, runs forever.
+- *Transcript → system update pipeline* — Process a call transcript in one prompt: extract decisions, action items with owners/deadlines, and 3-bullet summary. Route to Action-Tracker.md, Decision-Log.md, and client notes — with backlinks. Nothing lost to chat history.
+- *Terminal-first workflow* — "You don't even need to open Obsidian. Point Claude Code at the folder, work from the terminal, and your second brain quietly builds itself in the background. Obsidian is just the window you look through."
+- *The maintenance death spiral* — Most second brain projects die the same way: start organized → maintenance piles up → skip it → system degrades → back to scattered notes → rebuild 6 months later → repeat. Claude breaks the cycle because maintenance is just a command. Reorganizing the entire vault is a prompt.
+
+Defileo explicitly traces the pattern to Vannevar Bush's Memex (1945): "a personal, curated knowledge store where the connections between documents are as valuable as the documents themselves. He called it the Memex. The part he couldn't solve was who does the maintenance."
+
 ## Open Questions
 
 - How well does this scale beyond ~100 articles / 400K words? At what point does agent navigation break down and you need search tooling like qmd?
@@ -105,3 +114,4 @@ The [Obsidian Second Brain](https://twitter.com/CyrilXBT) pattern (CyrilXBT) dem
 - "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
 - "How I Turned Obsidian Into a Second Brain That Runs on Claude" — CyrilXBT (tweet, Apr 2026) ([link](https://x.com/cyrilxbt/status/2040988306154901742/?s=12&rw_tt_thread=True))
 - "How I Turn Learning Into a Workflow in the AI Era" — Tw93 (Apr 2026)
+- "Claude + Obsidian have to be illegal" — Defileo (tweet thread, Apr 2026) ([link](https://x.com/defileo_))

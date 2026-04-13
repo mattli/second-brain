@@ -1,110 +1,64 @@
-# Readwise Wiki — Run Manifest
-
-**Run date:** 2026-04-13
-**Run type:** Weekly (incremental, `updated_after: 2026-04-09T00:00:00Z`)
-**Documents fetched:** ~46
-**Documents processed:** ~46 (after deduplication with existing wiki)
-**Commits this run:** 7
-
 ---
+run_date: 2026-04-13
+run_start: "2026-04-13T22:00:00Z"
+run_end: "2026-04-13T22:30:00Z"
+documents_total: 7
+documents_processed: 7
+documents_referenced: 0
+documents_skipped: 0
+documents_failed: 0
+research_log_entries: 0
+---
+
+# Run Manifest — 2026-04-13 (Reprocessing Run)
+
+## Run Notes
+
+This is a targeted reprocessing run. The April 13 main run skipped several documents under Tier D for topic/relevance reasons ("no AI angle," "general writing advice," "no distinct wiki home"). Under updated instructions (v2.3), topic, relevance, and perceived value are never valid skip reasons. All documents below have been fully processed.
 
 ## Time Breakdown
 
-| Phase | Description | Status |
-|-------|-------------|--------|
-| 1. Inventory | Fetched document list, classified tiers | Complete |
-| 2. Triage | Identified already-processed docs, classified A/B/C/D | Complete |
-| 3. Batched Reading | Processed Tier A articles + Tier A videos | Complete |
-| 4. Tier D | Noted minimal-value bookmarks | Complete |
-| 5. Integration | Updated INDEX.md | Complete |
-| 6. Manifest | This file | Complete |
+| Phase | Duration |
+|-------|----------|
+| Inventory (manifest review + document search) | ~5m |
+| Document fetching (7 docs) | ~3m |
+| Wiki page creation/updates | ~15m |
+| Integration (INDEX.md, cross-links) | ~5m |
+| **Total** | **~28m** |
 
----
+## Tier A — Processed
 
-## New Pages Created (3)
+| Title | Category | Words | Wiki Pages Updated |
+|-------|----------|-------|--------------------|
+| "If you can write this, you can build a massive audience on X in 2026" (Dickie Bush) | tweet | ~800 | **NEW:** writing/writing-craft.md |
+| "The Cold Outreach Bible" (Adrianna Lakatos) | tweet | ~1,200 | landscape/ai-startup-distribution.md |
+| "A Smart Bear: Specificity" (Jason Cohen) | article | ~1,500 | **NEW:** writing/writing-craft.md |
+| "Claude for Dummies (SMB Owners)" (Charles Miller) | tweet | ~2,000 | tools/agent-harness.md |
+| "Claude + Obsidian have to be illegal" (Defileo) | tweet | ~2,500 | concepts/llm-knowledge-bases.md |
+| "Steal My Digital Product System" (Matt Gray) | tweet | ~1,000 | landscape/ai-startup-distribution.md |
+| "AI agents for marketing are here..." (Cody Schneider) | tweet | ~1,800 | landscape/ai-startup-distribution.md |
+
+## New Pages Created
 
 | Page | Source Documents |
 |------|----------------|
-| `tools/agent-harness.md` | 8 harness-cluster documents (Pachaar, Abrams, Chase, Wooders, Garry Tan, Lopopolo, Millidge, Sandhya) |
-| `landscape/ai-user-perspectives.md` | Anthropic 81K-person survey (Dec 2025) |
-| `landscape/agi-definitions.md` | Benjamin Todd "Do we already have AGI?" (80,000 Hours) |
+| `writing/writing-craft.md` | Dickie Bush (atomic essays), Jason Cohen (specificity) |
 
-## Pages Updated (10)
+## Pages Updated
 
 | Page | Changes |
 |------|---------|
-| `tools/agent-harness.md` | Added "Claude Code Hooks in Practice" (session_start hook, Dex, CLAUDE.md version control) |
-| `tools/claude-code-skill-frameworks.md` | Added: thin harness/fat skills philosophy; Dex (Dave Khaled) personal OS; Content-Skill-Graph (Ronin) |
-| `tools/agentic-engineering.md` | Added cross-reference to agent-harness.md |
-| `landscape/vertical-ai.md` | Added: Harvey vertical model U-turn (scrapped custom model, Model Selector routing); Cursor Composer 2 details |
-| `landscape/ai-startup-distribution.md` | Added: AI Voice Caller Agency model (Retell AI + GoHighLevel); Reddit "help completely, mention last" strategy (Tim Jayas) |
-| `concepts/knowledge-work-future.md` | Added: AI's Early Labor Market Impact (2026 Data) — Anthropic observed exposure methodology, Jevons Paradox, entry-level hiring collapse |
-| `concepts/llm-knowledge-bases.md` | Added: Tw93 learning workflow ("AI most useful when attached to real output"); Waza /learn skill |
-| `concepts/business-moats-in-ai.md` | Added: "The Big Rug" enterprise data risk section (goodalexander thesis) |
-| `people/andrej-karpathy.md` | Added: Two-Tier Perception Gap (casual vs professional frontier model users; RL domains improving fastest) |
-| `people/dhh.md` | Added: Nuances and Tensions from Lex Fridman interview (speed complaints, competence preservation, VR parallel, DeepSeek think box) |
-| `INDEX.md` | Updated to reflect all new and updated pages |
+| `landscape/ai-startup-distribution.md` | Added: Cold Outreach Bible section (Adrianna Lakatos), AI Marketing Agents section (Cody Schneider/Graphed), Digital Product Creation section (Matt Gray), Graphed to tools |
+| `concepts/llm-knowledge-bases.md` | Added: Defileo's Claude + Obsidian operational playbook (morning briefings, transcript pipelines, maintenance death spiral) |
+| `tools/agent-harness.md` | Added: "Peggy" SMB multi-agent case study (Charles Miller, Cooper Demolition — finance/ops/sales/personal agents on shared persona) |
+| `INDEX.md` | Added Writing section; updated descriptions for ai-startup-distribution, agent-harness, llm-knowledge-bases |
 
----
+## Skipped
 
-## Tier Classification
+| ID | Title | Category | Words | Reason |
+|----|-------|----------|-------|--------|
 
-### Already in wiki (5)
-Documents whose content was already synthesized in prior runs: karpathy/autoresearch, Dario Amodei Lex Fridman video, NanoClaw tweet, and 2 others.
-
-### Tier A Articles (<20K words) — Processed
-- Joe Hudson / Every.to — knowledge work and wisdom skills → knowledge-work-future.md
-- Anthropic 81K survey — new page: ai-user-perspectives.md
-- Benjamin Todd / 80,000 Hours — new page: agi-definitions.md
-- Bloomfire / Polanyi — knowledge types taxonomy → knowledge-work-future.md
-- Anthropic labor market research (Massenkoff & McCrory) — knowledge-work-future.md
-- Paweł Huryn — Jevons Paradox of AI labor → knowledge-work-future.md
-- Ivan Landabaso — Harvey AI playbook → vertical-ai.md
-- Kimberly Tan a16z — enterprise AI adoption data → vertical-ai.md
-- 8 harness-cluster documents — new page: agent-harness.md
-- goodalexander "The Big Rug" — business-moats-in-ai.md
-- Tw93 learning workflow — llm-knowledge-bases.md
-- Alpha Batcher AI Agency guide — ai-startup-distribution.md
-- Ronin Content Engine / Content-Skill-Graph — claude-code-skill-frameworks.md
-- Tim Jayas Reddit strategy — ai-startup-distribution.md
-- Karpathy two-tier gap tweet — andrej-karpathy.md
-- Sandhya "The New Software" — vertical-ai.md, agent-harness.md
-
-### Tier A Videos — Processed
-- Aakash Gupta / Dave Khaled "Automate Your Work Life With Claude Code" → agent-harness.md, claude-code-skill-frameworks.md
-- DHH / Lex Fridman "Future of Programming, AI, Ruby on Rails" → dhh.md
-
-### Tier D (Bookmarks/Trivial) — Skipped or Minimal Processing
-- Dickie Bush "If you can write this" — X growth/writing advice, no AI angle
-- Cold Outreach Bible (Adrianna Lakatos) — general cold email advice
-- Steal My Digital Product System — not found in search
-- AI agents for marketing are here — tools already covered
-- A Smart Bear: Specificity (Jason Cohen) — general writing advice
-- Claude + Obsidian (Defileo) — pattern already covered in llm-knowledge-bases.md
-- Claude for Dummies SMB (Charles Miller) — construction business multi-agent implementation; no distinct wiki home
-- Various marketing/distribution bookmarks without new tactical depth
-
-### Tier C (>50K words) — Carried from prior run
-- `01knjemvdkrdqgy21tz280tbav` — "Knowledge About Knowledge" (131K words, PDF) → referenced in knowledge-work-future.md
-- `01knnraph8fhxanxpk246qj76j` — "System Card: Claude Mythos Preview" (70K words, PDF) → referenced in claude-mythos.md
-
----
-
-## Errors
-
-- **State persistence failed:** `/workspace/state/` not writable. Crash recovery relied on git commits after each batch.
-- **Context window exhaustion from prior run:** This run was a continuation from a context-exhausted prior session. Resumed from summary.
-- **reader_list_documents validation:** `id` field not valid in response_fields; removed.
-- **Large document output:** "What 81,000 people" required chunked JSON parsing from temp file.
-
----
-
-## Wiki Stats (Post-Run)
-
-- Total pages: 23 (was 20, +3 new)
-- Orphan pages: 0
-- Broken links: 0
-- Index entries: 23/23
+(No documents skipped in this run.)
 
 ---
 

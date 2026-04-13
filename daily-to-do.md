@@ -1,3 +1,21 @@
+# April 13 – April 19
+
+### Wednesday, April 15
+
+- [ ] Go to Costco
+
+---
+
+### Monday, April 13
+
+- [ ] Overnight oats at Bluey's
+- [ ] Read Daily Digest
+- [ ] Read Infinite Jest
+- [ ] Continue to think through product ideas
+- [ ] Update Coldmountain.ai
+
+---
+
 # April 6 – April 12
 
 Goals: Ship pmtxt V0.1 privately.

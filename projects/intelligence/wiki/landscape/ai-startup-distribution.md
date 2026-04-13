@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-04-13
+
 ---
 
 # AI Startup Distribution
@@ -31,13 +32,34 @@ Tactical pattern: find threads where someone is struggling with a problem you've
 
 Key contrast with other channels: Reddit replies convert from contextual relevance. Someone searching for how to solve their exact problem today — vs. someone who gets a DM from a stranger — is already sold on needing the solution.
 
-## Cold Email as Founder Channel
+## Cold Email / Cold Outreach
 
-Origami (YC W26) went from 0 → $10K MRR in 30 days using only cold email:
+### Origami Case Study (YC W26)
+
+Origami went from 0 → $10K MRR in 30 days using only cold email:
 - 50-75 highly targeted emails/day, <$100 total spend
 - 5.3% response rate from 3,119 emails → demos with 64 founders
 - Key: ultra-specific customer profiles, 5-8 sentence emails, talk about their pain points not your features
 - 493 sales calls in first 3 months. "90%+ of time figuring out what the customer actually needs"
+
+### The Cold Outreach Bible (Adrianna Lakatos)
+
+Adrianna Lakatos (pre-seed investor at f.inc, $100-250K checks into AI/hardware/robotics) cold-emailed her way into life-changing opportunities — including flying to San Francisco three days after emailing the founder of Buildspace, and getting $20K extra scholarship money from Ohio State by simply asking.
+
+**The 8 common mistakes:**
+
+1. *Invisible subject line* — "Quick question" / "Partnership Opportunity" get deleted. Make it specific enough that only one person could have received it.
+2. *Copy-pasted opener* — "Hope you're doing well" = delete. Try: "I'll keep this short bc you don't care yet."
+3. *Too long* — Five lines max: hook, why it matters to them, your ask, low-effort CTA, sign off. "If you can't say it in five, you don't understand your own offer well enough."
+4. *Ask feels like homework* — "Would love to connect" = nothing happens. Instead: "mind if I send a 2-min demo?" or "got 5 min for a quick yes/no?"
+5. *No follow-up* — Most replies come from follow-ups, not the first email. Day 3: bump. Day 7: "worth a quick look or should I close this out?" Giving an easy out somehow makes them more likely to say yes. Best follow-up isn't a nudge — it's news (traction, a milestone).
+6. *All about you* — "Let me know if there's anything you need help with" → "this might save your team 5 hours a week."
+7. *Too formal* — Write like a smart friend, not a desperate applicant. Use contractions, fragments, first name only.
+8. *Same approach everywhere* — Twitter DMs (short, casual), cold emails (structured but direct), investor emails (lead with traction, no fluff).
+
+**The template (40%+ reply rate):** Specific subject line → one sentence showing you paid attention → one sentence on why (framed around them) → one sentence on outcome → low-friction ask. Five lines.
+
+**The real secret:** Volume + iteration. Send 100 emails. Track replies. Kill what doesn't work. Double down on what does. First 50 will suck. By email 100, you'll have a system.
 
 ## X (Twitter) as Launch Channel
 
@@ -85,10 +107,39 @@ A concrete operating model for productizing AI skills into a service business ta
 
 *Niche selection criteria:* TAM ≥ 20K businesses in target country; fast sales cycle (dentist > real estate agent); stay in one niche 3-6 months before switching.
 
+## AI Marketing Agents (Autonomous Go-To-Market)
+
+Cody Schneider (co-founder, Graphed) demonstrates the emerging pattern of **persistent AI marketing agents** connected to live business data — fundamentally different from chat-based AI because these agents evolve, learn from what you teach them, and ingest skills.
+
+**The workflow (built on Graphed):**
+
+1. *Keyword research* — Agent uses Google Search Console + Ahrefs API to find opportunities based on actual ranking data
+2. *Content research* — Agent uses Serper.dev to find what's ranking on page 1 for target keywords, then uses Exa to extract content from those pages
+3. *Content creation* — Agent writes blog posts informed by both current SERP rankings and the founder's own perspective (provided via transcript)
+4. *Publishing* — Agent publishes directly to CMS via Strapi API
+5. *Recurring execution* — Entire workflow becomes a daily cron job. One article per day, fully autonomous.
+
+**Key differentiation from chat AI:** Agents are connected to a data warehouse of live business data. Decisions are based on what actually drives revenue — e.g., optimize for signup conversion events and let that influence what the agent writes next. This solves the core problem of previous agents: bad decisions from bad data.
+
+**Broader applications:** Facebook/Google ad management (auto-kill high-CPM ads), social media research/scheduling/analytics, cold outbound (find accounts → extract emails via Apollo API → validate → add to Instantly → manage responses).
+
+## Digital Product Creation (The Creator-to-Product Pipeline)
+
+Matt Gray (Founder OS) outlines a 4-phase system for experts/creators to launch digital products:
+
+1. **The 3-DM Rule** — If 3 different people asked you the same question in the last 60 days (DMs, comments, inbox, sales calls), that question is a product. Also: "Talk Time" — spend 30 minutes with sales/support team asking what questions they hear repeatedly. Check Reddit, Quora, Facebook groups for "how do I..." posts sorted by upvotes.
+
+2. **MVP Framework** — Build V1 in a weekend. For courses: one Notion page, 5-10 minute Loom recordings per module, written summary, one exercise. For templates: build the actual working system in Notion (not a tutorial about building it). Avoid feature bloat — one lean, high-impact solution.
+
+3. **Launch Waterfall** — Get people to "raise their hand" before mentioning the product. End every content post with: "I'm putting together something to help with exactly this. Reply if you want early access." Count the replies — that's your sales floor.
+
+4. **Category of One** — Pick one word you want to own in your niche. Build everything around it. Matt's word: "systems." When he launched his first course, he was selling to people who already associated his name with that word.
+
 ## Tools Noted
 
 - **Origami** — AI-powered lead generation. "One prompt to find what Apollo, ZoomInfo, and hours in Clay can't." Searches 50+ sources in real-time.
 - **Okara AI CMO** — Enter website URL, deploys agent team across SEO, Reddit, Hacker News, X. Claims to replace $60-160K/year in marketing hires for $99/month.
+- **Graphed** — Data warehouse + agent platform for marketing. Connects live business data (Google Search Console, Ahrefs, CMS, ad platforms) to persistent AI agents that execute go-to-market workflows autonomously.
 - **Dodo Payments** — Billing/payments platform for AI-first companies. Credit-based billing, usage metering, global MoR.
 
 ## Sources
@@ -102,3 +153,6 @@ A concrete operating model for productizing AI skills into a service business ta
 - "Making $$ with AI Marketing" — The Startup Ideas Podcast (tweet, Apr 2026) ([link](https://x.com/startupideaspod/status/2038697353855787133/?rw_tt_thread=True))
 - "Full-cycle guide to start your own AI Agency (From $0 To $10K/mo)" — Alpha Batcher (tweet thread, Apr 2026)
 - "How I spent 30 minutes a day on Reddit to get my first 100 customers" — Tim Jayas (tweet thread, Apr 2026)
+- "The Cold Outreach Bible" — Adrianna Lakatos (tweet thread, Apr 2026) ([link](https://x.com/adriannalakatos))
+- "AI agents for marketing are here..." — Cody Schneider (tweet/video, Apr 2026) ([link](https://x.com/codyschneidertx))
+- "Steal My Digital Product System" — Matt Gray (tweet thread, Apr 2026) ([link](https://x.com/mattgray1))

@@ -33,6 +33,7 @@ intelligence/
 │   ├── models-safety/      # Models & Safety
 │   ├── landscape/          # Landscape
 │   ├── people/             # People
+│   ├── <new>/              # Compiler creates new folders as needed
 │   └── raw/                # Research log (Wiki Tutor → compiler pipeline)
 │       ├─�� research-log.md # Append-only log of web research from Wiki Tutor
 │       └── _archive/       # Processed entries archived by week
@@ -101,7 +102,7 @@ The wiki runs as a **scheduled task Monday and Thursday at 3am**, processing Rea
 
 ### Current Pages
 
-The wiki has 20 topic pages organized into 5 category folders (concepts, tools, models-safety, landscape, people). See `wiki/INDEX.md` for the full list.
+See `wiki/INDEX.md` for the full list of pages. The compiler creates new category folders as needed — the wiki covers all topics the user saves, not just AI/tech.
 
 ## Briefing Execution
 

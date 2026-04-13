@@ -1,6 +1,6 @@
 Readwise Wiki Compiler — Instructions
 
-> Version: 2.2 | Last updated: 2026-04-09
+> Version: 2.3 | Last updated: 2026-04-13
 
 ## Purpose
 
@@ -8,15 +8,9 @@ Compile Readwise saves into a persistent, interlinked wiki. This is a knowledge 
 
 This follows Karpathy's LLM Wiki pattern: you read the sources, extract key information, and integrate it into the existing wiki — updating pages, noting where new data connects to or contradicts existing content, and keeping cross-references current. The knowledge is compiled once and kept current.
 
-Output goes to `wiki/` relative to the intelligence project directory. The wiki is organized into category folders:
+Output goes to `wiki/` relative to the intelligence project directory. The wiki is organized into category folders. Check `wiki/INDEX.md` for the current folder structure.
 
-- `wiki/concepts/` — Concepts & Patterns
-- `wiki/tools/` — Tools & Frameworks
-- `wiki/models-safety/` — Models & Safety
-- `wiki/landscape/` — Landscape
-- `wiki/people/` — People
-
-Place new pages in the matching existing folder. If no folder fits, leave the page at the `wiki/` root. Never create new folders — that requires user approval.
+**Folder management:** Place new pages in the best-fitting existing folder. If no folder fits, create a new one — use a short, descriptive kebab-case name (e.g., `writing/`, `marketing/`, `health/`). Add the new folder as a section in `INDEX.md`. Don't over-fragment: a folder should represent a broad topic area, not a single article's subject.
 
 ---
 
@@ -73,7 +67,7 @@ Classify each document into processing tiers:
 - **Tier A (full read):** Under ~20K words. The bulk of most runs — articles, tweets, videos with transcripts.
 - **Tier B (full read, large):** 20K-50K words. Fetch full content directly. Fits comfortably in Opus's 200K context. Processed the same way as Tier A but tracked separately for batch-size differentiation.
 - **Tier C (reference only):** Over 50K words. Not synthesized by this compiler. A metadata-only reference is attached to the most relevant existing wiki topic page. See Phase 4 below.
-- **Tier D (bookmark):** Minimal content (landing pages, tool repos, short bookmarks with no substantive body). Note on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, append to `wiki/unorganized.md` under `## Bookmarks` instead (see Phase 3). Tier D documents are never skipped for relevance — only for mechanical reasons (`already_in_wiki`, `duplicate_in_run`, `no_content`, `fetch_failed`).
+- **Tier D (bookmark):** Minimal content (landing pages, tool repos, short bookmarks with no substantive body). Note on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, append to `wiki/unorganized.md` under `## Bookmarks` instead (see Phase 3). Tier D documents are never skipped for relevance or topic — only for mechanical reasons (`already_in_wiki`, `duplicate_in_run`, `fetch_failed`). Topic, relevance, and perceived value are never valid skip reasons for any tier.
 
 Skip decisions are recorded per-document for the manifest (see Phase 6). For each document not assigned to a tier, record its ID, title, category, word_count, and the skip reason (one of: `already_in_wiki`, `duplicate_in_run`, `no_content`, `fetch_failed`).
 
@@ -162,14 +156,17 @@ Write `wiki/LAST_RUN_MANIFEST.md` with the full audit trail. See the Manifest Sc
 - File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
 - Each page has YAML frontmatter with `created_at` (set once) and `last_updated` (set to today's date when content changes).
 
-**What pages to create is your decision.** Heuristics:
+**What pages to create is your decision.** The wiki covers everything the user saves — not just AI/tech. Writing, marketing, business, health, productivity, history, or any other topic is equally valid. If the user saved it, it has signal.
+
+Heuristics:
 - A concept that appears across multiple sources → page
 - A person doing notable work that comes up repeatedly → page
 - A technique, framework, or tool with enough substance → page
 - A broad theme that many sources touch → page
+- A single article with enough standalone substance to be a useful future reference → page (don't wait for multiple sources on every topic)
 - A tool or product bookmark → don't create a standalone page; mention it on the relevant topic page as a data point
 
-Don't create a page for every minor mention. Create pages when there's enough substance to make a useful reference.
+Don't create a page for every minor mention. Create pages when there's enough substance to make a useful reference. Every document the user saved gets processed — topic, relevance, and perceived value are never reasons to skip or downgrade.
 
 ## Page Template
 
@@ -293,8 +290,9 @@ research_log_entries: N
 Skip reasons:
 - `already_in_wiki` — document content already represented in an existing wiki page (matched by title, URL, or Readwise ID against sources sections)
 - `duplicate_in_run` — same document appeared more than once in the fetch results
-- `no_content` — no transcript available, empty fetch, or trivially short body
 - `fetch_failed` — MCP tool returned an error when fetching document details
+
+Documents with no extractable body content are NOT skipped. If the document has a title and URL, process it as Tier D (bookmark it on the relevant topic page or `unorganized.md`). The user saved it intentionally.
 
 Every skipped document must appear in this table. A count-only summary is not acceptable.
 

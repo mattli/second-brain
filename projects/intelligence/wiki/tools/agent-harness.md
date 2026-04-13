@@ -168,6 +168,26 @@ Key insight: CLAUDE.md is good guidance but *not always adhered to*. Session sta
 
 Operational tip: version-control your CLAUDE.md via git. In high-iteration systems, CLAUDE.md regressions are common — you'll want the ability to revert to a previous version that worked.
 
+## Real-World SMB Harness: "Peggy" (Charles Miller, Cooper Demolition)
+
+Charles Miller, a construction business owner running Cooper Demolition (site preparation specialty subcontractor), built a multi-agent architecture he calls "Peggy" — proving that agent harnesses aren't just for tech companies. His framing: if a demolition contractor can use this, so can any SMB owner.
+
+**Hardware & Stack:** Mac Mini ($600) running 24/7, accessed remotely via Tailscale. Claude Max ($100/mo), MS 365 (Outlook), Airtable (shared memory via API). Deliberately uses existing subscriptions to minimize implementation effort. More elegant stacks exist, but this gets SMBs off the ground with minimal risk.
+
+**Shared persona architecture:** All agents operate under one identity ("Peggy Olson, Executive Assistant") sharing the same rulebook, CRM, memory file, and to-do list. This makes the system feel coherent rather than a pile of disconnected automations. Peggy has her own company email — employees interact by emailing her like any other teammate.
+
+**Four specialized agents:**
+1. *Finance Agent* — Weekly WIP reports, 13-week cash flow model, AR aging/reconciliation on fixed schedules. Lands in the right inboxes before the workweek starts.
+2. *Operations Agent* — Scans email every 30 minutes, triages, maintains to-do list, sends morning briefing. Handles compliance tracking, project submittals, change orders, budget tracking. Directly interacts with project managers.
+3. *Sales Agent* — CRM updates with auto-captured contacts, pipeline monitoring, deal status tracking.
+4. *Personal EA* — Travel documents, loyalty programs, important dates, relationship context in CRM.
+
+**Why segregated agents:** Parallel task performance and risk mitigation. Each agent only accesses its specialty area files — sandboxing is "a major reason for widespread Claude adoption when compared to options like OpenClaw."
+
+**Interaction model:** Primarily through Claude Dispatch — single chat session on phone/laptop with full visibility into everything Peggy does. Also accepts emails from any employee. Background tasks via Claude Cowork scheduled tasks (not Claude Code) — chosen for the approachable UI, with expectation that capabilities will converge.
+
+**Key insight for harness design:** The shared persona + shared memory + sandboxed tool access pattern makes multi-agent systems feel like one coherent assistant to non-technical users. This is a distribution strategy for agent adoption in AI-resistant industries.
+
 ## Harness Coevolution with Models
 
 Models are now post-trained with specific harnesses in the loop. Claude Code's model learned to use the specific harness it was trained with. Changing tool implementations can degrade performance.
@@ -187,3 +207,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Harness, Memory, Context Fragments, & the Bitter Lesson" — Viv (tweet, Apr 2026) ([link](https://x.com))
 - "The New Software: CLI, Skills & Vertical Models" — Sandhya (tweet thread, Apr 2026) ([link](https://x.com))
 - "Automate Your Entire Work Life With Claude Code — No Coding Needed" — Aakash Gupta / Dave Khaled (video, Apr 2026) ([link](https://www.youtube.com/watch?v=...))
+- "Claude for Dummies (SMB Owners)" — Charles Miller (tweet thread, Apr 2026) ([link](https://x.com/charlesmiller))

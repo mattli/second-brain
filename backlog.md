@@ -18,6 +18,9 @@
 ### Cold Mountain (coldmountain.ai)
 - [ ] Update Second Brain page — reflect current state of the system (Readwise wiki, dotmd all launched/in progress since last update). Consider pinning Second Brain to the top of the projects list. Add dotmd as an open source project. Consider adding a shipped count or rethinking the layout to better surface what's been built.
 
+### NanoClaw
+- [ ] Investigate silent wiki task failure — 3am run failed mid-session (Anthropic API 502s) with no Telegram notification. Container likely exited non-zero but NanoClaw treated it as complete. Fix: catch non-zero container exits and notify, or have the wiki agent send a failure message before giving up.
+
 ### Infrastructure
 - [ ] Mobile Claude vault access — mobile Claude has no read/write access to the vault; planning sessions can't capture ideas directly. Options: (1) GitHub MCP connector — vault already on GitHub, lowest effort, works today, writes go through git commits; (2) Hosted MCP server via Cloudflare tunnel — more powerful, more work, security surface; (3) Telegram bridge — forward intent from mobile Claude to existing Second Brain agent, indirect but reuses infra.
 - [ ] Investigate how to reliably inject current date/time into LLM context. This was done on Claude desktop. Observing how often I run into the issue in claude code & telegram.

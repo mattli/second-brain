@@ -16,7 +16,7 @@ Second Brain continuously monitors signals across AI, technology, and product. E
 
 Product signals come from X via [Bird](https://www.npmjs.com/package/@steipete/bird), a CLI that searches X's GraphQL API directly. Bird powers a weekly product briefing that mines builder threads and product launches, extracting what people are shipping and what's gaining traction.
 
-Everything I come across — X posts, articles, GitHub repos, newsletters — gets saved to [Readwise](https://readwise.io), which acts as an async intake pipeline. Second Brain synthesizes anything in that queue and surfaces how it connects to what I'm currently working on. [Parallel](https://parallel.ai) handles web search when I need to go deeper on a topic in real time.
+Everything I come across — X posts, articles, GitHub repos, newsletters — gets saved to [Readwise](https://readwise.io), which acts as an async intake pipeline. Second Brain synthesizes anything in that queue and surfaces how it connects to what I'm currently working on. A weekly scheduled agent compiles a personal knowledge wiki from those highlights, following Andrej Karpathy's LLM wiki pattern — cross-referenced markdown pages an agent can query when working on related topics. [Parallel](https://parallel.ai) handles web search when I need to go deeper on a topic in real time.
 
 Everything the system learns and produces is written to a personal knowledge vault as structured markdown, synced to GitHub as the long-term memory of the system.
 

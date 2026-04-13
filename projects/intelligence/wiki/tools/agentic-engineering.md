@@ -13,6 +13,8 @@ Distinct from simply using AI tools, agentic engineering is about building the s
 
 ## Harness Design: "Seeing Like an Agent"
 
+> The harness concept has grown into its own dedicated topic. For a full treatment of what a harness is, its 12 components, the thin harness / fat skills pattern, memory ownership, and design decisions, see [Agent Harness](agent-harness.md).
+
 The Claude Code team (Thariq, Anthropic) published key lessons on designing agent action spaces:
 
 **Core principle:** Give agents tools shaped to their own abilities. The right tool depends on the agent's capabilities, not human intuition. "Put yourself in the mind of the model."

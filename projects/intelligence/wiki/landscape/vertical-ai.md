@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # Vertical AI
@@ -61,6 +61,25 @@ Harvey ($0 → $200M+ ARR in 36 months; ~$11B valuation) is the canonical vertic
 - Proprietary process data from inside law firms sits on top
 - 40% of engineering/product/design team is senior infrastructure engineers (moat is the system, not the prompt)
 
+## Harvey's Vertical Model U-Turn (2025-2026)
+
+Harvey initially built a custom-trained case law model in partnership with OpenAI. Lawyers preferred it over GPT-4 97% of the time. The model drove rapid growth: $190M ARR by January 2026, $11B valuation by March 2026, majority of AmLaw 100 as clients.
+
+Then Harvey scrapped the model.
+
+Frontier reasoning models from Google, xAI, OpenAI, and Anthropic started outperforming Harvey's custom legal model on Harvey's own BigLaw Bench evaluation. Harvey now routes tasks across Claude, Gemini, and GPT via a Model Selector.
+
+*The lesson on vertical model durability:* Fine-tuning wins decisively only when:
+- Query patterns are genuinely specialized and underrepresented in general training data
+- Consequence of errors is high enough to justify sustained investment
+- Company has enough distribution to generate meaningful proprietary feedback
+
+For many categories, the better bet remains exceptional workflow infrastructure, skill files, and agentic orchestration on top of frontier models — a fine-tuned model that requires sustained investment to stay ahead of a constantly improving baseline may not hold its advantage.
+
+*Counterexample:* Intercom's fin-cx-retrieval (custom retrieval model for customer service) works because customer service reasoning is structurally different from general language tasks, and 40M+ resolved conversations have compounded the advantage.
+
+Cursor launched Composer 2 (Apr 2026) — a proprietary coding model built on Moonshot AI's Kimi K2.5 with their own continued pre-training and RL. Scored 61.7% on Terminal-Bench 2.0, beating Claude Opus 4.6 (58.0%), at $0.50/M input tokens (1/10th of Anthropic's flagship). Cursor's strategy: frontier models for hardest reasoning tasks, custom vertical models for everything else.
+
 ## Comparable Cases
 
 - **Healthcare:** Abridge (medical scribing), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record.
@@ -78,3 +97,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 
 - "Harvey AI went from $0 to $200M+ ARR in 36 months" — Ivan Landabaso (tweet thread, Apr 2026) ([link](https://x.com/ivanlandabaso/status/2042179119325082087/?s=12&rw_tt_thread=True))
 - "AI Adoption by the Numbers" — Kimberly Tan (a16z, Apr 2026) ([link](https://www.a16z.news/p/ai-adoption-by-the-numbers?r=1xuh9&utm_medium=ios&triedRedirect=true))
+- "The New Software: CLI, Skills & Vertical Models" — Sandhya (tweet thread, Apr 2026) ([link](https://x.com))

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # Claude Code Skill Frameworks
@@ -62,10 +62,19 @@ Also features a dynamic reviewer ensemble: minimum 6 always-on reviewers plus co
 
 Key insight: "Closing notes solve continuity. A recipe binder solves accumulation. One is linear. One is exponential."
 
+## The Underlying Philosophy: Thin Harness, Fat Skills
+
+Garry Tan's architectural principle (from the same author as gstack): *push intelligence up into skill files, push execution down into deterministic tooling, keep the harness thin.*
+
+Skill files work like method calls: same procedure + different arguments = different capabilities. The skill encodes *how*; the invocation supplies the world. This is why gstack's six slash commands can power radically different workflows — the same /review skill yields different outputs depending on what code it encounters.
+
+See [Agent Harness](agent-harness.md) for the full principle and why "fat harness with thin skills" is the anti-pattern.
+
 ## Related Concepts
 
 - [Agent Proficiency](../concepts/agent-proficiency.md) — The skill of managing these frameworks effectively
 - [Agentic Engineering](agentic-engineering.md) — The broader field these frameworks operate in
+- [Agent Harness](agent-harness.md) — The architectural layer these frameworks sit on top of
 - Anthropic's harness architecture blog (Nov 2025) — The formal framework Vox used to compare these tools
 
 ## Domain-Specific Skill Libraries

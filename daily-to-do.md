@@ -10,7 +10,7 @@ Goals: Find one product to work on
 ### Monday, April 13
 
 - [x] Salmon toast
-- [ ] Read Daily Digest
+- [x] Read Daily Digest
 - [ ] Read Infinite Jest
 - [ ] Install update nanoclaw
 - [ ] Install compact

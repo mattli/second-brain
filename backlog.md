@@ -16,7 +16,7 @@
 - [ ] Readwise wiki → weekly summary integration — After ~4 weekly wiki runs (~mid-May), evaluate whether to add a wiki-update step to the weekly summary agent. Check: (1) Is the wiki being referenced by agents during searches or Q&A? (2) Are there obvious gaps where weekly briefing signals (funding rounds, capability shifts, VC theses) would have made wiki pages more useful? (3) Has the lint step surfaced real issues, or is the wiki too small for it to matter? If yes to 1 or 2, build the pipeline — scope it to factual signals only (AI Context, VC Lens, durable category patterns from Category Movement). Skip analysis, skip indie product listings. If no, the wiki needs more mass from Readwise first.
 
 ### Cold Mountain (coldmountain.ai)
-- [ ] Update Second Brain page — reflect current state of the system (Readwise wiki, dotmd all launched/in progress since last update). Consider pinning Second Brain to the top of the projects list. Add dotmd as an open source project. Consider adding a shipped count or rethinking the layout to better surface what's been built.
+
 
 ### NanoClaw
 - [ ] Diagnose Telegram response latency — messages to the main group take 10–20+ seconds to get a response. Unknown whether it's container cold start, context loading, MCP startup, model latency, or tool calls within the response. Run diagnostic: send a trivial message ("hi") and a vault-lookup message back to back, compare times. If both slow → cold start or model latency. If only complex one slow → context/tool overhead. Possible knobs: warm containers, lower MAX_MESSAGES_PER_PROMPT, trim CLAUDE.md, route simple tasks to Haiku.
@@ -49,3 +49,4 @@
 - [x] Include detected keyword in product briefing export, link, signal? — source attribution added to each product entry (2026-03-27)
 - [x] Tune product briefing research topics — switched from keyword search to thread reply scraping (2026-03-27)
 - [x] Bird search product aggregation — built full pipeline: thread search → product extraction → URL resolution → categorization; consolidated to weekly schedule (2026-03-28)
+- [x] Update coldmountain.ai — added dotmd card, Readwise wiki mention, merged Intelligence/Research and Specification/Execution sections, updated tagline and tech stack (2026-04-13)

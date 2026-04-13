@@ -81,6 +81,10 @@ Coordinated specialized agents take a vetted idea from decision to working proto
 - Model routing — lighter models for fetch/classify, heavier models for synthesis
 - Cost reduction via multi-agent architecture
 
+## Version
+
+**Current:** v1.2.52 (updated 2026-04-13 from v1.2.15). Using native credential proxy (OneCLI deferred). See [update-v1.2.52-2026-04-13.md](update-v1.2.52-2026-04-13.md) for full merge details, nuances, and rollback instructions.
+
 ## Related Docs
 
 - [Intelligence README](../intelligence/README.md) — briefing types, instructions, test runs, architecture, archival
@@ -89,4 +93,5 @@ Coordinated specialized agents take a vetted idea from decision to working proto
 - [mac-mini-setup.md](mac-mini-setup.md) — Mac Mini build order and setup
 - [nanoclaw-setup.md](nanoclaw-setup.md) — planning doc for multi-agent architecture
 - [operator-guide.md](operator-guide.md) — operator reference for managing NanoClaw
+- [update-v1.2.52-2026-04-13.md](update-v1.2.52-2026-04-13.md) — v1.2.52 merge details, decisions, and rollback
 - [instruction-map-2026-04-12.html](instruction-map-2026-04-12.html) — visual map of all CLAUDE.md, MEMORY.md, and instruction files across NanoClaw, ~/.claude, and the vault (open in browser)

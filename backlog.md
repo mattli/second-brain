@@ -20,7 +20,6 @@
 ### NanoClaw
 - [ ] Weekly upstream NanoClaw check — agent task that fetches new upstream releases since last check, flags anything with BREAKING/deprecation/migration in the notes, posts summary to Telegram. Pair with rule: 1 breaking change behind = update within ~2 weeks; 2 stacked = update now. Goal: never discover I'm 30+ commits behind by accident again. (Monitoring half; `update-nanoclaw` skill is the execution half.)
 - [ ] Investigate silent wiki task failure — 3am run failed (root cause: WiFi DNS failure, not API issue) with no Telegram notification. Container exited non-zero but NanoClaw treated it as complete. Fix: catch non-zero container exits and notify. Separate from the network issue — hardwiring to ethernet should prevent the DNS failures, but the missing notification is still a bug.
-- [ ] Update NanoClaw carefully — v1.2.35 (OneCLI Agent Vault) is a breaking change for Docker users. Migration only handles Anthropic and OpenAI keys automatically; Readwise and Parallel API keys in the credential proxy route table must be manually migrated into OneCLI Vault after running `/init-onecli`. Use `/use-native-credential-proxy` skill as escape hatch if things break. Don't run `/update-nanoclaw` without a plan.
 - [ ] Configure /remote-control — NanoClaw feature already merged, not yet configured. Starts a Claude Code session on the Mac Mini directly from Telegram, returns a browser URL. Full host access without SSH. Priority: next time at Mac Mini.
 
 ### Infrastructure
@@ -31,6 +30,7 @@
 - [ ] Set up a dotfiles repo — put shared ~/.zshrc aliases and functions in a private GitHub repo so changes sync across MacBook Pro and Mac Mini without manual duplication. Machine-specific things (vault path, NanoClaw directory) stay in a local file sourced by the shared one.
 
 ### Completed
+- [x] Update NanoClaw v1.2.15 → v1.2.52 — merged 365 upstream commits, kept native credential proxy (Parallel AI, GitHub token, Readwise MCP routes), preserved Telegram multi-bot, per-group model config. OneCLI migration deferred. (2026-04-13)
 - [x] Add session start instructions to main group CLAUDE.md (both machines)
 - [x] **Readwise wiki compiler** — Bootstrapped wiki with 12 pages from 65 saves, scheduled as weekly NanoClaw task (Fridays 10pm). Instructions at `intelligence/instructions/readwise-wiki.md`, output at `intelligence/wiki/`. (2026-04-05)
 - [x] Set up tmux on Mac Mini — keeps SSH sessions alive if connection drops; useful for long Claude Code sessions

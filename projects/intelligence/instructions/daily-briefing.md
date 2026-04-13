@@ -44,7 +44,7 @@ If nothing clears this bar, skip the section entirely — do not list minor mode
 
 ### 3. Funding, Acquisitions & Product News
 Search for major AI-related business news in the last 24 hours strictly:
-- Funding rounds (Series A and above, or notable seed rounds)
+- Funding rounds (Series A and above, or notable seed rounds). Primary source: TechCrunch. Secondary: VentureBeat (venturebeat.com) for AI funding coverage that TechCrunch may not pick up.
 - Acquisitions or mergers involving AI companies
 - **Product news** — new products, major features, significant updates, notable integrations, or access/pricing changes from funded startups or established companies. The test: did something real and usable ship (or materially change) in the last 24 hours from a company people have heard of? Primary source: **TechCrunch** (techcrunch.com). Secondary: scan **Show HN** on Hacker News for launches from funded or well-known teams.
 

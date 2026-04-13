@@ -9,7 +9,7 @@ Goals: Find one product to work on
 
 ### Monday, April 13
 
-- [ ] Overnight oats at Bluey's
+- [x] Salmon toast
 - [ ] Read Daily Digest
 - [ ] Read Infinite Jest
 - [ ] Install update nanoclaw

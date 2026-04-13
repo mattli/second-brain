@@ -1,6 +1,6 @@
 Monthly AI Intelligence Summary — Instructions
 
-> Version: 2.3 | Last updated: 2026-03-28
+> Version: 2.4 | Last updated: 2026-04-12
 
 ## Purpose
 On the 1st of each month, read the last 4–5 weekly summaries and synthesize them into a monthly intelligence summary. The goal is not to recap what happened — the weeklies already did that. The goal is to identify which problems are durable enough to build on, and which trends didn't hold up.
@@ -20,11 +20,12 @@ Save output to `monthly-summaries/YYYY-MM.md` (e.g. `2026-03.md`).
 ### 1. Read the Month's Weekly Summaries
 Read all files in `weekly-summaries/` from the last 4–5 weeks, plus the corresponding `weekly-products/` briefings. Use these as your primary sources — do not re-research news independently.
 
-From the weekly summaries, focus on the **Category Movement** and **Capital vs. Builder Gaps** sections. From the weekly product briefings, read the problem categories and the products listed under each. Track across weeks:
+From the weekly summaries, focus on the **Category Movement** section. From the weekly product briefings, read the problem categories and the products listed under each. Track across weeks:
 - Which problems appeared consistently (3+ weeks)?
-- Which capital-vs-builder gaps kept showing up?
 - Which categories showed real movement (growing, shifting, or consolidating)?
 - Which appeared once and didn't recur?
+
+Note: older weekly summaries (prior to 2026-W16) include a "Capital vs. Builder Gaps" section. This section has been retired from the weekly summary going forward. You may read it for historical context but do not carry it forward as a tracked signal.
 
 Note any missing weeks and continue.
 
@@ -36,7 +37,7 @@ Note any missing weeks and continue.
 3–4 sentences on the overall character of the month from a product perspective. What was the dominant story? Did a new capability open up a cluster of new problems worth solving? Did a category emerge, consolidate, or die? Written last, placed first.
 
 ### Durable Problem Categories
-The heart of the document. Identify 2–5 problem categories that appeared consistently across the month's category movement analysis, product briefings, and capital-vs-builder gaps. A problem that shows up in Capital vs. Builder Gaps three out of four weeks is durable signal.
+The heart of the document. Identify 2–5 problem categories that appeared consistently across the month's category movement analysis and product briefings. A problem that shows up across three or four of the month's weeks is durable signal.
 
 For each problem:
 
@@ -52,12 +53,12 @@ Be concrete. "People struggle with X" is not enough — name the context, the fr
 What looked like a trend this month but didn't hold up? What got attention early and faded, or turned out to be one product's moment rather than a category? Keep this brief — 2–3 items maximum. Knowing what not to build on is as useful as knowing what to build on.
 
 ### Build Candidates
-2–3 high signal specific product ideas grounded in the month's durable problems and persistent gaps. These are prompts for thinking, not business plans.
+2–3 high signal specific product ideas grounded in the month's durable problems. These are prompts for thinking, not business plans.
 
 For each:
 - **What to build:** One sentence.
 - **Who it's for:** The specific person or context.
-- **Why now:** What this month's data suggests about timing — a persistent gap, a capability shift, capital interest without builder activity.
+- **Why now:** What this month's data suggests about timing — a persistent problem, a capability shift, or notable capital interest.
 - **Scrappy v1:** What the smallest useful version looks like.
 
 ### One Big Unresolved Question

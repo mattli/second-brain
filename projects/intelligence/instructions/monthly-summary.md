@@ -1,13 +1,13 @@
 Monthly AI Intelligence Summary — Instructions
 
-> Version: 2.4 | Last updated: 2026-04-12
+> Version: 2.5 | Last updated: 2026-04-12
 
 ## Purpose
-On the 1st of each month, read the last 4–5 weekly summaries and synthesize them into a monthly intelligence summary. The goal is not to recap what happened — the weeklies already did that. The goal is to identify which problems are durable enough to build on, and which trends didn't hold up.
+On the 1st of each month, read the last 4–5 weekly summaries and synthesize them into a monthly intelligence summary. The goal is orientation: identify which problems are durable enough to watch, and which trends didn't hold up. This document is market intelligence, not idea generation — it should help the reader understand where the AI product landscape is heading, not produce candidates to build.
 
 Save output to `monthly-summaries/YYYY-MM.md` (e.g. `2026-03.md`).
 
-**Write the Durable Problem Categories section first, then False Signals, then Build Candidates, then Month in Review last.**
+**Write the Durable Problem Categories section first, then False Signals, then Month in Review last.**
 
 **Empty Sections:** If a section has no genuinely significant content, say so briefly and move on. Never pad with low-signal content to fill space.
 
@@ -50,16 +50,7 @@ For each problem:
 Be concrete. "People struggle with X" is not enough — name the context, the friction, the moment where it breaks down. If a problem doesn't have that level of clarity yet, it's not durable enough to include.
 
 ### False Signals
-What looked like a trend this month but didn't hold up? What got attention early and faded, or turned out to be one product's moment rather than a category? Keep this brief — 2–3 items maximum. Knowing what not to build on is as useful as knowing what to build on.
-
-### Build Candidates
-2–3 high signal specific product ideas grounded in the month's durable problems. These are prompts for thinking, not business plans.
-
-For each:
-- **What to build:** One sentence.
-- **Who it's for:** The specific person or context.
-- **Why now:** What this month's data suggests about timing — a persistent problem, a capability shift, or notable capital interest.
-- **Scrappy v1:** What the smallest useful version looks like.
+What looked like a trend this month but didn't hold up? What got attention early and faded, or turned out to be one product's moment rather than a category? Keep this brief — 2–3 items maximum. Knowing what not to take seriously is as useful as knowing what to take seriously.
 
 ### One Big Unresolved Question
 The single most important thing the month raised but didn't answer. A genuine tension — not a summary, not a prediction. Something that will determine which of several plausible futures we end up in.
@@ -92,16 +83,6 @@ Save to `monthly-summaries/YYYY-MM.md`:
 
 ## False Signals
 [2–3 things that looked like trends but didn't hold up]
-
-## Build Candidates
-
-### [Idea Name]
-- **What to build:** ...
-- **Who it's for:** ...
-- **Why now:** ...
-- **Scrappy v1:** ...
-
-[Repeat for 2–3 ideas]
 
 ## One Big Unresolved Question
 [The most important tension the month raised but didn't answer]

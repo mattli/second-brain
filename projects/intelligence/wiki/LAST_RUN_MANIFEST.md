@@ -1,10 +1,10 @@
 # Readwise Wiki — Run Manifest
 
-**Run date:** 2026-04-09
-**Run type:** Weekly (incremental, `updated_after: 2026-04-02`)
-**Documents fetched:** ~110 (100 from first page + additional)
-**Documents processed:** ~45 (after deduplication with existing wiki)
-**Documents skipped:** ~65 (already in wiki from prior run, duplicates, off-topic, no transcript)
+**Run date:** 2026-04-13
+**Run type:** Weekly (incremental, `updated_after: 2026-04-09T00:00:00Z`)
+**Documents fetched:** ~46
+**Documents processed:** ~46 (after deduplication with existing wiki)
+**Commits this run:** 7
 
 ---
 
@@ -14,95 +14,98 @@
 |-------|-------------|--------|
 | 1. Inventory | Fetched document list, classified tiers | Complete |
 | 2. Triage | Identified already-processed docs, classified A/B/C/D | Complete |
-| 3. Batched Reading | Processed Tier A articles + Tier B videos | Complete |
-| 4. Tier C References | Attached metadata refs for 2 large documents | Complete |
-| 5. Integration | Updated INDEX.md, ran lint (0 orphans, 0 broken links) | Complete |
+| 3. Batched Reading | Processed Tier A articles + Tier A videos | Complete |
+| 4. Tier D | Noted minimal-value bookmarks | Complete |
+| 5. Integration | Updated INDEX.md | Complete |
 | 6. Manifest | This file | Complete |
 
 ---
 
-## New Pages Created (2)
+## New Pages Created (3)
 
 | Page | Source Documents |
 |------|----------------|
-| `dhh.md` | DHH's new way of writing code (Pragmatic Engineer video) |
-| `world-models.md` | World Models explained in 10min (Caleb Writes Code video) |
+| `tools/agent-harness.md` | 8 harness-cluster documents (Pachaar, Abrams, Chase, Wooders, Garry Tan, Lopopolo, Millidge, Sandhya) |
+| `landscape/ai-user-perspectives.md` | Anthropic 81K-person survey (Dec 2025) |
+| `landscape/agi-definitions.md` | Benjamin Todd "Do we already have AGI?" (80,000 Hours) |
 
-## Pages Updated (12)
+## Pages Updated (10)
 
-| Page | Changes | Source Documents |
-|------|---------|----------------|
-| `andrej-karpathy.md` | Added "Decade of Agents" and "Ghosts Not Animals" sections | Karpathy-Dwarkesh interview |
-| `agentic-engineering.md` | Added "Decade of Agents (Karpathy)" section, Great Convergence, Managed Agents (prior session) | Karpathy-Dwarkesh, Peter Yang/a16z, Nicholas Charriere |
-| `agent-proficiency.md` | Added "Corporate Adoption" section (Zapier/Shopify ratings, 3 tool tiers, DHH amplification) | Aakash Gupta PM 10x, Claude Code Setup, DHH video |
-| `ai-native-product-development.md` | Added AI Evals as PRD, Team OS, Vibe Experimentation, AI Transformation Model (prior session) | Aakash Gupta Evals, Hannah Stalberg, Aakash Gupta PM 10x, Notion |
-| `ai-organization-design.md` | Added "Small Teams + Agents" section | Peter Yang/a16z Show |
-| `ai-safety-interpretability.md` | Added "OpenAI's Safety Mission Controversy" section (prior session) | Ronan Farrow/New Yorker |
-| `business-moats-in-ai.md` | Added "Anthropic Growth Case Study" ($1B→$19B ARR), Two Paths, Token Price Discrimination (prior session) | Head of Growth Anthropic, David George/a16z, Anish Acharya |
-| `claude-code-skill-frameworks.md` | Added domain-specific skill libraries (prior session), Claude Code Setup source | MarketingSkills, Career-Ops, Obsidian Skills, Aakash Gupta |
-| `claude-mythos.md` | Added Tier C reference for System Card (70K-word PDF) | System Card: Claude Mythos Preview |
-| `knowledge-work-future.md` | Added Knowledge Types Taxonomy, Polanyi, Tier C reference (prior session) | Bloomfire, Anish Acharya, Knowledge About Knowledge PDF |
-| `peter-steinberger.md` | Added OpenClaw user experience reality check (memory limitations) | Peter Yang/a16z Show |
-| `yc-ai-thesis.md` | Added PG Foundation section (prior session) | Paul Graham "How to Get Startup Ideas" |
-
-## Pages Unchanged
-
-`ai-careers.md`, `ai-startup-distribution.md`, `claude-mythos.md` (structure only), `dario-amodei.md`, `llm-knowledge-bases.md` (updated prior session), `model-quantization.md`, `vertical-ai.md`
+| Page | Changes |
+|------|---------|
+| `tools/agent-harness.md` | Added "Claude Code Hooks in Practice" (session_start hook, Dex, CLAUDE.md version control) |
+| `tools/claude-code-skill-frameworks.md` | Added: thin harness/fat skills philosophy; Dex (Dave Khaled) personal OS; Content-Skill-Graph (Ronin) |
+| `tools/agentic-engineering.md` | Added cross-reference to agent-harness.md |
+| `landscape/vertical-ai.md` | Added: Harvey vertical model U-turn (scrapped custom model, Model Selector routing); Cursor Composer 2 details |
+| `landscape/ai-startup-distribution.md` | Added: AI Voice Caller Agency model (Retell AI + GoHighLevel); Reddit "help completely, mention last" strategy (Tim Jayas) |
+| `concepts/knowledge-work-future.md` | Added: AI's Early Labor Market Impact (2026 Data) — Anthropic observed exposure methodology, Jevons Paradox, entry-level hiring collapse |
+| `concepts/llm-knowledge-bases.md` | Added: Tw93 learning workflow ("AI most useful when attached to real output"); Waza /learn skill |
+| `concepts/business-moats-in-ai.md` | Added: "The Big Rug" enterprise data risk section (goodalexander thesis) |
+| `people/andrej-karpathy.md` | Added: Two-Tier Perception Gap (casual vs professional frontier model users; RL domains improving fastest) |
+| `people/dhh.md` | Added: Nuances and Tensions from Lex Fridman interview (speed complaints, competence preservation, VR parallel, DeepSeek think box) |
+| `INDEX.md` | Updated to reflect all new and updated pages |
 
 ---
 
 ## Tier Classification
 
-### Tier A (<20K words) — Fully Processed
-- Anthropic shipped 74 features / PDLC adoption
-- Anyone using AI for specs/technical planning?
-- Different Types of Knowledge (Bloomfire)
-- Knowledge Management and Polanyi (academic paper)
-- Notes on AI Apps / Feb 2026 (Anish Acharya)
-- There are only two paths left for software (David George/a16z)
-- The Great Convergence (Nicholas Charriere)
-- The AI Transformation Model (Notion/John Hurley)
-- Sam Altman May Control Our Future (New Yorker — Ronan Farrow)
-- How to Get Startup Ideas (Paul Graham)
-- Various tweets and short articles (~20 documents)
+### Already in wiki (5)
+Documents whose content was already synthesized in prior runs: karpathy/autoresearch, Dario Amodei Lex Fridman video, NanoClaw tweet, and 2 others.
 
-### Tier B (20-50K words) — Fully Processed (via keyword extraction)
-- Karpathy-Dwarkesh "We're summoning ghosts" (152K chars video transcript)
-- DHH "DHH's new way of writing code" (113K chars video transcript)
-- Head of Growth Anthropic (124K chars video transcript)
-- Aakash Gupta "10x PM productivity" (54K chars video transcript)
-- Aakash Gupta "Claude Code Setup" (74K chars video transcript)
-- Aakash Gupta "AI Evals Masterclass" (74K chars video transcript)
-- Hannah Stalberg "PM Used Claude Code" (76K chars video transcript)
-- Peter Yang "OpenClaw, Claude Code" (a16z Show, inline)
-- World Models explained (inline, ~medium)
+### Tier A Articles (<20K words) — Processed
+- Joe Hudson / Every.to — knowledge work and wisdom skills → knowledge-work-future.md
+- Anthropic 81K survey — new page: ai-user-perspectives.md
+- Benjamin Todd / 80,000 Hours — new page: agi-definitions.md
+- Bloomfire / Polanyi — knowledge types taxonomy → knowledge-work-future.md
+- Anthropic labor market research (Massenkoff & McCrory) — knowledge-work-future.md
+- Paweł Huryn — Jevons Paradox of AI labor → knowledge-work-future.md
+- Ivan Landabaso — Harvey AI playbook → vertical-ai.md
+- Kimberly Tan a16z — enterprise AI adoption data → vertical-ai.md
+- 8 harness-cluster documents — new page: agent-harness.md
+- goodalexander "The Big Rug" — business-moats-in-ai.md
+- Tw93 learning workflow — llm-knowledge-bases.md
+- Alpha Batcher AI Agency guide — ai-startup-distribution.md
+- Ronin Content Engine / Content-Skill-Graph — claude-code-skill-frameworks.md
+- Tim Jayas Reddit strategy — ai-startup-distribution.md
+- Karpathy two-tier gap tweet — andrej-karpathy.md
+- Sandhya "The New Software" — vertical-ai.md, agent-harness.md
 
-### Tier C (>50K words) — Metadata Reference Only
-- `01knjemvdkrdqgy21tz280tbav` — "Knowledge About Knowledge" (131K words, PDF) → referenced in knowledge-work-future.md
-- `01knnraph8fhxanxpk246qj76j` — "System Card: Claude Mythos Preview" (70K words, PDF) → referenced in claude-mythos.md
+### Tier A Videos — Processed
+- Aakash Gupta / Dave Khaled "Automate Your Work Life With Claude Code" → agent-harness.md, claude-code-skill-frameworks.md
+- DHH / Lex Fridman "Future of Programming, AI, Ruby on Rails" → dhh.md
 
 ### Tier D (Bookmarks/Trivial) — Skipped or Minimal Processing
-- FOMO podcast (no subtitles available)
-- DHH on Lex Friedman (pre-turn, duplicative of Pragmatic Engineer interview)
-- Beatles documentary (off-topic)
-- Various URL bookmarks with no substantive content
-- Duplicate YC Startup School videos
-- NanoClaw/tool tweets (already covered)
+- Dickie Bush "If you can write this" — X growth/writing advice, no AI angle
+- Cold Outreach Bible (Adrianna Lakatos) — general cold email advice
+- Steal My Digital Product System — not found in search
+- AI agents for marketing are here — tools already covered
+- A Smart Bear: Specificity (Jason Cohen) — general writing advice
+- Claude + Obsidian (Defileo) — pattern already covered in llm-knowledge-bases.md
+- Claude for Dummies SMB (Charles Miller) — construction business multi-agent implementation; no distinct wiki home
+- Various marketing/distribution bookmarks without new tactical depth
+
+### Tier C (>50K words) — Carried from prior run
+- `01knjemvdkrdqgy21tz280tbav` — "Knowledge About Knowledge" (131K words, PDF) → referenced in knowledge-work-future.md
+- `01knnraph8fhxanxpk246qj76j` — "System Card: Claude Mythos Preview" (70K words, PDF) → referenced in claude-mythos.md
 
 ---
 
 ## Errors
 
-- **Context window exhaustion:** Session hit context limit during Phase 3 (video transcript processing). Resumed in new session with summary context.
-- **Temp file loss:** Files saved to /tmp in first session were not available in resumed session. Re-fetched documents via MCP.
-- **No rate limit or timeout errors.**
+- **State persistence failed:** `/workspace/state/` not writable. Crash recovery relied on git commits after each batch.
+- **Context window exhaustion from prior run:** This run was a continuation from a context-exhausted prior session. Resumed from summary.
+- **reader_list_documents validation:** `id` field not valid in response_fields; removed.
+- **Large document output:** "What 81,000 people" required chunked JSON parsing from temp file.
 
 ---
 
 ## Wiki Stats (Post-Run)
 
-- Total pages: 20 (was 18, +2 new)
-- Total sections across all pages: ~95
+- Total pages: 23 (was 20, +3 new)
 - Orphan pages: 0
 - Broken links: 0
-- Index entries: 20/20
+- Index entries: 23/23
+
+---
+
+*Next run: updated_after 2026-04-13T00:00:00Z*

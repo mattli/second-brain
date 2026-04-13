@@ -129,3 +129,41 @@
 **Connection to open source file management idea:** These two ideas are the same concept from different angles. pmtxt defines the *format and spec* — what files exist (customers.md, competitors.md, team.md, etc.) and how they're structured. The file management tool provides the *tooling* — how you navigate, manage, and sync those files. Together they form a full stack: spec + tooling. The NanoClaw vault is a working proof of concept of this approach for a single person. The product leap is making it work for a team building a product together.
 
 **Approval system note:** The core mechanic is less about pmtxt itself and more about the MD file management layer — specifically, an approval workflow for updates to each file. When a file like customers.md or competitors.md is proposed to change, it goes through a review/approval step before being committed. This turns plain markdown files into a governed, collaborative source of truth — not just a shared folder.
+
+---
+
+## 10. Voice-First Wiki Tutor
+
+*Status: Building for personal use (April 12, 2026). Productize decision deferred until after 2+ weeks of real use.*
+
+*Origin: Evolution of the April 10 personalized learning idea (Artemis 2 moment). Saturday night Retro.ai detour surfaced the voice-first framing on Sunday morning. Voice is the right input modality for learning because it captures the moment curiosity actually strikes — on a walk, in the car, after reading something — when typing would be too much friction.*
+
+**What it is:** A voice-first learning tool that writes into a compiled wiki. You talk to it about a topic you want to understand — something you saved but haven't absorbed, a concept that came up in conversation, a question that's been nagging you. The system has a conversation with you, pulls in web sources as needed, and compiles what you're learning into a Karpathy-pattern wiki in your vault. Each session builds on the last because the agent reads the existing wiki before the next conversation.
+
+**The two-part bet:**
+1. Voice makes the conversation actually happen (removes the friction of typing)
+2. The compiled wiki makes the learning compound (each session builds on structured prior knowledge, not just chat logs)
+
+Together, these produce a loop that Hermes (voice in), ChatGPT (conversation), and RAG-over-vault tools (retrieval) don't individually — the conversation feeds the wiki, and the wiki makes the next conversation smarter.
+
+**First use case (personal):** Going deeper on AI/tech articles, tweets, and videos already being saved to the vault. The pile-up problem — capture is solved, absorption isn't.
+
+**Build approach:**
+- Reuse existing Readwise wiki compilation pipeline (NanoClaw group, now with read/write, picks up new sources from a shared document)
+- Add voice input layer — either via Hermes plugin or a custom integration
+- Use NanoClaw for scheduled compilation, not real-time
+
+**Why defer productizing:**
+- Need 2+ weeks of personal use to know if the loop actually works
+- The "am I returning to the wiki" test is the real signal; anything shorter than a couple weeks doesn't give that answer
+- If the personal version fails, the product fails — there's no scenario where "I don't use it but others will"
+
+**Open questions:**
+- Is Hermes sufficient for the voice layer, or does it need custom work?
+- Does the compilation step run on-demand after each session, or on a schedule?
+- How does the system know when to create a new wiki page vs update an existing one?
+- If this works for me, who else is it for — PKM people, learners generally, people who save things they don't read?
+
+**Adjacent ideas this supersedes or relates to:**
+- April 10 Personalized Learning / Wiki-Compiling Autopilot — same underlying bet, now with voice input as the activation layer for the wiki-as-graveyard problem
+- Wiki Activation Layer — same underlying problem (knowing what to do with your wiki), now with a specific answer (talk to it, it updates itself)

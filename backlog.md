@@ -24,6 +24,7 @@
 - [ ] Configure /remote-control — NanoClaw feature already merged, not yet configured. Starts a Claude Code session on the Mac Mini directly from Telegram, returns a browser URL. Full host access without SSH. Priority: next time at Mac Mini.
 
 ### Infrastructure
+- [ ] Fix macOS keychain on MacBook Pro — Claude Code can't write to login keychain ("User interaction is not allowed" error). Try `security unlock-keychain ~/Library/Keychains/login.keychain-db` first; if that fails, keychain password is out of sync with account password — fix via Keychain Access → login keychain → Edit → Change Password. Not blocking anything now, but will bite next time Claude Code needs to save a credential.
 - [ ] Mobile Claude vault access — mobile Claude has no read/write access to the vault; planning sessions can't capture ideas directly. Options: (1) GitHub MCP connector — vault already on GitHub, lowest effort, works today, writes go through git commits; (2) Hosted MCP server via Cloudflare tunnel — more powerful, more work, security surface; (3) Telegram bridge — forward intent from mobile Claude to existing Second Brain agent, indirect but reuses infra.
 - [ ] Investigate how to reliably inject current date/time into LLM context. This was done on Claude desktop. Observing how often I run into the issue in claude code & telegram.
 - [ ] Hardwire Mac Mini to ethernet — WiFi DNS failures at 3am killed the readwise-wiki scheduled task on 2026-04-13. Prevents future overnight network flakiness.

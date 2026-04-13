@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # LLM Knowledge Bases
@@ -47,6 +47,8 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 **Karpathy's approach:** Raw data → LLM-compiled wiki → Obsidian as viewer → CLI tools for search and Q&A. His research wiki reached ~100 articles and ~400K words. Uses Obsidian Web Clipper for ingestion, Marp for slide generation, matplotlib for charts.
 
 **Farzapedia (Farza):** 2,500 diary/notes/iMessage entries → LLM-compiled 400 articles covering friends, startups, research, anime. Built for the agent, not the human — the wiki structure and backlinks make it crawlable from `index.md`. Claude Code navigates it well. Previously tried RAG, found it inferior.
+
+**Tw93's learning workflow:** A structured pattern for converting learning into output in the AI era. Stages: collect high-quality material → read and filter → build mental map → outline → draft → refine with AI → publish. The key principle: *"AI is most useful when attached to real output."* The workflow treats AI as a final-stage refinement tool applied after the human has already done the sense-making work, not as a shortcut that replaces it. Also introduced the Waza `/learn` skill — open-source Claude Code skill that scaffolds this workflow, allowing agents to execute the entire pipeline from a topic input.
 
 **Community tools mentioned in gist comments:**
 - qmd (by Tobi Lutke) — local search engine for markdown with hybrid BM25/vector search and LLM re-ranking, CLI + MCP server
@@ -102,3 +104,4 @@ The [Obsidian Second Brain](https://twitter.com/CyrilXBT) pattern (CyrilXBT) dem
 - "Build your own knowledge base with the /add-karpathy-llm-wiki skill!" — tweet (Apr 2026) ([link](https://x.com/nanoclaw_ai/status/2041409400946950485/?s=12&rw_tt_thread=True))
 - "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
 - "How I Turned Obsidian Into a Second Brain That Runs on Claude" — CyrilXBT (tweet, Apr 2026) ([link](https://x.com/cyrilxbt/status/2040988306154901742/?s=12&rw_tt_thread=True))
+- "How I Turn Learning Into a Workflow in the AI Era" — Tw93 (Apr 2026)

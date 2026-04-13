@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # Business Moats in AI
@@ -61,6 +61,20 @@ Anthropic's trajectory illustrates how moats compound in practice: $0 → $100M 
 
 Their internal growth program "CASH" (Claude Accelerated Sustainable Hypergrowth) uses Claude itself to automate growth experimentation. The meta-lesson: the product is its own growth engine when it's genuinely useful — "Claude is growing itself at this point." This echoes the token-based moat thesis: Anthropic's moat isn't software lock-in but compounding usage data, research capability, and the flywheel between model quality and adoption.
 
+## The Enterprise Data Risk: "The Big Rug"
+
+The inverse of the compounding data moat: what happens when enterprises feed their proprietary data into AI lab tools?
+
+goodalexander's thesis (Apr 2026): AI labs are executing what he calls the largest vampire attack in corporate history. The mechanism: enterprises adopt closed-source AI tools (models, coding assistants, agents) for productivity gains, generating millions of interactions and workflows. Those interactions are training data. Labs use that training data to build models that eventually outcompete the enterprises that fed them.
+
+*The arithmetic:* Productivity at major enterprises is growing at 1.2-1.5% YoY. Token consumption is growing 400%+. The productivity gains are real but modest. The data leakage is enormous. Enterprise AI is characterized mostly by "vibe coding and slop" — low-value output generated primarily to test tools, not to create durable IP. Meanwhile, the high-value workflows and edge cases are exactly what model providers need for the next training run.
+
+*The trust architecture problem:* This is the flip side of the regulatory permission moat. Enterprises with the most valuable proprietary workflows — in law, finance, pharma, defense — are also the most exposed if their process data leaves the perimeter. The enterprises that can maintain genuine data sovereignty (on-prem deployments, air-gapped models, contractual data isolation) may command a structural advantage as this concern becomes mainstream.
+
+*Counterargument:* Harvey AI's approach suggests a middle path — proprietary process data stored inside the firm, with models rented and rotated based on performance (their "Model Selector"). The moat becomes orchestration and workflow IP, not the model itself. The data moat is genuinely valuable only when you control both the data and the model training.
+
+See also: [Vertical AI](../landscape/vertical-ai.md) for Harvey's model U-turn and how vertical AI companies are navigating this.
+
 ## The Meta-Moat
 
 "Time that can't be parallelized." Network density takes years of human adoption. Regulatory approval takes years of political process. Infrastructure takes years to build. Data takes years to compound. Capital relationships take decades to earn.
@@ -71,3 +85,4 @@ Their internal growth program "CASH" (Claude Accelerated Sustainable Hypergrowth
 - "There are only two paths left for software" — David George (a16z, Apr 2026) ([link](https://a16z.com/there-are-only-two-paths-left-for-software/))
 - "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
 - "Claude is growing itself at this point" — Head of Growth, Anthropic / Lenny's Podcast (video, Apr 2026) ([link](https://www.youtube.com/watch?v=k-H4nsOTuxU))
+- "The Big Rug" — goodalexander (Apr 2026)

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # Andrej Karpathy
@@ -38,6 +38,16 @@ Key design choices:
 
 Released on GitHub as `karpathy/autoresearch`. Framed aspirationally in the README intro as the origin story of fully autonomous AI research. See also [Agentic Engineering](../tools/agentic-engineering.md) for related self-improving agent work.
 
+### The Two-Tier Perception Gap
+
+A key observation Karpathy made in April 2026: a growing gap is forming between two groups of AI users.
+
+*Group 1 — Casual ChatGPT users:* Tried the free tier, found it impressive but limited, concluded AI is overhyped. These people systematically underestimate where the technology is now.
+
+*Group 2 — Professional frontier model users:* Using Codex, Claude Code, and agentic tools with full context and professional workflows. These people describe the productivity improvements as "nothing short of staggering."
+
+The key mechanism: domains with verifiable rewards (coding, math) have seen the largest gains, due to reinforcement learning requiring clear success signals. The gap between these two groups' perceptions of AI progress is "only going to grow" as frontier model capabilities continue to pull away from consumer-tier models. This maps directly to the jagged capabilities picture in [AGI Definitions](../landscape/agi-definitions.md) — and explains why aggregate statistics on AI adoption often undercount the impact on power users.
+
 ### "The Decade of Agents"
 In a Dwarkesh Patel interview (Apr 2026), Karpathy pushed back on "year of agents" framing: "There's some over-prediction going on in the industry. In my mind, this is more accurately described as the decade of agents." Early agents like Claude Code and Codex are "extremely impressive" but still cognitively lacking — no continual learning, insufficient multimodality, unreliable computer use. "It will take about a decade to work through all of those issues."
 
@@ -58,3 +68,4 @@ On the coding stack: autocomplete is high-bandwidth ("you point to the code wher
 - "Andrej Karpathy Shares LLM-Powered Obsidian Knowledge Workflow" — x.com summary ([link](https://x.com/i/trending/2039841987067617664))
 - "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
 - "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026) ([link](https://www.youtube.com/watch?v=lXUZvyajciY&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=12))
+- "The gap between casual ChatGPT users and professional agentic users..." — Andrej Karpathy (tweet, Apr 2026)

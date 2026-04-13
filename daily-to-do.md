@@ -13,7 +13,7 @@ Goals: Find one product to work on
 - [x] Read Daily Digest
 - [ ] Read Infinite Jest
 - [x] Install update nanoclaw
-- [ ] Update Coldmountain.ai
+- [x] Update Coldmountain.ai
 - [ ] Continue to think through product ideas
 
 ---

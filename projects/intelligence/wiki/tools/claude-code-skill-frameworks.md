@@ -95,6 +95,26 @@ Key design: the system is designed for Claude to customize itself — modes, sco
 
 Agent skills for Obsidian — teaching AI agents to read, write, and navigate Obsidian vaults. See [LLM Knowledge Bases](../concepts/llm-knowledge-bases.md).
 
+### Content-Skill-Graph (Ronin)
+
+A content production system built entirely on markdown skill files with wikilinks. Replaces a content team or $5-8K/month agency retainer with a folder of 17 interconnected `.md` files.
+
+Folder structure:
+```
+/content-skill-graph
+├── index.md            ← briefing doc the AI reads first
+├── platforms/          ← one file per platform (X, LinkedIn, Instagram, TikTok, YouTube, Threads, Facebook, newsletter)
+├── voice/              ← brand-voice.md + platform-tone.md
+├── engine/             ← hooks.md, repurpose.md, scheduling.md, content-types.md
+└── audience/           ← audience segment files
+```
+
+The key: each file uses `[[wikilinks]]` to reference other nodes. When the agent gets a topic, it doesn't read one file — it follows the links, builds a complete understanding of brand/voice/platform rules/hook formulas, then writes. The difference from a single prompt: *"One flat .md file gives you a tool. A graph gives you a team."*
+
+Why this pattern works: the agent has amnesiac tendencies — each session starts from zero. The skill graph acts as a persistent playbook that outlasts any chat window. Same principle as thin-harness / fat-skills, applied to content production rather than software development. See [Agent Harness](agent-harness.md).
+
+Output: one topic → 10 platform-native posts, each reframed for platform conventions (X: contrarian thread; LinkedIn: personal narrative 1500 words; Instagram: 7-slide carousel; TikTok: 45-second script).
+
 ### Skills Ecosystem Note
 
 The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across agents. The Minimalist Entrepreneur skills (`slavingia/skills`) and Base44 Superagent (130+ built-in skills) suggest an emerging marketplace pattern where skills are shared as open-source markdown files.
@@ -123,3 +143,4 @@ The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across 
 - "kepano/obsidian-skills" — kepano (GitHub) ([link](https://github.com/kepano/obsidian-skills))
 - "slavingia/skills" — Sahil Lavingia (GitHub) ([link](https://github.com/slavingia/skills))
 - "The Claude Code Setup Nobody Shows You" — Aakash Gupta / Carl Votti (video, Apr 2026) ([link](https://youtube.com/watch?v=Eqh2iwSl570&si=CgkjC-SZIXj-KR8C))
+- "How To Build Own Content Engine? (FULL COURSE)" — Ronin (tweet thread, Apr 2026)

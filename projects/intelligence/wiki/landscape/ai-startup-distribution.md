@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # AI Startup Distribution
@@ -22,6 +22,14 @@ Greg Isenberg's framework for post-vibe-coding distribution:
 5. **Make output shareable** — Think Spotify Wrapped, GitHub graphs. "What does your user want to screenshot and send?"
 6. **Buy a niche newsletter** — 10K subscribers for $5K-$20K. "Most owners making $0-$500/month. DM them."
 7. **Voice memo → content pipeline** — 30-minute voice memo into Claude → five tweet threads, three LinkedIn posts, one newsletter. Weekly.
+
+## Reddit as Acquisition Channel
+
+Tim Jayas's principle for Reddit: *"Help completely, mention last."* Not "help first, pitch second" — the help should be genuinely useful even if the product didn't exist. The mention at the end feels like a natural extension, not a setup.
+
+Tactical pattern: find threads where someone is struggling with a problem you've solved manually. Write a full, detailed reply — explain the manual process, give a template, walk through every step. Last line: "I got so tired of doing this manually I built something to handle it. Happy to share if it helps." 40% reply-to-meaningful-conversation rate vs. near-zero for cold outreach. First 100 customers in 30 days at zero cost.
+
+Key contrast with other channels: Reddit replies convert from contextual relevance. Someone searching for how to solve their exact problem today — vs. someone who gets a DM from a stranger — is already sold on needing the solution.
 
 ## Cold Email as Founder Channel
 
@@ -63,6 +71,20 @@ Logan Gott's framework for LinkedIn in 2026:
 - Optimize for saves and DMs, not just likes — these signal higher value to the algorithm
 - Post 3-5x per week minimum for compounding effect
 
+## AI Agency as Service Model (Full Cycle)
+
+A concrete operating model for productizing AI skills into a service business targeting local/SMB clients (real estate agents, roofers, HVAC, med spas, law firms).
+
+*Core offer:* Facebook/Instagram ads + AI voice caller system + sales support. Differentiator: traditional marketing agencies deliver leads. This model delivers booked meetings. The value gap: 94% of businesses want AI but can't implement it; most leads go cold because no one calls them fast enough.
+
+*The mechanism:* Lead submits form → AI caller (Retell AI) dials within 3 minutes → qualifies with 2-3 questions → books directly to GoHighLevel calendar. 7-day automated follow-up sequence for non-answers. Key stat: calling within 5 minutes increases conversion 500% vs. calling hours later. One client account logged 962K outbound calls at ~$0.07/minute — vs. tens of thousands/month for human callers.
+
+*Tools:* Retell AI (pay-per-minute, no platform fee, sub-1-second latency, no-code setup), GoHighLevel ($297/month, unlimited client sub-accounts, CRM + calendar + funnels + automations).
+
+*Economics:* $2,500-$5,000 upfront (90-day engagement) + $1,500/month retainer. 5 clients on retainer = $90K/year before upfront fees. Equity model end-state: revenue share (~10%) on deals closed; one personal injury law firm relationship = $4M/month ad spend managed, $120K/month income.
+
+*Niche selection criteria:* TAM ≥ 20K businesses in target country; fast sales cycle (dentist > real estate agent); stay in one niche 3-6 months before switching.
+
 ## Tools Noted
 
 - **Origami** — AI-powered lead generation. "One prompt to find what Apollo, ZoomInfo, and hours in Clay can't." Searches 50+ sources in real-time.
@@ -78,3 +100,5 @@ Logan Gott's framework for LinkedIn in 2026:
 - "some more ramblings from working at @AnthropicAI" — austin (tweet, Apr 2026) ([link](https://x.com/helloitsaustin/status/2041218663827812815/?rw_tt_thread=True))
 - "How to BEAT the new LinkedIn algorithm in 10 steps" — Logan Gott (tweet, Apr 2026) ([link](https://x.com/LoganTGott/status/2040465091225645231/?rw_tt_thread=True))
 - "Making $$ with AI Marketing" — The Startup Ideas Podcast (tweet, Apr 2026) ([link](https://x.com/startupideaspod/status/2038697353855787133/?rw_tt_thread=True))
+- "Full-cycle guide to start your own AI Agency (From $0 To $10K/mo)" — Alpha Batcher (tweet thread, Apr 2026)
+- "How I spent 30 minutes a day on Reddit to get my first 100 customers" — Tim Jayas (tweet thread, Apr 2026)

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 ---
 
 # The Future of Knowledge Work
@@ -62,6 +62,27 @@ The key challenge: most organizations use tools suited only for explicit knowled
 
 **Every job becomes a software job:** Anish Acharya's observation: the ambitious view of coding agents is that almost any problem/solution can be expressed in software, making coding capability upstream of all knowledge work. Legal, comms, marketing, HR, and finance will increasingly be software-first. This shifts which knowledge types matter: procedural knowledge becomes executable code; tacit knowledge about *when and why* to act becomes the human differentiator.
 
+## AI's Early Labor Market Impact (2026 Data)
+
+*Anthropic's "observed exposure" methodology* (Massenkoff & McCrory, 2026): New measure combining theoretical LLM capability (can an LLM theoretically speed up this task?) with real-world Claude usage data, weighting automated and work-related uses more heavily. Key insight: actual AI penetration is far below theoretical capability.
+
+Most exposed occupations: Computer programmers (75% observed coverage), Customer service representatives, Data entry keyers (67%), Financial analysts. 30% of workers have zero AI exposure — Cooks, Motorcycle Mechanics, Lifeguards, Bartenders.
+
+*Exposed workers are not the poor* — the most exposed group is 16 percentage points more likely to be female, 11pp more likely to be white, 47% higher earnings on average, and 4x more likely to have graduate degrees. AI is currently disrupting higher-educated, higher-paid professionals — not lower-wage workers.
+
+*Employment impact so far:* No systematic increase in unemployment for highly exposed workers since ChatGPT's release. However, *tentative evidence that hiring of younger workers (22-25) into exposed occupations has slowed ~14%* (just barely statistically significant). Slowed hiring may not appear as unemployment if young workers exit the labor market rather than appear unemployed.
+
+*The Jevons Paradox of AI Labor* (Paweł Huryn): Job postings rose +22.7% YoY (TrueUp, Mar 2026). Entry-level hiring collapsed 73.4% in one year (Ravio, 2025). Both are true simultaneously.
+
+The 160-year-old Jevons pattern: more efficient steam engines increased coal consumption, not reduced it — efficiency made coal viable for thousands of new applications. AI is doing the same to knowledge work roles. *The production step gets cheaper; demand for the judgment step increases.*
+
+- *Engineering:* AI writes code faster → more projects become viable → postings up +34.1% YoY. The new projects need architects and system thinkers.
+- *Security:* AI finds vulnerabilities faster → discoveries multiply → triage needs more human judgment. 50% of employers can't fill these roles.
+- *Product:* AI collapses build time → what to build matters more than how → AI PM roles up 465%.
+- *Content:* AI generates 100x more → noise floor rises → curation and taste become the bottleneck.
+
+*The broken pipeline:* The old career path ran through production work (do reps, build volume, become senior). AI handles the reps now. Companies need senior-level thinking; the path that produced it is narrowing. Only 1/3 of employees got any AI training; 52% of developers don't use AI agents at all.
+
 ## What This Doesn't Mean
 
 This isn't a soft-skills argument against technical depth. The framing is about what becomes *differentiating* when AI can match technical performance. Deep technical knowledge still matters — it's just no longer sufficient on its own.
@@ -76,3 +97,5 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
 - "Knowledge Management and Polanyi" — Eric M. Straw (academic paper) ([link](https://polanyisociety.org/Nashotah%20House/Papers/Straw-original-pdf-KnowlMgmnt%20&Polanyi-5-23-16.pdf))
 - "Knowledge About Knowledge" — [Tier C reference: 131K-word PDF, not fully synthesized. Covers epistemology of knowledge management.] ([link](https://eclipse.rutgers.edu/wp-content/uploads/sites/30/2014/04/Knowledge.pdf))
+- "Labor market impacts of AI: A new measure and early evidence" — Maxim Massenkoff & Peter McCrory (Anthropic, 2026) ([link](https://www.anthropic.com/research/labor-market-impacts))
+- "The Paradox Nobody's Naming: More Jobs Than Ever. Fewer People Who Can Do Them." — Paweł Huryn (tweet, Apr 2026) ([link](https://x.com/PawelHuryn))

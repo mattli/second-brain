@@ -1,5 +1,6 @@
 # April 13 – April 19
 
+Goals: Find one product to work on
 ### Wednesday, April 15
 
 - [ ] Go to Costco
@@ -11,8 +12,10 @@
 - [ ] Overnight oats at Bluey's
 - [ ] Read Daily Digest
 - [ ] Read Infinite Jest
-- [ ] Continue to think through product ideas
+- [ ] Install update nanoclaw
+- [ ] Install compact
 - [ ] Update Coldmountain.ai
+- [ ] Continue to think through product ideas
 
 ---
 

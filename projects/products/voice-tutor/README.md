@@ -41,9 +41,28 @@ Three keys in `.env`: Anthropic, Deepgram, Cartesia. Estimated cost at 2hr/day: 
 - Prebuilt Pipecat UI shows duplicated text (bot-llm-text + deprecated bot-transcription). Voice output is correct. Cosmetic only.
 - Memory is a sliding window of last 3 transcripts — older conversations are lost, no summarization.
 
+## Next steps
+
+### Short term (use it for a week, then decide)
+- **Pick a Cartesia voice** — browse play.cartesia.ai, find something that isn't British Reading Lady
+- **Use it daily** — talk through ideas, ask about wiki topics, think out loud. See if it feels different from ChatGPT voice now that it has wiki context.
+- **Monitor API costs** — check Deepgram, Cartesia, and Anthropic dashboards after a few days of use
+
+### If it proves valuable
+- **Transcript summarization** — instead of loading last 3 transcripts verbatim, distill older conversations into key takeaways so memory doesn't fall off after 3 sessions
+- **Readwise integration** — load recent Readwise highlights into context so the tutor can reference what you're currently reading, not just the compiled wiki
+- **Daily briefing readout** — have the tutor read your daily briefing and let you ask follow-up questions by voice
+- **Custom frontend** — replace the Pipecat prebuilt UI to fix the duplicate text issue and tailor the experience
+- **launchd auto-start** — start the bot automatically on Mac Mini boot so you never have to SSH in to run start.sh
+
+### If it proves very valuable
+- **Function calling / actions** — give the voice agent tools to save notes, create tasks, update wiki pages. This is the path to replacing the Telegram NanoClaw interface with voice.
+- **Profile auto-updates** — have Claude update profile.md based on what it learns in conversations (with approval)
+- **Capacitor iOS app** — native app that keeps audio running in the background, solving the "phone browser must stay in foreground" limitation
+
 ## Open questions
 
 - Is the wiki-in-context approach sufficient, or does it need topic-aware retrieval as wiki grows?
 - Should transcripts be summarized/distilled rather than loaded verbatim?
-- Voice selection — currently using default "British Reading Lady" from Cartesia
-- Could this replace the Telegram NanoClaw interface with voice-driven actions (function calling)?
+- How much does prompt caching actually save with ~50K tokens of wiki? Monitor Anthropic dashboard.
+- Could this replace the Telegram NanoClaw interface with voice-driven actions?

@@ -162,7 +162,8 @@ Only at external-API boundaries. No defensive try/except around internal code.
 - **Python** — pipeline language, to match last30days lib/ which is Python
 - **ScrapeCreators API key** — already set up for last30days
 - **Anthropic API key** — already used by Claude Code
-- **last30days installed** — pipeline imports `scripts/lib/reddit.py`, `reddit_enrich.py`, `score.py`, `relevance.py` as libraries. Pinned to v2.9.5 for now. If v3 upgrade happens later, verify import paths still work before merging.
+- **last30days installed** — pipeline imports `scripts/lib/reddit.py`, `reddit_enrich.py`, `score.py`, `relevance.py` as libraries from `~/.claude/plugins/marketplaces/last30days-skill/` (the canonical install). Pinned to **v2.9.5**.
+  - **Do not upgrade to v3.0.0** while this pipeline depends on `score.py` — v3 removed that file entirely (engine rewrite consolidated scoring elsewhere). `reddit.py`, `reddit_enrich.py`, and `relevance.py` remain in v3, but `score.py` would need to be vendored into this project or reimplemented (~15 lines of log-scaling helpers) before a v3 upgrade is safe.
 
 ## Open Questions
 

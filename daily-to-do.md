@@ -10,6 +10,9 @@ Goals: Find one product to work on
 
 ### Tuesday, April 14
 
+- [x] Blueys Oatmeal
+- [x] Read Infinite Jest
+- [x] Swim
 - [ ] Do user research on Readwise users' user feedback
 
 ---

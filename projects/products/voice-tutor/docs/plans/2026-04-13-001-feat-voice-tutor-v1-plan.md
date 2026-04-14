@@ -88,7 +88,7 @@ ChatGPT voice has no memory across sessions and no sense of who you are. Every c
 
 **Target repo:** New standalone repo (e.g., `~/Development/voice-tutor/` on Mac Mini) — this is a Python service, not part of cold-mountain or NanoClaw.
 
-- [ ] **Unit 1: Basic voice pipeline — STT → Claude → TTS**
+- [x] **Unit 1: Basic voice pipeline — STT → Claude → TTS**
 
   **Goal:** Get a working voice conversation with Claude via Pipecat's prebuilt web UI. Proves the pipeline works end-to-end.
 
@@ -127,7 +127,7 @@ ChatGPT voice has no memory across sessions and no sense of who you are. Every c
   - Interruptions work — speaking while Claude talks causes it to stop and listen
   - Latency feels conversational, not laggy (sub-2s response time)
 
-- [ ] **Unit 2: Transcript saving**
+- [x] **Unit 2: Transcript saving**
 
   **Goal:** Save every conversation to disk as a JSON transcript so sessions are recoverable.
 
@@ -158,7 +158,7 @@ ChatGPT voice has no memory across sessions and no sense of who you are. Every c
   **Verification:**
   - After each conversation, a readable JSON transcript exists on disk with accurate content
 
-- [ ] **Unit 3: Session memory — transcript loading + profile**
+- [x] **Unit 3: Session memory — transcript loading + profile**
 
   **Goal:** At session start, load recent transcripts and the profile doc into Claude's system prompt so conversations build on prior context.
 
@@ -197,7 +197,7 @@ ChatGPT voice has no memory across sessions and no sense of who you are. Every c
   - Profile content visibly shapes how the agent responds (tone, topic awareness)
   - No perceptible latency increase from loading context
 
-- [ ] **Unit 4: Startup script + deployment**
+- [x] **Unit 4: Startup script + deployment**
 
   **Goal:** Make the service easy to start, stop, and run persistently on Mac Mini.
 

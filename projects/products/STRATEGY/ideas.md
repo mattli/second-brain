@@ -1,6 +1,6 @@
 # Product Ideas
 
-*Last reviewed: April 13, 2026. Active candidates only. Shipped and parked ideas moved to the archive section at the bottom.*
+*Last reviewed: April 14, 2026. Active candidates only. Shipped and parked ideas moved to the archive section at the bottom.*
 
 ---
 
@@ -24,24 +24,31 @@
 
 ## 2. Book Reading Companion
 
-**Status:** Strong personal desire. Worth building for personal use first as a dog-food test of the Karpathy wiki pattern.
+**Status:** Strong personal desire. Two architectural paths under consideration — pre-ingested wiki (heavy) and wearable snapshot (light). Light version surfaced April 14 and is likely the better v0.
 
-**Origin:** Reading Infinite Jest, wanting contextual help without being pulled out of the experience (April 2026).
+**Origin:** Reading Infinite Jest, wanting contextual help without being pulled out of the experience (April 2026). Currently taking photos of pages and feeding them into ChatGPT — inefficient, but evidence the underlying workflow is real.
 
-**What it is:** An AI companion that has already "read" the book — not a summary app, but a deep reference. Ask it what's happening on page 277, who a character is, what happened three chapters ago that connects to what you just read, what a concept or reference means. It answers from full knowledge of the text, not a summary.
+**Path A — Pre-ingested wiki (heavier):** An AI companion that has already "read" the book. Ingest the full text (ePub or plain text), run the Karpathy wiki pattern to compile character pages, chapter summaries, thematic threads, and key passages into a persistent wiki. Query against that wiki as you read. Knows exact passages, character histories, thematic threads. Spoiler protection has to be explicitly designed (system needs to know where you are). Stalled on April 9 on the Infinite Jest PDF because it had no page numbers, breaking the spoiler-boundary design.
 
-**Why interesting:** Book summaries exist everywhere. This is different — it's a reading companion for people who are *in the middle of the book* and want context without spoilers, without Googling, without leaving the experience. The value is depth and specificity: it knows the exact passage, the exact character's history, the exact thematic thread.
+**Path B — Wearable snapshot (lighter, surfaced April 14):** No pre-ingested book. User is reading a physical book wearing Meta Ray-Ban or similar smart glasses. Glasses camera captures the current page on demand (tap-to-capture, or wake phrase). Multimodal LLM reads what's on the page plus the last N pages the camera has seen in the session. User asks questions via voice — vocabulary, plot, characters, dense passages — and gets answers through the glasses' speakers or paired AirPods.
 
-**How it works:** Ingest the full book text (ePub or plain text), run the Karpathy wiki pattern — compile character pages, chapter summaries, thematic threads, key passages into a persistent wiki. Query against that wiki as you read. The wiki is built once, stays current, and compounds as you ask questions (good answers get filed back in).
+- Works on any book, any page, day one. No library, no ingestion, no "tell the system what you're reading."
+- Spoiler protection falls out of the architecture for free — the system literally hasn't seen pages past the current one.
+- Genuinely glasses-native: the camera is on your face without interrupting reading. A phone version would exist but lose the core insight (you'd be back to the ChatGPT photo workflow).
+- Optional: user can name the book so the LLM can pull on its training data for deeper context.
 
-**Personal validation:** Matt would pay for this for Infinite Jest specifically. That's a strong signal — it's not a hypothetical user, it's a real present need.
+**Platform constraint on Path B:** Meta Wearables Device Access Toolkit is in developer preview as of December 2025. SDK supports camera access from iPhone/Android app via Bluetooth, plus audio via standard headset profiles. No "Hey Meta" integration. General-availability App Store publishing is gated on Meta opening it up, targeted "later in 2026" with no committed date. Can build and self-test now; cannot ship to strangers until Meta opens the gate.
+
+**Personal validation:** Matt would pay for this for Infinite Jest specifically. Currently doing the ChatGPT photo workaround, which is the clearest possible signal that the pain is real and the current tooling is inadequate.
 
 **Open questions:**
-- DRM is the hard constraint — Audible and Spotify audiobooks are locked. Works cleanly for ePubs (DRM-free or public domain).
-- How do you handle spoilers — does the companion know where you are in the book and limit answers accordingly?
-- Is this a standalone app, a Readwise feature, or a NanoClaw skill?
+- Path B suggested v0 is phone-only (hold phone camera up to page) to validate the core loop cheaply. If it works on phone, it works on glasses. If it doesn't work on phone, glasses won't save it.
+- What's "session context" practically — last 10 pages? Last chapter? Every page captured this session?
+- How does the system know you're reading vs. walking around (relevant for ambient-capture designs)?
+- Is this a standalone app, a Readwise/Kindle feature, or a NanoClaw skill?
+- DRM is a constraint for Path A only. Path B is DRM-agnostic because it's reading what the camera sees, not what a file contains.
 
-**Relationship to idea #1:** Same underlying architecture (Karpathy wiki, conversational query, vault-based). The wiki tutor is built for "things I want to learn about." The reading companion is built for "one specific book I'm reading." If the wiki tutor works for personal use, the reading companion is a natural extension with a tighter scope.
+**Relationship to idea #1:** Path A shares architecture with the voice wiki tutor (Karpathy wiki, conversational query, vault-based). Path B is architecturally lighter and independent — just multimodal capture plus session-scoped context. The wiki tutor is for "things I want to learn about." The reading companion is for "the specific book in front of me right now."
 
 ---
 

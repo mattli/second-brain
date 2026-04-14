@@ -5,7 +5,7 @@ Thinking and planning around building meaningful AI products -- things that have
 ## Key Docs
 
 - **[Product Vision](product-vision.md)** — North star, strategic framework, areas of genuine interest, and the core questions guiding what to build and how.
-- **[Ideas](projects/products/STRATEGY/ideas.md)** — Specific product ideas currently being evaluated, with feasibility and revenue analysis.
+- **[Ideas](ideas.md)** — Specific product ideas currently being evaluated, with feasibility and revenue analysis.
 
 ## Validation Tool: last30days
 

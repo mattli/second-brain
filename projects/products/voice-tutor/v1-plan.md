@@ -3,7 +3,7 @@ title: "feat: Voice Tutor V1 — Pipecat + Claude with persistent memory"
 type: feat
 status: active
 date: 2026-04-13
-origin: 2026-04-13-voice-tutor-requirements.md
+origin: v1-requirements.md
 ---
 
 # feat: Voice Tutor V1 — Pipecat + Claude with persistent memory
@@ -14,7 +14,7 @@ Build a self-hosted voice conversation service on Mac Mini using Pipecat, Claude
 
 ## Problem Frame
 
-ChatGPT voice has no memory across sessions and no sense of who you are. Every conversation starts from zero. This builds a self-hosted alternative with persistent conversation history and a hand-maintained identity profile, testing whether memory is the missing piece. (see origin: `2026-04-13-voice-tutor-requirements.md`)
+ChatGPT voice has no memory across sessions and no sense of who you are. Every conversation starts from zero. This builds a self-hosted alternative with persistent conversation history and a hand-maintained identity profile, testing whether memory is the missing piece. (see origin: `v1-requirements.md`)
 
 ## Requirements Trace
 
@@ -244,7 +244,7 @@ ChatGPT voice has no memory across sessions and no sense of who you are. Every c
 
 ## Sources & References
 
-- **Origin document:** `2026-04-13-voice-tutor-requirements.md`
+- **Origin document:** `v1-requirements.md`
 - **Prior voice brainstorm:** `projects/nanoclaw/engineering-docs/2026-04-11-voice-channel-brainstorm.md`
 - **Pipecat docs:** https://docs.pipecat.ai
 - **Pipecat Anthropic service:** https://docs.pipecat.ai/server/services/llm/anthropic

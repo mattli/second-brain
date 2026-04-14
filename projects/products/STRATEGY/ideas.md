@@ -1,40 +1,24 @@
 # Product Ideas
 
-*Last reviewed: April 12, 2026. Active candidates only. Shipped and parked ideas moved to the archive section at the bottom.*
+*Last reviewed: April 13, 2026. Active candidates only. Shipped and parked ideas moved to the archive section at the bottom.*
 
 ---
 
 ## 1. Voice-First Wiki Tutor
 
-**Status:** Building for personal use (April 12, 2026). Productize decision deferred until after 2+ weeks of real use.
+**Status:** Prototype built April 13, 2026. Productized version sketched out the same day: a voice-first iOS app that lets Readwise users talk to their saved knowledge. See the full exploration including filter evaluation, cost math, and pricing analysis in [productization](../voice-tutor/productization.md)
 
-**Origin:** Evolution of the April 10 personalized learning idea (Artemis 2 moment). Saturday night Retro.ai detour surfaced the voice-first framing on Sunday morning. Voice is the right input modality for learning because it captures the moment curiosity actually strikes — on a walk, in the car, after reading something — when typing would be too much friction.
+**Origin:** Evolution of the April 10 personalized learning idea (Artemis 2 moment). Saturday night Retro.ai detour surfaced the voice-first framing on Sunday morning. Voice is the right input modality for learning because it captures the moment curiosity actually strikes — on a walk, in the car, after reading something — when typing would be too much friction. Prototype built April 13 with vault access; brainstorming with it produced real value, which led to the productized framing.
 
 **What it is:** A voice-first learning tool that writes into a compiled wiki. You talk to it about a topic you want to understand — something you saved but haven't absorbed, a concept that came up in conversation, a question that's been nagging you. The system has a conversation with you, pulls in web sources as needed, and compiles what you're learning into a Karpathy-pattern wiki in your vault. Each session builds on the last because the agent reads the existing wiki before the next conversation.
+
+**Productized framing:** User authenticates to Readwise → scheduled compiler builds a wiki from their saves → iOS app for voice conversations with the compiled knowledge. Targets existing Readwise users, who have acute pain (save more than they read) and established willingness to pay for knowledge tools. Passes the product vision filter cleanly on all seven questions. Cost structure likely forces $30-50/month pricing — premium positioning for serious knowledge workers, not mass-market.
 
 **The two-part bet:**
 1. Voice makes the conversation actually happen (removes the friction of typing)
 2. The compiled wiki makes the learning compound (each session builds on structured prior knowledge, not just chat logs)
 
-Together, these produce a loop that Hermes (voice in), ChatGPT (conversation), and RAG-over-vault tools (retrieval) don't individually — the conversation feeds the wiki, and the wiki makes the next conversation smarter.
-
-**First use case (personal):** Going deeper on AI/tech articles, tweets, and videos already being saved to the vault. The pile-up problem — capture is solved, absorption isn't.
-
-**Build approach:**
-- Reuse existing Readwise wiki compilation pipeline (NanoClaw group, now with read/write, picks up new sources from a shared document)
-- Add voice input layer — either via Hermes plugin or a custom integration
-- Use NanoClaw for scheduled compilation, not real-time
-
-**Why defer productizing:**
-- Need 2+ weeks of personal use to know if the loop actually works
-- The "am I returning to the wiki" test is the real signal; anything shorter than a couple weeks doesn't give that answer
-- If the personal version fails, the product fails — there's no scenario where "I don't use it but others will"
-
-**Open questions:**
-- Is Hermes sufficient for the voice layer, or does it need custom work?
-- Does the compilation step run on-demand after each session, or on a schedule?
-- How does the system know when to create a new wiki page vs update an existing one?
-- If this works for me, who else is it for — PKM people, learners generally, people who save things they don't read?
+**Next steps (not immediate):** Use the prototype for a week — see if the reach-for-it signal holds. Talk to three Readwise power users, not to pitch but to ask what they'd pay. Don't commit to iOS, pricing, or scaling decisions yet.
 
 ---
 

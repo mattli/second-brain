@@ -58,7 +58,7 @@ An idea in the first group passes the "do I live here" filter cleanly. Second gr
 
 ## Ideas In Flight
 
-Active ideas tracked in [`ideas.md`](projects/products/STRATEGY/ideas.md).
+Active ideas tracked in [`ideas.md`](ideas.md).
 
 ---
 

@@ -1,4 +1,5 @@
 ### Agent Behavior
+- [ ] Fix daily to-do ordering — when adding items to future days, insert them in most-recent-first order (Wed before Tue before Mon). Options: (1) agent always reads the full week section before inserting, or (2) scaffold the full week at the start of each Monday (all 7 day headings pre-created in order) so insertions never need to reorder. Weekly scaffold is simpler and prevents ordering bugs entirely.
 - [ ] Update main chat group behavior — think through how Second Brain should ask clarifying questions and follow best practices before making changes (e.g. confirm scope, warn about side effects, suggest alternatives)
 
 ### Skills & Tools

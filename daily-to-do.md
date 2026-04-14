@@ -1,9 +1,16 @@
 # April 13 – April 19
 
 Goals: Find one product to work on
+
 ### Wednesday, April 15
 
 - [ ] Go to Costco
+
+---
+
+### Tuesday, April 14
+
+- [ ] Do user research on Readwise users' user feedback
 
 ---
 
@@ -14,7 +21,7 @@ Goals: Find one product to work on
 - [ ] Read Infinite Jest
 - [x] Install update nanoclaw
 - [x] Update Coldmountain.ai
-- [ ] Continue to think through product ideas
+- [x] Continue to think through product ideas
 
 ---
 

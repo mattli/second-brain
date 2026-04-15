@@ -79,7 +79,7 @@ The bet: a self-hosted voice interface running Claude via Pipecat, with persiste
 
 ## Related
 
-- Prior voice architecture brainstorm: `projects/nanoclaw/engineering-docs/2026-04-11-voice-channel-brainstorm.md`
+- Prior voice architecture brainstorm: `2026-04-11-voice-channel-brainstorm.md` (this folder)
 - Existing Wiki Tutor (Telegram, text-based): NanoClaw `wiki-tutor` group
 
 ## Next Steps

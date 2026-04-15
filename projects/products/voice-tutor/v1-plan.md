@@ -245,7 +245,7 @@ ChatGPT voice has no memory across sessions and no sense of who you are. Every c
 ## Sources & References
 
 - **Origin document:** `v1-requirements.md`
-- **Prior voice brainstorm:** `projects/nanoclaw/engineering-docs/2026-04-11-voice-channel-brainstorm.md`
+- **Prior voice brainstorm:** `2026-04-11-voice-channel-brainstorm.md` (this folder)
 - **Pipecat docs:** https://docs.pipecat.ai
 - **Pipecat Anthropic service:** https://docs.pipecat.ai/server/services/llm/anthropic
 - **Pipecat SmallWebRTC:** https://docs.pipecat.ai/server/services/transport/small-webrtc

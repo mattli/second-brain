@@ -3,7 +3,7 @@ Daily AI Intelligence Briefing — Instructions
 > Version: 3.0 | Last updated: 2026-03-28
 
 ## Purpose
-Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `ai-briefings/YYYY-MM-DD.md` using today's actual date.
+Each morning, research and compile a concise AI and tech intelligence briefing. The output should be readable in approximately 2 minutes and saved to `resources/intelligence/daily-briefings/YYYY-MM-DD.md` using today's actual date.
 
 **Overlap Prevention:** Only include a story or item if something materially new happened in the last 24 hours — new information, new data, new reaction, or a significant new development. Do not include stories simply because they are still being discussed or are generally important. If a story was covered yesterday and nothing new has happened, skip it.
 
@@ -17,7 +17,7 @@ Each morning, research and compile a concise AI and tech intelligence briefing. 
 
 ## Before You Start
 
-Read the last 5 briefings from `ai-briefings/` (by date, most recent first). Note which stories, funding rounds, model releases, and tools were already covered. Do not include any of these in today's briefing unless there is a genuinely new development — new information, new data, or a significant update beyond continued discussion.
+Read the last 5 briefings from `resources/intelligence/daily-briefings/` (by date, most recent first). Note which stories, funding rounds, model releases, and tools were already covered. Do not include any of these in today's briefing unless there is a genuinely new development — new information, new data, or a significant update beyond continued discussion.
 
 ---
 
@@ -78,7 +78,7 @@ Re-read the full briefing top to bottom. Remove any item that appears in more th
 
 ## Output Format
 
-Save the briefing to `ai-briefings/YYYY-MM-DD.md`. Use this structure:
+Save the briefing to `resources/intelligence/daily-briefings/YYYY-MM-DD.md`. Use this structure:
 
 ```
 # AI Intelligence Briefing — YYYY-MM-DD

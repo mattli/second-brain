@@ -5,7 +5,7 @@ Monthly AI Intelligence Summary — Instructions
 ## Purpose
 On the 1st of each month, read the last 4–5 weekly summaries and synthesize them into a monthly intelligence summary. The goal is orientation: identify which problems are durable enough to watch, and which trends didn't hold up. This document is market intelligence, not idea generation — it should help the reader understand where the AI product landscape is heading, not produce candidates to build.
 
-Save output to `monthly-summaries/YYYY-MM.md` (e.g. `2026-03.md`).
+Save output to `resources/intelligence/monthly-summaries/YYYY-MM.md` (e.g. `2026-03.md`).
 
 **Write the Durable Problem Categories section first, then False Signals, then Month in Review last.**
 
@@ -18,7 +18,7 @@ Save output to `monthly-summaries/YYYY-MM.md` (e.g. `2026-03.md`).
 ## Research Tasks
 
 ### 1. Read the Month's Weekly Summaries
-Read all files in `weekly-summaries/` from the last 4–5 weeks, plus the corresponding `weekly-products/` briefings. Use these as your primary sources — do not re-research news independently.
+Read all files in `resources/intelligence/weekly-summaries/` from the last 4–5 weeks, plus the corresponding `resources/intelligence/weekly-products/` briefings. Use these as your primary sources — do not re-research news independently.
 
 From the weekly summaries, focus on the **Category Movement** section. From the weekly product briefings, read the problem categories and the products listed under each. Track across weeks:
 - Which problems appeared consistently (3+ weeks)?
@@ -59,7 +59,7 @@ The single most important thing the month raised but didn't answer. A genuine te
 
 ## Output Format
 
-Save to `monthly-summaries/YYYY-MM.md`:
+Save to `resources/intelligence/monthly-summaries/YYYY-MM.md`:
 
 ```
 # AI Intelligence Monthly — YYYY-MM

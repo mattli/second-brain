@@ -5,7 +5,7 @@ Weekly AI Intelligence Summary — Instructions
 ## Purpose
 Each Saturday morning, synthesize the week's AI briefings and weekly product briefing into an analysis of where the product landscape is moving. The goal is not to recap what happened or re-categorize products — the daily briefings and weekly product briefing already did that. The goal is to layer on context (capability shifts, capital flows, VC theses) to make sense of where the product landscape is moving.
 
-Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W13`).
+Save output to `resources/intelligence/weekly-summaries/YYYY-WXX.md` using the ISO year and week number (e.g. `2026-W13`).
 
 **Write the Category Movement section first, then all other sections, then write the Week in Review last.**
 
@@ -18,17 +18,17 @@ Save output to `weekly-summaries/YYYY-WXX.md` using the ISO year and week number
 ## Research Tasks
 
 ### 1. Read the Previous 3 Weekly Summaries
-Read the last 3 files in `weekly-summaries/` before doing anything else. Note which categories were tracked and what the open questions were. You will use this to maintain continuity week-to-week.
+Read the last 3 files in `resources/intelligence/weekly-summaries/` before doing anything else. Note which categories were tracked and what the open questions were. You will use this to maintain continuity week-to-week.
 
 ### 2. Read the Week's AI Briefings
-Read all files in `ai-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
+Read all files in `resources/intelligence/daily-briefings/` from the last 5 weekday briefings (Monday–Friday only). Note any missed days and continue.
 
 Extract only what's relevant as context for the analysis: capability shifts, model releases, infrastructure changes, funding rounds, acquisitions, notable Product Hunt launches, or industry moves that create or close product surface area. Do not summarize the briefings — distill them into the context that matters for understanding what's changing.
 
 Pay specific attention to Product Hunt launches captured in the daily briefings — these represent products with more polish and ambition than X thread replies and may warrant mention in Category Movement if they map to active categories.
 
 ### 3. Read the Weekly Product Briefing
-Read the most recent file in `weekly-products/` (the weekly product briefing produced earlier today). This file already contains products grouped into problem categories with source data.
+Read the most recent file in `resources/intelligence/weekly-products/` (the weekly product briefing produced earlier today). This file already contains products grouped into problem categories with source data.
 
 **Do not re-categorize these products.** The product briefing owns the categorization. Your job is to analyze what those categories mean when you overlay the AI briefing context and VC lens.
 
@@ -86,7 +86,7 @@ The single most interesting unresolved tension from the week. Not a summary — 
 
 ## Output Format
 
-Save to `weekly-summaries/YYYY-WXX.md`:
+Save to `resources/intelligence/weekly-summaries/YYYY-WXX.md`:
 
 ```
 # AI Intelligence Weekly — YYYY-WXX

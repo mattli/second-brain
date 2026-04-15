@@ -6,10 +6,10 @@ AI intelligence briefing system powered by NanoClaw. Automated research, synthes
 
 | Type                 | Schedule                | Output                          | Description                                                               |
 | -------------------- | ----------------------- | ------------------------------- | ------------------------------------------------------------------------- |
-| **AI Briefing**      | Mon–Fri 7am             | `resources/ai-briefings/YYYY-MM-DD.md`    | Top AI/tech news, model releases, funding, Product Hunt launches     |
-| **Product Briefing** | Sat 6am                 | `resources/weekly-products/YYYY-MM-DD.md` | X thread product extraction and categorization into problem buckets  |
-| **Weekly Summary**   | Sat 8am                 | `resources/weekly-summaries/YYYY-WXX.md`  | Synthesizes AI briefings + product briefing into patterns and signal |
-| **Monthly Summary**  | 1st of month 7am        | `resources/monthly-summaries/YYYY-MM.md`  | Synthesizes weekly summaries into durable trends and product observations |
+| **Daily Briefing**   | Mon–Fri 7am             | `resources/intelligence/daily-briefings/YYYY-MM-DD.md`    | Top AI/tech news, model releases, funding, Product Hunt launches     |
+| **Product Briefing** | Sat 6am                 | `resources/intelligence/weekly-products/YYYY-MM-DD.md`    | X thread product extraction and categorization into problem buckets  |
+| **Weekly Summary**   | Sat 8am                 | `resources/intelligence/weekly-summaries/YYYY-WXX.md`     | Synthesizes daily briefings + product briefing into patterns and signal |
+| **Monthly Summary**  | 1st of month 7am        | `resources/intelligence/monthly-summaries/YYYY-MM.md`     | Synthesizes weekly summaries into durable trends and product observations |
 ## Directory Structure
 
 ```
@@ -20,7 +20,7 @@ intelligence/
 │   ├── weekly-summary.md
 │   └── monthly-summary.md
 └── README.md
-# Output folders live at resources/ (vault root). Moved 2026-04-13.
+# Output folders live at resources/intelligence/ (vault root). Consolidated 2026-04-15.
 # Wiki pipeline moved to projects/wiki/. Moved 2026-04-13.
 ```
 
@@ -80,7 +80,7 @@ Tasks are defined in NanoClaw's SQLite database (`~/nanoclaw/store/messages.db`)
 Old briefing files are automatically archived every Sunday at midnight. Each folder has a retention rule defined in `~/nanoclaw/scripts/archive-briefings.conf`:
 
 ```
-ai-briefings:keep=7
+daily-briefings:keep=7
 weekly-products:keep=4
 ```
 

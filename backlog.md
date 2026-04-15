@@ -3,7 +3,6 @@
 - [ ] Update main chat group behavior — think through how Second Brain should ask clarifying questions and follow best practices before making changes (e.g. confirm scope, warn about side effects, suggest alternatives)
 
 ### Skills & Tools
-- [ ] Update Last 30 Days (Matt Van Horn) research topics when needed — revisit search keywords and parameters as product focus shifts (e.g. pmtxt launch, new categories)
 - [ ] Install add-compact — adds /compact command for context compaction; needed when Phase 2 PM agent is built
 - [ ] Install add-telegram-swarm — agent teams in Telegram, each subagent gets its own bot identity; relevant to Phase 3. Potential use case: adversarial agent debates — one optimistic, one pessimistic, one focused on execution risk — for stress-testing product decisions like pmtxt direction or YC application strategy. Related to the debate-perspectives project in the vault.
 - [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
@@ -33,7 +32,7 @@
 - [ ] Set up a dotfiles repo — put shared ~/.zshrc aliases and functions in a private GitHub repo so changes sync across MacBook Pro and Mac Mini without manual duplication. Machine-specific things (vault path, NanoClaw directory) stay in a local file sourced by the shared one.
 
 ### Completed
-- [x] Install update-nanoclaw — pull upstream changes with preview and selective cherry-pick; run roughly once a month
+- [x] Install update-nanoclaw — pull upstream changes with preview and selective cherry-pick; run roughly once a month (2026-04-12)
 - [x] Upstream NanoClaw release monitoring — subscribed to the NanoClaw GitHub repo with Watch → Custom → Releases only. Email arrives on every upstream release; glance at notes, act if "BREAKING" or "migration" appears. Rule: 1 breaking change behind = update within ~2 weeks; 2 stacked = update now. (2026-04-13)
 - [x] Update NanoClaw v1.2.15 → v1.2.52 — merged 365 upstream commits, kept native credential proxy (Parallel AI, GitHub token, Readwise MCP routes), preserved Telegram multi-bot, per-group model config. OneCLI migration deferred. (2026-04-13)
 - [x] Add session start instructions to main group CLAUDE.md (both machines)

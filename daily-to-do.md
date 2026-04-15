@@ -4,7 +4,7 @@ Goals: Find one product to work on
 
 ### Wednesday, April 15
 
-- [ ] Go to Costco
+- [x] Go to Costco
 - [ ] Find out why weekly summary didn't pick up the Sequoia "From Hierarchy to Intelligence" article
 - [ ] Wire up category-level product research as weekly NanoClaw task (Last 30 Days Reddit)
 

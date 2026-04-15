@@ -6,6 +6,8 @@ Self-hosted voice conversation service on Mac Mini using Pipecat, Claude, and pe
 
 **V1 shipped** (2026-04-13). All 4 implementation units complete plus wiki integration.
 
+**First Reddit validation run completed** (2026-04-14). 156 posts → 9 findings (3 score-3, 6 score-2), 2 power-user candidates. The "drowning in saves" pain shows up in real users' words; pain concentration is lower than the doc's confidence implied. See `product-validation-findings-2026-04-14.md`. Phase 2 conversations are warranted; pricing conversations aren't yet.
+
 ## Architecture
 
 - **STT**: Deepgram Nova-3

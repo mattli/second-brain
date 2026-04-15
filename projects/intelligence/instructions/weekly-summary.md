@@ -1,6 +1,6 @@
 Weekly AI Intelligence Summary — Instructions
 
-> Version: 3.5 | Last updated: 2026-04-12
+> Version: 3.6 | Last updated: 2026-04-15
 
 ## Purpose
 Each Saturday morning, synthesize the week's AI briefings and weekly product briefing into an analysis of where the product landscape is moving. The goal is not to recap what happened or re-categorize products — the daily briefings and weekly product briefing already did that. The goal is to layer on context (capability shifts, capital flows, VC theses) to make sense of where the product landscape is moving.
@@ -37,19 +37,17 @@ Read the most recent file in `weekly-products/` (the weekly product briefing pro
 #### 4a. VC & Analyst Thesis Search
 Search for forward-looking essays or analysis pieces published in the last 7 days from the following sources. Look for pieces that articulate a belief about where a market, technology, or product category is heading. Exclude funding announcements, portfolio news, press releases, and tactical how-to content.
 
+Use `mcp__parallel-search__search` as the primary search tool for this section. WebFetch is appropriate for fetching individual essays once their URL is known.
+
 **VC Firms:**
-- **a16z** — search a16z.news (their Substack) and substack publications like a16z speedrun. Do NOT search a16z.com — thesis content has moved to Substack.
-- **Sequoia** (sequoiacap.com)
-- **Kleiner Perkins** (kleinerperkins.com)
-- **NFX** (nfx.com/essays) — network effects and market dynamics essays
+- **a16z** — fetch `https://a16z.com/news-content/` (their news hub). Include URLs matching `a16z.com/<slug>/`. Exclude URLs containing `/announcement/` (portfolio announcements), `/podcast/` (podcast episodes), and `/news-content/`. Do NOT use a16z.news — it republishes the same content without path-level categorization.
+- **Sequoia** — fetch `https://sequoiacap.com/stories/?_story-category=perspective`. This is their Perspective-category archive and cleanly excludes portfolio "Partnering with X" announcements.
+- **NFX** — fetch `https://www.nfx.com/essays` — network effects and market dynamics essays.
 
 **Independent Analysts:**
-- **Benedict Evans** (ben-evans.com) — weekly tech/market analysis
-- **Stratechery** by Ben Thompson (stratechery.com) — tech strategy analysis
-- **Ethan Mollick** (oneusefulthing.substack.com) — AI impact and implications
-
-**Practitioner:**
-- **First Round Review** (review.firstround.com) — operator-level essays, often thesis-adjacent
+- **Benedict Evans** — fetch `https://www.ben-evans.com/benedictevans`. Date is in the URL path (`/YYYY/M/D/slug`) — filter by publish date in URL.
+- **Stratechery** by Ben Thompson — fetch `https://stratechery.com/`. Date is in the URL path (`/YYYY/slug/`). Most articles are paywalled; note paywall status but include the visible framing.
+- **Ethan Mollick** — fetch `https://www.oneusefulthing.org/archive?sort=new` (canonical domain is oneusefulthing.org, not the old oneusefulthing.substack.com).
 
 For each relevant piece found: what they believe, why, and how it connects to the product categories being tracked.
 
@@ -121,14 +119,12 @@ Save to `weekly-summaries/YYYY-WXX.md`:
 | Previous weekly summaries | ✅/❌ | [which weeks read] |
 | AI briefings (Mon–Fri) | ✅/❌ | [which days read] |
 | Weekly product briefing | ✅/❌ | [date of briefing read] |
-| a16z (a16z.news) | ✅/❌ | [pieces or "(nothing relevant)"] |
-| Sequoia | ✅/❌ | [pieces or "(nothing relevant)"] |
-| Kleiner Perkins | ✅/❌ | [pieces or "(nothing relevant)"] |
+| a16z (a16z.com/news-content/) | ✅/❌ | [pieces or "(nothing relevant)"] |
+| Sequoia (Perspective archive) | ✅/❌ | [pieces or "(nothing relevant)"] |
 | NFX | ✅/❌ | [pieces or "(nothing relevant)"] |
 | Benedict Evans | ✅/❌ | [pieces or "(nothing relevant)"] |
 | Stratechery | ✅/❌ | [pieces or "(nothing relevant)"] |
 | Ethan Mollick | ✅/❌ | [pieces or "(nothing relevant)"] |
-| First Round Review | ✅/❌ | [pieces or "(nothing relevant)"] |
 | Overnight catch-up | ✅/❌ | [developments or "(nothing significant)"] |
 ```
 

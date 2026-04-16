@@ -20,15 +20,15 @@ research_log_entries: 0
 
 ### Batch 1 (Tier A — processed)
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 1 | Services: The New Software | Julien Bek | 1372 | NEW PAGE | landscape/services-as-software.md |
-| 2 | Services: The New Software (tweet) | Julien Bek | 1387 | MERGED with #1 | landscape/services-as-software.md |
-| 3 | How to Build Services-as-Software Business | Alex Vacca | 2031 | MERGED with #1 | landscape/services-as-software.md |
-| 4 | Frontier Systems for the Physical World | Oliver Hsu | 5198 | NEW PAGE | concepts/physical-ai.md |
-| 5 | I Went Through Every AI Memory Tool... | witcheer | 1860 | UPDATED | concepts/llm-knowledge-bases.md |
-| 6 | Marketing is dead. Long live The Distribution Engineer. | GRITCULT | 1822 | UPDATED | landscape/ai-startup-distribution.md |
-| 7 | Resolvers: The Routing Table for Intelligence | Garry Tan | 2882 | UPDATED | tools/agent-harness.md, tools/claude-code-skill-frameworks.md |
+| #   | Title                                                   | Author     | Words | Action         | Target Page(s)                                                |
+| --- | ------------------------------------------------------- | ---------- | ----- | -------------- | ------------------------------------------------------------- |
+| 1   | Services: The New Software                              | Julien Bek | 1372  | NEW PAGE       | landscape/services-as-software.md                             |
+| 2   | Services: The New Software (tweet)                      | Julien Bek | 1387  | MERGED with #1 | landscape/services-as-software.md                             |
+| 3   | How to Build Services-as-Software Business              | Alex Vacca | 2031  | MERGED with #1 | landscape/services-as-software.md                             |
+| 4   | Frontier Systems for the Physical World                 | Oliver Hsu | 5198  | NEW PAGE       | concepts/physical-ai.md                                       |
+| 5   | I Went Through Every AI Memory Tool...                  | witcheer   | 1860  | UPDATED        | concepts/llm-knowledge-bases.md                               |
+| 6   | Marketing is dead. Long live The Distribution Engineer. | GRITCULT   | 1822  | UPDATED        | landscape/ai-startup-distribution.md                          |
+| 7   | Resolvers: The Routing Table for Intelligence           | Garry Tan  | 2882  | UPDATED        | tools/agent-harness.md, tools/claude-code-skill-frameworks.md |
 
 ### Batch 2 (Tier A — processed)
 

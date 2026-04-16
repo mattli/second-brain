@@ -11,6 +11,9 @@
 !areas/**
 !archives/
 !archives/**
+!resources/
+!resources/wiki/
+!resources/wiki/**
 
 # Always ignore system/local files
 **/.DS_Store

@@ -1,11 +1,11 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-16
 ---
 
 # AI Organization Design
 
-> TLDR: Block (Jack Dorsey) proposes replacing corporate hierarchy with an "intelligence layer" — a company organized as a mini-AGI where AI handles coordination that previously required layers of management, enabled by a "world model" of operations and customer data.
+> TLDR: Block (Jack Dorsey) proposes replacing corporate hierarchy with an "intelligence layer" — a company organized as a mini-AGI where AI handles coordination that previously required layers of management, enabled by a "world model" of operations and customer data. Endorsed by Sequoia (Roelof Botha): "speed is the best predictor of start-up success."
 
 ## Overview
 
@@ -43,9 +43,29 @@ The constraint is unchanged: narrowing span of control means adding layers, but 
 
 "There is no need for a permanent middle management layer."
 
-## The Intelligence Thesis
+## The Intelligence Layer in Action
 
-When the intelligence layer can't compose a solution because a capability doesn't exist, that failure signal IS the future roadmap. "The traditional roadmap, where product managers hypothesize about what to build next, is any company's ultimate limiting factor."
+The intelligence layer composes capabilities into solutions for specific customers at specific moments, proactively. Two examples from the Sequoia essay:
+
+- A restaurant's cash flow is tightening ahead of a seasonal dip the model has seen before. The intelligence layer composes a short-term loan from the lending capability, adjusts the repayment schedule using the payments capability, and surfaces it to the merchant *before they even think to look for financing.*
+- A Cash App user's spending pattern shifts in a way the model associates with a move to a new city. The intelligence layer composes a new direct deposit setup, a Cash App Card with boosted categories for their new neighborhood, and a savings goal calibrated to their updated income.
+
+No product manager decided to build either solution. The capabilities existed. The intelligence layer recognized the moment and composed them.
+
+When the intelligence layer tries to compose a solution and can't because a capability doesn't exist, that failure signal IS the future roadmap. "The traditional roadmap, where product managers hypothesize about what to build next, is any company's ultimate limiting factor."
+
+## People at the Edge
+
+In a conventional company, intelligence is spread throughout the people and the hierarchy routes it. In Block's model, the intelligence lives in the system. The people are on the *edge* — where the intelligence makes contact with reality.
+
+People at the edge do what the model can't:
+- **Reach** into places the model can't go yet
+- **Sense** things the model can't perceive: intuition, cultural context, trust dynamics, "the feeling in a room"
+- **Decide** what the model shouldn't decide alone: ethical calls, novel situations, high-stakes moments where the cost of being wrong is existential
+
+"A world model that can't touch the world is just a database." But the edge doesn't need layers of management to coordinate it — the world model gives every person the context they need to act without waiting for information to travel up and down a chain of command.
+
+The fundamental question for any company: "What does your company understand that is genuinely hard to understand, and is that understanding getting deeper every day?" If the answer is nothing, AI is just a cost optimization story. If the answer is deep, AI reveals what the company actually is.
 
 ## Small Teams + Agents
 
@@ -62,5 +82,6 @@ Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = 
 ## Sources
 
 - "From Hierarchy to Intelligence" — Jack Dorsey / Block (tweet, Mar 2026) ([link](https://x.com/jack/status/2039003879841362278/?s=12&rw_tt_thread=True))
+- "From Hierarchy to Intelligence" — Roelof Botha / Sequoia (article, Apr 2026) — Full Sequoia endorsement with historical context and "edge" framework
 - "Thesis: the problem with AI working in every domain..." — Marc Andreessen (tweet) ([link](https://x.com/pmarca/status/2038350516875595924/?s=12&rw_tt_thread=True))
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))

@@ -75,6 +75,12 @@ goodalexander's thesis (Apr 2026): AI labs are executing what he calls the large
 
 See also: [Vertical AI](../landscape/vertical-ai.md) for Harvey's model U-turn and how vertical AI companies are navigating this.
 
+## The Perennial "What If Big Co Builds This?"
+
+Andrew Chen's historical framing: every technology wave produces the same objection — "what if IBM builds this?" (1980), "what if Microsoft builds this?" (1995), "what if Google builds this?" (2010), "what if \<huge AI lab\> builds this?" (today). Reality: when these waves happen, new markets are so large there will be tens of thousands of new viable companies, hundreds of unicorns, and a few iconic generational companies. Big cos play a role but can never compete with the open market.
+
+"Pessimists ask 'what if they build it.' Founders ask 'what if I build it?'"
+
 ## The Meta-Moat
 
 "Time that can't be parallelized." Network density takes years of human adoption. Regulatory approval takes years of political process. Infrastructure takes years to build. Data takes years to compound. Capital relationships take decades to earn.
@@ -86,3 +92,4 @@ See also: [Vertical AI](../landscape/vertical-ai.md) for Harvey's model U-turn a
 - "Notes on AI Apps / Feb 2026" — Anish Acharya (tweet, Apr 2026) ([link](https://x.com/illscience/status/2023424880776228974/?s=12&rw_tt_thread=True))
 - "Claude is growing itself at this point" — Head of Growth, Anthropic / Lenny's Podcast (video, Apr 2026) ([link](https://www.youtube.com/watch?v=k-H4nsOTuxU))
 - "The Big Rug" — goodalexander (Apr 2026)
+- "ok this startup is cool but..." — andrew chen (tweet, Apr 2026)

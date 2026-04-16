@@ -123,6 +123,20 @@ Key tools:
 
 "Within 6 months, 'context engineering' replaces 'memory' as the default term for what serious agent infrastructure does." The projects building substrate-style architectures will pull ahead of fact-storage approaches.
 
+## Semantic Collapse: Why RAG Breaks at Scale
+
+Stanford researchers exposed a fundamental scaling limit in RAG systems called "Semantic Collapse." The mechanism:
+
+- Under 10,000 documents, vector embeddings cluster well — similar concepts group together and retrieval works as intended.
+- Past 10,000 documents, the high-dimensional embedding space fills up. Clusters overlap. Distances compress. Everything starts to look "relevant."
+- This is a mathematical inevitability called the **Curse of Dimensionality**: in a 1000-dimensional space, 99.9% of data lives on the outer edge. All points become equidistant.
+
+**The Stanford findings:** At 50,000 documents, precision drops by 87%. Semantic search becomes *worse* than old-school keyword search. Adding more context doesn't fix hallucinations — it makes them worse, because "nearest neighbor" search finds everyone, not the best answer.
+
+This validates the LLM Wiki approach: compiled, cross-referenced markdown files where synthesis is done once and kept current — rather than re-derived via vector search on every query. At moderate scale (~100 sources, hundreds of pages), agent-navigable file structure with backlinks and index files outperforms RAG without the scaling cliff.
+
+See also: the "Context Engineering killed RAG" thesis — as context windows grow to 1M+ tokens, the need for chunking and retrieval diminishes for smaller document sets, while the real challenge becomes selecting the *right* context, not finding *any* context.
+
 ## Open Questions
 
 - How well does this scale beyond ~100 articles / 400K words? At what point does agent navigation break down and you need search tooling like qmd?
@@ -131,6 +145,7 @@ Key tools:
 
 ## Sources
 
+- "RAG is broken and nobody's talking about it" — How To AI (tweet, Apr 2026)
 - "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026) ([link](https://x.com/karpathy/status/2039805659525644595/?s=12&rw_tt_thread=True))
 - "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 4, 2026) ([link](https://x.com/karpathy/status/2040572272944324650/?s=12&rw_tt_thread=True))
 - "llm-wiki" — Andrej Karpathy (GitHub gist, Apr 4, 2026) ([link](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f))

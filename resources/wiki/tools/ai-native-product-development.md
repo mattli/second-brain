@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-16
 ---
 
 # AI-Native Product Development
@@ -98,6 +98,32 @@ Hannah Stalberg (DoorDash PM, 1,500+ hours in Claude Code) coined "Team OS" — 
 
 Aakash Gupta's concept (ProductCon 2025): the intersection of vibe coding and experimentation. Three implementation stacks: (1) prototype in Lovable → engineer in Cursor → experiment in LaunchDarkly/Amplitude, (2) full-stack vibe coding with integrated experimentation, (3) Claude Code-driven rapid prototyping with A/B testing. The idea: PMs and designers can prototype and test hypotheses without waiting for engineering sprints.
 
+## Delta Force Teams (Owner)
+
+Deano (Owner, Apr 2026) articulates the most extreme version of the small-elite-team philosophy. Owner reached $15M ARR with 5 engineers — building a product surface where each component has entire companies built around it — and is now valued at $1B+ with a fraction of typical SaaS headcount.
+
+**The hiring bar:** Modeled after Delta Force, not Navy SEALs. ~1,700 special forces apply, ~6 make it (0.35%). Owner's application-to-offer rate: ~0.22%. The heuristics: "If it's not a hell yes, it's a hell no." "Would you put your job on the line for this person?" "Would I invite this person to my wedding?"
+
+**Why small teams demand this bar:**
+1. Standards are contagious — one average performer sets the new standard
+2. Judgment replaces process — trust and independent decision-making only work if judgment is excellent
+3. Ownership is non-negotiable — no one to hand off to, no layer to hide behind
+
+**AI amplifies the gap:** "AI is not an equalizer, it's a multiplier. Exceptional people use it to compress months into days. Average people use it to move slightly faster and often in the wrong direction. The gap between exceptional and average isn't shrinking. It's exploding."
+
+**Operational principles:**
+- **Zero tolerance for tech debt** — "Today's shortcuts become tomorrow's bottlenecks — paid not once, but every day." Form enables speed, like great athletes.
+- **Zero tolerance for bug backlogs** — "Most teams accept a 'healthy backlog' of known bugs. What that really means is customers are experiencing constant paper cuts."
+- **No deadlines** — "If someone needs a deadline to move fast, we've made a hiring mistake." Deadlines focus teams on the date rather than building something exceptional.
+- **2 meetings/week, 1.5 hours total** — Monday standup (align on one thing), Friday demo day. Everything else async.
+- **Trust battery starts at 100%** — "When you make someone earn trust before you extend it, you slow them down at the exact moment they have the most energy." Full ownership from day one.
+
+**Customer obsession framework:** Everyone talks to at least one customer per week. "You should know your customer so well you know what gum they chew." The leader's job: not to sell the plan, but to make reality undeniable. "People don't align to plans. They align to reality they can see for themselves."
+
+**The "Nick Fury" leadership model:** "My job isn't to be the superhero. It's to go find them, believe in them completely, and then unleash them." Only hire people better than you in some significant way. If you're the most talented person in the room, you've failed.
+
+Key contrast with [AI Organization Design](../landscape/ai-organization-design.md): Block replaces hierarchy with an intelligence layer. Owner replaces hierarchy with extreme talent density and minimal process. Both bet against middle management but for different reasons — Block because AI can coordinate, Owner because exceptional people don't need coordination.
+
 ## Risks
 
 - **Adoption fatigue** — "Shipping more stuff does not equal more product value. If users can't keep up, what's the point?"
@@ -116,3 +142,4 @@ Aakash Gupta's concept (ProductCon 2025): the intersection of vibe coding and ex
 - "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=YKYQ-z6A9Fs&si=rM4oFGmcIRcItGyh))
 - "The Most Important New Skill for Product Managers in 2026: AI Evals Masterclass" — Aakash Gupta / Aneesh Chukla (video, Apr 2026) ([link](https://youtube.com/watch?v=Raa3qjEBvKE&si=co2skoDymT1ghfH-))
 - "How this PM Used Claude Code to Support 20 People" — Aakash Gupta / Hannah Stalberg (video, Apr 2026) ([link](https://youtube.com/watch?v=0UArKLQ6bXA&si=KfeHZk0OACA34T6a))
+- "How We Build Product Teams at Owner" — Deano (tweet thread, Apr 2026) ([link](https://www.deannotes.com/delta-force))

@@ -158,7 +158,28 @@ Ad creation went from 2 hours to 15 minutes. 10x more creative output than most 
 
 **The convergence:** Building + psychology + audience in one person = the most dangerous person in tech. The skill barrier between technical and non-technical is collapsing — Claude Code is free, Cursor exists.
 
-Also: ericosiu (Apr 2026) reinforces the pattern — companies redesigning marketing teams where top marketers use AI to manage multiple functions and judge quality. "One marketer operating 10 AI agents" as the emerging team shape. The people who adapt become exponentially more valuable; those who don't risk obsolescence.
+## The 100x Marketer (ericosiu)
+
+ericosiu (Apr 2026) maps the restructuring in detail. The old marketing pyramid (CMO → Directors → Managers → Specialists) is collapsing because AI collapsed the bottom three layers — not because the work disappeared, but because one person with the right AI system can do what five specialists used to do.
+
+**The 2x2 marketer classification** (judgment × AI fluency):
+
+| | Low AI Fluency | High AI Fluency |
+|---|---|---|
+| **High Judgment** | Veterans — valuable strategic minds, 6-12 months to learn AI or become expensive advisors | **100x Marketers** — every company is fighting over these. One replaces a team. |
+| **Low Judgment** | Obsolete — where layoffs concentrate | Dangerous — massive output in the wrong direction. "The machine runs perfectly in the wrong direction." |
+
+The "Dangerous" category is the scariest: a team launched an AI cold email system sending thousands/week with great open rates but near-zero replies — AI writing polished emails aimed at the completely wrong ICP. Nobody caught it for three weeks because dashboards all showed green.
+
+**How to become a 100x marketer:**
+- Stop doing the work. Start operating the system — verify what AI drafts, decide what ships
+- Build feedback loops, not workflows — systems that diagnose their own failures and propose fixes
+- Learn to verify AI output in 10 seconds — judgment is the most valuable skill
+- Own multiple functions through AI agents — breadth plus AI leverage beats depth alone
+
+The new job title: "Growth Operator" — replacing "SEO Analyst." The skillset shifts from "I know how to do this task" to "I know how to make AI do this task and verify the output." Fewer roles, higher bar, higher pay.
+
+Prediction: "The marketing team of 2027 will be 4 people doing what 24 used to do."
 
 ## Tools Noted
 
@@ -182,4 +203,4 @@ Also: ericosiu (Apr 2026) reinforces the pattern — companies redesigning marke
 - "AI agents for marketing are here..." — Cody Schneider (tweet/video, Apr 2026) ([link](https://x.com/codyschneidertx))
 - "Steal My Digital Product System" — Matt Gray (tweet thread, Apr 2026) ([link](https://x.com/mattgray1))
 - "Marketing is dead. Long live The Distribution Engineer." — GRITCULT (tweet thread, Apr 2026) ([link](https://x.com/gaborcselle))
-- "Most companies are laying off marketers. Smart ones are replacing the org chart entirely." — ericosiu (tweet, Apr 2026) ([link](https://x.com/ericosiu))
+- "Most companies are laying off marketers. Smart ones are replacing the org chart entirely." — ericosiu (tweet, Apr 2026) ([link](https://x.com/ericosiu)) — Full 2x2 marketer classification and 100x marketer framework

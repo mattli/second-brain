@@ -6,9 +6,10 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 
 ## Concepts & Patterns
 
-- [LLM Knowledge Bases](concepts/llm-knowledge-bases.md) — LLM-compiled personal wikis from raw sources; Karpathy wiki pattern; file-over-app paradigm; Tw93 learning workflow; Defileo operational playbook
-- [Agent Proficiency](concepts/agent-proficiency.md) — Managing AI agents as a core 21st-century skill; corporate adoption (Zapier, Shopify ratings); three tool tiers
-- [Business Moats in AI](concepts/business-moats-in-ai.md) — Five durable moats; two paths for software companies; token price discrimination; "Big Rug" enterprise data risk
+- [LLM Knowledge Bases](concepts/llm-knowledge-bases.md) — LLM-compiled personal wikis; Karpathy pattern; AI memory tools (two camps); Semantic Collapse; context engineering vs RAG
+- [Agent Proficiency](concepts/agent-proficiency.md) — Managing AI agents as core skill; corporate adoption; enterprise agent deployer role (Aaron Levie)
+- [Business Moats in AI](concepts/business-moats-in-ai.md) — Five durable moats; opinionated perspective moat; two paths for software; token price discrimination; "Big Rug" data risk
+- [Physical AI](concepts/physical-ai.md) — a16z's physical AI systems essay; five shared primitives; three frontier domains; mutual reinforcement flywheel
 - [Knowledge Work Future](concepts/knowledge-work-future.md) — AI commoditizing knowledge; wisdom skills; Jevons Paradox of AI labor; Anthropic observed exposure methodology
 - [World Models](concepts/world-models.md) — Alternative AI paradigm to LLMs; spatial reasoning; key players (LeCun/AMI, World Labs, Google, NVIDIA)
 - [Model Quantization](concepts/model-quantization.md) — How LLM weight quantization works; 8-bit is nearly free, 4-bit is ~90% quality, 2-bit breaks
@@ -18,7 +19,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Claude Code Skill Frameworks](tools/claude-code-skill-frameworks.md) — gstack, Superpowers, Compound Engineering; Dex personal OS; content-skill-graph; domain-specific libraries
 - [Agent Harness](tools/agent-harness.md) — Agent = Model + Harness; 12 components; memory; thin harness/fat skills; Claude Code hooks; OpenAI harness lessons; "Peggy" SMB multi-agent case study
 - [Agentic Engineering](tools/agentic-engineering.md) — Harness design, self-improving agents, multi-agent orchestration, Managed Agents, Great Convergence, decade of agents
-- [AI-Native Product Development](tools/ai-native-product-development.md) — Docs-to-demos, AI evals as PRD, Team OS, vibe experimentation, AI transformation maturity model
+- [AI-Native Product Development](tools/ai-native-product-development.md) — Docs-to-demos; AI-native company observations (Ann Miura-Ko); Delta Force teams (Owner); AI evals as PRD; Team OS
 
 ## Models & Safety
 
@@ -28,8 +29,9 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 ## Landscape
 
 - [AI Careers](landscape/ai-careers.md) — Job market bifurcation (big vs small AI), hype navigation, what gets hired
-- [AI Startup Distribution](landscape/ai-startup-distribution.md) — Distribution strategies; cold outreach playbook; Reddit pattern; AI voice agency; AI marketing agents (Graphed); digital product creation
-- [AI Organization Design](landscape/ai-organization-design.md) — Block's "company as intelligence" model; small teams + agents replacing hierarchy
+- [Services as Software](landscape/services-as-software.md) — Sequoia's services-as-software thesis; copilot vs autopilot; ColdIQ playbook; vertical opportunity map
+- [AI Startup Distribution](landscape/ai-startup-distribution.md) — Distribution strategies; Distribution Engineer; 100x marketer; cold outreach; Reddit; AI marketing agents; pain-first ideation
+- [AI Organization Design](landscape/ai-organization-design.md) — Block's "company as intelligence" model; Sequoia endorsement; intelligence layer; people at the edge
 - [Y Combinator AI Thesis](landscape/yc-ai-thesis.md) — YC's 2026 RFS: Cursor for PM, AI agencies, spatial reasoning, reindustrialized mills; PG's "Live in the Future"
 - [Vertical AI](landscape/vertical-ai.md) — Enterprise AI adoption data; Harvey's $0→$200M ARR playbook; Harvey vertical model U-turn (scrapped custom model)
 - [AI User Perspectives](landscape/ai-user-perspectives.md) — Anthropic's 81K-person survey; what users want; fears (unreliability, displacement, autonomy loss); light and shade framework

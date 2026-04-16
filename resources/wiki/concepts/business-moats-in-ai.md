@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-13
+last_updated: 2026-04-16
 ---
 
 # Business Moats in AI
@@ -75,6 +75,21 @@ goodalexander's thesis (Apr 2026): AI labs are executing what he calls the large
 
 See also: [Vertical AI](../landscape/vertical-ai.md) for Harvey's model U-turn and how vertical AI companies are navigating this.
 
+## The Opinionated Perspective Moat
+
+fintechjunkie's counterpoint to the pure-infrastructure moat thesis: when anyone can build your product in a weekend, the last real moat standing is **an opinionated perspective on the solution**.
+
+"Being able to build and understanding the best way to solve a problem aren't remotely the same thing." Building is mechanical now. But having a genuinely informed opinion about the right inputs, workflows, and outputs takes years of pattern recognition and listening to customers.
+
+Why opinions compound into defensibility:
+- Great product people ship constantly, plugging holes before users report them — copying them is hitting a moving target while reading their old blog posts
+- Over time, hooks build: memory that doesn't port, context about preferences, integration work and muscle memory, data that makes the product smarter for your specific use case
+- These switching costs don't show up on any spreadsheet but are real
+
+The new competitive landscape: "Your competition isn't only other startups, it's also your user deciding they could probably just do this themselves on a Saturday." In that world, only one thing matters: having a perspective worth paying for.
+
+This aligns with the "taste as moat" observation from Ann Miura-Ko's AI-native company visits: "When execution is nearly free, taste becomes the moat."
+
 ## The Perennial "What If Big Co Builds This?"
 
 Andrew Chen's historical framing: every technology wave produces the same objection — "what if IBM builds this?" (1980), "what if Microsoft builds this?" (1995), "what if Google builds this?" (2010), "what if \<huge AI lab\> builds this?" (today). Reality: when these waves happen, new markets are so large there will be tens of thousands of new viable companies, hundreds of unicorns, and a few iconic generational companies. Big cos play a role but can never compete with the open market.
@@ -93,3 +108,5 @@ Andrew Chen's historical framing: every technology wave produces the same object
 - "Claude is growing itself at this point" — Head of Growth, Anthropic / Lenny's Podcast (video, Apr 2026) ([link](https://www.youtube.com/watch?v=k-H4nsOTuxU))
 - "The Big Rug" — goodalexander (Apr 2026)
 - "ok this startup is cool but..." — andrew chen (tweet, Apr 2026)
+- "The Last Moat Standing" — fintechjunkie (tweet, Apr 2026)
+- "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)

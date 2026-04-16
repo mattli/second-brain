@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-16
 ---
 
 # Agent Proficiency
@@ -41,9 +41,24 @@ Companies are now evaluating employees on AI proficiency directly. Zapier and Sh
 
 [DHH](../people/dhh.md) frames it from the senior developer angle: agent proficiency lets senior developers "5x 10x their individual productivity" — the skill is knowing what to direct agents toward and how to evaluate their output. See [Knowledge Work Future](knowledge-work-future.md) for the broader implications.
 
+## The Enterprise Agent Deployer (Aaron Levie)
+
+Aaron Levie (Box CEO, Apr 2026) predicts a new enterprise role: the **agent deployer and manager**. Not centralized — one or more on every team. The job description:
+
+1. Identify highest-leverage workflows where throwing compute (agents) at a task could execute 100x faster or 100x more times — e.g., processing orders of magnitude more leads, automating contract review, streamlining client onboarding, building company-wide knowledge bases
+2. Map the future-state workflow — structured and unstructured data flows, where the human interfaces with the agent, at which steps
+3. Connect business systems — comfortable with skills, MCP, CLIs
+4. Manage agents ongoing — run evals after model/data changes, track KPIs
+5. Bridge technical and operational — relatively technical but also great at business
+
+This may be an existing person repositioned or a net new hire. The role maps naturally to next-gen hires who are technical and leaning into AI. For anyone concerned about engineers in the future, this is an obvious landing zone.
+
+The role description is essentially the enterprise version of what Karpathy calls "agent proficiency" — but formalized as a job function rather than a personal skill. See also: ericosiu's "Growth Operator" in [AI Startup Distribution](../landscape/ai-startup-distribution.md) for the marketing-specific version.
+
 ## Sources
 
 - "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 2026) ([link](https://x.com/karpathy/status/2040572272944324650/?s=12&rw_tt_thread=True))
 - "The guy who literally wrote the most popular deep learning..." — Aakash Gupta (tweet, Apr 2026) ([link](https://x.com/aakashgupta/status/2040662476862394592/?s=12&rw_tt_thread=True))
 - "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=YKYQ-z6A9Fs&si=rM4oFGmcIRcItGyh))
 - "The Claude Code Setup Nobody Shows You" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=Eqh2iwSl570&si=CgkjC-SZIXj-KR8C))
+- "The more enterprises I talk to about AI agent transformation..." — Aaron Levie (tweet, Apr 2026)

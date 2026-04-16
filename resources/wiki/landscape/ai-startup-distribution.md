@@ -181,6 +181,10 @@ The new job title: "Growth Operator" — replacing "SEO Analyst." The skillset s
 
 Prediction: "The marketing team of 2027 will be 4 people doing what 24 used to do."
 
+## Startup Ideation: Pain-First Framework
+
+Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ total valuation, current at $5M ARR) — published a comprehensive ideation framework. Core thesis: businesses solve either pain or pleasure needs, but pain-based businesses have clearer demand and are easier to validate. Focus on niche pain points to avoid competition, then test by finding paying customers before building. The full methodology covers identification, research, evaluation, and weighing of opportunities. Not AI-specific, but directly applicable to AI-era founders where the building is trivial and the ideation/validation is the bottleneck.
+
 ## Tools Noted
 
 - **Origami** — AI-powered lead generation. "One prompt to find what Apollo, ZoomInfo, and hours in Clay can't." Searches 50+ sources in real-time.
@@ -204,3 +208,4 @@ Prediction: "The marketing team of 2027 will be 4 people doing what 24 used to d
 - "Steal My Digital Product System" — Matt Gray (tweet thread, Apr 2026) ([link](https://x.com/mattgray1))
 - "Marketing is dead. Long live The Distribution Engineer." — GRITCULT (tweet thread, Apr 2026) ([link](https://x.com/gaborcselle))
 - "Most companies are laying off marketers. Smart ones are replacing the org chart entirely." — ericosiu (tweet, Apr 2026) ([link](https://x.com/ericosiu)) — Full 2x2 marketer classification and 100x marketer framework
+- "I'm a Serial Founder. Here's how I come up with Business Ideas." — ssbmomelette / Troy (Reddit r/startups, Apr 2026)

@@ -98,6 +98,22 @@ Hannah Stalberg (DoorDash PM, 1,500+ hours in Claude Code) coined "Team OS" — 
 
 Aakash Gupta's concept (ProductCon 2025): the intersection of vibe coding and experimentation. Three implementation stacks: (1) prototype in Lovable → engineer in Cursor → experiment in LaunchDarkly/Amplitude, (2) full-stack vibe coding with integrated experimentation, (3) Claude Code-driven rapid prototyping with A/B testing. The idea: PMs and designers can prototype and test hypotheses without waiting for engineering sprints.
 
+## AI-Native Companies in Practice (Ann Miura-Ko)
+
+Ann Miura-Ko (Floodgate, Apr 2026) published field observations from visiting AI-native companies in San Francisco. Key findings:
+
+**The PM is disappearing.** Across five companies visited in a single day, only one full-time PM — even in a 40-person company. Engineers talk to customers daily and own product decisions end-to-end. The PM role isn't being "augmented" — it's being absorbed into engineering and design.
+
+**The most dangerous side effect: the feature factory.** When you can build anything a customer asks for in a day, the temptation to build everything is overwhelming. Multiple companies cited this as their biggest strategic risk. Solutions: agents that can only configure existing features through JSON (literally cannot create new code), squad-level North Star metrics to kill ideas before they ship, founders deciding where the product has opinions and where it's flexible. "When execution is nearly free, taste becomes the moat."
+
+**The stack is converging.** Almost every company: Slack + Claude Code + GitHub + Linear. Slack has become a central orchestration layer for agents — emoji reactions auto-create tickets, bots triage customer issues, agents get tagged in threads and start working on fixes. Cursor mentioned sporadically (six months ago it came up in every conversation). Troubling for coding platforms: engineers don't seem loyal to any particular tool.
+
+**Non-engineers are building real things.** An enterprise account manager asked an AI agent in Slack to automate account uploads the product team hadn't prioritized — done in an hour. An accounting team writing database queries via MCP. A Chief of Staff producing marketing materials in under 30 minutes. "The most underestimated shift isn't what AI does for engineers. It's what it does for everyone else."
+
+**The cost of experimentation has collapsed.** A researcher tests 10 interface designs per day and throws 9 away. A designer generates competing iterations in under 6 minutes. A growth PM with zero coding experience built a full Meta Ads pipeline in two days. Companies simulate customers with AI personas before real users touch the product. One team runs hundreds of research interviews in a week instead of 50 in a quarter.
+
+The result: companies iterating 3-5x faster. Both the build and learn steps are compressing. "The gap between companies that have internalized these practices and those still debating 'AI strategy' is enormous — and it's widening every week."
+
 ## Delta Force Teams (Owner)
 
 Deano (Owner, Apr 2026) articulates the most extreme version of the small-elite-team philosophy. Owner reached $15M ARR with 5 engineers — building a product surface where each component has entire companies built around it — and is now valued at $1B+ with a fraction of typical SaaS headcount.
@@ -143,3 +159,4 @@ Key contrast with [AI Organization Design](../landscape/ai-organization-design.m
 - "The Most Important New Skill for Product Managers in 2026: AI Evals Masterclass" — Aakash Gupta / Aneesh Chukla (video, Apr 2026) ([link](https://youtube.com/watch?v=Raa3qjEBvKE&si=co2skoDymT1ghfH-))
 - "How this PM Used Claude Code to Support 20 People" — Aakash Gupta / Hannah Stalberg (video, Apr 2026) ([link](https://youtube.com/watch?v=0UArKLQ6bXA&si=KfeHZk0OACA34T6a))
 - "How We Build Product Teams at Owner" — Deano (tweet thread, Apr 2026) ([link](https://www.deannotes.com/delta-force))
+- "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)

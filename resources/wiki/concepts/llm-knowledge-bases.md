@@ -135,7 +135,19 @@ Stanford researchers exposed a fundamental scaling limit in RAG systems called "
 
 This validates the LLM Wiki approach: compiled, cross-referenced markdown files where synthesis is done once and kept current — rather than re-derived via vector search on every query. At moderate scale (~100 sources, hundreds of pages), agent-navigable file structure with backlinks and index files outperforms RAG without the scaling cliff.
 
-See also: the "Context Engineering killed RAG" thesis — as context windows grow to 1M+ tokens, the need for chunking and retrieval diminishes for smaller document sets, while the real challenge becomes selecting the *right* context, not finding *any* context.
+## Context Engineering vs RAG
+
+Nyk (Apr 2026) argues RAG was an engineering workaround for small context windows — you couldn't fit the whole document, so you chunked, embedded, searched, and injected. With Claude Opus 4.6 at 1M tokens (750K words, 3,000 pages) and Gemini 3 Pro at 2M, context capacity grew 500x in three years. The bottleneck moved from retrieval to curation. "70% of LLM errors come from bad context, not bad models."
+
+**When long context replaces RAG:** Bounded document sets under 500K tokens (~375K words) — skip the entire RAG pipeline. No chunking, no embeddings, no vector database. Claude Code already works this way: reads files directly, uses agentic search, manages context through compaction — not retrieval.
+
+**When RAG still wins:** Scale beyond the window (millions of documents), cost at volume (50-200x token reduction), freshness (incremental indexing in seconds), access control (permission filtering before retrieval).
+
+**The "lost in the middle" problem:** Models over-attend to beginning and end, under-attend to middle. At 1M tokens, there's a 15-17pp drop between 256K and 1M on Anthropic's MRCR v2 benchmark. 1 in 4 multi-needle retrievals fail at full window. Practical reliable performance: 500-700K range. Critical information should go at beginning or end.
+
+**The four pillars of context engineering:** (1) Knowledge retrieval — RAG, agentic search, direct reading, MCP; (2) Memory management — CLAUDE.md, auto-memory, compaction; (3) Context orchestration — document placement, priority ordering, token budgeting; (4) Quality monitoring — retrieval accuracy, hallucination rate, task completion.
+
+The honest answer for most teams: use both. Retrieve to narrow the corpus, then pass the relevant subset in full rather than chunking it further.
 
 ## Open Questions
 
@@ -146,6 +158,7 @@ See also: the "Context Engineering killed RAG" thesis — as context windows gro
 ## Sources
 
 - "RAG is broken and nobody's talking about it" — How To AI (tweet, Apr 2026)
+- "Context Engineering killed RAG" — Nyk (tweet, Apr 2026)
 - "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026) ([link](https://x.com/karpathy/status/2039805659525644595/?s=12&rw_tt_thread=True))
 - "Farzapedia, personal wikipedia of Farza..." — Andrej Karpathy (tweet thread, Apr 4, 2026) ([link](https://x.com/karpathy/status/2040572272944324650/?s=12&rw_tt_thread=True))
 - "llm-wiki" — Andrej Karpathy (GitHub gist, Apr 4, 2026) ([link](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f))

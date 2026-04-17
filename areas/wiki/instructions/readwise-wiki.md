@@ -139,6 +139,7 @@ After all tiers are processed (or timeout forces early completion):
    - **Missing pages** — topics mentioned frequently across pages but lacking their own page
    - **Stale content** — claims that newer sources have superseded
 3. Fix what you find
+4. Regenerate `wiki/long-form/QUEUE.md` per the Queue Regeneration section of `wiki/instructions/long-form-synthesis.md`. Cheap list-and-diff — no content fetches.
 
 ### Phase 6 — Manifest
 

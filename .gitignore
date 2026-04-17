@@ -12,6 +12,8 @@
 !resources/
 !resources/wiki/
 !resources/wiki/**
+!resources/ai-briefings/
+!resources/ai-briefings/**
 
 # Always ignore system/local files
 **/.DS_Store

@@ -6,7 +6,7 @@ Goals: Find one product to work on
 
 - [x] Read daily briefing
 - [x] Update wiki instructions to process long form content
-- [ ] Go to the gym
+- [x] Go to the gym
 - [ ] DM the Readwise founder about WikiWise
 - [ ] Light job search
 - [ ] Read Infinite Jest

@@ -2,6 +2,15 @@
 
 Goals: Find one product to work on
 
+### Friday, April 17
+
+- [ ] DM the Readwise founder about WikiWise
+- [ ] Go to the gym
+- [ ] Light job search
+- [ ] Read Infinite Jest
+
+---
+
 ### Wednesday, April 15
 
 - [x] Go to Costco

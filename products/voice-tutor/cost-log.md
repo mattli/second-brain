@@ -1,0 +1,16 @@
+# Voice Tutor — Cost Log
+
+One row per session. Costs are computed from ground-truth usage
+(TTS audio bytes, LLM token counts, Deepgram streamed minutes).
+Rates last verified 2026-04-15 against provider pricing pages.
+Per-session raw usage is logged to `cost-log.jsonl` for auditing
+(starting 2026-04-15 — earlier sessions have no raw-usage sidecar).
+
+| Session start | Duration | Turns | Total | LLM | STT | TTS |
+|---|---|---|---|---|---|---|
+| 2026-04-14 18:29 | 18.5 min | 106 | $6.432 | $3.789 | $0.143 | $2.501 |
+| 2026-04-15 16:37 | 20.8 min | 84 | $6.520 | $4.072 | $0.160 | $2.288 |
+| 2026-04-15 16:58 | 0.8 min | 3 | $1.174 | $1.126 | $0.006 | $0.042 |
+| 2026-04-15 18:09 | 33.7 min | 270 | $10.063 | $7.255 | $0.259 | $2.549 |
+| 2026-04-16 13:32 | 3.3 min | 12 | $1.792 | $1.529 | $0.026 | $0.237 |
+| 2026-04-16 13:35 | 22.0 min | 113 | $6.900 | $4.470 | $0.169 | $2.261 |

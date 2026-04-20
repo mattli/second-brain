@@ -79,6 +79,29 @@ The counter-view (from the same conversation): getting to 100% automation of any
 
 Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = difficult for error-prone people. Such domains = where AI agents will do best."
 
+## Intercom's 2x Experiment: AI Acceleration at Scale
+
+Darragh Curran (Intercom CTO, Apr 2026) published detailed results from a deliberate 9-month goal to 2x R&D productivity. Key finding: they hit it with time to spare, and looking back over 16 months, they've 3x'd with no signs of plateauing.
+
+**The metric:** Merged PRs divided by total R&D headcount (all roles, not just engineers). Imperfect but deliberately chosen — it puts pressure on the whole system and exposes bottlenecks.
+
+**Results after 9 months:**
+- **93.6% of PRs are agent-driven** (Claude Code). Many engineers rarely use an IDE at all.
+- **Product defect backlog shrunk 54%** — all critical and high defects closed, working toward <24hr fix SLO
+- **2x product changes shipped, 39% faster** from idea to shipped
+- **Code quality improving** after initial decline during AI adoption — first-ever five-week streak of net positive quality
+- **Downtime from breaking changes down 35%** despite doubled deployments
+- **19.2% of PRs auto-approved by AI** — median merge time 14.6 min vs. 75.8 min for human-reviewed. 497 PRs went fully autonomous (AI-written, AI-reviewed, auto-shipped) in first four weeks
+- **Cost per PR cut in half** — AI spend growing exponentially but dwarfed by salary cost savings
+
+**The distribution problem:** Top 5% of engineers produce 6x median output. Engineers spending >$1K/month on tokens see the biggest gains, but spending alone doesn't guarantee it. Intercom tracks a progression from "minimal" to "elite" AI usage based on intensity, output, depth, efficiency, and prompt quality.
+
+**Beyond R&D:** 1,100 active Claude Code users across 1,305 total employees — finance, legal, recruiting, sales teams all using agents. Internal platform lets anyone query Snowflake data and publish interactive reports.
+
+**Key organizational change:** Created "team-2x" to build a shared Claude Code plugin marketplace — auto-updating skills that distribute best practices automatically. 153 contributors (31% of R&D), 267 skills. "Modernizing the factory is now part of everyone's job."
+
+Context: Intercom is not a startup — ~8.5M lines of code, 500+ people building/operating, 30K business customers, 2M+ QPS on datastores, 313 daily production deployments. This is Block's "intelligence layer" thesis playing out in practice at a mature company.
+
 ## Architect Mode: The Post-Founder Mode Framework
 
 Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder Mode" is already obsolete — replaced by "Architect Mode," the leadership framework for the intelligence era.
@@ -104,3 +127,4 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "Thesis: the problem with AI working in every domain..." — Marc Andreessen (tweet) ([link](https://x.com/pmarca/status/2038350516875595924/?s=12&rw_tt_thread=True))
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
 - "Founder Mode is dead. Long live Founder Mode." — Ayman Al-Abdullah (Apr 2026) ([link](https://x.com/aaboreal))
+- "2× – nine months later: We did it. You can too." — Darragh Curran / Intercom (Apr 2026) ([link](https://ideas.fin.ai/p/2x-nine-months-later))

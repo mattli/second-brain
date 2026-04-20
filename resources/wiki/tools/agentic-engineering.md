@@ -116,6 +116,20 @@ Amanda Askell, Anthropic's in-house philosopher specializing in Claude's psychol
 
 **The meta-insight:** Your prompts are the working environment you're creating for the model. Tone, trust, permission to take a position, the absence of threats — the model picks up on all of it. This connects directly to the [harness design](agent-harness.md) principle of shaping the agent's action space to its actual capabilities.
 
+## Agent Categorization Framework (Farooq & Rajwani)
+
+Hamza Farooq and Jaya Rajwani (via Lenny's Newsletter, Apr 2026) propose a three-tier hierarchy for categorizing agent initiatives — the missing step before prioritization. The core insight: teams fail at prioritization because they treat "agent" as a single category, when it actually spans fundamentally different architectures.
+
+**Category 1: Deterministic Automation** — You define the entire flow; AI handles content at specific steps. Tools: n8n, Zapier, Make.com. Covers 60-70% of agent opportunities. Ship in weeks, lowest risk, clearest ROI. Example: email triage/response agent where every step is predictable. *If you can map it as a flowchart with <20 branches, it's Category 1.*
+
+**Category 2: Reasoning & Acting (ReAct)** — You define available tools; the LLM decides what to do next. Observe → reason → act → observe result → repeat. Tools: LangGraph, CrewAI, Google ADK. Covers 25-30% of opportunities. Ship in months, requires ML engineering. Example: voice+image shopping assistant where the same request triggers different action sequences. *Key difference from Cat 1: the same input can produce different execution paths.*
+
+**Category 3: Multi-Agent Networks** — Multiple specialized agents coordinate with each other, each owned by different teams. Reserved for later stages. Example: enterprise systems where inventory, logistics, finance, and customer service agents delegate tasks between each other.
+
+**The common mistake:** Organizations build Category 1 problems with Category 2 frameworks (overengineering) or Category 2 problems with Category 1 tools (breaks in production). Correct categorization determines architecture, team composition, timeline, cost, and success metrics.
+
+**Graduation signals from Cat 1 → Cat 2:** Flowchart hits 30+ nodes with branches added weekly; customer inputs can't be anticipated; agent needs to choose which API to use based on context. **From Cat 2 → Cat 3:** Single agent handling too many domains with degrading performance; tasks taking hours/days; need for parallel agent instances coordinating work.
+
 ## Tools Noted
 
 - **agents.md** — Agent instruction file spec/community resource. https://agents.md
@@ -141,3 +155,4 @@ Amanda Askell, Anthropic's in-house philosopher specializing in Claude's psychol
 - "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026) ([link](https://www.youtube.com/watch?v=lXUZvyajciY&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=12))
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
 - "anthropic's in-house philosopher thinks claude gets anxious" — Ole Lehmann (tweet, Apr 2026) ([link](https://x.com/olelehmann))
+- "Not all AI agents are created equal" — Hamza Farooq & Jaya Rajwani / Lenny's Newsletter (Apr 2026) ([link](https://www.lennysnewsletter.com/p/not-all-ai-agents-are-created-equal))

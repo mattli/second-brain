@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-13
+last_updated: 2026-04-20
 ---
 
 # The Future of Knowledge Work
@@ -83,6 +83,36 @@ The 160-year-old Jevons pattern: more efficient steam engines increased coal con
 
 *The broken pipeline:* The old career path ran through production work (do reps, build volume, become senior). AI handles the reps now. Companies need senior-level thinking; the path that produced it is narrowing. Only 1/3 of employees got any AI training; 52% of developers don't use AI agents at all.
 
+## Ironies of Automation (Bainbridge, via Kingsbury)
+
+Kyle Kingsbury resurfaces Lisanne Bainbridge's 1983 paper "Ironies of Automation" — originally about power plants and factories — as the essential framework for understanding AI's deskilling effects on knowledge work.
+
+**Three core ironies:**
+
+1. **Deskilling** — Automation degrades the skills it's supposed to augment. When humans don't practice a skill, their ability atrophies. Software engineers report feeling less able to write code after working with code-generation models. Designers report weakened creative ability after offloading to ML. Students automating reading and writing lose "core skills needed to understand the world and develop one's own thoughts." Doctors using AI polyp detection perform worse at spotting adenomas during colonoscopies.
+
+2. **Monitoring failure** — Humans are bad at overseeing automated processes. If the system executes tasks faster or more accurately than a human, real-time review is essentially impossible. Humans also struggle to maintain vigilance over systems that *mostly* work — which is why journalists keep publishing fictitious LLM quotes and Tesla's former head of self-driving watched his car crash into a wall.
+
+3. **Takeover collapse** — When an automated system handles things most of the time but occasionally needs human intervention, the operator is out of practice and stumbles. Automated systems can mask failure by handling increasing deviation until catastrophe strikes, thrusting a human into an unexpected regime. Air France 447 is the canonical example: flight controls transitioned to an unfamiliar mode the pilots weren't trained for.
+
+**The labor shock spectrum:** Kingsbury frames the range of outcomes from "ML turns out to be a normal technology" (massive capital write-down, labor market adapts, we muddle through) to mass displacement of knowledge workers across a broad swath of industries simultaneously — unlike previous automation waves that hit one sector at a time. The UBI solution is "hopelessly naïve": profitable megacorps already fight to avoid taxes and paying workers; no reason to believe AI companies will fund redistribution voluntarily.
+
+## New AI-Era Job Categories (Kingsbury)
+
+As ML deploys broadly, new kinds of work emerge at the boundary between human and ML systems:
+
+- **Incanters** — Specialists in prompting models. LLMs respond unpredictably to threats, flattery, repetition, and lies about financial bonuses. Getting reliable output requires a craft distinct from traditional programming.
+
+- **Process Engineers** — Design safeguards and layers of review around ML outputs. "Adversarial process which introduces subtle errors to measure whether the error-correction process actually works" — pharmaceutical-plant-level safety engineering applied to AI workflows.
+
+- **Statistical Engineers** — Control errors in the models themselves. Monitor confidence, detect drift, verify that ML outputs meet quality thresholds across changing distributions.
+
+- **Model Trainers** — "A surprising number of people are now employed feeding their human expertise to automated systems." The RLHF contractor workforce — "as the quip goes, 'AI' stands for African Intelligence."
+
+- **Meat Shields** — People accountable for ML systems under their supervision. When the Chicago Sun-Times published a 64-page AI-generated slop insert, the accountability chain (freelancer → King Features → Hearst → Sun-Times) revealed how companies need human bodies to absorb legal and reputational consequences. Madeline Clare Elish calls this a "moral crumple zone."
+
+- **Haruspices** — Named after Roman diviners who read entrails. Responsible for sifting through model inputs, outputs, and internal states to explain behavior post-hoc. Deep investigations into single cases or broader statistical analysis. Could serve ML companies, their users, journalists, courts, or agencies like the NTSB.
+
 ## What This Doesn't Mean
 
 This isn't a soft-skills argument against technical depth. The framing is about what becomes *differentiating* when AI can match technical performance. Deep technical knowledge still matters — it's just no longer sufficient on its own.
@@ -99,3 +129,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "Knowledge About Knowledge" — [Tier C reference: 131K-word PDF, not fully synthesized. Covers epistemology of knowledge management.] ([link](https://eclipse.rutgers.edu/wp-content/uploads/sites/30/2014/04/Knowledge.pdf))
 - "Labor market impacts of AI: A new measure and early evidence" — Maxim Massenkoff & Peter McCrory (Anthropic, 2026) ([link](https://www.anthropic.com/research/labor-market-impacts))
 - "The Paradox Nobody's Naming: More Jobs Than Ever. Fewer People Who Can Do Them." — Paweł Huryn (tweet, Apr 2026) ([link](https://x.com/PawelHuryn))
+- "The Future Of Everything Is Lies, I Guess" — Kyle Kingsbury (PDF, Apr 2026) ([link](https://aphyr.com/posts/398-the-future-of-everything-is-lies-i-guess))

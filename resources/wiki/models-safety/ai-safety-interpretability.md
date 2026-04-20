@@ -54,6 +54,25 @@ A major New Yorker investigation (Ronan Farrow & Andrew Marantz, Apr 2026) docum
 
 The piece raises broader questions about whether the AI industry's current anti-regulation trajectory is prudent, and whether safety-focused governance structures can survive commercial pressures.
 
+## Latent Disaster: The Complexity Debt Argument (Kingsbury)
+
+Kyle Kingsbury ("The Future Of Everything Is Lies, I Guess," Apr 2026) argues that AI-generated code introduces a specific form of systemic risk — latent disaster through accumulated complexity — drawing on complex systems theory (Richard Cook's "How Complex Systems Fail").
+
+**The mechanism:** Complex software systems survive through interlocking safeguards that catch frequent, partial failures. Catastrophe strikes when multiple failures co-occur or multiple defenses fall short. Because correlated failures are infrequent, it's possible to introduce new errors or compromise safeguards without immediate disaster. Only later does it become clear the system was more fragile than believed.
+
+**Why AI-generated code compounds this:**
+- LLMs are "prone to reinventing the wheel rather than re-using existing code" — duplicate implementations increase complexity and the likelihood of subtle divergence faults
+- LLMs make "idiotic mistakes" that are hard to catch because software correctness is notoriously difficult to verify
+- Human review becomes less effective as engineers review more code per day
+- Pulling humans away from writing code divorces them from "the work of theory-building" (Baldur Bjarnason) and contributes to deskilling
+- LLM review is also unreliable: models "seem to do poorly when given large volumes of context"
+
+**Early evidence (speculative):** After years of Microsoft pushing LLMs on employees, Windows appears increasingly unstable. GitHub has had less than 90% uptime over three months. AWS experienced high-profile outages and partly blames generative AI. Kingsbury notes some peers report keeping complexity under control through "careful gardening."
+
+**The legislative analogy:** If Congress uses LLMs to draft legislation, "a combination of plausibility, automation bias, and deskilling may lead to laws which seem reasonable in isolation, but later reveal serious structural problems or unintended interactions with other laws."
+
+The core concern is not that AI-generated code is bad — it's that short-term productivity gains mask long-term fragility that only reveals itself after sufficient complexity has accumulated.
+
 ## AI Safety Fieldbuilding (80,000 Hours)
 
 80,000 Hours makes the case that **fieldbuilding** — recruiting, training, and creating infrastructure for AI safety talent — is one of the most impactful and most neglected career paths for reducing catastrophic AI risk.
@@ -82,3 +101,4 @@ The piece raises broader questions about whether the AI industry's current anti-
 - "Sam Altman May Control Our Future—Can He Be Trusted?" — Ronan Farrow & Andrew Marantz (The New Yorker, Apr 2026) ([link](https://www.newyorker.com/magazine/2026/04/13/sam-altman-may-control-our-future-can-he-be-trusted))
 - "(🧵1/11) For the past year and a half, I've been investigating OpenAI..." — Ronan Farrow (tweet thread, Apr 2026) ([link](https://x.com/RonanFarrow/status/2041213917611856067/?rw_tt_thread=True))
 - "Building the field of AI safety" — Aaron Gertler / 80,000 Hours (Apr 2026) ([link](https://80000hours.org/career-reviews/ai-safety-fieldbuilding/))
+- "The Future Of Everything Is Lies, I Guess" — Kyle Kingsbury (PDF, Apr 2026) ([link](https://aphyr.com/posts/398-the-future-of-everything-is-lies-i-guess))

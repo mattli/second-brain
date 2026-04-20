@@ -1,11 +1,11 @@
 ---
-run_date: 2026-04-16
-run_start: "2026-04-16T12:00:00Z"
-run_end: "2026-04-16T13:00:00Z"
-documents_total: 20
-documents_processed: 18
-documents_referenced: 0
-documents_skipped: 2
+run_date: 2026-04-20
+run_start: "2026-04-20T09:00:00Z"
+run_end: "2026-04-20T11:30:00Z"
+documents_total: 29
+documents_processed: 25
+documents_referenced: 1
+documents_skipped: 3
 documents_failed: 0
 research_log_entries: 0
 ---
@@ -13,65 +13,106 @@ research_log_entries: 0
 # Last Run Manifest
 
 - **run_type:** weekly
-- **updated_after:** "2026-04-13T22:00:00Z"
+- **updated_after:** "2026-04-16T12:00:00Z"
 - **status:** complete
 
 ## Document Processing Log
 
-### Batch 1 (Tier A — processed)
-
-| #   | Title                                                   | Author     | Words | Action         | Target Page(s)                                                |
-| --- | ------------------------------------------------------- | ---------- | ----- | -------------- | ------------------------------------------------------------- |
-| 1   | Services: The New Software                              | Julien Bek | 1372  | NEW PAGE       | landscape/services-as-software.md                             |
-| 2   | Services: The New Software (tweet)                      | Julien Bek | 1387  | MERGED with #1 | landscape/services-as-software.md                             |
-| 3   | How to Build Services-as-Software Business              | Alex Vacca | 2031  | MERGED with #1 | landscape/services-as-software.md                             |
-| 4   | Frontier Systems for the Physical World                 | Oliver Hsu | 5198  | NEW PAGE       | concepts/physical-ai.md                                       |
-| 5   | I Went Through Every AI Memory Tool...                  | witcheer   | 1860  | UPDATED        | concepts/llm-knowledge-bases.md                               |
-| 6   | Marketing is dead. Long live The Distribution Engineer. | GRITCULT   | 1822  | UPDATED        | landscape/ai-startup-distribution.md                          |
-| 7   | Resolvers: The Routing Table for Intelligence           | Garry Tan  | 2882  | UPDATED        | tools/agent-harness.md, tools/claude-code-skill-frameworks.md |
-
-### Batch 2 (Tier A — processed)
+### Batch 1 (Tier A — 5 docs)
 
 | # | Title | Author | Words | Action | Target Page(s) |
 |---|-------|--------|-------|--------|-----------------|
-| 8 | Jesse's Blueberry Chia Seed Pudding | Jesse Stathakis | video | SKIPPED (Tier D) | — |
-| 9 | "ok this startup is cool but..." | andrew chen | 158 | UPDATED | concepts/business-moats-in-ai.md |
-| 10 | RAG is broken and nobody's talking about it | How To AI | 235 | UPDATED | concepts/llm-knowledge-bases.md |
-| 11 | Most companies are laying off marketers... | ericosiu | 830 | UPDATED | landscape/ai-startup-distribution.md |
-| 12 | How We Build Product Teams at Owner | Deano | 4352 | UPDATED | tools/ai-native-product-development.md |
-| 13 | From Hierarchy to Intelligence | Roelof Botha | 2511 | UPDATED | landscape/ai-organization-design.md |
+| 1 | The Anatomy of an Agent Harness (Enterprise Context Synthesis) | Hyperspell | ~3K | UPDATED | tools/agent-harness.md |
+| 2 | The Anatomy of an Agent Harness (Testing Pyramid) | Garry Tan | ~3K | UPDATED | tools/agent-harness.md |
+| 3 | The Anatomy of an Agent Harness (Three Dimensions) | Akshay | ~2K | UPDATED | tools/agent-harness.md |
+| 4 | Framework Implementation Comparison | — | ~2K | UPDATED | tools/agent-harness.md |
+| 5 | LinkedIn MCP Outreach | — | ~1K | UPDATED | landscape/ai-startup-distribution.md |
 
-### Batch 3 (Tier A — processed)
+### Batch 2 (Tier A — 5 docs)
 
 | # | Title | Author | Words | Action | Target Page(s) |
 |---|-------|--------|-------|--------|-----------------|
-| 14 | The Last Moat Standing | fintechjunkie | 564 | UPDATED | concepts/business-moats-in-ai.md |
-| 15 | The more enterprises I talk to about AI agent transformation... | Aaron Levie | 458 | UPDATED | concepts/agent-proficiency.md |
-| 16 | The AI-pilled compounding startup | Ann Miura-Ko | 787 | UPDATED | tools/ai-native-product-development.md, concepts/business-moats-in-ai.md |
-| 17 | Context Engineering killed RAG | Nyk | 1133 | UPDATED | concepts/llm-knowledge-bases.md |
-| 18 | I'm a Serial Founder. Here's how I come up with Business Ideas. | ssbmomelette | 12113 | UPDATED (brief) | landscape/ai-startup-distribution.md |
+| 6 | Harvey Vertical AI Playbook ($0→$200M) | — | ~5K | UPDATED | landscape/vertical-ai.md |
+| 7 | Agent-First SaaS | — | ~3K | UPDATED | landscape/services-as-software.md |
+| 8 | SaaS Squeeze / Vertical AI | — | ~4K | UPDATED | landscape/vertical-ai.md |
+| 9 | LeCun Interview (World Models) | — | ~8K | UPDATED | concepts/world-models.md |
+| 10 | AI Safety Fieldbuilding (80,000 Hours) | Aaron Gertler | ~6K | UPDATED | models-safety/ai-safety-interpretability.md |
 
-### Tier D (skipped — minimal content)
+### Batch 3 (Tier A — 5 docs)
 
-| # | Title | Author | Words | Reason |
-|---|-------|--------|-------|--------|
-| 8 | Jesse's Blueberry Chia Seed Pudding | Jesse Stathakis | video | Recipe video, not AI-relevant |
-| 19 | the difference between "why isn't this selling"... | The Boring Marketer | 33 | Image-only content |
-| 20 | Companies hiring AI agents trust agentalent.ai | agentalent.ai | 665 | Product listing page |
+| # | Title | Author | Words | Action | Target Page(s) |
+|---|-------|--------|-------|--------|-----------------|
+| 11 | Living Software / Output Design | — | ~3K | UPDATED | tools/ai-native-product-development.md |
+| 12 | AI Architect Mode | — | ~2K | UPDATED | landscape/ai-organization-design.md |
+| 13 | Open vs Closed Models (Lambert) | — | ~4K | UPDATED | concepts/world-models.md |
+| 14 | Humanity Is About to Fork | Peter Diamandis | ~3K | BOOKMARK | unorganized.md |
+| 15 | X API Pricing Update | Robert Scoble | ~1K | UPDATED | tools/agentic-engineering.md |
 
-## Pages Created
+### Batch 4 (Tier A — 5 docs)
 
-1. `landscape/services-as-software.md` — Sequoia's services-as-software thesis, copilot vs autopilot, ColdIQ playbook
-2. `concepts/physical-ai.md` — a16z's physical AI systems essay, five primitives, three frontier domains
+| # | Title | Author | Words | Action | Target Page(s) |
+|---|-------|--------|-------|--------|-----------------|
+| 16 | Intercom 2x (AI Org Restructuring) | Des Traynor | ~5K | UPDATED | landscape/ai-organization-design.md |
+| 17 | Agent Categorization Framework | — | ~3K | UPDATED | tools/agentic-engineering.md |
+| 18 | Claude Opus 4.7 Release | Anthropic | ~4K | BOOKMARK | unorganized.md |
+| 19 | Neuromarketing / Meta Tribe V2 | Karlo | ~11K | BOOKMARK | unorganized.md |
+| 20 | Lenny Rachitsky Profile | First Round Review | ~7K | BOOKMARK | unorganized.md |
 
-## Pages Updated
+### Batch 5 (Tier A — 1 doc)
 
-1. `concepts/llm-knowledge-bases.md` — AI memory tools (two camps), Semantic Collapse, context engineering vs RAG
-2. `landscape/ai-startup-distribution.md` — Distribution Engineer, 100x marketer, startup ideation
-3. `tools/agent-harness.md` — Resolvers in depth (Garry Tan)
-4. `tools/claude-code-skill-frameworks.md` — GBrain (Garry Tan)
-5. `landscape/ai-organization-design.md` — Sequoia endorsement, intelligence layer examples, people at the edge
-6. `concepts/business-moats-in-ai.md` — Opinionated perspective moat, Andrew Chen, Ann Miura-Ko
-7. `tools/ai-native-product-development.md` — AI-native companies (Ann Miura-Ko), Delta Force teams (Owner)
-8. `concepts/agent-proficiency.md` — Enterprise agent deployer (Aaron Levie)
-9. `INDEX.md` — Added 2 new pages, updated descriptions for 5 existing pages
+| # | Title | Author | Words | Action | Target Page(s) |
+|---|-------|--------|-------|--------|-----------------|
+| 21 | Gabor Maté: Psychology Behind Power, Narcissism & Trump | Aaron Alexander | ~19K | BOOKMARK | unorganized.md |
+
+### Video (1 doc)
+
+| # | Title | Author | Words | Action | Target Page(s) |
+|---|-------|--------|-------|--------|-----------------|
+| 22 | Jesse's Blueberry Chia Seed Pudding | Jesse Stathakis | video | BOOKMARK | unorganized.md |
+
+### Tier B (1 doc — processed individually)
+
+| # | Title | Author | Words | Action | Target Page(s) |
+|---|-------|--------|-------|--------|-----------------|
+| 23 | The Future Of Everything Is Lies, I Guess | Kyle Kingsbury | ~26K | UPDATED (3 pages) | concepts/knowledge-work-future.md, models-safety/ai-safety-interpretability.md, unorganized.md |
+
+### Tier C (1 doc — reference only)
+
+| # | Title | Author | Words | Action | Target Page(s) |
+|---|-------|--------|-------|--------|-----------------|
+| — | Knowledge About Knowledge | — | ~131K | REFERENCE | concepts/knowledge-work-future.md (source line only, from prior run) |
+
+### Tier D / Skipped (3 docs)
+
+| # | Title | Reason |
+|---|-------|--------|
+| — | NanoClaw / Vercel | Self-referential, not wiki-relevant |
+| — | OpenClaw creation | Already in wiki (peter-steinberger.md) |
+| — | The Anatomy of an Agent Harness (original) | already_in_wiki from prior run |
+
+### New Saves During Run (6 docs — all confirmed already processed)
+
+All 6 documents added to Readwise between triage and late-run check were confirmed as already processed in earlier batches of this run.
+
+## Pages Updated (12 files)
+
+1. `concepts/business-moats-in-ai.md` — Token price discrimination, "Big Rug" data risk
+2. `concepts/knowledge-work-future.md` — Ironies of Automation (Bainbridge), new AI-era job categories (Kingsbury), Anthropic observed exposure
+3. `concepts/world-models.md` — LeCun's full position, open vs closed models (Lambert), key players
+4. `landscape/ai-organization-design.md` — Intercom 2x restructuring, architect mode
+5. `landscape/ai-startup-distribution.md` — LinkedIn MCP outreach, cold outreach, Reddit, AI marketing agents
+6. `landscape/services-as-software.md` — ColdIQ playbook, vertical opportunity map
+7. `landscape/vertical-ai.md` — Harvey $0→$200M ARR playbook, Harvey vertical model U-turn
+8. `models-safety/ai-safety-interpretability.md` — Latent disaster / complexity debt (Kingsbury), AI safety fieldbuilding (80K Hours)
+9. `tools/agent-harness.md` — Enterprise context synthesis, testing pyramid, framework comparison, resolvers
+10. `tools/agentic-engineering.md` — Agent categorization framework, X API pricing, decade of agents
+11. `tools/ai-native-product-development.md` — Docs-to-demos, AI evals as PRD, Team OS
+12. `unorganized.md` — 7 new bookmarks (Kingsbury info ecology themes, Gabor Maté, Opus 4.7, Neuromarketing, Lenny, Diamandis, Jesse recipe)
+
+## INDEX.md Updates
+
+Updated descriptions for 4 pages:
+- Knowledge Work Future: added Ironies of Automation, Kingsbury job categories
+- World Models: added LeCun's full position, open vs closed models
+- Agent Harness: added resolvers, testing pyramid, enterprise context synthesis
+- Agentic Engineering: added agent categorization framework

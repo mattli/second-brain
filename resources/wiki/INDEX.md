@@ -10,15 +10,15 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Agent Proficiency](concepts/agent-proficiency.md) — Managing AI agents as core skill; corporate adoption; enterprise agent deployer role (Aaron Levie)
 - [Business Moats in AI](concepts/business-moats-in-ai.md) — Five durable moats; opinionated perspective moat; two paths for software; token price discrimination; "Big Rug" data risk
 - [Physical AI](concepts/physical-ai.md) — a16z's physical AI systems essay; five shared primitives; three frontier domains; mutual reinforcement flywheel
-- [Knowledge Work Future](concepts/knowledge-work-future.md) — AI commoditizing knowledge; wisdom skills; Jevons Paradox of AI labor; Anthropic observed exposure methodology
-- [World Models](concepts/world-models.md) — Alternative AI paradigm to LLMs; spatial reasoning; key players (LeCun/AMI, World Labs, Google, NVIDIA)
+- [Knowledge Work Future](concepts/knowledge-work-future.md) — AI commoditizing knowledge; wisdom skills; Jevons Paradox; Ironies of Automation (Bainbridge); new AI-era job categories (Kingsbury); Anthropic observed exposure
+- [World Models](concepts/world-models.md) — Alternative AI paradigm to LLMs; spatial reasoning; LeCun's full position; open vs. closed models (Lambert); key players (AMI, World Labs, Google, NVIDIA)
 - [Model Quantization](concepts/model-quantization.md) — How LLM weight quantization works; 8-bit is nearly free, 4-bit is ~90% quality, 2-bit breaks
 
 ## Tools & Frameworks
 
 - [Claude Code Skill Frameworks](tools/claude-code-skill-frameworks.md) — gstack, Superpowers, Compound Engineering; Dex personal OS; content-skill-graph; domain-specific libraries
-- [Agent Harness](tools/agent-harness.md) — Agent = Model + Harness; 12 components; memory; thin harness/fat skills; Claude Code hooks; OpenAI harness lessons; "Peggy" SMB multi-agent case study
-- [Agentic Engineering](tools/agentic-engineering.md) — Harness design, self-improving agents, multi-agent orchestration, Managed Agents, Great Convergence, decade of agents
+- [Agent Harness](tools/agent-harness.md) — Agent = Model + Harness; 12 components; memory; thin harness/fat skills; resolvers; testing pyramid; enterprise context synthesis; "Peggy" SMB case study
+- [Agentic Engineering](tools/agentic-engineering.md) — Harness design, self-improving agents, multi-agent orchestration, Managed Agents, Great Convergence, agent categorization framework, decade of agents
 - [AI-Native Product Development](tools/ai-native-product-development.md) — Docs-to-demos; AI-native company observations (Ann Miura-Ko); Delta Force teams (Owner); AI evals as PRD; Team OS
 
 ## Models & Safety

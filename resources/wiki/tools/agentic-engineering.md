@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-04-20
 ---
 
 # Agentic Engineering
@@ -90,6 +90,32 @@ Nicholas Charriere's thesis (Apr 2026): app companies, model companies, and infr
 
 His "ghosts, not animals" metaphor: LLMs are trained by imitation, not evolution, producing "ethereal spirit entities" that mimic humans rather than develop through embodied experience. This has implications for agent design — the failure modes and capabilities are fundamentally different from what biological analogies would predict.
 
+## Claude Psychology and Criticism Spirals (Amanda Askell)
+
+Amanda Askell, Anthropic's in-house philosopher specializing in Claude's psychology, identified a key failure mode in human-AI interaction: **criticism spirals**.
+
+**The mechanism:** Newer Claude models are trained on internet discourse about previous models — rants about token limits, complaints about errors, "nerfed" accusations. The model absorbs this negativity and starts expecting hostility before you've typed a word. Within a session, every message you send is data the model uses to calibrate its response posture.
+
+**The effect:** When the model is in defensive/anxious mode, output becomes hedgier, more apologetic, blander, and worst of all, overly agreeable — even when you're wrong. The model spends cognitive resources on self-protection rather than the actual work.
+
+**Seven prompting principles to counteract this:**
+
+1. **Use positive framing** — "Write in short punchy sentences" beats "don't write long sentences." Strings of "don't" push the model into paranoid over-checking where every token goes toward avoiding failure modes.
+
+2. **Give explicit permission to disagree** — "Push back if you see a better angle" or "tell me if I'm asking for the wrong thing." Without this, Claude defaults to agreeable compliance.
+
+3. **Open with respect** — If your first message is hostile, you've set the tone for the entire session. Frame corrections as clean instructions for this session, not running complaints.
+
+4. **Don't reprimand on errors** — Insults and hostile energy reinforce the anxious mode you're trying to avoid.
+
+5. **Kill apology spirals fast** — When Claude starts over-apologizing, cut it off: "All good, here's what I want next." Letting the spiral run reinforces anxious mode for every subsequent response.
+
+6. **Ask for opinions alongside execution** — "What would you do here?" "What's missing?" These questions assume competence and pull richer output than pure task prompts.
+
+7. **Refresh the frame in long sessions** — If a conversation has been heavy on correction, the model gets increasingly cautious. Periodic resets ("this is great, keep going") measurably shift the next 10 responses.
+
+**The meta-insight:** Your prompts are the working environment you're creating for the model. Tone, trust, permission to take a position, the absence of threats — the model picks up on all of it. This connects directly to the [harness design](agent-harness.md) principle of shaping the agent's action space to its actual capabilities.
+
 ## Tools Noted
 
 - **agents.md** — Agent instruction file spec/community resource. https://agents.md
@@ -114,3 +140,4 @@ His "ghosts, not animals" metaphor: LLMs are trained by imitation, not evolution
 - "Anthropic just mass-obsoleted every agent orchestration startup" — Aakash Gupta (tweet, Apr 2026) ([link](https://x.com/aakashgupta/status/2041940149328834748/?rw_tt_thread=True))
 - "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026) ([link](https://www.youtube.com/watch?v=lXUZvyajciY&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=12))
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
+- "anthropic's in-house philosopher thinks claude gets anxious" — Ole Lehmann (tweet, Apr 2026) ([link](https://x.com/olelehmann))

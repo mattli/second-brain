@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-16
-last_updated: 2026-04-16
+last_updated: 2026-04-20
 ---
 
 # Services-as-Software
@@ -62,6 +62,24 @@ Alex Vacca (ColdIQ, $7M+ ARR, bootstrapped, 400+ B2B clients) has been operating
 
 **The key insight:** "Judgement turns into intelligence as your dataset grows, and three years of running the work gives you an asset no pure-SaaS competitor can buy, license, or ship around."
 
+## The Agent-First SaaS Disruption (Greg Isenberg)
+
+Greg Isenberg predicts $1T up for grabs across 10,000+ niches as the agent-first wave reshapes enterprise software. The catalyst: Salesforce going "headless" (entire platform exposed as APIs, MCP, and CLI).
+
+**How it plays out:**
+1. Every SaaS company follows Salesforce and goes headless within 18 months
+2. "Agent-native" startups emerge that treat Salesforce, HubSpot, Workday as dumb backends — the startup IS the agent, the SaaS is just the database
+3. The entire consulting/services industry around enterprise SaaS gets compressed into software — the agent replaces the implementation team
+4. Outcome-based pricing becomes default — nobody pays per seat when the "seat" is an agent making 10,000 API calls a minute
+5. Winning founders are ex-operators who understand a vertical workflow cold — "knowing that a property manager spends 14 hours a week on lease renewals is the insight worth $100M"
+6. Distribution becomes the moat — when anyone can wire agents to APIs, the company with the audience and the brand wins. "Media + agents is the new SaaS"
+
+**The $1B agent-native company** in each vertical will look nothing like the SaaS it replaced: smaller team, higher margins, no implementation cost, no churn from bad UX because there is no UX.
+
+**The shift:** The last wave rewarded people who built pretty interfaces on top of ugly data. This wave rewards people who build smart agents on top of exposed APIs — or who build the APIs themselves.
+
+This maps directly to the autopilot thesis: outcome-based pricing + no human in the loop + vertical workflow mastery = the services-as-software endgame at scale. See also [Vertical AI](vertical-ai.md) for the 1-1-1 playbook on executing this at the individual operator level.
+
 ## Connections
 
 - [Business Moats in AI](../concepts/business-moats-in-ai.md) — The data moat pattern: proprietary operational data from running the work
@@ -73,3 +91,4 @@ Alex Vacca (ColdIQ, $7M+ ARR, bootstrapped, 400+ B2B clients) has been operating
 
 - "Services: The New Software" — Julien Bek, Sequoia ([link](https://sequoiacap.com/article/services-the-new-software/))
 - "How to Build Services-as-Software Business" — Alex Vacca ([link](https://x.com/alexvacca))
+- "$1T up for grabs for agent-first startups" — Greg Isenberg (tweet, Apr 2026) ([link](https://x.com/gregisenberg))

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-13
+last_updated: 2026-04-20
 ---
 
 # Vertical AI
@@ -80,6 +80,33 @@ For many categories, the better bet remains exceptional workflow infrastructure,
 
 Cursor launched Composer 2 (Apr 2026) — a proprietary coding model built on Moonshot AI's Kimi K2.5 with their own continued pre-training and RL. Scored 61.7% on Terminal-Bench 2.0, beating Claude Opus 4.6 (58.0%), at $0.50/M input tokens (1/10th of Anthropic's flagship). Cursor's strategy: frontier models for hardest reasoning tasks, custom vertical models for everything else.
 
+## The 1-1-1 Playbook (Alton Syn / Mark Cuban)
+
+Alton Syn distills Mark Cuban's AI agent thesis into a sharper framework: the money isn't in "selling AI" — it's in pointing to **one painful workflow inside one business** and fixing it fast.
+
+**The framework:** One vertical. One workflow. One painful problem. Everything else is distribution.
+
+**Why most people fail:** They pick a vertical too broad ("healthcare," "real estate," "legal"). The winning move is one level deeper:
+- PT clinics with insurance verification delays
+- Cleaning companies with slow quote turnaround
+- HVAC businesses with missed maintenance follow-up
+- Pool service companies with technician routing chaos
+
+**What clients actually buy:** Not agents, not AI, not your stack — they buy the disappearance of a painful operational loop. A strong offer makes sense to a tired business owner in under 15 seconds: "when a job is cancelled, the next best customer gets contacted automatically."
+
+**The real moat — workflow fluency:** Knowing one painful loop well enough to instantly answer: What triggers it? What data does it need? What counts as urgent? Where does a human still step in? What breaks most often? What ROI shows up fastest?
+
+**Where value is shifting:** Away from node-dragging, repetitive setup, and manual debugging as a billing model. Toward workflow selection, commercial packaging, deployment confidence, monitoring, and iteration speed.
+
+**The playbook from zero:**
+1. Pick one narrow vertical slice (not "healthcare" — a specific operator pain)
+2. Find one workflow tied to money or time (lead response, quote turnaround, cancellations, invoice recovery)
+3. Make the offer outcome-based — say what painful thing stops happening
+4. Keep V1 tight — one workflow, one commercial win, one before-and-after
+5. Build for ownership: monitoring, fallbacks, alerts, exception handling — this is where retainers come from
+
+This aligns with the [Services-as-Software](services-as-software.md) thesis: the 1-1-1 playbook is effectively the individual operator's version of the autopilot wedge — start with the outsourced, intelligence-heavy task and compound from there.
+
 ## Comparable Cases
 
 - **Healthcare:** Abridge (medical scribing), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record.
@@ -98,3 +125,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "Harvey AI went from $0 to $200M+ ARR in 36 months" — Ivan Landabaso (tweet thread, Apr 2026) ([link](https://x.com/ivanlandabaso/status/2042179119325082087/?s=12&rw_tt_thread=True))
 - "AI Adoption by the Numbers" — Kimberly Tan (a16z, Apr 2026) ([link](https://www.a16z.news/p/ai-adoption-by-the-numbers?r=1xuh9&utm_medium=ios&triedRedirect=true))
 - "The New Software: CLI, Skills & Vertical Models" — Sandhya (tweet thread, Apr 2026) ([link](https://x.com))
+- "Mark Cuban Is Right About AI Agents" — Alton Syn (tweet, Apr 2026) ([link](https://x.com/altonsyn))

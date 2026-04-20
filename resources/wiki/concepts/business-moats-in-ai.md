@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-16
+last_updated: 2026-04-20
 ---
 
 # Business Moats in AI
@@ -96,6 +96,39 @@ Andrew Chen's historical framing: every technology wave produces the same object
 
 "Pessimists ask 'what if they build it.' Founders ask 'what if I build it?'"
 
+## The AI SaaS Squeeze (Tyler Tringas)
+
+Tyler Tringas (Calm Fund) wrote a thesis in June 2025 (published Apr 2026) arguing AI-assisted coding is eroding the fundamental SaaS moat — and the predictions proved "very directionally correct," with effects faster and larger than expected.
+
+**The core thesis:** SaaS's golden-era margins rested on one moat: it was hard to hire good developers and you needed lots of them. AI-assisted coding erodes this. As the difficulty and time to build shrink, fast-follow competition becomes dramatically easier. The result: **multiple compression** — SaaS valuations converging toward normal business multiples (5-9x profit vs. the historic 20x revenue).
+
+**Evidence:** Public SaaS multiples returned to 2016-2017 levels (median ~6.7x ARR per SaaS Capital). Private acquisition offers are down significantly from 2022 peaks, with typical decent SaaS businesses seeing 4-6x revenue from non-strategic buyers. "Merely being a SaaS company is no longer a ticket to premium ARR multiples."
+
+**The Red Queen effect:** Businesses may double revenue YoY but end up worth the same or less because the valuation multiple decreased over that time.
+
+**Three headwinds:**
+1. **Price pressure** — More competitors building faster and cheaper
+2. **Customer overwhelm** — Buyers bombarded with AI pitches, slower to close, lower willingness to pay ("any day now I'll do this on my $20/mo ChatGPT subscription")
+3. **LLM platform competition** — OpenAI, Anthropic, Google can release competitive vertical features on massive user bases
+
+**The Founder Playbook — 6 strategic responses:**
+
+1. **Lean into AI** — Table stakes. Use AI for development and integrate it into the product. But alone, this won't protect against the headwinds.
+
+2. **Expand and bundle** — Take more products through the "zero to good enough" phase using AI, sell as add-ons. Commoditize your complement. Every.to's approach: cross-bundling software with a paid media subscription.
+
+3. **Micro-acquire the competition** — Multiple compression hits weakest performers hardest. Acquire smaller competitors at depressed multiples to drive growth. Especially effective for things with built-in distribution (plugins, Chrome extensions, newsletters).
+
+4. **Sell solutions, not software** — The conventional wisdom flip. Use your own software, don't just sell it. Add done-for-you services at 5-20x the ARPU. "Customers would rather pay $300-500/mo for 'the books are done' than $30-50/mo for bookkeeping software." Blend humans and AI now; replace humans gradually as models improve.
+
+5. **Consider exiting** — If an exit would be life-changing, take it seriously before multiple compression becomes consensus. "Get out of the business of *only* selling software as soon as possible."
+
+6. **Ignore me** — Building a company isn't entirely about maximizing equity value. If you enjoy it and you're making money, carry on.
+
+**Key insight on AI coding reality:** "Vibe coding is basically BS" — but acceleration for someone with programming skills is staggering. Work that required entire teams can now be done by one person running multiple AI agents in parallel. The project of making models all-purpose better is thorny, but models will keep getting phenomenally better at coding specifically.
+
+**The conventional wisdom flip:** SaaS dogma said be hyper-specialized and avoid services revenue. Tringas argues the opposite: bundle aggressively, add services, cross-sell non-software products (community, media, events). The strategic responses that work are precisely those that traditional SaaS wisdom warned against.
+
 ## The Meta-Moat
 
 "Time that can't be parallelized." Network density takes years of human adoption. Regulatory approval takes years of political process. Infrastructure takes years to build. Data takes years to compound. Capital relationships take decades to earn.
@@ -110,3 +143,4 @@ Andrew Chen's historical framing: every technology wave produces the same object
 - "ok this startup is cool but..." — andrew chen (tweet, Apr 2026)
 - "The Last Moat Standing" — fintechjunkie (tweet, Apr 2026)
 - "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)
+- "The AI SaaS Squeeze" — Tyler Tringas (Calm Fund, Jun 2025 / published Apr 2026) ([link](https://x.com/tylertringas))

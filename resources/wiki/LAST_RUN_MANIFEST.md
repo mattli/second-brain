@@ -20,13 +20,13 @@ research_log_entries: 0
 
 ### Batch 1 (Tier A — 5 docs)
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 1 | The Anatomy of an Agent Harness (Enterprise Context Synthesis) | Hyperspell | ~3K | UPDATED | tools/agent-harness.md |
-| 2 | The Anatomy of an Agent Harness (Testing Pyramid) | Garry Tan | ~3K | UPDATED | tools/agent-harness.md |
-| 3 | The Anatomy of an Agent Harness (Three Dimensions) | Akshay | ~2K | UPDATED | tools/agent-harness.md |
-| 4 | Framework Implementation Comparison | — | ~2K | UPDATED | tools/agent-harness.md |
-| 5 | LinkedIn MCP Outreach | — | ~1K | UPDATED | landscape/ai-startup-distribution.md |
+| #   | Title                                                          | Author     | Words | Action  | Target Page(s)                       |
+| --- | -------------------------------------------------------------- | ---------- | ----- | ------- | ------------------------------------ |
+| 1   | The Anatomy of an Agent Harness (Enterprise Context Synthesis) | Hyperspell | ~3K   | UPDATED | tools/agent-harness.md               |
+| 2   | The Anatomy of an Agent Harness (Testing Pyramid)              | Garry Tan  | ~3K   | UPDATED | tools/agent-harness.md               |
+| 3   | The Anatomy of an Agent Harness (Three Dimensions)             | Akshay     | ~2K   | UPDATED | tools/agent-harness.md               |
+| 4   | Framework Implementation Comparison                            | —          | ~2K   | UPDATED | tools/agent-harness.md               |
+| 5   | LinkedIn MCP Outreach                                          | —          | ~1K   | UPDATED | landscape/ai-startup-distribution.md |
 
 ### Batch 2 (Tier A — 5 docs)
 

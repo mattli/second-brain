@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-16
+last_updated: 2026-04-20
 ---
 
 # AI-Native Product Development
@@ -140,6 +140,32 @@ Deano (Owner, Apr 2026) articulates the most extreme version of the small-elite-
 
 Key contrast with [AI Organization Design](../landscape/ai-organization-design.md): Block replaces hierarchy with an intelligence layer. Owner replaces hierarchy with extreme talent density and minimal process. Both bet against middle management but for different reasons — Block because AI can coordinate, Owner because exceptional people don't need coordination.
 
+## Living Software vs. Tool-Like Software
+
+Jack Cheng (Every, Apr 2026) identifies a fundamental tension in AI-accelerated development: software exists on a spectrum between two types, and AI coding acceleration is breaking the social contract of one of them.
+
+**Tool-like software** — Users expect stability, consistency, and predictability. A hammer doesn't change shape between uses. Traditional SaaS products trained users to expect this: the interface stays roughly the same, features are added gradually, muscle memory works. Tool-like software should "disappear" — you stop noticing it because it reliably does what you expect.
+
+**Living software** — Users expect growth, adaptation, and evolution. Social media feeds, recommendation engines, AI assistants. The value comes from the system changing and improving. Users tolerate instability because they're getting something new.
+
+**The problem:** AI coding acceleration is making tool-like software change at living-software speed. Features ship faster than users can absorb them. Interfaces shift before muscle memory forms. "The build step compressed, but the adoption step didn't." Users of accounting software don't want surprises — but the development team can now ship surprises weekly.
+
+**For builders of tool-like software:** Slow down the release cadence even if you can build faster. Use the speed for quality, testing, and polish — not more features. "The speed is a gift. Spend it on fit, not on volume."
+
+**For builders of living software:** Lean into the pace, but make the evolution legible. Show users what changed and why. AI assistants that silently get better confuse users; ones that explain their growth build trust.
+
+The connection to the [feature factory risk](../tools/ai-native-product-development.md) identified by Ann Miura-Ko: when execution is nearly free, the discipline to NOT ship becomes the differentiator. See also [Business Moats in AI](../concepts/business-moats-in-ai.md) — the "opinionated perspective" moat is essentially taste about what to ship and what to hold back.
+
+## Output Isn't Design
+
+Karri Saarinen (Linear CEO, Apr 2026) invokes Christopher Alexander's definition of design: "good fit between form and context." The form is the solution; the context is the problem space — user needs, constraints, trade-offs, the environment the product lives in.
+
+AI generates plausible output — polished mockups, working code, fluent copy. But output isn't design. "The form is there, the fit is not." AI can produce artifacts that look like solutions without understanding the problem they're supposed to solve.
+
+The implication for product teams: AI makes the visible part of design (producing artifacts) trivially fast, which makes the invisible part (understanding context) relatively more valuable. Teams that skip problem understanding and jump straight to AI-generated solutions will ship products that look polished but miss the mark. "A beautifully rendered wrong answer is still wrong."
+
+This connects to the "docs to demos" workflow: the prototype is cheap, but knowing which prototype to build requires the same deep customer understanding it always did.
+
 ## Risks
 
 - **Adoption fatigue** — "Shipping more stuff does not equal more product value. If users can't keep up, what's the point?"
@@ -160,3 +186,5 @@ Key contrast with [AI Organization Design](../landscape/ai-organization-design.m
 - "How this PM Used Claude Code to Support 20 People" — Aakash Gupta / Hannah Stalberg (video, Apr 2026) ([link](https://youtube.com/watch?v=0UArKLQ6bXA&si=KfeHZk0OACA34T6a))
 - "How We Build Product Teams at Owner" — Deano (tweet thread, Apr 2026) ([link](https://www.deannotes.com/delta-force))
 - "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)
+- "Living Software" — Jack Cheng / Every (Apr 2026) ([link](https://every.to/p/living-software))
+- "Output isn't design" — Karri Saarinen (tweet, Apr 2026) ([link](https://x.com/karrisaarinen))

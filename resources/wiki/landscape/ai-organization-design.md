@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-16
+last_updated: 2026-04-20
 ---
 
 # AI Organization Design
@@ -79,9 +79,28 @@ The counter-view (from the same conversation): getting to 100% automation of any
 
 Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = difficult for error-prone people. Such domains = where AI agents will do best."
 
+## Architect Mode: The Post-Founder Mode Framework
+
+Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder Mode" is already obsolete — replaced by "Architect Mode," the leadership framework for the intelligence era.
+
+**Three eras of company building:**
+1. **Manager Mode** (pre-2024) — Hire professionals, delegate, trust the process. Worked when execution was the bottleneck.
+2. **Founder Mode** (2024-2025) — Paul Graham's corrective: founders should stay in the details, skip-level, maintain direct involvement. Worked when vision and speed mattered more than scale.
+3. **Architect Mode** (2026+) — The founder doesn't do the work OR manage the people doing the work. The founder designs the system — the intelligence layer — that does the work. "You're not the player. You're not the coach. You're the architect of the stadium."
+
+**The CEO's three jobs in Architect Mode:**
+- **Aim** — Set direction with clarity and conviction. "The scarce resource is no longer information. It is conviction." When AI can analyze any dataset and generate any strategy deck, the differentiator is the founder's willingness to commit to a direction.
+- **Army** — Build the team, but a fundamentally different team. Fewer people, higher leverage. Each person operates with AI agents as force multipliers. Hiring for judgment and taste, not execution capacity.
+- **Assets** — Build compounding advantages: proprietary data, customer relationships, regulatory positioning, brand trust. These are the inputs the intelligence layer needs to outperform competitors running on the same models.
+
+**The compounding data moat:** In Architect Mode, every customer interaction generates data that improves the intelligence layer, which improves the next interaction. The company's competitive advantage compounds automatically — but only if the architect designed the system to capture and learn from its own operations. This mirrors the [services-as-software](services-as-software.md) thesis: the data moat comes from running the work, not from building the tool.
+
+**Key contrast with Block's model:** Block's "From Hierarchy to Intelligence" describes the organizational *structure* (world model + intelligence layer + capabilities). Architect Mode describes the *leadership posture* — what the CEO actually does all day when the intelligence layer handles coordination. They're complementary: Block answers "what does the company look like?" and Al-Abdullah answers "what does the CEO do?"
+
 ## Sources
 
 - "From Hierarchy to Intelligence" — Jack Dorsey / Block (tweet, Mar 2026) ([link](https://x.com/jack/status/2039003879841362278/?s=12&rw_tt_thread=True))
 - "From Hierarchy to Intelligence" — Roelof Botha / Sequoia (article, Apr 2026) — Full Sequoia endorsement with historical context and "edge" framework
 - "Thesis: the problem with AI working in every domain..." — Marc Andreessen (tweet) ([link](https://x.com/pmarca/status/2038350516875595924/?s=12&rw_tt_thread=True))
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
+- "Founder Mode is dead. Long live Founder Mode." — Ayman Al-Abdullah (Apr 2026) ([link](https://x.com/aaboreal))

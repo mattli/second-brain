@@ -48,6 +48,23 @@ In a detailed Wired interview (Steven Levy), LeCun laid out his comprehensive st
 
 See also: [AGI Definitions](../landscape/agi-definitions.md) for where LeCun's views fit in the broader AGI debate.
 
+## Open vs. Closed Models: The Mid-2026 Landscape
+
+Nathan Lambert (Apr 2026) published 13 beliefs on the open vs. closed model dynamic, extending the debate LeCun framed around open-source AI:
+
+**The surprise:** Closed models did *not* show a growing capability margin over open models through 2025-2026. Many expected the gap to widen as scaling laws kicked in. Instead, open models kept pace on benchmarks — though with important caveats.
+
+**Key beliefs:**
+1. Closed models are more robust and generally useful than benchmarks suggest — they handle edge cases, long-context, and multi-step reasoning more reliably
+2. Economics will matter more than capabilities long-term — whoever can serve tokens cheapest wins the commodity layer
+3. Chinese labs (DeepSeek, Qwen) may face funding difficulties as the geopolitical situation tightens and domestic capital reallocates
+4. The RL (reinforcement learning) era favors closed labs — RL training requires massive compute and proprietary reward signals that open efforts struggle to replicate
+5. Local agents running on consumer hardware are a "dark matter market" for open models — usage is real but doesn't show up in API revenue or benchmarks
+6. Open model progress is increasingly driven by distillation from closed models, which creates a dependency that could become a vulnerability
+7. The best open models in 2026 are fine-tunes of base models from 2-3 labs (Meta, Mistral, sometimes Alibaba) — the open ecosystem is less diverse than it appears
+
+**Connection to LeCun's position:** LeCun argues open-source AI is essential for democratic control. Lambert's data suggests open models are viable but increasingly dependent on closed-model innovations trickling down — a tension that may test the open-source imperative as the RL era deepens.
+
 ## Key Players
 
 - **AMI** (Yann LeCun) — Advanced Machine Intelligence, JEPA-based world models
@@ -63,3 +80,4 @@ Y Combinator's [2026 RFS](../landscape/yc-ai-thesis.md) explicitly calls out spa
 
 - "World Models explained in 10min" — Caleb Writes Code (video, Apr 2026) ([link](https://youtube.com/watch?v=ECWC-YlAk1o&si=JtFcOyR1f29mfqpi))
 - "How Not to Be Stupid About AI, With Yann LeCun" — Steven Levy / Wired ([link](https://www.wired.com/story/how-not-to-be-stupid-about-ai-with-yann-lecun/))
+- "My bets on open models, mid-2026" — Nathan Lambert (Apr 2026) ([link](https://www.interconnects.ai/p/my-bets-on-open-models-mid-2026))

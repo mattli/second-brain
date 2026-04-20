@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-04-16
+last_updated: 2026-04-20
 ---
 
 # Agent Harness
@@ -215,6 +215,69 @@ Charles Miller, a construction business owner running Cooper Demolition (site pr
 
 **Key insight for harness design:** The shared persona + shared memory + sandboxed tool access pattern makes multi-agent systems feel like one coherent assistant to non-technical users. This is a distribution strategy for agent adoption in AI-resistant industries.
 
+## Enterprise Context Synthesis (Hyperspell)
+
+Conor Brennan-Burke (Hyperspell, Apr 2026) argues the industry framed the enterprise AI problem wrong — it's about **understanding**, not retrieval. Current agent integrations (MCP servers, API connectors) give agents *access* to company data but not *understanding* of it.
+
+**Access vs. understanding:** A new employee with access to Google Drive, Slack, and CRM has access. After six months absorbing context, attending meetings, learning which sources matter — they have understanding. That transition is the entire game.
+
+**Five synthesis problems retrieval ignores:**
+1. *Data contradiction* — Slack says deadline is Friday, Linear says Wednesday, PM said "end of month." Retrieval returns whichever it finds first; synthesis resolves the conflict.
+2. *Entity resolution* — "sarah.chen@acme.com" in email, "@sarah" in Slack, "Sarah from Acme" in a transcript are five unrelated strings to retrieval but one person to synthesis.
+3. *Information decay* — A six-month-old strategy doc treated with same confidence as a 10-minute-old message. Synthesis tracks when information was last confirmed.
+4. *Source hierarchy* — CEO's email vs. random Slack thread, signed contract vs. CRM field. Synthesis maintains authority ranking.
+5. *Cross-source inference* — "The migration is at risk" exists nowhere as a document — it only emerges from combining project tracker, calendar, hiring pipeline, and standup notes.
+
+**Delivery via filesystem:** A context graph surfaced as files any agent can read without custom integration. Claude Code reads project directories, Cursor reads codebases, OpenClaw reads local filesystem. The filesystem is the one interface every agent already supports. The context layer is decoupled from any specific agent or vendor.
+
+**Compounding moat:** Day 1, the context graph knows a little. Day 30, it has absorbed thousands of signals, resolved conflicts, built identity maps. Every new data point doesn't just add one fact — it might confirm a status, update a relationship, reveal a priority shift, and resolve a conflict between older sources. "The company that starts building today will have six months of compounded understanding that no amount of money can buy later."
+
+**The missing benchmark:** No benchmark asks whether a system can synthesize fragmented, contradictory, multi-source company data into accurate answers. Kingsbury-style applied skepticism (see Testing section below) applied to the *system*, not the model.
+
+## Testing Pyramid for Agent Systems (Garry Tan)
+
+Garry Tan's response to Kyle Kingsbury's "The Future of Everything is Lies" essay (Apr 2026) reframes model unreliability as an engineering problem, not a verdict. Kingsbury — the Jepsen author who spent a decade proving distributed databases didn't work as advertised — catalogues real LLM failures but tests models in isolation, "testing the engine on a bench and concluding that cars are unsafe."
+
+**The core argument:** A naked model produces *plausible* text. A harnessed system produces *verified* text. The skill file says "check your work against source data." The deterministic code says "compare output to ground truth." The gap between plausible and verified is exactly what harness engineering fills.
+
+**Jepsen methodology applied to the right layer:** Don't test whether the model hallucinates — of course it does. Test whether the *system* hallucinates:
+- Does the harness prevent hallucinated data from reaching the user?
+- Does the skill file route to deterministic code where precision matters?
+- Does the resolver fire for the right inputs?
+
+**The testing pyramid for agent systems:**
+1. *Unit tests* — for deterministic code
+2. *Integration tests* — for pipeline correctness
+3. *Resolver trigger evals* — for routing accuracy
+4. *LLM-as-judge evals* — for output quality
+5. *End-to-end tests* — for the full pipeline
+
+**Why open harnesses matter:** Closed-source agents prevent users from writing the skill that verifies output. Real verification requires: "here is my schema, here are my invariants, here is what correct looks like in my domain — now verify against that." This requires open harnesses where the user controls the verification layer. As Pete Koomen (YC) puts it: "The user must write their prompt, otherwise we'll be slaves to a system prompt we can't see."
+
+**The aspirin analogy:** "We don't know why transformer models have been so successful" — also true of aspirin (mechanism understood only in the 1970s), general anesthesia (still incompletely understood), and bicycle stability (definitively explained only in 2011). Practical utility doesn't require theoretical completeness.
+
+## Three Dimensions of the Harness (Akshay Pachaar)
+
+Akshay's follow-up framing (Apr 2026): the model itself should be deliberately thin, with intelligence pushed outward and composed at runtime through three dimensions:
+
+1. **Memory** — holds state the model shouldn't carry in weights or context. Working context, semantic knowledge, episodic experience, and personalized memory each have their own lifecycle.
+2. **Skills** — holds procedural knowledge. Operational procedures, decision heuristics, and normative constraints specialize the general model per task.
+3. **Protocols** — holds interaction contracts. Agent-to-user, agent-to-agent, and agent-to-tools are three distinct surfaces with their own failure modes.
+
+Between the core and these modules sit **mediators**: sandboxing, observability, compression, evaluation, approval loops, and sub-agent orchestration. They govern how the harness reaches out and how state flows back in.
+
+**The useful question this framing unlocks:** For any new capability, where should it live? Stable knowledge → memory. Learned playbooks → skills. Communication contracts → protocols. Loop governance → mediators.
+
+## Framework Implementation Comparison
+
+How major frameworks implement the harness pattern (synthesized from Akshay's deep dive):
+
+- **Claude Agent SDK** — Single `query()` function creating an agentic loop, returning async iterator. "Dumb loop" runtime — all intelligence in the model. Gather-Act-Verify cycle.
+- **OpenAI Agents SDK** — Runner class with async/sync/streamed modes. Code-first: workflow logic in native Python. Codex extends with three-layer architecture: Core (agent code + runtime), App Server (bidirectional JSON-RPC), client surfaces. All surfaces share the same harness — "Codex models feel better on Codex surfaces than a generic chat window."
+- **LangGraph** — Explicit state graph: two nodes (llm_call, tool_node) connected by conditional edge. Evolved from LangChain's AgentExecutor (deprecated in v0.2 for lack of extensibility). Deep Agents layer adds planning, file systems, subagent spawning, persistent memory.
+- **CrewAI** — Role-based multi-agent: Agent (harness around LLM, defined by role/goal/backstory/tools), Task (unit of work), Crew (collection). Flows layer adds "deterministic backbone with intelligence where it matters."
+- **AutoGen** (→ Microsoft Agent Framework) — Conversation-driven orchestration. Three-layer architecture (Core, AgentChat, Extensions). Five orchestration patterns: sequential, concurrent, group chat, handoff, and magentic (manager agent with dynamic task ledger).
+
 ## Harness Coevolution with Models
 
 Models are now post-trained with specific harnesses in the loop. Claude Code's model learned to use the specific harness it was trained with. Changing tool implementations can degrade performance.
@@ -236,3 +299,6 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Automate Your Entire Work Life With Claude Code — No Coding Needed" — Aakash Gupta / Dave Khaled (video, Apr 2026) ([link](https://www.youtube.com/watch?v=...))
 - "Claude for Dummies (SMB Owners)" — Charles Miller (tweet thread, Apr 2026) ([link](https://x.com/charlesmiller))
 - "Resolvers: The Routing Table for Intelligence" — Garry Tan, YC (tweet thread, Apr 2026) ([link](https://x.com/garrytan))
+- "Your company needs a brain, not more connectors" — Conor Brennan-Burke, Hyperspell (tweet, Apr 2026) ([link](https://x.com))
+- "A harnessed LLM agent" — Akshay Pachaar (tweet thread, Apr 2026) ([link](https://x.com/akshay_pachaar)) — expanded deep dive with framework comparison
+- "Imagine if naked people were stupider" — Garry Tan, YC (tweet thread, Apr 2026) ([link](https://x.com/garrytan)) — response to Kyle Kingsbury's "The Future of Everything is Lies"; testing pyramid for agent systems

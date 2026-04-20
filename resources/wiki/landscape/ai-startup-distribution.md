@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-16
+last_updated: 2026-04-20
 
 ---
 
@@ -68,6 +68,18 @@ Atomik Growth launched 3 startups in 1 week on X: 5.2M+ views, hundreds of US sa
 - Custom copy for each amplification layer
 - Timing so the algorithm sees density, not noise
 - "The story is the strategy. Great story/content beats hype every time"
+
+## AI-Powered LinkedIn Outreach (Claude MCP + GojiberryAI)
+
+Romàn (Apr 2026) demonstrates booking 2-5 meetings per day using Claude MCP connected to GojiberryAI as the execution layer for LinkedIn outreach.
+
+**The system:** Claude identifies high-intent prospects → GojiberryAI enriches profiles with buying signals (job changes, hiring activity, engagement patterns) → personalizes messages → executes outreach campaigns on LinkedIn → continuously analyzes performance and refines targeting. The loop is: describe ideal customer → Claude finds prospects → enriches with intent signals → crafts personalized messages → launches campaign → tracks results → iterates.
+
+**What makes it different from manual outreach:** The system compounds. Targeting and messaging become increasingly precise without additional manual effort. No spreadsheets to maintain, no lists to rebuild, no manual follow-ups.
+
+**Stack:** Claude Pro ($20/mo) + GojiberryAI (free trial, MCP server) + LinkedIn. Setup in ~5 minutes via Claude web connectors.
+
+**Capabilities once connected:** Real-time pipeline overview, weekly campaign reports with win/loss analysis, instant list building from intent signals, deep research-based message personalization — all read AND write (Claude can execute with a confirmation step).
 
 ## AI-Powered Performance Marketing
 
@@ -209,3 +221,4 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "Marketing is dead. Long live The Distribution Engineer." — GRITCULT (tweet thread, Apr 2026) ([link](https://x.com/gaborcselle))
 - "Most companies are laying off marketers. Smart ones are replacing the org chart entirely." — ericosiu (tweet, Apr 2026) ([link](https://x.com/ericosiu)) — Full 2x2 marketer classification and 100x marketer framework
 - "I'm a Serial Founder. Here's how I come up with Business Ideas." — ssbmomelette / Troy (Reddit r/startups, Apr 2026)
+- "How I Consistently Book 2–5 Meetings Per Day with Claude MCP and LinkedIn" — Romàn (tweet, Apr 2026) ([link](https://x.com))

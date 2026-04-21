@@ -6,15 +6,19 @@ Design documentation and content briefs for the Cold Mountain portfolio website 
 
 ## Current site design
 
-- Homepage with Selected Work grid (7 projects: Second Brain, dotmd, Seasons Journaling, School Search AI, FreshNotes, CIEG, ListenBack)
+- Homepage with Selected Work grid (8 projects): Second Brain, Readwise Wiki, dotmd, Seasons Journaling, School Search AI, FreshNotes, CIEG, ListenBack
+- Second Brain card is **pinned** — shown with a small rotated pin icon at the top-left corner (`CornerPin` SVG, `#b8b8b8`, `-45deg`). Gated on a `pinned: true` flag in the projects array so more cards can be pinned later.
+- Readwise Wiki card links to /wiki. Tag: `Wiki`, slate palette (`#637488` text on `#eef0f3` background).
 - /second-brain detail page organized by capability: Intelligence & Research, Validation, Specification & Execution, Continuity Discipline (content sourced from coldmountain.md)
-- /wiki section — public Readwise Wiki with index (6 sections) + 26 article pages. Content pulled at build time from the vault (`resources/wiki/`) via sparse clone of the second-brain repo. Markdown rendered with react-markdown + remark-gfm. Lives at coldmountain.ai/wiki.
+- /wiki section — public Readwise Wiki with index (6 sections) + 26 article pages. Content pulled at build time from the vault (`resources/wiki/`) via sparse clone of the second-brain repo. Markdown rendered with react-markdown + remark-gfm. Lives at coldmountain.ai/wiki. Index shows "Last updated <date>" auto-derived from the max `last_updated` frontmatter across all entries.
 - Tool links throughout: Bird, Readwise, Parallel, Last 30 Days, Superpowers, G-Stack, Compound Engineering
-- Subtle color-coded tags: blue (iOS), purple (Web), green (AI Agent), tan (Dev Tool)
+- Color-coded tags: blue (iOS), purple (Web), green (AI Agent), tan (Dev Tool), slate (Wiki). All muted pastels.
 - Name: "Matt Li" (changed from Mathew Thomas Li)
-- Tagline: "Product manager. Product builder."
-- Project order: Second Brain, dotmd, Seasons Journaling, School Search AI, FreshNotes, CIEG, ListenBack
-- Header links: LinkedIn, X, Email (SVG icons), then "Wiki" as a text link (matching footer-link style) — routes to /wiki
+- Tagline: "Product Manager / Builder"
+- No copywriting em dashes in card descriptions — removed by preference. Commas, periods, or restructure instead.
+- Header: name + tagline + LinkedIn/X/Email social icons only. No nav bar, no Wiki text link (Wiki reaches via the Selected Work card).
+- Scroll-to-top button: small muted circle fixed at bottom-center of viewport, fades in after ~400px scroll. Defined in `app/_components/ScrollToTop.tsx`.
+- No page footers — previously had a muted mattli8020@gmail.com line on each page; removed 2026-04-21. The homepage's header Email social icon remains as the sole email link.
 - "What I'm Learning" section written but removed from the live page for now — could be re-added later
 
 ## Open / next steps

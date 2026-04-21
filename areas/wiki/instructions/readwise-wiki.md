@@ -1,6 +1,6 @@
 Readwise Wiki Compiler — Instructions
 
-> Version: 2.3 | Last updated: 2026-04-13
+> Version: 2.4 | Last updated: 2026-04-21
 
 ## Purpose
 

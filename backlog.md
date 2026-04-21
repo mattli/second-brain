@@ -17,7 +17,6 @@
 - [ ] Readwise wiki → weekly summary integration — After ~4 weekly wiki runs (~mid-May), evaluate whether to add a wiki-update step to the weekly summary agent. Check: (1) Is the wiki being referenced by agents during searches or Q&A? (2) Are there obvious gaps where weekly briefing signals (funding rounds, capability shifts, VC theses) would have made wiki pages more useful? (3) Has the lint step surfaced real issues, or is the wiki too small for it to matter? If yes to 1 or 2, build the pipeline — scope it to factual signals only (AI Context, VC Lens, durable category patterns from Category Movement). Skip analysis, skip indie product listings. If no, the wiki needs more mass from Readwise first.
 
 ### Cold Mountain (coldmountain.ai)
-- [ ] Wire up Vercel deploy hook so coldmountain.ai/wiki auto-updates when the weekly wiki compiler runs. Steps: (1) Vercel → cold-mountain project → Settings → Git → Deploy Hooks → create hook named "weekly-wiki-compile" on main, copy URL. (2) Use Claude Code to add a curl trigger at the end of the weekly wiki compile script (check ~/second-brain/areas/wiki/instructions/readwise-wiki.md and the NanoClaw group config for where the compile happens). Requirements: read hook URL from COLD_MOUNTAIN_DEPLOY_HOOK env var, only fire if the compile produced changes (gate on git diff or compiler's own "wrote N pages" signal), skip silently if env var unset, log HTTP status. (3) Set COLD_MOUNTAIN_DEPLOY_HOOK in NanoClaw's env with the URL from step 1; restart relevant container if needed.
 
 
 ### NanoClaw
@@ -54,3 +53,4 @@
 - [x] Tune product briefing research topics — switched from keyword search to thread reply scraping (2026-03-27)
 - [x] Bird search product aggregation — built full pipeline: thread search → product extraction → URL resolution → categorization; consolidated to weekly schedule (2026-03-28)
 - [x] Update coldmountain.ai — added dotmd card, Readwise wiki mention, merged Intelligence/Research and Specification/Execution sections, updated tagline and tech stack (2026-04-13)
+- [x] Wire up Vercel deploy hook so coldmountain.ai rebuilds on weekly wiki compile — added `POST /cold-mountain-deploy` proxy route reading `COLD_MOUNTAIN_DEPLOY_HOOK` from `.env`; curl trailer in readwise-wiki.md + folder-review.md fires only when commit produces changes; also fixed latent `/workspace/extra/second-brain` → `/workspace/extra/vault` path bug in folder-review.md (2026-04-21)

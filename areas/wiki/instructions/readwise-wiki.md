@@ -316,8 +316,17 @@ Once wiki pages are written/updated, commit and push to the vault:
 ```bash
 cd /workspace/extra/vault
 git add -A
-git diff --cached --quiet || git commit -m "readwise wiki update $(date +%Y-%m-%d)"
-git push
+if ! git diff --cached --quiet; then
+  git commit -m "readwise wiki update $(date +%Y-%m-%d)"
+  git push
+  # Trigger coldmountain.ai rebuild. Proxy returns 404 if hook unset — non-fatal.
+  curl -sS -X POST -m 10 -o /dev/null \
+    -w "cold-mountain deploy: HTTP %{http_code}\n" \
+    "$NANOCLAW_CREDENTIAL_PROXY/cold-mountain-deploy" \
+    || echo "cold-mountain deploy: curl failed"
+else
+  git push
+fi
 ```
 
 Do not send a confirmation message — the system handles notifications automatically.

@@ -47,10 +47,17 @@ A no-change output is valid and expected when the structure is healthy. In that 
 ### Phase 4 — Commit
 
 ```bash
-cd /workspace/extra/second-brain
+cd /workspace/extra/vault
 git add resources/wiki/FOLDER_REVIEW.md
-git diff --cached --quiet || git commit -m "wiki folder review $(date +%Y-%m-%d)"
-git push
+if ! git diff --cached --quiet; then
+  git commit -m "wiki folder review $(date +%Y-%m-%d)"
+  git push
+  # Trigger coldmountain.ai rebuild. Proxy returns 404 if hook unset — non-fatal.
+  curl -sS -X POST -m 10 -o /dev/null \
+    -w "cold-mountain deploy: HTTP %{http_code}\n" \
+    "$NANOCLAW_CREDENTIAL_PROXY/cold-mountain-deploy" \
+    || echo "cold-mountain deploy: curl failed"
+fi
 ```
 
 No notifications are sent — the file appears in the vault for Matt to review when he has time.

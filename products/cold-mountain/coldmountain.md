@@ -16,7 +16,7 @@ Second Brain continuously monitors signals across AI, technology, and product. E
 
 Product signals come from X via [Bird](https://www.npmjs.com/package/@steipete/bird), a CLI that searches X's GraphQL API directly. Bird powers a weekly product briefing that mines builder threads and product launches, extracting what people are shipping and what's gaining traction.
 
-Everything I come across — X posts, articles, GitHub repos, newsletters — gets saved to [Readwise](https://readwise.io), which acts as an async intake pipeline. Second Brain synthesizes anything in that queue and surfaces how it connects to what I'm currently working on. A weekly scheduled agent compiles a personal knowledge wiki from those highlights, following Andrej Karpathy's LLM wiki pattern — cross-referenced markdown pages an agent can query when working on related topics. [Parallel](https://parallel.ai) handles web search when I need to go deeper on a topic in real time.
+Everything I come across — X posts, articles, GitHub repos, newsletters — gets saved to [Readwise](https://readwise.io), my async intake pipeline. I save more than I can read, so a scheduled agent serves as my reading staff: it reads what I can't and compiles a personal knowledge wiki <!-- TODO: link to /wiki once the wiki page is live --> from those saves, following Andrej Karpathy's LLM wiki pattern — cross-referenced markdown pages an agent can query when I'm working on related topics. Second Brain also synthesizes the queue on demand, surfacing how new material connects to what I'm working on. [Parallel](https://parallel.ai) handles web search when I need to go deeper on a topic in real time.
 
 Everything the system learns and produces is written to a personal knowledge vault as structured markdown, synced to GitHub as the long-term memory of the system.
 
@@ -32,10 +32,15 @@ Once a problem is validated, Second Brain generates high-fidelity product specif
 
 Second Brain takes validated specs and moves them toward working prototypes, using [Superpowers](https://github.com/obra/superpowers) and [G-Stack](https://github.com/garrytan/gstack) for planning, brainstorming, and development within Claude Code.
 
+## Continuity
+
+Every session ends with a continuity ritual — updating `session-tasks.md` with what got done and what's next, adding anything worth remembering across sessions to `memory.md`, and updating the global and per-project `CLAUDE.md` files when something changes about how I want Claude to work. The compounding effect: new sessions start with real context instead of a blank slate, and the system gets sharper over time rather than resetting.
+
 ---
 
 **Technology stack:**
 - Mac Mini M4, always-on, home-hosted
+- MacBook Pro SSHs into the Mini over Tailscale; Claude Code in tmux so sessions persist across disconnects
 - NanoClaw (self-hosted agent framework, Docker, Node.js)
 - Claude Sonnet via Anthropic API
 - Claude Code with [Superpowers](https://github.com/obra/superpowers), [G-Stack](https://github.com/garrytan/gstack), and [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin)

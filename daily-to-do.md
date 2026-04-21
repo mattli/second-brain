@@ -2,6 +2,7 @@
 
 ### Tuesday, April 21
 
+- [ ] Wire up Vercel deploy hook for coldmountain.ai/wiki (see backlog)
 - [ ] Post wiki to r/ObsidianMD — draft and screenshots ready from Claude.ai chat. Title: "My Obsidian wiki is auto-compiled from Readwise saves by an AI agent. Just published it online." Lead with the Karpathy LLM wiki pattern, three "useful if you're considering something similar" bullets, link to /wiki, footer link to /second-brain. Post Tue–Thu morning. Check at 3 set times only; respond to substantive comments, ignore hostile ones. Cross-post to r/readwise a few days later if the first post goes well.
 
 ---

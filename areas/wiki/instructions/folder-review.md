@@ -22,8 +22,9 @@ This instructions file covers two modes. They share the same procedure for readi
 ### Phase 1 — State
 
 1. Read `resources/wiki/INDEX.md` to see current sections and descriptions.
-2. List each folder under `resources/wiki/` (excluding `raw/`, `long-form/`, `_archive`, and `unorganized.md` — these are structural, not topic folders). Record page count and list page titles per folder.
+2. List each folder under `resources/wiki/` (excluding `raw/`, `long-form/`, and `_archive` — these are structural, not topic folders). Record page count and list page titles per folder.
 3. Sample 1–2 page titles per folder to verify folder name still matches content.
+4. Read `resources/wiki/unorganized.md`. Record the count of items under each section (`## Bookmarks`, `## Long-form sources`) and the total.
 
 ### Phase 2 — Evaluate
 
@@ -37,6 +38,17 @@ For each folder, judge against these criteria:
 - **INDEX.md alignment?** Do INDEX sections still mirror folders, or has one drifted?
 
 Thresholds are heuristics, not rules. A 1-page folder is fine if it's a growth area; a 15-page folder is fine if the contents are internally distinct. Apply judgment.
+
+### Phase 2.5 — Scan `unorganized.md`
+
+Read `resources/wiki/unorganized.md`. Group items under `## Bookmarks` and `## Long-form sources` by topic affinity. For each group:
+
+- **Cluster (3+ items on a shared topic)** — propose promotion to a new topic page in the best-fitting folder, or merge into an existing page if one fits.
+- **Pair (2 items on a shared topic)** — note as a watch item. Don't propose promotion yet; flag so next month's review sees the trajectory.
+- **Singleton** — leave in place.
+- **Non-wiki bookmark** (items that clearly aren't knowledge — recipes, unrelated tool bookmarks) — propose removal from `unorganized.md`. The holding bin shouldn't grow forever with items that will never cluster.
+
+Record each group's decision for the proposal.
 
 ### Phase 3 — Write Proposal
 
@@ -73,6 +85,10 @@ Invoked from a Claude Code session with a command like "apply FOLDER_REVIEW.md" 
    - Execute the file moves, folder creations/renames, or merges as specified.
    - Identify every internal link that points to any affected page and update it. Use `grep -rn "target-filename"` to find references; preserve the link text, change only the path.
    - Update `INDEX.md` to reflect the new structure — move entries between sections, rename sections, or regroup as needed.
+2a. For each "Unorganized Promotions" entry:
+   - **Promote to new page:** create the file using the standard page template, synthesize content from the referenced items (re-fetching from Readwise via `reader_get_document_details` if needed), add to `INDEX.md`, remove items from `unorganized.md`.
+   - **Merge into existing page:** update the target page with the new material, remove items from `unorganized.md`.
+   - **Drop:** remove items from `unorganized.md` only.
 3. Run the existing readwise-wiki lint pass afterward (orphan pages, missing pages, stale content) to catch anything the reorg broke.
 4. Update `FOLDER_REVIEW.md` status: change the frontmatter from `status: proposal (awaiting approval)` to `status: applied YYYY-MM-DD`.
 5. Commit everything in one atomic commit:
@@ -126,6 +142,32 @@ Example:
 
 (Or, if the structure is healthy: `No changes proposed this month.` with a one-line reason.)
 
+## Unorganized Promotions
+
+### 1. Promote "<cluster name>" to <target path>
+
+<1-2 sentences on cluster coherence.>
+
+**Items to move:**
+- <item 1>
+- <item 2>
+- <item 3+>
+
+**Action:** Create `<path>` (or merge into `<existing-page>`). Remove items from `unorganized.md`. Update `INDEX.md`.
+
+### 2. Drop non-wiki bookmarks
+
+<Items that don't belong in a knowledge wiki.>
+
+**Action:** Remove from `unorganized.md`.
+
+(Or, if no promotions are warranted: `No promotions proposed this month.`)
+
+## Watch Items
+
+Pairs too thin to promote; flagged for next review.
+- <item 1> + <item 2> — possible "<topic>" cluster forming
+
 ## Approval
 
 To apply: open a Claude Code session in the vault and say "apply FOLDER_REVIEW.md" — Claude will execute the moves, update every internal link, and commit atomically. You can watch each step and interrupt if anything looks off.
@@ -151,3 +193,6 @@ Folders exist for sidebar browsing. That's their job. Reviews that optimize for 
 
 **Why INDEX.md is part of the review:**
 INDEX.md mirrors the folder structure — they're two views of the same organization. A review that only looks at folders misses the common case of INDEX drift (sections that no longer match what they contain). Treating them as one surface keeps both in sync.
+
+**Why the folder review scans `unorganized.md`:**
+The weekly compiler drops Tier C/D items into `unorganized.md` when no existing page fits. Nothing else reads that file, so items accumulate indefinitely. The monthly folder review is the natural host for cluster detection — it already reads wiki state and emits proposal-only output. Promotion proposals flow through the same apply mechanism as folder reorganizations.

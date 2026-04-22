@@ -34,6 +34,8 @@ Discovery → Validation is the natural flow. A discovery run produces candidate
 |------|--------|---------------|
 | 2026-04-15 | Backpacking & outdoors | [2026-04-15-backpacking.md](../../resources/problem-discovery/2026-04-15-backpacking.md) |
 | 2026-04-21 | Ed-tech | [2026-04-21-ed-tech.md](../../resources/problem-discovery/2026-04-21-ed-tech.md) |
+| 2026-04-21 | Google Classroom | [2026-04-21-google-classroom.md](../../resources/problem-discovery/2026-04-21-google-classroom.md) |
+| 2026-04-21 | Skyward | [2026-04-21-skyward.md](../../resources/problem-discovery/2026-04-21-skyward.md) |
 
 ## Related
 

@@ -15,7 +15,8 @@ Surface the range of real pains in a domain I don't have a hypothesis for yet. D
 
 - `SCRAPECREATORS_API_KEY` in env
 - `reddit_search.py` at `~/.claude/skills/product-validation/reddit_search.py`
-- `ANTHROPIC_API_KEY` in env
+
+Classification is done inline by the agent running the pipeline (you). No external classifier script or API key is required — read title + top_comments and score 0–3 against the rubric yourself.
 
 ## Inputs
 

@@ -172,8 +172,8 @@ Reddit-first product-validation pipeline. Reads a `product-validation.md` doc fr
 
 ## Prerequisites
 
-- `ANTHROPIC_API_KEY` set (for your own LLM work).
 - `SCRAPECREATORS_API_KEY` set (for Reddit search via the helper).
+- **Note:** V0 does NOT require `ANTHROPIC_API_KEY`. Classification (scoring posts against the hypothesis) is done inline by the agent running the pipeline, not by a separate Claude API call.
 - `last30days` plugin installed at `~/.claude/plugins/marketplaces/last30days-skill/` (v2.9.5).
 
 ## Steps

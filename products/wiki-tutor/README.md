@@ -6,14 +6,14 @@ Repo: `~/Development/wiki-tutor/` (local, not yet pushed).
 
 ## Status
 
-**V0 shipped** (2026-04-22). Next.js 14 + TypeScript + Tailwind + App Router. Reads a markdown wiki directory (default `./sample-wiki/`, overridable via `WIKI_PATH` env var) and exposes four screens:
+**V0 shipped** (2026-04-22). **Session UX redesigned** (2026-04-23) around "hidden wiki, reveal on answer" — page content is locked by default; the tutor asks one question per `##` section and answering unlocks that section on the page. Next.js 14 + TypeScript + Tailwind + App Router. Reads a markdown wiki directory (default `./sample-wiki/`, overridable via `WIKI_PATH` env var) and exposes four screens:
 
-- **Home** — coverage stats, four entry-point cards (Pick a page, By topic, Recent activity, Uncovered) + substring search
-- **Session** — 3-pane layout: question list with progress, Q&A with placeholder tutor reply, metadata + linked pages + backlinks
+- **Home** — folder-grouped page list with coverage dots, substring search, coverage stats in header. (Simplified 2026-04-23 from the original 2×2 card grid.)
+- **Session** — two panes. **Left:** the wiki page with each `##` section rendered as a locked block (heading visible, body hidden under an italic placeholder); current section gets an accent left border. **Right (fixed 440px):** tutor card with one question + textarea. On Reveal, the section body fades in on the left; right pane shows user's answer + Got it / Missed it / Try again. Self-rating advances to the next section.
 - **Session wrap** — template markdown document saved to `./sessions/YYYY-MM-DD-HHmm-<id>.md` in the project root
 - **Coverage grid** — colored dashboard at `/coverage`, click a cell to start a session
 
-All LLM-shaped work is placeholder for V0, isolated in `src/lib/tutor.ts` (two functions: `generateQuestions`, `placeholderTutorReply`). Swap-in for a real Anthropic API call is mechanical.
+All LLM-shaped work is placeholder for V0, isolated in `src/lib/tutor.ts` (now a single function: `generateQuestions(page, sections)`). Section-split helper in `src/lib/sections.ts`. Swap-in for a real Anthropic API call means replacing `generateQuestions` with content-aware question generation and adding a `gradeAnswer(page, section, userAnswer)` call to replace the self-rating step.
 
 ## Why it exists
 
@@ -30,9 +30,11 @@ Strategic context in `products/voice-tutor/README.md` status section (Wikiwise f
 ## Key decisions
 
 - **Wiki directory is read-only by design.** WikiTutor never writes to it. All state lives in `./.wikitutor/state.json` and `./sessions/*.md` inside the project root. Both paths are in `.gitignore`.
-- **Tutor swap-in is a single file.** `src/lib/tutor.ts` is the entire LLM boundary. Dropping in a real Claude call only touches those two functions.
+- **Tutor swap-in is a single file.** `src/lib/tutor.ts` is the entire LLM boundary. Dropping in a real Claude call only touches that file (and will add a `gradeAnswer` function to replace the self-rating step).
+- **Hidden wiki, reveal on answer** (2026-04-23). The session UI reveals the wiki section-by-section as the user answers. The page acts as a spatial anchor + scoreboard — by session end, the whole page is rendered on the left. Decision made after rejecting (a) chat thread alongside the full visible page, (b) stacked-reveal column with no left-side anchor. Framing: the wiki shouldn't be a reader; it should be the reward for engagement.
+- **Questions are section-scoped** (2026-04-23). One template question per `##` section (plus the pre-`##` intro). Cheap V0 fallback; real LLM generates reasoning questions later. Replaces the original 20-questions-per-page template list.
 - **Sample wiki models real wiki shape.** 13 pages across `concepts/`, `people/`, `sources/` with rich cross-linking — mirrors the structure of `resources/wiki/` so UI decisions tested on samples translate.
-- **V0 defaults (documented in repo README):** folders-as-topics, 20 template questions per page, `discussed` threshold at 50% of questions answered, substring search, desktop-only.
+- **V0 defaults:** folders-as-topics, one question per `##` section, `discussed` threshold at 50% of per-page section count (via new `SessionUpdate.questionsTotalForPage`), substring search, desktop-only.
 
 ## Setup
 
@@ -50,7 +52,9 @@ WIKI_PATH=~/second-brain/resources/wiki npm run dev
 
 ## Next steps (not started)
 
-- Run V0 against `resources/wiki/` on Matt's actual content and react. Open design questions that only surface with real data: does 20 questions feel right? Are folders-as-topics enough? Does the branch-to-linked-page flow encourage the right kind of exploration?
-- If the UI pattern holds up: plug in a real Claude call in `src/lib/tutor.ts`. Questions from page content, tutor responses that actually engage with the user's answer.
+- **Revisit loop** is where the tutor beats a reader. V0 with placeholder tutor is structurally close to a markdown reader for first-encounter material. The differentiator — retrieval practice on pages read weeks ago — needs a home-page surface ("you learned about X 17 days ago, want to refresh?") that uses existing coverage state + mtime. Cheap to build, high leverage. Likely next direction.
+- Run v0.1 against `resources/wiki/` on real content. Open taste-sensitive bits surfaced 2026-04-23: locked-state treatment (italic placeholder vs. blurred text vs. heading-only), "Opening" label for intro sections, accent-stripe styling.
+- Plug in a real Claude call in `src/lib/tutor.ts`. Section-aware questions, judged grading, conversational follow-ups. Deferred behind revisit loop — the LLM makes it a *better* tutor, the revisit loop makes it a *different product* than a reader.
 - Decide whether this converges with voice-tutor (shared session format, memory.md) or stays a distinct surface.
 - If it keeps moving: add a CLAUDE.md to the repo with the conventions that aren't obvious from the README.
+- **Repo README out of date** — still describes the old 3-pane quiz flow. Refresh when v0.1 stabilizes.

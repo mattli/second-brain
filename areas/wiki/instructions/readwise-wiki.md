@@ -138,6 +138,10 @@ After all tiers are processed (or timeout forces early completion):
    - **Orphan pages** — pages not linked from any other page (add links where relevant). Exempt `unorganized.md` — it is a holding page, not a topic page.
    - **Missing pages** — topics mentioned frequently across pages but lacking their own page
    - **Stale content** — claims that newer sources have superseded
+   - **Synthesis check (flag only).** For each topic page, consider whether the page reads as synthesized knowledge or as a literature review (one section per source). Use your judgment — the same judgment you'd use when deciding whether new content belongs under an existing concept heading or needs its own section. Flag pages that read as source-siloed rather than synthesized. Record findings in the manifest under `## Lint Findings — Synthesis Candidates` with page path, a brief rationale, and one or two specific sections most in need of restructuring. **Person pages (`wiki/people/`) are exempt** — sections on a person page about that person's views are expected to attribute to that person.
+   - **Page split check (flag only).** For each topic page, consider whether it has grown into two or more distinct topics that would be better served as separate pages. Use the same judgment you apply when deciding whether a new source deserves its own page versus being absorbed into an existing one. Flag split candidates in the manifest under `## Lint Findings — Page Split Candidates` with page path, suggested new page title(s) for the split, and a one-line rationale.
+
+   Both new checks **flag only** — do not auto-restructure or auto-split. These are structural decisions that require human review.
 3. Fix what you find
 4. Regenerate `wiki/long-form/QUEUE.md` per the Queue Regeneration section of `wiki/instructions/long-form-synthesis.md`. Cheap list-and-diff — no content fetches.
 
@@ -156,6 +160,17 @@ Write `wiki/LAST_RUN_MANIFEST.md` with the full audit trail. See the Manifest Sc
 - Each page has a `## Sources` section at the bottom listing which Readwise saves informed it (title, author, and URL). URLs go in the Sources section only, not inline in page content — the wiki pages are synthesized knowledge and inline links would clutter the prose.
 - File names use kebab-case: `retrieval-augmented-generation.md`, `andrej-karpathy.md`
 - Each page has YAML frontmatter with `created_at` (set once) and `last_updated` (set to today's date when content changes).
+
+**Organize by concept, not by source.** Pages are synthesized knowledge, not literature reviews.
+
+- Section headings (H2, H3) name **concepts**, not authors or articles.
+  - Good: "Memory ownership", "Thin vs fat harnesses", "Verification loops"
+  - Bad: "Thin Harness, Fat Skills (Garry Tan)", "OpenAI's Engineering Lessons (Ryan Lopopolo)", "Three Dimensions (Akshay Pachaar)"
+- When multiple sources make related claims, **merge them under a single concept heading with inline attribution**: "Harrison Chase argues...", "Garry Tan's framing...", "According to the OpenAI engineering team...".
+- Do **not** create a new H2 section for each source processed. That's the author-organized anti-pattern — it turns the page into a literature review instead of synthesized knowledge.
+- Attribution happens **inline in prose** and **comprehensively in the Sources section** at the bottom. The Sources section may include a short note per source describing what that source contributed (one line) — see the Page Template below.
+- **Existing pages may violate this rule.** When the compiler touches an existing page, it should opportunistically restructure author-branded sections it encounters — promote the concept to the heading, move attribution inline. Do not restructure the entire page in one pass unless specifically asked; just fix what you touch.
+- **Person pages (`wiki/people/`) are an exception.** Sections on a person page about that person's views are expected to attribute to that person; concept-first organization does not apply there.
 
 **What pages to create is your decision.** The wiki covers everything the user saves — not just AI/tech. Writing, marketing, business, health, productivity, history, or any other topic is equally valid. If the user saved it, it has signal.
 
@@ -193,6 +208,11 @@ Content organized by the natural structure of the topic.
 
 - "Article Title" — Author Name ([link](URL))
 - "Another Article" — Another Author ([link](URL))
+
+Optional enriched format — add a one-line contribution note when it helps a future reader understand what each source brought to the page:
+
+- "Thin Harness, Fat Skills" — Garry Tan ([link](URL)) — introduced the thin-harness principle and the five definitions
+- "OpenAI's Engineering Lessons" — Ryan Lopopolo ([link](URL)) — verification-loop patterns from production agents
 ```
 
 ---
@@ -305,6 +325,16 @@ Every skipped document must appear in this table. A count-only summary is not ac
 ## New Pages Created
 
 ## Pages Updated
+
+## Lint Findings — Synthesis Candidates
+
+| Page | Sections most in need of restructuring | Rationale |
+|------|----------------------------------------|-----------|
+
+## Lint Findings — Page Split Candidates
+
+| Page | Suggested new titles | Rationale |
+|------|---------------------|-----------|
 ```
 
 ---

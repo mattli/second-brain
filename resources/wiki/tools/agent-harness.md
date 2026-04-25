@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-13
 last_updated: 2026-04-24
+
 ---
 
 # Agent Harness
@@ -25,6 +26,8 @@ Claude Code is a harness. Codex is a harness. Cursor is a harness. They all run 
 
 Claude Code's leaked source code (March 2026, accidentally shipped to npm) was 512,000 lines. That code is the harness. Even the makers of the best model in the world invest heavily in harnesses.
 
+*R.E.S.T. framework* (TRAE, Apr 2026): Four production-readiness objectives for any agent system — **Reliability** (fault recovery, idempotent operations, behavioral consistency), **Efficiency** (resource budgets, low-latency response, high throughput), **Security** (least privilege, sandboxed execution, I/O filtering), **Traceability** (end-to-end tracing, explainable decisions, auditable state). "To move agents beyond the toy stage, they must anchor on these four objectives."
+
 ## Three Levels of Engineering
 
 - *Prompt engineering* — crafts instructions the model receives
@@ -39,13 +42,13 @@ Claude Code's leaked source code (March 2026, accidentally shipped to npm) was 5
 
 3. *Memory* — see section below.
 
-4. *Context management* — model performance degrades 30%+ when key content falls in mid-window positions ("Lost in the Middle"). Production strategies: compaction, observation masking, just-in-time retrieval, sub-agent delegation.
+4. *Context management* — model performance degrades 30%+ when key content falls in mid-window positions ("Lost in the Middle"). Production strategies: compaction, observation masking, just-in-time retrieval, sub-agent delegation. TRAE formalizes context management as a **Token Transformation Pipeline**: Collection (aggregate inputs + memory + retrievals) → Ranking (score by recency/relevance) → Compression (summarize low-density content) → Budgeting (allocate token limits per category) → Assembly (structured templates with explicit blocks). "Rather than hoping the model figures out what to focus on, actively build the context."
 
 5. *Prompt construction* — assembles system prompt, tool definitions, memory files, conversation history, current message.
 
 6. *Output parsing* — modern harnesses use native tool calling (structured tool_calls objects). Legacy: RetryWithErrorOutputParser.
 
-7. *State management* — LangGraph uses typed dictionaries with checkpointing. Claude Code uses git commits as checkpoints and progress files as scratchpads.
+7. *State management* — LangGraph uses typed dictionaries with checkpointing. Claude Code uses git commits as checkpoints and progress files as scratchpads. **State Separation Principle** (TRAE): treat the LLM strictly as a stateless compute unit ("CPU"). All state requiring cross-turn consistency — user sessions, task progress — must be offloaded to an external persistence engine controlled by the harness. The anti-pattern: forcing the LLM to maintain complex state via prompt engineering.
 
 8. *Error handling* — "a 10-step process with 99% per-step success still has only ~90.4% end-to-end success." Errors compound. Four types: transient (retry), LLM-recoverable (return as ToolMessage), user-fixable (interrupt), unexpected (bubble up).
 
@@ -278,6 +281,18 @@ How major frameworks implement the harness pattern (synthesized from Akshay's de
 - **CrewAI** — Role-based multi-agent: Agent (harness around LLM, defined by role/goal/backstory/tools), Task (unit of work), Crew (collection). Flows layer adds "deterministic backbone with intelligence where it matters."
 - **AutoGen** (→ Microsoft Agent Framework) — Conversation-driven orchestration. Three-layer architecture (Core, AgentChat, Extensions). Five orchestration patterns: sequential, concurrent, group chat, handoff, and magentic (manager agent with dynamic task ledger).
 
+## Architecture: The Harness as Managed REPL
+
+TRAE's comprehensive guide (Apr 2026) reframes the harness architecturally as a **REPL container** — a deterministic shell wrapping the non-deterministic brain. Read (Context Manager translates world → structured prompt), Eval (Call Interceptor routes tool calls with monitoring), Print (Feedback Assembler captures results → re-injects as observations), Loop (repeats until goal or termination). This maps directly to the PPAF cycle: Perception, Planning, Action, Feedback/Reflection.
+
+**Control Plane vs. Data Plane:** Production harnesses decouple into a Control Plane (task scheduling, resource quotas, behavioral planning, policy enforcement) and a Data Plane (agent runtime instances, state/memory storage, sandboxed execution). Four functional layers: Interface → Orchestration → Execution → Infrastructure.
+
+**Sandboxing levels:** Level 1 (Process-level: chroot/namespaces — fast, shared kernel, trusted tools only). Level 2 (Containers: Docker — industry standard for most tool execution). Level 3 (MicroVMs: Firecracker — independent kernels, multi-tenant). Level 4 (Full VMs: KVM/QEMU — maximum security, highest cost). Default recommendation: Level 2 + hardened kernel + read-only root filesystem; escalate to Level 3 for untrusted code.
+
+**Six design principles:** Design for Failure (exceptions are the norm), Contract-First (all interactions via explicit schemas/APIs), Secure by Default (least privilege, zero trust, defense-in-depth), Separation of Concerns (decouple deciding from executing), Everything is Measurable (every behavior/decision quantifiable), Data-Driven Evolution (every run is a learning opportunity).
+
+**Cognitive maturity matrix:** Two axes — Cognitive Loop (reactive → proactive plan & reflect) × Context Efficiency (manual/point-fed → sandboxed/automated injection). The maturity of the harness directly determines an agent's ability to move from passive/inefficient to proactive/efficient quadrants.
+
 ## Harness Coevolution with Models
 
 Models are now post-trained with specific harnesses in the loop. Claude Code's model learned to use the specific harness it was trained with. Changing tool implementations can degrade performance.
@@ -302,3 +317,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Your company needs a brain, not more connectors" — Conor Brennan-Burke, Hyperspell (tweet, Apr 2026) ([link](https://x.com))
 - "A harnessed LLM agent" — Akshay Pachaar (tweet thread, Apr 2026) ([link](https://x.com/akshay_pachaar)) — expanded deep dive with framework comparison
 - "Imagine if naked people were stupider" — Garry Tan, YC (tweet thread, Apr 2026) ([link](https://x.com/garrytan)) — response to Kyle Kingsbury's "The Future of Everything is Lies"; testing pyramid for agent systems
+- "The Definitive Guide to Harness Engineering" — TRAE (tweet thread, Apr 2026) ([link](https://read.readwise.io/read/01kq0a1yank7gvrrqxseeby31b)) — comprehensive framework: R.E.S.T. objectives, REPL container architecture, six design principles, Token Transformation Pipeline, sandboxing levels, cognitive maturity matrix

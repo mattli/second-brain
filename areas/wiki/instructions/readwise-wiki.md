@@ -73,13 +73,13 @@ Skip decisions are recorded per-document for the manifest (see Phase 6). For eac
 
 ### Phase 3 — Batched reading (Tiers A, B, D)
 
-**Tier A batches:** Process in batches of **5-8 documents**. For each batch:
-1. Fetch full content via `reader_get_document_details` for each document in the batch
+**Tier A documents:** Process **one document at a time**. For each document:
+1. Fetch full content via `reader_get_document_details` — a SINGLE call. Do NOT issue parallel `reader_get_document_details` calls. Anthropic's API gateway returns 502 Bad Gateway on requests that include several large MCP tool results in one turn (confirmed Apr 2026 — every batched-fetch run since Apr 23 has died this way; sequential fetches are reliable).
 2. Extract key concepts, claims, connections to existing wiki pages, and notable entities
 3. Update or create wiki pages (see Page Guidelines below)
-4. Move to the next batch
+4. Move to the next document
 
-Start conservative with batch size. Increase in future runs only after confirming context headroom.
+Process documents in groups of 5–8 for commit cadence purposes only (see "Tier A commit cadence" below) — but the fetches themselves stay sequential.
 
 **Tier B:** Process after Tier A. These are larger (20K-50K words) — typically video transcripts that can be 100K-150K+ characters. Process **one document at a time**. For each Tier B document:
 1. Fetch full content via `reader_get_document_details`
@@ -90,7 +90,7 @@ Start conservative with batch size. Increase in future runs only after confirmin
 
 Do NOT batch Tier B documents together. A single 150K-character transcript plus existing wiki context plus your response can approach the context limit. One-at-a-time processing ensures each document is committed before the next begins, so context exhaustion never loses completed work.
 
-**Tier A commit cadence:** Commit wiki updates to git at the end of each Tier A batch (not just at the end of the run). This ensures a mid-run failure preserves all completed batches.
+**Tier A commit cadence:** Commit wiki updates to git after every 5–8 documents (a logical "batch" for commit purposes — the fetches inside it are still sequential). This ensures a mid-run failure preserves all completed work.
 
 **Tier D:** Process last. For each bookmark, note the tool/product on the relevant topic page with name, URL, and one-line description. If no relevant topic page exists, append to `wiki/unorganized.md` under a `## Bookmarks` section (create the file/section if it doesn't exist). Format:
 

@@ -16,14 +16,14 @@ Self-hosted voice conversation service on Mac Mini using Pipecat, Claude, and pe
 
 **Wikiwise finding** (2026-04-16). Readwise founder Tristan Homsi published [TristanH/wikiwise](https://github.com/TristanH/wikiwise) on 2026-04-10 — a native macOS app that scaffolds a Karpathy-pattern wiki and ships Claude Code skills for Readwise ingestion. Same pattern as WikiTutor's wiki. Strategic read: Readwise-acquisition path is weaker (founder is already shipping his own wiki product, open-sourced GPLv3), but voice is an orthogonal wedge — WikiTutor can position as the conversational companion to a Wikiwise-compiled wiki. Their `fetch-readwise-document` and `fetch-readwise-highlights` skills are directly reusable for WikiTutor ingestion. The `@readwise/cli` is the canonical programmatic access path to Readwise going forward.
 
-**Cost optimizations — Haiku for post-session + Inworld TTS experiment (reverted)** (2026-04-22). Three changes explored, two kept: (1) **kept:** swapped the end-of-session summary (`bot.py:332`) and analysis (`bot.py:354`) calls from Sonnet 4.5 → **Haiku 4.5** (`claude-haiku-4-5-20251001`) — ~5× cheaper, quality fine for post-hoc summarization, live conversational LLM untouched (still Sonnet 4.5); (2) **kept:** organized the growing pile of `session-analysis-*.md` files into a `session-analyses/` subfolder and updated `SESSION_ANALYSIS_DIR` in `bot.py:171`; (3) **reverted:** briefly swapped Cartesia → Inworld (`inworld-tts-1.5-max`) based on a `$0.0042/min` figure in the code-repo README that turned out to be wrong. Actual Inworld Max on-demand is **$50/1M chars ≈ $0.05/min ≈ $3/hr**, which is *more* than Cartesia Pro (~$2.70/hr). Reverted to Cartesia since credits remained on the subscription. Kokoro (local TTS) remains shelved — wedges the pipeline after tool calls, and quality judged too low when it did work. Marginal hourly cost is now ~$6.70/hr (Sonnet live + Cartesia + Nova-3). See `validation/economics.md` for the verified pricing tables.
+**Cost optimizations — Haiku for post-session + TTS experiments stripped** (2026-04-22 / 2026-04-25). Two changes kept, one rolled out of the code: (1) **kept:** swapped the end-of-session summary and analysis calls from Sonnet 4.5 → **Haiku 4.5** (`claude-haiku-4-5-20251001`) — ~5× cheaper, quality fine for post-hoc summarization, live conversational LLM untouched (still Sonnet 4.5); (2) **kept:** organized the growing pile of `session-analysis-*.md` files into a `session-analyses/` subfolder and pointed `SESSION_ANALYSIS_DIR` at it; (3) **removed entirely (2026-04-25):** the `TTS_PROVIDER` switch and the Inworld + Kokoro fallback branches in `bot.py` are gone. Inworld Max turned out to be ~$0.05/min on-demand (more than Cartesia Pro at ~$2.70/hr, not less), and Kokoro both wedges the pipeline after tool calls and produces unacceptable voice quality. Cartesia Sonic-3 ("British Reading Lady") is the only TTS path now — simpler code, no dead branches. Marginal hourly cost is ~$6.70/hr (Sonnet live + Cartesia + Nova-3). See `validation/economics.md` for the verified pricing tables.
 
 ## Architecture
 
 - **STT**: Deepgram Nova-3 ($0.0077/min)
 - **LLM (live)**: Claude Sonnet 4.5 via Anthropic API, prompt caching enabled ($3/$15 per MTok input/output)
 - **LLM (post-session)**: Claude Haiku 4.5 for summary + analysis ($1/$5 per MTok input/output)
-- **TTS**: Cartesia Sonic-3 (voice: British Reading Lady) — billed 1 credit/character, ~$0.05/min at Pro overage rate. Inworld (`inworld-tts-1.5-max`) is available as a fallback via `TTS_PROVIDER=inworld` but is *not* cheaper than Cartesia at on-demand rates.
+- **TTS**: Cartesia Sonic-3 (voice: British Reading Lady) — billed 1 credit/character, ~$0.05/min at Pro overage rate.
 - **Transport**: SmallWebRTC via Pipecat, prebuilt web UI
 - **Access**: Tailscale Serve HTTPS proxy → phone browser
 
@@ -47,7 +47,7 @@ Self-hosted voice conversation service on Mac Mini using Pipecat, Claude, and pe
 
 ## API keys
 
-In `.env`: `ANTHROPIC_API_KEY`, `DEEPGRAM_API_KEY`, `CARTESIA_API_KEY` (required for the active TTS), and `INWORLD_API_KEY` (optional, only used when `TTS_PROVIDER=inworld`). See `validation/economics.md` for current hourly rates; at today's stack (Cartesia + Sonnet-live + Haiku-post-session) marginal cost is ~$6.70/hr of audio.
+In `.env`: `ANTHROPIC_API_KEY`, `DEEPGRAM_API_KEY`, `CARTESIA_API_KEY`. See `validation/economics.md` for current hourly rates; at today's stack (Cartesia + Sonnet-live + Haiku-post-session) marginal cost is ~$6.70/hr of audio.
 
 Cartesia is on **Pro** ($4/mo yearly or $5/mo monthly, 100K credits ≈ 1.67 hr of audio/mo). Overage bills at the same per-character rate. If daily usage grows past ~40 min/day, the **Startup** plan ($39/mo yearly / $49/mo monthly, 1.25M credits ≈ 21 hr/mo) works out to ~$2.33/hr of audio if fully utilized.
 

@@ -91,7 +91,7 @@
 ### Doc-specific study (single-doc binding) (20 findings)
 
 > **"I create a pdf out of my casebook and then upload that pdf to ChatGPT and prompt the chat to brief the specific case."**
-> — r/LawSchool, score 3 — [Has anyone used Lexplug or a similar AI tool for case briefing?](https://reddit.com/r/LawSchool/comments/1f246pm/has_anyone_used_lexplug_or_a_similar_ai_tool_for/) ← **single-doc binding to ChatGPT, just text**
+> — r/LawSchool, score 3 — [Has anyone used Lexplug or a similar AI tool for case briefing?](https://reddit.com/r/LawSchool/comments/1f246pm/has_anyone_used_lexplug_or_a_similar_ai_tool_for/) ← **single-doc binding to ChatGPT, just text** — *[Errata 2026-04-26: actual author is u/MyDogNewt, not u/britneyroar. See bottom of doc.]*
 
 > **"I usually paste the pdf into claude and make a study guide from there instead of rewriting notes, i have a bunch of 100 page history booklets that i can turn into structured 10-page revision booklets"**
 > — r/GetStudying, score 2 — [How I finally cured my "PDF paralysis"](https://reddit.com/r/GetStudying/comments/1rucsar/how_i_finally_cured_my_pdf_paralysis_and_stopped/)
@@ -185,11 +185,11 @@ Sorted by signal strength (score 3 → score 2), then by subreddit. Each has a v
 Med student already running the **exact** product loop (ChatGPT voice mode, structured tutor↔student turns) on USMLE material. Highest-fidelity prospect.
 - [Post](https://reddit.com/r/medicalschool/comments/1r43v6c/how_to_use_ai_voice_chat_to_review/) · [u/just_premed_memes](https://reddit.com/user/just_premed_memes)
 
-#### u/britneyroar — r/LawSchool — *existing_solution_gap*
-> "I love lexplug! I use case briefing to get the main point first so that when I read the case, I can have context on where it's going... I create a pdf out of my casebook and then upload that pdf to ChatGPT and prompt the chat to brief the specific case."
+#### u/MyDogNewt — r/LawSchool — *existing_solution_gap* *[corrected 2026-04-26 — was misattributed to u/britneyroar; see Errata]*
+> "I wouldn't suggest this as a 1L, but starting my 2L year (now a 3L), I create a pdf out of my casebook and then upload that pdf to ChatGPT and prompt the chat to brief the specific case and only source from the uploaded pdf. This gives you a brief based solely on your casebook and doesn't wander into stuff that isn't in your casebook... profs know real quick you're reading from AI or Quimbee when you start giving facts that were not even in your casebook."
 
-Law student doing **single-doc PDF binding to ChatGPT** for case briefing — the product hypothesis with text instead of voice. Clear willingness-to-pay signal.
-- [Post](https://reddit.com/r/LawSchool/comments/1f246pm/has_anyone_used_lexplug_or_a_similar_ai_tool_for/) · [u/britneyroar](https://reddit.com/user/britneyroar)
+3L ("Top 1% Poster" flair) doing **single-doc PDF binding to ChatGPT** with an explicit *only-source-from-uploaded-pdf* constraint to avoid hallucination. The most product-relevant articulation in the dataset — names both the technique and the failure mode it's avoiding. Two years of refinement; likely now a practicing attorney.
+- [Post](https://reddit.com/r/LawSchool/comments/1f246pm/has_anyone_used_lexplug_or_a_similar_ai_tool_for/) · [u/MyDogNewt](https://reddit.com/user/MyDogNewt)
 
 #### u/jorge444788 — r/LawSchool — *existing_solution_gap*
 > "Yes I'm a 1L and have been doing this. 1000x more efficient than briefing and taking notes."
@@ -272,7 +272,7 @@ Asking for **doc-section binding** explicitly — wants flashcards anchored to P
 If approaching three for Phase 2 conversations:
 
 1. **u/just_premed_memes** — closest to the exact product loop already; will give the sharpest answer on what's missing from the manual ChatGPT-voice version.
-2. **u/britneyroar** — clearest single-doc PDF-binding workflow + named pain (case briefing). Strong willingness-to-pay shape.
+2. **u/MyDogNewt** *[corrected 2026-04-26 — was u/britneyroar; see Errata]* — clearest single-doc PDF-binding workflow with explicit grounding constraint, plus named failure mode ("profs know real quick"). Two years of refinement on the workflow.
 3. **u/goldenjm (Paper2Audio founder)** — adjacent-builder peer interview; will speak frankly about the audio-on-papers wedge and what they've learned about their own users.
 
 If those don't respond, the next tier: **u/playeronex** (sharpest competitive framing), **u/RoughThat5778** (hallucination-on-doc concern), **u/Ok-Resolution3317** (recap-artifact value already proven for them).
@@ -309,3 +309,16 @@ Yes, with high confidence. The exact framing the doc uses (*re-reading without a
 - Chunk 1 of classification errored out on connection reset *after* writing its output — partial output recovered, no rerun needed.
 - Inline-classification approach (no separate classifier API) worked well; 980 → 80 in ~10 min wall time across 4 parallel agents.
 - Raw artifacts retained at `/tmp/voice-tutor-validation/` (deduped.json, shortlist.json, classified_chunk{1..4}.json, all_findings.json) in case you want to re-cluster differently.
+
+---
+
+## Errata
+
+- **2026-04-26 (post-publish):** The casebook-PDF binding quote attributed to u/britneyroar in "Score 3 candidates" and "Doc-specific study" is incorrect. The actual author is **u/MyDogNewt** (3L, "Top 1% Poster" flair). britneyroar's comment in the same thread is a brief endorsement of Lexplug, not a workflow description. Likely an enrichment-step attribution error since both commented on the same post. MyDogNewt is the corrected Score-3 candidate and has replaced britneyroar in the Phase 2 outreach list.
+
+---
+
+## Phase 2 outreach log
+
+- **2026-04-26:** DM sent to u/MyDogNewt (LawSchool, 3L casebook PDF workflow)
+- **2026-04-26:** DM sent to u/just_premed_memes (medicalschool, ChatGPT voice tutor↔student loop)

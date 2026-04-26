@@ -1,5 +1,14 @@
 # April 20 – April 26
 
+### Sunday, April 26
+
+- [ ] Come up with daily guitar drills for technique
+- [ ] Read one chapter of Songwriting Secrets of the Beatles
+- [ ] Wiki tutor — interview prep
+- [ ] Voice tutor — interview prep
+
+---
+
 ### Tuesday, April 21
 
 - [x] Wire up Vercel deploy hook for coldmountain.ai/wiki (see backlog)

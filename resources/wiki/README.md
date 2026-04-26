@@ -43,7 +43,7 @@ The intelligence system has two modes: briefings (dated logs — daily, weekly, 
 
 ## Reference
 
-- **Index:** [`INDEX.md`](INDEX.md)
+- **Index:** [`INDEX.md`](resources/wiki/INDEX.md)
 - **Weekly compiler instructions:** [`../../areas/wiki/instructions/readwise-wiki.md`](../../areas/wiki/instructions/readwise-wiki.md)
 - **Long-form synthesis:** [`../../areas/wiki/instructions/long-form-synthesis.md`](../../areas/wiki/instructions/long-form-synthesis.md)
 - **Folder review:** [`../../areas/wiki/instructions/folder-review.md`](../../areas/wiki/instructions/folder-review.md)

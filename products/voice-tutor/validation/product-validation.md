@@ -1,63 +1,78 @@
-# Voice Wiki Tutor — Product Validation Plan
+# Voice Tutor — Study Companion Mode — Product Validation Plan
 
 Status: draft
-Created: 2026-04-14
+Created: 2026-04-26
+Supersedes: _archive/product-validation-2026-04-14.md (Readwise "drowning in saves" framing — outdated since pivot to Study Companion mode)
 
-## Purpose
+## Problem Statement
 
-Validate whether Readwise power users actually feel the "drowning in saved content" pain the voice wiki tutor claims to solve — before committing to iOS, pricing, or distribution decisions.
+People who study from a single document (textbook chapter, paper, course PDF, dense article) get stuck reading alone. They re-read passages without absorbing them, lose track of what they've already understood, and have no one to ask "wait, what does this actually mean?" mid-paragraph. The existing tools — highlighting, Anki, ChatGPT-with-PDF — either come *after* reading (review) or require typing while you're trying to think. There's no companion that sits beside the document, talks with you while you read it, and leaves a written recap when you're done.
 
-The test isn't whether the idea passes my own filter. It's whether three specific people describe the problem in their own words and would pay for a solution.
+The Study Companion is a voice-first session bound to one document. Voice in, voice out, focused conversation, async markdown artifact at the end. We're validating whether the pain of "studying dense material alone" is real and acute enough that a focused voice tool would be reached for.
 
-## Approach
+## Target Subreddits
 
-Two phases, ordered so that phase 1 makes phase 2 less miserable:
+Primary (people actively studying from documents):
 
-### Phase 1 — Last 30 Days research (async, low dread)
+- r/GetStudying
+- r/college
+- r/studytips
+- r/medicalschool
+- r/lawschool
+- r/GradSchool
+- r/PhD
+- r/AskAcademia
 
-Run Last 30 Days to see how the problem is being talked about publicly. Goals:
+Secondary (knowledge workers studying papers / dense docs):
 
-- Confirm the "drowning in saves / can't absorb what I save" pain is being discussed, not just a thing I feel
-- Capture the actual language people use to describe it
-- Identify existing solutions people mention (Readwise Ghostreader, Snipd, manual summarization, LLM chats, etc.) and how they fall short
-- Find Readwise power users by handle — candidates for phase 2
+- r/ObsidianMD
+- r/Anki
+- r/productivity
+- r/selfimprovement
 
-Sources: Reddit (r/Readwise, r/ObsidianMD, r/productivity, r/selfimprovement), X (Readwise community, knowledge management builders).
+## Existing Solutions to Look For
 
-Output: a research doc with quotes, existing solutions, and a shortlist of 5-10 Readwise power users to approach.
+Mentions of any of these — and especially complaints about their limits — are signal:
 
-### Phase 2 — Three conversations
+- **NotebookLM** (Google) — closest comparable; document-grounded chat + audio overview
+- **ChatGPT / Claude with PDF upload** — text chat against a doc
+- **ChatGPT Voice / Advanced Voice Mode** — voice but no doc grounding
+- **Readwise Ghostreader** — Q&A on highlights/articles
+- **Speechify / Audible / TTS tools** — passive listening, not interactive
+- **Anki / spaced repetition** — review, not first-pass study
+- **Glasp / Recall / Snipd** — capture/summarize, not conversational
+- **Voice memos to self** — DIY workaround
+- **Study groups / tutors / office hours** — the human version of what we're replacing
 
-Talk to three Readwise power users. Not to pitch, to ask.
+## Power-User Signals
 
-Questions to explore:
-- How do you use Readwise today?
-- What do you save that you never actually read or absorb?
-- When you do want to revisit something, how do you find it?
-- What have you tried to get more value out of your saves?
-- What's frustrated you about those attempts?
+A Reddit user is a strong candidate to approach if they show 2+ of these:
 
-Do NOT ask what they'd pay. Price conversations come later, once the problem is confirmed.
-
-Where to find them: X replies, Readwise subreddit, friends-of-friends, Readwise's own community channels.
-
-Format: 20-30 minute calls or thorough async exchanges.
+- Studies from PDFs / textbooks / papers regularly (medical, law, grad student, self-learner)
+- Talks about active recall, Feynman technique, "explain it back to me"
+- Uses voice tools (dictation, voice memos, ChatGPT voice) by preference
+- Complains about reading dense material alone — re-reading without absorbing
+- Already pays for a study tool (Anki Pro, Readwise, NotebookLM Plus, etc.) — signals willingness to pay
+- Builds their own study workflows in Obsidian, Notion, or scripts — high agency
 
 ## Success Criteria
 
-- At least 2 of 3 people describe the drowning-in-saves pain in their own words, unprompted
-- They can name specific moments when they wanted their saves to be more useful and weren't
-- Existing solutions they've tried don't solve it
+A finding is valuable if it shows one of:
 
-If that bar is met: keep building, move to pricing conversations.
-If not: the idea is weaker than it looked from inside the prototype excitement. Re-evaluate.
+- Someone describing, in their own words, the pain of studying a dense document alone (re-reading, losing focus, wanting to ask questions but having no one to ask)
+- Someone using NotebookLM / ChatGPT-with-PDF specifically *for studying a document* and naming what falls short
+- Someone who built a workaround (voice memos, study group, AI prompts) for talking through a doc
+- A Readwise/Obsidian power user who treats studying a single doc as a recurring ritual
+
+A finding is NOT valuable if it's just generic "I want to study better" or "AI is changing education" — too broad to act on.
 
 ## What This Plan Is Not
 
-- Not a pitch. I'm asking questions, not selling.
-- Not a roadmap. Decisions about iOS, pricing, architecture come after validation, not before.
-- Not a commitment to ship. The point is to learn whether the idea survives contact with real users.
+- Not validating the old Readwise "drowning in saves" hypothesis. That was a different product. (See _archive/.)
+- Not validating monetization — pricing comes after the problem is confirmed.
+- Not validating mobile/iOS — the prototype is desktop-only via Tailscale; mobile is a later question.
+- Not asking whether voice is the right modality in the abstract — only whether the document-bound voice study session is reached for.
 
 ## Next Action
 
-Run Last 30 Days. Draft the research topic and source list before executing.
+Run product-validation skill against this doc to pull Reddit evidence. Then identify 5–10 power-user candidates for phase-2 conversations.

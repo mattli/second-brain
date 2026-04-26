@@ -322,3 +322,4 @@ Yes, with high confidence. The exact framing the doc uses (*re-reading without a
 
 - **2026-04-26:** DM sent to u/MyDogNewt (LawSchool, 3L casebook PDF workflow)
 - **2026-04-26:** DM sent to u/just_premed_memes (medicalschool, ChatGPT voice tutor↔student loop)
+- **2026-04-26:** DM sent to u/gazeintotheiris (medicalschool M-2, asked how to set up ChatGPT to quiz from First Aid PDF — would-be user, hadn't yet built a workflow)

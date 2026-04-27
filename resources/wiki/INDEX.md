@@ -62,6 +62,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 ## Culture
 
 - [Museum Design & Curation](culture/museum-design-curation.md) — Architecture as institutional strategy; encyclopedic vs. global museum; thematic vs. chronological display; LACMA/David Geffen Galleries case study
+- [Internet as Mediating Layer](culture/internet-as-mediating-layer.md) — Internet as real life; cultural production downstream of TikTok/subcultures; traditional media's surviving roles (leaks, coordination, normalization); technology-as-mediating-layer philosophical frame
 
 ## Holding
 

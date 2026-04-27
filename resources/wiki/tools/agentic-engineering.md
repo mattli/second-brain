@@ -130,6 +130,29 @@ Hamza Farooq and Jaya Rajwani (via Lenny's Newsletter, Apr 2026) propose a three
 
 **Graduation signals from Cat 1 → Cat 2:** Flowchart hits 30+ nodes with branches added weekly; customer inputs can't be anticipated; agent needs to choose which API to use based on context. **From Cat 2 → Cat 3:** Single agent handling too many domains with degrading performance; tasks taking hours/days; need for parallel agent instances coordinating work.
 
+## Designing for Agent Callers
+
+Teddy Riker (Ramp, Apr 2026) frames the product design shift as software moves from human-first to agent-first interaction. At Ramp, MCP weekly active users grew 10x in three months. Salesforce went further with "Headless 360" — exposing every capability as API, MCP tool, or CLI command, accepting that "a majority of usage will be driven through agents."
+
+**The new interaction stack:**
+1. Traditional: User → Interface → Database
+2. Agent-mediated: User → User's Agent → Database
+3. Agent-to-agent: User → User's Agent → Software's Agent → Database
+
+In the third model, the software's agent handles business logic, enforces rules, and contributes context the calling agent doesn't have. Two LLMs working together toward an outcome.
+
+**Teach agents how to succeed.** Notion's MCP opens every tool description with: "For the complete Markdown specification, always first fetch the MCP resource at notion://docs/enhanced-markdown-spec. Do NOT guess or hallucinate Markdown syntax." The agent fetches the spec before writing. Every Notion-specific assumption is explicitly called out. Slack's MCP, by contrast, assumes agents know its non-standard formatting — they don't, and output is consistently broken. "Think about what your agent's callers need to know to succeed, and give it to them proactively."
+
+**Build feedback loops:**
+- Require a `rationale` parameter on every tool call — reconstructs intent when you can't see the chat
+- Ship a standalone feedback tool agents can call when blocked
+- Add tool-specific parameters to capture context you'd need later
+- Patterns in rationale logs surface unmet needs: "building incident report" appearing repeatedly → ship a dedicated tool
+
+**Mind the context gap.** In any agent-to-agent interaction, each side has context the other lacks. Example: an expense management system knows GL codes and company policies; the user's chief-of-staff agent knows the calendar, email confirmations, and Slack threads. A well-designed interaction asks for context rather than demanding the answer. The calling agent provides the "why" (client meal vs. team meal); the system agent maps it to the right code. Neither side needs to understand the other's domain.
+
+"Most companies will ship an MCP, check the box, and move on. Their usage will grow for a few quarters, then stall." The winners sweat the details of agent-to-agent design.
+
 ## Tools Noted
 
 - **agents.md** — Agent instruction file spec/community resource. https://agents.md

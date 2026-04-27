@@ -2,6 +2,7 @@
 created_at: 2026-04-05
 last_updated: 2026-04-27
 
+
 ---
 
 # AI-Native Product Development
@@ -205,6 +206,19 @@ When agents generate UI, each screen can look fine in isolation but feel like a 
 
 This connects directly to Ann Miura-Ko's feature factory risk: when execution is nearly free, DESIGN.md becomes one mechanism for encoding the taste that prevents agent-generated UI from diverging into chaos.
 
+## The Bottleneck Cascade (Andrew Ng)
+
+Andrew Ng (deeplearning.ai, Apr 2026) frames the PM bottleneck as just the first in a cascade. When AI coding speeds up 10-100x, every adjacent function becomes the new bottleneck in turn:
+
+- **Product management:** Engineer:PM ratios dropping from 8:1 toward 1:1. But even 1:1 creates a communication bottleneck — the fastest teams have engineers who do their own product thinking.
+- **Marketing:** Features ship so fast that marketing scrambles to communicate them. "A marketing bottleneck."
+- **Legal compliance:** Software built in a day, legal review takes a week. "A legal compliance bottleneck."
+- **Design:** Same pattern — design can't keep pace with build velocity.
+
+The resolution: generalists. When small teams (2-10 people) must cover five specialties, individuals play roles outside their core. Deep specialization still exists, but everyone understands adjacent functions enough to unblock themselves. Proficiency with AI tools helps — they're thinking tools that let you reason through unfamiliar domains.
+
+Colocation matters for maximum speed: "The highest speed is achieved by having everyone in the room, able to communicate instantaneously." Remote works, but same-room removes the last communication latency.
+
 ## Risks
 
 - **Adoption fatigue** — "Shipping more stuff does not equal more product value. If users can't keep up, what's the point?"
@@ -229,3 +243,4 @@ This connects directly to Ann Miura-Ko's feature factory risk: when execution is
 - "Some Notes on AI" — Karri Saarinen (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq56qhvvnj9ew1308w3pdknf)) — planning debate, output vs. design, expertise paradox, agentic coding reality check, design tool limitations, domain differences
 - "DESIGN.md | The One File AI Needs to Match Your UI" — George / prodmgmt.world (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq6mzew7mgdzkg1fabjpd0xj)) — DESIGN.md concept, PM checklist, failure modes, self-review prompting pattern
 - "Chief Product Officer in a Box: Introducing The AI PM OS" — George / prodmgmt.world (tweet, Mar 2026) ([link](https://read.readwise.io/read/01kq6mz4x91wqhw6y95zv9vzyt)) — Dennis Yang/Chime, Zevi Arnovitz/Meta, Alan Wright practitioner examples
+- "Big Pharma Bets Big on AI" — Andrew Ng / deeplearning.ai (newsletter, Apr 2026) ([link](https://read.readwise.io/read/01kq881g9mf0dfc4nzk8eyywt1)) — PM bottleneck cascade, generalist engineers, marketing/legal bottlenecks, colocation advantage

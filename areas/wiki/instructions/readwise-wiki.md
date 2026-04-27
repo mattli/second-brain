@@ -107,7 +107,9 @@ Do NOT batch Tier B documents together. A single 150K-character transcript plus 
 Intermediate state that must survive across sessions (context exhaustion, crashes, resumed runs) goes in the **state directory**: `state/` relative to the readwise-wiki group directory. Inside the container, this is `/workspace/state/`.
 
 On each run:
-1. **Check for existing state** at startup (Phase 1). If `state/pending.json` exists, it contains the document inventory and triage from a previous incomplete run. Resume from where it left off rather than re-fetching and re-triaging.
+1. **Check for existing state** at startup (Phase 1). If `state/pending.json` exists, check its mtime first:
+   - If younger than 24 hours: it's a recent crash recovery. Resume from where it left off rather than re-fetching and re-triaging.
+   - If 24 hours or older: it's stale and would skip docs saved since the previous run. Move it to `state/_archive/pending-<original-mtime-ISO>.json` (create `_archive/` if needed) and proceed with a fresh inventory. Note the staleness in the manifest's Run Notes.
 2. **Write state after triage** (end of Phase 2). Save `state/pending.json` with the full document list, tier classifications, and skip decisions. This is the resumption checkpoint.
 3. **Update state after each commit** (during Phase 3). Remove processed documents from `pending.json` so a resumed run doesn't reprocess them.
 4. **Delete state on clean completion** (end of Phase 6). If the run completes all phases normally, delete `state/pending.json`. A clean manifest is the record; intermediate state is only for crash recovery.

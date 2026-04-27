@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-20
+last_updated: 2026-04-27
+
 ---
 
 # AI-Native Product Development
@@ -51,6 +52,16 @@ Strong opinions on both sides:
 ## The "Cursor for Product Management" Gap
 
 Y Combinator's 2026 RFS explicitly calls out this gap: "There's no system that supports the full loop of product discovery." They want a tool where you upload customer interviews and usage data, ask "what should we build next?", and get feature outlines backed by customer feedback — with development tasks broken down for coding agents.
+
+## PMs Building in Cursor (Practitioner Examples)
+
+Several PMs have built bespoke AI workflows from scratch, each spending weeks on plumbing before the interesting work starts:
+
+- **Dennis Yang (Chime):** PRDs written in markdown inside Cursor, published to Confluence via MCP server, Jira epics auto-generated from the spec. Weekly status reports drafted in minutes from the same source files.
+- **Zevi Arnovitz (Meta):** No technical background. Runs Claude for planning, Gemini for UI generation, then has both models review each other's output (peer review loop built through trial and error). Engineers on his team now ask him to teach them his process.
+- **Alan Wright:** Queried PostHog directly inside Cursor, had the AI diagnose data, produce a markdown summary, push to Notion, and open a Linear ticket — a multi-hour process compressed to minutes.
+
+The common pattern: each built their setup from scratch over weeks. The gap between seeing a demo and replicating the workflow is still large.
 
 ## Community PDLC Adoption
 
@@ -156,15 +167,43 @@ Jack Cheng (Every, Apr 2026) identifies a fundamental tension in AI-accelerated 
 
 The connection to the [feature factory risk](../tools/ai-native-product-development.md) identified by Ann Miura-Ko: when execution is nearly free, the discipline to NOT ship becomes the differentiator. See also [Business Moats in AI](../concepts/business-moats-in-ai.md) — the "opinionated perspective" moat is essentially taste about what to ship and what to hold back.
 
+## Planning in the AI Era
+
+Karri Saarinen (Linear CEO, Apr 2026) challenges the narrative that planning is going out of fashion. His test: "could the same decision or activity could have been made before AI?" Companies always had the option to do shorter planning cycles, yet many ended up with annual or half-year cycles anyway. The question is why — and whether AI actually solves the underlying need.
+
+Planning isn't about the plans — it's an alignment and commitment exercise. It forces organizations to debate what matters, decide priorities, create shared meaning, and navigate organizational boundaries. AI may increase bandwidth and compress timelines, but the need to choose remains. "If it becomes easier to make more things, it also becomes easier to make the wrong things."
+
+Linear's approach: six-month directional plans with the ability to change priorities any month or week. More experimentation alongside the plan, not instead of it. The risk of no-plan: building whatever comes easily, letting AI steer you toward what's easiest rather than what matters.
+
+This connects to the tools-steer-you problem: AI tools are *thinking* tools, not just mechanical ones. Their ability to influence your work direction is greater than any previous tool. Vibe coding done well is following the grain of the tool — but without planning, you may never notice you've drifted.
+
 ## Output Isn't Design
 
-Karri Saarinen (Linear CEO, Apr 2026) invokes Christopher Alexander's definition of design: "good fit between form and context." The form is the solution; the context is the problem space — user needs, constraints, trade-offs, the environment the product lives in.
+Saarinen invokes Christopher Alexander's definition of design: "good fit between form and context." The form is the solution; the context is the problem space — user needs, constraints, trade-offs, the environment the product lives in.
 
 AI generates plausible output — polished mockups, working code, fluent copy. But output isn't design. "The form is there, the fit is not." AI can produce artifacts that look like solutions without understanding the problem they're supposed to solve.
 
-The implication for product teams: AI makes the visible part of design (producing artifacts) trivially fast, which makes the invisible part (understanding context) relatively more valuable. Teams that skip problem understanding and jump straight to AI-generated solutions will ship products that look polished but miss the mark. "A beautifully rendered wrong answer is still wrong."
+The implication for product teams: AI makes the visible part of design (producing artifacts) trivially fast, which makes the invisible part (understanding context) relatively more valuable. Teams that skip problem understanding and jump straight to AI-generated solutions will ship products that look polished but miss the mark.
+
+**Design tool limitations:** Image generation breaks down with iterations — it's hard to make the AI change one specific thing without it reshaping the whole output (the same problem happens in writing). Saarinen argues for better containment tools and semantic UI design, where you define layouts and patterns directly rather than drawing rectangles. "Most design work is about understanding how a feature fits into the existing system." Even products used through MCP, CLI, or API still need coherent concepts and workflows.
+
+**Domain matters:** Different products require different levels of design polish. A frequent tactile tool like email needs heavy UX attention because users feel every paper cut. A backend service can have rougher UI and still be valuable. Many AI companies operate more like backend companies — the capability is the model, the harness is iterated behind the scenes. "It feels closer to classic UNIX systems."
 
 This connects to the "docs to demos" workflow: the prototype is cheap, but knowing which prototype to build requires the same deep customer understanding it always did.
+
+## DESIGN.md — Text-Based Design Systems for Agents
+
+When agents generate UI, each screen can look fine in isolation but feel like a different product when combined. George (prodmgmt.world, Apr 2026) describes DESIGN.md — a concept originating from Google's Stitch team — as a plain-text design system file that sits in the repo where agents can actually read it. It's the design counterpart to AGENTS.md: README.md tells humans what the project is, AGENTS.md tells coding agents how to work in the repo, DESIGN.md tells design and coding agents what the product should look like.
+
+**Two layers:** Machine-readable YAML (colors, type, radius, spacing, component properties) and human-readable markdown (what the interface should feel like, which colors do which jobs, layout behavior, allowed and forbidden patterns). Agents need both — pure prose gives mood words without decisions, pure tokens give values without judgment.
+
+**PM role:** PMs don't need to be designers, but they can name product judgment: dense vs. spacious, playful vs. sober, action-heavy vs. review-heavy. The strongest DESIGN.md files encode specific decisions ("use one accent color per screen, reserved for the main action") rather than vibes ("clean and modern").
+
+**Self-review loop:** The underused move is making the agent cite DESIGN.md back. After generating a screen, prompt it to list which rules the screen follows, where it invented new patterns, and where the file is silent. When the file is silent, that's the signal to extend it — the document becomes alive.
+
+**Failure modes:** Too vague (mood words without decisions), too visual without being operational (colors without roles), too rigid (no room for exceptions), or disconnected from real screens (written from brand theory, never tested against agent output).
+
+This connects directly to Ann Miura-Ko's feature factory risk: when execution is nearly free, DESIGN.md becomes one mechanism for encoding the taste that prevents agent-generated UI from diverging into chaos.
 
 ## Risks
 
@@ -187,4 +226,6 @@ This connects to the "docs to demos" workflow: the prototype is cheap, but knowi
 - "How We Build Product Teams at Owner" — Deano (tweet thread, Apr 2026) ([link](https://www.deannotes.com/delta-force))
 - "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)
 - "Living Software" — Jack Cheng / Every (Apr 2026) ([link](https://every.to/p/living-software))
-- "Output isn't design" — Karri Saarinen (tweet, Apr 2026) ([link](https://x.com/karrisaarinen))
+- "Some Notes on AI" — Karri Saarinen (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq56qhvvnj9ew1308w3pdknf)) — planning debate, output vs. design, expertise paradox, agentic coding reality check, design tool limitations, domain differences
+- "DESIGN.md | The One File AI Needs to Match Your UI" — George / prodmgmt.world (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq6mzew7mgdzkg1fabjpd0xj)) — DESIGN.md concept, PM checklist, failure modes, self-review prompting pattern
+- "Chief Product Officer in a Box: Introducing The AI PM OS" — George / prodmgmt.world (tweet, Mar 2026) ([link](https://read.readwise.io/read/01kq6mz4x91wqhw6y95zv9vzyt)) — Dennis Yang/Chime, Zevi Arnovitz/Meta, Alan Wright practitioner examples

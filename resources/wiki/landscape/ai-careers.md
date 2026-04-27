@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-05
+last_updated: 2026-04-27
 ---
 
 # AI Careers
@@ -55,7 +55,24 @@ Ng's personal advice aligns with the [agent proficiency](../concepts/agent-profi
 
 A related debate: Grok-summarized X discussion found that broad thinkers who link ideas across fields hold power amid AI's rise. Supporters cite examples like Matthew Gallagher building a $401M telehealth business with broad skills and two employees. The emerging consensus favors hybrids who go wide then deepen strategically as AI handles routine tasks. See also [Agent Proficiency](../concepts/agent-proficiency.md) — agent management may be the ultimate generalist skill.
 
+## The AI Engineer Learning Path
+
+An analysis of ~2,000 job descriptions (Luffytaro, Apr 2026, based on Alexey Grigorev's field guide) maps the skills that actually get hired in AI engineering roles. The core insight: AI engineering is about building systems *around* LLMs, not training models from scratch.
+
+**The 20% that drives 80% of the work:**
+1. LLM fundamentals — controlling models predictably, structured outputs, prompt engineering
+2. RAG — the backbone of most real-world AI systems; chunking strategies matter more than people think
+3. AI agents — tool calling, agent loops (think → act → observe → repeat), MCP, multi-agent systems
+4. Testing and evaluation — LLM-as-judge, offline eval datasets, measuring retrieval quality
+5. Monitoring and observability — tracing, logging, cost tracking, feedback loops
+6. Production systems — turning notebooks into services, guardrails, cloud deployment
+
+**The converging stack:** React/Next.js + FastAPI + LangChain/PydanticAI + OpenAI/Anthropic + Pinecone/Weaviate/Qdrant + Docker/K8s + OpenTelemetry. This mirrors Ann Miura-Ko's observation in [AI-Native Product Development](../tools/ai-native-product-development.md) that the tool stack is converging across companies.
+
+**Differentiators that get hired faster:** agent frameworks (LangGraph, CrewAI), fine-tuning, evaluation systems, vector databases, multi-agent architectures. See also [Agentic Engineering](../tools/agentic-engineering.md) for the harness design patterns these roles increasingly require.
+
 ## Sources
 
 - "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online (Andrew Ng, Laurence Moroney) ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
 - "Generalists Poised to Thrive in AI Era" — X discussion summary ([link](https://x.com/i/trending/2040140222386909626))
+- "The AI Engineer Learning Path" — Luffytaro (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq6h5qsge0qe28ebmf4mnvg5)) — skills roadmap from ~2,000 job descriptions; based on Alexey Grigorev's AI Engineering Field Guide

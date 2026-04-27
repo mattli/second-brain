@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-20
+last_updated: 2026-04-27
 ---
 
 # Business Moats in AI
@@ -111,6 +111,8 @@ Tyler Tringas (Calm Fund) wrote a thesis in June 2025 (published Apr 2026) argui
 2. **Customer overwhelm** — Buyers bombarded with AI pitches, slower to close, lower willingness to pay ("any day now I'll do this on my $20/mo ChatGPT subscription")
 3. **LLM platform competition** — OpenAI, Anthropic, Google can release competitive vertical features on massive user bases
 
+**The Fractal of AI Panic:** The Red Queen dynamic operates at every level simultaneously. Individual workers race to become AI-fluent before a colleague replicates them. Companies sprint to avoid being disrupted by leaner AI-native competitors. Public companies face activist investors and analyst pressure to show AI wins. The fractal cascades downward: board → CEO → direct reports → individual contributors. Each level runs so hard they have no bandwidth to notice the structural pattern — that they're competing on a dimension that is being commoditized, not a dimension where they can actually win.
+
 **The Founder Playbook — 6 strategic responses:**
 
 1. **Lean into AI** — Table stakes. Use AI for development and integrate it into the product. But alone, this won't protect against the headwinds.
@@ -129,6 +131,24 @@ Tyler Tringas (Calm Fund) wrote a thesis in June 2025 (published Apr 2026) argui
 
 **The conventional wisdom flip:** SaaS dogma said be hyper-specialized and avoid services revenue. Tringas argues the opposite: bundle aggressively, add services, cross-sell non-software products (community, media, events). The strategic responses that work are precisely those that traditional SaaS wisdom warned against.
 
+## Niche Construction: Escaping the Commodity Race
+
+The Red Queen hypothesis (Van Valen, 1973) explains a recurring pattern in evolution and competitive markets: when all competitors adopt the same fitness-improving advantage, nobody gains ground — they just run faster to stay in the same place. AI adoption in 2025–26 shows this dynamic clearly: every company deploys AI, announces productivity gains, and ends up in the same relative competitive position.
+
+The winning move isn't to adopt the commodity fastest. It's **niche construction**: rather than adapting to your environment, you modify the environment in ways that shift the competitive rules in your favor. Organisms (and companies) that do this don't just survive the commodity wave — they define what the next competition is about.
+
+Three historical examples from the BuccoCapital thesis:
+
+- **Amazon vs. the internet:** While retailers optimized their websites and Google ad spend, Amazon asked: *What happens when digital distribution goes to zero?* They built physical warehouses, logistics networks, and last-mile delivery — a niche nobody could replicate quickly, and one that mattered precisely because the digital layer became commoditized. Amazon's website is still ugly; their moat is physical infrastructure.
+
+- **GM (Alfred Sloan) vs. the Model T:** Ford made cars a commodity. Sloan asked: *If everyone can own a car, why not one that says something about you?* GM built laddered brands (Chevrolet → Pontiac → Oldsmobile → Buick → Cadillac), added annual model changes, and invented consumer auto financing. The niche: identity and aspiration layered on top of the commodity.
+
+- **Toyota vs. mass production:** When Ford-style scaled production became the norm, American automakers optimized inside the existing paradigm. Toyota asked: *If scale is commoditized, what isn't?* They constructed a niche around waste elimination and quality control (the Toyota Production System) — winning on a dimension where their competitors had grown complacent.
+
+The pattern in every case: the winner recognized when the critical input had been commoditized, stopped optimizing for that input, and invested heavily in a *different* scarce variable. The loser kept running the old race harder.
+
+**Applied to AI:** Companies racing to adopt AI fastest are optimizing for intelligence as a scarce input. That input is becoming a commodity. The five durable moats above (data, network effects, regulatory permission, capital, physical infrastructure) are all things that *can't* be parallelized by AI and *can't* be commoditized quickly. Building those is the niche construction play. Optimizing AI token usage metrics and winning "most AI-native company" press releases is the Red Queen trap.
+
 ## The Meta-Moat
 
 "Time that can't be parallelized." Network density takes years of human adoption. Regulatory approval takes years of political process. Infrastructure takes years to build. Data takes years to compound. Capital relationships take decades to earn.
@@ -144,3 +164,4 @@ Tyler Tringas (Calm Fund) wrote a thesis in June 2025 (published Apr 2026) argui
 - "The Last Moat Standing" — fintechjunkie (tweet, Apr 2026)
 - "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)
 - "The AI SaaS Squeeze" — Tyler Tringas (Calm Fund, Jun 2025 / published Apr 2026) ([link](https://x.com/tylertringas))
+- "Running Faster to Go Nowhere: The AI Adoption Trap" — BuccoCapital / Educated Guess (Apr 2026) ([link](https://www.educatedguess.com)) — Red Queen dynamics in AI adoption, Fractal of AI Panic, niche construction historical case studies (Amazon, GM/Sloan, Toyota)

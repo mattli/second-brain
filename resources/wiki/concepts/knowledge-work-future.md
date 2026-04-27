@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-20
+last_updated: 2026-04-27
 ---
 
 # The Future of Knowledge Work
@@ -83,6 +83,20 @@ The 160-year-old Jevons pattern: more efficient steam engines increased coal con
 
 *The broken pipeline:* The old career path ran through production work (do reps, build volume, become senior). AI handles the reps now. Companies need senior-level thinking; the path that produced it is narrowing. Only 1/3 of employees got any AI training; 52% of developers don't use AI agents at all.
 
+## Cognitive Density
+
+The productivity paradox of AI in the workplace has a structural explanation: AI doesn't just automate labor, it changes the *type* of work remaining.
+
+Before AI, a knowledge worker's day contained significant mental white space — formatting, summarizing, moving data, routine drafts. Tasks that could be done with music playing in the background, low-stakes, mechanical but necessary. This white space functioned as cognitive recovery time embedded in the workday.
+
+AI automated that white space away. What replaced it: higher-stakes orchestration, strategic choices, and activities with much higher cognitive requirements. The day became denser. Not longer — denser. Every hour is now high-stakes work.
+
+This explains the exhaustion many workers report despite productivity tool adoption. The Iron Man suit metaphor was supposed to augment human capability while reducing effort; instead, it removed the low-effort tasks while the high-effort tasks remained. Workers are the suit's pilot, running cognitive simulations constantly, with no idle cycles.
+
+**Connection to the Red Queen dynamic:** The cognitive density problem compounds under competitive pressure. When every company is racing to adopt AI and cascade that pressure through their org (see [Business Moats in AI](business-moats-in-ai.md) — Fractal of AI Panic), nobody has the bandwidth to step back and notice they're running the wrong race. Cognitive density consumes all available attention, making it structurally harder to think strategically about whether the race itself is the right one.
+
+**Connection to the Ironies of Automation:** Bainbridge's monitoring failure irony maps directly: when AI handles the execution, the human's job becomes continuous high-attention oversight. This is more cognitively demanding than doing the original task — supervisory roles require sustained vigilance without the natural rhythm of execution to structure time.
+
 ## Ironies of Automation (Bainbridge, via Kingsbury)
 
 Kyle Kingsbury resurfaces Lisanne Bainbridge's 1983 paper "Ironies of Automation" — originally about power plants and factories — as the essential framework for understanding AI's deskilling effects on knowledge work.
@@ -130,3 +144,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "Labor market impacts of AI: A new measure and early evidence" — Maxim Massenkoff & Peter McCrory (Anthropic, 2026) ([link](https://www.anthropic.com/research/labor-market-impacts))
 - "The Paradox Nobody's Naming: More Jobs Than Ever. Fewer People Who Can Do Them." — Paweł Huryn (tweet, Apr 2026) ([link](https://x.com/PawelHuryn))
 - "The Future Of Everything Is Lies, I Guess" — Kyle Kingsbury (PDF, Apr 2026) ([link](https://aphyr.com/posts/398-the-future-of-everything-is-lies-i-guess))
+- "Running Faster to Go Nowhere: The AI Adoption Trap" — BuccoCapital / Educated Guess (Apr 2026) — cognitive density thesis; AI automating away mental white space; Fractal of AI Panic pressure cascade

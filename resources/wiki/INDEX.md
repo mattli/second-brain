@@ -55,6 +55,10 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 
 - [Writing Craft](writing/writing-craft.md) — Specificity as the single most powerful writing lever (Jason Cohen); Atomic Essays format for audience building (Dickie Bush)
 
+## Music
+
+- [Beatles Early Period](music/beatles-early-period.md) — Compositional techniques of the Very Early Beatles (1963–1964); unresolved V-of-vi, open-interval vocal harmony, syncopated intros, pivot modulation; drawn from Pollack's "Notes On..." series
+
 ## Holding
 
 - [Unorganized](unorganized.md) — Bookmarks and references not yet matched to a topic page

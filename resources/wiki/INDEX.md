@@ -59,6 +59,10 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 
 - [Beatles Early Period](music/beatles-early-period.md) — Compositional techniques of the Very Early Beatles (1963–1964); unresolved V-of-vi, open-interval vocal harmony, syncopated intros, pivot modulation; drawn from Pollack's "Notes On..." series
 
+## Culture
+
+- [Museum Design & Curation](culture/museum-design-curation.md) — Architecture as institutional strategy; encyclopedic vs. global museum; thematic vs. chronological display; LACMA/David Geffen Galleries case study
+
 ## Holding
 
 - [Unorganized](unorganized.md) — Bookmarks and references not yet matched to a topic page

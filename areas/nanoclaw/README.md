@@ -87,6 +87,20 @@ Coordinated specialized agents take a vetted idea from decision to working proto
 
 **Current:** v1.2.52 (updated 2026-04-13 from v1.2.15). Using native credential proxy (OneCLI deferred). See [update-v1.2.52-2026-04-13.md](update-v1.2.52-2026-04-13.md) for full merge details, nuances, and rollback instructions.
 
+## Credential Proxy — Two-Layer Defense Against Anthropic Edge 502s
+
+Long agent runs (especially the readwise-wiki compiler) had been dying intermittently for over a week with 502 Bad Gateway errors. Root cause turned out to be two distinct failure modes that looked identical from the container's perspective:
+
+1. **DNS-driven 502s** — Tailscale's MagicDNS proxy occasionally drops/delays queries for non-tailnet names; surfaces as `ENOTFOUND`/`EAI_AGAIN`, the proxy's `httpsRequest` errors, and the proxy synthesizes a 502 to the container. **Fixed** via a public-DNS resolver (1.1.1.1, 1.0.0.1, 8.8.8.8) with a 5-minute cache and last-known-good IP fallback. TLS SNI preserved by passing original hostname as `servername`. See `src/credential-proxy.ts:31-74`.
+2. **Genuine upstream 502/503/504/529 from Anthropic's Cloudflare-fronted edge** — proxy was forwarding these verbatim, killing runs with no retry safety net. **Fixed 2026-04-27** via a conservative best-practices retry wrapper in `src/credential-proxy.ts`: retries only 502/503/504/529 (per RFC 9110 + Anthropic docs), max 2 attempts, exponential backoff with full jitter (base=1000ms, max=30s), honors `Retry-After` header when present, only retries when no bytes have been written downstream (streaming-safe — Anthropic uses SSE), drains the upstream response before retry so the socket is released, and logs each attempt for observability. Sized conservatively because agent-runner uses `@anthropic-ai/claude-agent-sdk` (which spawns the `claude` Code CLI subprocess — the CLI does its own retries on an unknown internal budget; stacking 3-5 more would compound). Parallel AI route deferred — different outage profile.
+
+**To monitor:**
+```bash
+grep "Credential proxy retrying" ~/nanoclaw/logs/nanoclaw.log    # success path — retries firing
+grep "Credential proxy upstream error" ~/nanoclaw/logs/nanoclaw.log  # connection-level failures
+grep "Credential proxy DNS resolve failed" ~/nanoclaw/logs/nanoclaw.log  # mode 1 should stay quiet
+```
+
 ## Related Docs
 
 - [Intelligence README](../intelligence/README.md) — briefing types, instructions, test runs, architecture, archival

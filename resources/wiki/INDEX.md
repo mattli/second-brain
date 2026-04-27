@@ -13,6 +13,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Knowledge Work Future](concepts/knowledge-work-future.md) — AI commoditizing knowledge; wisdom skills; Jevons Paradox; Ironies of Automation (Bainbridge); new AI-era job categories (Kingsbury); Anthropic observed exposure
 - [World Models](concepts/world-models.md) — Alternative AI paradigm to LLMs; spatial reasoning; LeCun's full position; open vs. closed models (Lambert); key players (AMI, World Labs, Google, NVIDIA)
 - [Model Quantization](concepts/model-quantization.md) — How LLM weight quantization works; 8-bit is nearly free, 4-bit is ~90% quality, 2-bit breaks
+- [Synthetic Personas](concepts/synthetic-personas.md) — Using evolutionary optimization to generate diverse LLM personas; Persona Generators (Google); coverage of attitudinal range; PM bottleneck applications
 
 ## Tools & Frameworks
 
@@ -25,6 +26,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 
 - [Claude Mythos Preview](models-safety/claude-mythos.md) — Anthropic's most capable model (Apr 2026); not publicly released; cybersecurity reckoning; Project Glasswing
 - [AI Safety & Interpretability](models-safety/ai-safety-interpretability.md) — Anthropic's interpretability research; alignment goals; OpenAI safety mission controversy (New Yorker investigation)
+- [Frontier Models](models-safety/frontier-models.md) — Meta Muse Spark; closed vs. open weights pivot; inference-time multi-agent scaling (contemplating mode); benchmark landscape (Apr 2026)
 
 ## Landscape
 
@@ -36,6 +38,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Vertical AI](landscape/vertical-ai.md) — Enterprise AI adoption data; Harvey's $0→$200M ARR playbook; Harvey vertical model U-turn (scrapped custom model)
 - [AI User Perspectives](landscape/ai-user-perspectives.md) — Anthropic's 81K-person survey; what users want; fears (unreliability, displacement, autonomy loss); light and shade framework
 - [AGI Definitions](landscape/agi-definitions.md) — 4 definitions (DeepMind, Bengio, Hinton, OpenAI); current AI capability gaps; jagged capabilities; milestone taxonomy
+- [AI Regulation](landscape/ai-regulation.md) — US state AI law patchwork (CA, CO, MN, NY, OH, UT); Trump federal preemption efforts; compliance implications; common regulatory themes
 
 ## People
 
@@ -43,6 +46,10 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [DHH](people/dhh.md) — Ruby on Rails creator; 180-turn on AI tools; taste/craft as differentiator; speed concerns; competence preservation; VR parallel
 - [Peter Steinberger](people/peter-steinberger.md) — OpenClaw creator, prolific AI tool builder; SOUL.md/MEMORY.md/DREAMS.md agent identity
 - [Dario Amodei](people/dario-amodei.md) — Anthropic CEO; "Machines of Loving Grace" and "Adolescence of Technology" essays; safety-first AI scaling
+
+## Science & Health
+
+- [AI Drug Discovery](science/ai-drug-discovery.md) — Insilico Medicine pipeline (PandaOmics + Chemistry42); 18-month vs. 5–6 year discovery timeline; Eli Lilly $2.75B deal; Rentosertib Phase 2a results; no approved AI drugs yet
 
 ## Writing
 

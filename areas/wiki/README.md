@@ -8,10 +8,10 @@ As of 2026-04-27, the wiki is built by a **three-stage per-doc pipeline** instea
 
 Four NanoClaw scheduled tasks now maintain the wiki:
 
-- **Daily list-maker** — runs 1am every night. Reads the wiki INDEX and recently-touched pages, fetches new Readwise saves since `LIST_MAKER_LOG.md`'s last `run_start` (fallback: 7 days), and decides per-item whether to create, update, skip, or hold in `unorganized.md`. For each non-skip decision it dispatches a per-doc worker via the `schedule_task` MCP tool. Bookkeeping only — never synthesizes content itself. Runs on Opus, ~1–2 min.
+- **Daily list-maker** — runs 1am every night. Reads the wiki INDEX and recently-touched pages, fetches new Readwise saves since `list-maker-log.md`'s last `run_start` (fallback: 7 days), and decides per-item whether to create, update, skip, or hold in `unorganized.md`. For each non-skip decision it dispatches a per-doc worker via the `schedule_task` MCP tool. Bookkeeping only — never synthesizes content itself. Runs on Opus, ~1–2 min.
 - **Per-doc workers** — dispatched by the list-maker, run sequentially via GroupQueue immediately after dispatch. Each worker handles exactly one Readwise document: fetches it, follows the dispatch hint (with veto power if the rationale doesn't hold up against the content), writes/updates one wiki page, commits and pushes. ~2–3 min per worker on Opus.
-- **Weekly wrap-up** — runs Sunday 11pm. Dedup pass, cohesion linking, INDEX.md refresh, `long-form/QUEUE.md` regen, `unorganized.md` cluster-promotion sweep (3+ items on a topic → promote to existing or new page), worker error summary, and writes `LAST_RUN_MANIFEST.md`. Read-mostly over a known set — much shorter session than the old compiler.
-- **Monthly structure review** — runs 3am on the 1st of each month. Evaluates folder organization and INDEX.md alignment, writes a proposal to `resources/wiki/FOLDER_REVIEW.md`. Proposal-only; never auto-applies.
+- **Weekly wrap-up** — runs Sunday 11pm. Dedup pass, cohesion linking, index.md refresh, `long-form/QUEUE.md` regen, `unorganized.md` cluster-promotion sweep (3+ items on a topic → promote to existing or new page), worker error summary, and writes `last-run-manifest.md`. Read-mostly over a known set — much shorter session than the old compiler.
+- **Monthly structure review** — runs 3am on the 1st of each month. Evaluates folder organization and index.md alignment, writes a proposal to `resources/wiki/folder-review.md`. Proposal-only; never auto-applies.
 
 **On-demand long-form synthesis** — user-triggered via the main Telegram group. Synthesizes a Readwise PDF (50K–200K words) into a dedicated page in `resources/wiki/long-form/`. Unchanged.
 
@@ -27,11 +27,11 @@ Four NanoClaw scheduled tasks now maintain the wiki:
 | `instructions/long-form-synthesis.md` | On-demand long-form synthesis (single-doc + queue regeneration) |
 | `instructions/_archive/readwise-wiki-monolithic-2026-04-27.md` | Archived old monolithic compiler instructions |
 | `../../resources/wiki/` | Wiki output — all compiled pages live here |
-| `../../resources/wiki/INDEX.md` | Topic index with links and one-line summaries |
-| `../../resources/wiki/LIST_MAKER_LOG.md` | Most recent list-maker run; `run_start` is the next run's `updated_after` cutoff |
-| `../../resources/wiki/LAST_RUN_MANIFEST.md` | Latest weekly wrap-up summary |
+| `../../resources/wiki/index.md` | Topic index with links and one-line summaries |
+| `../../resources/wiki/list-maker-log.md` | Most recent list-maker run; `run_start` is the next run's `updated_after` cutoff |
+| `../../resources/wiki/last-run-manifest.md` | Latest weekly wrap-up summary |
 | `../../resources/wiki/long-form/QUEUE.md` | Pending long-form items (refreshed weekly) |
-| `../../resources/wiki/FOLDER_REVIEW.md` | Latest structure proposal (refreshed monthly) |
+| `../../resources/wiki/folder-review.md` | Latest structure proposal (refreshed monthly) |
 | `../../resources/wiki/unorganized.md` | Tier C/D items the list-maker couldn't place; wrap-up promotes 3+-item clusters |
 | `../../resources/wiki/WORKER_ERRORS.md` | Per-doc worker failures; summarized and archived weekly by wrap-up |
 
@@ -43,7 +43,7 @@ The `readwise-wiki` group has three relevant mounts inside the container:
 - `/workspace/extra/resources/wiki/` → `~/second-brain/resources/wiki/` (wiki content)
 - `/workspace/extra/vault/` → `~/second-brain/` (full vault, used for `git add` / `git commit` / `git push`)
 
-All page paths in stage instructions (e.g. `resources/wiki/INDEX.md`) are written relative to `cd /workspace/extra/vault`.
+All page paths in stage instructions (e.g. `resources/wiki/index.md`) are written relative to `cd /workspace/extra/vault`.
 
 ## NanoClaw Groups
 

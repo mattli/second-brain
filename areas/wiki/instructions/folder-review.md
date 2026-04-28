@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Evaluate the wiki's high-level organization — folders AND `INDEX.md` sections together — and propose scannability-focused reorganizations. Runs monthly (or on-demand) as a cheap, proposal-only review. Apply is a separate, explicit step that happens through a Claude Code session, not through the container.
+Evaluate the wiki's high-level organization — folders AND `index.md` sections together — and propose scannability-focused reorganizations. Runs monthly (or on-demand) as a cheap, proposal-only review. Apply is a separate, explicit step that happens through a Claude Code session, not through the container.
 
 Folder structure exists for one job: fast sidebar scanning. The review judges structure by that standard, not by tidiness or abstract taxonomy.
 
@@ -12,8 +12,8 @@ Folder structure exists for one job: fast sidebar scanning. The review judges st
 
 This instructions file covers two modes. They share the same procedure for reading wiki state but differ on output:
 
-- **Review mode** (scheduled monthly, or on-demand) — writes a proposal to `resources/wiki/FOLDER_REVIEW.md`. Never applies changes.
-- **Apply mode** (user-invoked via Claude Code) — reads `FOLDER_REVIEW.md` and executes the proposed changes, updating all cross-page links and INDEX.md in one atomic commit.
+- **Review mode** (scheduled monthly, or on-demand) — writes a proposal to `resources/wiki/folder-review.md`. Never applies changes.
+- **Apply mode** (user-invoked via Claude Code) — reads `folder-review.md` and executes the proposed changes, updating all cross-page links and index.md in one atomic commit.
 
 ---
 
@@ -21,7 +21,7 @@ This instructions file covers two modes. They share the same procedure for readi
 
 ### Phase 1 — State
 
-1. Read `resources/wiki/INDEX.md` to see current sections and descriptions.
+1. Read `resources/wiki/index.md` to see current sections and descriptions.
 2. List each folder under `resources/wiki/` (excluding `raw/`, `long-form/`, and `_archive` — these are structural, not topic folders). Record page count and list page titles per folder.
 3. Sample 1–2 page titles per folder to verify folder name still matches content.
 4. Read `resources/wiki/unorganized.md`. Record the count of items under each section (`## Bookmarks`, `## Long-form sources`) and the total.
@@ -35,7 +35,7 @@ For each folder, judge against these criteria:
 - **Name still matches contents?** Did the folder drift from its original theme as pages were added?
 - **Topic overlap?** Are there pages in different folders that would naturally cluster?
 - **Misplaced pages?** Pages whose content sits awkwardly with folder-mates.
-- **INDEX.md alignment?** Do INDEX sections still mirror folders, or has one drifted?
+- **index.md alignment?** Do INDEX sections still mirror folders, or has one drifted?
 
 Thresholds are heuristics, not rules. A 1-page folder is fine if it's a growth area; a 15-page folder is fine if the contents are internally distinct. Apply judgment.
 
@@ -52,7 +52,7 @@ Record each group's decision for the proposal.
 
 ### Phase 3 — Write Proposal
 
-Write `resources/wiki/FOLDER_REVIEW.md` using the template below. Overwrite any previous file. Do not apply any changes.
+Write `resources/wiki/folder-review.md` using the template below. Overwrite any previous file. Do not apply any changes.
 
 A no-change output is valid and expected when the structure is healthy. In that case the proposal section simply says "No changes proposed this month" with a one-line summary of why the structure is healthy.
 
@@ -60,7 +60,7 @@ A no-change output is valid and expected when the structure is healthy. In that 
 
 ```bash
 cd /workspace/extra/vault
-git add resources/wiki/FOLDER_REVIEW.md
+git add resources/wiki/folder-review.md
 if ! git diff --cached --quiet; then
   git commit -m "wiki folder review $(date +%Y-%m-%d)"
   git push
@@ -78,19 +78,19 @@ No notifications are sent — the file appears in the vault for Matt to review w
 
 ## Apply Mode Procedure
 
-Invoked from a Claude Code session with a command like "apply FOLDER_REVIEW.md" or "apply the folder review." Never triggered automatically.
+Invoked from a Claude Code session with a command like "apply folder-review.md" or "apply the folder review." Never triggered automatically.
 
-1. Read `resources/wiki/FOLDER_REVIEW.md`. If its status is not `proposal (awaiting approval)`, abort and ask the user to confirm which review to apply.
+1. Read `resources/wiki/folder-review.md`. If its status is not `proposal (awaiting approval)`, abort and ask the user to confirm which review to apply.
 2. For each "Proposed Changes" entry:
    - Execute the file moves, folder creations/renames, or merges as specified.
    - Identify every internal link that points to any affected page and update it. Use `grep -rn "target-filename"` to find references; preserve the link text, change only the path.
-   - Update `INDEX.md` to reflect the new structure — move entries between sections, rename sections, or regroup as needed.
+   - Update `index.md` to reflect the new structure — move entries between sections, rename sections, or regroup as needed.
 2a. For each "Unorganized Promotions" entry:
-   - **Promote to new page:** create the file using the standard page template, synthesize content from the referenced items (re-fetching from Readwise via `reader_get_document_details` if needed), add to `INDEX.md`, remove items from `unorganized.md`.
+   - **Promote to new page:** create the file using the standard page template, synthesize content from the referenced items (re-fetching from Readwise via `reader_get_document_details` if needed), add to `index.md`, remove items from `unorganized.md`.
    - **Merge into existing page:** update the target page with the new material, remove items from `unorganized.md`.
    - **Drop:** remove items from `unorganized.md` only.
 3. Run the existing readwise-wiki lint pass afterward (orphan pages, missing pages, stale content) to catch anything the reorg broke.
-4. Update `FOLDER_REVIEW.md` status: change the frontmatter from `status: proposal (awaiting approval)` to `status: applied YYYY-MM-DD`.
+4. Update `folder-review.md` status: change the frontmatter from `status: proposal (awaiting approval)` to `status: applied YYYY-MM-DD`.
 5. Commit everything in one atomic commit:
    ```bash
    git add -A
@@ -102,7 +102,7 @@ If something looks wrong mid-apply, stop and ask the user before continuing. Par
 
 ---
 
-## `FOLDER_REVIEW.md` Template
+## `folder-review.md` Template
 
 ```markdown
 ---
@@ -136,7 +136,7 @@ Example:
 
 **Why:** <Rationale grounded in scannability, drift, or growth.>
 
-**Impact:** <Pages moved, links updated, INDEX.md changes.>
+**Impact:** <Pages moved, links updated, index.md changes.>
 
 ### 2. ...
 
@@ -153,7 +153,7 @@ Example:
 - <item 2>
 - <item 3+>
 
-**Action:** Create `<path>` (or merge into `<existing-page>`). Remove items from `unorganized.md`. Update `INDEX.md`.
+**Action:** Create `<path>` (or merge into `<existing-page>`). Remove items from `unorganized.md`. Update `index.md`.
 
 ### 2. Drop non-wiki bookmarks
 
@@ -170,7 +170,7 @@ Pairs too thin to promote; flagged for next review.
 
 ## Approval
 
-To apply: open a Claude Code session in the vault and say "apply FOLDER_REVIEW.md" — Claude will execute the moves, update every internal link, and commit atomically. You can watch each step and interrupt if anything looks off.
+To apply: open a Claude Code session in the vault and say "apply folder-review.md" — Claude will execute the moves, update every internal link, and commit atomically. You can watch each step and interrupt if anything looks off.
 
 To modify: edit this file and re-request apply. To reject: leave as-is; next month's run regenerates it.
 ```
@@ -191,8 +191,8 @@ Structure changes should never auto-apply. The review is proposal-only so Matt c
 **Why "scannability" is the primary criterion:**
 Folders exist for sidebar browsing. That's their job. Reviews that optimize for taxonomic neatness or "correct" categorization at the expense of scannability make the wiki harder to use, not easier.
 
-**Why INDEX.md is part of the review:**
-INDEX.md mirrors the folder structure — they're two views of the same organization. A review that only looks at folders misses the common case of INDEX drift (sections that no longer match what they contain). Treating them as one surface keeps both in sync.
+**Why index.md is part of the review:**
+index.md mirrors the folder structure — they're two views of the same organization. A review that only looks at folders misses the common case of INDEX drift (sections that no longer match what they contain). Treating them as one surface keeps both in sync.
 
 **Why the folder review scans `unorganized.md`:**
 The weekly compiler drops Tier C/D items into `unorganized.md` when no existing page fits. Nothing else reads that file, so items accumulate indefinitely. The monthly folder review is the natural host for cluster detection — it already reads wiki state and emits proposal-only output. Promotion proposals flow through the same apply mechanism as folder reorganizations.

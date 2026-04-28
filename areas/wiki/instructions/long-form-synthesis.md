@@ -47,7 +47,7 @@ Readwise items (50K–200K words) without a corresponding page in `long-form/`.
 | 1 | ... | ... | ... | ... | `<id>` | `concepts/example.md` |
 ```
 
-The `Suggested topic link` is the agent's best match against `INDEX.md` by title keywords. Matt can override during dispatch.
+The `Suggested topic link` is the agent's best match against `index.md` by title keywords. Matt can override during dispatch.
 
 ## Page Format
 
@@ -133,7 +133,7 @@ At the end of Phase 5 of `readwise-wiki.md`, after the lint pass:
 2. Filter to documents with `50,000 ≤ word_count ≤ 200,000`.
 3. List existing files in `resources/wiki/long-form/` (exclude `QUEUE.md`).
 4. For each qualifying Readwise doc, check if any existing long-form page has matching `readwise_id` in its frontmatter. If yes, already processed; skip. If no, pending.
-5. For each pending item, suggest a topic page by matching title keywords against `INDEX.md`. If nothing matches well, leave the suggestion blank.
+5. For each pending item, suggest a topic page by matching title keywords against `index.md`. If nothing matches well, leave the suggestion blank.
 6. Write `resources/wiki/long-form/QUEUE.md` with the table.
 
 Queue regeneration is a cheap list-and-diff operation — no `reader_get_document_details` calls, no synthesis, no significant token cost.

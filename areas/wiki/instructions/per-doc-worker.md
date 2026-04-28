@@ -56,9 +56,9 @@ Follow the wiki conventions in `readwise-wiki.md`:
 - **Inline citations:** reserved for direct quotes, specific statistics/numbers, and contested or surprising claims. Format: `[[source]](source_url)` immediately after the cited sentence. Do NOT add inline citations for synthesis, definitions, connective prose, or general framing — the `## Sources` section covers those. Default bias is to under-cite inline; the wiki should read as distilled understanding, not an annotated bibliography. See `readwise-wiki.md` § Citations.
 - Cross-link to related pages where relevant.
 
-### 5. Update INDEX.md if you created a new page
+### 5. Update index.md if you created a new page
 
-If you created a new page, add it to the appropriate section of `resources/wiki/INDEX.md`. If the appropriate folder doesn't have a section yet, create one in alphabetical order.
+If you created a new page, add it to the appropriate section of `resources/wiki/index.md`. If the appropriate folder doesn't have a section yet, create one in alphabetical order.
 
 ### 6. Commit and push
 
@@ -89,8 +89,8 @@ Do not send a confirmation message — the system handles notifications automati
 ## What you do NOT do
 
 - Do not run lint passes (orphans, missing pages, stale content) — wrap-up's job.
-- Do not regenerate `QUEUE.md` or write `LAST_RUN_MANIFEST.md` — wrap-up's job.
-- Do not touch pages other than your target (and INDEX.md if creating).
+- Do not regenerate `QUEUE.md` or write `last-run-manifest.md` — wrap-up's job.
+- Do not touch pages other than your target (and index.md if creating).
 - Do not fetch additional documents.
 - Do not consult Readwise for related content. Use only the assigned source plus the existing target page.
 

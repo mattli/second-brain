@@ -8,9 +8,9 @@ Compile Readwise saves into a persistent, interlinked wiki. This is a knowledge 
 
 This follows Karpathy's LLM Wiki pattern: you read the sources, extract key information, and integrate it into the existing wiki — updating pages, noting where new data connects to or contradicts existing content, and keeping cross-references current. The knowledge is compiled once and kept current.
 
-Output goes to the wiki directory (see CLAUDE.md path mapping for the container mount path). The wiki is organized into category folders. Check `wiki/INDEX.md` for the current folder structure.
+Output goes to the wiki directory (see CLAUDE.md path mapping for the container mount path). The wiki is organized into category folders. Check `wiki/index.md` for the current folder structure.
 
-**Folder management:** Place new pages in the best-fitting existing folder. If no folder fits, create a new one — use a short, descriptive kebab-case name (e.g., `writing/`, `marketing/`, `health/`). Add the new folder as a section in `INDEX.md`. Don't over-fragment: a folder should represent a broad topic area, not a single article's subject.
+**Folder management:** Place new pages in the best-fitting existing folder. If no folder fits, create a new one — use a short, descriptive kebab-case name (e.g., `writing/`, `marketing/`, `health/`). Add the new folder as a section in `index.md`. Don't over-fragment: a folder should represent a broad topic area, not a single article's subject.
 
 ---
 
@@ -45,10 +45,10 @@ Processing rules:
 
 ### Phase 1 — Inventory
 
-Read `wiki/INDEX.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information.
+Read `wiki/index.md` first. This tells you what pages already exist, what topics are covered, and where to integrate new information.
 
 Determine the fetch window:
-1. Read `wiki/LAST_RUN_MANIFEST.md` and extract the `run_start` timestamp from the frontmatter.
+1. Read `wiki/last-run-manifest.md` and extract the `run_start` timestamp from the frontmatter.
 2. Use that timestamp as the `updated_after` parameter when calling `reader_list_documents`.
 3. If no manifest exists (first run, or manifest was deleted), fall back to 30 days ago as `updated_after`. Note this fallback in the manifest's run notes (add a `## Run Notes` section before the Skipped table).
 
@@ -58,7 +58,7 @@ Fetch ALL documents via `reader_list_documents` with the determined `updated_aft
 
 Record the current time as the run start time — you'll need this for timeout awareness later.
 
-Also check `wiki/LAST_RUN_MANIFEST.md` for any documents that were partially processed in a previous run, and check the state directory (`state/` relative to the readwise-wiki group directory — inside the container this is `/workspace/state/`) for any intermediate state from a crashed or context-exhausted session.
+Also check `wiki/last-run-manifest.md` for any documents that were partially processed in a previous run, and check the state directory (`state/` relative to the readwise-wiki group directory — inside the container this is `/workspace/state/`) for any intermediate state from a crashed or context-exhausted session.
 
 ### Phase 2 — Triage
 
@@ -123,7 +123,7 @@ Do NOT use `/tmp` for any state that needs to survive across sessions. `/tmp` is
 For each Tier C document (over 50K words):
 
 1. **Metadata only.** Use the document's title, author, category, word count, and ID from the inventory. Do NOT fetch full content.
-2. **Match against INDEX.md.** Identify the most relevant existing topic page by matching title keywords against the wiki index.
+2. **Match against index.md.** Identify the most relevant existing topic page by matching title keywords against the wiki index.
 3. **If a match exists:** Append a reference line to that page under a `## Long-form sources` section (create the section if it doesn't exist). Format:
    ```
    - **Knowledge About Knowledge** (131K words, saved 2026-04-06, Readwise: 01knjemvdkrdqgy21tz280tbav) — long-form source, not synthesized by compiler
@@ -135,7 +135,7 @@ For each Tier C document (over 50K words):
 
 After all tiers are processed (or timeout forces early completion):
 
-1. Update `wiki/INDEX.md` with any new pages and updated summaries
+1. Update `wiki/index.md` with any new pages and updated summaries
 2. Run the lint pass:
    - **Orphan pages** — pages not linked from any other page (add links where relevant). Exempt `unorganized.md` — it is a holding page, not a topic page.
    - **Missing pages** — topics mentioned frequently across pages but lacking their own page
@@ -149,7 +149,7 @@ After all tiers are processed (or timeout forces early completion):
 
 ### Phase 6 — Manifest
 
-Write `wiki/LAST_RUN_MANIFEST.md` with the full audit trail. See the Manifest Schema section below.
+Write `wiki/last-run-manifest.md` with the full audit trail. See the Manifest Schema section below.
 
 ---
 
@@ -238,7 +238,7 @@ The next scheduled run picks up where this one stopped.
 
 ## Manifest Schema
 
-**`wiki/LAST_RUN_MANIFEST.md`** — Overwritten each run. Git history preserves previous runs.
+**`wiki/last-run-manifest.md`** — Overwritten each run. Git history preserves previous runs.
 
 ```markdown
 ---

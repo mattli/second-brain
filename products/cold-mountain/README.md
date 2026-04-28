@@ -35,7 +35,7 @@ Design documentation and content briefs for the Cold Mountain portfolio website 
 - Build-time fetch: `scripts/pull-wiki.mjs` does `git clone --depth 1 --filter=blob:none --sparse` of `resources/wiki`, copies into gitignored `.wiki-content/` (cp, not symlink — Turbopack rejects out-of-root symlinks)
 - Env vars: `WIKI_LOCAL_PATH` for local dev, `VAULT_REPO_URL` + `VAULT_GITHUB_TOKEN` on Vercel
 - Runs via `predev` / `prebuild` scripts in `package.json`
-- Excluded: INDEX.md, README.md, LAST_RUN_MANIFEST.md, FOLDER_REVIEW.md, unorganized.md, long-form/, raw/
+- Excluded: index.md, README.md, last-run-manifest.md, folder-review.md, unorganized.md, long-form/, raw/
 - **Auto-deploy:** NanoClaw hosts a `POST /cold-mountain-deploy` proxy route that reads `COLD_MOUNTAIN_DEPLOY_HOOK` from its own `.env` and forwards to Vercel. The weekly wiki compile and monthly folder-review jobs both curl the proxy right after `git push`, so the fire is gated on "the push actually contained changes." See the "After Writing" section of `areas/wiki/instructions/readwise-wiki.md`. Wired 2026-04-21.
 
 ## Contents

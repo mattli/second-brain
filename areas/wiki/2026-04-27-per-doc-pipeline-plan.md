@@ -29,7 +29,7 @@ The folder review (monthly) is unchanged.
 A new scheduled task in the `readwise-wiki` group. Runs every night at 1am.
 
 **Job:**
-1. Read `resources/wiki/INDEX.md` and a list of pages touched in the last 7 days (so it sees what's already in flight).
+1. Read `resources/wiki/index.md` and a list of pages touched in the last 7 days (so it sees what's already in flight).
 2. Fetch new Readwise saves since the last list-maker run (`reader_list_documents` with `updated_after`).
 3. For each new save, decide one of:
    - **Update** existing page X (with reason)
@@ -53,7 +53,7 @@ Already proven by the test run on 2026-04-27. Each worker:
 2. Fetches the assigned doc via `mcp__readwise__reader_get_document_details`.
 3. Follows the dispatch hint (target page + rationale). Has veto power — can route differently if rationale doesn't hold up against actual content; must note why in the commit message.
 4. Writes/updates the wiki page.
-5. Updates `INDEX.md` if a new page was created.
+5. Updates `index.md` if a new page was created.
 6. Commits and pushes the vault.
 7. Exits.
 
@@ -65,9 +65,9 @@ A new scheduled task. Runs once a week after the week's daily dispatches have al
 
 **Job:**
 1. **Dedup pass** — find pages with overlapping topics, propose merges, execute the safe ones, flag ambiguous cases in the manifest.
-2. **Cohesion pass** — every page should link to related pages; INDEX.md should list every existing page; no orphans.
+2. **Cohesion pass** — every page should link to related pages; index.md should list every existing page; no orphans.
 3. **QUEUE.md regen** — refresh `resources/wiki/long-form/QUEUE.md` from current Readwise state.
-4. **Manifest** — write `resources/wiki/LAST_RUN_MANIFEST.md` summarizing the week: created, updated, skipped, failed, dedup actions.
+4. **Manifest** — write `resources/wiki/last-run-manifest.md` summarizing the week: created, updated, skipped, failed, dedup actions.
 5. Commit and push.
 
 This is the only stage that needs to hold multi-page context. It runs over a known set (this week's accumulation), not unbounded — much shorter session than the old monolithic compiler.

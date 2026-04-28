@@ -109,7 +109,7 @@ All 6 documents added to Readwise between triage and late-run check were confirm
 11. `tools/ai-native-product-development.md` — Docs-to-demos, AI evals as PRD, Team OS
 12. `unorganized.md` — 7 new bookmarks (Kingsbury info ecology themes, Gabor Maté, Opus 4.7, Neuromarketing, Lenny, Diamandis, Jesse recipe)
 
-## INDEX.md Updates
+## index.md Updates
 
 Updated descriptions for 4 pages:
 - Knowledge Work Future: added Ironies of Automation, Kingsbury job categories

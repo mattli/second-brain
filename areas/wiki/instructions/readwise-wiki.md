@@ -74,7 +74,7 @@ Inline format: `[[source]](source_url)` immediately after the cited sentence. Ev
 
 ### Folder structure
 
-The wiki is organized into broad-topic folders under `resources/wiki/`. Check `resources/wiki/INDEX.md` for the current layout. New folders are allowed when nothing fits — use short kebab-case names — but don't over-fragment.
+The wiki is organized into broad-topic folders under `resources/wiki/`. Check `resources/wiki/index.md` for the current layout. New folders are allowed when nothing fits — use short kebab-case names — but don't over-fragment.
 
 ### Holding files
 
@@ -87,7 +87,7 @@ The wiki is organized into broad-topic folders under `resources/wiki/`. Check `r
 Inside the container the `readwise-wiki` group has three relevant mounts:
 
 - `/workspace/extra/wiki/` → these instruction files (e.g. `instructions/list-maker.md`).
-- `/workspace/extra/resources/wiki/` → the wiki content itself (pages, INDEX.md, unorganized.md, etc.).
+- `/workspace/extra/resources/wiki/` → the wiki content itself (pages, index.md, unorganized.md, etc.).
 - `/workspace/extra/vault/` → the full second-brain vault (used for `git add` / `git commit` / `git push`).
 
-All page paths in the per-stage instructions (`resources/wiki/INDEX.md`, `resources/wiki/unorganized.md`, etc.) are written assuming `cd /workspace/extra/vault` as the working directory before reading/writing.
+All page paths in the per-stage instructions (`resources/wiki/index.md`, `resources/wiki/unorganized.md`, etc.) are written assuming `cd /workspace/extra/vault` as the working directory before reading/writing.

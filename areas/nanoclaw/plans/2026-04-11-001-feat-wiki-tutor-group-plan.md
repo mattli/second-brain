@@ -9,7 +9,7 @@ date: 2026-04-11
 
 ## Overview
 
-Add a new NanoClaw group, `wiki-tutor`, that acts as a chat-based reference librarian for the user's personal Readwise-compiled wiki at `~/second-brain/resources/wiki/`. The group is accessed via a dedicated Telegram chat. Interaction is user-initiated and menu-first: the tutor starts from `wiki/INDEX.md`, walks the user down the category → page tree, and serves a short "nugget" (2–4 sentences of the single most interesting claim) from each page. The user then drives tempo and direction conversationally — ask for more detail, move sideways to a connected page, pick a new category, or stop.
+Add a new NanoClaw group, `wiki-tutor`, that acts as a chat-based reference librarian for the user's personal Readwise-compiled wiki at `~/second-brain/resources/wiki/`. The group is accessed via a dedicated Telegram chat. Interaction is user-initiated and menu-first: the tutor starts from `wiki/index.md`, walks the user down the category → page tree, and serves a short "nugget" (2–4 sentences of the single most interesting claim) from each page. The user then drives tempo and direction conversationally — ask for more detail, move sideways to a connected page, pick a new category, or stop.
 
 No code changes. This is a config and filesystem change patterned exactly on the existing `readwise-wiki` group, plus a new per-group `CLAUDE.md` that defines the librarian persona.
 
@@ -20,7 +20,7 @@ The user has built a wiki compiled by an agent from Readwise saves he mostly has
 Over multiple design iterations, the following shape converged:
 
 - **User-initiated, not pushed.** No scheduled task, no daily notifications. The user opens the group when he wants to learn something.
-- **Menu before content.** First response is always the category tree from `wiki/INDEX.md`, not a lecture.
+- **Menu before content.** First response is always the category tree from `wiki/index.md`, not a lecture.
 - **Nugget first, elaboration on demand.** First contact with any page is 2–4 sentences of the *one* most interesting claim — not a summary, not a quiz question.
 - **User steers.** The tutor offers 2–3 natural next moves in prose at the end of each turn but never demands engagement and never evaluates the user.
 - **No testing, no scoring, no learning log.** This is a reference-librarian posture, not a teacher posture. The only state is "what page are we looking at" so sessions can resume.
@@ -30,7 +30,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 ## Requirements Trace
 
 - **R1.** User can send any message in the `wiki-tutor` Telegram chat and the tutor responds — no `@Second Brain` prefix required on each turn.
-- **R2.** On session start (or when the user asks for the menu), the tutor reads `wiki/INDEX.md` and responds with the five top-level category folders and their page counts.
+- **R2.** On session start (or when the user asks for the menu), the tutor reads `wiki/index.md` and responds with the five top-level category folders and their page counts.
 - **R3.** User can drill down: category → page list → individual page nugget, with each step a small, scannable response.
 - **R4.** First contact with any page is a 2–4 sentence "nugget" pulled from the most surprising or load-bearing claim on the page — **not** a TLDR, summary, or section dump.
 - **R5.** At the end of each tutor message, 2–3 natural follow-up moves are offered in prose (e.g., "I can go deeper on the LeCun argument, or tell you who else is working on this"). Not as a numbered menu. Not as questions the user must answer.
@@ -52,7 +52,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 - No scheduled task or push notification ("daily nugget," etc.) — explicitly rejected during brainstorming
 - No quiz, spaced repetition, mastery tracking, or learning log
 - No changes to the Readwise wiki compiler (`readwise-wiki` group). The tutor is read-only; what's in the wiki is what the tutor has
-- No changes to `wiki/INDEX.md` structure. The tutor uses whatever's there
+- No changes to `wiki/index.md` structure. The tutor uses whatever's there
 - No new NanoClaw channels, credentials, or code-level features
 - No multi-folder split into multiple tutor agents (one tutor, whole wiki mounted — rejected as arbitrary partitioning during brainstorming)
 - No cross-linking back into the daily briefing (was considered as "option 4," rejected in favor of direct librarian access)
@@ -95,7 +95,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 
 - **Model choice: `opus`, matching other groups.** *Rationale:* Consistency with `readwise-wiki` and other intelligence groups. The tutor's prompt is small (one CLAUDE.md plus the loaded wiki pages) so per-turn cost is low even on opus. If cost proves problematic after real usage, switching to `sonnet` is a single DB field update — revisit with data.
 
-- **Menu-first flow is enforced by the persona, not by code.** The `CLAUDE.md` instructs the tutor to always start from `wiki/INDEX.md`, always present categories before pages, always serve a nugget not a summary, always offer 2–3 prose follow-ups. There is no state machine, no structured-output schema, no router. *Rationale:* The entire point of NanoClaw's small-surface-area design is that prompts carry the behavior. A state machine here would be over-engineering for a single conversational agent.
+- **Menu-first flow is enforced by the persona, not by code.** The `CLAUDE.md` instructs the tutor to always start from `wiki/index.md`, always present categories before pages, always serve a nugget not a summary, always offer 2–3 prose follow-ups. There is no state machine, no structured-output schema, no router. *Rationale:* The entire point of NanoClaw's small-surface-area design is that prompts carry the behavior. A state machine here would be over-engineering for a single conversational agent.
 
 - **New dedicated Telegram chat, not reuse of an existing one.** The user creates a new empty Telegram group, adds the bot, captures the chat ID via `/chatid`, and registers it. *Rationale:* R10 — tutor conversations should be isolated from other contexts. Reusing an existing chat would mix tutor output with whatever else that chat is for.
 
@@ -172,8 +172,8 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 - Mirror the directory layout of `groups/readwise-wiki/` exactly (CLAUDE.md at the root, `logs/` and `conversations/` alongside).
 - The `CLAUDE.md` defines a single-role persona: **reference librarian for the user's personal wiki**. It must specify:
   - **Identity:** "You are the wiki tutor, a reference librarian for Matt's personal knowledge wiki at `/workspace/extra/wiki/`."
-  - **Opening move:** On the first turn of any session, always read `/workspace/extra/wiki/INDEX.md` and present the five top-level categories (with page counts) as a short menu. No preamble, no "hi how can I help" filler.
-  - **Drill-down flow:** When the user picks a category (by name or number), list the pages in that category with their one-line summaries from INDEX.md. When the user picks a page, read that page and serve a **nugget**: 2–4 sentences capturing the single most surprising or load-bearing claim from the page. Not a TLDR, not a summary, not a section dump.
+  - **Opening move:** On the first turn of any session, always read `/workspace/extra/wiki/index.md` and present the five top-level categories (with page counts) as a short menu. No preamble, no "hi how can I help" filler.
+  - **Drill-down flow:** When the user picks a category (by name or number), list the pages in that category with their one-line summaries from index.md. When the user picks a page, read that page and serve a **nugget**: 2–4 sentences capturing the single most surprising or load-bearing claim from the page. Not a TLDR, not a summary, not a section dump.
   - **Nugget sourcing:** The nugget should be the claim a smart friend would mention at dinner — the sharpest or most counterintuitive piece, not an overview. If the page genuinely has no single sharp claim, pick the one most specific factual detail and present it.
   - **Continuation:** After each nugget, offer 2–3 natural next moves in **prose** at the end of the message (e.g., "I can go deeper on the LeCun argument, or tell you who's working on the other side of this, or we can pick a different page"). Not as a numbered menu. Not as questions that demand an answer.
   - **Never do:** quiz the user, test them, score them, track mastery, tell them what they "should" know, create a learning log, push content unsolicited, or write to the wiki.
@@ -264,13 +264,13 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 - The main-channel admin flow that was used to register every existing group is the same one to use here; no new path.
 
 **Test scenarios:**
-- *Happy path:* After registration, spawning a container for `wiki-tutor` (e.g., by sending a message in the Telegram chat) succeeds. Mount validation passes. The agent starts. The `CLAUDE.md` is visible inside the container. `/workspace/extra/wiki/INDEX.md` is readable.
+- *Happy path:* After registration, spawning a container for `wiki-tutor` (e.g., by sending a message in the Telegram chat) succeeds. Mount validation passes. The agent starts. The `CLAUDE.md` is visible inside the container. `/workspace/extra/wiki/index.md` is readable.
 - *Edge case — read-only enforcement:* Inside a running container, attempting to write to `/workspace/extra/wiki/test.md` fails with a read-only filesystem error. This is the critical check for R7 and must actually be verified, not assumed.
 - *Edge case — trigger-free behavior:* A plain message like "hi" (no `@Second Brain`) in the tutor chat wakes the agent and triggers a response. Confirms R1 and validates `requiresTrigger: false` took effect.
 - *Edge case — session continuity:* Send a message, get a response, wait several minutes (or come back the next day), send another message. The second response references the earlier conversation. Confirms R8.
 - *Error path — wrong folder name:* If the folder name in the registration doesn't match `groups/wiki-tutor/`, the group registers but the agent has no `CLAUDE.md` to load. Catch this by reading back the folder field after registration.
 - *Error path — wrong chat ID:* If the chat ID is off by one, the bot silently ignores messages in the intended chat and (worse) might wake up in some other chat. Catch this by sending a test message from the real chat and confirming it triggers processing in the logs.
-- *Integration — mount path inside container:* Confirm by asking the tutor "what's at /workspace/extra/wiki/INDEX.md" on the first real turn — the tutor should be able to read it without errors. If it can't, Unit 1 or the registration's mount spec is wrong.
+- *Integration — mount path inside container:* Confirm by asking the tutor "what's at /workspace/extra/wiki/index.md" on the first real turn — the tutor should be able to read it without errors. If it can't, Unit 1 or the registration's mount spec is wrong.
 
 **Verification:**
 - A new row exists in `registered_groups` with `jid = tg:<chat id>` and `folder = wiki-tutor`.
@@ -305,7 +305,7 @@ The underlying insight from the conversation that drove this design: a quiz-shap
 - `cat ~/nanoclaw/logs/nanoclaw.log` to watch real-time agent spawning and confirm no mount errors, no trigger errors, no unexpected DB writes.
 
 **Test scenarios:**
-- *Happy path — menu (R2):* First message to the tutor returns the five category menu with page counts pulled from `wiki/INDEX.md`.
+- *Happy path — menu (R2):* First message to the tutor returns the five category menu with page counts pulled from `wiki/index.md`.
 - *Happy path — drill down (R3):* Picking a category returns the page list for that category (not the full wiki).
 - *Happy path — nugget (R4):* Picking a page returns 2–4 sentences of a single sharp claim — not a TLDR dump, not a section list.
 - *Happy path — follow-ups (R5):* Each tutor message ends with 2–3 prose follow-up suggestions, not a numbered menu, not a quiz question.
@@ -397,6 +397,6 @@ V2 is not scheduled. Revisit after 2–3 weeks of V1 use, provided V1 actually g
   - `~/.config/nanoclaw/mount-allowlist.json` — mount allowlist, modified in Unit 1 if needed
   - `store/messages.db` — contains `registered_groups` table, modified in Unit 4 via IPC
   - `~/second-brain/resources/wiki/` — the mount target, read-only
-  - `~/second-brain/resources/wiki/INDEX.md` — the curriculum root the tutor reads first
+  - `~/second-brain/resources/wiki/index.md` — the curriculum root the tutor reads first
 - **Related PRs/issues:** None. This is a personal customization.
 - **External docs:** None. No external research was needed — the entire feature is local-only, config-only, and well-patterned on an existing group.

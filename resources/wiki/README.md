@@ -14,13 +14,13 @@ Matt saves articles, tweets, GitHub repos, and other content to Readwise — oft
 
 As of 2026-04-27, the wiki is built by a **three-stage per-doc pipeline** instead of a single weekly compiler. Old design kept dying mid-stream on Anthropic edge 502s during long sessions; short-lived stages eliminate that failure mode. Full plan: [`../../areas/wiki/2026-04-27-per-doc-pipeline-plan.md`](../../areas/wiki/2026-04-27-per-doc-pipeline-plan.md).
 
-1. **Daily list-maker** (1am every night). Reads INDEX.md and recently-touched pages, fetches new Readwise saves since `LIST_MAKER_LOG.md`'s last `run_start`, and decides per-item: create, update, skip, or hold in `unorganized.md`. Dispatches per-doc workers — never synthesizes content itself. Runs on Opus, ~1–2 min.
+1. **Daily list-maker** (1am every night). Reads index.md and recently-touched pages, fetches new Readwise saves since `list-maker-log.md`'s last `run_start`, and decides per-item: create, update, skip, or hold in `unorganized.md`. Dispatches per-doc workers — never synthesizes content itself. Runs on Opus, ~1–2 min.
 
 2. **Per-doc workers** (dispatched on demand by the list-maker, run sequentially). Each worker handles exactly one Readwise document — fetches it, writes/updates one wiki page, commits and pushes. Has veto power over the dispatch hint if the rationale doesn't hold up against the content. ~2–3 min per worker on Opus.
 
-3. **Weekly wrap-up** (Sunday 11pm). Dedup, cohesion linking, INDEX.md refresh, `long-form/QUEUE.md` regen, `unorganized.md` cluster-promotion sweep (3+ items on a topic → promote to existing or new page), worker error summary, and writes `LAST_RUN_MANIFEST.md`.
+3. **Weekly wrap-up** (Sunday 11pm). Dedup, cohesion linking, index.md refresh, `long-form/QUEUE.md` regen, `unorganized.md` cluster-promotion sweep (3+ items on a topic → promote to existing or new page), worker error summary, and writes `last-run-manifest.md`.
 
-4. **Monthly structure review** (1st of each month at 3am). Evaluates folder organization and INDEX.md alignment, writes a scannability-focused proposal to `FOLDER_REVIEW.md`. Never auto-applies.
+4. **Monthly structure review** (1st of each month at 3am). Evaluates folder organization and index.md alignment, writes a scannability-focused proposal to `folder-review.md`. Never auto-applies.
 
 5. **On-demand long-form synthesis** (user-triggered via main Telegram group). Synthesizes individual Readwise PDFs between 50K and 200K words into dedicated pages in `long-form/`, with bidirectional links into relevant topic pages.
 
@@ -49,7 +49,7 @@ The intelligence system has two modes: briefings (dated logs — daily, weekly, 
 
 ## Reference
 
-- **Index:** [`INDEX.md`](INDEX.md)
+- **Index:** [`index.md`](index.md)
 - **Pipeline pointer + shared conventions:** [`../../areas/wiki/instructions/readwise-wiki.md`](../../areas/wiki/instructions/readwise-wiki.md)
 - **Stage 1 (list-maker):** [`../../areas/wiki/instructions/list-maker.md`](../../areas/wiki/instructions/list-maker.md)
 - **Stage 2 (per-doc worker):** [`../../areas/wiki/instructions/per-doc-worker.md`](../../areas/wiki/instructions/per-doc-worker.md)

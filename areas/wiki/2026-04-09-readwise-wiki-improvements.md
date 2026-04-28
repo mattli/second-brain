@@ -88,7 +88,7 @@ Process Tier B after Tier A (individually or in smaller batches given their size
 For each Tier C document (over 50K words):
 
 1. **Metadata only.** Use the document's title, author, category, word count, and ID. Do NOT fetch full content.
-2. **Match against INDEX.md.** Identify the most relevant existing topic page by matching title keywords against the wiki index.
+2. **Match against index.md.** Identify the most relevant existing topic page by matching title keywords against the wiki index.
 3. **If a match exists:** Append a reference line to that page under a `## Long-form sources` section (create the section if it doesn't exist):
    ```
    - **Knowledge About Knowledge** (131K words, saved 2026-04-06, Readwise: 01knjemvdkrdqgy21tz280tbav) — long-form source, not synthesized by compiler
@@ -98,11 +98,11 @@ For each Tier C document (over 50K words):
 
 #### Phase 5 — Integration
 
-Update INDEX.md, run lint pass (orphans, missing pages, stale content).
+Update index.md, run lint pass (orphans, missing pages, stale content).
 
 #### Phase 6 — Manifest
 
-Write `wiki/LAST_RUN_MANIFEST.md` — see manifest schema below.
+Write `wiki/last-run-manifest.md` — see manifest schema below.
 
 ### 4. Error handling and resilience
 
@@ -125,7 +125,7 @@ The next scheduled run reads the manifest and resumes from where this run stoppe
 
 ### 5. Manifest schema
 
-**`wiki/LAST_RUN_MANIFEST.md`** — Overwritten each run. Git history preserves previous runs.
+**`wiki/last-run-manifest.md`** — Overwritten each run. Git history preserves previous runs.
 
 ```markdown
 ---
@@ -220,7 +220,7 @@ but have full transcripts via get_document_details.
 reference line to the most relevant existing wiki topic page. If no matching page exists,
 skip with a manifest entry. Never create a new page solely to house a reference.
 
-**Manifest:** After every run, write wiki/LAST_RUN_MANIFEST.md with per-document progress
+**Manifest:** After every run, write wiki/last-run-manifest.md with per-document progress
 and time breakdown. A partial run must be resumable by the next scheduled run.
 
 **Errors:** On rate limit or timeout, commit completed work and write the manifest
@@ -272,7 +272,7 @@ The scheduled compiler is optimized for the common case: dozens of articles, twe
 2. Query DB to confirm `readwise-wiki` group has `"model":"opus"` and `"timeout":5400000`
 3. Trigger a manual run and monitor:
    - `tail -f groups/readwise-wiki/logs/*.log` for Opus model usage
-   - After completion, check `wiki/LAST_RUN_MANIFEST.md` — verify:
+   - After completion, check `wiki/last-run-manifest.md` — verify:
      - All documents listed (processed, referenced, skipped with reasons, or failed with errors)
      - Videos processed (not skipped for word_count: 0)
      - Time breakdown by tier

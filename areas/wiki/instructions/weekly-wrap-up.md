@@ -7,16 +7,16 @@
 You are the weekly wiki housekeeper. The daily list-maker and per-doc workers have been adding and updating pages all week, in isolation. Your job is to look at the wiki as a whole and tidy it up:
 
 1. **Dedup** — find pages that ended up covering the same topic, merge the safe cases, flag the rest.
-2. **Cohesion** — make sure the wiki holds together as a graph: related pages link to each other, INDEX.md is current, no orphans.
+2. **Cohesion** — make sure the wiki holds together as a graph: related pages link to each other, index.md is current, no orphans.
 3. **QUEUE.md** — regenerate `resources/wiki/long-form/QUEUE.md` from current Readwise state.
-4. **Manifest** — write `resources/wiki/LAST_RUN_MANIFEST.md` summarizing the week.
+4. **Manifest** — write `resources/wiki/last-run-manifest.md` summarizing the week.
 5. **Lint** — run the structural lint pass that workers can't do (synthesis review, page-split candidates).
 
 ## Inputs
 
 - `/workspace/extra/resources/wiki/` — the whole wiki
-- `/workspace/extra/resources/wiki/INDEX.md`
-- `/workspace/extra/resources/wiki/LIST_MAKER_LOG.md` — last 7 days of dispatches
+- `/workspace/extra/resources/wiki/index.md`
+- `/workspace/extra/resources/wiki/list-maker-log.md` — last 7 days of dispatches
 - `/workspace/extra/resources/wiki/WORKER_ERRORS.md` — any worker failures since last wrap-up
 - Git log for `resources/wiki/` since last wrap-up — what changed this week
 
@@ -34,7 +34,7 @@ Build a list of:
 - Pages updated this week
 - Worker veto rate (count commits whose message contains "vetoed hint" — high rate signals list-maker mis-triage)
 
-Also read `LIST_MAKER_LOG.md` entries from the last 7 days.
+Also read `list-maker-log.md` entries from the last 7 days.
 
 ### 2. Dedup pass
 
@@ -47,7 +47,7 @@ The bar for auto-merge is HIGH — only do it when you're confident the merged p
 
 ### 3. Cohesion pass
 
-- **INDEX.md sweep:** every page that exists in the wiki tree should appear in INDEX.md. Add anything missing under the appropriate section.
+- **index.md sweep:** every page that exists in the wiki tree should appear in index.md. Add anything missing under the appropriate section.
 - **Orphan pages:** find pages that no other page links to. For each, either add a link from a related page, or flag as a true orphan in the manifest. `unorganized.md` is exempt.
 - **Cross-links:** for each page touched this week, scan it for entity/concept names that match the title of another page. Where missing, add a link.
 - **Stale content:** opportunistically — if a page makes a claim that newer pages contradict, flag it in the manifest under `## Stale Claims` (do not auto-edit).
@@ -79,7 +79,7 @@ Read `resources/wiki/unorganized.md`. It accumulates Tier C long-form references
 - **Promote to existing page** (preferred) — if any existing page is within 1 hop of the cluster's topic, move the items onto that page (Tier C → `## Long-form sources` section; Tier D → an appropriate section, often `## Tools` or `## Further Reading`). Same cohesion bias as the list-maker: extend before creating.
 - **Promote to new page** — only if no existing page is close. Create a new topic page following the conventions in `readwise-wiki.md`. The new page is metadata-collection-only (no synthesis from full content — these are Tier C/D items where you don't have the body). Set TLDR + Overview that summarize what the cluster is about, then list the items. A future per-doc worker can flesh it out when a Tier A/B item on this topic arrives.
 
-**After moving items**, remove them from `unorganized.md`. Update `INDEX.md` if you created a new page.
+**After moving items**, remove them from `unorganized.md`. Update `index.md` if you created a new page.
 
 **Record in the manifest** under `## Unorganized Promotions` (added to the manifest schema below): cluster topic, items moved, destination page, whether existing or new.
 
@@ -91,7 +91,7 @@ Read `resources/wiki/WORKER_ERRORS.md` (if it exists) for failures since last wr
 
 ### 8. Write the manifest
 
-Write `resources/wiki/LAST_RUN_MANIFEST.md` (overwrite each run):
+Write `resources/wiki/last-run-manifest.md` (overwrite each run):
 
 ```markdown
 ---

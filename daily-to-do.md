@@ -2,10 +2,10 @@
 
 ### Monday, April 27
 
-- [ ] Prep for Holly recruiter call (1 hour before 10:30am)
-- [ ] Call with Holly the recruiter — 10:30am
+- [x] Prep for Holly recruiter call (1 hour before 10:30am)
+- [x] Call with Holly the recruiter — 10:30am
 - [ ] Read Daily AI Briefing
-- [ ] Check Reddit for Voice Tutor responses
+- [x] Check Reddit for Voice Tutor responses
 - [ ] Work on UX for Voice Tutor
 - [ ] Light jog
 - [ ] Read Infinite Jest

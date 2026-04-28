@@ -33,7 +33,6 @@ Four NanoClaw scheduled tasks now maintain the wiki:
 | `../../resources/wiki/long-form/QUEUE.md` | Pending long-form items (refreshed weekly) |
 | `../../resources/wiki/FOLDER_REVIEW.md` | Latest structure proposal (refreshed monthly) |
 | `../../resources/wiki/unorganized.md` | Tier C/D items the list-maker couldn't place; wrap-up promotes 3+-item clusters |
-| `../../resources/wiki/raw/research-log.md` | Append-only log from Wiki Tutor conversations; treated as Tier A by list-maker |
 | `../../resources/wiki/WORKER_ERRORS.md` | Per-doc worker failures; summarized and archived weekly by wrap-up |
 
 ## Container Path Mapping

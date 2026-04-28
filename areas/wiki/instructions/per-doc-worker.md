@@ -28,8 +28,7 @@ The hint is a recommendation, not a command. You have veto power.
 
 ### 1. Fetch the source
 
-- **For Readwise documents:** call `mcp__readwise__reader_get_document_details` with the assigned ID. ONE call only. Do not parallel-fetch anything.
-- **For research-log entries:** read `/workspace/extra/resources/wiki/raw/_archive/research-log-YYYY-WW.md` (the list-maker has already archived the entry by the time you run; the dispatch prompt should tell you the archive file). The entry's notes ARE the source content.
+Call `mcp__readwise__reader_get_document_details` with the assigned ID. ONE call only. Do not parallel-fetch anything.
 
 If the fetch fails or returns empty, log the failure to a worker error file and exit (see §Error Handling).
 
@@ -53,7 +52,8 @@ Follow the wiki conventions in `readwise-wiki.md`:
 
 - **Update path:** integrate insights from this source into the page. Restructure opportunistically if you encounter author-branded sections (promote concept to heading, move attribution inline) — but only what you touch, don't refactor the whole page in one pass.
 - **Create path:** start from the page template in `readwise-wiki.md`. Set `created_at` and `last_updated` to today. Write a 1–2 sentence TLDR, an Overview, the body sections, and a Sources section.
-- Add the source to the page's `## Sources` section. Include title, author, and URL. Optionally add a one-line contribution note.
+- Add the source to the page's `## Sources` section. Use the document's original `source_url` from Readwise metadata, **not** the Readwise reader URL. If `source_url` is missing, use plain-text title with no link. Include title, author, and a one-line contribution note. Dedupe by URL — if the doc is already listed, leave the existing entry alone.
+- **Inline citations:** reserved for direct quotes, specific statistics/numbers, and contested or surprising claims. Format: `[[source]](source_url)` immediately after the cited sentence. Do NOT add inline citations for synthesis, definitions, connective prose, or general framing — the `## Sources` section covers those. Default bias is to under-cite inline; the wiki should read as distilled understanding, not an annotated bibliography. See `readwise-wiki.md` § Citations.
 - Cross-link to related pages where relevant.
 
 ### 5. Update INDEX.md if you created a new page

@@ -18,7 +18,6 @@ You do NOT fetch full document content. You do NOT touch wiki pages. You ONLY lo
 
 - `/workspace/extra/resources/wiki/INDEX.md` — current wiki structure
 - `/workspace/extra/resources/wiki/LIST_MAKER_LOG.md` — your prior log; the most recent `run_start` timestamp is your `updated_after` cutoff. If missing, fall back to 7 days ago.
-- `/workspace/extra/resources/wiki/raw/research-log.md` — manual research entries (treat each entry as one synthesizable item; see Conventions below)
 - Recently-touched pages: list pages modified in the wiki dir over the last 7 days. Read just titles + first paragraph of each to know what topics are already in flight this week.
 
 ## Procedure
@@ -28,7 +27,6 @@ You do NOT fetch full document content. You do NOT touch wiki pages. You ONLY lo
 - Read `INDEX.md`.
 - Read `LIST_MAKER_LOG.md`. Extract `run_start` from the latest entry's frontmatter — that's your `updated_after`. If no log exists, use 7 days ago and note it.
 - Build the recently-touched list: `git -C /workspace/extra/vault log --since="7 days ago" --name-only --pretty=format: -- 'resources/wiki/' | sort -u`. For each, read just the title heading and first paragraph.
-- Read `resources/wiki/raw/research-log.md`. Each entry below the `---` separator is a synthesizable item.
 
 ### 2. Fetch new Readwise saves
 
@@ -36,7 +34,7 @@ Call `mcp__readwise__reader_list_documents` with `updated_after=<your cutoff>`. 
 
 Do NOT call `reader_get_document_details`. Summaries are enough for triage.
 
-### 3. Triage each save (and each research-log entry)
+### 3. Triage each save
 
 For each item, classify size:
 
@@ -86,7 +84,7 @@ Tasks for the same group serialize via GroupQueue; you can schedule them all for
 ```
 Single-document Readwise synthesis.
 
-Document ID: <readwise_id>          (or: Research-log entry: <date> — <title>)
+Document ID: <readwise_id>
 Dispatch hint: <update|create>
 Target page: <path relative to wiki/>
 Rationale: <one or two sentences explaining why this page>
@@ -112,15 +110,7 @@ These do NOT get workers — handle inline since they're metadata-only:
   - **<Title>** (<category>, saved YYYY-MM-DD, Readwise: <id>) — <URL or one-line description>
   ```
 
-### 7. Handle research-log entries
-
-For each entry below the `---` separator in `resources/wiki/raw/research-log.md`:
-
-- Treat as a Tier A item with the entry's notes as the "summary" for triage purposes.
-- Dispatch a worker the same way, with `Research-log entry: <date> — <title>` instead of a Readwise ID.
-- After dispatching all entries, archive them: move everything below the `---` to `resources/wiki/raw/_archive/research-log-YYYY-WW.md` (ISO year-week, e.g. `research-log-2026-W17.md`). Append if file exists. Leave `research-log.md` with only its header.
-
-### 8. Write the log
+### 7. Write the log
 
 Write `resources/wiki/LIST_MAKER_LOG.md` (overwrite each run; git history preserves prior runs):
 
@@ -134,7 +124,6 @@ items_total: N
 workers_dispatched: N
 tier_c_referenced: N
 tier_d_bookmarked: N
-research_log_entries: N
 ---
 
 # List-Maker Run — YYYY-MM-DD
@@ -145,8 +134,8 @@ research_log_entries: N
 
 ## Workers Dispatched
 
-| Doc ID / Entry | Tier | Hint | Target | Rationale |
-|----------------|------|------|--------|-----------|
+| Doc ID | Tier | Hint | Target | Rationale |
+|--------|------|------|--------|-----------|
 
 ## Tier C — References Added
 
@@ -169,7 +158,7 @@ research_log_entries: N
 |--------|------|--------|
 ```
 
-### 9. Commit and exit
+### 8. Commit and exit
 
 ```bash
 cd /workspace/extra/vault

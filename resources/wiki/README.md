@@ -24,8 +24,6 @@ As of 2026-04-27, the wiki is built by a **three-stage per-doc pipeline** instea
 
 5. **On-demand long-form synthesis** (user-triggered via main Telegram group). Synthesizes individual Readwise PDFs between 50K and 200K words into dedicated pages in `long-form/`, with bidirectional links into relevant topic pages.
 
-The list-maker also processes entries from `raw/research-log.md` — an append-only log written by Wiki Tutor during conversations. Research log entries are treated as Tier A and dispatched as workers. Processed entries are archived to `raw/_archive/`.
-
 ## Organization
 
 Pages are organized into category folders: `concepts/`, `tools/`, `models-safety/`, `landscape/`, `people/`, `writing/`. New pages go in the matching folder; if nothing fits, they stay at the wiki root or go to `unorganized.md` as a holding pattern. Long-form synthesis pages live in their own `long-form/` folder (one page per source, not per topic).

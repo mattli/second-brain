@@ -51,6 +51,7 @@ The bar for auto-merge is HIGH — only do it when you're confident the merged p
 - **Orphan pages:** find pages that no other page links to. For each, either add a link from a related page, or flag as a true orphan in the manifest. `unorganized.md` is exempt.
 - **Cross-links:** for each page touched this week, scan it for entity/concept names that match the title of another page. Where missing, add a link.
 - **Stale content:** opportunistically — if a page makes a claim that newer pages contradict, flag it in the manifest under `## Stale Claims` (do not auto-edit).
+- **Citations cleanup:** dedupe each touched page's `## Sources` section by URL (collapse duplicates, preserve the richest contribution note). Scan inline citations and strip any that don't match the three-case rule in `readwise-wiki.md` § Citations (direct quotes, specific statistics/numbers, contested or surprising claims) — over-citation pulls the wiki toward annotated-bibliography voice. Do NOT remove the source from `## Sources` when stripping an inline citation; just remove the inline marker.
 
 ### 4. Lint passes (flag-only)
 

@@ -50,6 +50,18 @@ Longer prose synthesis.
 
 Sections beyond these are fine when the topic warrants — keep them descriptive (`## Tools`, `## Pitfalls`, `## Further Reading`).
 
+### Citations
+
+Every page ends with a `## Sources` section listing every Readwise doc that has contributed to it, formatted as `- [Title](source_url) — one-line note on what it added`. Use the document's original `source_url` from Readwise metadata, **not** the Readwise reader URL. If `source_url` is missing (manual notes, pasted text, some PDFs), use plain-text title with no link. The per-doc worker appends to this section on every run, deduping by URL.
+
+Inline citations are reserved for three narrow cases:
+
+1. **Direct quotes** — anything in quotation marks pulled from a source.
+2. **Specific statistics or numbers** — concrete figures a reader might want to verify.
+3. **Contested or surprising claims** — assertions a skeptical reader would push back on.
+
+Inline format: `[[source]](source_url)` immediately after the cited sentence. Everything else (synthesis, definitions, connective prose, common knowledge) stays uncited — the `## Sources` section covers attribution. Do **not** add inline citations for general framing or restatements; the wiki should read as distilled understanding, not an annotated bibliography.
+
 ### Linking
 
 - Use `[[wiki-link]]` syntax for internal links between wiki pages.
@@ -68,7 +80,6 @@ The wiki is organized into broad-topic folders under `resources/wiki/`. Check `r
 
 - `resources/wiki/unorganized.md` — Tier C/D items the list-maker couldn't place. Wrap-up sweeps this for clusters of 3+ and promotes them.
 - `resources/wiki/long-form/QUEUE.md` — long-form sources awaiting on-demand synthesis (see `long-form-synthesis.md`).
-- `resources/wiki/raw/research-log.md` — pre-summarized entries logged from chat. Treated as Tier A by the list-maker.
 - `resources/wiki/WORKER_ERRORS.md` — per-doc worker failures, summarized and archived weekly by wrap-up.
 
 ### Path mapping

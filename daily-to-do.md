@@ -3,7 +3,7 @@
 ### Tuesday, April 28
 
 - [x] Morning reading — Infinite Jest + AI briefing + catch up on reading
-- [ ] Go to the gym
+- [x] Go to the gym
 - [ ] 30 minutes interview prep for Beni
 - [ ] Troubleshoot screen sharing on Mac Mini (check both machines are on same Wi-Fi)
 

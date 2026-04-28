@@ -62,15 +62,21 @@ Sections beyond these are fine when the topic warrants — keep them descriptive
 
 ### Folder structure
 
-The wiki is organized into broad-topic folders under `wiki/`. Check `wiki/INDEX.md` for the current layout. New folders are allowed when nothing fits — use short kebab-case names — but don't over-fragment.
+The wiki is organized into broad-topic folders under `resources/wiki/`. Check `resources/wiki/INDEX.md` for the current layout. New folders are allowed when nothing fits — use short kebab-case names — but don't over-fragment.
 
 ### Holding files
 
-- `wiki/unorganized.md` — Tier C/D items the list-maker couldn't place. Wrap-up sweeps this for clusters of 3+ and promotes them.
-- `wiki/long-form/QUEUE.md` — long-form sources awaiting on-demand synthesis (see `long-form-synthesis.md`).
-- `wiki/raw/research-log.md` — pre-summarized entries logged from chat. Treated as Tier A by the list-maker.
-- `wiki/WORKER_ERRORS.md` — per-doc worker failures, summarized and archived weekly by wrap-up.
+- `resources/wiki/unorganized.md` — Tier C/D items the list-maker couldn't place. Wrap-up sweeps this for clusters of 3+ and promotes them.
+- `resources/wiki/long-form/QUEUE.md` — long-form sources awaiting on-demand synthesis (see `long-form-synthesis.md`).
+- `resources/wiki/raw/research-log.md` — pre-summarized entries logged from chat. Treated as Tier A by the list-maker.
+- `resources/wiki/WORKER_ERRORS.md` — per-doc worker failures, summarized and archived weekly by wrap-up.
 
 ### Path mapping
 
-The wiki lives at `/workspace/extra/wiki/` inside the container (the `extra` mount maps the vault's `resources/wiki/` directory). The container's working directory is `/workspace`. Always commit changes from `/workspace/extra` at the end of a run.
+Inside the container the `readwise-wiki` group has three relevant mounts:
+
+- `/workspace/extra/wiki/` → these instruction files (e.g. `instructions/list-maker.md`).
+- `/workspace/extra/resources/wiki/` → the wiki content itself (pages, INDEX.md, unorganized.md, etc.).
+- `/workspace/extra/vault/` → the full second-brain vault (used for `git add` / `git commit` / `git push`).
+
+All page paths in the per-stage instructions (`resources/wiki/INDEX.md`, `resources/wiki/unorganized.md`, etc.) are written assuming `cd /workspace/extra/vault` as the working directory before reading/writing.

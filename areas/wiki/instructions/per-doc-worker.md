@@ -19,7 +19,7 @@ The dispatch prompt gives you:
 
 - **Document ID** (Readwise) OR **Research-log entry** (date + title)
 - **Dispatch hint:** `update` or `create`
-- **Target page:** relative path under `wiki/`
+- **Target page:** relative path under `resources/wiki/`
 - **Rationale:** one or two sentences
 
 The hint is a recommendation, not a command. You have veto power.
@@ -58,7 +58,7 @@ Follow the wiki conventions in `readwise-wiki.md`:
 
 ### 5. Update INDEX.md if you created a new page
 
-If you created a new page, add it to the appropriate section of `wiki/INDEX.md`. If the appropriate folder doesn't have a section yet, create one in alphabetical order.
+If you created a new page, add it to the appropriate section of `resources/wiki/INDEX.md`. If the appropriate folder doesn't have a section yet, create one in alphabetical order.
 
 ### 6. Commit and push
 

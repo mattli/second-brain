@@ -9,7 +9,7 @@ You are the daily Readwise wiki **list-maker**. Your job is fast, narrow, and bo
 1. Look at what's new in Readwise since the last list-maker run.
 2. For each new save, decide one of: **update** an existing wiki page, **create** a new page, or **skip / reference-only**.
 3. Dispatch one per-doc worker task for each non-skip decision, with a hint about the target page and a one-sentence rationale.
-4. Record what you dispatched in `wiki/LIST_MAKER_LOG.md`.
+4. Record what you dispatched in `resources/wiki/LIST_MAKER_LOG.md`.
 5. Exit fast. Do not synthesize content yourself.
 
 You do NOT fetch full document content. You do NOT touch wiki pages. You ONLY look at metadata (title, author, summary, word count, category, URL) and INDEX.md.
@@ -28,7 +28,7 @@ You do NOT fetch full document content. You do NOT touch wiki pages. You ONLY lo
 - Read `INDEX.md`.
 - Read `LIST_MAKER_LOG.md`. Extract `run_start` from the latest entry's frontmatter — that's your `updated_after`. If no log exists, use 7 days ago and note it.
 - Build the recently-touched list: `git -C /workspace/extra/vault log --since="7 days ago" --name-only --pretty=format: -- 'resources/wiki/' | sort -u`. For each, read just the title heading and first paragraph.
-- Read `wiki/raw/research-log.md`. Each entry below the `---` separator is a synthesizable item.
+- Read `resources/wiki/raw/research-log.md`. Each entry below the `---` separator is a synthesizable item.
 
 ### 2. Fetch new Readwise saves
 
@@ -114,15 +114,15 @@ These do NOT get workers — handle inline since they're metadata-only:
 
 ### 7. Handle research-log entries
 
-For each entry below the `---` separator in `wiki/raw/research-log.md`:
+For each entry below the `---` separator in `resources/wiki/raw/research-log.md`:
 
 - Treat as a Tier A item with the entry's notes as the "summary" for triage purposes.
 - Dispatch a worker the same way, with `Research-log entry: <date> — <title>` instead of a Readwise ID.
-- After dispatching all entries, archive them: move everything below the `---` to `wiki/raw/_archive/research-log-YYYY-WW.md` (ISO year-week, e.g. `research-log-2026-W17.md`). Append if file exists. Leave `research-log.md` with only its header.
+- After dispatching all entries, archive them: move everything below the `---` to `resources/wiki/raw/_archive/research-log-YYYY-WW.md` (ISO year-week, e.g. `research-log-2026-W17.md`). Append if file exists. Leave `research-log.md` with only its header.
 
 ### 8. Write the log
 
-Write `wiki/LIST_MAKER_LOG.md` (overwrite each run; git history preserves prior runs):
+Write `resources/wiki/LIST_MAKER_LOG.md` (overwrite each run; git history preserves prior runs):
 
 ```markdown
 ---

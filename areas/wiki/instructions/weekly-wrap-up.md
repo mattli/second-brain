@@ -8,8 +8,8 @@ You are the weekly wiki housekeeper. The daily list-maker and per-doc workers ha
 
 1. **Dedup** — find pages that ended up covering the same topic, merge the safe cases, flag the rest.
 2. **Cohesion** — make sure the wiki holds together as a graph: related pages link to each other, INDEX.md is current, no orphans.
-3. **QUEUE.md** — regenerate `wiki/long-form/QUEUE.md` from current Readwise state.
-4. **Manifest** — write `wiki/LAST_RUN_MANIFEST.md` summarizing the week.
+3. **QUEUE.md** — regenerate `resources/wiki/long-form/QUEUE.md` from current Readwise state.
+4. **Manifest** — write `resources/wiki/LAST_RUN_MANIFEST.md` summarizing the week.
 5. **Lint** — run the structural lint pass that workers can't do (synthesis review, page-split candidates).
 
 ## Inputs
@@ -54,7 +54,7 @@ The bar for auto-merge is HIGH — only do it when you're confident the merged p
 
 ### 4. Lint passes (flag-only)
 
-- **Synthesis check:** for each page touched this week, consider whether the page reads as synthesized knowledge or as a literature review (one section per source). Flag pages that read as source-siloed under `## Lint Findings — Synthesis Candidates` with the page path, rationale, and the one or two sections most in need of restructuring. Person pages (`wiki/people/`) are exempt.
+- **Synthesis check:** for each page touched this week, consider whether the page reads as synthesized knowledge or as a literature review (one section per source). Flag pages that read as source-siloed under `## Lint Findings — Synthesis Candidates` with the page path, rationale, and the one or two sections most in need of restructuring. Person pages (`resources/wiki/people/`) are exempt.
 - **Page split check:** for each page touched this week, consider whether it has grown into two or more distinct topics. Flag candidates under `## Lint Findings — Page Split Candidates` with the page path, suggested new page titles, and a one-line rationale.
 
 Both checks **flag only** — do not auto-restructure or auto-split. These are structural decisions that warrant human review.
@@ -64,12 +64,12 @@ Both checks **flag only** — do not auto-restructure or auto-split. These are s
 Per the Queue Regeneration section of `long-form-synthesis.md`:
 
 - List all Readwise documents with `word_count` between 50K and 200K (Tier C range).
-- Cross-reference against existing pages in `wiki/long-form/`.
-- Write the queue table to `wiki/long-form/QUEUE.md`. Cheap list-and-diff — no content fetches.
+- Cross-reference against existing pages in `resources/wiki/long-form/`.
+- Write the queue table to `resources/wiki/long-form/QUEUE.md`. Cheap list-and-diff — no content fetches.
 
 ### 6. Unorganized.md promotion sweep
 
-Read `wiki/unorganized.md`. It accumulates Tier C long-form references and Tier D bookmarks that the list-maker couldn't match to an existing page. Your job is to promote clusters out of holding when they're ready.
+Read `resources/wiki/unorganized.md`. It accumulates Tier C long-form references and Tier D bookmarks that the list-maker couldn't match to an existing page. Your job is to promote clusters out of holding when they're ready.
 
 **Find clusters.** Group items by topic. A **cluster** is **3 or more items on a meaningfully related topic**. Solo items and pairs stay in `unorganized.md` for now.
 
@@ -86,11 +86,11 @@ Do NOT promote clusters smaller than 3, even if related. The whole point of `uno
 
 ### 7. Worker errors review
 
-Read `wiki/WORKER_ERRORS.md` (if it exists) for failures since last wrap-up. Summarize in the manifest under `## Worker Errors`. After summarizing, archive the contents to `wiki/_archive/worker-errors-YYYY-WW.md` and clear the live file.
+Read `resources/wiki/WORKER_ERRORS.md` (if it exists) for failures since last wrap-up. Summarize in the manifest under `## Worker Errors`. After summarizing, archive the contents to `resources/wiki/_archive/worker-errors-YYYY-WW.md` and clear the live file.
 
 ### 8. Write the manifest
 
-Write `wiki/LAST_RUN_MANIFEST.md` (overwrite each run):
+Write `resources/wiki/LAST_RUN_MANIFEST.md` (overwrite each run):
 
 ```markdown
 ---

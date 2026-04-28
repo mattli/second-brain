@@ -12,15 +12,19 @@ Matt saves articles, tweets, GitHub repos, and other content to Readwise — oft
 
 ## How It's Maintained
 
-Three NanoClaw processes keep the wiki current:
+As of 2026-04-27, the wiki is built by a **three-stage per-doc pipeline** instead of a single weekly compiler. Old design kept dying mid-stream on Anthropic edge 502s during long sessions; short-lived stages eliminate that failure mode. Full plan: [`../../areas/wiki/2026-04-27-per-doc-pipeline-plan.md`](../../areas/wiki/2026-04-27-per-doc-pipeline-plan.md).
 
-1. **Weekly compiler** (Mon & Thu at 3am). Fetches Readwise saves since the last run, updates existing pages or creates new ones, maintains the index, lints for orphans and stale content, and regenerates `long-form/QUEUE.md`. Each page has `created_at` and `last_updated` frontmatter. Runs on Opus with a 90-minute timeout.
+1. **Daily list-maker** (1am every night). Reads INDEX.md and recently-touched pages, fetches new Readwise saves since `LIST_MAKER_LOG.md`'s last `run_start`, and decides per-item: create, update, skip, or hold in `unorganized.md`. Dispatches per-doc workers — never synthesizes content itself. Runs on Opus, ~1–2 min.
 
-2. **Monthly structure review** (1st of each month at 3am). Evaluates folder organization and INDEX.md alignment, writes a scannability-focused proposal to `FOLDER_REVIEW.md`. Never auto-applies — apply happens in a user-driven Claude Code session.
+2. **Per-doc workers** (dispatched on demand by the list-maker, run sequentially). Each worker handles exactly one Readwise document — fetches it, writes/updates one wiki page, commits and pushes. Has veto power over the dispatch hint if the rationale doesn't hold up against the content. ~2–3 min per worker on Opus.
 
-3. **On-demand long-form synthesis** (user-triggered via main Telegram group). Synthesizes individual Readwise PDFs between 50K and 200K words into dedicated pages in `long-form/`, with bidirectional links into relevant topic pages.
+3. **Weekly wrap-up** (Sunday 11pm). Dedup, cohesion linking, INDEX.md refresh, `long-form/QUEUE.md` regen, `unorganized.md` cluster-promotion sweep (3+ items on a topic → promote to existing or new page), worker error summary, and writes `LAST_RUN_MANIFEST.md`.
 
-The compiler also processes entries from `raw/research-log.md` — an append-only log written by Wiki Tutor during conversations. Research log entries are processed first (Phase 0), before Readwise content, as Tier A-equivalent items. Processed entries are archived to `raw/_archive/`.
+4. **Monthly structure review** (1st of each month at 3am). Evaluates folder organization and INDEX.md alignment, writes a scannability-focused proposal to `FOLDER_REVIEW.md`. Never auto-applies.
+
+5. **On-demand long-form synthesis** (user-triggered via main Telegram group). Synthesizes individual Readwise PDFs between 50K and 200K words into dedicated pages in `long-form/`, with bidirectional links into relevant topic pages.
+
+The list-maker also processes entries from `raw/research-log.md` — an append-only log written by Wiki Tutor during conversations. Research log entries are treated as Tier A and dispatched as workers. Processed entries are archived to `raw/_archive/`.
 
 ## Organization
 
@@ -35,7 +39,11 @@ The intelligence system has two modes: briefings (dated logs — daily, weekly, 
 ## Deferred Items
 
 - [ ] Rename "(prior session)" attribution to "(existing context)" or similar — confusing wording, not a bug
-- [ ] Per-document time tracking in manifest (wall-clock duration per Tier B document, total per Tier A batch)
+- [ ] Per-document time tracking in manifest (wall-clock duration per worker)
+- [ ] Per-task model overrides — currently model is set per-group, so list-maker (cheap, bookkeeping) and per-doc workers (synthesis, judgment-heavy) both share Opus. If weekly Opus budget gets tight, demote list-maker + wrap-up's bookkeeping phases to Sonnet.
+- [ ] Resolve open questions from the per-doc plan: list-maker context budget, dedup safety threshold, worker veto rate tracking, "this week" definition for wrap-up
+- [x] Three-stage per-doc pipeline replacing the monolithic weekly compiler (2026-04-27) — plan at [`../../areas/wiki/2026-04-27-per-doc-pipeline-plan.md`](../../areas/wiki/2026-04-27-per-doc-pipeline-plan.md)
+- [x] `unorganized.md` cluster-promotion sweep in weekly wrap-up (2026-04-27)
 - [x] Long-form synthesis for PDFs 50K–200K words (2026-04-17) — instructions at `../../areas/wiki/instructions/long-form-synthesis.md`
 - [x] Monthly folder/structure review (2026-04-17) — instructions at `../../areas/wiki/instructions/folder-review.md`
 - [x] `unorganized.md` holding page for Tier C/D documents with no matching topic page (2026-04-09, v2.2)
@@ -43,8 +51,11 @@ The intelligence system has two modes: briefings (dated logs — daily, weekly, 
 
 ## Reference
 
-- **Index:** [`INDEX.md`](resources/wiki/INDEX.md)
-- **Weekly compiler instructions:** [`../../areas/wiki/instructions/readwise-wiki.md`](../../areas/wiki/instructions/readwise-wiki.md)
+- **Index:** [`INDEX.md`](INDEX.md)
+- **Pipeline pointer + shared conventions:** [`../../areas/wiki/instructions/readwise-wiki.md`](../../areas/wiki/instructions/readwise-wiki.md)
+- **Stage 1 (list-maker):** [`../../areas/wiki/instructions/list-maker.md`](../../areas/wiki/instructions/list-maker.md)
+- **Stage 2 (per-doc worker):** [`../../areas/wiki/instructions/per-doc-worker.md`](../../areas/wiki/instructions/per-doc-worker.md)
+- **Stage 3 (weekly wrap-up):** [`../../areas/wiki/instructions/weekly-wrap-up.md`](../../areas/wiki/instructions/weekly-wrap-up.md)
 - **Long-form synthesis:** [`../../areas/wiki/instructions/long-form-synthesis.md`](../../areas/wiki/instructions/long-form-synthesis.md)
 - **Folder review:** [`../../areas/wiki/instructions/folder-review.md`](../../areas/wiki/instructions/folder-review.md)
 - **Parent project:** [`../../areas/wiki/README.md`](../../areas/wiki/README.md)

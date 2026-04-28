@@ -1,5 +1,14 @@
 # April 27 – May 3
 
+### Tuesday, April 28
+
+- [ ] Morning reading — Infinite Jest + AI briefing + catch up on reading
+- [ ] Go to the gym
+- [ ] 30 minutes interview prep for Beni
+- [ ] Troubleshoot screen sharing on Mac Mini (check both machines are on same Wi-Fi)
+
+---
+
 ### Monday, April 27
 
 - [x] Prep for Holly recruiter call (1 hour before 10:30am)

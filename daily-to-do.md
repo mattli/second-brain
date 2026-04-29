@@ -2,6 +2,8 @@
 
 ### Wednesday, April 29
 
+- [x] Fix docker
+- [x] Read morning briefing
 - [ ] Use Claude Design to work on Wiki Tutor design — iterate on prototype
 
 ---

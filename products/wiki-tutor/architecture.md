@@ -35,6 +35,57 @@ The wiki structure emerges from real usage patterns, not from upfront guesses.
 
 ---
 
+## Three layers of artifact (nested)
+
+The wiki tutor has artifacts at three scopes, with different update cadences and purposes.
+
+### Per-session artifact (smallest unit, immutable)
+- What happened in this specific sitting
+- User's questions, takeaways, where they stopped, open threads
+- Generated at session end (explicit close OR auto-close after inactivity OR document switch)
+- **Frozen once generated** — preserves temporal signal of what user understood at this point
+- Stored as markdown in vault
+
+### Per-document journey (medium unit, accumulating)
+- The accumulated record of all sessions on this document
+- Built by aggregating session artifacts
+- Updates with each new session
+- Answers: "What's my relationship with this document?"
+- Format candidate (TBD): top-level summary + list of session checkpoints below
+
+### Cross-document wiki (largest unit, evolving)
+- The web of concepts and connections across all documents (the index-style wiki)
+- Built by linking concepts across all journeys
+- Updates as journeys grow
+- Answers: "What do I know across everything I've studied?"
+- v2+ surface, invisible plumbing in v0
+
+### Why three layers
+Each scope answers a different user question. The session artifact answers "what happened today." The document journey answers "where am I with this paper." The wiki answers "what do I know." Conflating them loses information at every level.
+
+---
+
+## "Pick up where you left off" — cognitive vs. consumption resume
+
+When user returns to a document they've engaged with before, the system should help them re-enter the cognitive space they left. Two distinct kinds of resume point:
+
+### Cognitive resume
+"You were exploring how attention mechanisms relate to memory when the session ended. Want to continue from there?"
+
+Powered by per-session artifacts that capture cognitive state — what the user was thinking about, what they were curious about, what they hadn't resolved.
+
+### Consumption resume
+"You stopped reading at section 5."
+
+Powered by passive progress tracking (scroll position, time-on-section).
+
+### Both matter
+A user who was actively engaging with the document needs the cognitive resume. A user who was passively reading needs the consumption resume. The system should offer either depending on how the user was engaging when the session ended.
+
+This is a real differentiator. Explainpaper has no concept of returning. Speechify resumes audio playback position. Adobe AI Assistant treats every session as fresh. "Resume your study journey" with cognitive context is genuinely novel.
+
+---
+
 ## Wiki as INDEX, not content (key reframing)
 
 ### The shift
@@ -121,6 +172,32 @@ The index-style wiki *needs* source differentiation to work — pointers carry s
 
 ---
 
+## Progress tracking
+
+### Why it's needed (and why "engagement signals are enough" is wrong)
+Initially considered: "engagement signals (highlights, questions, sessions) are sufficient — raw read-tracking is vanity." This was reversed: engagement-only misses the passive-comprehension case. A user who reads a section and understands it without needing help has zero engagement signal but has fully consumed the content. Engagement-only would miscategorize that as "didn't read."
+
+### Combined-signal approach
+Track three signals, combine into a unified "where am I in this document" view:
+- **Engagement signals** (strongest): sessions, highlights, questions about specific sections
+- **Reading-pace time** (medium): time spent on a section that matches normal reading pace (~200-300 wpm)
+- **Scroll position** (weakest): user has scrolled past this section
+
+A section is "read" if any of these signals fire. Confidence varies — engagement is high confidence, reading-pace time is medium, scroll-only is low.
+
+### What this enables
+- The "consumption resume" feature ("you stopped at section 5")
+- The honest session artifact: "you read sections 1-3 at normal pace, engaged deeply with section 4, stopped mid-section 5"
+- Rough sense of document coverage without forcing user to mark things read
+
+### What to skip
+- Explicit "mark as read" buttons (high friction, low value if passive tracking works)
+- Completion percentages as gamification ("73% read")
+- Streaks
+- The point is to support "where did I leave off" — not to score the user
+
+---
+
 ## Architectural decisions
 
 ### File handling
@@ -137,9 +214,12 @@ The index-style wiki *needs* source differentiation to work — pointers carry s
 - **Why**: Plays nicely with Obsidian, gives users portability, reduces lock-in concerns
 
 ### Session artifact (what user gets at end of session)
-- **MVP shape**: Summary note covering what was studied, key concepts surfaced, connections to prior reading
+- **MVP shape**: Structured markdown with sections — questions asked, key concepts discussed, where you left off, open threads, connections to prior reading
 - **Saved to**: Vault as markdown
-- **Why one shape only**: Don't ship quizzes / spaced review / question stacks until users tell you they want them
+- **Generated**: Explicit close OR auto-close after ~30 min inactivity OR document switch
+- **Resumes**: Same session continues if user returns within ~1 hour; new session otherwise
+- **Frozen once generated**: Preserves temporal signal of what user understood at that point
+- **Why one shape only for MVP**: Don't ship quizzes / spaced review / question stacks until users tell you they want them
 
 ### Persistent context (what AI knows on next session)
 - **Pattern**: RAG (Retrieval-Augmented Generation)

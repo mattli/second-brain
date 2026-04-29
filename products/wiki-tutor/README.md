@@ -6,14 +6,24 @@ Repo: `~/Development/wiki-tutor/` (local, not yet pushed).
 
 ## Status
 
-**V0 shipped** (2026-04-22). **Session UX redesigned** (2026-04-23) around "hidden wiki, reveal on answer" — page content is locked by default; the tutor asks one question per `##` section and answering unlocks that section on the page. Next.js 14 + TypeScript + Tailwind + App Router. Reads a markdown wiki directory (default `./sample-wiki/`, overridable via `WIKI_PATH` env var) and exposes four screens:
+**V0 shipped** (2026-04-22). **Session UX pivoted twice since:**
 
-- **Home** — folder-grouped page list with coverage dots, substring search, coverage stats in header. (Simplified 2026-04-23 from the original 2×2 card grid.)
-- **Session** — two panes. **Left:** the wiki page with each `##` section rendered as a locked block (heading visible, body hidden under an italic placeholder); current section gets an accent left border. **Right (fixed 440px):** tutor card with one question + textarea. On Reveal, the section body fades in on the left; right pane shows user's answer + Got it / Missed it / Try again. Self-rating advances to the next section.
-- **Session wrap** — template markdown document saved to `./sessions/YYYY-MM-DD-HHmm-<id>.md` in the project root
-- **Coverage grid** — colored dashboard at `/coverage`, click a cell to start a session
+- **2026-04-23** — "hidden wiki, reveal on answer" (one question per `##` section, answering unlocks that section).
+- **2026-04-29** — replaced again, this time around a [Claude Design](https://claude.ai/design) handoff bundle ("Wiki Tutor — Study Companion"). The bundle proposed three layouts; **Layout A · Floating context card** was the chosen direction. Cozy reading-app aesthetic — warm paper, dim sepia ink, Newsreader serif body + Inter Tight UI, single muted amber-clay accent. The 20-question loop and the reveal-on-answer flow are both gone; the new shape is reader-led, sentence-level retrieval.
 
-All LLM-shaped work is placeholder for V0, isolated in `src/lib/tutor.ts` (now a single function: `generateQuestions(page, sections)`). Section-split helper in `src/lib/sections.ts`. Swap-in for a real Anthropic API call means replacing `generateQuestions` with content-aware question generation and adding a `gradeAnswer(page, section, userAnswer)` call to replace the self-rating step.
+How a session works now:
+
+- **Home** — folder-grouped page list. Search bar, header coverage stat, and per-row coverage dots are all currently **hidden** (commented out, not deleted; one-line uncomment to restore each).
+- **Session** — single full-width article rendered with sentence-level segmentation (`<span class="sentence" data-sid="...">` per sentence, depth-aware so wikilinks aren't sliced). Click any sentence → action chip with **Explain simply / Define / Examples** → context card appears tethered to the selection with a thin dashed connector. Floating voice orb (bottom-right) for placeholder voice exchanges with ghost-text transcript. End-session button writes a markdown summary to `./sessions/<stamp>-<id>.md` and shows a summary-card overlay.
+- **Coverage grid** — currently 404'd via `notFound()`; render logic preserved as a private function so re-enabling is one line.
+
+Internals:
+
+- State shape rewritten: per-page `{ highlights: { [sentenceId]: action }, sentenceCount, lastSession, sessionIds }`; per-session `{ pageSlug, highlights, history, voice, … }`. Coverage tiers are now `untouched / explored / deep` based on % of sentences highlighted (`DEEP_RATIO = 0.4`). Old `responses[]` / 20-question / section-question state is gone — no backwards compat (gitignored anyway).
+- Tutor boundary collapsed to two placeholder functions in `src/lib/tutor.ts`: `getContext(page, sentenceText, action)` and `voiceReply(page, userText)`. `generateQuestions` and `gradeAnswer` are gone.
+- Sentence segmentation lives in `src/lib/markdown.ts` (`renderPage(page, index)`); `src/lib/sections.ts` deleted. Splitting builds a depth-aware plain-text-to-HTML offset map and only accepts boundaries at depth zero.
+
+Repo README at `~/Development/wiki-tutor/README.md` is up to date as of 2026-04-29. New project `CLAUDE.md` codifies the "hide, don't delete" working pattern for V0 iteration.
 
 ## Why it exists
 
@@ -30,11 +40,12 @@ Strategic context in `products/voice-tutor/README.md` status section (Wikiwise f
 ## Key decisions
 
 - **Wiki directory is read-only by design.** WikiTutor never writes to it. All state lives in `./.wikitutor/state.json` and `./sessions/*.md` inside the project root. Both paths are in `.gitignore`.
-- **Tutor swap-in is a single file.** `src/lib/tutor.ts` is the entire LLM boundary. Dropping in a real Claude call only touches that file (and will add a `gradeAnswer` function to replace the self-rating step).
-- **Hidden wiki, reveal on answer** (2026-04-23). The session UI reveals the wiki section-by-section as the user answers. The page acts as a spatial anchor + scoreboard — by session end, the whole page is rendered on the left. Decision made after rejecting (a) chat thread alongside the full visible page, (b) stacked-reveal column with no left-side anchor. Framing: the wiki shouldn't be a reader; it should be the reward for engagement.
-- **Questions are section-scoped** (2026-04-23). One template question per `##` section (plus the pre-`##` intro). Cheap V0 fallback; real LLM generates reasoning questions later. Replaces the original 20-questions-per-page template list.
-- **Sample wiki models real wiki shape.** 13 pages across `concepts/`, `people/`, `sources/` with rich cross-linking — mirrors the structure of `resources/wiki/` so UI decisions tested on samples translate.
-- **V0 defaults:** folders-as-topics, one question per `##` section, `discussed` threshold at 50% of per-page section count (via new `SessionUpdate.questionsTotalForPage`), substring search, desktop-only.
+- **Tutor swap-in is a single file.** `src/lib/tutor.ts` is the entire LLM boundary. Two functions only: `getContext(page, sentenceText, action)` and `voiceReply(page, userText)`. Streaming both is the natural next step when wiring real model calls.
+- **Layout A is the chosen direction (2026-04-29).** From the Claude Design handoff bundle. Floating context card tethers to the selected sentence. Layouts B (margin notes) and C (inline expansion) exist in the design source but were not chosen — don't reintroduce them without asking.
+- **No backwards compatibility during V0 iteration (2026-04-29).** Each pivot wipes `./.wikitutor/state.json` and `./sessions/`. Both are gitignored; nothing in them is durable.
+- **"Hide, don't delete" during iteration (2026-04-29).** When Matt says "hide X" he means comment out the call site, not delete the implementation. State/computation that backs hidden surfaces should keep updating. Captured in the repo `CLAUDE.md`.
+- **Sample wiki models real wiki shape.** 13 pages across `concepts/`, `people/`, `sources/` with rich cross-linking — mirrors `resources/wiki/` so UI decisions tested on samples translate.
+- **Coverage tiers (V0.2):** `untouched` (no sentences highlighted) / `explored` (≥1) / `deep` (≥40% of the page's sentences). Currently surfaced nowhere in the UI but state still updates.
 
 ## Setup
 
@@ -52,9 +63,9 @@ WIKI_PATH=~/second-brain/resources/wiki npm run dev
 
 ## Next steps (not started)
 
-- **Revisit loop** is where the tutor beats a reader. V0 with placeholder tutor is structurally close to a markdown reader for first-encounter material. The differentiator — retrieval practice on pages read weeks ago — needs a home-page surface ("you learned about X 17 days ago, want to refresh?") that uses existing coverage state + mtime. Cheap to build, high leverage. Likely next direction.
-- Run v0.1 against `resources/wiki/` on real content. Open taste-sensitive bits surfaced 2026-04-23: locked-state treatment (italic placeholder vs. blurred text vs. heading-only), "Opening" label for intro sections, accent-stripe styling.
-- Plug in a real Claude call in `src/lib/tutor.ts`. Section-aware questions, judged grading, conversational follow-ups. Deferred behind revisit loop — the LLM makes it a *better* tutor, the revisit loop makes it a *different product* than a reader.
-- Decide whether this converges with voice-tutor (shared session format, memory.md) or stays a distinct surface.
-- If it keeps moving: add a CLAUDE.md to the repo with the conventions that aren't obvious from the README.
-- **Repo README out of date** — still describes the old 3-pane quiz flow. Refresh when v0.1 stabilizes.
+- **Run V0.2 against `resources/wiki/`** on real content. Sample wiki has been the testbed; real content will surface where the sentence segmenter misbehaves (Markdown lists with sentence-shape items, multi-sentence figure captions, etc.).
+- **Wikilink hover-to-peek.** Wikilinks render inside the article but are inert in the floating-card flow. Likely next addition: a small peek card on hover, separate from the sentence chip.
+- **Plug in a real Claude call** in `src/lib/tutor.ts`. Streaming preferred for both `getContext` and `voiceReply`. The API routes (`/api/sessions/[id]`) already pass the necessary context — no wiring changes needed.
+- **Real voice loop.** Voice orb is a placeholder ghost-typer today. Reuse the voice-tutor pipeline (Pipecat + Cartesia + Deepgram) here? Open question — see "convergence" below.
+- **Convergence with voice-tutor.** Voice-tutor's study-companion mode (shipped 2026-04-26 on `feat/study-companion-mode`) and this share the same shape: pick a doc, get tutored on it, get a session artifact. Decide whether they merge (shared session format, shared transcript schema) or stay distinct surfaces tuned to text vs. voice.
+- **Re-enable hidden surfaces deliberately.** Coverage page, home search, header coverage stat, per-row coverage dots are all commented out. Re-enable individually as the product needs them — not all at once.

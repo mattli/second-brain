@@ -4,52 +4,77 @@
 
 ---
 
-## MVP scope decisions
+## v1 feature list (shippable scope)
 
-### What's in
-1. PDF upload only
-2. Highlight → explain (Explainpaper's proven mechanic)
-3. Follow-up Q&A in text
-4. Session artifact: a generated markdown summary note saved to the vault
-5. Persistent context: RAG-style retrieval over prior session content + documents
-6. Source-type metadata on all stored content
+The full set of things that need to exist for the product to work end-to-end. Listed roughly in build order — earlier items unblock later ones.
 
-### What's out (for now)
-- Voice
-- Multiple file formats (EPUB, DOCX, web articles, etc.)
+1. **Auth** — Users can sign up and log in. Each user has their own data. Magic links or Google sign-in is fine for v1.
+2. **File upload + storage** — User uploads a PDF. Original file stored. Text extracted to markdown. Both preserved.
+3. **PDF rendering / reading view** — A PDF viewer the user can read in. Supports text selection (so highlight works) and is instrumentable for scroll/time tracking.
+4. **Document library / list view** — User sees their uploaded documents. Click to open. Shows progress at a glance.
+5. **Highlight + selection mechanic** — User selects text, a menu appears with actions (define, explain, ask). Selection state, menu positioning, action wiring.
+6. **LLM API integration** — Wires the AI behind the menu actions. Sends the highlighted text plus context, returns response.
+7. **Chat / Q&A interface** — Where the AI's response appears. Where follow-up questions get asked. Side panel, modal, or inline — design decision.
+8. **Session state management** — Defines what a session is. When it starts (open document), when it ends (explicit close OR ~30 min inactivity OR document switch). Tracks transcript.
+9. **End-of-session artifact generation** — At session close, AI generates a markdown summary with sections: questions asked, key concepts discussed, where you left off, open threads, connections to prior reading. Saved to user's vault.
+10. **Vector storage + RAG context injection** — Embed all stored content (documents, session transcripts, artifacts). On new session, retrieve relevant prior content, inject as AI context. This is what makes the AI feel smart about the user's reading history.
+11. **Source-type metadata** — Every stored chunk tagged with `source_type` (`document` | `session_transcript` | `session_artifact` | `user_note` | `ai_explanation`). Doesn't need to be used cleverly in v1, but must be preserved.
+12. **Progress tracking** — Passive signals (scroll position + time-on-section) combined with engagement signals (sessions, highlights). Surfaced as "where you are in this document" and powers "pick up where you left off."
+
+---
+
+## What's out of v1
+
+- Voice (any kind)
+- Multiple file formats (EPUB, DOCX, web articles)
 - Readwise / external integrations
 - Spaced review / flashcards
 - Cross-document quizzing
 - Wiki page auto-generation
-- Connection surfacing
+- Proactive connection surfacing during sessions
 - "What do I know about X?" interface
 - Concept extraction / entity graphs
 - Index-style wiki structure (emerges from usage, not built upfront)
+- In-app artifact viewer (artifacts go to vault as markdown; user opens in their vault tool)
+- Multi-document study flows
 
 ---
 
-## Sequencing: what to build, in what order
+## Build order (suggested)
 
-### v0 (now → first user)
-1. Upload PDF, extract text, store
-2. Highlight → explain interaction (text only)
-3. Follow-up Q&A within session
-4. Generate session summary at end, save to vault as markdown
-5. RAG over prior content for next session, with source-type metadata preserved
+If picking a single ordering:
 
-### v1 (after first feedback)
+1. Auth (basic — magic links or Google)
+2. File upload + PDF extraction + storage (pipeline only, no UI yet)
+3. PDF rendering + library view (now you can see what you uploaded)
+4. Highlight + LLM-backed menu actions (the core interaction works)
+5. Chat / follow-up Q&A (the conversation works)
+6. Session state management + end-of-session artifact generation (the loop closes)
+7. Vector storage + RAG context injection (the AI gets smart about prior reading)
+8. Progress tracking (passive signals, "where you are")
+9. Source-type metadata — done throughout, not last; verify it's right before shipping
+
+You can ship without #7 and #8 and have a working product that's basically Explainpaper. You can't ship without #1–6.
+
+#7 is what makes it *wiki tutor* and not just a PDF chat tool. It's also the most complex of the list. Worth knowing it's the differentiator and budgeting accordingly.
+
+---
+
+## Sequencing beyond v1
+
+### v2 (after first feedback)
 - Connections surfaced during study ("this relates to X you read last month")
 - Better artifact shapes based on user feedback
 - Initial index-style wiki: lightweight concept entries with pointers to encounters
 
-### v2 (after product-market signal)
+### v3 (after product-market signal)
 - "What do I know about X?" interface — synthesizes at query time from index pointers
 - Voice mode (push-to-talk first, ambient later)
 - Additional file formats
 - Readwise / external integrations
 - Spaced review
 
-### v3+ (much later, only if validated)
+### v4+ (much later, only if validated)
 - Always-listening voice agent
 - Cross-user features
 - Mobile
@@ -72,7 +97,8 @@
 - **The artifact is the product.** If the post-session note doesn't feel valuable, nothing else matters.
 - **The wiki/vault is what makes this defensible.** Don't let it become a side feature.
 - **Voice is real differentiation eventually, but not the wedge.** Ship text first.
-- **The wiki is invisible plumbing in v0.** Don't build a wiki UI; just use it to make the AI smart.
+- **The wiki is invisible plumbing in v1.** Don't build a wiki UI; just use it to make the AI smart.
 - **Source-type metadata from day one.** Cannot be retrofitted easily.
 - **"Build toward" the architecture, don't build it all.** Each MVP decision should keep the architecture's options open without committing to its full complexity.
 - **The wiki is a map, not a repository.** Pointers and connections, not content. Synthesis happens at query time from real sources.
+- **The connective tissue is the work.** Most of what makes a real product isn't the feature list — it's PDF rendering, selection mechanics, session state, library views. The "obvious" stuff is where most of the build effort lives.

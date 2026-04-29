@@ -1,11 +1,17 @@
 # April 27 – May 3
 
+### Wednesday, April 29
+
+- [ ] Use Claude Design to work on Wiki Tutor design — iterate on prototype
+
+---
+
 ### Tuesday, April 28
 
 - [x] Morning reading — Infinite Jest + AI briefing + catch up on reading
 - [x] Go to the gym
 - [x] interview prep for Beni
-- [ ] Troubleshoot screen sharing on Mac Mini (check both machines are on same Wi-Fi)
+- [x] Troubleshoot screen sharing on Mac Mini (check both machines are on same Wi-Fi)
 
 ---
 

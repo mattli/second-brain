@@ -1,15 +1,36 @@
 # WikiTutor
 
-Local web app for tutored learning through a personal markdown wiki. The **web track** of the WikiTutor concept, parallel to the existing Telegram wiki-tutor group (NanoClaw `wiki-tutor`, see `areas/nanoclaw/2026-04-11-001-feat-wiki-tutor-group-plan.md`) and the voice-tutor (`products/voice-tutor/`).
+Single-document study tutor (working name; will rename before external launch — see `product-framing.md`). User uploads a PDF, studies it conversationally with an AI tutor, gets an async recap. Validated 2026-04-26 (Reddit research).
 
 Repo: `~/Development/wiki-tutor/` (local, not yet pushed).
 
+**Canonical product docs**: `product-framing.md`, `architecture.md`, `mvp-scope.md` (all in this folder). Read these before non-trivial work.
+
 ## Status
 
-**V0 shipped** (2026-04-22). **Session UX pivoted twice since:**
+**V1 in progress (2026-04-29 evening).** Features #1–2 shipped today:
+
+- **#1 Auth (✅ shipped 2026-04-29)** — Supabase magic-link, RLS-isolated per user. Code at `src/lib/supabase/`, `src/middleware.ts`, `src/app/login/`, `src/app/auth/`.
+- **#2 PDF upload + storage (✅ shipped 2026-04-29)** — `POST /api/documents` (multipart, ≤50MB, PDF magic-byte validation), SHA-256 content-hash dedup, original + extracted markdown stored in private Supabase Storage bucket `documents/<user_id>/<doc_id>/`. Extraction via `unpdf` (Mozilla pdf.js, no native deps). Migration: `supabase/migrations/0001_documents_schema.sql`. Test recipe: `scripts/upload-pdf.sh`.
+
+**V1 remaining**: library view, reading view, highlight + LLM-backed menu actions, chat, session state + artifact, vector storage + RAG with grounding constraint, progress tracking. See `mvp-scope.md` for build order.
+
+### Earlier in the day (context for the pivot)
+
+The day involved several product reframings before settling on single-document PDF study:
+
+- Morning: V0 markdown-wiki reader still in place. Considered Readwise import as v1 feature #2 (planned but not built — no code written).
+- Afternoon: 2026-04-26 validation findings (Reddit research, 1,330 posts) re-anchored the product to single-doc study tutor — the validated pain is "PDF paralysis" and "no listener for active recall," not wiki management. Product docs rewritten (`product-framing.md`, `mvp-scope.md`, `architecture.md`).
+- Evening: V1 build kicked off against the new anchor. Auth + PDF pipeline shipped.
+
+V0 surfaces (home page list, session screen, coverage grid) still exist in the repo as scaffolding — the routes are gated behind auth now but otherwise unchanged. They will be retired or repurposed as V1 features land (library view in #3 will likely replace the V0 home).
+
+### V0 history (for reference)
+
+V0 was a local markdown-wiki reader, shipped 2026-04-22, then iterated through two session-UX pivots:
 
 - **2026-04-23** — "hidden wiki, reveal on answer" (one question per `##` section, answering unlocks that section).
-- **2026-04-29** — replaced again, this time around a [Claude Design](https://claude.ai/design) handoff bundle ("Wiki Tutor — Study Companion"). The bundle proposed three layouts; **Layout A · Floating context card** was the chosen direction. Cozy reading-app aesthetic — warm paper, dim sepia ink, Newsreader serif body + Inter Tight UI, single muted amber-clay accent. The 20-question loop and the reveal-on-answer flow are both gone; the new shape is reader-led, sentence-level retrieval.
+- **2026-04-29 (morning)** — replaced again, around a [Claude Design](https://claude.ai/design) handoff bundle ("Wiki Tutor — Study Companion"). Three layouts proposed; **Layout A · Floating context card** chosen. Cozy reading-app aesthetic — warm paper, dim sepia ink, Newsreader serif body + Inter Tight UI, single muted amber-clay accent.
 
 How a session works now:
 
@@ -61,11 +82,18 @@ Opens at [http://localhost:3000](http://localhost:3000) against `./sample-wiki/`
 WIKI_PATH=~/second-brain/resources/wiki npm run dev
 ```
 
-## Next steps (not started)
+## Next steps (V1 build)
 
-- **Run V0.2 against `resources/wiki/`** on real content. Sample wiki has been the testbed; real content will surface where the sentence segmenter misbehaves (Markdown lists with sentence-shape items, multi-sentence figure captions, etc.).
-- **Wikilink hover-to-peek.** Wikilinks render inside the article but are inert in the floating-card flow. Likely next addition: a small peek card on hover, separate from the sentence chip.
-- **Plug in a real Claude call** in `src/lib/tutor.ts`. Streaming preferred for both `getContext` and `voiceReply`. The API routes (`/api/sessions/[id]`) already pass the necessary context — no wiring changes needed.
-- **Real voice loop.** Voice orb is a placeholder ghost-typer today. Reuse the voice-tutor pipeline (Pipecat + Cartesia + Deepgram) here? Open question — see "convergence" below.
-- **Convergence with voice-tutor.** Voice-tutor's study-companion mode (shipped 2026-04-26 on `feat/study-companion-mode`) and this share the same shape: pick a doc, get tutored on it, get a session artifact. Decide whether they merge (shared session format, shared transcript schema) or stay distinct surfaces tuned to text vs. voice.
-- **Re-enable hidden surfaces deliberately.** Coverage page, home search, header coverage stat, per-row coverage dots are all commented out. Re-enable individually as the product needs them — not all at once.
+Per `mvp-scope.md`:
+
+- **#3 Library view** — list of uploaded documents, click to open. First UI for the upload pipeline.
+- **#4 Reading view** — PDF rendering with text selection (drives highlight + scroll/time tracking later).
+- **#5 Highlight + selection mechanic** — define / explain / ask actions on selected text.
+- **#6 LLM API integration** — wire AI behind menu actions. Source-only grounding constraint kicks in here (validated user is law/med; hallucination is a dealbreaker).
+- **#7 Chat / Q&A** — follow-up surface.
+- **#8 Session state + artifact generation** — closes the loop.
+- **#9 Vector + RAG with grounding constraints** — what makes it not-NotebookLM.
+- **#10 Source-type metadata** — woven throughout, not a discrete step.
+- **#11 Progress tracking** — passive scroll/time + engagement signals.
+
+V1.5 (post-validation): **voice mode**. The validated workaround is voice ChatGPT + PDF; voice should be added once the text loop ships. See `product-framing.md` "Voice: in scope, deferred to v1.5+".

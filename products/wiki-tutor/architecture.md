@@ -1,6 +1,8 @@
 # Wiki Tutor — Architecture
 
-*Working document. As of 2026-04-29.*
+*Working document. As of 2026-04-29 (afternoon, post-validation realignment).*
+
+*Note on framing: most of this doc is product-neutral and survived the day's pivots intact. The "two-layer" pattern, source-type metadata, three-layer artifact model, and progress-tracking design all still apply. The product anchor is now single-document study tutor (validated 2026-04-26), not the wiki ingestion shapes considered mid-day. "Wiki" in this doc refers to the **internal derived layer** (concepts + connections), not the user-facing surface.*
 
 ---
 
@@ -169,6 +171,32 @@ The wiki structure can come later. The source-type tagging cannot. If you blend 
 
 ### How this fits with wiki-as-index
 The index-style wiki *needs* source differentiation to work — pointers carry source-type information so the system knows whether it's pointing at authoritative content (a document) or at a past conversation. The two ideas are complementary.
+
+---
+
+## Grounding: source-only answers
+
+### Why this is a v1 concern, not v2
+The 2026-04-26 validation surfaced hallucination as a dealbreaker for the law/med power users:
+- *"profs know real quick you're reading from AI or Quimbee when you start giving facts that were not even in your casebook"*
+- *"I've had GenAI generate facts that don't exist in a case and quotations that don't exist"*
+
+These users have already adopted the manual workaround (paste PDF into ChatGPT). They've abandoned tools that hallucinate. v1 has to clear this bar.
+
+### What this means architecturally
+The RAG pipeline must constrain the AI's answers to:
+1. The currently-open document (primary source)
+2. The user's prior content (sessions, artifacts, other documents they've uploaded)
+3. Common-sense scaffolding (definitions of common terms, etc., where unavoidable)
+
+The AI should NOT freely import external knowledge that isn't in the user's content. When a question can't be answered from the user's content, the right behavior is to say so, not to fall back on training data.
+
+### Open questions on strictness
+- How strict is the constraint? Does the AI refuse anything not directly grounded, or politely answer with a caveat?
+- How does this work for follow-up questions that go beyond the document (e.g., "how does this compare to X")?
+- Does v1 need source citations in responses ("per page 47 of your document"), or is that v2 polish?
+
+For v1, lean strict. The validated user is law/med — they *want* refusal over hallucination. Permissiveness can be added later if non-academic users complain.
 
 ---
 

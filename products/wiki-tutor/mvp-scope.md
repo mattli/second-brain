@@ -1,21 +1,14 @@
 # Wiki Tutor — MVP Scope & Sequencing
 
-*Working document. As of 2026-04-29.*
+*Working document. As of 2026-04-29 (afternoon, post-validation realignment).*
 
 ---
 
-## Direction shift: Readwise/markdown input, not PDF
+## Product anchor
 
-Originally scoped as PDF upload tool. Shifted to Readwise/markdown wedge after recognizing:
-- Matt is the first user. His use case is learning from his own Readwise-fed wiki.
-- Readwise users have a pile of saved highlights they never properly absorb. Real itch.
-- Markdown is the substrate; Readwise is one source. Anyone with a markdown vault is a potential user — durable position even if Readwise relationship changes.
-- Sharper persona, sharper pitch, less direct competition with Explainpaper.
+Single-document study companion. User uploads a PDF, studies it conversationally with the AI, gets an async recap. Validated by 2026-04-26 Reddit research — see product-framing.md and the validation findings doc.
 
-**Tactical wedge** (early acquisition): "Tutor mode for your Readwise highlights."
-**Strategic positioning** (durable): "Active learning over your second brain. Markdown-native."
-
-PDF upload moves to v2 or later.
+Voice is in scope but deferred to v1.5. v1 ships text-first as a stepping stone.
 
 ---
 
@@ -24,29 +17,30 @@ PDF upload moves to v2 or later.
 The full set of things that need to exist for the product to work end-to-end. Listed roughly in build order — earlier items unblock later ones.
 
 1. **Auth** — Users can sign up and log in. Each user has their own data. Magic links. ✅ Done.
-2. **Readwise import** — Connect Readwise account, pull highlights and document metadata into the system. Store with source-type metadata.
-3. **Library view** — User sees their imported documents/sources. Click to open. Shows progress at a glance.
-4. **Reading view** — Display a document's highlights and notes in a readable format. Supports text selection (for highlight-driven actions) and is instrumentable for scroll/time tracking.
+2. **PDF upload + storage** — User uploads a PDF. Original file stored. Text extracted to markdown. Both preserved. RLS-isolated per user.
+3. **Library view** — User sees their uploaded documents. Click to open. Shows progress at a glance.
+4. **Reading view** — A PDF viewer the user can read in. Supports text selection (so highlight works) and is instrumentable for scroll/time tracking.
 5. **Highlight + selection mechanic** — User selects text, a menu appears with actions (define, explain, ask). Selection state, menu positioning, action wiring.
 6. **LLM API integration** — Wires the AI behind the menu actions. Sends the highlighted text plus context, returns response.
 7. **Chat / Q&A interface** — Where the AI's response appears. Where follow-up questions get asked. Side panel, modal, or inline — design decision.
 8. **Session state management** — Defines what a session is. When it starts (open document), when it ends (explicit close OR ~30 min inactivity OR document switch). Tracks transcript.
-9. **End-of-session artifact generation** — At session close, AI generates a markdown summary with sections: questions asked, key concepts discussed, where you left off, open threads, connections to prior reading. Downloadable as markdown for the user to drop in their vault.
-10. **Vector storage + RAG context injection** — Embed all stored content (highlights, session transcripts, artifacts). On new session, retrieve relevant prior content, inject as AI context. This is what makes the AI feel smart about the user's reading history.
-11. **Source-type metadata** — Every stored chunk tagged with `source_type` (`highlight` | `document_metadata` | `session_transcript` | `session_artifact` | `user_note` | `ai_explanation`). Doesn't need to be used cleverly in v1, but must be preserved.
-12. **Progress tracking** — Passive signals (scroll position + time-on-content) combined with engagement signals (sessions, asked-about highlights). Surfaced as "where you are with this document" and powers "pick up where you left off."
+9. **End-of-session artifact generation** — At session close, AI generates a markdown recap with sections: questions asked, key concepts discussed, where you left off, open threads, connections to prior reading. Downloadable as markdown.
+10. **Vector storage + RAG context injection** — Embed all stored content (documents, session transcripts, artifacts). On new session, retrieve relevant prior content, inject as AI context. This is what makes the AI feel smart about the user's reading history.
+11. **Source-type metadata** — Every stored chunk tagged with `source_type` (`document` | `session_transcript` | `session_artifact` | `user_note` | `ai_explanation`). Doesn't need to be used cleverly in v1, but must be preserved.
+12. **Progress tracking** — Passive signals (scroll position + time-on-section) combined with engagement signals (sessions, highlights). Surfaced as "where you are in this document" and powers "pick up where you left off."
 
-### Architectural note on import pluggability
-Readwise API is the v1 import path. Internal data model should treat Readwise as one source among many, not the substrate. Keep the import layer pluggable — markdown file upload, other PKM tool integrations, etc., should all be addable without restructuring. Don't paint into a Readwise-only corner.
+### Architectural note on grounding
+The validated pain explicitly names hallucination as a dealbreaker in legal/medical contexts. v1's RAG pipeline must constrain answers to the uploaded document plus the user's prior content. "Source-only answers" is a v1 concern, not a v2 concern.
 
 ---
 
 ## What's out of v1
 
-- Voice (any kind)
-- PDF upload (moved out of v1; Readwise/markdown is the wedge)
-- Other file formats (EPUB, DOCX, web articles)
-- Direct markdown vault folder import (v2 — adds filesystem complexity; Readwise API is the easy first path)
+- Voice (any kind) — v1.5 priority, not a v3 nice-to-have
+- Multiple file formats (EPUB, DOCX, web articles) — v2
+- Markdown / wiki import — v2 if validated, otherwise drop
+- Readwise integration — explored in afternoon drift, not in v1
+- GitHub-synced vault integration — explored in afternoon drift, not in v1
 - Spaced review / flashcards
 - Cross-document quizzing
 - Wiki page auto-generation
@@ -54,9 +48,8 @@ Readwise API is the v1 import path. Internal data model should treat Readwise as
 - "What do I know about X?" interface
 - Concept extraction / entity graphs
 - Index-style wiki structure (emerges from usage, not built upfront)
-- In-app artifact viewer (artifacts download as markdown; user drops in their vault)
+- In-app artifact viewer (artifacts download as markdown for v1; user opens in their tool of choice)
 - Multi-document study flows
-- Direct vault write / Obsidian plugin (v2+ — desktop app or plugin territory)
 
 ---
 
@@ -65,39 +58,37 @@ Readwise API is the v1 import path. Internal data model should treat Readwise as
 If picking a single ordering:
 
 1. Auth (basic — magic links) ✅ Done
-2. Readwise import (pipeline + storage; pull highlights, store with source metadata)
-3. Library view (now you can see what you imported)
-4. Reading view (display highlights, support selection)
+2. PDF upload + extraction + storage (pipeline only, no UI yet)
+3. Library view (now you can see what you uploaded)
+4. Reading view (PDF rendering, text selection)
 5. Highlight + LLM-backed menu actions (the core interaction works)
 6. Chat / follow-up Q&A (the conversation works)
 7. Session state management + end-of-session artifact generation (the loop closes)
-8. Vector storage + RAG context injection (the AI gets smart about prior reading)
+8. Vector storage + RAG context injection with grounding constraints (the AI gets smart about prior reading without hallucinating)
 9. Progress tracking (passive signals, "where you are")
 10. Source-type metadata — done throughout, not last; verify it's right before shipping
 
-You can ship without #8 and #9 and have a working product that's basically "highlight chat." You can't ship without #1–7.
+You can ship without #8 and #9 and have a working product that's basically NotebookLM-but-with-recaps. You can't ship without #1–7.
 
-#8 is what makes it *wiki tutor* and not just a chat-with-highlights tool. It's also the most complex of the list. Worth knowing it's the differentiator and budgeting accordingly.
+#8 is what makes it differentiated from NotebookLM. The grounding constraint is what makes it credible to the law/med users in the validation. Worth budgeting accordingly.
 
 ---
 
 ## Sequencing beyond v1
 
-### v2 (after first feedback)
+### v1.5 (after v1 working, validated by initial users)
+- Voice mode — push-to-talk, voice-in / voice-out
+- Form factor TBD; pick based on unit economics work
+
+### v2 (after product-market signal)
 - Connections surfaced during study ("this relates to X you read last month")
 - Better artifact shapes based on user feedback
 - Initial index-style wiki: lightweight concept entries with pointers to encounters
-- Direct markdown vault folder import (filesystem access for non-Readwise users)
-- PDF upload (broadens addressable market)
-
-### v3 (after product-market signal)
-- "What do I know about X?" interface — synthesizes at query time from index pointers
-- Voice mode (push-to-talk first, ambient later)
-- Direct vault write (Obsidian plugin, desktop app, or sync-based)
 - Additional file formats (EPUB, DOCX)
+- "What do I know about X?" interface
 - Spaced review
 
-### v4+ (much later, only if validated)
+### v3+ (much later, only if validated)
 - Always-listening voice agent
 - Cross-user features
 - Mobile
@@ -106,25 +97,23 @@ You can ship without #8 and #9 and have a working product that's basically "high
 
 ## Things to write up separately in the vault
 
-- The 2026-04-29 product clarification (voice → text-first, wiki tutor framing, then Readwise/markdown wedge)
-- Competitive landscape note (Explainpaper, Speechify, Adobe, Glasp, Readwise — what each does and gaps)
+- The 2026-04-29 day-of pivots (voice → wiki → Readwise → GitHub → back to validated voice tutor)
+- Competitive landscape note (NotebookLM, ChatGPT+PDF workaround, Explainpaper, Speechify, Paper2Audio — what each does and gaps)
 - The "design toward A, ship B" architectural principle for the wiki substrate question
 - The wiki-as-index reframing (why pointers > content)
-- Strategic vs. tactical positioning — Readwise wedge vs. markdown PKM positioning
+- Why text-first v1 is a stepping stone, not the destination
 
 ---
 
 ## Reminders for future me
 
+- **The validated product is voice tutor for single-doc study.** Text-first v1 is a stepping stone. Don't lose the voice plot.
+- **Hallucination is a dealbreaker for the law/med users.** Source-only grounding is v1, not v2.
+- **WikiTutor is a working name.** Rename before external launch.
 - **Don't over-spec before shipping.** Reality teaches faster than specs do.
 - **Capture questions, don't answer them all.** Patterns emerge with quantity.
 - **The artifact is the product.** If the post-session note doesn't feel valuable, nothing else matters.
-- **The wiki/vault is what makes this defensible.** Don't let it become a side feature.
-- **Voice is real differentiation eventually, but not the wedge.** Ship text first.
-- **The wiki is invisible plumbing in v1.** Don't build a wiki UI; just use it to make the AI smart.
 - **Source-type metadata from day one.** Cannot be retrofitted easily.
 - **"Build toward" the architecture, don't build it all.** Each MVP decision should keep the architecture's options open without committing to its full complexity.
-- **The wiki is a map, not a repository.** Pointers and connections, not content. Synthesis happens at query time from real sources.
-- **The connective tissue is the work.** Most of what makes a real product isn't the feature list — it's reading views, selection mechanics, session state, library views. The "obvious" stuff is where most of the build effort lives.
-- **Readwise is a source, not the substrate.** Markdown is the substrate. Don't paint into a Readwise-only corner.
-- **Build for yourself first.** You're the first user. If it's not useful for your own Readwise-fed wiki, it's not useful.
+- **The connective tissue is the work.** Most of what makes a real product isn't the feature list — it's PDF rendering, selection mechanics, session state, library views.
+- **Build for the validated user, not the convenient one.** When in doubt, look at the validation doc, not your own setup.

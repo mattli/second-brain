@@ -47,6 +47,43 @@ NOT the PKM-developer with a vault (that was a midday drift; user is single-doc 
 - **vs. ChatGPT-with-PDF (the current workaround)**: Productized loop, persistent memory across sessions, structured recap artifact, grounded answers
 - **vs. Explainpaper**: Tutoring intent and session artifacts vs. moment-of-clarification only
 - **vs. Speechify / Paper2Audio**: Conversational vs. listen-only
+- **vs. Obsidian Copilot (and similar PKM AI plugins)**: Different category entirely — Copilot is chat-over-vault for PKM users; WikiTutor is a study session for academic readers. Copilot has no progress tracking, no session state, no per-document journey, no zero-config onboarding. Different jobs, different users.
+
+---
+
+## Study session, not chat over content
+
+A core framing the product turns on: WikiTutor is a study session, not a chat interface over content.
+
+A chat-over-content product (NotebookLM, Obsidian Copilot, ChatGPT-with-PDF) treats the document as a passive source to query. Every question is a fresh query against the whole document. There's no notion of "where I am right now," "what we've covered," "where I got stuck," or "what's still open."
+
+A study session has structure to the interaction:
+- **Where the user's attention is right now** (active sentence/passage)
+- **What's happened so far** (session state, transcript)
+- **Where they are in the document** (progress tracking)
+- **What this session leaves them with** (the artifact)
+- **How sessions compose into a per-document journey** (continuity across returns)
+
+This is why progress tracking, session state, sentence-level interaction, and the artifact aren't nice-to-haves — they're what distinguishes WikiTutor from the chat-over-content category. The architecture starts in a different place than a chat product, and you can't easily turn a chat interface into a study session after the fact.
+
+For positioning: WikiTutor is in the "study session" category. Most existing tools in this space are in the "chat over content" category. They're solving different jobs even when they appear feature-overlapping.
+
+---
+
+## Zero-config as a product principle
+
+The validated user is a student with a deadline, not a developer evaluating tools. They don't have API keys. They don't know what an embedding model is. They've never opened a terminal.
+
+For this user, configuration friction is a complete dead end — not a minor annoyance. A product that requires "add your OpenAI API key, choose an embedding model, configure CORS settings, click Build Index" loses every non-technical user before they've started.
+
+**WikiTutor's onboarding is sign up → upload PDF → study.** Three steps. No keys. No model selection. No configuration. The AI is invisible infrastructure; the user thinks about studying, not about LLMs.
+
+This is a real moat against BYOK PKM tools (Copilot, etc.) that target technical users. Those products charge $15/mo because their users accept configuration friction. WikiTutor handles infrastructure entirely — different value prop, different price-sensitivity profile (students are price-sensitive but expect zero-config from consumer products).
+
+Product principles that follow from this:
+- Setup friction kills conversion — if onboarding requires more than three steps, you're losing users
+- Errors should never expose underlying machinery ("build index" is the wrong button name; do it silently in the background)
+- Don't make users juggle services — single sign-in, single product surface, no provider/model decisions visible
 
 ---
 

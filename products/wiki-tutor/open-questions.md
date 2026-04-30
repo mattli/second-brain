@@ -62,6 +62,9 @@
 - **2026-04-29**: Voice is in v1.5, not v3. Validated product is voice-anchored. Text-first is stepping stone, not the destination.
 - **2026-04-29**: Source-only grounding (no external knowledge bleed) is v1, not v2. Hallucination is a dealbreaker in legal/medical study contexts per validation findings.
 - **2026-04-29**: WikiTutor is a working name. Plan to rename before external launch since the product is a study tutor, not a wiki.
+- **2026-04-30**: WikiTutor is a study session, not a chat interface over content. The chat-over-content category (NotebookLM, Copilot, ChatGPT-with-PDF) treats the document as a passive source to query. WikiTutor treats it as something the user actively studies through, with state and structure. This is the product's category-level differentiator and informs why progress tracking, session state, sentence-level interaction, and the artifact are core (not nice-to-haves).
+- **2026-04-30**: Zero-config onboarding is a product principle. Sign up → upload PDF → study. No API keys, no model selection, no configuration. This is a real moat against BYOK tools targeting technical users — the validated user (student with a deadline) won't get past configuration friction.
+- **2026-04-30**: "Personal use AND validated student user" is the same product, not two products. Earlier framing of "WikiTutor for students AND a separate personal tool for me" was wrong. As long as WikiTutor stays focused on the study session as the unit of interaction, both users are served. The drift to worry about isn't "make WikiTutor work for me too" — it's "make WikiTutor manage my whole vault" (which is Copilot territory).
 
 ---
 

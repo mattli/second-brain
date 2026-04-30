@@ -8,12 +8,24 @@ Repo: `~/Development/wiki-tutor/` (local, not yet pushed).
 
 ## Status
 
-**V1 in progress (2026-04-29 evening).** Features #1–2 shipped today:
+**V1 in progress (2026-04-30).** Features #1–4 shipped; #4's PDF sentence-click is gated off pending an architectural decision.
 
 - **#1 Auth (✅ shipped 2026-04-29)** — Supabase magic-link, RLS-isolated per user. Code at `src/lib/supabase/`, `src/middleware.ts`, `src/app/login/`, `src/app/auth/`.
-- **#2 PDF upload + storage (✅ shipped 2026-04-29)** — `POST /api/documents` (multipart, ≤50MB, PDF magic-byte validation), SHA-256 content-hash dedup, original + extracted markdown stored in private Supabase Storage bucket `documents/<user_id>/<doc_id>/`. Extraction via `unpdf` (Mozilla pdf.js, no native deps). Migration: `supabase/migrations/0001_documents_schema.sql`. Test recipe: `scripts/upload-pdf.sh`.
+- **#2 PDF upload + storage (✅ shipped 2026-04-29)** — `POST /api/documents` (multipart, ≤50MB, PDF magic-byte validation), SHA-256 content-hash dedup, original + extracted markdown stored in private Supabase Storage bucket `documents/<user_id>/<doc_id>/`. Extraction via `unpdf` (Mozilla pdf.js, no native deps). Migration: `supabase/migrations/0001_documents_schema.sql`.
+- **#3 Library view + upload UI (✅ shipped 2026-04-30)** — Server-rendered library at `/` with the document list and a drag-and-drop dropzone. Synchronous upload (no job queue — v1.5 concern); indeterminate progress bar with branched copy. Click-through to `/document/[id]`. Old V0 wiki home moved to `/wiki` (still routable, not linked).
+- **#3.5 Markdown file support (✅ shipped 2026-04-30)** — Same upload endpoint accepts `.md`/`.markdown` alongside `.pdf`. Frontmatter stripped via `gray-matter`; body stored verbatim — wikilinks, dataview blocks, callouts, code fences pass through. Frontmatter `title` becomes the document title when non-empty, else filename. `source = 'markdown_upload'`. SHA-256 dedup is cross-kind.
+- **#4 Reading view (⚠️ partially shipped 2026-04-30)** — `/document/[id]` server-renders, branches on `documents.source`. Markdown renders via the unified pipeline (wikilinks render as inert greyed `wikilink-missing` spans since uploads aren't part of a wiki). PDF renders the *original* file via `react-pdf` (dynamic import, `ssr: false`). Stable sentence ID schemes locked in for feature #10 reuse: markdown `<docId>-p<paraIdx>-s<sIdx>`, PDF `<docId>-page<pageNumber>-s<sIdx>`. **Markdown sentence-click works.** **PDF sentence-click is disabled** behind `PDF_OVERLAYS_ENABLED = false` flag — the Option B matching algorithm (substring-match `extracted.md` sentences against pdf.js textLayer spans) produced false-positive overlays on real academic papers; matcher still runs for diagnostic logs. Architectural decision deferred to next session.
 
-**V1 remaining**: library view, reading view, highlight + LLM-backed menu actions, chat, session state + artifact, vector storage + RAG with grounding constraint, progress tracking. See `mvp-scope.md` for build order.
+**V1 remaining**: PDF sentence-click decision (improve matching vs. native selection), highlight + LLM-backed menu actions (#5–6), chat (#7), session state + artifact (#8), vector storage + RAG with grounding constraint (#9), source-type metadata (#10 — woven throughout), progress tracking (#11). See `mvp-scope.md` for build order.
+
+### Open architectural decision (next session)
+
+PDF sentence-click matching produced false-positive overlays on a real academic PDF (Elmira van den Broek "Unpacking AI at work" — body pages 11–47% matched, bibliography pages 14–20%, with many "matches" landing on whitespace or unrelated text). Two paths:
+
+- **(A)** Replace substring matching with stronger alignment (token-level Smith-Waterman / fuzzy diff that tracks position, not just first occurrence).
+- **(B)** Drop per-sentence overlays for v1 PDFs entirely; rely on native browser text selection. Markdown documents keep overlays since alignment is exact.
+
+PDF reading still works today — pages render, text selection is fully functional. Only the per-sentence click overlays are suppressed. Captured in repo `CLAUDE.md` "PDF sentence-click implementation" section with the failure modes spelled out.
 
 ### Earlier in the day (context for the pivot)
 

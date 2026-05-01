@@ -44,6 +44,28 @@ Once users have accumulated wiki content from real study, recall becomes the pri
 
 Each form gets harder, but they share the underlying retrieval primitives.
 
+#### What proactive surfacing looks like in product
+
+The third form — noticing connections — is the highest-value version of recall because it doesn't require the user to know what to ask. It's worth being concrete about how this manifests:
+
+**Tags in the right panel, anchored to the moment of reading.** When a user clicks a paragraph for explanation, the panel surfaces small clickable tags alongside the explanation. Tags reference the user's prior wiki content that connects to this paragraph — entries from this same document, entries from other documents the user has studied. Click a tag, see the connected entry.
+
+Why this specific shape:
+- **Anchored to attention.** The user is engaged with this paragraph right now. That's when relevance matters most. Surfacing connections during reading is more valuable than waiting for a query.
+- **Contextual, not abstract.** Tags reference concrete past entries ("you engaged with this idea in [paper A]") rather than abstract concepts ("#active-recall"). The user can jump directly to past work, not browse a tag taxonomy.
+- **Compound with study history.** A new user sees no tags — no wiki content yet. A long-term user sees tags everywhere. Same compound-value pattern as the rest of the architecture: the product gets richer with use.
+
+**Design discipline:**
+- Limit surfaced connections to 2–3 per paragraph. More becomes noise.
+- Rank by relevance (semantic similarity) AND engagement weight (wiki entries beat raw passages, recent activity beats stale).
+- Allow user dismissal. A dismissed tag is an engagement signal that feeds back into ranking.
+- The document stays primary. Tags are quiet supporting affordances, not features demanding engagement.
+
+**Implementation approach:**
+Semantic similarity over the user's wiki + engagement weighting. Find wiki entries semantically close to the current paragraph; rank by engagement signal hierarchy; surface the top 2–3 with link-back to the source entry. No explicit concept extraction needed initially — the embedding similarity does most of the work. Concept extraction is a v3 refinement if quality demands it.
+
+This is what closes Act 3's loop. Search and synthesis are query-driven — the user has to know what they're looking for. Tags-during-reading are proactive — the system notices when something matters. Together they make the wiki feel alive: there when you ask, there when you didn't know to ask.
+
 ### Why the ordering matters
 
 Don't build Act 2 before Act 1 is solid. Don't build Act 3 before users have wiki content. Each act earns its place by the prior one being real. The temptation will be to promise Act 3 (recall) prematurely, but you can't deliver it without months of user wiki accumulation. v1 ships the foundation; the recall promise comes later.

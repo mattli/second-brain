@@ -1,120 +1,115 @@
 ---
-generated: 2026-04-30
+generated: 2026-05-01
 status: proposal (awaiting approval)
 ---
 
-# Wiki Structure Review — 2026-04
+# Wiki Structure Review — 2026-05
 
 ## Current State
 
 | Folder | Pages | Notes |
 |--------|-------|-------|
-| concepts/ | 8 | Core AI concepts. Coherent, well-sized. |
-| culture/ | 2 | Cultural analysis — museum design, internet theory. |
-| landscape/ | 10 | AI industry landscape. Densest folder; venture-capital-access.md missing from INDEX. |
-| models-safety/ | 3 | Model releases and safety. Healthy. |
-| music/ | 1 | Only beatles-early-period.md. |
-| people/ | 4 | Individual profiles. Healthy. |
-| science/ | 1 | Only ai-drug-discovery.md. |
-| tools/ | 4 | Agent/product frameworks. Healthy. |
-| writing/ | 1 | Only writing-craft.md. |
+| concepts/ | 8 | Core AI concepts — healthy size, clear theme |
+| culture/ | 2 | Museum design, internet as mediating layer |
+| landscape/ | 10 | AI industry landscape — densest folder, still scannable |
+| models-safety/ | 3 | Models and safety research |
+| music/ | 1 | Beatles early period only |
+| people/ | 4 | AI figures — clear theme |
+| science/ | 1 | AI drug discovery only |
+| tools/ | 4 | Frameworks and agent engineering |
+| writing/ | 1 | Writing craft only |
 
-Total: 34 topic pages across 9 folders (plus empty `inbox/`).
+Total: 34 topic pages across 9 folders.
 
-Unorganized: 22 items under `## Bookmarks` (no `## Long-form sources` section).
+Unorganized: 22 items under `## Bookmarks`, 0 under `## Long-form sources`.
 
 ## Observations
 
-- `landscape/` is the densest folder at 10 pages. Sub-themes are visible (market analysis, startup strategy, industry structure, regulation) but still scannable. A split isn't warranted yet, but continued growth will push it past the threshold. Worth watching.
-- `music/` has 1 page (`beatles-early-period.md`). The content is compositional/cultural analysis — it fits naturally alongside `culture/museum-design-curation.md` and `culture/internet-as-mediating-layer.md`. A whole sidebar slot for one music-analysis page is a scannability cost.
-- `science/` has 1 page (`ai-drug-discovery.md`). This is a genuine growth area — AI-driven science is a recurring theme in the source material. Keeping the folder signals that more content is expected. Leave as-is.
-- `writing/` has 1 page (`writing-craft.md`). Similar to science/ — writing and communication are plausible growth topics. Leave as-is.
-- `landscape/venture-capital-access.md` exists on disk but is missing from INDEX.md. INDEX drift — the page was created on 2026-04-24 but never added to the index.
-- `inbox/` is empty. It appears to be structural (not a topic folder). No action needed.
+- **INDEX drift persists:** `landscape/venture-capital-access.md` exists on disk but is still missing from `INDEX.md`. This was flagged in the April review and remains unfixed — the April review was never applied.
+- `landscape/` at 10 pages remains the densest folder. Sub-themes (careers, startups, regulation, org design, definitions, VC) are visible but each page is distinct. No split warranted yet, but approaching the threshold where one becomes worth considering.
+- Three single-page folders remain: `music/` (1), `writing/` (1), `science/` (1). The April review proposed merging `music/` into `culture/` — that proposal stands and is carried forward here.
+- `writing/` and `science/` remain plausible growth areas. Leave as-is.
+- `inbox/` is empty. Structural folder, no action needed.
+- All folder names still match their contents. No drift detected in any folder.
+- Unorganized has grown slightly since April (was 22 items, still 22 — same items, no new saves added to it this period). Several clusters identified in April remain unaddressed since the review was never applied.
 
 ## Proposed Changes
 
 ### 1. Merge `music/` into `culture/`
 
-Move `music/beatles-early-period.md` to `culture/beatles-early-period.md` and delete the empty `music/` folder. Rename the INDEX section from "Music" to fold the entry into "Culture" (or rename "Culture" to "Culture & Music" if the distinction matters).
+Move `music/beatles-early-period.md` to `culture/beatles-early-period.md` and delete the empty `music/` folder. Fold the INDEX "Music" section entry into the "Culture" section.
 
-**Why:** `beatles-early-period.md` is compositional and cultural analysis. It sits naturally with the other culture pages. A 1-page folder for a topic unlikely to grow rapidly costs a sidebar slot without aiding scannability.
+**Why:** `beatles-early-period.md` is compositional and cultural analysis — it sits naturally with the other culture pages (museum curation, internet-as-mediating-layer). A 1-page folder for a topic unlikely to grow rapidly costs a sidebar slot without aiding scannability. This was proposed in the April review and remains the right call.
 
-**Impact:** 1 page moved, `music/` folder deleted, INDEX.md updated (remove Music section, add entry under Culture), internal links in other pages updated if any reference the old path.
+**Impact:** 1 page moved, `music/` folder deleted, INDEX.md updated (remove Music section, add entry under Culture), any internal links to old path updated.
 
 ### 2. Fix INDEX drift — add `venture-capital-access.md`
 
-Add `venture-capital-access.md` to the Landscape section of INDEX.md with its description.
+Add `landscape/venture-capital-access.md` to the Landscape section of INDEX.md with its description line.
 
-**Why:** The page exists and has substantive content (USVC/AngelList indexed VC thesis) but was never added to INDEX after creation. INDEX should reflect all topic pages.
+**Why:** The page has been missing from INDEX since its creation on 2026-04-24. This is the second consecutive review flagging it. The page covers USVC/AngelList indexed VC access — substantive content invisible to INDEX readers.
 
 **Impact:** 1 line added to INDEX.md. No file moves.
 
 ## Unorganized Promotions
 
-### 1. Merge marketing/growth cluster into `landscape/ai-startup-distribution.md`
+### 1. Merge Claude Opus 4.7 into `models-safety/frontier-models.md`
 
-Three items cluster around marketing tactics and growth strategy, which is the core topic of the existing `ai-startup-distribution.md` page.
-
-**Items to move:**
-- **App Growth Formula** (Viktor Seraleev's 16-point formula for mobile app success)
-- **Neuromarketing & Meta Tribe V2** (Meta's brain-scan AI model for ad optimization)
-- **"the difference between 'why isn't this selling'..."** (The Boring Marketer on finding the right angle)
-
-**Action:** Merge relevant insights into `landscape/ai-startup-distribution.md`. Remove items from `unorganized.md`. No INDEX change needed (page already listed).
-
-### 2. Merge YC/startup cluster into `landscape/yc-ai-thesis.md`
-
-Three items are YC-adjacent startup advice that fits the existing YC thesis page.
+The Opus 4.7 release article (vision improvements, xhigh effort level, /ultrareview, auto mode, Project Glasswing cyber safeguards) extends the frontier-models page which already tracks model releases and benchmarks.
 
 **Items to move:**
-- **"ok this startup is cool but..."** (Andrew Chen on founders building despite big-company threats)
-- **Here's YC's official advice about being truthful...** (Garry Tan on pilot/bookings/revenue terminology precision)
-- **YC on how to build a company with AI from...** (Ben Lang pointer to YC video)
+- Introducing Claude Opus 4.7 (article, saved 2026-04-17)
 
-**Action:** Merge relevant insights into `landscape/yc-ai-thesis.md`. Remove items from `unorganized.md`. No INDEX change needed.
+**Action:** Merge into `models-safety/frontier-models.md`. Remove from `unorganized.md`.
 
-### 3. Merge model release items into existing pages
+### 2. Merge OpenClaw article into `people/peter-steinberger.md`
 
-Two items fit naturally into existing wiki pages as individual merges.
+The "How I created OpenClaw" article is about Peter Steinberger, who already has a people page mentioning OpenClaw.
 
 **Items to move:**
-- **Introducing Claude Opus 4.7** → merge into `models-safety/frontier-models.md`
-- **Beliefs guiding our path to superintelligence** (ineffable.ai) → merge into `landscape/agi-definitions.md` or `concepts/world-models.md`
+- How I created OpenClaw (article, saved 2026-04-17, 170w — thin)
 
-**Action:** Merge into respective target pages. Remove from `unorganized.md`.
+**Action:** Add source reference to `people/peter-steinberger.md`. Remove from `unorganized.md`.
 
-### 4. Merge Peter Steinberger item into existing page
+### 3. Merge startup/marketing tweets into existing landscape pages
 
-**Items to move:**
-- **How I created OpenClaw** (170w, thin) — already covered by `people/peter-steinberger.md`
+Several thin items belong in existing pages:
 
-**Action:** Add source link to `people/peter-steinberger.md` if not already referenced. Remove from `unorganized.md`.
+**Into `landscape/ai-startup-distribution.md`:**
+- App Growth Formula (Viktor Seraleev's 16-point mobile formula)
+- "the difference between 'why isn't this selling'…" (finding the right angle)
+- "ok this startup is cool but…" (Andrew Chen on founders vs big-company threats)
 
-### 5. Drop non-wiki bookmarks
+**Into `landscape/yc-ai-thesis.md`:**
+- Here's YC's official advice about being truthful… (Garry Tan on terminology precision)
+- YC on how to build a company with AI from… (Ben Lang pointer tweet)
 
-Items that don't belong in a knowledge wiki — recipes, product changelogs, tool bookmarks, and empty highlights.
+**Action:** Merge insights into respective target pages. Remove all from `unorganized.md`.
 
-**Items to drop:**
-- **Jesse's Blueberry Chia Seed Pudding** — recipe, not knowledge wiki material
+### 4. Drop non-wiki bookmarks
+
+Items that don't belong in a knowledge wiki:
+
+- **Jesse's Blueberry Chia Seed Pudding** — recipe
 - **April 10, 2026** — Readwise product changelog
 - **April 17, 2026** — Readwise product changelog
 - **April 24, 2026** — Readwise product changelog
-- **x-bookmarks.com** — tool bookmark with no substantive content
-- **(untitled highlight)** — standalone highlight with no document context
+- **(untitled highlight)** — standalone highlight, no document context
+- **x-bookmarks.com** — tool bookmark, no substantive content
 
-**Action:** Remove from `unorganized.md`.
+**Action:** Remove these 6 items from `unorganized.md`.
 
 ## Watch Items
 
 Pairs or singletons too thin to promote; flagged for next review.
 
-- **Gabor Mate podcast** (psychology, trauma, mind-body) — substantial content (19K words) but no matching wiki domain. If more psychology/health items arrive, a `science/` or `health/` page could form.
-- **Lenny Rachitsky profile** + **Peter Steinberger "How I created OpenClaw"** — both are creator/builder profiles. If more creator profiles accumulate, a dedicated page or `people/` expansion could work. (Steinberger already has a page; Rachitsky doesn't.)
-- **Humanity Is About to Fork** (Diamandis) + **The Future Of Everything Is Lies** (Kingsbury, residual) — both are long-form future-of-technology pieces. The Kingsbury essay's unsynthesized remainder (information ecology, epistemic collapse) could seed a new topic if similar themes recur.
-- **Perplexity Comet** + **NanoClaw + Vercel** — both are AI product announcements. Too thin individually; would need more product-launch items to form a cluster.
-- **Ghostty** — developer tool bookmark. Singleton, no adjacent items.
-- `landscape/` folder at 10 pages — not proposing a split yet, but if it grows past 12-13 pages, consider splitting into `landscape/market/` and `landscape/strategy/` or similar.
+- **Gabor Maté podcast** (19K words on trauma, narcissism, mind-body connection) — substantive but no matching wiki domain. Could seed a psychology/health page if more saves arrive.
+- **Lenny Rachitsky profile** (7K words on creator-operator model) — substantive singleton. Could seed a creators/media page.
+- **Neuromarketing & Meta Tribe V2** (11K words on brain-scan AI for ad optimization) — substantial but niche. Doesn't fit `ai-startup-distribution.md` cleanly (it's neuroscience-meets-marketing, not distribution strategy). Watch for more marketing-science saves.
+- **Humanity Is About to Fork** (Diamandis) + **The Future Of Everything Is Lies** (Kingsbury, residual) — two societal-impact essays with partially synthesized content. The unsynthesized remainder (information ecology, epistemic collapse, speciation forks) could form an "AI & Society" topic if similar saves recur.
+- **Beliefs guiding path to superintelligence** (ineffable.ai) — thin mission statement. Could fit `concepts/world-models.md` or `landscape/agi-definitions.md` if fleshed out, but too thin to merge now.
+- **Perplexity Comet** + **NanoClaw + Vercel** + **Ghostty** — product/tool bookmarks with no shared knowledge theme. Singletons.
+- `landscape/` folder at 10 pages — no split proposed, but if it grows past 12–13 pages, consider splitting by sub-theme (market analysis vs. strategy vs. regulation).
 
 ## Approval
 

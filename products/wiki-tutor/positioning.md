@@ -55,6 +55,40 @@ Read-later application with highlighting layer. Save articles, annotate while re
 
 Different category from WikiTutor. Reader is a *consumption* tool (read articles, save thinking via highlights). WikiTutor is a *study* tool (engage actively with a single document over multiple sessions). A user might use both: Reader to capture and consume, WikiTutor to deeply study specific documents that warrant it.
 
+### Ghostreader (Readwise Reader's AI feature)
+AI assistant inside Readwise Reader. Sits in a side panel next to the article being read, knows what's on the page, can answer questions, summarize, define terms, generate prompts. Surfaced 2026-05-01 — worth calling out separately from Reader because the AI feature has more surface overlap with WikiTutor than the parent product does.
+
+Where it overlaps with WikiTutor:
+- AI assistance anchored to the document being read
+- Context-aware (knows what's on the page)
+- Side panel UX pattern
+- Ask-question interface
+- Has preset prompts (Ghostreader has "Explain passage," "Expand passage," "Quiz me," "Translate," etc.) that look superficially like the constrained-action set WikiTutor is moving toward
+
+Where it doesn't:
+- **Chat over content, not study session.** Same fundamental category as Copilot, NotebookLM, ChatGPT-with-PDF. No session state, no progress tracking, no per-document journey, no artifact at the end. User asks, AI answers, interaction ends.
+- **Preset prompts are entry-points into chat, not action-set replacements for chat.** This is the load-bearing distinction. Ghostreader's UX: chat panel is the primary surface, presets live in a dropdown near the chat input, picking a preset auto-inserts the prompt text into the chat input and sends it, response appears in the chat thread, follow-up is free-form text. The presets save typing; they don't change the shape of the interaction. From use one onward, the user is in a chat conversation.
+
+  WikiTutor's planned constrained-action menu is structurally different: no text input, no chat thread, each action is a discrete request anchored to a specific passage. Follow-up is more actions, not free-form messages. The interaction is *bounded by the action set*, not augmented by it. This is the discipline that keeps "study session, not chat over content" architecturally true rather than just a marketing claim.
+
+  If WikiTutor adds a text input alongside the action buttons, it becomes Ghostreader. The discipline of "actions only, no chat" is what holds the category distinction.
+- **Prompt set reveals the intended user.** Ghostreader's defaults — "Translate to Spanish," "Draft newsletter blurb," "Extract key takeaways and to-dos" — are creator and knowledge-worker shaped, not student shaped. "Newsletter blurb" especially: that's a workflow for someone who reads things and writes about them online. WikiTutor's eventual action set should be study shaped ("explain simpler," "more detail," "how does this connect to earlier sections," "define key terms in this passage," "quiz me on this section"). Not because Ghostreader's are bad — because they're for a different user.
+- **Configuration burden vs zero-config.** Ghostreader exposes prompt management to the user (Preferences screen, toggles to enable/disable each prompt, ability to add custom prompts). This is power-user UX for someone who wants to tune their tools. WikiTutor's zero-config principle applies at the prompt layer too: ship sensible study-shaped defaults; don't require configuration.
+- **Discoverability reflects product priorities.** Ghostreader's preferences live behind multiple clicks (Settings → Preferences → Ghostreader prompts). The feature itself requires text selection or panel toggle. This is appropriate for Reader because reading is the primary activity and AI is a power-user augmentation. WikiTutor inverts this: study is the primary activity, so the explain interaction is primary in the UI — click paragraph, get explanation, no menus or selection gestures required for the default action.
+- **Feature inside a read-later app, not a study tool.** Ghostreader is one capability among many in service of Reader's core consumption-and-capture loop. WikiTutor is study session as the entire product.
+- **Different user posture.** Reader users have a queue of articles to consume. WikiTutor users have one document and a study goal. "What's next in my queue" vs. "how do I learn this thing."
+- **Different validated user.** Reader skews PKM enthusiasts, knowledge workers, technical readers with a curated information diet. WikiTutor's validated user is students with deadlines — many wouldn't know what Readwise is.
+- **No recall layer.** Ghostreader helps you read this article now. It doesn't build a queryable knowledge base of accumulated study (the recall architecture WikiTutor is designed around).
+- **PDFs are second-class in Reader.** Reader is primarily for web articles and email newsletters; PDFs work but aren't the focus. The validated WikiTutor user reads casebooks, textbook chapters, papers — PDF-native content.
+
+Why this isn't discouraging:
+
+Ghostreader's existence proves "AI panel next to the content you're reading" is a real product pattern users want — that's *validation* for WikiTutor's direction, not a threat to it. What it doesn't try to do (and what no chat-over-content tool does): build the study session as the unit, with cross-session continuity, engagement-weighted recall, and validated focus on academic readers. That space is open.
+
+The sharper positioning statement: WikiTutor is what Ghostreader would be if Readwise rebuilt around the study session as the primary unit instead of the read-later queue, and committed to actions-without-chat as the interaction model.
+
+Watch for: if Readwise starts adding session state, progress tracking, artifacts, cross-document recall, or removes the chat input in favor of pure action-set interaction, that's signal worth responding to. If they stay in chat-with-prompt-shortcuts mode, the positioning stays defensible.
+
 ### Obsidian Web Clipper + Reader mode
 Free, open-source browser extension from the Obsidian team. Clips web pages, YouTube transcripts, articles into the vault as clean markdown. Reader mode (added 2026) provides a clean reading view inside the extension with typography, themes, highlighting, and YouTube transcript UI.
 

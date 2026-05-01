@@ -48,6 +48,32 @@ NOT the PKM-developer with a vault (that was a midday drift; user is single-doc 
 - **vs. Explainpaper**: Tutoring intent and session artifacts vs. moment-of-clarification only
 - **vs. Speechify / Paper2Audio**: Conversational vs. listen-only
 - **vs. Obsidian Copilot (and similar PKM AI plugins)**: Different category entirely — Copilot is chat-over-vault for PKM users; WikiTutor is a study session for academic readers. Copilot has no progress tracking, no session state, no per-document journey, no zero-config onboarding. Different jobs, different users.
+- **vs. Mindgrasp / Raena / Knowt (AI study tool category)**: These tools generate study aids (notes, flashcards, quizzes, podcasts) from uploaded content. Their "progress" is checklist-style: "have you generated all the study aids yet?" Their sessions are isolated upload-and-review cycles. They have more output-format breadth than WikiTutor, but no session-continuity architecture. WikiTutor's wedge is the conversational study session as a unit — not a one-time content transformation.
+
+---
+
+## The progress-tracking gap (validated by competitive research, 2026-04-30)
+
+Research across the AI study tool market surfaced a specific gap nobody is filling:
+
+**No tool combines passive reading signals (scroll position, time-on-section) with engagement signals (sessions, sentences engaged with, questions asked) into a coherent representation of "where you are in your thinking."**
+
+What competitors do instead:
+- **Mindgrasp**: tracks which study aids you've generated per session (checklist, not journey)
+- **Knowt**: basic position tracking (last page/scroll), no engagement signal integration
+- **Raena**: gamified progress (points, leaderboards, streaks) — different category, attention metric not learning metric
+- **Atlas, Myreader, ChatPDF**: no progress concept beyond "documents in your library"
+- **Readyy**: reading speed tracking — separate product category
+
+What none of them do:
+- Surface "where you got stuck last time" across sessions
+- Compose per-session artifacts into a per-document journey
+- Distinguish cognitive state ("you were exploring how the encoder works, with unresolved questions about positional encoding") from consumption state ("you stopped scrolling at page 47")
+- Treat returning to a document as a continuation rather than a fresh session
+
+This isn't a feature gap that's easy to retrofit. It requires the architecture to be designed around session artifacts as composable units from day one — which is what WikiTutor's architecture doc already specifies. Existing competitors would need to rebuild their core data model to match. They're unlikely to.
+
+This validates a v1 architectural choice: **per-session artifacts capture cognitive state, not just consumption state. They compose into per-document journeys.** That's the differentiation, and it's defensible because of how the system is built, not just what it does.
 
 ---
 

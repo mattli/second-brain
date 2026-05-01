@@ -7,8 +7,10 @@
 - [x] Review the Readwise Wiki schedule
 - [x] Investigate duplicate folder review files
 - [x] Read Infinite Jest
-- [ ] Go to the gym
-- [ ] Consider reaching out to Holly
+- [x] Go to the gym
+- [x] Connect with Holly
+- [ ] Work on Wiki Tutor
+- [ ] Use Wiki Tutor for article
 
 ---
 

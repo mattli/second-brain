@@ -1,5 +1,16 @@
 # April 27 – May 3
 
+### Friday, May 2
+
+- [ ] Tweak tool messaging in the Telegram agent
+- [ ] Review the Readwise Wiki schedule
+- [ ] Investigate duplicate folder review files
+- [ ] Read Infinite Jest
+- [ ] Go to the gym
+- [ ] Consider reaching out to Holly
+
+---
+
 ### Wednesday, April 29
 
 - [x] Fix docker

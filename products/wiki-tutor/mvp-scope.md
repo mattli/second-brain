@@ -114,6 +114,7 @@ You can ship without #8 and #9 and have a working product that's basically Noteb
 - **Capture questions, don't answer them all.** Patterns emerge with quantity.
 - **The artifact is the product.** If the post-session note doesn't feel valuable, nothing else matters.
 - **Source-type metadata from day one.** Cannot be retrofitted easily.
+- **Capture engagement metadata from day one.** Every paragraph click, every follow-up action, every double-click definition lookup — log it with timestamp, session ID, and the source chunk it ties to, even if no v1 feature consumes it. Cheap now; expensive to retrofit. The engagement layer is what makes Act 2 (curated wiki) and Act 3 (engagement-weighted recall) possible later. See recall-architecture.md for the full reasoning.
 - **"Build toward" the architecture, don't build it all.** Each MVP decision should keep the architecture's options open without committing to its full complexity.
 - **The connective tissue is the work.** Most of what makes a real product isn't the feature list — it's PDF rendering, selection mechanics, session state, library views.
 - **Build for the validated user, not the convenient one.** When in doubt, look at the validation doc, not your own setup.

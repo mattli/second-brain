@@ -1,6 +1,6 @@
 # April 27 – May 3
 
-### Friday, May 2
+### Friday, May 1
 
 - [ ] Tweak tool messaging in the Telegram agent
 - [ ] Review the Readwise Wiki schedule

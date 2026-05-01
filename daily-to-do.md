@@ -2,10 +2,10 @@
 
 ### Friday, May 1
 
-- [ ] Buy Geese tickets (10:00 AM)
+- [x] Buy Geese tickets (10:00 AM)
 - [x] Tweak tool messaging in the Telegram agent
-- [ ] Review the Readwise Wiki schedule
-- [ ] Investigate duplicate folder review files
+- [x] Review the Readwise Wiki schedule
+- [x] Investigate duplicate folder review files
 - [x] Read Infinite Jest
 - [ ] Go to the gym
 - [ ] Consider reaching out to Holly

@@ -2,6 +2,7 @@
 
 ### Friday, May 1
 
+- [ ] Buy Geese tickets (10:00 AM)
 - [ ] Tweak tool messaging in the Telegram agent
 - [ ] Review the Readwise Wiki schedule
 - [ ] Investigate duplicate folder review files

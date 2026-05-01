@@ -21,6 +21,7 @@
 
 
 ### NanoClaw
+- [ ] Integrate Google Calendar with NanoClaw — connect calendar so NanoClaw can read events, add reminders, and surface scheduling context. Relevant to to-do list workflow and scheduled task reminders.
 - [ ] Diagnose Telegram response latency — messages to the main group take 10–20+ seconds to get a response. Unknown whether it's container cold start, context loading, MCP startup, model latency, or tool calls within the response. Run diagnostic: send a trivial message ("hi") and a vault-lookup message back to back, compare times. If both slow → cold start or model latency. If only complex one slow → context/tool overhead. Possible knobs: warm containers, lower MAX_MESSAGES_PER_PROMPT, trim CLAUDE.md, route simple tasks to Haiku. Note (2026-04-30): streaming progress (`NANOCLAW_STREAMING_PROGRESS=1`) now masks the wait conversationally — first 🔧 tool note appears within ~1s — but root cause is still unsolved.
 - [ ] Update Phase 2 in the NanoClaw README — current vision (PM Best Practices Layer) no longer reflects actual plans; revisit when clearer on what, if anything, replaces it.
 - [x] Investigate silent wiki task failure — 3am run failed (root cause: WiFi DNS failure, not API issue) with no Telegram notification. Container exited non-zero but NanoClaw treated it as complete. Fix: catch non-zero container exits and notify. Separate from the network issue — hardwiring to ethernet should prevent the DNS failures, but the missing notification is still a bug.

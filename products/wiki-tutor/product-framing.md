@@ -43,37 +43,11 @@ NOT the PKM-developer with a vault (that was a midday drift; user is single-doc 
 
 ## Differentiation vs. existing tools
 
-- **vs. NotebookLM**: Conversational tutoring loop with retention focus, not "blob of text" summarization
-- **vs. ChatGPT-with-PDF (the current workaround)**: Productized loop, persistent memory across sessions, structured recap artifact, grounded answers
-- **vs. Explainpaper**: Tutoring intent and session artifacts vs. moment-of-clarification only
-- **vs. Speechify / Paper2Audio**: Conversational vs. listen-only
-- **vs. Obsidian Copilot (and similar PKM AI plugins)**: Different category entirely — Copilot is chat-over-vault for PKM users; WikiTutor is a study session for academic readers. Copilot has no progress tracking, no session state, no per-document journey, no zero-config onboarding. Different jobs, different users.
-- **vs. Mindgrasp / Raena / Knowt (AI study tool category)**: These tools generate study aids (notes, flashcards, quizzes, podcasts) from uploaded content. Their "progress" is checklist-style: "have you generated all the study aids yet?" Their sessions are isolated upload-and-review cycles. They have more output-format breadth than WikiTutor, but no session-continuity architecture. WikiTutor's wedge is the conversational study session as a unit — not a one-time content transformation.
+Competitive differentiation now lives in its own doc: see [positioning.md](./positioning.md).
 
----
+That doc covers per-competitor differentiation (NotebookLM, ChatGPT-with-PDF, Explainpaper, Obsidian Copilot, Mindgrasp/Raena/Knowt, Readwise Reader, Obsidian Web Clipper + Reader, Speechify), the progress-tracking gap, zero-config as a moat, the desktop-first posture, and what WikiTutor explicitly is *not*.
 
-## The progress-tracking gap (validated by competitive research, 2026-04-30)
-
-Research across the AI study tool market surfaced a specific gap nobody is filling:
-
-**No tool combines passive reading signals (scroll position, time-on-section) with engagement signals (sessions, sentences engaged with, questions asked) into a coherent representation of "where you are in your thinking."**
-
-What competitors do instead:
-- **Mindgrasp**: tracks which study aids you've generated per session (checklist, not journey)
-- **Knowt**: basic position tracking (last page/scroll), no engagement signal integration
-- **Raena**: gamified progress (points, leaderboards, streaks) — different category, attention metric not learning metric
-- **Atlas, Myreader, ChatPDF**: no progress concept beyond "documents in your library"
-- **Readyy**: reading speed tracking — separate product category
-
-What none of them do:
-- Surface "where you got stuck last time" across sessions
-- Compose per-session artifacts into a per-document journey
-- Distinguish cognitive state ("you were exploring how the encoder works, with unresolved questions about positional encoding") from consumption state ("you stopped scrolling at page 47")
-- Treat returning to a document as a continuation rather than a fresh session
-
-This isn't a feature gap that's easy to retrofit. It requires the architecture to be designed around session artifacts as composable units from day one — which is what WikiTutor's architecture doc already specifies. Existing competitors would need to rebuild their core data model to match. They're unlikely to.
-
-This validates a v1 architectural choice: **per-session artifacts capture cognitive state, not just consumption state. They compose into per-document journeys.** That's the differentiation, and it's defensible because of how the system is built, not just what it does.
+product-framing.md keeps the identity-level framings below ("Study session, not chat over content" and "What the product really is") because they're about what the product *is*, not how it differentiates.
 
 ---
 
@@ -98,18 +72,7 @@ For positioning: WikiTutor is in the "study session" category. Most existing too
 
 ## Zero-config as a product principle
 
-The validated user is a student with a deadline, not a developer evaluating tools. They don't have API keys. They don't know what an embedding model is. They've never opened a terminal.
-
-For this user, configuration friction is a complete dead end — not a minor annoyance. A product that requires "add your OpenAI API key, choose an embedding model, configure CORS settings, click Build Index" loses every non-technical user before they've started.
-
-**WikiTutor's onboarding is sign up → upload PDF → study.** Three steps. No keys. No model selection. No configuration. The AI is invisible infrastructure; the user thinks about studying, not about LLMs.
-
-This is a real moat against BYOK PKM tools (Copilot, etc.) that target technical users. Those products charge $15/mo because their users accept configuration friction. WikiTutor handles infrastructure entirely — different value prop, different price-sensitivity profile (students are price-sensitive but expect zero-config from consumer products).
-
-Product principles that follow from this:
-- Setup friction kills conversion — if onboarding requires more than three steps, you're losing users
-- Errors should never expose underlying machinery ("build index" is the wrong button name; do it silently in the background)
-- Don't make users juggle services — single sign-in, single product surface, no provider/model decisions visible
+Detailed treatment moved to [positioning.md](./positioning.md). Short version: configuration friction is a complete dead end for the validated user (student with deadline, no API keys, no terminal experience). v1 onboarding is sign up → upload → study. Three steps. No keys. No model selection. AI is invisible infrastructure.
 
 ---
 

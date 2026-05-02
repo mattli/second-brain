@@ -4,9 +4,9 @@
 
 - [ ] Tomo Fujita warm-up exercises
 - [x] Read AI digests
-- [ ] Coffee and chia seed pudding
-- [ ] Go to the gym
-- [ ] Call with George (2:00 PM)
+- [x] Coffee and chia seed pudding
+- [x] Go to the gym
+- [x] Call with George (2:00 PM)
 
 ---
 

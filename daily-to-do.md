@@ -3,7 +3,7 @@
 ### Saturday, May 2
 
 - [ ] Tomo Fujita warm-up exercises
-- [ ] Read AI digests
+- [x] Read AI digests
 - [ ] Coffee and chia seed pudding
 - [ ] Go to the gym
 - [ ] Call with George (2:00 PM)

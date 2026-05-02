@@ -1,5 +1,15 @@
 # April 27 – May 3
 
+### Saturday, May 2
+
+- [ ] Tomo Fujita warm-up exercises
+- [ ] Read AI digests
+- [ ] Coffee and chia seed pudding
+- [ ] Go to the gym
+- [ ] Call with George (2:00 PM)
+
+---
+
 ### Friday, May 1
 
 - [x] Buy Geese tickets (10:00 AM)

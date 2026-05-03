@@ -2,7 +2,7 @@
 
 ### Sunday, May 3
 
-- [ ] Tomo Fujita warm-up exercises
+- [x] Tomo Fujita warm-up exercises
 - [x] Avocado toast and eggs, coffee
 - [x] Read Infinite Jest
 - [ ] Swim (see how the body feels)

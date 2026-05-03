@@ -1,5 +1,16 @@
 # April 27 – May 3
 
+### Sunday, May 3
+
+- [ ] Tomo Fujita warm-up exercises
+- [ ] Avocado toast and eggs, coffee
+- [ ] Read Infinite Jest
+- [ ] Swim (see how the body feels)
+- [ ] 30 min interview prep — review previously created docs
+- [ ] Continue reading Twitter article with Wiki Tutor
+
+---
+
 ### Saturday, May 2
 
 - [ ] Tomo Fujita warm-up exercises

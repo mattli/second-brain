@@ -19,8 +19,8 @@
 - [x] Read Infinite Jest
 - [x] Go to the gym
 - [x] Connect with Holly
-- [ ] Work on Wiki Tutor
-- [ ] Use Wiki Tutor for article
+- [x] Work on Wiki Tutor
+- [x] Use Wiki Tutor for article
 
 ---
 

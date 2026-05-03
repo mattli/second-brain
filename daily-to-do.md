@@ -5,8 +5,8 @@
 - [x] Tomo Fujita warm-up exercises
 - [x] Avocado toast and eggs, coffee
 - [x] Read Infinite Jest
-- [ ] Swim (see how the body feels)
-- [ ] 30 min interview prep — review previously created docs
+- [ ] ~~Swim (see how the body feels)~~
+- [x] Beni interview prep doc
 - [ ] Continue reading Twitter article with Wiki Tutor
 
 ---

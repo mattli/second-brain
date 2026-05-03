@@ -3,8 +3,8 @@
 ### Sunday, May 3
 
 - [ ] Tomo Fujita warm-up exercises
-- [ ] Avocado toast and eggs, coffee
-- [ ] Read Infinite Jest
+- [x] Avocado toast and eggs, coffee
+- [x] Read Infinite Jest
 - [ ] Swim (see how the body feels)
 - [ ] 30 min interview prep — review previously created docs
 - [ ] Continue reading Twitter article with Wiki Tutor

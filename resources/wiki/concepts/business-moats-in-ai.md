@@ -96,7 +96,9 @@ Andrew Chen's historical framing: every technology wave produces the same object
 
 "Pessimists ask 'what if they build it.' Founders ask 'what if I build it?'"
 
-## The AI SaaS Squeeze (Tyler Tringas)
+## The AI SaaS Squeeze (Tyler Tringas) {#ai-saas-squeeze}
+
+See also: [Services as Software](../landscape/services-as-software.md) — Sequoia's thesis on the services-first pivot.
 
 Tyler Tringas (Calm Fund) wrote a thesis in June 2025 (published Apr 2026) arguing AI-assisted coding is eroding the fundamental SaaS moat — and the predictions proved "very directionally correct," with effects faster and larger than expected.
 

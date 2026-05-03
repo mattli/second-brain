@@ -39,6 +39,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [AI User Perspectives](landscape/ai-user-perspectives.md) — Anthropic's 81K-person survey; what users want; fears (unreliability, displacement, autonomy loss); light and shade framework
 - [AGI Definitions](landscape/agi-definitions.md) — 4 definitions (DeepMind, Bengio, Hinton, OpenAI); current AI capability gaps; jagged capabilities; milestone taxonomy
 - [AI Regulation](landscape/ai-regulation.md) — US state AI law patchwork (CA, CO, MN, NY, OH, UT); Trump federal preemption efforts; compliance implications; common regulatory themes
+- [Venture Capital Access](landscape/venture-capital-access.md) — Private markets democratizing; USVC (AngelList) indexed low-fee vehicle for retail investors; the "Vanguard moment" for private markets
 
 ## People
 

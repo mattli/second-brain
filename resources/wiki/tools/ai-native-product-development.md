@@ -52,7 +52,7 @@ Strong opinions on both sides:
 
 ## The "Cursor for Product Management" Gap
 
-Y Combinator's 2026 RFS explicitly calls out this gap: "There's no system that supports the full loop of product discovery." They want a tool where you upload customer interviews and usage data, ask "what should we build next?", and get feature outlines backed by customer feedback — with development tasks broken down for coding agents.
+[Y Combinator's 2026 RFS](../landscape/yc-ai-thesis.md) explicitly calls out this gap: "There's no system that supports the full loop of product discovery." They want a tool where you upload customer interviews and usage data, ask "what should we build next?", and get feature outlines backed by customer feedback — with development tasks broken down for coding agents.
 
 ## PMs Building in Cursor (Practitioner Examples)
 

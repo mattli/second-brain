@@ -204,6 +204,12 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - **Graphed** — Data warehouse + agent platform for marketing. Connects live business data (Google Search Console, Ahrefs, CMS, ad platforms) to persistent AI agents that execute go-to-market workflows autonomously.
 - **Dodo Payments** — Billing/payments platform for AI-first companies. Credit-based billing, usage metering, global MoR.
 
+## Further Reading (bookmarks)
+
+- **App Growth Formula** — Viktor Seraleev's 16-point formula for mobile app success: bright icons, quality-first in existing niches, short video onboarding (4-5 steps), weekly+yearly subscriptions (no lifetime), 3-day free trial, ASO with data-driven keywords, localization, single-channel marketing mastery, reinvest profits
+- **Neuromarketing & Meta Tribe V2** — Meta open-sourced Tribe V2 (trained on 720 human brains wired to MRI scanners while consuming media). Predicts frame-by-frame how content triggers neural responses. Practical workflow for using the model to optimize video ads.
+- **"the difference between 'why isn't this selling'…"** — The Boring Marketer on finding the right marketing angle
+
 ## Sources
 
 - "200,000+ new vibe coding projects..." — Greg Isenberg (tweet, Mar 2026) ([link](https://x.com/gregisenberg/status/2038706332119797894/?rw_tt_thread=True))

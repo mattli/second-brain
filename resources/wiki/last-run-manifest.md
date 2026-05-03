@@ -1,118 +1,117 @@
 ---
-run_date: 2026-04-20
-run_start: "2026-04-20T09:00:00Z"
-run_end: "2026-04-20T11:30:00Z"
-documents_total: 29
-documents_processed: 25
-documents_referenced: 1
-documents_skipped: 3
-documents_failed: 0
-research_log_entries: 0
+wrap_up_date: 2026-05-02
+wrap_up_start: "2026-05-02T12:00:00Z"
+wrap_up_end: "2026-05-02T12:15:00Z"
+week_start: "2026-04-25T00:00:00Z"
+pages_created_this_week: 7
+pages_updated_this_week: 6
+workers_succeeded: 5
+workers_failed: 0
+worker_veto_rate: "0/5 (0%)"
+auto_merges: 0
+dedup_candidates_flagged: 0
+orphans_flagged: 6
+synthesis_candidates_flagged: 0
+split_candidates_flagged: 0
+unorganized_clusters_promoted: 1
 ---
 
-# Last Run Manifest
+# Weekly Wrap-Up — 2026-05-02
 
-- **run_type:** weekly
-- **updated_after:** "2026-04-16T12:00:00Z"
-- **status:** complete
+## This Week at a Glance
 
-## Document Processing Log
+First full week of the per-doc pipeline. 5 single-doc workers ran successfully on Apr 27, creating 7 new pages across culture, music, science, landscape, and concepts. The daily list-maker ran 4 times (Apr 28, 30, May 1, 2) dispatching 3 additional workers. No dedup issues — all new pages cover distinct topics.
 
-### Batch 1 (Tier A — 5 docs)
+## Pages Created
 
-| #   | Title                                                          | Author     | Words | Action  | Target Page(s)                       |
-| --- | -------------------------------------------------------------- | ---------- | ----- | ------- | ------------------------------------ |
-| 1   | The Anatomy of an Agent Harness (Enterprise Context Synthesis) | Hyperspell | ~3K   | UPDATED | tools/agent-harness.md               |
-| 2   | The Anatomy of an Agent Harness (Testing Pyramid)              | Garry Tan  | ~3K   | UPDATED | tools/agent-harness.md               |
-| 3   | The Anatomy of an Agent Harness (Three Dimensions)             | Akshay     | ~2K   | UPDATED | tools/agent-harness.md               |
-| 4   | Framework Implementation Comparison                            | —          | ~2K   | UPDATED | tools/agent-harness.md               |
-| 5   | LinkedIn MCP Outreach                                          | —          | ~1K   | UPDATED | landscape/ai-startup-distribution.md |
+| Page | From | Folder |
+|------|------|--------|
+| culture/internet-as-mediating-layer.md | 01kpr9baeh4vqm919ax9ek2f80 | culture/ |
+| culture/museum-design-curation.md | 01kpvhrvbm95ch4kexbc8af9qs | culture/ |
+| music/beatles-early-period.md | 01kq1ea2js67vhvxhf3kwwv3f0 | music/ |
+| concepts/synthetic-personas.md | 01kq881g9mf0dfc4nzk8eyywt1 | concepts/ |
+| landscape/ai-regulation.md | 01kq881g9mf0dfc4nzk8eyywt1 | landscape/ |
+| models-safety/frontier-models.md | 01kq881g9mf0dfc4nzk8eyywt1 | models-safety/ |
+| science/ai-drug-discovery.md | 01kq881g9mf0dfc4nzk8eyywt1 | science/ |
 
-### Batch 2 (Tier A — 5 docs)
+## Pages Updated
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 6 | Harvey Vertical AI Playbook ($0→$200M) | — | ~5K | UPDATED | landscape/vertical-ai.md |
-| 7 | Agent-First SaaS | — | ~3K | UPDATED | landscape/services-as-software.md |
-| 8 | SaaS Squeeze / Vertical AI | — | ~4K | UPDATED | landscape/vertical-ai.md |
-| 9 | LeCun Interview (World Models) | — | ~8K | UPDATED | concepts/world-models.md |
-| 10 | AI Safety Fieldbuilding (80,000 Hours) | Aaron Gertler | ~6K | UPDATED | models-safety/ai-safety-interpretability.md |
+| Page | Updates this week |
+|------|-------------------|
+| concepts/business-moats-in-ai.md | 1 (Apr 27) |
+| concepts/knowledge-work-future.md | 1 (Apr 27) |
+| tools/agentic-engineering.md | 1 (Apr 27) |
+| tools/ai-native-product-development.md | 2 (Apr 27) |
+| concepts/agent-proficiency.md | 1 (Apr 27) |
+| landscape/ai-careers.md | 1 (Apr 27) |
 
-### Batch 3 (Tier A — 5 docs)
+## Auto-Merges
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 11 | Living Software / Output Design | — | ~3K | UPDATED | tools/ai-native-product-development.md |
-| 12 | AI Architect Mode | — | ~2K | UPDATED | landscape/ai-organization-design.md |
-| 13 | Open vs Closed Models (Lambert) | — | ~4K | UPDATED | concepts/world-models.md |
-| 14 | Humanity Is About to Fork | Peter Diamandis | ~3K | BOOKMARK | unorganized.md |
-| 15 | X API Pricing Update | Robert Scoble | ~1K | UPDATED | tools/agentic-engineering.md |
+| Merged | Into | Reason |
+|--------|------|--------|
+| (none) | | |
 
-### Batch 4 (Tier A — 5 docs)
+## Dedup Candidates (flagged for review)
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 16 | Intercom 2x (AI Org Restructuring) | Des Traynor | ~5K | UPDATED | landscape/ai-organization-design.md |
-| 17 | Agent Categorization Framework | — | ~3K | UPDATED | tools/agentic-engineering.md |
-| 18 | Claude Opus 4.7 Release | Anthropic | ~4K | BOOKMARK | unorganized.md |
-| 19 | Neuromarketing / Meta Tribe V2 | Karlo | ~11K | BOOKMARK | unorganized.md |
-| 20 | Lenny Rachitsky Profile | First Round Review | ~7K | BOOKMARK | unorganized.md |
+| Page A | Page B | Rationale |
+|--------|--------|-----------|
+| (none) | | |
 
-### Batch 5 (Tier A — 1 doc)
+## Cohesion Fixes
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 21 | Gabor Maté: Psychology Behind Power, Narcissism & Trump | Aaron Alexander | ~19K | BOOKMARK | unorganized.md |
+| Action | Page | Detail |
+|--------|------|--------|
+| Added to index | landscape/venture-capital-access.md | Missing from index.md entirely |
+| Cross-link added | concepts/business-moats-in-ai.md | Added link to landscape/services-as-software.md in AI SaaS Squeeze section |
+| Cross-link added | tools/ai-native-product-development.md | Linked "Y Combinator's 2026 RFS" to landscape/yc-ai-thesis.md |
 
-### Video (1 doc)
+## Orphans (true)
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 22 | Jesse's Blueberry Chia Seed Pudding | Jesse Stathakis | video | BOOKMARK | unorganized.md |
+| Page | Why no good link |
+|------|------------------|
+| science/ai-drug-discovery.md | Domain-specific (pharma); no other page covers biotech/drug topics |
+| concepts/physical-ai.md | Standalone robotics/embodied-AI topic; no page discusses physical systems |
+| concepts/model-quantization.md | Technical ML infrastructure; no other page discusses inference optimization |
+| culture/internet-as-mediating-layer.md | Cultural criticism; no other cultural page has strong topical overlap |
+| culture/museum-design-curation.md | Arts/architecture; fully distinct from tech topics |
+| writing/writing-craft.md | Writing advice; no other page covers craft/communication skills |
 
-### Tier B (1 doc — processed individually)
+## Stale Claims
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| 23 | The Future Of Everything Is Lies, I Guess | Kyle Kingsbury | ~26K | UPDATED (3 pages) | concepts/knowledge-work-future.md, models-safety/ai-safety-interpretability.md, unorganized.md |
+| Page | Stale claim | Newer source |
+|------|-------------|--------------|
+| (none identified) | | |
 
-### Tier C (1 doc — reference only)
+## Lint Findings — Synthesis Candidates
 
-| # | Title | Author | Words | Action | Target Page(s) |
-|---|-------|--------|-------|--------|-----------------|
-| — | Knowledge About Knowledge | — | ~131K | REFERENCE | concepts/knowledge-work-future.md (source line only, from prior run) |
+| Page | Sections most in need of restructuring | Rationale |
+|------|----------------------------------------|-----------|
+| (none) | | All pages created this week read as concept-organized synthesis |
 
-### Tier D / Skipped (3 docs)
+## Lint Findings — Page Split Candidates
 
-| # | Title | Reason |
-|---|-------|--------|
-| — | NanoClaw / Vercel | Self-referential, not wiki-relevant |
-| — | OpenClaw creation | Already in wiki (peter-steinberger.md) |
-| — | The Anatomy of an Agent Harness (original) | already_in_wiki from prior run |
+| Page | Suggested new titles | Rationale |
+|------|---------------------|-----------|
+| (none) | | No pages have grown beyond their scope |
 
-### New Saves During Run (6 docs — all confirmed already processed)
+## Unorganized Promotions
 
-All 6 documents added to Readwise between triage and late-run check were confirmed as already processed in earlier batches of this run.
+| Cluster topic | Items moved | Destination | New or existing |
+|---------------|-------------|-------------|-----------------|
+| Marketing/growth tactics | App Growth Formula, Neuromarketing & Meta Tribe V2, "the difference between 'why isn't this selling'" | landscape/ai-startup-distribution.md | existing |
 
-## Pages Updated (12 files)
+## Worker Veto Trail
 
-1. `concepts/business-moats-in-ai.md` — Token price discrimination, "Big Rug" data risk
-2. `concepts/knowledge-work-future.md` — Ironies of Automation (Bainbridge), new AI-era job categories (Kingsbury), Anthropic observed exposure
-3. `concepts/world-models.md` — LeCun's full position, open vs closed models (Lambert), key players
-4. `landscape/ai-organization-design.md` — Intercom 2x restructuring, architect mode
-5. `landscape/ai-startup-distribution.md` — LinkedIn MCP outreach, cold outreach, Reddit, AI marketing agents
-6. `landscape/services-as-software.md` — ColdIQ playbook, vertical opportunity map
-7. `landscape/vertical-ai.md` — Harvey $0→$200M ARR playbook, Harvey vertical model U-turn
-8. `models-safety/ai-safety-interpretability.md` — Latent disaster / complexity debt (Kingsbury), AI safety fieldbuilding (80K Hours)
-9. `tools/agent-harness.md` — Enterprise context synthesis, testing pyramid, framework comparison, resolvers
-10. `tools/agentic-engineering.md` — Agent categorization framework, X API pricing, decade of agents
-11. `tools/ai-native-product-development.md` — Docs-to-demos, AI evals as PRD, Team OS
-12. `unorganized.md` — 7 new bookmarks (Kingsbury info ecology themes, Gabor Maté, Opus 4.7, Neuromarketing, Lenny, Diamandis, Jesse recipe)
+| Commit | Page | Vetoed hint reason |
+|--------|------|--------------------|
+| (none) | | |
 
-## index.md Updates
+## Worker Errors
 
-Updated descriptions for 4 pages:
-- Knowledge Work Future: added Ironies of Automation, Kingsbury job categories
-- World Models: added LeCun's full position, open vs closed models
-- Agent Harness: added resolvers, testing pyramid, enterprise context synthesis
-- Agentic Engineering: added agent categorization framework
+| Date | Doc ID | Error |
+|------|--------|-------|
+| (none — WORKER_ERRORS.md does not exist) | | |
+
+## QUEUE.md
+
+Refreshed. 2 items in long-form queue (unchanged from last week: Claude Mythos System Card 70K words, Knowledge About Knowledge 131K words).

@@ -24,6 +24,7 @@ Holding page for bookmarks and references that don't yet have a matching wiki to
 - **Here's YC's official advice about being truthful…** (tweet, saved 2026-04-25, Readwise: 01kq3bnzyged646mgd62swjpm0) — Garry Tan on pilot/bookings/revenue terminology precision
 - **YC on how to build a company with AI from…** (tweet, saved 2026-04-26, Readwise: 01kq5r24y5xfx8e2n59ka9fqng) — Ben Lang pointer tweet to YC video (22w)
 - **"must read"** (tweet, saved 2026-05-02, Readwise: 01kqkhfps85g5r06bybmz9byhz) — Dan Shipper pointer tweet to Marcus Moretti's agent-native PM guide (30w)
+- **how to cold DM anyone: complete basics** (tweet, saved 2026-05-02, Readwise: 01kqmhws97zqkar210j3f52y31) — Founders Inc thread on cold DM basics (181w)
 - **April 24, 2026** (rss, saved 2026-04-27, Readwise: 01kq80nxh24qwnr200ydt5728y) — Readwise & Reader changelog: iOS OPML import, bug fixes
 - **Beliefs guiding our path to superintelligence** (article, saved 2026-04-28, Readwise: 01kqaehypcxkqfg6c53pq75x1s) — ineffable.ai company mission: building a "superlearner" from experience without human data. https://www.ineffable.ai
 - **(untitled highlight)** (highlight, saved 2026-04-29, Readwise: 01kqda63rr5tsr0wk8h6cff7n3) — standalone highlight, no document context

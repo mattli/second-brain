@@ -5,12 +5,10 @@
 
 - [x] Chia seed pudding
 - [x] Read daily AI digest
-- [ ] Read Twitter article using Wiki Tutor
 - [ ] Read Infinite Jest
 - [ ] ~~Go to the gym (body permitting)~~
 - [x] Pick up groceries
-- [ ] One hour interview prep
-- [ ] Build one simple Wiki Tutor feature
+- [x] One hour interview prep
 
 ---
 

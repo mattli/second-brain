@@ -8,7 +8,7 @@
 - [ ] Read Twitter article using Wiki Tutor
 - [ ] Read Infinite Jest
 - [ ] Go to the gym (body permitting)
-- [ ] Pick up groceries
+- [x] Pick up groceries
 - [ ] One hour interview prep
 - [ ] Build one simple Wiki Tutor feature
 

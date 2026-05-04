@@ -65,6 +65,7 @@ Meta's stated goal is to compete for business customers alongside OpenAI, Google
 - [AGI Definitions](agi-definitions.md) — how labs define progress and milestones
 - [AI Safety & Interpretability](ai-safety-interpretability.md) — safety considerations around frontier model deployment
 - [Agentic Engineering](../tools/agentic-engineering.md) — multi-agent orchestration patterns
+- [Model Quantization](../concepts/model-quantization.md) — how post-training compression enables frontier model deployment on consumer hardware
 
 ## Sources
 

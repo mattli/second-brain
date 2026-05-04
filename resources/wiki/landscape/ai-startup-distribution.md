@@ -24,6 +24,8 @@ Greg Isenberg's framework for post-vibe-coding distribution:
 6. **Buy a niche newsletter** — 10K subscribers for $5K-$20K. "Most owners making $0-$500/month. DM them."
 7. **Voice memo → content pipeline** — 30-minute voice memo into Claude → five tweet threads, three LinkedIn posts, one newsletter. Weekly.
 
+For founders seeking capital alongside customers, private market access is democratizing — see [Venture Capital Access](venture-capital-access.md) for USVC and the shift toward retail access to frontier AI company stakes.
+
 ## Reddit as Acquisition Channel
 
 Tim Jayas's principle for Reddit: *"Help completely, mention last."* Not "help first, pitch second" — the help should be genuinely useful even if the product didn't exist. The mention at the end feels like a natural extension, not a setup.

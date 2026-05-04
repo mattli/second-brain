@@ -7,6 +7,8 @@ last_updated: 2026-04-27
 
 > TLDR: AI is commoditizing knowledge — facts, skills, and expertise — shifting competitive advantage toward wisdom: emotional clarity, discernment, and connection. Knowledge workers face restructuring; wisdom workers are ascendant.
 
+See also: [AI User Perspectives](../landscape/ai-user-perspectives.md) for empirical data (Anthropic's 81K-person survey) on what users want from AI and where they see risk — grounding the theoretical labor-market analysis below.
+
 ## The Knowledge-to-Wisdom Shift
 
 For decades, knowing things was the scarce resource. School systems, credentials, and job interviews all measured knowledge accumulation. The result: over 1 billion knowledge workers valued for what they knew — lawyers, engineers, consultants, programmers.

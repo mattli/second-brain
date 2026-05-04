@@ -76,6 +76,10 @@ Nathan Lambert (Apr 2026) published 13 beliefs on the open vs. closed model dyna
 
 Y Combinator's [2026 RFS](../landscape/yc-ai-thesis.md) explicitly calls out spatial reasoning models as a major opportunity — "unlocking the next wave of AI capability" and potentially defining the next foundation model company on the scale of OpenAI or Anthropic.
 
+## See Also
+
+- [Physical AI](physical-ai.md) — the five shared technical primitives (perception, planning, control, simulation, hardware) converging across robotics, autonomous science, and new interfaces
+
 ## Sources
 
 - "World Models explained in 10min" — Caleb Writes Code (video, Apr 2026) ([link](https://youtube.com/watch?v=ECWC-YlAk1o&si=JtFcOyR1f29mfqpi))

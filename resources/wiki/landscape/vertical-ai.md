@@ -109,7 +109,7 @@ This aligns with the [Services-as-Software](services-as-software.md) thesis: the
 
 ## Comparable Cases
 
-- **Healthcare:** Abridge (medical scribing), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record.
+- **Healthcare:** Abridge (medical scribing), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record. See also [AI Drug Discovery](../science/ai-drug-discovery.md) for how generative AI is compressing preclinical timelines in pharma.
 - **Code:** Cursor (reported explosive growth), Claude Code, Codex. Code is "upstream of all other applications" — AI accelerating code accelerates every domain.
 
 ## Implications for Builders

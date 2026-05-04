@@ -3,11 +3,11 @@
 
 ### Monday, May 4
 
-- [ ] Chia seed pudding
-- [ ] Read daily AI digest
+- [x] Chia seed pudding
+- [x] Read daily AI digest
 - [ ] Read Twitter article using Wiki Tutor
 - [ ] Read Infinite Jest
-- [ ] Go to the gym (body permitting)
+- [ ] ~~Go to the gym (body permitting)~~
 - [x] Pick up groceries
 - [ ] One hour interview prep
 - [ ] Build one simple Wiki Tutor feature

@@ -1,3 +1,19 @@
+# May 4 – May 10
+*Goal: stay grounded and present*
+
+### Monday, May 4
+
+- [ ] Chia seed pudding
+- [ ] Read daily AI digest
+- [ ] Read Twitter article using Wiki Tutor
+- [ ] Read Infinite Jest
+- [ ] Go to the gym (body permitting)
+- [ ] Pick up groceries
+- [ ] One hour interview prep
+- [ ] Build one simple Wiki Tutor feature
+
+---
+
 # April 27 – May 3
 
 ### Sunday, May 3

@@ -1,26 +1,25 @@
 ---
-run_date: 2026-05-04
-run_start: "2026-05-04T01:05:00Z"
-run_end: "2026-05-04T01:06:00Z"
-updated_after: "2026-05-03T01:03:00Z"
-items_total: 2
-workers_dispatched: 2
+run_date: 2026-05-05
+run_start: "2026-05-05T01:05:00Z"
+run_end: "2026-05-05T01:06:00Z"
+updated_after: "2026-05-04T01:05:00Z"
+items_total: 1
+workers_dispatched: 0
 tier_c_referenced: 0
-tier_d_bookmarked: 0
+tier_d_bookmarked: 1
 ---
 
-# List-Maker Run — 2026-05-04
+# List-Maker Run — 2026-05-05
 
 ## Run Notes
 
-2 new items since last run cutoff. Both Tier A articles, both routed to existing pages.
+Light day — only 1 new item since last run. RSS changelog from Readwise, classified as Tier D.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01kqqxwgecmxwpag1zyxn542pv | A | update | landscape/ai-organization-design.md | Daniel Miessler on companies not ready for AI due to strategic clarity gaps — extends organizational intelligence theme |
-| 01kqqed1b5rvrxb6n2nxenx4k9 | A | update | landscape/ai-careers.md | LinkedIn/AI search discoverability for career positioning — extends job market and personal branding angle |
+| (none this run) | | | | |
 
 ## Tier C — References Added
 
@@ -32,7 +31,7 @@ tier_d_bookmarked: 0
 
 | Title | Added To |
 |-------|----------|
-| (none this run) | |
+| May 1, 2026 (Readwise changelog) | unorganized.md |
 
 ## Skipped
 

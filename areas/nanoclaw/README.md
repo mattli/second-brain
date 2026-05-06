@@ -29,27 +29,27 @@ Personal AI assistant and automation engine running on a Mac Mini M4 home server
 
 ## Scheduled Tasks
 
-| Task | Schedule | Type | What it does |
-|------|----------|------|--------------|
-| 📋 Daily Briefing | 7am Mon–Fri | container | Researches and writes AI intelligence briefing |
-| 🛠 Product Briefing | 6am Saturday | container | Researches and writes weekly product intelligence briefing |
-| 📊 Weekly Summary | 8am Saturday | container | Synthesizes the week's daily briefings |
-| 📅 Monthly Summary | 7am 1st of month | container | Synthesizes monthly trends, updates product-vision.md |
-| 📝 Daily To-Do | 8am daily | container | Reads today's section from daily-to-do.md, sends to Telegram |
-| 🧹 Backlog Maintenance | Midnight Sunday | container | Moves checked items in `backlog.md` into the `### Completed` section |
-| 📚 Readwise Wiki | 3am Mon + Thu | container | Processes week's Readwise saves into wiki pages at `resources/wiki/`, regenerates `long-form/QUEUE.md` (runs on Opus, 90min timeout) |
-| 🗂 Wiki Folder Review | 3am 1st of month | container | Evaluates wiki folder organization, writes scannability-focused proposal to `resources/wiki/folder-review.md` (proposal-only; apply happens via Claude Code session) |
-| 🗄 Archive Briefings | Midnight Sunday | script | Moves old briefing files to `_archive/` per retention rules |
-| Vault Sync | Every 30 min | script | Commits and pushes vault changes to GitHub |
-| Obsidian Sync Check | Every 30 min | script | Verifies Obsidian Sync is running |
+| Task                   | Schedule         | Type      | What it does                                                                                                                                                         |
+| ---------------------- | ---------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📋 Daily Briefing      | 7am Mon–Fri      | container | Researches and writes AI intelligence briefing                                                                                                                       |
+| 🛠 Product Briefing    | 6am Saturday     | container | Researches and writes weekly product intelligence briefing                                                                                                           |
+| 📊 Weekly Summary      | 8am Saturday     | container | Synthesizes the week's daily briefings                                                                                                                               |
+| 📅 Monthly Summary     | 7am 1st of month | container | Synthesizes monthly trends, updates product-vision.md                                                                                                                |
+| 📝 Daily To-Do         | 8am daily        | container | Reads today's section from daily-to-do.md, sends to Telegram                                                                                                         |
+| 🧹 Backlog Maintenance | Midnight Sunday  | container | Moves checked items in `backlog.md` into the `### Completed` section                                                                                                 |
+| 📚 Readwise Wiki       | 3am Mon + Thu    | container | Processes week's Readwise saves into wiki pages at `resources/wiki/`, regenerates `long-form/QUEUE.md` (runs on Opus, 90min timeout)                                 |
+| 🗂 Wiki Folder Review  | 3am 1st of month | container | Evaluates wiki folder organization, writes scannability-focused proposal to `resources/wiki/folder-review.md` (proposal-only; apply happens via Claude Code session) |
+| 🗄 Archive Briefings   | Midnight Sunday  | script    | Moves old briefing files to `_archive/` per retention rules                                                                                                          |
+| Vault Sync             | Every 30 min     | script    | Commits and pushes vault changes to GitHub                                                                                                                           |
+| Obsidian Sync Check    | Every 30 min     | script    | Verifies Obsidian Sync is running                                                                                                                                    |
 
 ## MCP Servers (Container)
 
-| Server | Transport | Auth | Purpose |
-|--------|-----------|------|---------|
-| parallel-search | HTTP via credential proxy | Bearer API key | Web search with ranked results and excerpts |
-| parallel-task | HTTP via credential proxy | Bearer API key | Task management |
-| readwise | stdio via `mcp-remote` | OAuth (tokens in `~/.mcp-auth/`) | Access saved articles, highlights, and notes |
+| Server          | Transport                 | Auth                             | Purpose                                      |
+| --------------- | ------------------------- | -------------------------------- | -------------------------------------------- |
+| parallel-search | HTTP via credential proxy | Bearer API key                   | Web search with ranked results and excerpts  |
+| parallel-task   | HTTP via credential proxy | Bearer API key                   | Task management                              |
+| readwise        | stdio via `mcp-remote`    | OAuth (tokens in `~/.mcp-auth/`) | Access saved articles, highlights, and notes |
 
 Parallel servers use the credential proxy pattern — API key in `.env`, proxy injects auth headers, containers never see secrets. Readwise uses OAuth which requires `mcp-remote` as a stdio bridge; tokens were obtained via SSH port-forwarded OAuth flow and are mounted read-write into containers at `/home/node/.mcp-auth`.
 

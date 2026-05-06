@@ -4,15 +4,15 @@
 
 ## Session overview
 
-| Metric | Value |
-|--------|-------|
-| **Duration** | 33m 23s |
-| **Turns** | 97 |
-| **Total cost** | $4.57 |
-| **Cost/min** | $0.137 |
-| **LLM cost** | $2.12 |
-| **STT cost** | $0.26 |
-| **TTS cost** | $2.20 |
+| Metric         | Value   |
+| -------------- | ------- |
+| **Duration**   | 33m 23s |
+| **Turns**      | 97      |
+| **Total cost** | $4.57   |
+| **Cost/min**   | $0.137  |
+| **LLM cost**   | $2.12   |
+| **STT cost**   | $0.26   |
+| **TTS cost**   | $2.20   |
 
 ---
 

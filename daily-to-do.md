@@ -3,12 +3,12 @@
 
 ### Thursday, May 7
 - [x] Read daily AI digest
-- [ ] Add reading progress to Wiki Tutor
-- [ ] Continue reading Twitter article with Wiki Tutor
-- [ ] Lunch
+- [x] Wiki Tutor features
+- [x] Review of CommonLit role
+- [x] Lunch
 - [ ] Therapy 2pm
-- [ ] 30 min review of CommonLit role
 - [ ] 45 min review of Beni docs
+- [ ] Continue reading Twitter article with Wiki Tutor
 
 ### Monday, May 4
 

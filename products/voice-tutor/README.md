@@ -2,6 +2,8 @@
 
 Self-hosted voice conversation service on Mac Mini using Pipecat, Claude, and persistent memory. Accessed from phone browser via Tailscale.
 
+Code: [github.com/mattli/voice-tutor](https://github.com/mattli/voice-tutor) (private; pushed 2026-05-06).
+
 ## Status
 
 **V1 shipped** (2026-04-13). All 4 implementation units complete plus wiki integration.

@@ -1,9 +1,18 @@
 # May 4 – May 10
 *Goal: stay grounded and present*
 
+### Thursday, May 7
+- [x] Read daily AI digest
+- [ ] Add reading progress to Wiki Tutor
+- [ ] Continue reading Twitter article with Wiki Tutor
+- [ ] Lunch
+- [ ] Therapy 2pm
+- [ ] 30 min review of CommonLit role
+- [ ] 45 min review of Beni docs
+
 ### Monday, May 4
 
-- [x] Chia seed pudding
+- [ ] Chia seed pudding
 - [x] Read daily AI digest
 - [ ] Read Infinite Jest
 - [ ] ~~Go to the gym (body permitting)~~

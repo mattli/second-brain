@@ -6,7 +6,7 @@
 - [x] Wiki Tutor features
 - [x] Review of CommonLit role
 - [x] Lunch
-- [ ] Therapy 2pm
+- [x] Therapy 2pm
 - [ ] 45 min review of Beni docs
 - [ ] Continue reading Twitter article with Wiki Tutor
 

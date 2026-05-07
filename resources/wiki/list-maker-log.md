@@ -1,25 +1,27 @@
 ---
-run_date: 2026-05-06
-run_start: "2026-05-06T01:05:00Z"
-run_end: "2026-05-06T01:06:00Z"
-updated_after: "2026-05-05T01:05:00Z"
-items_total: 1
-workers_dispatched: 0
+run_date: 2026-05-07
+run_start: "2026-05-07T01:09:00Z"
+run_end: "2026-05-07T01:10:00Z"
+updated_after: "2026-05-06T01:05:00Z"
+items_total: 3
+workers_dispatched: 3
 tier_c_referenced: 0
-tier_d_bookmarked: 1
+tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-05-06
+# List-Maker Run — 2026-05-07
 
 ## Run Notes
 
-Light day — 1 new item since last run. A 13-word tweet (Ben Lang on Karpathy + agentic engineering), classified as Tier D due to very thin content.
+Normal run. 3 new Tier A articles since last run — all dispatched to workers.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| (none this run) | | | | |
+| 01kqz1c983ps1pdzqn6ewf1pzf | A | create | tools/voice-ai-infrastructure.md | OpenAI WebRTC voice AI architecture — no existing page within 1 hop |
+| 01kqz1ak6bwqdqrs8kynnan8a4 | A | update | tools/claude-code-skill-frameworks.md | Addy Osmani's Agent Skills — structured skill workflows for coding agents |
+| 01kqywx9x003ffw501pwb38hyn | A | update | concepts/knowledge-work-future.md | "AI Job Apocalypse Is Fantasy" — extends Jevons Paradox / new job categories themes |
 
 ## Tier C — References Added
 
@@ -31,7 +33,7 @@ Light day — 1 new item since last run. A 13-word tweet (Ben Lang on Karpathy +
 
 | Title | Added To |
 |-------|----------|
-| Andrej Karpathy on the shift to agentic engineering | unorganized.md |
+| (none this run) | |
 
 ## Skipped
 

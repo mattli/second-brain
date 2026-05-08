@@ -6,8 +6,8 @@
 - [x] Chia seed pudding
 - [x] Read AI digest
 - [x] CommonLit interview (10:00 AM)
-- [ ] Get Mrs. Winston's
-- [ ] Go to the gym (lift)
+- [x] Get Mrs. Winston's
+- [x] Go to the gym
 - [ ] Rest / Wiki Tutor (evening, see how you feel)
 
 ---

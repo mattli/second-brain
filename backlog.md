@@ -20,6 +20,10 @@
 ### Cold Mountain (coldmountain.ai)
 
 
+### dotmd
+- [ ] Fix hardcoded `--version` output — `src/cli/index.ts:15` calls `.version("0.1.0")` literally, so `dotmd --version` reports `0.1.0` regardless of the installed package version. Replace with a `package.json` read (ESM pattern: `JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../../package.json"), "utf-8")).version`) so it stays in sync automatically.
+- [ ] Revisit extensibility for `~/.app-data/` runtime dirs — currently each new app that stores AI files outside the project repo (e.g. voice-tutor's `~/.voice-tutor/`) has to be added to `scan_roots` manually. Once this happens a few more times, build a repo-side opt-in (`.dotmd.yaml` declaring `extra_roots`) so projects can self-declare their runtime dirs. Don't pre-build — wait for the third manual addition before investing.
+
 ### NanoClaw
 - [ ] Integrate Google Calendar with NanoClaw — connect calendar so NanoClaw can read events, add reminders, and surface scheduling context. Relevant to to-do list workflow and scheduled task reminders.
 - [ ] Diagnose Telegram response latency — messages to the main group take 10–20+ seconds to get a response. Unknown whether it's container cold start, context loading, MCP startup, model latency, or tool calls within the response. Run diagnostic: send a trivial message ("hi") and a vault-lookup message back to back, compare times. If both slow → cold start or model latency. If only complex one slow → context/tool overhead. Possible knobs: warm containers, lower MAX_MESSAGES_PER_PROMPT, trim CLAUDE.md, route simple tasks to Haiku. Note (2026-04-30): streaming progress (`NANOCLAW_STREAMING_PROGRESS=1`) now masks the wait conversationally — first 🔧 tool note appears within ~1s — but root cause is still unsolved.

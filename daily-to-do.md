@@ -1,6 +1,18 @@
 # May 4 – May 10
 *Goal: stay grounded and present*
 
+### Friday, May 8
+
+- [ ] Chia seed pudding
+- [ ] Read AI digest
+- [ ] CommonLit interview (10:00 AM)
+- [ ] Get Mrs. Winston's
+- [ ] Go to the gym (lift)
+- [ ] Beach — get some sun (early afternoon)
+- [ ] Rest / Wiki Tutor (evening, see how you feel)
+
+---
+
 ### Thursday, May 7
 - [x] Read daily AI digest
 - [x] Wiki Tutor features

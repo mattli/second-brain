@@ -8,7 +8,7 @@
 - [x] CommonLit interview (10:00 AM)
 - [x] Get Mrs. Winston's
 - [x] Go to the gym
-- [ ] Rest / Wiki Tutor (evening, see how you feel)
+- [x] Rest / Wiki Tutor (evening, see how you feel)
 
 ---
 

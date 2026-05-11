@@ -1,3 +1,13 @@
+# May 11 – May 17
+*Goal: slow movement forward*
+
+### Monday, May 11
+
+- [x] Read AI digest
+- [x] Catch up on AI reading
+
+---
+
 # May 4 – May 10
 *Goal: stay grounded and present*
 

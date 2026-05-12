@@ -3,7 +3,7 @@
 
 ### Tuesday, May 12
 
-- [ ] Read AI digest
+- [x] Read AI digest
 - [x] Make decision on going month-to-month for rent
 - [x] Replace refrigerator water filter
 - [ ] Go to the gym

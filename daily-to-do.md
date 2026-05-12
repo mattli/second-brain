@@ -8,7 +8,7 @@
 - [x] Replace refrigerator water filter
 - [x] Refocus on Voice Tutor
 	- [x] commit and push
-	- [ ] pull repo to macbook pro
+	- [x] pull repo to macbook pro
 	- [ ] copy profile.md, memory.md, transcripts/, artifacts/, cost-log.md, cost-log.jsonl (so when you talk about "look, here are past sessions / costs," there's something to show)
 	- [ ] run and test on macbook pro
 	- [ ] UI polish

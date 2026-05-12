@@ -1,6 +1,16 @@
 # May 11 – May 17
 *Goal: slow movement forward*
 
+### Tuesday, May 12
+
+- [ ] Read AI digest
+- [x] Make decision on going month-to-month for rent
+- [x] Replace refrigerator water filter
+- [ ] Go to the gym
+- [ ] Build a little bit
+
+---
+
 ### Monday, May 11
 
 - [x] Read AI digest

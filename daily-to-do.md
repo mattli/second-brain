@@ -6,7 +6,12 @@
 - [x] Read AI digest
 - [x] Make decision on going month-to-month for rent
 - [x] Replace refrigerator water filter
-- [ ] Refocus on Voice Tutor
+- [x] Refocus on Voice Tutor
+	- [x] commit and push
+	- [ ] pull repo to macbook pro
+	- [ ] copy profile.md, memory.md, transcripts/, artifacts/, cost-log.md, cost-log.jsonl (so when you talk about "look, here are past sessions / costs," there's something to show)
+	- [ ] run and test on macbook pro
+	- [ ] UI polish
 - [ ] Ms. Winstons
 - [ ] Go to the gym
 - [ ] Build a little bit

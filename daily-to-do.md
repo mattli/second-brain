@@ -6,6 +6,8 @@
 - [x] Read AI digest
 - [x] Make decision on going month-to-month for rent
 - [x] Replace refrigerator water filter
+- [ ] Refocus on Voice Tutor
+- [ ] Ms. Winstons
 - [ ] Go to the gym
 - [ ] Build a little bit
 

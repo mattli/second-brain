@@ -1,6 +1,13 @@
 # May 11 – May 17
 *Goal: slow movement forward*
 
+### Wednesday, May 13
+
+- [ ] Voice Tutor — polish `/study/` UI. See `products/voice-tutor/README.md` → Next steps → Interview prep. Bar: make it feel like a product surface, not a prototype. `/chat/` deliberately stays on the pipecat prebuilt UI.
+- [ ] Voice Tutor — figure out how to surface telemetry and artifacts in a demo. See `products/voice-tutor/README.md` → Next steps → Interview prep. Proposed direction: extend the `/study/` ended view to render cost-log row + session analysis + memory.md append inline alongside the recap.
+
+---
+
 ### Tuesday, May 12
 
 - [x] Read AI digest

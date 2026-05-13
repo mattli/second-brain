@@ -6,6 +6,16 @@ Code: [github.com/mattli/voice-tutor](https://github.com/mattli/voice-tutor) (pr
 
 ## Status
 
+**Mode parity + UI polish prep for Beni demo** (2026-05-12, continued from the dev-env migration earlier today). Five threads:
+
+1. **Pre-connect screen for `/study/`** — picking a doc navigates to a Start/Back screen; the WebRTC connection only opens when Start is pressed. Doc selection is no longer the moment of commitment. Commit `2d7c665`.
+2. **Mode parity for study mode** — study mode now loads `memory.md` alongside `profile.md` and runs the same post-session pipeline as open chat (summary → memory append → analysis). The original "doc IS the world" bet (strip memory + recent transcript + wiki INDEX from study) was reverted — it didn't serve the real use case (revisiting a paper across sessions) and didn't map cleanly to per-person memory in product analogies. Mitigations for `memory.md` priming the open-chat persona: reframed the memory header to "Background — Matt's prior topics (reference only if directly relevant to the document)" and added `STUDY_REMINDER` at the very end of the prompt for recency-priming. `MIN_ANALYSIS_DURATION_SEC` lowered to 120s (matches summary threshold). Also fixed a latent mic-leak in `/study/`: `pc.close()` doesn't stop the underlying `MediaStreamTrack`s from `getUserMedia`, leaving the browser mic indicator hot until tab close — now releases on End and on connection state `failed`/`closed`. Commits `bd9061e`, `f70c221`.
+3. **`/client/` → `/chat/` rename** — `/client/` was a pipecat technical artifact (mount path for the prebuilt UI), not a product name. `/chat/` + `/study/` reads as a coherent product. Commit `4969b36`.
+4. **README updates** — new "Modes" section with a side-by-side comparison table (persona, prompt context, tools, post-session work), and a "Next steps" section capturing tomorrow's plan: polish `/study/` UI (keep `/chat/` on the prebuilt UI for its diagnostic panel — the architecture-visibility surface), and surface telemetry + artifacts inline on the `/study/` ended view (one screen for cost row + session analysis + memory.md append + recap, replacing tab-switching). Commits in `bd9061e` and `cb4267c`.
+5. **Demo prep docs rewired** — `personal/job-search/` updated for the new two-mode demo strategy: chat first ~60s as architecture proof point (pipecat's diagnostic panel + tool call firing), then study as the polished product surface. Touches `demo-script.md` (new Beat 2, total ~7:00), `beni-demo-prep.md`, `demo-format-contingencies.md`, `beni-interview-prep.md` §D, and `architecture-decisions.md` §1.3 (which still claimed study mode strips memory). Archived `demo-fallback-video-script.md` — decided pre-recorded video fallback isn't a real option.
+
+Side calls during the same session: kept Voice Tutor's naming product-honest rather than Beni-flavored ("I'm building Voice Tutor, not Beni's product — analogies are stronger than mimicry"). Decided against building a parallel Vapi POC for the interview — 1-2hr docs + hello-world exploration captures 80% of the comparison value at days less cost.
+
 **V1 shipped** (2026-04-13). All 4 implementation units complete plus wiki integration.
 
 **First Reddit validation run completed** (2026-04-14). 156 posts → 9 findings (3 score-3, 6 score-2), 2 power-user candidates. The "drowning in saves" pain shows up in real users' words; pain concentration is lower than the doc's confidence implied. See `validation/product-validation-findings-2026-04-14.md`. Phase 2 conversations are warranted; pricing conversations aren't yet.
@@ -28,12 +38,14 @@ Code: [github.com/mattli/voice-tutor](https://github.com/mattli/voice-tutor) (pr
 
 ## Architecture
 
-- **STT**: Deepgram Nova-3 ($0.0077/min)
-- **LLM (live)**: Claude Sonnet 4.5 via Anthropic API, prompt caching enabled ($3/$15 per MTok input/output)
-- **LLM (post-session)**: Claude Haiku 4.5 for summary + analysis ($1/$5 per MTok input/output)
-- **TTS**: Cartesia Sonic-3 (voice: British Reading Lady) — billed 1 credit/character, ~$0.05/min at Pro overage rate.
-- **Transport**: SmallWebRTC via Pipecat, prebuilt web UI
-- **Access**: Tailscale Serve HTTPS proxy → phone browser
+Voice-to-voice pipeline (Deepgram STT → Claude → Cartesia TTS) on Pipecat, served from the Mac Mini behind Tailscale. See the [repo README](https://github.com/mattli/voice-tutor#architecture) for the canonical current stack — this file holds pricing/economics context (below) and the dated history, not code-level details.
+
+Pricing context worth keeping here:
+- Sonnet 4.5 (live): $3/$15 per MTok input/output, prompt caching enabled
+- Haiku 4.5 (post-session summary + analysis): $1/$5 per MTok input/output
+- Cartesia Sonic-3: 1 credit/character, ~$0.05/min at Pro overage rate
+- Deepgram Nova-3: $0.0077/min
+- Marginal hourly cost at today's stack: ~$6.70/hr of audio (see `validation/economics.md`)
 
 ## What it does
 
@@ -49,8 +61,8 @@ Code: [github.com/mattli/voice-tutor](https://github.com/mattli/voice-tutor) (pr
 
 ## Access
 
-- Local: `http://localhost:7860/client/`
-- Phone: `https://matts-mac-mini.taild1f9b7.ts.net/client/`
+- Local: `http://localhost:7860/chat/` (open chat) or `http://localhost:7860/study/` (doc-grounded)
+- Phone: `https://matts-mac-mini.taild1f9b7.ts.net/chat/` (or `/study/`)
 - Start: `./start.sh` from repo root
 
 ## API keys
@@ -67,6 +79,10 @@ Cartesia is on **Pro** ($4/mo yearly or $5/mo monthly, 100K credits ≈ 1.67 hr 
 
 ## Next steps
 
+### Interview prep (this week — Beni demo)
+- **Polish the `/study/` UI.** Currently functional but plain — single-file HTML, system fonts, no design system. Bar: make it feel like a product surface, not a prototype. `/chat/` intentionally stays on the pipecat prebuilt UI; its diagnostic panel (live tool calls, events, connection state) is too valuable as the architecture-visibility surface to replace. The two modes will deliberately read as different visual registers — `/chat/` shows the work, `/study/` is the product.
+- **Figure out how to surface telemetry and artifacts in a demo.** Show, during a live demo, the `cost-log.md` row, the session analysis output at `~/second-brain/products/voice-tutor/session-analyses/`, the recap artifact at `~/.voice-tutor/artifacts/<id>.md`, and anything else worth pointing at (transcripts, `memory.md` growth, etc.). Today the recap renders inline in `/study/` and the cost log is a separate tab; everything else lives in `~/.voice-tutor/` or the vault. **Proposed direction:** extend the `/study/` ended view to render the cost-log row + session analysis + memory.md append inline alongside the recap — one screen surfaces every artifact a session generates the moment it ends. Beats tab-switching for the "I measure all of this" credibility beat: they watch four artifacts materialize in one visual moment instead of you narrating which tab to look at next.
+
 ### Short term (use it for a week, then decide)
 - **Pick a Cartesia voice** — browse play.cartesia.ai, find something that isn't British Reading Lady
 - **Use it daily** — talk through ideas, ask about wiki topics, think out loud. See if it feels different from ChatGPT voice now that it has wiki context.
@@ -75,7 +91,6 @@ Cartesia is on **Pro** ($4/mo yearly or $5/mo monthly, 100K credits ≈ 1.67 hr 
 ### If it proves valuable
 - **Readwise integration via `@readwise/cli`** — reuse the wikiwise `fetch-readwise-document` and `fetch-readwise-highlights` skill logic. The CLI (`npm install -g @readwise/cli`) handles OAuth, pagination, and rate limiting; the skills stream doc bodies to disk via `jq -r '.content' > file` without loading into context, and vector-search highlights into per-doc markdown collections. Canonical access path — don't hit Readwise APIs directly.
 - **Daily briefing readout** — have the tutor read your daily briefing and let you ask follow-up questions by voice
-- **Custom frontend** — replace the Pipecat prebuilt UI to fix the duplicate text issue and tailor the experience
 - **launchd auto-start** — start the bot automatically on Mac Mini boot so you never have to SSH in to run start.sh
 - **Memory compaction** — when `~/.voice-tutor/memory.md` grows past ~2K tokens, summarize older entries into a single "before <date>" block so the memory layer stays cheap
 

@@ -16,7 +16,7 @@
 - [x] Read daily briefing
 - [x] Voice Tutor — polish `/study/` UI. See `products/voice-tutor/README.md` → Next steps → Interview prep. Bar: make it feel like a product surface, not a prototype. `/chat/` deliberately stays on the pipecat prebuilt UI.
 - [x] Voice Tutor — figure out how to surface telemetry and artifacts in a demo. See `products/voice-tutor/README.md` → Next steps → Interview prep. Proposed direction: extend the `/study/` ended view to render cost-log row + session analysis + memory.md append inline alongside the recap.
-- [ ] Check on global entry
+- [x] Check on global entry
 
 ---
 

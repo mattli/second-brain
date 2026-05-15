@@ -3,7 +3,7 @@
 
 ### Friday, May 15
 
-- [ ] Read daily digest
+- [x] Read daily digest
 - [ ] Message Holly
 - [ ] Go to Costco
 - [ ] Voice Tutor — Vapi investigation. ~1hr Claude/ChatGPT Q&A on Vapi's limitations vs. the current pipecat stack (frame APIs, transport control, post-session pipeline, cost model), plus a one-page comparison writeup. Skip the hello-world POC — docs alone capture the comparison value. See `products/voice-tutor/README.md` → Next steps → Interview prep.

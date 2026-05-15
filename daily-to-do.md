@@ -1,13 +1,21 @@
 # May 11 – May 17
 *Goal: slow movement forward*
 
+### Friday, May 15
+
+- [ ] Read daily digest
+- [ ] Message Holly
+- [ ] Go to Costco
+- [ ] Voice Tutor — Vapi investigation. ~1hr Claude/ChatGPT Q&A on Vapi's limitations vs. the current pipecat stack (frame APIs, transport control, post-session pipeline, cost model), plus a one-page comparison writeup. Skip the hello-world POC — docs alone capture the comparison value. See `products/voice-tutor/README.md` → Next steps → Interview prep.
+- [ ] Voice Tutor — demo dry runs. Practice the two-mode demo (chat for architecture, study for product surface) end-to-end on the timer. Target ~7:00 per `personal/job-search/demo-script.md`. Specifically rehearse the "watch artifacts materialize" beat now that the diagnostics panel is live.
+- [ ] Voice Tutor — question prep. Review `personal/job-search/beni-interview-prep.md`, draft answers to the likely product-engineer questions, and pre-write the 2–3 sharp questions to ask them.
+
+---
+
 ### Thursday, May 14
 
 - [x] Read daily briefing
 - [x] Read that twitter article
-- [ ] Voice Tutor — Vapi investigation. ~1hr Claude/ChatGPT Q&A on Vapi's limitations vs. the current pipecat stack (frame APIs, transport control, post-session pipeline, cost model), plus a one-page comparison writeup. Skip the hello-world POC — docs alone capture the comparison value. See `products/voice-tutor/README.md` → Next steps → Interview prep.
-- [ ] Voice Tutor — demo dry runs. Practice the two-mode demo (chat for architecture, study for product surface) end-to-end on the timer. Target ~7:00 per `personal/job-search/demo-script.md`. Specifically rehearse the "watch artifacts materialize" beat now that the diagnostics panel is live.
-- [ ] Voice Tutor — question prep. Review `personal/job-search/beni-interview-prep.md`, draft answers to the likely product-engineer questions, and pre-write the 2–3 sharp questions to ask them.
 
 ---
 

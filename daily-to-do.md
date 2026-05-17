@@ -1,5 +1,10 @@
 # May 11 – May 17
 *Goal: slow movement forward*
+### Sunday, May 17
+
+- [x] Farmers Market
+- [x] Read Weekly Summary
+- [ ] Swim
 
 ### Friday, May 15
 

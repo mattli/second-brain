@@ -34,3 +34,4 @@ Holding page for bookmarks and references that don't yet have a matching wiki to
 - **Andrej Karpathy on the shift to agentic engineering** (tweet, saved 2026-05-05, Readwise: 01kqwvtfr50pfm56qnbcsnet1b) — Ben Lang tweet on Karpathy's agentic engineering perspective (13w)
 - **Welcome to the Printing Press** (article, saved 2026-05-08, Readwise: 01kr2c384jp73chg5vxdhzf1b4) — Landing page for Printing Press CLI factory. https://printingpress.dev
 - **May 8, 2026** (rss, saved 2026-05-11, Readwise: 01krcf9taspn7g99d0ntjsvv3r) — Readwise & Reader changelog: bug fixes, API filtering, Zapier export, email/iPad/Substack improvements
+- **Feeling stupid is a crucial part of science** (tweet, saved 2026-05-16, Readwise: 01krs240tx1swtap34x8pn3hf5) — Nicholas Fabiano on embracing uncertainty as signal of pushing into the unknown

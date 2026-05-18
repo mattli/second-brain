@@ -57,6 +57,7 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 - Engram — always-on agent with MEMORY.md persistence + wiki compilation
 - GitCMS — CMS for markdown-based wiki management via MCP
 - **Readwise MCP** — Readwise Reader integration via MCP, enabling agents to read, search, and manage saved articles and highlights directly. https://readwise.io/mcp
+  - *Readwise & Reader changelogs (Feb–May 2026):* Wikiwise Mac app, dark mode highlights, annotation bars, tweet rendering, podcast category override, API filtering, Zapier export, OPML import, Claude highlight search, security updates.
 
 ## Tooling Tips
 

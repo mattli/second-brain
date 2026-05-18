@@ -1,3 +1,18 @@
+# May 18 – May 24
+*Goal: get ready for my trip to Seattle*
+
+### Monday, May 18
+
+- [ ] Eat overnight oats
+- [ ] Read daily digest
+- [ ] Review Twitter article
+- [ ] Pull out camping gear
+- [ ] Workout (depending on how the body feels)
+- [ ] Go to REI — pick up hiking pants
+- [ ] Plan trip meals (look into healthy freeze-dried options)
+
+---
+
 # May 11 – May 17
 *Goal: slow movement forward*
 ### Sunday, May 17

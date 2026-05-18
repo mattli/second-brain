@@ -8,7 +8,7 @@
 - [ ] Review Twitter article
 - [ ] Pull out camping gear
 - [ ] Workout (depending on how the body feels)
-- [ ] Go to REI — pick up hiking pants
+- [ ] Go to REI — pick up hiking pants, new platypus bladder
 - [ ] Plan trip meals (look into healthy freeze-dried options)
 - [ ] Buy sunglasses
 

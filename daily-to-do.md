@@ -10,6 +10,7 @@
 - [ ] Workout (depending on how the body feels)
 - [ ] Go to REI — pick up hiking pants
 - [ ] Plan trip meals (look into healthy freeze-dried options)
+- [ ] Buy sunglasses
 
 ---
 

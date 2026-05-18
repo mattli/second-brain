@@ -6,9 +6,9 @@
 - [x] Eat overnight oats
 - [x] Read daily digest
 - [ ] Review Twitter article
-- [ ] Pull out camping gear
+- [x] Pull out camping gear
 - [ ] Workout (depending on how the body feels)
-- [ ] Go to REI — pick up hiking pants, new platypus bladder
+- [x] Go to REI — pick up hiking pants, new platypus bladder
 - [ ] Plan trip meals (look into healthy freeze-dried options)
 - [ ] Buy sunglasses
 

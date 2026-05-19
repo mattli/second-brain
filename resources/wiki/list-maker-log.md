@@ -1,25 +1,27 @@
 ---
-run_date: 2026-05-18
-run_start: "2026-05-18T01:33:00Z"
-run_end: "2026-05-18T01:34:00Z"
-updated_after: "2026-05-17T01:30:00Z"
-items_total: 1
-workers_dispatched: 1
+run_date: 2026-05-19
+run_start: "2026-05-19T01:34:00Z"
+run_end: "2026-05-19T01:35:00Z"
+updated_after: "2026-05-18T01:33:00Z"
+items_total: 4
+workers_dispatched: 3
 tier_c_referenced: 0
-tier_d_bookmarked: 0
+tier_d_bookmarked: 1
 ---
 
-# List-Maker Run — 2026-05-18
+# List-Maker Run — 2026-05-19
 
 ## Run Notes
 
-One new save since last run: a 4,247-word tweet thread on PM goals for AI agents. Dispatched one worker to update the AI-Native Product Development page.
+4 new/updated saves since last run. 3 Tier A items dispatched as workers; 1 Tier D (Readwise changelog) added to unorganized.md. The Project Glasswing article (saved 2026-04-07) appeared due to a metadata update — claude-mythos.md already mentions it but worker will add full source detail.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01krve20f22qs0kav82dq9s5ay | A | update | tools/ai-native-product-development.md | PM-defined goals for AI agents, structured memory, decision logging — extends existing AI-native product development coverage |
+| 01kry2f7atwygkta6des93sgjm | A | update | concepts/business-moats-in-ai.md | Benedict Evans "AI Eats the World" — AI platform shift, value capture, beyond simple automation |
+| 01krxv42rtacxay3yta6243eyj | A | update | concepts/knowledge-work-future.md | Addy Osmani on AI skill erosion and using AI as learning tool — extends Ironies of Automation coverage |
+| 01knmskh0rxt3f8xvmdk7syzwj | A | update | models-safety/claude-mythos.md | Project Glasswing full article — autonomous vulnerability detection, multi-partner security effort |
 
 ## Tier C — References Added
 
@@ -30,6 +32,7 @@ One new save since last run: a 4,247-word tweet thread on PM goals for AI agents
 
 | Title | Added To |
 |-------|----------|
+| May 15, 2026 (Readwise Changelog) | unorganized.md |
 
 ## Skipped
 

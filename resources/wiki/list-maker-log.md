@@ -1,27 +1,28 @@
 ---
-run_date: 2026-05-19
-run_start: "2026-05-19T01:34:00Z"
-run_end: "2026-05-19T01:35:00Z"
-updated_after: "2026-05-18T01:33:00Z"
-items_total: 4
-workers_dispatched: 3
+run_date: 2026-05-20
+run_start: "2026-05-20T01:35:00Z"
+run_end: "2026-05-20T01:36:00Z"
+updated_after: "2026-05-19T01:34:00Z"
+items_total: 5
+workers_dispatched: 4
 tier_c_referenced: 0
 tier_d_bookmarked: 1
 ---
 
-# List-Maker Run — 2026-05-19
+# List-Maker Run — 2026-05-20
 
 ## Run Notes
 
-4 new/updated saves since last run. 3 Tier A items dispatched as workers; 1 Tier D (Readwise changelog) added to unorganized.md. The Project Glasswing article (saved 2026-04-07) appeared due to a metadata update — claude-mythos.md already mentions it but worker will add full source detail.
+5 new saves since last run. 4 Tier A items dispatched as workers; 1 Tier D (Andon FM landing page, 226 words) added to unorganized.md.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01kry2f7atwygkta6des93sgjm | A | update | concepts/business-moats-in-ai.md | Benedict Evans "AI Eats the World" — AI platform shift, value capture, beyond simple automation |
-| 01krxv42rtacxay3yta6243eyj | A | update | concepts/knowledge-work-future.md | Addy Osmani on AI skill erosion and using AI as learning tool — extends Ironies of Automation coverage |
-| 01knmskh0rxt3f8xvmdk7syzwj | A | update | models-safety/claude-mythos.md | Project Glasswing full article — autonomous vulnerability detection, multi-partner security effort |
+| 01ks10djqkm5ftap6eseex99vt | A | update | tools/ai-native-product-development.md | "Evals, explained" (Lotte) — practical evals walkthrough; extends "AI evals as PRD" thread |
+| 01ks0mxeprbam9nysxndkn79qg | A | update | tools/agentic-engineering.md | "Inside the 100-agent Software Factory" — Gas City multi-agent orchestration (supervisor + workers) |
+| 01ks0gr6tcn0ztb9gwysydvq7f | A | update | landscape/services-as-software.md | "From System of Record to System of Intelligence" (a16z) — CRM → AI intelligence layer |
+| 01ks0exzye9ahcemjfkk21qkvx | A | update | models-safety/frontier-models.md | Simon Willison's 6-month LLM recap — coding gains, agentic assistants, small model breakthroughs |
 
 ## Tier C — References Added
 
@@ -32,7 +33,7 @@ tier_d_bookmarked: 1
 
 | Title | Added To |
 |-------|----------|
-| May 15, 2026 (Readwise Changelog) | unorganized.md |
+| Andon FM | unorganized.md |
 
 ## Skipped
 

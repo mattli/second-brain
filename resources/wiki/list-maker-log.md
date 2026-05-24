@@ -1,19 +1,19 @@
 ---
-run_date: 2026-05-23
-run_start: "2026-05-23T01:40:00Z"
-run_end: "2026-05-23T01:40:15Z"
-updated_after: "2026-05-22T01:40:00Z"
+run_date: 2026-05-24
+run_start: "2026-05-24T01:40:00Z"
+run_end: "2026-05-24T01:40:10Z"
+updated_after: "2026-05-23T01:40:00Z"
 items_total: 0
 workers_dispatched: 0
 tier_c_referenced: 0
 tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-05-23
+# List-Maker Run — 2026-05-24
 
 ## Run Notes
 
-No new saves since last run (cutoff 2026-05-22T01:40:00Z). Nothing to dispatch.
+No new saves since last run (cutoff 2026-05-23T01:40:00Z). Nothing to dispatch.
 
 ## Workers Dispatched
 

@@ -1,24 +1,25 @@
 ---
-run_date: 2026-05-24
-run_start: "2026-05-24T01:40:00Z"
-run_end: "2026-05-24T01:40:10Z"
-updated_after: "2026-05-23T01:40:00Z"
-items_total: 0
-workers_dispatched: 0
+run_date: 2026-05-25
+run_start: "2026-05-25T01:43:00Z"
+run_end: "2026-05-25T01:43:30Z"
+updated_after: "2026-05-24T01:40:00Z"
+items_total: 1
+workers_dispatched: 1
 tier_c_referenced: 0
 tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-05-24
+# List-Maker Run — 2026-05-25
 
 ## Run Notes
 
-No new saves since last run (cutoff 2026-05-23T01:40:00Z). Nothing to dispatch.
+Normal run. 1 new save since last cutoff (2026-05-24T01:40:00Z).
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
+| 01ksdqmmmnp9x44eh6bvnn2pme | A | update | concepts/agent-proficiency.md | Tweet about staying in the loop with coding agents — extends "managing AI agents as core skill" theme |
 
 ## Tier C — References Added
 

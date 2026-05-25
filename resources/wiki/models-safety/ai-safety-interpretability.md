@@ -52,7 +52,7 @@ A major New Yorker investigation (Ronan Farrow & Andrew Marantz, Apr 2026) docum
 - **Nonprofit → for-profit:** Internal records show founders had private doubts about the nonprofit structure as early as 2017. OpenAI has since recapitalized as a for-profit entity.
 - **The stakes:** AI is already deployed in military operations; researchers have documented its power to rapidly identify chemical warfare agents; OpenAI faces seven wrongful-death lawsuits.
 
-The piece raises broader questions about whether the AI industry's current anti-regulation trajectory is prudent, and whether safety-focused governance structures can survive commercial pressures.
+The piece raises broader questions about whether the AI industry's current anti-regulation trajectory is prudent, and whether safety-focused governance structures can survive commercial pressures. (See also [AI Regulation](../landscape/ai-regulation.md) for the US state-level regulatory landscape.)
 
 ## Latent Disaster: The Complexity Debt Argument (Kingsbury)
 

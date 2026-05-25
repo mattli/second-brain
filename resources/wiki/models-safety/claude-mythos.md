@@ -53,7 +53,7 @@ Anthropic occupies a distinctive position: it is simultaneously making billions 
 
 Context from [Dario Amodei](../people/dario-amodei.md): "As the slogan goes, this is the least capable model we'll have access to in the future." The implication is that the security reckoning Mythos Preview represents will only intensify with subsequent releases.
 
-Related: [AI Safety & Interpretability](ai-safety-interpretability.md)
+Related: [AI Safety & Interpretability](ai-safety-interpretability.md) · [Frontier Models](frontier-models.md)
 
 ## Sources
 

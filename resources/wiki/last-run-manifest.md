@@ -1,26 +1,26 @@
 ---
-wrap_up_date: 2026-05-17
-wrap_up_start: "2026-05-17T23:00:00Z"
-wrap_up_end: "2026-05-17T23:15:00Z"
-week_start: "2026-05-10T00:00:00Z"
+wrap_up_date: 2026-05-24
+wrap_up_start: "2026-05-24T02:00:00Z"
+wrap_up_end: "2026-05-24T02:15:00Z"
+week_start: "2026-05-17T00:00:00Z"
 pages_created_this_week: 0
 pages_updated_this_week: 0
 workers_succeeded: 0
-workers_failed: 11
+workers_failed: 12
 worker_veto_rate: "0/0 (N/A)"
 auto_merges: 0
 dedup_candidates_flagged: 0
-orphans_flagged: 7
+orphans_flagged: 5
 synthesis_candidates_flagged: 0
 split_candidates_flagged: 0
-unorganized_clusters_promoted: 1
+unorganized_clusters_promoted: 0
 ---
 
-# Weekly Wrap-Up — 2026-05-17
+# Weekly Wrap-Up — 2026-05-24
 
 ## This Week at a Glance
 
-Quiet week. The list-maker ran daily (May 11–17) and dispatched 11 workers across 5 runs, but none produced commits — all 11 workers appear to have failed silently (no WORKER_ERRORS.md file exists). Two Tier D bookmarks were added to unorganized.md. No wiki pages were created or updated by workers this week.
+Another quiet week. The list-maker ran daily (May 18–24) and dispatched 12 workers across 4 runs, but none produced commits — this is the second consecutive week of silent worker failures (23 total across two weeks). Two Tier D bookmarks (Andon FM, Readwise changelog) were added to unorganized.md. No wiki pages were created or updated by workers. Two cohesion cross-links were added (frontier-models ← claude-mythos, ai-regulation ← ai-safety-interpretability), reducing orphans from 7 to 5.
 
 ## Pages Created
 
@@ -34,7 +34,7 @@ Quiet week. The list-maker ran daily (May 11–17) and dispatched 11 workers acr
 | Page | Updates this week |
 |------|-------------------|
 
-(None — only list-maker-log.md and unorganized.md were touched)
+(None by workers — only list-maker-log.md and unorganized.md were touched)
 
 ## Auto-Merges
 
@@ -54,7 +54,9 @@ Quiet week. The list-maker ran daily (May 11–17) and dispatched 11 workers acr
 
 | Action | Page | Detail |
 |--------|------|--------|
-| Index check | index.md | All 30 topic pages present — no additions needed |
+| Index check | index.md | All 35 topic pages present — no additions needed |
+| Cross-link added | models-safety/claude-mythos.md | Added link to frontier-models.md in "Related" line |
+| Cross-link added | models-safety/ai-safety-interpretability.md | Added link to landscape/ai-regulation.md in OpenAI safety controversy section |
 
 ## Orphans (true)
 
@@ -63,8 +65,6 @@ Quiet week. The list-maker ran daily (May 11–17) and dispatched 11 workers acr
 | concepts/synthetic-personas.md | Niche topic (evolutionary LLM personas); no other page discusses persona generation |
 | culture/internet-as-mediating-layer.md | Cultural/philosophical frame; no natural cross-link from AI-focused pages |
 | culture/museum-design-curation.md | Standalone cultural topic; no overlap with other wiki content |
-| landscape/ai-regulation.md | Regulatory topic; could link from ai-safety-interpretability but topics are distinct |
-| models-safety/frontier-models.md | Could be linked from claude-mythos.md or ai-safety-interpretability.md; near-miss |
 | music/beatles-early-period.md | Standalone music analysis; no overlap with other wiki content |
 | writing/writing-craft.md | Standalone writing topic; no overlap with other wiki content |
 
@@ -93,7 +93,8 @@ Quiet week. The list-maker ran daily (May 11–17) and dispatched 11 workers acr
 
 | Cluster topic | Items moved | Destination | New or existing |
 |---------------|-------------|-------------|-----------------|
-| Readwise & Reader changelogs | 5 (Apr 10, Apr 17, Apr 24, May 1, May 8 2026 changelogs) | concepts/llm-knowledge-bases.md → Community tools → Readwise MCP sub-bullet | Existing |
+
+(None — no clusters of 3+ items on a single topic found)
 
 ## Worker Veto Trail
 
@@ -106,8 +107,8 @@ Quiet week. The list-maker ran daily (May 11–17) and dispatched 11 workers acr
 
 | Date | Doc ID | Error |
 |------|--------|-------|
-| May 11–17 | (11 dispatched workers) | No WORKER_ERRORS.md found; all 11 dispatched workers failed silently — no commits produced. Possible scheduling/execution failure. |
+| May 18–24 | (12 dispatched workers) | No WORKER_ERRORS.md found; all 12 dispatched workers failed silently — no commits produced. Second consecutive week of total worker failure (23 total). Likely scheduling/execution infrastructure issue. |
 
 ## QUEUE.md
 
-Refreshed. 2 items in long-form queue (unchanged from last week: Claude Mythos Preview 70K words, Knowledge About Knowledge 131K words).
+Refreshed. 2 items in long-form queue (unchanged: Claude Mythos Preview 70K words, Knowledge About Knowledge 131K words).

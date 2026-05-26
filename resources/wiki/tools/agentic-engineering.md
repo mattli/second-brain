@@ -2,6 +2,7 @@
 created_at: 2026-04-05
 last_updated: 2026-05-26
 
+
 ---
 
 # Agentic Engineering
@@ -22,6 +23,30 @@ AI work is bifurcating into two distinct interaction modes, each requiring diffe
 The meta-skill is knowing which mode fits the task. The [allocation economy](../concepts/allocation-economy.md) thesis captured the delegation half, but missed that roughly half of AI-augmented work remains fundamentally collaborative — tasks where the human's judgment, taste, or real-time feedback is integral to the output, not just the brief [[source]](https://every.to/context-window/the-dawn-of-codex-native-apps).
 
 In practice, teams are running both modes simultaneously: collaborative agents for writing, design, and strategy; delegated agents for refactors, migrations, and batch operations. The organizational challenge is building intuition for which mode to reach for — and building infrastructure that supports both.
+
+## Vibe Coding vs. Agentic Engineering (Simon Willison)
+
+Simon Willison draws a sharp line between two modes of AI-assisted development — then argues the line is already blurring.
+
+**Vibe coding** is building without reading the code. You prompt, you check if the output works, you ship. If it breaks, you tell the model it broke and hope for the best. Willison's position: vibe coding is fine for personal tools where bugs only hurt you; it is "grossly irresponsible" for software that handles other people's data or trust.
+
+**Agentic engineering** is a professional software engineer using AI tools to the full extent of their experience — understanding security, maintainability, operations, performance — and aiming to build *higher quality* software *faster*, not lower quality software faster. The 25-year practitioner's context, architecture taste, and security instincts become force multipliers rather than redundancies.
+
+The blur: as models improve (Willison dates the tipping point to Claude Opus 4.5 / GPT 5.1, late 2025), even disciplined engineers stop reviewing every line. A JSON API endpoint backed by SQL, with generated tests and docs, is reliably correct. The question shifts from "did I review this?" to "do I trust this class of output?"
+
+**The team analogy.** Willison resolves the trust question by analogy to large engineering organizations: you don't read every line of code written by another team's image-resize service — you read the docs, use it, and dig in only when something breaks. He treats agent output the same way: a semi-black box trusted until evidence suggests otherwise. The discomfort is that agents, unlike teams, carry no professional reputation and cannot be held accountable.
+
+**The security-adjacent line.** Anything security-adjacent still gets human review. Knowing what *is* security-adjacent is itself a skill developed over years — one reason experienced engineers remain essential.
+
+**Usage over tests as trust signal.** In a world where agents produce beautiful READMEs, 100 commits, and comprehensive test suites in thirty minutes, those artifacts no longer reliably signal quality. What *does* signal quality: someone has used the thing in production for weeks. "If you've got a vibe coded thing which you have used every day for the past two weeks, that's much more valuable to me than something that you've just spat out and you've hardly even exercised."
+
+**Parallel agents and interruptible work.** When coding required holding an entire system in your head, interruptions were catastrophic. With agents handling the typing, Willison works on two or three projects simultaneously — prompting one agent, switching to another while the first churns for ten minutes. Harder projects parallelize *better* because each agent step takes longer, freeing more interstitial time. The deep-focus era is giving way to an interrupt-friendly dispatch model (see [delegation–collaboration split](#the-delegationcollaboration-split) above).
+
+**Design and product process implications.** If building is cheap, the elaborate design phase that guards against "three months building the wrong thing" can afford more risk. Jenny Wen (Anthropic design lead) argues the design process should become riskier because the cost of getting it wrong has collapsed. The same logic applies to product management: specification rigor was justified by engineering cost. Spikes that once took two days of developer time now take an hour of agent time — and you can run ten in parallel.
+
+**The deterministic-core pattern.** For production systems, Willison advocates investing deeply in a "perfect" database schema and robust API, then vibe-coding all UI on top. Customers get customization flexibility without risking the data model. The principle: push determinism into the core, let non-determinism live at the edges where the blast radius is small.
+
+**Why code became the breakthrough domain.** Reinforcement learning needs clean reward signals. Code provides the cleanest: did the script pass its tests? Binary, instant, scalable to 10,000 parallel VMs. Anthropic and OpenAI spent 2025 on RL against simulated software environments. Labs that didn't (xAI, Gemini) fell 12 months behind. Willison expects Gemini to close the gap by end of 2026. The same RL approach is far harder to apply to law (six-month trial feedback loops) or medicine — making software engineering, ironically, the field most susceptible to AI-driven change.
 
 ## Harness Design: "Seeing Like an Agent"
 
@@ -259,3 +284,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Inside the 100-agent Software Factory" — Katie Parrott / Every (May 2026) ([link](https://every.to/napkin-math/inside-the-100-agent-software-factory)) — Gas City multi-agent orchestration: dark/light factory, one-pet-many-cattle supervisor pattern, multi-model code review, current limitations
 - "AI Work Is Splitting in Two" — Every Staff (May 2026) ([link](https://every.to/context-window/the-dawn-of-codex-native-apps)) — delegation vs collaboration bifurcation, Spiral as Managed Agents production case, Code with Claude 2026 announcements
 - "CLI Printing Press" — mvanhorn (GitHub, 2026) ([link](https://github.com/mvanhorn/cli-printing-press)) — agent-first CLI factory: absorb-and-transcend generation, creativity ladder (5 rungs from wrapper to behavioral insight), dual CLI+MCP from one spec, SQLite local-first data layer
+- "Ep. #9, The AI Coding Paradigm Shift with Simon Willison" — Simon Willison / High Leverage podcast (May 2026) — vibe coding vs agentic engineering distinction, trust model for agent output, security-adjacent review line, usage-over-tests heuristic, parallel agent workflow, deterministic-core pattern, RL on code as training breakthrough

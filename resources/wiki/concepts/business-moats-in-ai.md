@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-27
+last_updated: 2026-05-26
 ---
 
 # Business Moats in AI
@@ -10,6 +10,14 @@ last_updated: 2026-04-27
 ## Overview
 
 Michael Bloch's framework for defensibility in the AI era. The core filter: AI compresses the time it takes to DO things. It does not compress the time it takes for things to HAPPEN.
+
+## Platform Shifts and Value Capture
+
+Benedict Evans frames AI as the latest in a recurring series of platform shifts (mainframes → PCs → web → smartphones → AI), each of which reshuffles dominance: old gatekeepers fall, new ones emerge, and the first movers are very rarely the companies that capture lasting value. PCs had many early entrants before IBM and Microsoft; web browsers, search, social, and smartphones all followed the same pattern. The implication for AI: we should presume that half of what's being built now won't be the answer, and that the eventual winners may not yet be obvious.
+
+The strategic fork for model labs maps directly onto the moat framework: do you compete **down the stack** on capital (chips, data centers, power — the way hardware and infrastructure industries work) or **up the stack** on network effects, product, and go-to-market (the way software has always worked)? What you can't do is sit in the middle with a commodity model burning hundreds of billions. OpenAI's position illustrates this tension: massive mindshare but a commodity product with no differentiation, no platform, and no infrastructure of its own — scrambling to bundle everything from app platforms to browsers to e-commerce on someone else's balance sheet.
+
+The absorption → innovation → disruption deployment cycle matters for timing: most enterprises are still in phase one (absorbing AI into existing workflows — code, marketing, customer support). Only about a third of large companies have even one generative AI product in production. The disruptive phase — where AI enables fundamentally new business models and market structures — is still ahead.
 
 ## The Five Moats
 
@@ -25,6 +33,8 @@ Governments move at the speed of politics, not technology. Bank charters take ye
 ### 4. Capital at Scale
 The endgame is physical. Chip fabs cost $20B. Nuclear plants cost $10B. "There's a reason Elon is raising $75B even while saying money might not matter in 15 years." Capital access = institutional trust + track record + relationships built over decades.
 
+The scale is staggering: in 2025 the big four platform companies spent close to $400 billion on AI infrastructure, up 4x from two years prior, with growth rates expected to increase further [[source]](https://www.youtube.com/watch?v=FtG8fMGHbNY). Getting access to electricity is now a bigger constraint than getting chips from Nvidia. Microsoft alone spent 45% of revenue on capex last quarter and is adding ~$50B in leasing; Meta has done two $30B infrastructure deals; Oracle may need to borrow 100% of revenue to meet commitments. This capital intensity is itself a moat — the money is coming from cash flow of enormously profitable companies, not capital markets, making it inaccessible to new entrants.
+
 ### 5. Physical Infrastructure
 Factories, power plants, battery networks, data centers. Example: Base Power deploying thousands of battery units across Texas homes while building own manufacturing. "You can design the system in a week with AI. You cannot manufacture, install, and interconnect thousands of units in a week."
 
@@ -35,6 +45,8 @@ Factories, power plants, battery networks, data centers. Example: Base Power dep
 - **Software scale** — Spreading engineering costs across millions of users stops mattering when engineering costs approach zero
 
 These were moats against the scarcity of intelligence. "That's the one form of scarcity we know is ending."
+
+Evans' benchmark data reinforces this: the top 10 foundation models cluster within 5-10% of each other on general-purpose benchmarks, with a new leader every week that quickly converges back to the pack. The models are commoditizing in capability even as usage concentrates around distribution advantages — OpenAI leads on users, others lead on benchmarks, and the gap between them narrows continuously.
 
 ## Open Questions
 
@@ -167,3 +179,4 @@ The pattern in every case: the winner recognized when the critical input had bee
 - "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)
 - "The AI SaaS Squeeze" — Tyler Tringas (Calm Fund, Jun 2025 / published Apr 2026) ([link](https://x.com/tylertringas))
 - "Running Faster to Go Nowhere: The AI Adoption Trap" — BuccoCapital / Educated Guess (Apr 2026) ([link](https://www.educatedguess.com)) — Red Queen dynamics in AI adoption, Fractal of AI Panic, niche construction historical case studies (Amazon, GM/Sloan, Toyota)
+- "AI Eats the World" — Benedict Evans / Slush (video, 2025) ([link](https://www.youtube.com/watch?v=FtG8fMGHbNY)) — Platform shift framing, model commoditization data, capital-vs-network-effects fork for model labs, $400B infrastructure spend, absorption-to-disruption deployment cycle

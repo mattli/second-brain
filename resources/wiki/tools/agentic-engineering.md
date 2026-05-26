@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-05-27
 
 ---
 
@@ -11,6 +11,17 @@ last_updated: 2026-05-26
 ## Overview
 
 Distinct from simply using AI tools, agentic engineering is about building the systems that make agents effective. The field is moving fast, with key contributions from Anthropic's Claude Code team, the AutoAgent project, and multiple open-source orchestration frameworks.
+
+## The Delegation–Collaboration Split
+
+AI work is bifurcating into two distinct interaction modes, each requiring different agent architectures:
+
+- **Collaboration** — Real-time, synchronous work where a human and model co-create in the same loop. Desktop apps, inline code assistants, pair-programming sessions. The model sees your context and responds within seconds. The value is creative amplification — the human steers, the model accelerates.
+- **Delegation** — Asynchronous handoff where teams assign work to long-running agents (Codex, [Managed Agents](#managed-agents-anthropic), [Gas City](#software-factories-gas-city)) and check back later. The agent owns the full execution loop. The value is throughput — one person dispatches many parallel workstreams.
+
+The meta-skill is knowing which mode fits the task. The [allocation economy](../concepts/allocation-economy.md) thesis captured the delegation half, but missed that roughly half of AI-augmented work remains fundamentally collaborative — tasks where the human's judgment, taste, or real-time feedback is integral to the output, not just the brief [[source]](https://every.to/context-window/the-dawn-of-codex-native-apps).
+
+In practice, teams are running both modes simultaneously: collaborative agents for writing, design, and strategy; delegated agents for refactors, migrations, and batch operations. The organizational challenge is building intuition for which mode to reach for — and building infrastructure that supports both.
 
 ## Harness Design: "Seeing Like an Agent"
 
@@ -85,6 +96,8 @@ Anthropic's hosted agent infrastructure (April 2026). The key insight: harnesses
 **Many brains, many hands:** Multiple orchestrator agents can share hands (sandboxes) — and can pass hands to each other. The harness doesn't know whether the sandbox is a container, a phone, or a Pokémon emulator.
 
 The design philosophy mirrors Unix: virtualize components into general interfaces (like `read()` being agnostic to disk hardware) that outlast any specific implementation underneath. See the Anthropic engineering blog: "Scaling Managed Agents: Decoupling the brain from the hands."
+
+**In production — Spiral:** Every's writing tool Spiral is one of the first products using Managed Agents' multi-agent capabilities in production. When a user requests multiple drafts, a managed agent spins up multiple Opus-class subagents to write drafts in parallel, cutting response time by 20–30 seconds per draft. This demonstrates the "many brains, many hands" architecture working at product scale — orchestration as a feature, not infrastructure overhead.
 
 ## The Great Convergence
 
@@ -223,3 +236,4 @@ In the third model, the software's agent handles business logic, enforces rules,
 - "Not all AI agents are created equal" — Hamza Farooq & Jaya Rajwani / Lenny's Newsletter (Apr 2026) ([link](https://www.lennysnewsletter.com/p/not-all-ai-agents-are-created-equal))
 - "The Technical Stack for Autonomous Agents" — Aaron Wright (tweet, 2026) — ten-layer infrastructure stack (trust/market/control planes) for agent marketplaces, ERC-8004, settlement rails, governance/compliance separation
 - "Inside the 100-agent Software Factory" — Katie Parrott / Every (May 2026) ([link](https://every.to/napkin-math/inside-the-100-agent-software-factory)) — Gas City multi-agent orchestration: dark/light factory, one-pet-many-cattle supervisor pattern, multi-model code review, current limitations
+- "AI Work Is Splitting in Two" — Every Staff (May 2026) ([link](https://every.to/context-window/the-dawn-of-codex-native-apps)) — delegation vs collaboration bifurcation, Spiral as Managed Agents production case, Code with Claude 2026 announcements

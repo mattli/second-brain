@@ -120,6 +120,46 @@ Evaluation sits between running an experiment and shipping a change. You have a 
 
 **Closing the loop:** Some evaluators should move beyond offline experiments into production. Reference-free evaluators and user feedback signals applied to live traffic confirm that quality matches what you saw pre-deployment. If production behavior diverges, capture those cases in traces, turn them into dataset items, and run the next round of experiments.
 
+## Agent-Ready Requirements (/goal)
+
+Claude Code's `/goal` and Codex's long-horizon mode formalize a pattern that was already emerging informally: the "Ralph Wiggum loop." Put an agent in a bash loop, give it the same repo context every time, tell it to read the spec and implementation plan, pick the next unchecked task, complete it, run a test, mark the task done only if the test passes, then start again.
+
+The useful part is not a smarter model — it's the fresh context at the start of each run. Instead of trusting one bloated chat to remember everything through compaction, the loop reloads durable files: the spec, the plan, the task list, the test suite, the status notes. The conversation can rot, but the source of truth stays outside the conversation.
+
+**The core principle: the loop is only as good as the plan it reloads, the tests, the acceptance criteria, and the evidence it leaves behind.** This pushes PM work past "write enough detail that an engineer understands the intent" toward "define done clearly enough that an agent can keep trying, a harness can inspect the evidence, and a human can tell whether the outcome is product-correct."
+
+**Weak goals read like wishes.** `/goal improve onboarding` gives the agent no way to know whether onboarding improved. It starts optimizing for whatever is easiest to prove — cleaner screenshots, passing tests, fewer steps. A one-shot mistake is annoying; a loop can spend 40 turns making the wrong thing more internally consistent.
+
+**Strong goals give the loop a finish line, a proof method, and a boundary.** The spec names observable behavior, the goal names validation commands and scope constraints, and the loop stops after N turns with a status report if blocked. A prompt asks for effort; a contract defines the condition where effort stops.
+
+**What PMs should stop handing agents:** adjectives ("make it better/cleaner/easier") and vibes ("polish the onboarding flow"). Replace with observable states: "Reduce the empty-state decision path from four visible actions to two. Keep 'Import CSV' and 'Create manually.' Add a regression test that the empty state still exposes both setup paths."
+
+**Practical /goal template:**
+
+- **Source of truth:** spec file, implementation plan, status file
+- **Acceptance criteria:** observable behaviors, negative cases, non-regression conditions
+- **Validation:** test commands, lint/typecheck/build, browser/visual evidence if needed
+- **Boundaries:** only edit specific paths, do not change named systems, preserve specific contracts
+- **Loop behavior:** run validation after each change, update the status file with what changed / what passed / what's risky, stop after N turns if blocked
+
+The status file is the durable memory layer — it records what changed, which checks passed or failed, what decisions the agent made, and what a human should inspect next. Every fresh turn reloads the spec and status instead of reconstructing the project from a decaying conversation.
+
+**Where /goal works best:** migration work (concrete target, cheap validation), backlog clearing (queue of failing tests), file splitting (measurable constraints), brute-force testing (attack vectors until queue empty). Exploration mode can work too, but the goal should produce learning, not production code.
+
+**Where it fails:** when the goal is an adjective, when there's no validation command, when scope boundaries are missing, or when the PM launches the loop and walks away without watching the first iterations. The first loops are calibration — they teach you how the agent interprets the plan. Watching them is how you make later unattended work less stupid.
+
+### Structured Memory for Product Context
+
+The same article describes a pattern for agent memory in product work (implemented in PM OS v2): capture what changed, learn missing background context slowly, then recall the useful part before the next workflow begins.
+
+**Capture:** selective abstraction, not raw recording. Categories: decisions, risks, assumptions, open questions, stakeholder context, changed recommendations. The system proposes facts worth keeping; the PM approves what to save. "A transcript is a recording. A decision is the abstraction that lets future work continue."
+
+**Slow context building ("daily-drip"):** instead of a giant setup interview, the system asks one useful question at a time — "What is one thing I should learn about you, your work, or this project that would make future help sharper?" — and routes the answer to the right memory layer. Small question, small answer, better context over time.
+
+**Recall:** a compact packet — recent decisions, active risks, open questions, assumptions, constraints — loaded before a workflow starts. Working memory, not archive search. This transforms generic workflow prompts ("help me prep for a roadmap meeting") into context-aware ones ("I see the live tension is the Q3 move from mobile to retention, plus design's concern that onboarding is being abandoned. Is this meeting mainly to align design, reset leadership expectations, or decide what happens to mobile commitments?").
+
+The operating rule: define done, prove done, and keep the proof outside the chat.
+
 ## "Team OS" Pattern
 
 Hannah Stalberg (DoorDash PM, 1,500+ hours in Claude Code) coined "Team OS" — a team-level knowledge base that helps everyone move faster. Claude Code becomes the interface to this shared context. Her key observation: "Claude Code is the most misleading name in AI" — it's not just for code, it's a general-purpose agent for product work. See [Claude Code Skill Frameworks](claude-code-skill-frameworks.md).
@@ -263,3 +303,4 @@ Colocation matters for maximum speed: "The highest speed is achieved by having e
 - "Chief Product Officer in a Box: Introducing The AI PM OS" — George / prodmgmt.world (tweet, Mar 2026) ([link](https://read.readwise.io/read/01kq6mz4x91wqhw6y95zv9vzyt)) — Dennis Yang/Chime, Zevi Arnovitz/Meta, Alan Wright practitioner examples
 - "Big Pharma Bets Big on AI" — Andrew Ng / deeplearning.ai (newsletter, Apr 2026) ([link](https://read.readwise.io/read/01kq881g9mf0dfc4nzk8eyywt1)) — PM bottleneck cascade, generalist engineers, marketing/legal bottlenecks, colocation advantage
 - "Evals, explained" — Lotte / Langfuse Academy (May 2026) ([link](https://langfuse.com/academy/evaluate)) — three evaluation methods, manual-to-automated evolution, reference-based vs. reference-free, binary scoring, production eval loop
+- "/goal for Product Managers" — George / prodmgmt.world (tweet, May 2026) ([link](https://twitter.com/nurijanian/status/2053364576369172940)) — Ralph Wiggum loops, agent-ready requirements, strong vs. weak goals, /goal template, PM OS v2 structured memory (capture, daily-drip, recall)

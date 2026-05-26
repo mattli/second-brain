@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-05-26
+sources: +01kr23gy
 
 
 
@@ -278,6 +279,28 @@ The resolution: generalists. When small teams (2-10 people) must cover five spec
 
 Colocation matters for maximum speed: "The highest speed is achieved by having everyone in the room, able to communicate instantaneously." Remote works, but same-room removes the last communication latency.
 
+## The Five Bottlenecks of Becoming AI-Native (Alfred Lin)
+
+Alfred Lin (Sequoia, May 2026) extends the bottleneck cascade concept into a sequential transformation model. Where Ng identifies parallel bottlenecks that emerge when engineering speeds up, Lin maps the specific order companies move through — each bottleneck only becomes visible once the previous one is resolved.
+
+**Enabled vs. native.** Lin draws on the cloud era's distinction: cloud-enabled meant lifting existing applications onto AWS; cloud-native meant designing for the cloud from the first line of code. The same divide applies now. AI-enabled companies add an assistant to the same sales team and measure emails saved. AI-native companies ask: if we started from scratch today, how would we build each layer? "A true redesign is the single largest factor separating companies that capture value from AI from those that do not" [[source]](https://x.com/Alfred_Lin/status/2036433182774727105).
+
+**The five bottlenecks, in order:**
+
+1. **Adoption** — Do people actually use the tools? Companies start with token-usage leaderboards to encourage adoption, then discover the real question: is usage productive or just token-maxing? Leadership must shape adoption culturally — Chainguard's CEO expects every engineering manager to have token usage near the median of their direct reports. Below the median, leaders lack lived experience to coach; far above it, they need to be teaching.
+
+2. **Engineering velocity** — Measured by pull requests. Top 5-10% of builders are now five times more productive than a year ago; the median is up 20%. The job is making the velocity of the top decile accessible to the rest of the team.
+
+3. **Product velocity and experience quality** — Engineers can ship, but can the company decide what to build fast enough? Roadmaps that took quarters now take weeks. PMs, designers, and leaders with great taste become the rate limiters. "Most companies stall here. They scale engineering velocity into a firehose pointed at the wrong target."
+
+4. **The development operating system** — Building custom internal tools: eval harnesses, ticket-routing agents, code-review agents, security-review agents, on-call triage agents. AI-native companies keep finding small bottlenecks, removing them, and encoding solutions into their development OS. Crucially, they accept that most of this tooling won't last — the tool shipped last quarter is already aging. "Schumpeter's creative destruction now applies inside the company."
+
+5. **Team organization** — How to break up and reassemble work in the AI age. Waterfall was invented for large armies of engineers submitting to weekly builds. Two-pizza teams and agile emerged with cloud and microservices. "We have yet to reach an agreement on how best-in-class development will be done in the age of AI, so it is ours to create and own."
+
+**The meta-insight: becoming is harder than declaring.** Lin notes that Shopify, Duolingo, and Klarna all followed the same arc — a bold internal memo becomes a public artifact, headlines follow, then months later a clarification or walkback. Klarna paused its hiring freeze. Duolingo walked back the replacement framing. What's visible is the tip of the iceberg; beneath it is the wrestling of actually transforming.
+
+This connects to Ng's bottleneck cascade (which focuses on functional bottlenecks: PM, marketing, legal, design) and to the [Delta Force Teams](#delta-force-teams-owner) pattern (which solves bottleneck #5 through extreme talent density). Lin's development OS bottleneck (#4) maps directly to Noah Brier's [pace layers framework](#software-company-not-software-factory) — the custom tooling layer moves fast but must be constrained by slower-moving standards and architecture.
+
 ## Software Company, Not Software Factory
 
 Noah Brier (Alephic) pushes back on the "software factory" metaphor popularized by StrongDM's autonomous code generation system and Dan Shapiro's "Dark Factory" framework. The factory metaphor optimizes for defect elimination — Six Sigma, identical outputs, minimal variance. But software's hardest problem isn't producing code with fewer defects; it's building something people want. Product-market fit, not defect rate, is what matters.
@@ -320,3 +343,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "Evals, explained" — Lotte / Langfuse Academy (May 2026) ([link](https://langfuse.com/academy/evaluate)) — three evaluation methods, manual-to-automated evolution, reference-based vs. reference-free, binary scoring, production eval loop
 - "/goal for Product Managers" — George / prodmgmt.world (tweet, May 2026) ([link](https://twitter.com/nurijanian/status/2053364576369172940)) — Ralph Wiggum loops, agent-ready requirements, strong vs. weak goals, /goal template, PM OS v2 structured memory (capture, daily-drip, recall)
 - "The Culture of AI Engineering" — Noah Brier / Every (May 2026) — software company vs. software factory, Warhol vs. Ford metaphor, pace layers for AI engineering, agent onboarding as culture problem
+- "The Long Becoming" — Alfred Lin / Sequoia (tweet, May 2026) — five sequential bottlenecks of AI-native transformation, enabled vs. native framing, development OS as internal tooling layer, becoming harder than declaring

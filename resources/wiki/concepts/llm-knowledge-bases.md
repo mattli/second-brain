@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-16
+last_updated: 2026-05-26
 ---
 
 # LLM Knowledge Bases
@@ -150,6 +150,16 @@ Nyk (Apr 2026) argues RAG was an engineering workaround for small context window
 
 The honest answer for most teams: use both. Retrieve to narrow the corpus, then pass the relevant subset in full rather than chunking it further.
 
+## Web-Native LLM Access: /llms.txt
+
+The same "file over app" principle that makes personal wikis work applies to public websites. Jeremy Howard's `/llms.txt` proposal standardizes how websites expose content to LLMs: place a markdown file at `/llms.txt` containing a curated overview of the site — project name, summary, and links to detailed markdown versions of key pages. Individual pages can also offer clean markdown at the same URL with `.md` appended.
+
+The format is intentionally simple — an H1 title, an optional blockquote summary, freeform markdown notes, then H2-delimited sections listing linked resources. An `## Optional` section marks content that can be skipped when context is tight. The file is both human-readable and parseable by classical tools (regex, parsers), not just LLMs.
+
+Where `/llms.txt` complements the wiki pattern: personal wikis solve knowledge access for *your own* curated sources, while `/llms.txt` solves it at the *publisher* level — documentation sites, APIs, legislation, course catalogs. Both reject the same failed approach: forcing LLMs to extract meaning from complex HTML, navigation chrome, and JavaScript. Both converge on markdown as the universal interchange format.
+
+The standard coexists with `robots.txt` (access policy) and `sitemap.xml` (exhaustive page list) by serving a different purpose: curated, context-window-friendly overviews rather than complete indexes. Tools like `llms_txt2ctx` expand `/llms.txt` into full context files by inlining linked documents — effectively compiling a mini knowledge base from the spec, much like how wiki compilation works from raw sources.
+
 ## Open Questions
 
 - How well does this scale beyond ~100 articles / 400K words? At what point does agent navigation break down and you need search tooling like qmd?
@@ -174,3 +184,4 @@ The honest answer for most teams: use both. Retrieve to narrow the corpus, then 
 - "How I Turn Learning Into a Workflow in the AI Era" — Tw93 (Apr 2026)
 - "Claude + Obsidian have to be illegal" — Defileo (tweet thread, Apr 2026) ([link](https://x.com/defileo_))
 - "I Went Through Every AI Memory Tool I Could Find. There Are Two Camps." — witcheer (tweet thread, Apr 2026) ([link](https://x.com/witcheer))
+- "The /llms.txt file" — Jeremy Howard (llmstxt.org) ([link](https://llmstxt.org/)): Proposed web standard for LLM-friendly site content via markdown at `/llms.txt`; connects the "file over app" principle to publisher-side knowledge access.

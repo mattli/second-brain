@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-27
+last_updated: 2026-05-26
 ---
 
 # AI Careers
@@ -107,6 +107,23 @@ This reframes what "AI engineer" means in practice. The job is not calling an LL
 6. **Production hardening (ongoing)** — Prompt caching, model routing with cost budgets, sandboxed code execution, credential brokering, drift monitoring, and durable execution.
 
 **The hiring market signal:** 57% of teams already have agents in production (LangChain State of Agent Engineering, 1,340 respondents), 89% have observability wired, and quality (32%) is the #1 barrier. The field is bottlenecked on engineers who can build evals and harnesses, not on engineers who can call an API. See [Agentic Engineering](../tools/agentic-engineering.md) for the technical patterns underlying this career path, and [Agent Proficiency](../concepts/agent-proficiency.md) for the broader skill of directing agents toward real problems.
+
+## AI Search Discoverability as Career Strategy
+
+Skills and delivery get you hired, but first you have to be found. AI search tools are reshaping professional discoverability: between December 2025 and mid-February 2026, LinkedIn more than doubled its domain rank on ChatGPT, becoming the chatbot's fifth-most-cited source [[source]](https://builtin.com/articles/linkedin-chatgpt-ai-search-careers). For professional queries specifically, LinkedIn is the most-cited domain across all AI search platforms, including Google's AI Overviews.
+
+This creates a new surface area for career positioning. The content that gets cited isn't viral — Semrush found most cited LinkedIn posts had only 15–25 reactions — but it is consistent and specific. Articles between 500 and 2,000 words that share practical knowledge outperform shorter or more generic content. AI algorithms value relevance and consistency over virality, which inverts the usual social media playbook.
+
+**Practical profile optimization:**
+- Write a keyword-rich headline combining role, skills, and value proposition (e.g., "Content Strategist | B2B SaaS, Thought Leadership, SEO | Building authority through high-impact content") rather than a bare job title
+- Be specific about experience and measurable impact — [large language models](../concepts/llm-foundations.md) in both LinkedIn search and AI answer engines match on concrete language, not vague descriptors like "results-driven professional"
+- Post practical insights regularly — consistency matters more than any single post's reach
+
+**Recruiter reality check:** AI search is not yet recruiters' primary sourcing channel. LinkedIn's own hiring tools already support natural language queries with extensive filters, and the platform restricts unauthorized scraping of profile data. AI-powered sourcing tools (Fetcher, Juicebox, SeekOut) crawl multiple databases for niche candidates, but traditional AI search functions more as a recruiter copilot — surfacing industry terminology, related job titles, and background context rather than candidate lists directly.
+
+**The authenticity trap:** Over half of LinkedIn posts are AI-generated (Originality AI, 2024 study), which creates a paradox: the more people use generative AI to churn out content, the more indistinguishable profiles become. Original perspective and domain-specific insight remain the differentiator, echoing the page's broader theme that fundamentals and delivery outweigh surface-level signaling.
+
+One underappreciated angle: LinkedIn shares user data with Microsoft for AI training by default (since 2024), and opting out doesn't retroactively remove previously shared data. Users who opt out still appear in recruiter searches, including natural language queries. The implication is that your professional data is already part of the AI training corpus whether you actively manage your presence or not — which strengthens the case for shaping it intentionally rather than passively.
 
 ## Sources
 

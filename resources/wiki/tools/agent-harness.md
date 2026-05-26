@@ -81,6 +81,8 @@ The harness makes invisible memory decisions no external plugin can control:
 - Memory is a hint, not truth — model must verify before acting
 - What they don't store: no debugging logs, no code structure, no PR history ("if it's derivable, don't persist it")
 
+*Anthropic Dreams (Managed Agents API, May 2026):* The API-level equivalent of Claude Code's autoDream. A **dream** is an async job that reads an existing memory store plus up to 100 past session transcripts, then produces a new, reorganized output store — duplicates merged, stale or contradicted entries replaced, new insights surfaced from session patterns. The input store is never modified, so the output can be reviewed and discarded if unsatisfactory. Dreams run asynchronously (minutes to tens of minutes depending on input size) and expose a live session you can stream to observe what the pipeline is reading and writing in real time. Supported models during research preview: `claude-opus-4-7` and `claude-sonnet-4-6`. Billed at standard API token rates; cost scales roughly linearly with the number and length of input sessions [[source]](https://platform.claude.com/docs/en/managed-agents/memory). The naming — "dreams" — parallels biological memory consolidation during sleep: the agent replays recent experience offline to reorganize long-term storage.
+
 *Letta's Context Constitution:* Agents learn by actively managing their own context — creating durable token-space representations of what they know. Letta Code uses a git-versioned memory filesystem with background memory subagents for sleep-time compute.
 
 ## Open vs. Closed Harnesses (Harrison Chase, LangChain)
@@ -91,7 +93,7 @@ The harness makes invisible memory decisions no external plugin can control:
 - *Bad:* Closed harnesses like Claude Agent SDK manage memory in ways that are unknown and non-transferrable.
 - *Worst:* When the whole harness including long-term memory is behind an API — you have zero ownership or visibility.
 
-Model providers are incentivized to move memory behind APIs because it creates lock-in. Anthropic's Managed Agents is the clearest example: literally everything behind an API, locked to their platform. Codex generates encrypted compaction summaries not usable outside OpenAI's ecosystem.
+Model providers are incentivized to move memory behind APIs because it creates lock-in. Anthropic's Managed Agents is the clearest example: literally everything behind an API, locked to their platform — Dreams extends this by making memory *consolidation* a platform service, not just memory *storage*. Codex generates encrypted compaction summaries not usable outside OpenAI's ecosystem.
 
 Open alternatives: Deep Agents (LangChain), open-source harnesses using open standards (agents.md, agentskills.io).
 
@@ -381,3 +383,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Lessons from building Claude Code: Prompt caching is everything" — Thariq Shihipar, Anthropic (May 2026) ([link](https://www.anthropic.com/engineering/prompt-caching-lessons-claude-code)) — prefix-match constraint, cache-safe forking for compaction, defer_loading for tool stability, Plan Mode as cache-aware design
 - "Your OpenClaw / Hermes Gets Neurological Conditions Too" — Vox (tweet thread, May 2026) ([link](https://x.com/Vox)) — six neurological conditions mapped to agent harness failure modes: source amnesia, phantom limb state, locked-in syndrome, confabulation, disinhibition, anosognosia
 - "The AI Agent Complexity Ratchet: Why 90% Test Coverage Is Required" — Garry Tan (tweet thread, May 2026) ([link](https://x.com/garrytan)) — complexity ratchet mechanism (tests + docs + evals as forward-only quality floor), 90% coverage threshold backed by Capers Jones DRE data and DO-178C, AI agents removing the effort wall, expanded test surface including TTY behavioral testing
+- "Dreams" — Anthropic Claude API Docs (May 2026) ([link](https://platform.claude.com/docs/en/managed-agents/memory)) — async memory consolidation for managed agents: reads memory store + session transcripts, produces deduplicated/reorganized output store

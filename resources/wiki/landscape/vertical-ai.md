@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-20
+last_updated: 2026-05-26
 ---
 
 # Vertical AI
@@ -107,9 +107,45 @@ Alton Syn distills Mark Cuban's AI agent thesis into a sharper framework: the mo
 
 This aligns with the [Services-as-Software](services-as-software.md) thesis: the 1-1-1 playbook is effectively the individual operator's version of the autopilot wedge — start with the outsourced, intelligence-heavy task and compound from there.
 
+## Abridge: Healthcare Vertical AI at Scale
+
+Abridge (founded 2018, CEO is a practicing cardiologist) is a clinical intelligence layer for health systems. Started with ambient clinical documentation — passively listening to doctor-patient conversations and generating notes — and expanded into clinical decision support, prior authorization, and broader workflow automation. Over 100 million doctor-patient conversations processed.
+
+**Why the conversation is the wedge:** ~20% of US GDP flows through healthcare, and almost everything — claims, payments, diagnoses, treatments — is a derivative of the doctor-patient conversation. Clinicians spend 10-20 hours per week on documentation ("pajama time" — catching up on notes after hours at home). Abridge eliminates that burden and uses the captured context to power adjacent products.
+
+**Three-act strategy:**
+1. **Save time** — Ambient documentation, the original product. Clinicians report going home to eat dinner with their families for the first time.
+2. **Save and make money** — Prior authorization (collapsing 45-day, 20-touchpoint approval processes into real-time in-visit resolution), revenue cycle optimization (ensuring notes are complete enough for proper billing).
+3. **Save lives** — Clinical decision support: proactive intelligence that preps clinicians before visits, surfaces guideline-based recommendations, and catches safety-critical gaps while patients are still in the room.
+
+**Product philosophy — "air conditioning":** The product should be in the background, just making things better. Over 90% of alerts in healthcare are ignored (alert fatigue). Abridge's approach is proactive over reactive — pre-visit patient summaries, quiet in-context nudges when clinically critical, not interruptive pop-ups. Only break the ambient wall when the clinical stakes justify it.
+
+**Personalization at three levels:**
+- *Individual:* Style preferences (bullets vs. paragraphs, specific phrases, template structure). Doctors treat notes as deeply personal reflections of their practice — "I refuse to use this tool" over two missing spaces between sentences.
+- *Specialty:* A cardiology note and workflow look nothing like dermatology. Eval criteria for what constitutes a "great" note differ by specialty — completeness, compliance, billability all shift.
+- *Health system:* Organizations embed their own clinical guidelines into the platform. Decades of refined best practices become context that the AI uses in real-time recommendations.
+
+**Moat mechanics:**
+- **Data flywheel** — 100M+ conversations generate edit data, feedback, and outcome signals that compound into personalization and quality improvements. The conversation corpus is a data source that never existed before in structured form.
+- **EHR integration** — Deep partnerships with major electronic health records systems. Pulling and pushing data with APIs "that weren't ready out of the box." Without seamless EHR integration, health systems won't adopt — every additional click is a dealbreaker.
+- **Eval rigor** — Internal clinicians run LFD ("look at the f***ing data") review passes; LLM judges calibrated with annotated data across specialties; progressive rollout modeled on Waymo's approach. "80/20 doesn't work here" — the long tail matters because errors can be fatal.
+- **Clinician scientists** — MDs who are also deeply technical (internally called "mutants"), embedded in product teams. They define eval criteria, shape product design, and ensure clinical safety. Similar to Harvey's 20% lawyer workforce but in healthcare.
+- **Trust is earned in drops** — Health systems traditionally operate on quarterly release cycles. Abridge has moved customers to monthly cycles, with a subset opting into even faster iterative development partnerships.
+
+**Technical architecture:**
+- Post-training and distillation for cost efficiency at scale — you can't use the most expensive model at 100M conversations. Fast/cheap models triage, hand off to larger models for complex reasoning (think fast/think slow pattern).
+- Memory sub-agents that learn clinician preferences in the background, with consolidation jobs analogous to sleep.
+- Event-driven real-time systems (Kafka, Temporal, sockets) — the ambient always-on modality requires low-latency processing during live conversations.
+- Currently batch-based real-time (not native voice-in/text-out), with prototypes for triggering agentic workflows at specific conversation moments.
+- De-identification models strip PHI from transcripts before any training or eval use, with government-defined standards for what constitutes protected health information.
+
+**Healthcare vs. horizontal AI (Glean comparison):** Chai Asawa (early Glean engineer, now leading Abridge clinical decision support) frames Abridge as "a healthcare-coded version of Glean." Both companies share the core insight that context is king — amazing models need the right context to be useful. Key differences: healthcare's downside risk is potentially fatal (vs. a wrong search result), the persona variance is narrower but deeper (specialties vs. all knowledge workers), and the ambient always-on modality is structurally different from search-triggered interaction.
+
+**Regulatory tailwinds:** Contrary to the assumption that healthcare regulation is purely a headwind, the FDA released updated clinical decision support guidance (Jan 2026) that is forward-looking and more permissive. Government interoperability mandates also help — they require the data exchange that makes agentic healthcare workflows possible.
+
 ## Comparable Cases
 
-- **Healthcare:** Abridge (medical scribing), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record. See also [AI Drug Discovery](../science/ai-drug-discovery.md) for how generative AI is compressing preclinical timelines in pharma.
+- **Healthcare:** Abridge (clinical intelligence layer, 100M+ conversations), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record. See also [AI Drug Discovery](../science/ai-drug-discovery.md) for how generative AI is compressing preclinical timelines in pharma.
 - **Code:** Cursor (reported explosive growth), Claude Code, Codex. Code is "upstream of all other applications" — AI accelerating code accelerates every domain.
 
 ## Implications for Builders
@@ -126,3 +162,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "AI Adoption by the Numbers" — Kimberly Tan (a16z, Apr 2026) ([link](https://www.a16z.news/p/ai-adoption-by-the-numbers?r=1xuh9&utm_medium=ios&triedRedirect=true))
 - "The New Software: CLI, Skills & Vertical Models" — Sandhya (tweet thread, Apr 2026) ([link](https://x.com))
 - "Mark Cuban Is Right About AI Agents" — Alton Syn (tweet, Apr 2026) ([link](https://x.com/altonsyn))
+- "Inside Abridge: The AI Listening to 100 Million Doctor Visits" — Latent Space / Janie Lee & Chai Asawa (video, 2026). Abridge clinical intelligence layer, healthcare vertical AI at scale, three-act strategy, eval rigor, data flywheel.

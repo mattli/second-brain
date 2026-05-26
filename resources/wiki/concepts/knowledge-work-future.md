@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-27
+last_updated: 2026-05-26
 ---
 
 # The Future of Knowledge Work
@@ -105,13 +105,29 @@ Kyle Kingsbury resurfaces Lisanne Bainbridge's 1983 paper "Ironies of Automation
 
 **Three core ironies:**
 
-1. **Deskilling** — Automation degrades the skills it's supposed to augment. When humans don't practice a skill, their ability atrophies. Software engineers report feeling less able to write code after working with code-generation models. Designers report weakened creative ability after offloading to ML. Students automating reading and writing lose "core skills needed to understand the world and develop one's own thoughts." Doctors using AI polyp detection perform worse at spotting adenomas during colonoscopies.
+1. **Deskilling** — Automation degrades the skills it's supposed to augment. When humans don't practice a skill, their ability atrophies. Software engineers report feeling less able to write code after working with code-generation models. Designers report weakened creative ability after offloading to ML. Students automating reading and writing lose "core skills needed to understand the world and develop one's own thoughts." Doctors using AI polyp detection perform worse at spotting adenomas during colonoscopies. Empirical studies are converging: an Anthropic randomized trial (early 2026) found engineers learning a Python library with AI scored 50% on comprehension vs. 67% for the manual group, with the gap widening on debugging — but within the AI group, those who asked conceptual questions scored above 65% while copy-pasters scored under 40% [[source]](https://addyosmani.com/blog/dont-outsource-the-learning/). MIT's "Your Brain on ChatGPT" study measured EEG brain connectivity scaling down with each layer of external support; 83% of LLM-assisted essay writers couldn't quote a single line of what they'd just produced — the researchers called this *cognitive debt* [[source]](https://www.media.mit.edu/publications/your-brain-on-chatgpt/). A CHI 2026 study found that when people had LLM access at the *start* of a task, the LLM framed the entire problem, producing measurably worse decisions even when the human did the rest — the order of AI involvement mattered more than the total amount [[source]](https://arxiv.org/html/2603.08849v1). **The tool doesn't determine the outcome. The posture does.**
 
 2. **Monitoring failure** — Humans are bad at overseeing automated processes. If the system executes tasks faster or more accurately than a human, real-time review is essentially impossible. Humans also struggle to maintain vigilance over systems that *mostly* work — which is why journalists keep publishing fictitious LLM quotes and Tesla's former head of self-driving watched his car crash into a wall.
 
 3. **Takeover collapse** — When an automated system handles things most of the time but occasionally needs human intervention, the operator is out of practice and stumbles. Automated systems can mask failure by handling increasing deviation until catastrophe strikes, thrusting a human into an unexpected regime. Air France 447 is the canonical example: flight controls transitioned to an unfamiliar mode the pilots weren't trained for.
 
 **The labor shock spectrum:** Kingsbury frames the range of outcomes from "ML turns out to be a normal technology" (massive capital write-down, labor market adapts, we muddle through) to mass displacement of knowledge workers across a broad swath of industries simultaneously — unlike previous automation waves that hit one sector at a time. The UBI solution is "hopelessly naïve": profitable megacorps already fight to avoid taxes and paying workers; no reason to believe AI companies will fund redistribution voluntarily.
+
+## Maintaining Skill While Using AI
+
+The deskilling research points to a clear intervention: the problem isn't AI use itself but *passive* AI use — delegating without engaging. The same tools that produce cognitive debt can sharpen engineers when used with active learning intent.
+
+**Posture shifts that preserve skill:**
+
+- **Form a hypothesis before prompting.** Write down what you think the problem is; use the model's answer to test your theory, not replace it.
+- **Ask for explanation before code.** In unfamiliar territory, request concepts, alternatives, and tradeoffs first. Only ask for implementation after grasping the design space.
+- **Treat AI output like a junior engineer's PR.** Read it, critique it, push back. Passing tests is not sufficient reason to merge.
+- **Re-derive periodically.** Take AI-generated code and recreate it from scratch — a calibration check on what you've quietly lost.
+- **Ask the model to teach what it just did.** One extra prompt ("what concepts did you use? what should I read?") changes what you take away from a session.
+
+Product teams are experimenting with structural interventions: Anthropic's Learning Mode uses Socratic questioning and asks users to write code before continuing; OpenAI and Google have shipped similar features. Adoption remains low — users file them under "for students" — but the same feature that helps a sophomore learn React works for a senior engineer learning Rust.
+
+**The "ship and learn" dual metric:** Shipping and learning are separate metrics. Managers and customers only ask about the first; the second is self-directed. Optimizing purely for task closure — the default UX gravity of every AI coding tool — accumulates cognitive debt invisibly. The correction is small: end sessions asking "did I learn anything today, or did I just close issues?"
 
 ## New AI-Era Job Categories (Kingsbury)
 
@@ -146,4 +162,5 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "Labor market impacts of AI: A new measure and early evidence" — Maxim Massenkoff & Peter McCrory (Anthropic, 2026) ([link](https://www.anthropic.com/research/labor-market-impacts))
 - "The Paradox Nobody's Naming: More Jobs Than Ever. Fewer People Who Can Do Them." — Paweł Huryn (tweet, Apr 2026) ([link](https://x.com/PawelHuryn))
 - "The Future Of Everything Is Lies, I Guess" — Kyle Kingsbury (PDF, Apr 2026) ([link](https://aphyr.com/posts/398-the-future-of-everything-is-lies-i-guess))
+- "Don't Outsource the Learning" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/dont-outsource-the-learning/)) — empirical studies on AI deskilling (Anthropic coding trial, MIT cognitive debt, CHI anchoring); practical posture shifts for maintaining skill; ship-and-learn dual metric
 - "Running Faster to Go Nowhere: The AI Adoption Trap" — BuccoCapital / Educated Guess (Apr 2026) — cognitive density thesis; AI automating away mental white space; Fractal of AI Panic pressure cascade

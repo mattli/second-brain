@@ -257,6 +257,30 @@ Garry Tan's response to Kyle Kingsbury's "The Future of Everything is Lies" essa
 
 **Why open harnesses matter:** Closed-source agents prevent users from writing the skill that verifies output. Real verification requires: "here is my schema, here are my invariants, here is what correct looks like in my domain — now verify against that." This requires open harnesses where the user controls the verification layer. As Pete Koomen (YC) puts it: "The user must write their prompt, otherwise we'll be slaves to a system prompt we can't see."
 
+### The Complexity Ratchet
+
+A ratchet is a mechanism that allows motion in one direction only. In agent-coded software, every coding session adds three things to the codebase: **tests** that encode what "correct" means, **documentation** that records why decisions were made, and **evaluation results** that establish quality thresholds. The next agent session loads all three into context. It can't regress below the test suite, can't ignore the documentation, can't ship below the evaluation baseline. The quality floor goes up with every turn — forward-only motion.
+
+Without the ratchet, vibecoded projects die at moderate complexity. The agent adds features but nothing prevents regression; by version 0.5 every change breaks something unexpected. "AI coding works fine. They just didn't build the ratchet."
+
+**The 90% threshold:** Capers Jones studied over 10,000 software projects measuring defect removal efficiency (DRE). Below 70% coverage, DRE sits around 65–75%. At 85–95% coverage, DRE jumps to 92–97% — a nonlinear knee around 85% where defect escapes drop sharply [[source]](https://x.com/garrytan). The avionics industry codified this in DO-178C, which requires modified condition/decision coverage (MC/DC) for flight-critical software — not because bureaucrats like paperwork, but because data showed that below certain thresholds, critical defects escape at rates incompatible with safety.
+
+**Why 90% is now free:** Going from 70% to 90% used to require disproportionate human effort — Mockus, Nagappan, and Dinh-Trong's Vista study confirmed the last 20% takes far more work than the first 70%. That effort curve stopped human teams at 70–80%. AI agents don't experience effort. They write the fourteenth edge-case test as cheerfully as the first. The brutal last 20% that made 90% impractical is exactly the work agents are best at. "Getting to 90% used to be a heroic effort. Now it's a Tuesday."
+
+**Tests as institutional memory:** In traditional teams, institutional memory lives in humans who leave. The agent's context window doesn't quit or get poached. When the test suite encodes a constraint and the documentation explains why, that knowledge is durable — any agent, any model, any time can load it. For solo projects, tests are the *only* institutional memory.
+
+### Everything Harnessable Is Testable
+
+The ratchet's test surface extends far beyond traditional unit tests. Any layer a computer can observe is assertable:
+
+- *OS level* — process trees, filesystem state, network sockets, cron schedules, database migrations
+- *Terminal/TTY level* — keystroke sequences, interactive prompts, output streams
+- *Browser level* — rendered pages, button states, navigation events, form interactions
+- *API level* — structured responses, schema validation, status codes
+- *Behavioral level* — did the agent follow the protocol, ask before deleting, stop when told to stop
+
+**TTY behavioral testing example:** GStack's interactive plan review had a failure mode where Claude Code would skip the interactive dialogue and dump all findings in one shot. Traditional testing can't cover "did the AI have a conversation." The fix: a test harness using Bun's TTY functionality that spawns Claude Code in a pseudo-terminal, feeds it a scenario, triggers the review skill, and watches terminal output in real time. If the agent dumps findings without asking a question, the test fails. Three ratchet layers lock this in: STOP gates in skill instructions with anti-rationalization clauses, an anti-shortcut clause closing the exact loophole, and gate-tier floor tests that spawn the agent and verify the behavioral contract.
+
 **The aspirin analogy:** "We don't know why transformer models have been so successful" — also true of aspirin (mechanism understood only in the 1970s), general anesthesia (still incompletely understood), and bicycle stability (definitively explained only in 2011). Practical utility doesn't require theoretical completeness.
 
 ## Neurological Diagnostic Framework (Vox)
@@ -339,3 +363,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Imagine if naked people were stupider" — Garry Tan, YC (tweet thread, Apr 2026) ([link](https://x.com/garrytan)) — response to Kyle Kingsbury's "The Future of Everything is Lies"; testing pyramid for agent systems
 - "The Definitive Guide to Harness Engineering" — TRAE (tweet thread, Apr 2026) ([link](https://read.readwise.io/read/01kq0a1yank7gvrrqxseeby31b)) — comprehensive framework: R.E.S.T. objectives, REPL container architecture, six design principles, Token Transformation Pipeline, sandboxing levels, cognitive maturity matrix
 - "Your OpenClaw / Hermes Gets Neurological Conditions Too" — Vox (tweet thread, May 2026) ([link](https://x.com/Vox)) — six neurological conditions mapped to agent harness failure modes: source amnesia, phantom limb state, locked-in syndrome, confabulation, disinhibition, anosognosia
+- "The AI Agent Complexity Ratchet: Why 90% Test Coverage Is Required" — Garry Tan (tweet thread, May 2026) ([link](https://x.com/garrytan)) — complexity ratchet mechanism (tests + docs + evals as forward-only quality floor), 90% coverage threshold backed by Capers Jones DRE data and DO-178C, AI agents removing the effort wall, expanded test surface including TTY behavioral testing

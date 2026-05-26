@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-05-26
+
 ---
 
 # Agentic Engineering
@@ -42,6 +43,23 @@ Kevin Gu released AutoAgent — first library for autonomously improving agent h
 **Emergent behaviors:** Spot checking, forced verification loops, writing own unit tests, progressive disclosure, orchestration logic with subagents.
 
 ## Multi-Agent Orchestration
+
+### Software Factories: Gas City
+
+Gas City (successor to Steve Yegge's Gas Town) is an open-source orchestration toolkit for running 100+ coding agents in parallel on a single codebase, rebuilt by Chris Sells (ex-Google Flutter) and Julian Knutsen (ex-Block). In production, Knutsen's server runs ~100 agents merging ~50 PRs/day, burning roughly a billion tokens/day.
+
+**Three ideas worth internalizing:**
+- **Dark factory vs. light factory** — Human-visible work (planning, design, review) stays "light"; agent-only execution stays "dark" in the background. As trust grows, more process moves into the dark.
+- **One pet, many cattle** — One persistent supervisor ("the mayor") you talk to directly hands tasks to anonymous, disposable workers ("polecats") that do one job and shut down. You manage one conversation; the mayor coordinates a hundred agents.
+- **Multiple opinions on every code review** — Route the same code to Claude, Codex, and Kimi simultaneously. Three different models catch different bugs than one model run three times.
+
+**Current limitations:** Every task spins up a fresh session with no memory of earlier steps — agents waste cycles re-reading context and miss connections a persistent session would catch. Cost scales linearly (a six-step job costs 6x a single session). The CLI-first task tracker ("Beads") works for agents but not humans, so teams pair it with Jira or Linear. The toolkit also over-scaffolds for current model capabilities — review loops and mid-task check-ins built to keep models on track are now largely unnecessary [[source]](https://every.to/napkin-math/inside-the-100-agent-software-factory).
+
+**Verdict (Mike Taylor, Every):** "Learn from the ideas. Skip the toolkit for now." For teams already running 10+ parallel Claude Code sessions, Gas City is one informed opinion on orchestration at that scale.
+
+**OpenAI Symphony** — A more accessible alternative: a written ruleset that turns an existing Linear board into the dashboard agents work from. No behavior change required, closer to how software engineers already work.
+
+### Other Orchestration Tools
 
 **Paperclip** — Open-source orchestration for "zero-human companies." If OpenClaw is an employee, Paperclip is the company. Node.js server + React UI with org charts, budgets, governance, goal alignment. Supports any agent (OpenClaw, Claude Code, Codex, Cursor). "If it can receive a heartbeat, it's hired."
 
@@ -204,3 +222,4 @@ In the third model, the software's agent handles business logic, enforces rules,
 - "anthropic's in-house philosopher thinks claude gets anxious" — Ole Lehmann (tweet, Apr 2026) ([link](https://x.com/olelehmann))
 - "Not all AI agents are created equal" — Hamza Farooq & Jaya Rajwani / Lenny's Newsletter (Apr 2026) ([link](https://www.lennysnewsletter.com/p/not-all-ai-agents-are-created-equal))
 - "The Technical Stack for Autonomous Agents" — Aaron Wright (tweet, 2026) — ten-layer infrastructure stack (trust/market/control planes) for agent marketplaces, ERC-8004, settlement rails, governance/compliance separation
+- "Inside the 100-agent Software Factory" — Katie Parrott / Every (May 2026) ([link](https://every.to/napkin-math/inside-the-100-agent-software-factory)) — Gas City multi-agent orchestration: dark/light factory, one-pet-many-cattle supervisor pattern, multi-model code review, current limitations

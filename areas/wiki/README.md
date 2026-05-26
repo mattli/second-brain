@@ -52,6 +52,18 @@ Two NanoClaw groups use the wiki:
 - **readwise-wiki** — the compiler agent (list-maker, per-doc workers, wrap-up, folder review). Mounts `areas/wiki/`, `resources/`, and the full vault. Runs on **Opus**.
 - **wiki-tutor** — a read-only librarian agent. Mounts `resources/wiki/` read-only. Reads pages, serves nuggets, logs research entries to `research-log.md` for the list-maker to process. Runs on **Opus**.
 
+## Debugging silent worker failures
+
+If the list-maker runs cleanly but no `wiki: update ...` commits land, and `WORKER_ERRORS.md` is empty:
+
+1. **Check `chat_jid` on the wiki cron tasks.** Source of truth is `~/nanoclaw/store/messages.db` (not the 0-byte `nanoclaw.db` in the repo root — that file is a misleading sibling). All `readwise-wiki*` rows must have `chat_jid = task:readwise-wiki`. If they point at `tg:8790860459` instead, MCP `schedule_task` calls from the list-maker fail authorization and get dropped *silently* — NanoClaw is supposed to log `"Unauthorized schedule_task attempt blocked"` but doesn't. Fix: `sqlite3 ~/nanoclaw/store/messages.db "UPDATE scheduled_tasks SET chat_jid='task:readwise-wiki' WHERE group_folder='readwise-wiki'"` then restart NanoClaw with `launchctl kickstart -k gui/$(id -u)/com.nanoclaw`.
+2. **Watch for the `"Task created via IPC"` line** in `~/nanoclaw/logs/nanoclaw.log` after the list-maker finishes. If the list-maker container completes but no `Task created via IPC` entries follow, the dispatch is being dropped.
+3. **`current_tasks.json` is read-only output.** Editing `~/nanoclaw/data/ipc/<group>/current_tasks.json` does nothing — NanoClaw writes that file as a snapshot for containers to read via MCP. The scheduler reads only from the SQLite DB.
+
+## Manual rewind / replay
+
+The list-maker reads its `updated_after` cutoff from the previous `list-maker-log.md`'s **`run_end`** field. Editing the log to rewind the cutoff is fragile — the LLM in the container has been observed to **override suspiciously-old values** with a "more recent" guess. To force a backlog replay reliably, drop hand-crafted MCP IPC payloads directly into `~/nanoclaw/data/ipc/readwise-wiki/tasks/` (see `session-tasks.md` entry for 2026-05-26 for the payload shape and a working replay script).
+
 ## Related
 
 - [Wiki README](../../resources/wiki/README.md) — describes the wiki content, page design, and deferred items

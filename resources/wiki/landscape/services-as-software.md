@@ -94,6 +94,32 @@ Incumbents recognize the threat: Salesforce has launched API-first / headless of
 
 GTM software has historically been 5–10% of total GTM spending; the rest is payroll. AI expands what software can charge for by delivering outcomes that used to require labor — the total pie grows rather than the labor budget shrinking. Reps using AI tools hit quota at noticeably higher rates, so companies spend *more* on people, not less.
 
+## When Software Goes Headless: The Defensibility Shift
+
+Salesforce's "headless" announcement — exposing its platform as APIs for agent consumption rather than human interaction — crystallizes a deeper question: if you strip away the UI and expose the database, what differentiates a system of record from a Postgres instance with a well-designed schema? [[source]](https://x.com/seamble/status/1927893610047545700)
+
+**What fades.** The historical defensibility of systems of record rested heavily on human-centric factors: frequency of access (daily use creates muscle memory), read-write patterns (bidirectional data flow makes cutover dangerous), and UI-driven data hygiene (the interface enforced shared vocabulary — Leads, Opportunities, Accounts — and made reps enter data they otherwise wouldn't). Agents neutralize all of these. They don't form habits, don't need training, and don't care about interface design.
+
+**What persists and deepens.** Three legacy factors survive the transition:
+
+- **Undocumented SOPs** — The institutional logic encoded in workflow rules (enterprise deals over $100K need VP approval, EMEA deals require privacy review, quarter-end discounts can bypass finance) is exactly what agents need to operate correctly. This context doesn't export cleanly. However, as agents replace more labor and context-capture improves, this advantage erodes over time.
+- **Connectivity** — The number of internal systems and external stakeholders (auditors, regulators, partners) depending on the SoR. This factor *extends* in the agentic era: a CRM agent must stitch together data across sales, billing, and customer success. If the platform mediates agent-to-agent transactions across multiple organizations, the dependency deepens further.
+- **Compliance-critical data** — Payroll, accounting, and HR data require a legally defensible source of truth with strict access controls. In a fully agentic world, the hardest unsolved problem is: which agents are authorized to do what, on whose behalf, with what auditability? A system of record that becomes the identity and permissioning layer for agent interactions has a structural role that's genuinely hard to displace.
+
+**New defensibility factors** for AI-native builders:
+
+1. **Proprietary data generation.** The defensible data is not what you import — it's what your product uniquely causes to exist. Observed behavior, response rates, timing patterns, process outcomes, benchmarks, exception patterns, and agent performance traces. The data *is* the context now.
+2. **Action-layer ownership.** Storing the record was enough in the old world. In the new world, defensibility shifts toward products that close the loop: take the action, capture the outcome, use that feedback to improve future decisions. Products inside execution generate unique data, improve with use, and become harder to remove without breaking the workflow.
+3. **Real-world execution.** Software businesses connected to field operations, logistics, fulfillment, or payments have a different kind of defensibility than pure SaaS. They don't just store the record or recommend an action — they dispatch people, move goods, or complete the service.
+4. **Network effects across parties.** Historically weak in SoRs (the software was internal), but in an agentic world, if the system mediates recurring multi-party interactions — buyers and sellers, employers and employees, companies and auditors — each additional participant makes the network more useful. The product becomes coordination infrastructure for the market itself.
+5. **Buyer technical capability.** In vertical end markets where buyers lack internal engineering resources, the odds of DIY (building your own database, workflow logic, agent stack, and governance layer) remain low. Cost shifts from licensing to implementation and maintenance complexity.
+
+**The 80/20 split.** AI lowers the cost of recreating the first 80% of a system of record. The remaining 20% — exceptions, approvals, compliance requirements, and edge-case workflows — is what separates a useful wedge from a true replacement. Incumbents will fight back by making APIs painful, gated, incomplete, or economically unattractive. But as extraction tools and computer-using agents improve, these barriers weaken.
+
+**Agentic ontology.** Incumbent schemas were built for dashboards and human workflow — opportunities, tickets, candidates. Agentic schemas need to capture reasoning, actions, state tracking, exception handling, delegation, and coordination across systems. The native object model shifts from workflow artifacts to tasks, intents, threads, policies, and outcomes. Similarly, permissioning evolves from managing human roles to governing which agents can act, through what policy, with what approvals and audit trail.
+
+This maps directly to the services-as-software opportunity: the next generation of systems of record won't just log human work — they'll capture context, initiate work, and record the data exhaust. The most interesting businesses will extend into real-world execution and sit between multiple parties, mixing business models and making the traditional data layer just one component of a larger services delivery platform.
+
 ## Connections
 
 - [Business Moats in AI](../concepts/business-moats-in-ai.md) — The data moat pattern: proprietary operational data from running the work
@@ -107,3 +133,4 @@ GTM software has historically been 5–10% of total GTM spending; the rest is pa
 - "How to Build Services-as-Software Business" — Alex Vacca ([link](https://x.com/alexvacca))
 - "$1T up for grabs for agent-first startups" — Greg Isenberg (tweet, Apr 2026) ([link](https://x.com/gregisenberg))
 - "From 'System of Record' to 'System of Intelligence'" — Gio Ahern, Steph Zhang, Alex Immerman, a16z ([link](https://www.a16z.news/p/from-system-of-record-to-system-of)) — CRM-to-intelligence-layer inversion; orchestration as the new gravity well; GTM TAM expansion
+- "Is Software Losing Its Head?" — Seema Amble, a16z ([link](https://x.com/seamble/status/1927893610047545700)) — Headless SoR defensibility shift; historical vs. agentic stickiness factors; proprietary data, action-layer ownership, and network effects as new moats

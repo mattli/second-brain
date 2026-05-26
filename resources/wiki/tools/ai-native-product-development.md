@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-27
+last_updated: 2026-05-26
 
 
 ---
@@ -101,6 +101,24 @@ Key insights: companies operate at multiple levels simultaneously (engineering a
 Aneesh Chukla's framework (via Aakash Gupta): for AI features, evals *are* the PRD. "The way the best AI companies work is that the AI PM defines these evals and that is basically the PRD for the AI engineers." The workflow: define success criteria and expected behavior → build offline evals → only then launch to real users with online evals (observability platforms like Arise, TruLens). If offline evals fail, "you have not even created a product that can be actually launched."
 
 This shifts PM work from spec writing to evaluation design — a fundamentally different skill. See [Agent Proficiency](../concepts/agent-proficiency.md).
+
+### How Evals Actually Work
+
+Evaluation sits between running an experiment and shipping a change. You have a dataset, you've run your application against it, and now you judge whether the outputs are good. The Langfuse Academy's "AI Engineering Loop" frames this as a continuous cycle: ship an improvement → it produces new traces and monitoring signals → those feed into the next round of datasets and experiments.
+
+**The evolution pattern:** Most teams follow the same trajectory. Start by manually reviewing outputs to build intuition for what "good" and "bad" look like in your specific application. Then identify specific failure modes worth checking for. Once you can define them precisely, automate with dedicated evaluators. Manual review is not a one-time step — mature setups incorporate continuous human review to catch new failure modes and keep automated evaluators calibrated.
+
+**Three evaluation methods:**
+
+- **Manual evaluation** — reading outputs and scoring them. This builds the understanding of where your application struggles and what quality means for your use case. Teams that skip this and jump straight to automation often end up measuring things that don't matter. Manual labels also serve as ground truth for validating automated evaluators later.
+- **Code-based evaluation** — deterministic checks: valid JSON, required schema, keyword presence, length limits, SQL that executes without errors. Fast, cheap, perfectly consistent. The limitation: they cannot assess meaning.
+- **LLM-as-a-judge** — uses a language model to score outputs on qualities that require understanding language: relevance, tone, summary fidelity. Imperfect and easy to get wrong — models don't automatically grade like human experts, need calibration against human preferences, and can share blind spots with the application LLM. But an LLM judge calibrated against human labels and backed by code-based checks is a reliable evaluator.
+
+**Reference-based vs. reference-free:** Both code and LLM evaluators can compare against a predefined expected output (reference-based) or assess the output on its own (reference-free). Reference-free evaluators can be applied to unseen production data, making them essential for monitoring live traffic.
+
+**When to automate:** Ask whether the issue is a one-time fix or a generalization problem. If a simple prompt change resolves it, just make the change. If you can identify a failure mode you want to test for repeatedly across different inputs, that's when an evaluator makes sense. Prefer binary scores (pass/fail) over graded scales (1–5) — binary forces a clear definition of acceptable vs. unacceptable, while scales introduce ambiguity about what separates a 3 from a 4 [[source]](https://langfuse.com/academy/evaluate).
+
+**Closing the loop:** Some evaluators should move beyond offline experiments into production. Reference-free evaluators and user feedback signals applied to live traffic confirm that quality matches what you saw pre-deployment. If production behavior diverges, capture those cases in traces, turn them into dataset items, and run the next round of experiments.
 
 ## "Team OS" Pattern
 
@@ -244,3 +262,4 @@ Colocation matters for maximum speed: "The highest speed is achieved by having e
 - "DESIGN.md | The One File AI Needs to Match Your UI" — George / prodmgmt.world (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq6mzew7mgdzkg1fabjpd0xj)) — DESIGN.md concept, PM checklist, failure modes, self-review prompting pattern
 - "Chief Product Officer in a Box: Introducing The AI PM OS" — George / prodmgmt.world (tweet, Mar 2026) ([link](https://read.readwise.io/read/01kq6mz4x91wqhw6y95zv9vzyt)) — Dennis Yang/Chime, Zevi Arnovitz/Meta, Alan Wright practitioner examples
 - "Big Pharma Bets Big on AI" — Andrew Ng / deeplearning.ai (newsletter, Apr 2026) ([link](https://read.readwise.io/read/01kq881g9mf0dfc4nzk8eyywt1)) — PM bottleneck cascade, generalist engineers, marketing/legal bottlenecks, colocation advantage
+- "Evals, explained" — Lotte / Langfuse Academy (May 2026) ([link](https://langfuse.com/academy/evaluate)) — three evaluation methods, manual-to-automated evolution, reference-based vs. reference-free, binary scoring, production eval loop

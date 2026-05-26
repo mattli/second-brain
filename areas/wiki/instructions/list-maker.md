@@ -17,7 +17,7 @@ You do NOT fetch full document content. You do NOT touch wiki pages. You ONLY lo
 ## Inputs
 
 - `/workspace/extra/resources/wiki/index.md` — current wiki structure
-- `/workspace/extra/resources/wiki/list-maker-log.md` — your prior log; the most recent `run_start` timestamp is your `updated_after` cutoff. If missing, fall back to 7 days ago.
+- `/workspace/extra/resources/wiki/list-maker-log.md` — your prior log; the most recent `updated_after` value is your new `updated_after` cutoff if you're picking up where it left off, OR the previous run's `run_end` if you want to continue from when the prior run finished. Use the value literally — do NOT substitute a "more reasonable" recent timestamp even if the value looks unusually old (e.g., a deliberate rewind to catch a backlog). If no log exists, fall back to 7 days ago.
 - Recently-touched pages: list pages modified in the wiki dir over the last 7 days. Read just titles + first paragraph of each to know what topics are already in flight this week.
 
 ## Procedure
@@ -25,7 +25,7 @@ You do NOT fetch full document content. You do NOT touch wiki pages. You ONLY lo
 ### 1. Inventory
 
 - Read `index.md`.
-- Read `list-maker-log.md`. Extract `run_start` from the latest entry's frontmatter — that's your `updated_after`. If no log exists, use 7 days ago and note it.
+- Read `list-maker-log.md`. Extract the previous run's `run_end` timestamp from the latest entry's frontmatter — use that **literally** as your `updated_after` cutoff. Do NOT override this value with a more recent guess even if it looks suspicious. If no log exists, use 7 days ago and note it in the run notes.
 - Build the recently-touched list: `git -C /workspace/extra/vault log --since="7 days ago" --name-only --pretty=format: -- 'resources/wiki/' | sort -u`. For each, read just the title heading and first paragraph.
 
 ### 2. Fetch new Readwise saves

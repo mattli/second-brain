@@ -1,11 +1,11 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-27
+last_updated: 2026-05-26
 ---
 
 # AI Careers
 
-> TLDR: The AI job market is bifurcating into "big AI" (frontier model companies pushing toward AGI) and "small AI" (fine-tuned, self-hosted models for privacy-sensitive domains) — surviving either path requires deep fundamentals, business focus, and delivery skills over hype.
+> TLDR: The AI job market is bifurcating into "big AI" and "small AI," but the highest-leverage roles are emerging at the intersection of building and strategy — hybrid positions like the Agent Strategist that combine technical depth, business acumen, and delivery skills.
 
 ## Overview
 
@@ -55,6 +55,22 @@ Ng's personal advice aligns with the [agent proficiency](../concepts/agent-profi
 
 A related debate: Grok-summarized X discussion found that broad thinkers who link ideas across fields hold power amid AI's rise. Supporters cite examples like Matthew Gallagher building a $401M telehealth business with broad skills and two employees. The emerging consensus favors hybrids who go wide then deepen strategically as AI handles routine tasks. See also [Agent Proficiency](../concepts/agent-proficiency.md) — agent management may be the ultimate generalist skill.
 
+## The Agent Strategist: A New Hybrid Role
+
+Sierra's fastest-growing team illustrates what the hybrid career path looks like in practice. The "Agent Strategist" role didn't exist a year ago; now it's a distinct archetype that combines go-to-market, consulting, and hands-on agent building in a single seat.
+
+What makes it possible: tools like Sierra's Ghostwriter (an agent for building agents) collapse the coordination overhead that used to force people to choose between "build the system" and "be close to the customer." One person can now take an idea from concept to production with fewer handoffs.
+
+**What the role actually involves:**
+- Leading agent deployments end-to-end — from scoping with C-suite executives to prompt engineering and simulation testing
+- Mapping real customer journeys (order tracking, insurance claims, returns) into working agent behaviors
+- Deciding what to ship now vs. later, pushing back on scope creep, and getting teams comfortable with non-deterministic software
+- Driving business outcomes (CSAT, resolution rates, revenue) — Sierra prices on outcomes, so the strategist's incentives align directly with customer success
+
+**Why it matters for the career landscape:** The role validates the page's core themes — fundamentals matter, business focus matters, delivery over demos. But it goes further: it suggests that as AI tooling matures, the highest-leverage positions may not be pure engineering or pure strategy, but roles that span both. Agent Strategists come from diverse backgrounds (product management, engineering, consulting) and succeed by going deep on technical issues one moment and zooming out into change management the next.
+
+This parallels the generalists-vs.-specialists debate below — the Agent Strategist is essentially the hybrid archetype made concrete, with "unreasonable agency" (Sierra's phrase) as a cultural prerequisite. See also [Agentic Engineering](../tools/agentic-engineering.md) for the technical patterns these roles build on top of.
+
 ## The AI Engineer Learning Path
 
 An analysis of ~2,000 job descriptions (Luffytaro, Apr 2026, based on Alexey Grigorev's field guide) maps the skills that actually get hired in AI engineering roles. The core insight: AI engineering is about building systems *around* LLMs, not training models from scratch.
@@ -76,3 +92,4 @@ An analysis of ~2,000 job descriptions (Luffytaro, Apr 2026, based on Alexey Gri
 - "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online (Andrew Ng, Laurence Moroney) ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
 - "Generalists Poised to Thrive in AI Era" — X discussion summary ([link](https://x.com/i/trending/2040140222386909626))
 - "The AI Engineer Learning Path" — Luffytaro (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq6h5qsge0qe28ebmf4mnvg5)) — skills roadmap from ~2,000 job descriptions; based on Alexey Grigorev's AI Engineering Field Guide
+- "Agent Strategist: Your PhD in applied AI" — Sierra (tweet) — the Agent Strategist as a new hybrid role combining building, consulting, and go-to-market

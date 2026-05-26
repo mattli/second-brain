@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-20
+last_updated: 2026-05-26
 ---
 
 # AI Safety & Interpretability
@@ -73,6 +73,21 @@ Kyle Kingsbury ("The Future Of Everything Is Lies, I Guess," Apr 2026) argues th
 
 The core concern is not that AI-generated code is bad — it's that short-term productivity gains mask long-term fragility that only reveals itself after sufficient complexity has accumulated.
 
+## The Case for AI Safety as the Most Pressing Problem
+
+80,000 Hours argues that advanced AI may pose the most pressing challenges facing humanity — comparable in transformative scope to the Agricultural and Industrial Revolutions, but compressed into decades rather than centuries or millennia.
+
+**The transformation argument:** A few radical technology breakthroughs (the plough, the steam engine) have reshaped civilisation. AI that meets or exceeds human capabilities across a wide range of tasks could trigger another such shift — an explosion of intelligence and innovation, plus an entirely new population of digital beings. Unlike prior revolutions, this one could unfold fast enough that society has little time to adapt.
+
+**The risk landscape:** The benefits (medical breakthroughs, climate solutions) come bundled with severe risks, some potentially existential:
+- **Loss of control:** Humanity could lose the ability to steer its future if highly intelligent AI systems pursue goals misaligned with human values
+- **Power concentration:** A dangerous group could use AI to achieve and maintain unprecedented power over others
+- **Speed of impact:** The compressed timeline means mistakes compound before corrective institutions can form — analogous to hunter-gatherers suddenly confronting industrial-era warfare and pollution
+
+**The intelligence explosion feedback loop:** As AI automates more AI R&D, progress accelerates: better AI systems → better automation of AI research → faster progress building even better AI → a self-reinforcing cycle that could rapidly outpace human oversight capacity.
+
+**The neglect problem:** Only a few thousand people are working full-time on the most important AI safety challenges — far fewer than work on climate change, and far fewer than the scale of the problem warrants. Existing incentives (commercial pressure, talent competition) don't naturally steer effort toward the most serious risks. AI systems are already deployed in military operations, can rapidly identify chemical warfare agents, and are generating real-world harms that have led to wrongful-death lawsuits [[source]](https://80000hours.org/problem-profiles/artificial-intelligence/).
+
 ## AI Safety Fieldbuilding (80,000 Hours)
 
 80,000 Hours makes the case that **fieldbuilding** — recruiting, training, and creating infrastructure for AI safety talent — is one of the most impactful and most neglected career paths for reducing catastrophic AI risk.
@@ -101,4 +116,5 @@ The core concern is not that AI-generated code is bad — it's that short-term p
 - "Sam Altman May Control Our Future—Can He Be Trusted?" — Ronan Farrow & Andrew Marantz (The New Yorker, Apr 2026) ([link](https://www.newyorker.com/magazine/2026/04/13/sam-altman-may-control-our-future-can-he-be-trusted))
 - "(🧵1/11) For the past year and a half, I've been investigating OpenAI..." — Ronan Farrow (tweet thread, Apr 2026) ([link](https://x.com/RonanFarrow/status/2041213917611856067/?rw_tt_thread=True))
 - "Building the field of AI safety" — Aaron Gertler / 80,000 Hours (Apr 2026) ([link](https://80000hours.org/career-reviews/ai-safety-fieldbuilding/))
+- "How advanced AI could pose the world's most pressing problems" — Zershaaneh Qureshi / 80,000 Hours ([link](https://80000hours.org/problem-profiles/artificial-intelligence/))
 - "The Future Of Everything Is Lies, I Guess" — Kyle Kingsbury (PDF, Apr 2026) ([link](https://aphyr.com/posts/398-the-future-of-everything-is-lies-i-guess))

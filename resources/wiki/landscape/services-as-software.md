@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-16
-last_updated: 2026-04-20
+last_updated: 2026-05-26
 ---
 
 # Services-as-Software
@@ -80,6 +80,20 @@ Greg Isenberg predicts $1T up for grabs across 10,000+ niches as the agent-first
 
 This maps directly to the autopilot thesis: outcome-based pricing + no human in the loop + vertical workflow mastery = the services-as-software endgame at scale. See also [Vertical AI](vertical-ai.md) for the 1-1-1 playbook on executing this at the individual operator level.
 
+## System of Record → System of Intelligence
+
+a16z frames the same disruption through a different lens: the CRM isn't dying — it's being demoted. The analogy is Facebook's evolution. The friend graph was once the valuable layer; then the news feed turned it into "just one of many inputs" to the algorithm. The same inversion is happening to enterprise systems of record.
+
+Salesforce and HubSpot still own the database, and that database remains sticky — but AI agents treat it as infrastructure, one data source among many. An orchestration layer pulls signals simultaneously from the CRM, calendar, shared inbox, call recordings, Slack, enrichment APIs, billing, and product telemetry, synthesizes them, and surfaces a prioritized feed to the rep. The opinionated UI on top of the CRM becomes legacy furniture, like a lovingly crafted Facebook profile page.
+
+**Switching costs migrate upward.** In the software era, gravity came from data accumulation — every piece of sales context had to live in one place because humans could only look in one place. In the AI era, gravity comes from orchestration. "All of our customer data is in Salesforce" gives way to "all of our workflows, reasoning, and institutional context live in our AI layer." [[source]](https://www.a16z.news/p/from-system-of-record-to-system-of)
+
+Counter-intuitively, CRM usage has actually *risen* since AI adoption — agents writing structured notes back into the system give reps fresh reason to consult it, because the data is dramatically richer [[source]](https://www.a16z.news/p/from-system-of-record-to-system-of). But this enrichment loop strengthens the intelligence layer's position, not the CRM's. The more agents read from and write to the system of record, the more indispensable the orchestration layer becomes.
+
+Incumbents recognize the threat: Salesforce has launched API-first / headless offerings and acquired agentic startups in its ecosystem (Qualified, Momentum). But the domain-specific work between the foundation model and the customer — orchestrating context across dozens of systems, encoding actual GTM logic, handling permissions and compliance — is where the new application layer is being built. That work is the new surface area for services-as-software companies.
+
+GTM software has historically been 5–10% of total GTM spending; the rest is payroll. AI expands what software can charge for by delivering outcomes that used to require labor — the total pie grows rather than the labor budget shrinking. Reps using AI tools hit quota at noticeably higher rates, so companies spend *more* on people, not less.
+
 ## Connections
 
 - [Business Moats in AI](../concepts/business-moats-in-ai.md) — The data moat pattern: proprietary operational data from running the work
@@ -92,3 +106,4 @@ This maps directly to the autopilot thesis: outcome-based pricing + no human in 
 - "Services: The New Software" — Julien Bek, Sequoia ([link](https://sequoiacap.com/article/services-the-new-software/))
 - "How to Build Services-as-Software Business" — Alex Vacca ([link](https://x.com/alexvacca))
 - "$1T up for grabs for agent-first startups" — Greg Isenberg (tweet, Apr 2026) ([link](https://x.com/gregisenberg))
+- "From 'System of Record' to 'System of Intelligence'" — Gio Ahern, Steph Zhang, Alex Immerman, a16z ([link](https://www.a16z.news/p/from-system-of-record-to-system-of)) — CRM-to-intelligence-layer inversion; orchestration as the new gravity well; GTM TAM expansion

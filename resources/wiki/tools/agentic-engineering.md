@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-27
+last_updated: 2026-05-26
 
 ---
 
@@ -208,12 +208,33 @@ In the third model, the software's agent handles business logic, enforces rules,
 
 "Most companies will ship an MCP, check the box, and move on. Their usage will grow for a few quarters, then stall." The winners sweat the details of agent-to-agent design.
 
+### Agent-Native CLI Design
+
+The CLI Printing Press (mvanhorn) crystallizes agent-first CLI design into a repeatable generation pattern. The thesis: a well-designed CLI is "muscle memory for an agent — no hunting through docs, no wrong turns, no wasted tokens." CLIs win for agents because they're 100x fewer tokens than MCP tool definitions, LLMs were trained on shell interactions, and exit code 0 = done [[source]](https://github.com/mvanhorn/cli-printing-press).
+
+**Agent-first flags every command gets:** `--json`, `--compact` (high-gravity fields only, 60–80% fewer tokens), `--dry-run`, `--stdin`, `--no-input`, `--yes`, `--quiet`. Auto-JSON when piped — no `--json` flag needed. Typed exit codes (`0`=success, `2`=usage, `3`=not found, `4`=auth, `5`=API, `7`=rate limited) let agents self-correct in one retry without parsing error text. Bounded output on list commands includes narrowing guidance rather than dumping everything.
+
+**The creativity ladder** — five rungs from wrapper to insight, most generators stop at rung 1:
+
+1. API wrapper commands (from spec)
+2. Output formatting (`--json`, `--csv`, `--select`, `--compact`)
+3. Local persistence — domain-specific SQLite tables (not JSON blobs), FTS5 full-text search, incremental sync with cursor tracking
+4. Domain analytics — `stale`, `orphans`, `load`, `reconcile` (joins across local resources)
+5. Behavioral insights — `health` (composite scores), `similar` (duplicate detection), `trends`, `bottleneck`
+
+Rungs 3–5 only work because data lives in a local SQLite store — compound queries that join across resources and analyze history are impossible with a stateless API wrapper. This is the same architectural insight behind [discrawl](https://github.com/steipete/discrawl)'s sync-and-search model: pull data down, index it locally, then ask questions the API was never designed to answer.
+
+**"Absorb and transcend"** describes the generation philosophy. Before writing code, the system catalogs every feature from every competing CLI, MCP server, and community tool for a given API. Every feature becomes a row in an "absorb manifest" — something the generated CLI must match and beat. Only after matching the full ecosystem surface does it add the compound insight commands that no stateless tool can do. Architecture without features is a toy; features without architecture is a thin wrapper.
+
+**Dual interface from one spec:** every API gets both a Cobra CLI (`<api>-pp-cli`) for shell agents and an MCP server (`<api>-pp-mcp`) for IDE agents — same client, same store, same auth, zero code duplication. This reinforces the broader pattern that CLIs and MCP are complementary, not competing, interfaces for agent callers.
+
 ## Tools Noted
 
 - **agents.md** — Agent instruction file spec/community resource. https://agents.md
 - **Claude Agent SDK — Channels docs** — Official Anthropic documentation for Claude Agent SDK channels architecture. https://code.claude.com/docs/en/channels
 - **mozilla-ai/cq** — "Stack Overflow for agents" — shared knowledge commons where agents query and contribute learnings to avoid repeating solved problems. https://github.com/mozilla-ai/cq
 - **X API** (Apr 2026 update) — Pay-per-use pricing, official XMCP Server (`xdevplatform/xmcp`) for native MCP support via FastMCP, official Python & TypeScript SDKs, API playground for testing. The MCP server exposes the full X API OpenAPI spec as tools — 100+ endpoints including post creation, search, DMs, analytics. **Pricing update (Apr 20, 2026):** Owned reads dropped to $0.001/request (1,000 resources for $1) across bookmarks, followers, tweets, likes, lists, etc. Writes increased to $0.015/post; URL posts $0.20/post. Follows, likes, and quote-posts removed from self-serve API tiers. Robert Scoble: "Now everyone can build apps on top of X" using lists + AI agents.
+- **CLI Printing Press** (mvanhorn) — Agent-first CLI factory. Reads API docs, absorbs every competing tool's features, generates a Go CLI + MCP server with SQLite sync, FTS5 search, compound insight commands, and agent-native flags. Supports OpenAPI specs, browser-sniffed traffic, or HAR files as input. https://github.com/mvanhorn/cli-printing-press
 - **Factory.ai** — "Agent-native software development" platform. Agents for refactors, incident response, migrations across IDE, CI/CD, CLI, Slack
 - **MuleRun** — No-code AI agent platform for business automation. Dedicated compute per agent, runs 24/7
 - **Base44 Superagent** — 130+ built-in skills, stack skills into workflows
@@ -237,3 +258,4 @@ In the third model, the software's agent handles business logic, enforces rules,
 - "The Technical Stack for Autonomous Agents" — Aaron Wright (tweet, 2026) — ten-layer infrastructure stack (trust/market/control planes) for agent marketplaces, ERC-8004, settlement rails, governance/compliance separation
 - "Inside the 100-agent Software Factory" — Katie Parrott / Every (May 2026) ([link](https://every.to/napkin-math/inside-the-100-agent-software-factory)) — Gas City multi-agent orchestration: dark/light factory, one-pet-many-cattle supervisor pattern, multi-model code review, current limitations
 - "AI Work Is Splitting in Two" — Every Staff (May 2026) ([link](https://every.to/context-window/the-dawn-of-codex-native-apps)) — delegation vs collaboration bifurcation, Spiral as Managed Agents production case, Code with Claude 2026 announcements
+- "CLI Printing Press" — mvanhorn (GitHub, 2026) ([link](https://github.com/mvanhorn/cli-printing-press)) — agent-first CLI factory: absorb-and-transcend generation, creativity ladder (5 rungs from wrapper to behavioral insight), dual CLI+MCP from one spec, SQLite local-first data layer

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-16
+last_updated: 2026-05-26
 ---
 
 # Claude Code Skill Frameworks
@@ -141,6 +141,22 @@ See [Agent Harness](agent-harness.md) for the full resolver pattern and how GBra
 
 The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across agents. The Minimalist Entrepreneur skills (`slavingia/skills`) and Base44 Superagent (130+ built-in skills) suggest an emerging marketplace pattern where skills are shared as open-source markdown files.
 
+## HTML as Artifact Format
+
+Thariq (Anthropic, Claude Code team) advocates replacing Markdown with HTML as the default output format for Claude Code artifacts — specs, plans, reports, prototypes, and code reviews. The core argument: as agents produce longer, more complex outputs and users increasingly don't edit these files themselves, Markdown's simplicity becomes a constraint rather than a benefit.
+
+**Why HTML over Markdown:**
+- **Information density** — tables, SVG diagrams, CSS styling, interactive JavaScript elements, and spatial layouts in a single file, replacing the ASCII diagrams and Unicode color approximations agents resort to in Markdown
+- **Readability at scale** — plans over ~100 lines go unread in Markdown; HTML with tabs, navigation, illustrations, and responsive layout gets actually consumed
+- **Shareability** — upload to S3 and share a link; colleagues open it in any browser without needing a renderer
+- **Two-way interaction** — sliders, knobs, and parameter editors with "copy as JSON/prompt" buttons let users tune outputs and feed results back into Claude Code
+
+**Use cases:** exploration grids (6 design variants side-by-side), implementation plans with embedded mockups and data-flow diagrams, PR explainers with color-coded diffs and inline annotations, throwaway editing UIs (drag-and-drop ticket prioritization, feature-flag config editors, prompt-tuning side-by-side previews), research reports with SVG flowcharts.
+
+**Tradeoffs:** HTML takes 2–4x longer to generate, diffs are noisy for version control, and token usage is higher (though with large context windows this matters less in practice).
+
+**Getting started:** no special skill file needed — "make an HTML file" or "make an HTML artifact" is sufficient. Over time, a design-system HTML file pointed at the codebase can enforce consistent styling. Examples at [thariqs.github.io/html-effectiveness](https://thariqs.github.io/html-effectiveness/).
+
 ## Tools Noted
 
 - **Codex plugin for Claude Code** (OpenAI) — `/codex:review`, `/codex:adversarial-review`, `/codex:rescue` for delegating to Codex from within Claude Code
@@ -168,3 +184,4 @@ The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across 
 - "How To Build Own Content Engine? (FULL COURSE)" — Ronin (tweet thread, Apr 2026)
 - "Automate Your Entire Work Life With Claude Code — No Coding Needed" — Aakash Gupta / Dave Khaled (video, Apr 2026)
 - "GBrain: Build your personal mini-AGI" — Garry Tan (GitHub) ([link](https://github.com/garrytan/gbrain))
+- "Using Claude Code: The Unreasonable Effectiveness of HTML" — Thariq (tweet, May 2026). HTML as artifact format for Claude Code outputs — specs, plans, reports, prototypes, interactive editors.

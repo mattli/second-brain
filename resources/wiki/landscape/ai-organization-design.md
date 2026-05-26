@@ -1,11 +1,11 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-20
+last_updated: 2026-05-26
 ---
 
 # AI Organization Design
 
-> TLDR: Block (Jack Dorsey) proposes replacing corporate hierarchy with an "intelligence layer" — a company organized as a mini-AGI where AI handles coordination that previously required layers of management, enabled by a "world model" of operations and customer data. Endorsed by Sequoia (Roelof Botha): "speed is the best predictor of start-up success."
+> TLDR: Block (Jack Dorsey) proposes replacing corporate hierarchy with an "intelligence layer" — a company organized as a mini-AGI where AI handles coordination that previously required layers of management, enabled by a "world model" of operations and customer data. A YC Root Access talk extends the model with a concrete architecture: recursive self-improving AI loops (sensor → policy → tool → quality gate → learning) that get better overnight without human intervention.
 
 ## Overview
 
@@ -54,15 +54,46 @@ No product manager decided to build either solution. The capabilities existed. T
 
 When the intelligence layer tries to compose a solution and can't because a capability doesn't exist, that failure signal IS the future roadmap. "The traditional roadmap, where product managers hypothesize about what to build next, is any company's ultimate limiting factor."
 
+## Self-Improving Loops
+
+A YC group partner (Root Access talk) argues that the real shift is not AI as a productivity co-pilot ("the old way of working with a more powerful engine") but reimagining a company as a set of recursive self-improving AI loops. Each loop has five layers:
+
+1. **Sensor layer** — Inputs from the real world: customer emails, support tickets, code changes, cancellations, product telemetry
+2. **Policy layer** — Decision rules: what the system can do autonomously, what requires human permission, what must be logged
+3. **Tool layer** — Deterministic APIs the AI can call (query database, check calendar, update records)
+4. **Quality gate** — Evaluative checks, safety filters, human review for high-risk actions
+5. **Learning mechanism** — The system observes where it fails, feeds that signal back to the top, and improves
+
+When every step runs with minimal human intervention, the system gets better while the team sleeps. The concrete example from YC: they built an internal agent that answers group partner queries by calling database tools. Simple co-pilot — last year's model. The step change came when they added a *monitoring agent* that watched every query across all YC employees, identified failures, diagnosed why (missing tool? wrong database view? stale index?), wrote the fix, submitted a merge request, had another agent review and deploy it. By the next morning, the same query succeeds.
+This pattern generalizes: a product analytics loop that identifies funnel friction, researches best practices, runs A/B tests, picks winners, and deploys — then repeats. Or a customer feedback loop where an agent triages suggestions against the roadmap, writes code for approved changes, and ships them without human involvement.
+
+## Organizational Legibility
+
+For self-improving loops to work, the organization must be *legible* to AI — if something wasn't recorded, it didn't happen to the intelligence. YC's approach: every partner email is stored in the database, every Slack message and DM is captured, and they've been recording every office hour for several months.
+
+Raw recordings aren't enough — 100,000 hours of audio can't fit in a context window. The data must be diarized and synthesized into structured, navigable knowledge. YC's example: Haj took 2,000 hours of recorded office hours from three months and regenerated the YC user manual over a weekend — a 150-page document "dramatically better than the existing user manual." Now it self-updates monthly: new advice is compared against the existing manual and either incorporated or discarded. The manual becomes a living, self-improving artifact that feeds into AI agents, giving them the combined wisdom of 16 YC partners.
+
+The principle: if an interaction produces an artifact that can self-improve, it's valuable. If it doesn't, it's disposable.
+
+## Ephemeral Software, Durable Context
+
+A corollary of organizational legibility: the *data and domain knowledge* are the valuable, durable layer. The software built on top is ephemeral. Internal dashboards and workflows can be one-shot generated with current models, used, and thrown away. When models improve in a month, regenerate the software from the original instructions and context.
+
+This inverts the traditional hierarchy of value. Business context, skills definitions, and operational knowledge — what Block calls the "world model" — are the assets worth preserving. The code is disposable.
+
+## Burn Tokens, Not Headcount
+
+YC is seeing companies reach demo day with roughly 5x more revenue per employee than 18 months ago, a trend expected to continue through Series A and B. The constraint shifts from headcount to token usage. The speaker's rough heuristic: track who in the organization is "token-maxing" (experimenting aggressively with AI) and who isn't — not as a promotion metric (that gets gamed immediately), but as a signal for where to focus leadership attention.
 ## People at the Edge
 
 In a conventional company, intelligence is spread throughout the people and the hierarchy routes it. In Block's model, the intelligence lives in the system. The people are on the *edge* — where the intelligence makes contact with reality.
 
 People at the edge do what the model can't:
-- **Reach** into places the model can't go yet
+- **Reach** into places the model can't go yet — conferences, in-person conversations, physical environments
 - **Sense** things the model can't perceive: intuition, cultural context, trust dynamics, "the feeling in a room"
 - **Decide** what the model shouldn't decide alone: ethical calls, novel situations, high-stakes moments where the cost of being wrong is existential
 
+The speaker's framing aligns: the "company brain" (all data, emails, DMs, skills, know-how) sits in the center, and humans live around the edge, interfacing with reality. Sales conversations, co-founder breakups, and high-emotion moments where you really want a human — that's where people fit for the foreseeable future.
 "A world model that can't touch the world is just a database." But the edge doesn't need layers of management to coordinate it — the world model gives every person the context they need to act without waiting for information to travel up and down a chain of command.
 
 The fundamental question for any company: "What does your company understand that is genuinely hard to understand, and is that understanding getting deeper every day?" If the answer is nothing, AI is just a cost optimization story. If the answer is deep, AI reveals what the company actually is.
@@ -128,3 +159,4 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
 - "Founder Mode is dead. Long live Founder Mode." — Ayman Al-Abdullah (Apr 2026) ([link](https://x.com/aaboreal))
 - "2× – nine months later: We did it. You can too." — Darragh Curran / Intercom (Apr 2026) ([link](https://ideas.fin.ai/p/2x-nine-months-later))
+- "How to Build a Self-Improving Company with AI" — YC Root Access (video, May 2026) — Self-improving loop architecture, organizational legibility imperative, YC monitoring agent example, burn tokens not headcount

@@ -33,7 +33,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [AI Careers](landscape/ai-careers.md) — Job market bifurcation (big vs small AI), hype navigation, what gets hired
 - [Services as Software](landscape/services-as-software.md) — Sequoia's services-as-software thesis; copilot vs autopilot; ColdIQ playbook; vertical opportunity map
 - [AI Startup Distribution](landscape/ai-startup-distribution.md) — Distribution strategies; Distribution Engineer; 100x marketer; cold outreach; Reddit; AI marketing agents; pain-first ideation
-- [AI Organization Design](landscape/ai-organization-design.md) — Block's "company as intelligence" model; Sequoia endorsement; intelligence layer; people at the edge
+- [AI Organization Design](landscape/ai-organization-design.md) — Block's "company as intelligence" model; Sequoia endorsement; intelligence layer; self-improving loops; organizational legibility; people at the edge
 - [Y Combinator AI Thesis](landscape/yc-ai-thesis.md) — YC's 2026 RFS: Cursor for PM, AI agencies, spatial reasoning, reindustrialized mills; PG's "Live in the Future"
 - [Vertical AI](landscape/vertical-ai.md) — Enterprise AI adoption data; Harvey's $0→$200M ARR playbook; Harvey vertical model U-turn (scrapped custom model)
 - [AI User Perspectives](landscape/ai-user-perspectives.md) — Anthropic's 81K-person survey; what users want; fears (unreliability, displacement, autonomy loss); light and shade framework

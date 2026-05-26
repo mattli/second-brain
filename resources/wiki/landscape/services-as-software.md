@@ -80,6 +80,34 @@ Greg Isenberg predicts $1T up for grabs across 10,000+ niches as the agent-first
 
 This maps directly to the autopilot thesis: outcome-based pricing + no human in the loop + vertical workflow mastery = the services-as-software endgame at scale. See also [Vertical AI](vertical-ai.md) for the 1-1-1 playbook on executing this at the individual operator level.
 
+## The Managed Growth Loop Model (Eric Siu)
+
+Eric Siu argues agencies should stop selling labor — even AI-augmented labor — and instead sell **managed growth loops**: end-to-end business processes that repeatedly turn inputs into outcomes and get smarter from feedback.
+
+The evolution of agency value units: hours → deliverables → expertise → **loops**.
+
+A loop is not an agent. An agent is a worker *inside* a loop. A paid creative loop might contain a research agent, a creative agent, a QA agent, an analytics agent, and a narrative agent — but individually they produce nothing. The loop is where value lives. Companies buying a "zoo of agents" without an operating system get AI theater.
+
+**Three-layer architecture:**
+
+1. **Loops** — the business processes that produce outcomes
+2. **Agents** — workers inside loops handling repeatable execution
+3. **Humans** — directing agents, judging output, reading weak signals, making decisions, earning client trust, and improving workflows
+
+**The seven loops:**
+
+1. **Raw materials** — continuously collect competitive intelligence, sales call transcripts, customer objections, product data, audience signals. Not a one-time onboarding task; stale inputs produce stale marketing.
+2. **Creative testing** — produce 100 variants, kill 90 fast, learn from 10, compound the next batch. Human input is taste; machine work is variant generation, QA, and performance readouts.
+3. **Demand capture** — SEO is becoming search + AI answers + social discovery + community validation. Turn demand signals into briefs, pages, assets.
+4. **Conversion** — watch every step between attention and action. Find where momentum dies, not where channel metrics look good.
+5. **Client narrative** — replace "expensive therapy" reporting with: what changed, why it matters, what we learned, what's next, what needs approval.
+6. **Sales enablement** — read sales calls, surface recurring objections, create proof and follow-up assets that shorten the path to close.
+7. **Learning** — capture winning hooks, losing angles, offer patterns, creative fatigue signals, QA failures, workflow improvements. Feed them back into skills, agents, and future client work.
+
+The learning loop is the moat. Every client makes the system smarter; clients buy accumulated learning, not people. This echoes the ColdIQ playbook's emphasis on compounding the data moat before building the software.
+
+**Codified expertise** is the mechanism that makes loops repeatable. "Skill files" encode institutional knowledge — what to do, what good looks like, what to avoid — so agents repeat the best version of a workflow rather than improvising. Without codification, agents hallucinate process; with it, agencies compound. The core principle: labor resets every time; infrastructure compounds.
+
 ## System of Record → System of Intelligence
 
 a16z frames the same disruption through a different lens: the CRM isn't dying — it's being demoted. The analogy is Facebook's evolution. The friend graph was once the valuable layer; then the news feed turned it into "just one of many inputs" to the algorithm. The same inversion is happening to enterprise systems of record.
@@ -134,3 +162,4 @@ This maps directly to the services-as-software opportunity: the next generation 
 - "$1T up for grabs for agent-first startups" — Greg Isenberg (tweet, Apr 2026) ([link](https://x.com/gregisenberg))
 - "From 'System of Record' to 'System of Intelligence'" — Gio Ahern, Steph Zhang, Alex Immerman, a16z ([link](https://www.a16z.news/p/from-system-of-record-to-system-of)) — CRM-to-intelligence-layer inversion; orchestration as the new gravity well; GTM TAM expansion
 - "Is Software Losing Its Head?" — Seema Amble, a16z ([link](https://x.com/seamble/status/1927893610047545700)) — Headless SoR defensibility shift; historical vs. agentic stickiness factors; proprietary data, action-layer ownership, and network effects as new moats
+- "The next $1T company… Services-as-software (how to do it)" — Eric Siu ([link](https://x.com/ericosiu/status/2052091708826063284/)) — Managed growth loops framework; seven loops for agency transformation; codified expertise as compounding infrastructure

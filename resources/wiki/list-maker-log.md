@@ -1,25 +1,24 @@
 ---
 run_date: 2026-05-26
-run_start: "2026-05-26T13:33:00Z"
-run_end: "2026-05-26T13:35:00Z"
-updated_after: "2026-05-26T01:48:00Z"
-items_total: 2
-workers_dispatched: 1
+run_start: "2026-05-26T22:01:00Z"
+run_end: "2026-05-26T22:01:30Z"
+updated_after: "2026-05-26T13:33:00Z"
+items_total: 0
+workers_dispatched: 0
 tier_c_referenced: 0
-tier_d_bookmarked: 1
+tier_d_bookmarked: 0
 ---
 
 # List-Maker Run — 2026-05-26
 
 ## Run Notes
 
-Normal run. 2 new saves since last cutoff (2026-05-26T01:48:00Z). 1 article dispatched to worker, 1 RSS changelog bookmarked.
+No new saves since last run (cutoff 2026-05-26T13:33:00Z). The 2 documents returned by the API were already processed in today's earlier run. Nothing to dispatch.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01ksjb515mbreq2rs6r10sahqs | A | update | tools/agentic-engineering.md | Article argues for using AI to write better code slowly — extends agentic engineering with quality-over-speed workflow perspective |
 
 ## Tier C — References Added
 
@@ -30,12 +29,13 @@ Normal run. 2 new saves since last cutoff (2026-05-26T01:48:00Z). 1 article disp
 
 | Title | Added To |
 |-------|----------|
-| May 22, 2026 (Readwise & Reader Changelog) | unorganized.md |
 
 ## Skipped
 
 | ID | Title | Reason |
 |----|-------|--------|
+| 01ksjb515mbreq2rs6r10sahqs | Using AI to write better code more slowly | already_in_wiki |
+| 01ksjn8exe4p3j3rykvc1xhg8m | May 22, 2026 (Readwise & Reader Changelog) | already_in_wiki |
 
 ## Carry-Over (deferred to next run)
 

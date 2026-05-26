@@ -72,12 +72,12 @@ For each Tier A/B item that is `update` or `create`, call `schedule_task` MCP to
 schedule_task(
   prompt=<per-doc dispatch prompt — see template below>,
   schedule_type="once",
-  schedule_value="now",
+  schedule_value=<ISO local time, no Z suffix>,
   context_mode="isolated"
 )
 ```
 
-Always use `schedule_value="now"`. Tasks for the same group serialize via GroupQueue, so dispatching them all at "now" runs them sequentially. Do NOT compute an ISO timestamp — the container's local clock is offset from UTC, and naked ISO strings get parsed as UTC by the scheduler, landing in the past and being silently dropped. (This was the dispatch bug discovered 2026-05-26.)
+Tasks for the same group serialize via GroupQueue; you can schedule them all for ~1 min in the future and they will run sequentially. Use local ISO format WITHOUT a `Z` suffix (e.g., `2026-02-01T01:05:00`) — the MCP's host-side handler parses naked ISO as host-local time. Do NOT use `"now"` — `new Date("now")` is NaN and the dispatch is silently dropped.
 
 **Dispatch prompt template:**
 

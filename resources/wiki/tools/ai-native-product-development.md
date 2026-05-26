@@ -3,6 +3,7 @@ created_at: 2026-04-05
 last_updated: 2026-05-26
 
 
+
 ---
 
 # AI-Native Product Development
@@ -277,6 +278,20 @@ The resolution: generalists. When small teams (2-10 people) must cover five spec
 
 Colocation matters for maximum speed: "The highest speed is achieved by having everyone in the room, able to communicate instantaneously." Remote works, but same-room removes the last communication latency.
 
+## Software Company, Not Software Factory
+
+Noah Brier (Alephic) pushes back on the "software factory" metaphor popularized by StrongDM's autonomous code generation system and Dan Shapiro's "Dark Factory" framework. The factory metaphor optimizes for defect elimination — Six Sigma, identical outputs, minimal variance. But software's hardest problem isn't producing code with fewer defects; it's building something people want. Product-market fit, not defect rate, is what matters.
+
+The better metaphor is Andy Warhol's Factory, not Henry Ford's. Both pursued throughput, but Ford eliminated variance while Warhol ensured all work aligned with a single creative vision. It's a *software company*, not a *software factory* — the core challenge is keeping an entire system of humans and agents building toward the same vision, from architecture down to individual lines of code.
+
+**The alignment problem predates AI.** Brier faced this at Percolate (2011), scaling from zero to 100 people in under three years. His job shifted from building the product to building a company capable of building the product. Culture was the strongest lever — what Ben Horowitz defined as "how your company makes decisions when you're not there." He spent half his time on living culture documents, onboarding sessions, and internal tools that routed knowledge to the right people.
+
+**AI didn't solve this — it reshaped it.** Coding agents produce working code that feels written by someone who hasn't been onboarded: ignoring obvious abstractions, violating stylistic norms present in the codebase. "It looks like a new engineer on the team who hasn't been properly onboarded." Teams write onboarding docs and run training for human colleagues but rarely do it for agents.
+
+**Pace layers for AI engineering.** Inspired by Stewart Brand's pace layers framework — where society changes at different speeds, from nature (millennia) to fashion (days) — Brier models the AI engineering stack as a cultural stack where slower layers inform faster ones: standards → architectures → specs → plans → code. Lower layers move slowly and constrain upper layers; upper layers move fast within those constraints. The alignment work is building and maintaining the slower layers so that fast-moving code generation stays coherent.
+
+This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-for-agents) (encoding taste into files agents can read), [Agent-Ready Requirements](#agent-ready-requirements-goal) (specs as durable context reloaded each loop), and the [feature factory risk](#ai-native-companies-in-practice-ann-miura-ko) (without cultural constraints, speed produces divergence). Where Ann Miura-Ko observed that "taste becomes the moat" when execution is free, Brier's framework specifies *how* taste propagates: through layered standards that move at different speeds, not through top-down review of every output.
+
 ## Risks
 
 - **Adoption fatigue** — "Shipping more stuff does not equal more product value. If users can't keep up, what's the point?"
@@ -304,3 +319,4 @@ Colocation matters for maximum speed: "The highest speed is achieved by having e
 - "Big Pharma Bets Big on AI" — Andrew Ng / deeplearning.ai (newsletter, Apr 2026) ([link](https://read.readwise.io/read/01kq881g9mf0dfc4nzk8eyywt1)) — PM bottleneck cascade, generalist engineers, marketing/legal bottlenecks, colocation advantage
 - "Evals, explained" — Lotte / Langfuse Academy (May 2026) ([link](https://langfuse.com/academy/evaluate)) — three evaluation methods, manual-to-automated evolution, reference-based vs. reference-free, binary scoring, production eval loop
 - "/goal for Product Managers" — George / prodmgmt.world (tweet, May 2026) ([link](https://twitter.com/nurijanian/status/2053364576369172940)) — Ralph Wiggum loops, agent-ready requirements, strong vs. weak goals, /goal template, PM OS v2 structured memory (capture, daily-drip, recall)
+- "The Culture of AI Engineering" — Noah Brier / Every (May 2026) — software company vs. software factory, Warhol vs. Ford metaphor, pace layers for AI engineering, agent onboarding as culture problem

@@ -58,6 +58,22 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 - GitCMS — CMS for markdown-based wiki management via MCP
 - **Readwise MCP** — Readwise Reader integration via MCP, enabling agents to read, search, and manage saved articles and highlights directly. https://readwise.io/mcp
   - *Readwise & Reader changelogs (Feb–May 2026):* Wikiwise Mac app, dark mode highlights, annotation bars, tweet rendering, podcast category override, API filtering, Zapier export, OPML import, Claude highlight search, security updates.
+- **SurfSense** — Open-source, self-hostable knowledge aggregator. Connects to Slack, Notion, Gmail, GitHub, YouTube, Confluence, and search engines. Includes podcast generation via local TTS (Kokoro) — nothing leaves your machine. Best fit for privacy-sensitive workflows (legal, medical, finance) where third-party data exposure is non-negotiable.
+- **Recall** — Cross-document querying tool. Ingests PDFs, slides, videos, articles and allows chat across all sources at once, removing the "one notebook at a time" constraint of tools like NotebookLM. No hard source limits. Aimed at researchers and consultants juggling many documents across projects.
+
+## Audio as Knowledge Consumption Layer
+
+A growing category of tools converts knowledge base content into audio for on-the-go consumption — extending the wiki pattern with a listen-first interface. Google's **NotebookLM** pioneered this with AI-generated "audio overviews" (two-host conversational summaries of uploaded sources). By mid-2026, NotebookLM runs on Gemini 3 with a large context window and supports up to 300 sources per notebook — functioning as a structured knowledge synthesis tool with audio output, not just a summarizer.
+
+Limitations driving users to alternatives: fixed voice pair, 20-minute cap, 3/day audio limit on free tier, weak mobile experience, and paying for Plus didn't improve audio quality. The gap created space for specialized tools:
+
+- **Illuminate** (Google) — Academic paper audio, tuned for dense research content. Separate product from NotebookLM. Narrower scope (papers only) but cleaner output for that use case.
+- **BeFreed** — Personalized audio learning paths. Evaluates user level and goal, builds learning paths from books, expert talks, and research. Customizable voice, length (40+ min), and narration style. Mobile-first design. Trade-off: newer app, some UX rough edges.
+- **ElevenLabs Reader** — High-quality TTS for articles and PDFs. No AI synthesis — pure narration. Best voice quality in the category. Useful as a "read it aloud" tool for long-form content.
+- **NoteGPT** — YouTube-specific: timestamped summaries, question-answering against video timestamps. Chrome extension. Good for triaging long lectures and podcasts before committing to a full listen.
+- **StewReads** — MCP plugin for Claude, ChatGPT, and Mistral that converts AI conversations into ebooks or audiobooks, deliverable to Kindle or Apple Podcasts.
+
+The pattern: knowledge bases handle *compilation and synthesis*, audio tools handle *consumption*. SurfSense bridges both — it aggregates sources like a knowledge base AND generates podcasts locally. The DIY approach is also viable: one user described building a custom pipeline with Google's API to research topics, generate audio, and email MP3s on a daily schedule.
 
 ## Tooling Tips
 
@@ -185,3 +201,4 @@ The standard coexists with `robots.txt` (access policy) and `sitemap.xml` (exhau
 - "Claude + Obsidian have to be illegal" — Defileo (tweet thread, Apr 2026) ([link](https://x.com/defileo_))
 - "I Went Through Every AI Memory Tool I Could Find. There Are Two Camps." — witcheer (tweet thread, Apr 2026) ([link](https://x.com/witcheer))
 - "The /llms.txt file" — Jeremy Howard (llmstxt.org) ([link](https://llmstxt.org/)): Proposed web standard for LLM-friendly site content via markdown at `/llms.txt`; connects the "file over app" principle to publisher-side knowledge access.
+- "NotebookLM alternatives I'm actually using in 2026 (after getting burned by Plus)" — Realistic-Spare97 (Reddit r/notebooklm, May 2026): Audio learning tool landscape; SurfSense, Recall, BeFreed, Illuminate, NoteGPT, ElevenLabs Reader, StewReads.

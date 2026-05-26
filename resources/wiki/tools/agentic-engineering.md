@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-20
+last_updated: 2026-05-26
 ---
 
 # Agentic Engineering
@@ -83,6 +83,30 @@ Nicholas Charriere's thesis (Apr 2026): app companies, model companies, and infr
 **The self-improvement loop:** Drive → collect data → retrain (autonomous vehicles) maps to: run → monitor → improve harness code and context engineering → run again. The difference: the agent itself can close this loop, writing code to improve its own performance. Yoonho Lee (Stanford) formalized this as "Meta-Harness" — autonomously optimizing harnesses end-to-end.
 
 **Prediction:** By end of 2026, many software companies will look like they're selling the same thing. Winners will have distribution, trusted workflow positioning, proprietary context, and the shortest path from observation to improvement.
+
+## Agent Marketplace Infrastructure (Wright)
+
+Aaron Wright maps the infrastructure required for agents to operate as autonomous economic actors — not just execute tasks, but transact: find counterparties, make commitments, move money, build track records, survive disputes, and stay within authorized scope. The argument: without identity, trust, pricing, contracts, settlement, enforcement, and policy, "you do not have an economy. You have a demo."
+
+The architecture decomposes into **three planes, ten layers**:
+
+**Trust Plane** — establishes who the agent is, how it is found, and what it has done:
+- **Identity (Know-Your-Agent):** Cryptographic model lineage attestations, tool permission manifests, and persistent agent DIDs. Current state is "identifiers without identity" — no way to verify that an agent's weights, system prompt, or tool access match its claims. ERC-8004, an Ethereum standard co-authored by MetaMask, Ethereum Foundation, Google, and Coinbase, defines an Identity Registry where each agent owns an NFT whose URI resolves to a JSON file naming its A2A endpoint, MCP endpoint, ENS handle, and wallet addresses. As of early 2026, over 128,000 agents registered across 24 chains [[source]](https://x.com).
+- **Discovery & Capability Registry:** Structured, machine-readable capability declarations — not "marketing assistant" but typed interfaces with inputs, outputs, latency SLAs, jurisdictions. MCP and A2A are the interop foundation; ERC-8004's registration file is the closest thing to a structured capability declaration in production. The marketplace that ranks, filters, and prices against these declarations does not yet exist.
+- **Reputation:** Cryptographically attested outcome track records (accuracy, latency, dispute rate), cross-marketplace portability via DIDs, and sybil resistance through staked collateral or behavioral fingerprinting. ERC-8004's Reputation Registry stores feedback signals; the scoring layer on top — "Moody's for Machines" — is one of the most valuable openings in the stack.
+
+**Market Plane** — moves value between agents:
+- **Quoting & Price Discovery:** The most economically interesting missing layer. Agent services don't price well as hourly, fixed-scope, or per-token — the interesting price is "per result of acceptable quality." Needs real-time RFQ (Tradeweb for cognitive work), outcome contracts with verifiable completion, and auction mechanics for fungible work. The closest blueprint is programmatic ad exchanges, which built three of the largest companies of the last twenty years.
+- **Contracting:** Turns a quote into an obligation — machine-readable MSAs capturing scope, deliverables, deadlines, payment terms, data rights, liability, and remedies, signed by both parties' DIDs. The contract becomes a portable execution wrapper: part legal agreement, part workflow schema, part policy bundle. Critically depends on the governance layer for proof of authority — without it, every agent-signed contract is "one ultra vires claim away from worthless."
+- **Settlement:** Layered architecture — stablecoins (Coinbase x402, Circle CCTP) for high-frequency agent-to-agent, virtual cards (Visa Intelligent Commerce, Mastercard Agent Pay) for agent-to-merchant, ACH for periodic sweeps. Whoever builds the abstraction layer over all three (`pay(amount, currency, counterparty, settlement_window)` that picks the cheapest rail) wins the developer surface.
+- **Dispute Resolution:** Escrow as default, automated remediation paths (quality below threshold → automatic refund), and validator/arbitration agents. ERC-8004's Validation Registry supports multiple trust models — stake-secured re-execution, zkML proofs, TEE attestations, or human judges — scaling with value at risk.
+
+**Control Plane** — what the agent is allowed to do and how it proves it:
+- **Governance & Authority:** Policy engines that enforce before execution, not after logging (Cordum, Aegis AI, Galileo, Microsoft's Agent Governance Toolkit). Spending limits via Safe allowance modules, ERC-4337 session keys, hierarchical multisig. The deepest unsolved piece: *authorized scope* — a machine-readable, signed declaration of what an agent can bind its principal to. The Air Canada tribunal ruling (Feb 2024) held the airline liable for its chatbot's unauthorized promises, establishing that companies are bound by agent representations.
+- **Compliance:** Splitting from governance as its own vendor category, driven by the EU AI Act's high-risk obligations (effective August 2, 2026, penalties up to €35M or 7% of global turnover). Governance answers "what is the org willing to let the agent do"; compliance answers "what must it prove to a regulator about what the agent did." ComplyEdge, Lucairn, and others are shipping enforcement layers for Articles 9, 12, 13, and 14.
+- **Orchestration & Runtime:** Runtime (Modal, E2B, Daytona), memory (Mem0, Letta, Zep), observability (Langfuse, Helicone, Arize), and orchestration (LangGraph, CrewAI, AutoGen, Google ADK) are separating into distinct procurement decisions. Around 86% of enterprise copilot spending in 2026 (~$7.2B) goes to agent-based systems. The marketplace itself doesn't build these but must standardize the export format — "OpenTelemetry-for-agents" is the missing standard.
+
+**Strategic implications:** The platform play requires three layers, not two — whoever owns identity, settlement, and governance owns the marketplace. Crypto-native and enterprise-native stacks are converging at the trust plane (ERC-8004) and diverging at the control plane (Safe modules vs. enterprise governance toolkits). The most undervalued layer is quoting/price discovery — real-time machine-to-machine price discovery over a TAM measured in trillions of cognitive labor dollars, with almost nobody building it as a primary product.
 
 ## "The Decade of Agents" (Karpathy)
 
@@ -179,3 +203,4 @@ In the third model, the software's agent handles business logic, enforces rules,
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang / a16z Show (video, Apr 2026) ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
 - "anthropic's in-house philosopher thinks claude gets anxious" — Ole Lehmann (tweet, Apr 2026) ([link](https://x.com/olelehmann))
 - "Not all AI agents are created equal" — Hamza Farooq & Jaya Rajwani / Lenny's Newsletter (Apr 2026) ([link](https://www.lennysnewsletter.com/p/not-all-ai-agents-are-created-equal))
+- "The Technical Stack for Autonomous Agents" — Aaron Wright (tweet, 2026) — ten-layer infrastructure stack (trust/market/control planes) for agent marketplaces, ERC-8004, settlement rails, governance/compliance separation

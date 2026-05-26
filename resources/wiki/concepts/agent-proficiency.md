@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-27
+last_updated: 2026-05-26
 ---
 
 # Agent Proficiency
@@ -30,6 +30,18 @@ Karpathy's framing: "These are extremely powerful tools — they speak English a
 - Choosing which AI to point at which problem (BYOAI)
 
 Gupta's metaphor: "The 21st century power user looks less like a programmer and more like an editor-in-chief: deciding what goes in, what gets compiled, what gets published, and which AI gets the assignment."
+
+## Staying in the Loop
+
+The emerging "shepherd of agents" narrative — get out of the programming loop, let agents build features end-to-end, just approve the PR — has a major blind spot: agents do not have good opinions. James Long (creator of OpenCode) argues that agent proficiency is not about delegation but about maintaining tight feedback loops even as you shift work to agents.
+
+Two non-negotiable review habits:
+- **Always read the diff.** Even if you're living inside a coding agent and rarely open your editor, the code review is where you catch structural decisions that compound. OpenCode built a dedicated diff viewer specifically because this step matters too much to skip.
+- **Always run the product alongside the agent.** Your users will experience whatever you ship. If you stay out of the loop, you can't guarantee good experience. Interacting with live changes surfaces UX issues — like discovering that "Tab" is the instinctively correct keybinding for focus switching, not "f" — that no amount of code review alone would catch.
+
+The cost of late discovery is asymmetric: the later you find issues, the harder they are to unwind. You could argue agents make it easier to refactor bad decisions after the fact, but by then users may already depend on the bad thing. Staying in the loop produces better outcomes from the start, with less total churn.
+
+This maps directly to the "evaluate and curate agent work" bullet in the skill set above — the curation isn't a passive review gate but an active, continuous engagement with what the agent is producing.
 
 ## Relationship to AI Careers
 
@@ -62,3 +74,4 @@ The role description is essentially the enterprise version of what Karpathy call
 - "How to 10x your productivity as a PM with AI tools" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=YKYQ-z6A9Fs&si=rM4oFGmcIRcItGyh))
 - "The Claude Code Setup Nobody Shows You" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=Eqh2iwSl570&si=CgkjC-SZIXj-KR8C))
 - "The more enterprises I talk to about AI agent transformation..." — Aaron Levie (tweet, Apr 2026)
+- "Don't stay out of the loop" — James Long (tweet, May 2026) ([link](https://x.com/jlongster/status/2058197974321070379/?s=12&rw_tt_thread=True))

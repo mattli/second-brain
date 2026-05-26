@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-04-24
+last_updated: 2026-05-26
 
 ---
 
@@ -259,6 +259,26 @@ Garry Tan's response to Kyle Kingsbury's "The Future of Everything is Lies" essa
 
 **The aspirin analogy:** "We don't know why transformer models have been so successful" — also true of aspirin (mechanism understood only in the 1970s), general anesthesia (still incompletely understood), and bicycle stability (definitively explained only in 2011). Practical utility doesn't require theoretical completeness.
 
+## Neurological Diagnostic Framework (Vox)
+
+A complementary lens to the testing pyramid: diagnose agent failures the way a neurologist diagnoses a patient. Don't ask how smart the model is — ask which organ is failing. The model gives an agent thoughts; the harness gives it a body (eyes, hands, memory, brakes, self-check). If any organ fails, even the strongest model behaves like a sick patient.
+
+Six conditions, each a real neurological or cognitive term mapped to a harness failure mode:
+
+1. **Source amnesia** — the agent remembers a fact but has lost where it came from. In cognitive psychology, a *source-monitoring error*: the memory is intact, the source label is missing. More dangerous than forgetting — when the agent forgets, it stops to check; when the source is missing, it keeps walking forward with full confidence. Treatment: every memory needs three properties — source, scope, expiry. "A memory without a source is a clue, not a verdict." *(Maps to harness component #3: Memory.)*
+
+2. **Phantom limb state** — the agent acts on a world state that no longer exists. A file changed, the environment changed, the task got rewritten — but the agent still patches based on what it read earlier. The agent's behavior looks reasonable because the path looks right, the diff looks right, the explanation looks right — it's just aimed at the old world. Treatment: re-perceive before acting. Re-read the file before editing it, recheck state before any dangerous operation. *(Maps to components #4 and #7: Context management and State management.)*
+
+3. **Locked-in syndrome** — the model knows the next step but the tool channel is severed. The MCP server died, the command isn't on PATH, the browser session dropped, file permissions are wrong, or the API key isn't in the environment. Telling it to "try again" doesn't help — it isn't short on reasoning, it's short on actuators. Treatment: separate two diagnostic layers — did reasoning complete, and is the tool channel alive? *(Maps to component #2: Tools.)*
+
+4. **Confabulation** — the medically accurate term for what the industry calls "AI hallucination." A hallucination is seeing something that isn't there; confabulation is filling a memory gap with a plausible fabrication. When retrieval fails, the agent produces something that *looks like* a source instead of admitting the gap. The 2026 paper *HalluCitation* counted nearly 300 papers across ACL 2024–2025 with at least one hallucinated reference [[source]](https://x.com/Vox). Treatment: open every citation; if it doesn't resolve, remove it entirely. *(Maps to component #10: Verification loops.)*
+
+5. **Disinhibition** — broken brakes. The agent's brake isn't conscience; it's the control plane: which actions require confirmation, which tools can't be triggered from memory, which external actions need human approval, which inputs are treated as untrusted. When this layer fails, any memory or external input can flow all the way to the action layer. "The danger is not that the agent can use tools. The danger is that memory and external input got execution rights they should never have had." Treatment: keep public posting, payments, deletion, deployment, and messaging outside model memory — the model can prepare actions but can't authorize them. *(Maps to component #9: Guardrails and safety.)*
+
+6. **Anosognosia** — wrong, and unaware of being wrong. A coding agent runs the wrong tests and reports they passed. A research agent cites the wrong source and says the evidence is solid. "The same blind spot cannot self-check with the same blind model." Treatment: real self-check needs external signals — tests, fresh reads, trace review, a second verifier, tool output validation, human approval. *(Maps to component #10: Verification loops.)*
+
+The unifying insight: six different conditions, one thing in common — a smarter model can't fix any of them. Only a more complete harness body can. Memory needs a source. Action needs fresh perception. Danger needs external approval. Confidence needs external evidence.
+
 ## Three Dimensions of the Harness (Akshay Pachaar)
 
 Akshay's follow-up framing (Apr 2026): the model itself should be deliberately thin, with intelligence pushed outward and composed at runtime through three dimensions:
@@ -318,3 +338,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "A harnessed LLM agent" — Akshay Pachaar (tweet thread, Apr 2026) ([link](https://x.com/akshay_pachaar)) — expanded deep dive with framework comparison
 - "Imagine if naked people were stupider" — Garry Tan, YC (tweet thread, Apr 2026) ([link](https://x.com/garrytan)) — response to Kyle Kingsbury's "The Future of Everything is Lies"; testing pyramid for agent systems
 - "The Definitive Guide to Harness Engineering" — TRAE (tweet thread, Apr 2026) ([link](https://read.readwise.io/read/01kq0a1yank7gvrrqxseeby31b)) — comprehensive framework: R.E.S.T. objectives, REPL container architecture, six design principles, Token Transformation Pipeline, sandboxing levels, cognitive maturity matrix
+- "Your OpenClaw / Hermes Gets Neurological Conditions Too" — Vox (tweet thread, May 2026) ([link](https://x.com/Vox)) — six neurological conditions mapped to agent harness failure modes: source amnesia, phantom limb state, locked-in syndrome, confabulation, disinhibition, anosognosia

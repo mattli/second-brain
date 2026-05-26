@@ -6,13 +6,13 @@ sources_updated: 2026-05-26
 
 # Claude Code Skill Frameworks
 
-> TLDR: Three major skill frameworks — gstack, Superpowers, and Compound Engineering — have emerged to add structured workflows on top of Claude Code, each solving a different layer: decisions/QA, process discipline, and cross-session knowledge accumulation.
+> TLDR: Four major skill frameworks — gstack, Superpowers, Compound Engineering, and Agent Skills — have emerged to add structured workflows on top of Claude Code, each solving a different layer: decisions/QA, process discipline, cross-session knowledge accumulation, and senior-engineer SDLC enforcement.
 
 ## Overview
 
 Claude Code out of the box is a powerful but "mushy" single-mode tool. These frameworks add explicit cognitive modes and structured workflows. A comparison by Vox (Mar 2026) mapped them to Anthropic's harness architecture: planning, execution, evaluation, and cross-session state.
 
-## The Three Frameworks
+## The Four Frameworks
 
 ### gstack (Garry Tan)
 
@@ -51,11 +51,30 @@ Results merge into `docs/solutions/` — structured, categorized, searchable doc
 
 Also features a dynamic reviewer ensemble: minimum 6 always-on reviewers plus conditional ones based on diff type (correctness, security, performance, testing, maintainability, adversarial).
 
+### Agent Skills (Addy Osmani)
+
+**Focus:** Senior-engineer SDLC enforcement. 26K+ stars.
+
+Twenty skill files organized around six lifecycle phases, with seven slash commands: `/spec` (define), `/plan`, `/build`, `/test`, `/review`, `/ship`, and `/code-simplify`. Each skill is a workflow with checkpoints and exit criteria — not reference documentation. A meta-skill (`using-agent-skills`) acts as a router, progressively disclosing only the skills relevant to the current phase.
+
+Five load-bearing design principles:
+
+1. **Process over prose** — workflows are agent-actionable; essays are not. Steps with exit criteria beat best-practices documents.
+2. **Anti-rationalization tables** — each skill includes a table of common excuses for skipping the workflow, paired with pre-written rebuttals. LLMs are excellent at rationalizing why *this particular* task doesn't need a spec or test; the tables are "pre-written rebuttals to lies the agent hasn't yet told." [[source]](https://addyosmani.com/blog/agent-skills/)
+3. **Verification is non-negotiable** — every skill terminates in concrete evidence (passing tests, clean build, reviewer sign-off). "Seems right" never closes the loop.
+4. **Progressive disclosure** — don't load all twenty skills at session start. The router activates what's relevant, keeping the library in a small token footprint.
+5. **Scope discipline** — touch only what you're asked to touch. The single biggest determinant of whether an agent's PR is mergeable.
+
+Heavily informed by Google's engineering practices: Hyrum's Law in API design, the test pyramid and the Beyoncé Rule ("if you liked it, you should have put a test on it") in TDD, DAMP over DRY in tests, ~100-line PR sizing with severity labels in code review, Chesterton's Fence in code simplification, trunk-based development, shift-left with feature flags, and code-as-liability in deprecation.
+
+Portable across tools — the same markdown-with-frontmatter skill files work in Claude Code, Cursor (via rules), Gemini CLI, Codex, and any harness that accepts system-prompt content. See [Agent Harness](agent-harness.md) for the broader harness architecture these skills plug into.
+
 ## How They Layer
 
 | Layer | Tool | Purpose |
 |-------|------|---------|
 | Decisions | gstack | Head chef sets the menu |
+| SDLC discipline | Agent Skills | Senior engineer enforces the process |
 | Planning | CE /ce:plan | Researcher reviews past work first |
 | Execution | CE /ce:work | Kitchen team cooks |
 | Review | CE /ce:review + gstack /browse | Multi-reviewer + real-browser QA |
@@ -210,3 +229,4 @@ Practical starting path: pick a thin harness (OpenClaw, Hermes Agent, or custom)
 - "GBrain: Build your personal mini-AGI" — Garry Tan (GitHub) ([link](https://github.com/garrytan/gbrain))
 - "Meta-Meta-Prompting: The Secret to Making AI Agents Work" — Garry Tan (tweet, May 2026) ([link](https://x.com/garrytan/status/2053127519872614419)). Full walkthrough of GBrain in production: 100K pages, skillify meta-skill, cross-modal eval, entity propagation, book-mirror pipeline, and the compounding personal AI thesis.
 - "Using Claude Code: The Unreasonable Effectiveness of HTML" — Thariq (tweet, May 2026). HTML as artifact format for Claude Code outputs — specs, plans, reports, prototypes, interactive editors.
+- "Agent Skills" — Addy Osmani (blog, May 2026) ([link](https://addyosmani.com/blog/agent-skills/)). Twenty markdown skill files encoding senior-engineer SDLC phases for AI coding agents. Anti-rationalization tables, progressive disclosure, Google engineering practices, portable across Claude Code / Cursor / Gemini CLI / Codex.

@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-05-26
+sources_updated: 2026-05-26
 ---
 
 # Claude Code Skill Frameworks
@@ -15,7 +16,7 @@ Claude Code out of the box is a powerful but "mushy" single-mode tool. These fra
 
 ### gstack (Garry Tan)
 
-**Focus:** Decision layer + QA testing. 54.6K stars (as of Mar 2026).
+**Focus:** Decision layer + QA testing. 87K+ stars.
 
 Six slash commands acting as different "brains":
 - `/plan-ceo-review` — Founder mode. "What is the 10-star product hiding inside this request?" Inspired by Brian Chesky's approach.
@@ -25,7 +26,7 @@ Six slash commands acting as different "brains":
 - `/browse` — QA engineer. Compiled Playwright binary giving Claude eyes on live URLs. Full QA pass in ~60 seconds.
 - `/retro` — Engineering manager. Analyzes commit history, work patterns, shipping velocity.
 
-Created by Garry Tan (YC CEO). Claims 600K lines of production code in 60 days with this setup.
+Created by Garry Tan (YC CEO). Claims 600K lines of production code in 60 days with this setup. Tan uses GStack as a coding skill inside OpenClaw/Hermes Agent — it's the execution layer, while GBrain handles knowledge.
 
 ### Superpowers (Jesse Vincent)
 
@@ -133,7 +134,22 @@ Output: one topic → 10 platform-native posts, each reframed for platform conve
 
 ### GBrain (Garry Tan)
 
-Personal knowledge brain for agents — the knowledge layer that GStack's coding skills operate on. Ships with the resolver pattern built in: `gbrain init` creates RESOLVER.md, decision tree, and disambiguation rules. 25,000 files processing 200 inputs/day in production. Designed to work with OpenClaw or Hermes Agent as the conductor. GStack (72K+ stars) calls knowledge stored in GBrain; together they form the full "thin harness, fat skills" architecture.
+Personal knowledge brain for agents — the knowledge layer that GStack's coding skills operate on. Ships with the resolver pattern built in: `gbrain init` creates RESOLVER.md, decision tree, and disambiguation rules. In production, Tan runs ~100,000 pages and 100+ cron jobs processing inputs continuously — meetings, emails, social media, reading. Designed to work with OpenClaw or Hermes Agent as the conductor. GStack (87K+ stars) calls knowledge stored in GBrain; together they form the full "thin harness, fat skills" architecture.
+
+**Page schema:** Each brain page has compiled truth at the top (current best understanding), an append-only timeline below (events in chronological order), and raw data sidecars for source material. Person pages include timeline, state section, open threads, and a score. Every meeting triggers **entity propagation** — the system walks through every person and company mentioned and updates their brain pages with what was discussed. [[source]](https://x.com/garrytan/status/2053127519872614419)
+
+**Skillify — the meta-skill:** When Tan encounters a workflow he'll repeat, he runs `skillify` which examines what just happened, extracts the repeatable pattern, writes a tested skill file with triggers and edge cases, and registers it in the resolver. Skills compose: a complex pipeline like book-mirror calls brain-ops for storage, enrich for context, cross-modal-eval for quality, and pdf-generation for output. Improving one skill improves every workflow that uses it. [[source]](https://x.com/garrytan/status/2053127519872614419)
+
+**Cross-modal eval:** Multi-model quality checking. Tan routes outputs through Opus 4.7 1M (precision errors), GPT-5.5 (missing context), and DeepSeek V4-Pro (generic writing detection). The skill decides which model to call for which task; the harness doesn't care. This is how factual errors in early book-mirror versions were caught and permanently fixed.
+
+**Key skills beyond GStack's coding set:**
+- *book-mirror* — per-chapter synthesis mapping author's ideas to the user's actual life context; cross-references brain pages for specificity
+- *meeting-ingestion* — auto-pulls transcripts, creates structured summaries, propagates entities to person/company pages
+- *enrich* — takes a person's name, merges five sources into a single brain page with career arc, contact info, meeting history
+- *media-ingest* — handles video, audio, PDF, screenshots, GitHub repos; transcribes and files to the right brain location
+- *perplexity-research* — brain-augmented web research; checks what the brain already knows before synthesizing so it highlights genuinely new information
+
+GBrain benchmarks at 97.6% recall on LongMemEval, beating MemPalace with no LLM in the retrieval loop. [[source]](https://x.com/garrytan/status/2053127519872614419)
 
 See [Agent Harness](agent-harness.md) for the full resolver pattern and how GBrain implements it.
 
@@ -156,6 +172,14 @@ Thariq (Anthropic, Claude Code team) advocates replacing Markdown with HTML as t
 **Tradeoffs:** HTML takes 2–4x longer to generate, diffs are noisy for version control, and token usage is higher (though with large context windows this matters less in practice).
 
 **Getting started:** no special skill file needed — "make an HTML file" or "make an HTML artifact" is sufficient. Over time, a design-system HTML file pointed at the codebase can enforce consistent styling. Examples at [thariqs.github.io/html-effectiveness](https://thariqs.github.io/html-effectiveness/).
+
+## The Compounding Personal AI Thesis
+
+Tan's overarching argument: the future belongs to individuals who build compounding AI systems, not those who use centralized AI tools. The difference is between keeping a journal and having a nervous system — one stores things, the other connects them, flags changes, and surfaces what's relevant right now. [[source]](https://x.com/garrytan/status/2053127519872614419)
+
+The compounding loop: every meeting adds to the brain, every book enriches context for the next, every skill makes the next workflow faster, every person-page update makes the next meeting prep sharper. Tan reports 100 cron jobs running 24/7 for automated ingestion — meeting transcripts, email triage (every 10 minutes), social media, and knowledge graph enrichment from conversations.
+
+Practical starting path: pick a thin harness (OpenClaw, Hermes Agent, or custom), start a brain with GBrain, do something interesting manually with the agent, then skillify the pattern into a reusable skill. Run cross-modal eval to catch errors. The first skill will be mediocre — the value comes from the compound curve as fixes get baked into skills and every future invocation benefits.
 
 ## Tools Noted
 
@@ -184,4 +208,5 @@ Thariq (Anthropic, Claude Code team) advocates replacing Markdown with HTML as t
 - "How To Build Own Content Engine? (FULL COURSE)" — Ronin (tweet thread, Apr 2026)
 - "Automate Your Entire Work Life With Claude Code — No Coding Needed" — Aakash Gupta / Dave Khaled (video, Apr 2026)
 - "GBrain: Build your personal mini-AGI" — Garry Tan (GitHub) ([link](https://github.com/garrytan/gbrain))
+- "Meta-Meta-Prompting: The Secret to Making AI Agents Work" — Garry Tan (tweet, May 2026) ([link](https://x.com/garrytan/status/2053127519872614419)). Full walkthrough of GBrain in production: 100K pages, skillify meta-skill, cross-modal eval, entity propagation, book-mirror pipeline, and the compounding personal AI thesis.
 - "Using Claude Code: The Unreasonable Effectiveness of HTML" — Thariq (tweet, May 2026). HTML as artifact format for Claude Code outputs — specs, plans, reports, prototypes, interactive editors.

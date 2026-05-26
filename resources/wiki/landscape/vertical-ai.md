@@ -1,11 +1,12 @@
 ---
 created_at: 2026-04-09
 last_updated: 2026-05-26
+
 ---
 
 # Vertical AI
 
-> TLDR: Domain-specific AI applications are finding product-market fit faster than horizontal AI, especially in legal, healthcare, and coding. Harvey AI's $0→$200M ARR in 36 months is the benchmark case study for how vertical AI companies win.
+> TLDR: Domain-specific AI applications are finding product-market fit faster than horizontal AI, especially in legal, healthcare, customer service, and coding. Harvey ($0→$200M ARR in 36 months) and Sierra ($0→$165M ARR in 26 months) are the benchmark case studies; both combine vertical domain expertise with outcome-aligned pricing.
 
 ## Enterprise AI Adoption (2026 Data)
 
@@ -80,6 +81,34 @@ For many categories, the better bet remains exceptional workflow infrastructure,
 
 Cursor launched Composer 2 (Apr 2026) — a proprietary coding model built on Moonshot AI's Kimi K2.5 with their own continued pre-training and RL. Scored 61.7% on Terminal-Bench 2.0, beating Claude Opus 4.6 (58.0%), at $0.50/M input tokens (1/10th of Anthropic's flagship). Cursor's strategy: frontier models for hardest reasoning tasks, custom vertical models for everything else.
 
+## Sierra: Customer Service Vertical AI
+
+Sierra ($0 → $165M+ ARR in 26 months) is a managed AI agent platform for enterprise customer service. Founded by Bret Taylor (ex-Salesforce co-CEO) and Clay Bavor shortly after ChatGPT launched. While most AI startups in early 2023 went horizontal, Sierra went vertical into customer service — and grew even faster than Harvey.
+
+**Why customer service works:** A human-handled call costs ~$10 in the US; Sierra's per-resolution cost is $0.10–$1. At Fortune 500 scale (50M customers, ~$1.2B contact-center spend), the savings land on the CEO's desk. The absolute dollar magnitude of the savings determines deal priority, which is why Sierra went straight at the Fortune 500. [[source]](https://x.com/IvanLandabaso/status/1924809153840267528)
+
+**Growth levers:**
+
+1. **Stealth design partners chosen for hard constraints** — Recruited 4 companies they personally knew and built in stealth for 11 months. Intentionally chose customers that would stress-test the product: WeightWatchers (cost pressure from restructuring), Sonos (10x Black Friday surges), SiriusXM (34M subscribers on legacy IVR), and OluKai (a sandals brand obsessed with brand voice that forced agents to hold a personality).
+
+2. **Outcome-based pricing** — Sierra gets paid a pre-negotiated rate per resolved case. If the case escalates to a human, Sierra gets $0. This forces the company to optimize for one metric: time-to-live. Incumbents can't match without cannibalizing the revenue base their market cap is priced on. As Taylor put it: "Business model transitions are harder than technology transitions." [[source]](https://x.com/IvanLandabaso/status/1924809153840267528)
+
+3. **Speed as structural advantage** — Outcome pricing means every week of implementation is a week of zero revenue, so the company is wired around deployment speed. Nordstrom voice agent (Nora): 5 weeks. Cigna: 8 weeks. Singtel: 10 weeks. Comparable Salesforce Agentforce deployments take multiple quarters; traditional ERP rollouts take 18+ months. Three layers compound the speed: no-code tooling for the customer's CX team, Ghostwriter (an agent that builds agents, launched March 2026), and a deployment team whose charter is "to automate themselves."
+
+4. **Omnichannel collapse** — Most enterprises in 2024 had separate vendors for SMS (Twilio), call center (Five9/Genesys), chat (Intercom/Zendesk), cases (Salesforce), WhatsApp, and email — 6 contracts, pricing models, and data silos. Sierra collapsed all channels into one agent. Voice launched October 2024 and within 12 months surpassed text as the largest interaction surface. One Sierra contract absorbs budget from 4–6 vendor line items.
+
+5. **Brand-personalized agents** — Agents have names, personalities, and brand voices (Chubbies → Duncan, SiriusXM → Harmony, Nordstrom → Nora). This gives every buying committee stakeholder something they care about: IT gets SOC2/HIPAA/GDPR compliance, CMO gets brand voice control, Head of CX gets CSAT metrics, and the brand team gets tone customization.
+
+6. **Vertical sales org** — Sales organized by industry vertical (not geography), so reps speak the buyer's language on the first call. This compounds with customer referrals and industry-specific case studies.
+
+7. **Land-and-expand** — Customer service is the foot in the door. Expansion path: (1) CX wedge → (2) voice channel expansion (ACV doubles or triples) → (3) sales agents for commerce and cart recovery → (4) full-lifecycle digital interface.
+
+**Competitive positioning:** Sierra occupies the "managed agent vendor" quadrant where outcome pricing works because the vendor owns everything that determines the outcome. The biggest competitive threat is foundation labs (Anthropic, OpenAI, Google) moving downstream into managed deployment with outcome pricing — but that requires them to rebuild their business model away from selling tokens.
+
+**Category naming:** Sierra coined vocabulary the industry now uses — Agent OS, Agent Studio, outcome-based pricing, Ghostwriter, Agents as a Service, τ-bench (open eval framework). This mirrors how Salesforce coined "SaaS" and Anthropic coined "Constitutional AI" and "MCP."
+
+**Harvey parallel:** Both companies picked a vertical everyone else ignored, sold to the hardest possible first customers, used outcome-aligned pricing to lock out incumbents, and organized sales by domain expertise rather than geography. The key difference: Harvey sells to professionals who bill by the hour (legal), while Sierra sells to enterprises that pay per customer interaction (CX). Both demonstrate that vertical AI companies win by making business model transitions that horizontal incumbents can't follow.
+
 ## The 1-1-1 Playbook (Alton Syn / Mark Cuban)
 
 Alton Syn distills Mark Cuban's AI agent thesis into a sharper framework: the money isn't in "selling AI" — it's in pointing to **one painful workflow inside one business** and fixing it fast.
@@ -145,6 +174,7 @@ Abridge (founded 2018, CEO is a practicing cardiologist) is a clinical intellige
 
 ## Comparable Cases
 
+- **Customer service:** Sierra ($165M+ ARR in 26 months), Decagon, Ada Support. Outcome-based pricing and omnichannel collapse make CX a natural vertical for managed AI agents. Salesforce Agentforce is the incumbent response but deploys on multi-quarter timelines.
 - **Healthcare:** Abridge (clinical intelligence layer, 100M+ conversations), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record. See also [AI Drug Discovery](../science/ai-drug-discovery.md) for how generative AI is compressing preclinical timelines in pharma.
 - **Code:** Cursor (reported explosive growth), Claude Code, Codex. Code is "upstream of all other applications" — AI accelerating code accelerates every domain.
 
@@ -163,3 +193,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "The New Software: CLI, Skills & Vertical Models" — Sandhya (tweet thread, Apr 2026) ([link](https://x.com))
 - "Mark Cuban Is Right About AI Agents" — Alton Syn (tweet, Apr 2026) ([link](https://x.com/altonsyn))
 - "Inside Abridge: The AI Listening to 100 Million Doctor Visits" — Latent Space / Janie Lee & Chai Asawa (video, 2026). Abridge clinical intelligence layer, healthcare vertical AI at scale, three-act strategy, eval rigor, data flywheel.
+- "Sierra went from $0 to $165M+ ARR in 26 months" — Ivan Landabaso (tweet thread, May 2026) ([link](https://x.com/IvanLandabaso/status/1924809153840267528)). Sierra growth playbook, outcome-based pricing, omnichannel collapse, deployment speed, Fortune 500 CX vertical.

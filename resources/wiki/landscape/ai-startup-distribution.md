@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-20
+last_updated: 2026-05-26
 
 ---
 
@@ -25,6 +25,24 @@ Greg Isenberg's framework for post-vibe-coding distribution:
 7. **Voice memo → content pipeline** — 30-minute voice memo into Claude → five tweet threads, three LinkedIn posts, one newsletter. Weekly.
 
 For founders seeking capital alongside customers, private market access is democratizing — see [Venture Capital Access](venture-capital-access.md) for USVC and the shift toward retail access to frontier AI company stakes.
+
+## Organic UGC as Distribution Moat
+
+Matt (CiteSure founder) vibecoded a B2C EdTech app, scaled to $132K ARR peak through self-made TikTok content, and exited for $375K in six months — acquired by Jenni AI. Total marketing spend: under $100. The case demonstrates the format-first playbook end-to-end.
+
+**Format-first product development.** Traditional ideation (find problem → build → figure out marketing) is backwards. Your viral potential determines your ceiling. Pick the TikTok format first, then build the minimum app the format requires. A mediocre app with outstanding distribution beats an outstanding app with mediocre distribution.
+
+Three criteria for a format worth picking: (1) currently working on TikTok right now, (2) scalable to 50+ variations without going stale, (3) has survived at least one fatigue cycle. Scroll TikTok, not Reels — Reels lag two weeks behind. Two sourcing paths: study apps already winning with viral content (e.g., UMax face rating, Halo AI pranks), or steal proven formats from ecom/dropshippers whose products have low LTV and replace the weak product with a sticky app.
+
+**The production system.** 50 hook clips (sourced from Fiverr at <$2/video), maximum 3 uses per demo clip, constant re-filming to avoid TikTok's perceptual hashing detection. Batch film every Sunday (16 hours), then just click post during the week. Post 3x/day per account maximum — more causes material view-average drops.
+
+Content strategy as portfolio allocation: 50% proven formats (reliable view base), 25% iterations on those formats (changing one variable), 25% moonshot experiments. Most accounts only do the first 50% and die when the format exhausts.
+
+**Why organic crushes paid on margins.** Net profit margin over 80% with near-zero CAC. Paid attention dies the moment you stop spending. Organic content is a persistent asset — CiteSure continued growing for nearly a year after the last video was posted, with old content still generating views, signups, and MRR.
+
+**Content as acquisition magnet.** Acquirers buy attention they couldn't build themselves (MyFitnessPal buying Cal AI, Quizlet buying Coconote). The best acquisition path is inbound via content visibility — every viral post puts your app in front of potential acquirers. Jenni AI initially reached out thinking Matt's TikTok account was a real creator, which became an acquisition conversation. The distribution skill itself — not just the revenue — was the acquired asset.
+
+**Retention determines your multiple.** An app with $100K MRR but 50% monthly churn decays to $1.5K MRR in six months if top-of-funnel breaks. Acquirers discount high-churn revenue because it isn't truly recurring. Pick formats that funnel to products people use habitually, not one-and-done apps. Reduce churn by showing value in the cancellation flow, offering incentives to stay, and making vitamins feel like painkillers.
 
 ## Reddit as Acquisition Channel
 
@@ -214,6 +232,7 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 
 ## Sources
 
+- "I vibecoded a B2C app and exited for $375,000 in 6 months" — Matt (tweet, May 2026) — Format-first UGC playbook: organic TikTok distribution, production system, and inbound acquisition via content visibility
 - "200,000+ new vibe coding projects..." — Greg Isenberg (tweet, Mar 2026) ([link](https://x.com/gregisenberg/status/2038706332119797894/?rw_tt_thread=True))
 - "Now that we're done at YCombinator..." — Finn Mallery (tweet, Mar 2026) ([link](https://x.com/fin465/status/2039021693050691596/?rw_tt_thread=True))
 - "I Launched 3 Startups in 7 Days..." — Subah Wadhwani (tweet, Mar 2026) ([link](https://x.com/subahwadhwani/status/2039353929562231194/?rw_tt_thread=True))

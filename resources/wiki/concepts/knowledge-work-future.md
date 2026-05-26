@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-09
 last_updated: 2026-05-26
+
 ---
 
 # The Future of Knowledge Work
@@ -14,6 +15,8 @@ See also: [AI User Perspectives](../landscape/ai-user-perspectives.md) for empir
 For decades, knowing things was the scarce resource. School systems, credentials, and job interviews all measured knowledge accumulation. The result: over 1 billion knowledge workers valued for what they knew — lawyers, engineers, consultants, programmers.
 
 AI disrupts this entirely. Models can now absorb entire fields of study in days and outperform human experts in physics, law, and engineering simultaneously, around the clock. Facts and skills are becoming commoditized.
+
+**Uncertainty is universal, not bottom-up.** The intuition that AI anxiety concentrates at the bottom of the stack — hitting juniors, new grads, and people without leverage — is wrong. Uncertainty runs through every layer simultaneously. Foundation model providers compete in a race that resets every few weeks as leaderboards shift. App-layer companies watch each new model capability blur their differentiation. Incumbents bolt AI onto existing products knowing it probably isn't enough. Knowledge workers watch agents improve monthly. New grads enter a job market that's changing shape in real time. Everyone is simultaneously the disruptor and the disrupted. There is a useful psychological distinction here: what AI produces is *diffuse anxiety* (no pinpointable threat, impossible to fight directly) rather than *specific fear* (a clear threat you can respond to). Previous tech shifts — web disrupting print, mobile disrupting web — were concrete enough that you could rationalize future from relic. AI feels different because no one occupies a stable vantage point from which to assess it.
 
 Joe Hudson (executive coach to OpenAI, Google DeepMind, Anthropic, and Apple executives): many of his clients are "building the technology that will make their own skills obsolete" and are racing to develop capabilities AI cannot replicate.
 
@@ -133,6 +136,8 @@ The deskilling research points to a clear intervention: the problem isn't AI use
 
 Product teams are experimenting with structural interventions: Anthropic's Learning Mode uses Socratic questioning and asks users to write code before continuing; OpenAI and Google have shipped similar features. Adoption remains low — users file them under "for students" — but the same feature that helps a sophomore learn React works for a senior engineer learning Rust.
 
+**Unlearn as fast as you learn.** The half-life of expertise is shrinking. Tactics that worked two months ago don't always transfer cleanly, and what was once an advantage can harden into habit. The people who stay sharp let go the fastest — admitting something no longer works and moving on without over-identifying with it. This is the inverse of the deskilling problem: deskilling happens when you stop practicing, but rigidity happens when you keep practicing the *wrong* thing. Both are failure modes of the same underlying challenge — maintaining an adaptive relationship with your own expertise.
+
 **The "ship and learn" dual metric:** Shipping and learning are separate metrics. Managers and customers only ask about the first; the second is self-directed. Optimizing purely for task closure — the default UX gravity of every AI coding tool — accumulates cognitive debt invisibly. The correction is small: end sessions asking "did I learn anything today, or did I just close issues?"
 
 ## New AI-Era Job Categories (Kingsbury)
@@ -171,3 +176,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "Don't Outsource the Learning" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/dont-outsource-the-learning/)) — empirical studies on AI deskilling (Anthropic coding trial, MIT cognitive debt, CHI anchoring); practical posture shifts for maintaining skill; ship-and-learn dual metric
 - "Running Faster to Go Nowhere: The AI Adoption Trap" — BuccoCapital / Educated Guess (Apr 2026) — cognitive density thesis; AI automating away mental white space; Fractal of AI Panic pressure cascade
 - "When Knowledge Is Cheap, Insight Is Everything: Jevons Paradox applied to Torah Learning" — Zohar Atkins (May 2026) ([link](https://x.com/ZoharAtkins)) — Jevons Paradox in deep knowledge domains; chiddush as the bottleneck when consultation becomes cheap; wheat-to-bread metaphor for knowledge vs. insight
+- "Everyone is uncertain" — Grant Lee (tweet, May 2026) — universal uncertainty across the AI stack (foundation models through new grads); diffuse anxiety vs. specific fear; the unlearning imperative

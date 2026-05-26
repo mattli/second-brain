@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-05-27
 ---
 
 # AI Careers
@@ -87,9 +87,31 @@ An analysis of ~2,000 job descriptions (Luffytaro, Apr 2026, based on Alexey Gri
 
 **Differentiators that get hired faster:** agent frameworks (LangGraph, CrewAI), fine-tuning, evaluation systems, vector databases, multi-agent architectures. See also [Agentic Engineering](../tools/agentic-engineering.md) for the harness design patterns these roles increasingly require.
 
+## The Agent Engineer Roadmap: Harness Engineering as Career Moat
+
+A more opinionated take on the agent engineer career path frames **harness engineering** — not model knowledge or framework tourism — as the primary differentiator. The argument: the same model produces wildly different results depending on the harness wrapping it. Anthropic's own measurement showed Opus 4.5 scoring 78% on CORE inside Claude Code versus 42% inside Smolagents — same model, different harness [[source]](https://read.readwise.io/read/01kr3xm9p83j26jnf0w519kncj).
+
+This reframes what "AI engineer" means in practice. The job is not calling an LLM API. It's building the loop control, tool dispatch, context management, persistence, sub-agent orchestration, eval harness, and observability that turn a frontier model into a production system.
+
+**The recommended stack narrows to two:** LangGraph 1.0 + Deep Agents for production orchestration (durable execution, checkpointing, middleware, model-agnostic), and the Claude Agent SDK as a reference harness to study (CLAUDE.md, Skills, hooks, sub-agents, plan mode). Everything else is either fading, getting absorbed, or a weaker version of these two for production use.
+
+**Context engineering replaces prompt engineering** as the core discipline. Four primitives: Write (scratchpads, memory files), Select (retrieval at point of use), Compress (summarization at 85–95% of context window), and Isolate (sub-agents with their own context windows). Anthropic's multi-agent research system beat single-agent Opus 4 by 90.2% on breadth-first research using exactly this pattern, though at ~15× the token cost.
+
+**A 6-phase, ~17-week roadmap** for a technically strong engineer new to agents:
+
+1. **Foundations (1–2 weeks)** — Build mental models: workflow vs. agent distinction, the augmented-LLM concept, context engineering primitives, the harness-as-operating-system framing. No agent code yet.
+2. **First agent (2–3 weeks)** — Write a tool-using agent loop from scratch (~100 lines), then rebuild it on the Claude Agent SDK with a Skill, a hook, and a sub-agent. Ship something tiny that runs on a schedule.
+3. **Real architecture (3–4 weeks)** — Build a multi-step, persistent agent on LangGraph with PostgresSaver durability, Deep Agents middleware, isolated-context sub-agents, and human-in-the-loop interrupts. Produce a LangSmith trace.
+4. **Build your own harness (3–4 weeks)** — Write a ~1,500-line Python harness covering loop, tool dispatch, context compression, sub-agents, hooks, and OTEL traces. The post-mortem comparing it to Claude Agent SDK and Deep Agents is the real deliverable.
+5. **Eval and regression (3–4 weeks)** — Golden datasets, four eval types (single-turn, trajectory, LLM-as-judge, end-state), CI gates that block PRs on regression, and at least one published benchmark via Inspect.
+6. **Production hardening (ongoing)** — Prompt caching, model routing with cost budgets, sandboxed code execution, credential brokering, drift monitoring, and durable execution.
+
+**The hiring market signal:** 57% of teams already have agents in production (LangChain State of Agent Engineering, 1,340 respondents), 89% have observability wired, and quality (32%) is the #1 barrier. The field is bottlenecked on engineers who can build evals and harnesses, not on engineers who can call an API. See [Agentic Engineering](../tools/agentic-engineering.md) for the technical patterns underlying this career path, and [Agent Proficiency](../concepts/agent-proficiency.md) for the broader skill of directing agents toward real problems.
+
 ## Sources
 
 - "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online (Andrew Ng, Laurence Moroney) ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
 - "Generalists Poised to Thrive in AI Era" — X discussion summary ([link](https://x.com/i/trending/2040140222386909626))
 - "The AI Engineer Learning Path" — Luffytaro (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq6h5qsge0qe28ebmf4mnvg5)) — skills roadmap from ~2,000 job descriptions; based on Alexey Grigorev's AI Engineering Field Guide
 - "Agent Strategist: Your PhD in applied AI" — Sierra (tweet) — the Agent Strategist as a new hybrid role combining building, consulting, and go-to-market
+- "How to Become an AI Engineer in 2026 (Builder's Roadmap)" — Avid (tweet) — 17-week agent engineer roadmap centered on harness engineering, with LangGraph and Claude Agent SDK as the two recommended stacks

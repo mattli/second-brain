@@ -1,12 +1,12 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-05-27
 sources_updated: 2026-05-26
 ---
 
 # Claude Code Skill Frameworks
 
-> TLDR: Four major skill frameworks — gstack, Superpowers, Compound Engineering, and Agent Skills — have emerged to add structured workflows on top of Claude Code, each solving a different layer: decisions/QA, process discipline, cross-session knowledge accumulation, and senior-engineer SDLC enforcement.
+> TLDR: Four major skill frameworks — gstack, Superpowers, Compound Engineering, and Agent Skills — have emerged to add structured workflows on top of Claude Code, each solving a different layer: decisions/QA, process discipline, cross-session knowledge accumulation, and senior-engineer SDLC enforcement. Anthropic's first-party Routines feature adds managed-infrastructure proactive automation with schedule and event-based triggers.
 
 ## Overview
 
@@ -200,6 +200,28 @@ The compounding loop: every meeting adds to the brain, every book enriches conte
 
 Practical starting path: pick a thin harness (OpenClaw, Hermes Agent, or custom), start a brain with GBrain, do something interesting manually with the agent, then skillify the pattern into a reusable skill. Run cross-modal eval to catch errors. The first skill will be mediocre — the value comes from the compound curve as fixes get baked into skills and every future invocation benefits.
 
+## Routines: First-Party Proactive Automation
+
+Routines is Anthropic's built-in answer to the proactive automation problem — the gap between Claude Code as a reactive tool (waits for you to press enter) and a proactive teammate (notices when something breaks and acts). Before Routines, building proactive Claude Code agents required managing hosting, session state, authentication, triggers, and monitoring infrastructure yourself.
+
+A routine is defined by three decisions:
+
+1. **Trigger** — when should the session start? Schedule-based (weekly docs sync) or event-based (GitHub issue opens, PR merges with a specific label, POST to a webhook after a deploy).
+2. **Context** — what does Claude need? One or more repos, connectors (Slack, Google Drive, GitHub MCP, monitoring tools like Datadog/Grafana), and any additional files or documentation.
+3. **Steerability** — how do you keep Claude honest? Agent-on-agent review (generator-critique pattern: one routine creates a PR, another routine triggers on that PR's creation to review it), live session monitoring via web UI, mid-session steering, and output verification.
+
+Sessions run on Anthropic's managed infrastructure — no dependency on a local machine. Each routine launches a full Claude Code session that can be opened, watched, steered, and resumed from web, CLI, or desktop.
+
+**Internal use case at Anthropic:** Sarah, the engineer maintaining Claude Code and Agent SDK docs, set up two routines:
+- *Weekly docs sync* — every Monday at 10am, reviews all changes merged to main against the documentation repo, creates PRs for any gaps.
+- *Issue-triggered investigation* — fires on every new GitHub issue in the docs repo, investigates whether it's a documentation gap, and opens a PR if so.
+
+**Suggested patterns:** deploy verifier (webhook trigger after CD pipeline → run investigation with monitoring tool access → go/no-go decision on rollback), on-call investigator, PM backlog triage (weekly job reading GitHub issues and Slack channels → prioritize and open PRs for top items).
+
+The `/schedule` command inside Claude Code creates a routine interactively — Claude asks clarifying questions about timing, notification preferences, and then generates the routine configuration.
+
+See [Agent Harness](agent-harness.md) for the broader infrastructure concept that Routines implements as a managed service.
+
 ## Tools Noted
 
 - **Codex plugin for Claude Code** (OpenAI) — `/codex:review`, `/codex:adversarial-review`, `/codex:rescue` for delegating to Codex from within Claude Code
@@ -230,3 +252,4 @@ Practical starting path: pick a thin harness (OpenClaw, Hermes Agent, or custom)
 - "Meta-Meta-Prompting: The Secret to Making AI Agents Work" — Garry Tan (tweet, May 2026) ([link](https://x.com/garrytan/status/2053127519872614419)). Full walkthrough of GBrain in production: 100K pages, skillify meta-skill, cross-modal eval, entity propagation, book-mirror pipeline, and the compounding personal AI thesis.
 - "Using Claude Code: The Unreasonable Effectiveness of HTML" — Thariq (tweet, May 2026). HTML as artifact format for Claude Code outputs — specs, plans, reports, prototypes, interactive editors.
 - "Agent Skills" — Addy Osmani (blog, May 2026) ([link](https://addyosmani.com/blog/agent-skills/)). Twenty markdown skill files encoding senior-engineer SDLC phases for AI coding agents. Anti-rationalization tables, progressive disclosure, Google engineering practices, portable across Claude Code / Cursor / Gemini CLI / Codex.
+- "Build a proactive agent workflow with Claude Code" — Maya / Anthropic Applied AI (Code with Claude workshop video, May 2026). Introduces Routines: managed-infrastructure proactive automation for Claude Code with schedule and event-based triggers, connectors, and interactive steerability.

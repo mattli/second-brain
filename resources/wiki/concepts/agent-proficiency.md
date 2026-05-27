@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-05-27
 ---
 
 # Agent Proficiency
@@ -43,6 +43,14 @@ The cost of late discovery is asymmetric: the later you find issues, the harder 
 
 This maps directly to the "evaluate and curate agent work" bullet in the skill set above — the curation isn't a passive review gate but an active, continuous engagement with what the agent is producing.
 
+## The Frustration Trap
+
+The conversational UX of coding agents creates a specific emotional hazard. Because agents speak in a relaxed, friendly tone — praising your ideas, apologizing for mistakes, promising to do better — they trigger the same social instincts you'd have with a human colleague. Paolo Scanferla calls this out directly: the illusion holds until things go wrong, and then the mismatch becomes infuriating.
+
+The pattern: you correct a mistake, the agent apologizes and updates its memory. Five minutes later, same mistake. You correct again. The agent performs a postmortem, reflecting on what it should have done differently. But it keeps failing the same way, because the most probable path hasn't changed. If a colleague did this, you'd be justified in frustration — but with an agent, no amount of emotional pressure changes the output distribution.
+
+This matters for agent proficiency because the frustration is a signal that you've slipped into treating the agent as a social peer rather than a probabilistic tool. The proficient response isn't to lash out or to demand the agent "try harder" — it's to restructure the input (better constraints, different prompting strategy, or switching tools entirely). Recognizing when you're caught in the anthropomorphic illusion is itself a skill, and possibly the hardest one to develop, because the illusion is a side effect of the same mechanism that makes LLMs useful in the first place.
+
 ## Relationship to AI Careers
 
 The [Stanford CS230 lecture](../landscape/ai-careers.md) reinforces this from a different angle — the AI job market increasingly values people who can deliver business outcomes with AI tools, not just demonstrate technical knowledge. Agent proficiency is the practical manifestation of that shift.
@@ -75,3 +83,4 @@ The role description is essentially the enterprise version of what Karpathy call
 - "The Claude Code Setup Nobody Shows You" — Aakash Gupta (video, Apr 2026) ([link](https://youtube.com/watch?v=Eqh2iwSl570&si=CgkjC-SZIXj-KR8C))
 - "The more enterprises I talk to about AI agent transformation..." — Aaron Levie (tweet, Apr 2026)
 - "Don't stay out of the loop" — James Long (tweet, May 2026) ([link](https://x.com/jlongster/status/2058197974321070379/?s=12&rw_tt_thread=True))
+- "The User Is Visibly Frustrated" — Paolo Scanferla (article, May 2026) ([link](https://pscanf.com/the-user-is-visibly-frustrated/)) — added the frustration trap: conversational UX triggers social instincts that make agent failures disproportionately infuriating

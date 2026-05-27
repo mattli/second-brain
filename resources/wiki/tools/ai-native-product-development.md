@@ -1,11 +1,6 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-05-26
-sources: +01kqmjaag1
-sources: +01kr23gy
-
-
-
 ---
 
 # AI-Native Product Development

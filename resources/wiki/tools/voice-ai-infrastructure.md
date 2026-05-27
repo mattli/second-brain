@@ -1,8 +1,6 @@
 ---
-title: Voice AI Infrastructure
-created: 2026-05-26
-updated: 2026-05-26
-tags: [webrtc, voice-ai, infrastructure, real-time, networking]
+created_at: 2026-05-26
+last_updated: 2026-05-26
 ---
 
 # Voice AI Infrastructure

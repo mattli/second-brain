@@ -27,10 +27,8 @@ Every wiki page has frontmatter and a standard structure:
 
 ```
 ---
-title: <Page Title>
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
-tags: [tag1, tag2]
+created_at: YYYY-MM-DD
+last_updated: YYYY-MM-DD
 ---
 
 # Page Title
@@ -50,6 +48,8 @@ Longer prose synthesis.
 
 Sections beyond these are fine when the topic warrants — keep them descriptive (`## Tools`, `## Pitfalls`, `## Further Reading`).
 
+**Frontmatter rules — strict.** The only allowed keys are `created_at` (set once, never changed) and `last_updated` (today, on every edit). Do **not** invent additional keys — no `sources:`, no `sources_updated:`, no `tags:`, no `title:`. The `## Sources` section in the body is the sole record of contributing documents. Each frontmatter key must appear exactly once; YAML rejects duplicates and the Cold Mountain build will fail on parse.
+
 ### Citations
 
 Every page ends with a `## Sources` section listing every Readwise doc that has contributed to it, formatted as `- [Title](source_url) — one-line note on what it added`. Use the document's original `source_url` from Readwise metadata, **not** the Readwise reader URL. If `source_url` is missing (manual notes, pasted text, some PDFs), use plain-text title with no link. The per-doc worker appends to this section on every run, deduping by URL.
@@ -65,7 +65,7 @@ Inline format: `[[source]](source_url)` immediately after the cited sentence. Ev
 ### Linking
 
 - Use `[[wiki-link]]` syntax for internal links between wiki pages.
-- Always update `updated:` in frontmatter when editing a page.
+- Always update `last_updated:` in frontmatter when editing a page.
 - Cross-link aggressively: when a new page or section relates to existing content, link both directions.
 
 ### Cohesion bias

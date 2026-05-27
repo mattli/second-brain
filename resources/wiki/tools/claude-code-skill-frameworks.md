@@ -1,7 +1,6 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-05-27
-sources_updated: 2026-05-26
 ---
 
 # Claude Code Skill Frameworks

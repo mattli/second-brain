@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-05-26
+sources: +01kqmjaag1
 sources: +01kr23gy
 
 
@@ -186,6 +187,33 @@ Ann Miura-Ko (Floodgate, Apr 2026) published field observations from visiting AI
 
 The result: companies iterating 3-5x faster. Both the build and learn steps are compressing. "The gap between companies that have internalized these practices and those still debating 'AI strategy' is enormous — and it's widening every week."
 
+## Organizational AI Autonomy Levels (Ann Miura-Ko)
+
+Miura-Ko (May 2026) extended her earlier field observations into a formal maturity framework, modeled after the levels of autonomy in autonomous vehicles. The core argument: "AI-pilled" is used as though it were binary, but companies differ in both *intensity* (how deeply AI is embedded across the organization) and *technical capability* (what AI is actually allowed to see, do, and change).
+
+Four diagnostic questions cut across every level:
+
+1. **What can AI see?** Is the company's work legible to a machine, or does it live in undocumented meetings and inaccessible SaaS tools?
+2. **What can AI do?** Can it act on systems of record (open PRs, update CRMs, reconcile invoices) or only summarize what humans wrote?
+3. **Who can extend the system?** Are non-engineers shipping production internal tools, or does every workflow depend on a few power users?
+4. **How has the organization changed?** Or is it running the 2023 org chart with better autocomplete?
+
+**L0 — AI as theater.** AI can see nothing structured, do nothing of consequence. The hard test: can AI complete *any* recurring business process end-to-end? Common false positive: a CEO giving excellent AI transformation speeches while running the same executive staff meetings and headcount plans.
+
+**L1 — Personal productivity.** Each individual's AI sees only what that person feeds it. No org-level visibility, no action on systems of record. The hard test: if your best AI user left tomorrow, would their workflow remain? Common false positive: "80% of employees use AI weekly" — probably true and meaningless.
+
+**L2 — Team workflow.** Shared context within teams (claude.md files, shared prompts, function-specific MCP integrations). AI handles functional workflows — sales prospecting, support triage, code review — but within team boundaries. The hard test: does any workflow cross team boundaries? Common false positive: "We have AI workflows in every department" — but they don't connect, producing AI-enhanced silos.
+
+**L3 — Organizational infrastructure.** The whole organization is queryable. Agents act *across* systems — updating CRMs, opening PRs, routing tickets, reconciling invoices. Non-engineers don't just consume shared skills, they *author* them. The org chart looks materially different from 2023: zero-PM teams, PM-as-agent-orchestrator, or role convergence into "builders." Token-maxing over headcount-maxing. The hard test: can an agent answer — across systems — what shipped last sprint, who asked for it, what broke, what customers said, and what to do next, without convening a meeting? Common false positive: a landfill of meeting transcripts with no synthesis. "Capture is not legibility."
+
+**L4 — Compounding operating system.** The system maintains its own context — agents update agents, skills marketplaces propagate wins, duplicate efforts get removed. Agents have policy-driven decision authority within scoped domains. Non-engineers ship production internal tools without filing tickets. Hierarchy collapses toward "channel managers" of agent workflows. The hard test: show a workflow that improved because the *system* learned from prior runs, not because a person manually improved it — plus three production tools shipped by non-engineers in the last quarter. Common false positive: agent sprawl. "A hundred brittle automations don't equal a compounding operating system." L4 requires managed compounding with lifecycle, observability, and evaluation.
+
+**L5 — Virtually self-driving organization.** The operating loops sense reality, diagnose issues, initiate work, execute within delegated authority, update shared memory, and improve future behavior — with humans governing strategy, taste, risk, values, and exceptions. Six markers: the system (1) notices something without being asked, (2) synthesizes across sources, (3) decides whether action is warranted, (4) acts within delegated authority, (5) escalates when uncertainty exceeds authority, (6) updates shared memory so future behavior improves. The hard test: what important thing did the company notice, decide, act on, and learn from without a human initiating the process? Common false positive: "fake autonomy" — the system executes preconfigured rules while humans still do all the noticing.
+
+**Asymmetry as diagnostic.** Companies rarely answer all four questions at the same level. The asymmetry reveals where the next intervention should focus: AI might see a lot but can't act, or act a lot but only engineers can extend it, or the org chart changed but the substrate is thin.
+
+This framework refines the [Notion AI Transformation Model](#ai-transformation-model-notion) (four levels, from thought partner to system) with sharper diagnostic questions and harder tests at each level. It also formalizes what Miura-Ko's earlier field observations described anecdotally — the companies she visited were operating at L3–L4, while most companies claiming to be "AI-pilled" are at L1. The L4 description of non-engineers shipping production tools matches her earlier observation that "the most underestimated shift isn't what AI does for engineers — it's what it does for everyone else." Lin's [five bottlenecks](#the-five-bottlenecks-of-becoming-ai-native-alfred-lin) maps a different axis — the sequential order companies move through — while Miura-Ko's levels describe the *state* at each plateau.
+
 ## Delta Force Teams (Owner)
 
 Deano (Owner, Apr 2026) articulates the most extreme version of the small-elite-team philosophy. Owner reached $15M ARR with 5 engineers — building a product surface where each component has entire companies built around it — and is now valued at $1B+ with a fraction of typical SaaS headcount.
@@ -335,6 +363,7 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "How this PM Used Claude Code to Support 20 People" — Aakash Gupta / Hannah Stalberg (video, Apr 2026) ([link](https://youtube.com/watch?v=0UArKLQ6bXA&si=KfeHZk0OACA34T6a))
 - "How We Build Product Teams at Owner" — Deano (tweet thread, Apr 2026) ([link](https://www.deannotes.com/delta-force))
 - "The AI-pilled compounding startup" — Ann Miura-Ko (tweet, Apr 2026)
+- "Everyone wants to be AI-pilled. Most Companies Are Still Level 1" — Ann Miura-Ko (tweet, May 2026) — organizational AI autonomy levels (L0–L5), four diagnostic questions, AV-inspired maturity framework
 - "Living Software" — Jack Cheng / Every (Apr 2026) ([link](https://every.to/p/living-software))
 - "Some Notes on AI" — Karri Saarinen (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq56qhvvnj9ew1308w3pdknf)) — planning debate, output vs. design, expertise paradox, agentic coding reality check, design tool limitations, domain differences
 - "DESIGN.md | The One File AI Needs to Match Your UI" — George / prodmgmt.world (tweet, Apr 2026) ([link](https://read.readwise.io/read/01kq6mzew7mgdzkg1fabjpd0xj)) — DESIGN.md concept, PM checklist, failure modes, self-review prompting pattern

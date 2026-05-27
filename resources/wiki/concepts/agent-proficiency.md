@@ -43,6 +43,22 @@ The cost of late discovery is asymmetric: the later you find issues, the harder 
 
 This maps directly to the "evaluate and curate agent work" bullet in the skill set above — the curation isn't a passive review gate but an active, continuous engagement with what the agent is producing.
 
+## The Statistical Mimicry Problem
+
+George Hotz (geohot) offers a sharper articulation of why staying in the loop matters: agents are statistical models that mimic the distribution of programming, not systems that understand it. The output is broken, but in ways that get harder to detect as models improve — which is exactly what you'd expect from an increasingly accurate statistical model. Old proxies for underlying quality like syntax and grammar are useless when the artifact wasn't produced by a human reasoning process.
+
+This reframes the "always read the diff" discipline. The danger isn't obvious bugs — it's subtle structural wrongness that only surfaces when you try to build on the artifact in human ways. Hotz reports using agents extensively for [tinygrad](https://github.com/tinygrad/tinygrad) development and USB/PCIe reverse engineering: the agent frontloads progress, then gives you "a slot machine lever to pull to hope it gets the polish done. It never quite gets there." [[source]](https://substack.com/home/post/p-163103019)
+
+The proficiency implication: knowing when to use agents and when not to is the core skill. Agents are useful for quick prototypes where polish doesn't matter and as a better search engine — but are "not close to the bar at any company I have worked at" as a software engineer. [[source]](https://substack.com/home/post/p-163103019)
+
+## Organizational Asymmetry
+
+Agent adoption hits large organizations harder than high-performing individuals or small teams. The mechanism is error correction: high performers naturally self-check agent output. Hotz observes that among strong engineers, no one has moved to a model where they don't carefully read and understand each line. They explore/exploit to tune the outer loops — when to use agents, when to trust them, how to structure inputs — but the review discipline holds.
+
+In large organizations, feedback loops are slower and alignment is weaker. The bottom performers — the ones producing "10x output" with agents — won't have that self-check. The result: average output quality degrades even as volume explodes. More code, more apps, more features than ever before — "a golden era for buckets and buckets of slop, and a dark age for gems of quality." [[source]](https://substack.com/home/post/p-163103019)
+
+This dynamic suggests agent proficiency may be most valuable not as an individual skill but as an organizational capability — the ability to maintain quality standards when the tools make it trivially easy to ship without them. The [Corporate Adoption](#corporate-adoption) trend of evaluating employees on AI usage needs the complementary metric: evaluating whether that usage actually produces good outcomes.
+
 ## The Frustration Trap
 
 The conversational UX of coding agents creates a specific emotional hazard. Because agents speak in a relaxed, friendly tone — praising your ideas, apologizing for mistakes, promising to do better — they trigger the same social instincts you'd have with a human colleague. Paolo Scanferla calls this out directly: the illusion holds until things go wrong, and then the mismatch becomes infuriating.
@@ -84,3 +100,4 @@ The role description is essentially the enterprise version of what Karpathy call
 - "The more enterprises I talk to about AI agent transformation..." — Aaron Levie (tweet, Apr 2026)
 - "Don't stay out of the loop" — James Long (tweet, May 2026) ([link](https://x.com/jlongster/status/2058197974321070379/?s=12&rw_tt_thread=True))
 - "The User Is Visibly Frustrated" — Paolo Scanferla (article, May 2026) ([link](https://pscanf.com/the-user-is-visibly-frustrated/)) — added the frustration trap: conversational UX triggers social instincts that make agent failures disproportionately infuriating
+- "The Eternal Sloptember" — George Hotz (article, May 2026) ([link](https://substack.com/home/post/p-163103019)) — agents as statistical mimicry, organizational asymmetry in error correction, and the quality-vs-volume tradeoff

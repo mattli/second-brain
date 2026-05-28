@@ -1,7 +1,6 @@
 ---
 created_at: 2026-04-09
 last_updated: 2026-05-28
-
 ---
 
 # Vertical AI
@@ -195,10 +194,36 @@ Compliance is a $40B+ annual labor market with 400,000+ officers across the US �
 
 See also: [Services-as-Software](services-as-software.md), [Business Moats in AI](../concepts/business-moats-in-ai.md)
 
+## Why Vertical Beats Horizontal (The Yellow Brick Road Framework)
+
+The "Yellow Brick Road" is the path the labs are walking — horizontal problems (code generation, writing, image creation) that improve directly with raw model capability, where every dollar of pre-training and post-training spend improves product quality. The labs own the model, the margins, and the distribution for these problems. A startup running the same playbook — high-performing model plus off-the-shelf connectors plus agentic orchestration — is walking the road to nowhere.
+
+The rest of the opportunity ("the rest of Oz") is complex, often vertical problems where value comes less from raw model capability and more from the scaffolding that makes output trustworthy, compliant, and operational inside a specific industry. The labs have signaled they can't solve these problems with models alone: OpenAI and Anthropic both launched massive forward-deployed joint ventures (May 2026) to build whole companies around configuring and customizing models for the enterprise [[source]](https://techcrunch.com/2026/05/04/anthropic-and-openai-are-both-launching-joint-ventures-for-enterprise-ai-services/). You don't pour billions into configuration shops if the next model release will take care of it.
+
+**Four defensive moats for vertical AI:**
+
+1. **Data and learning flywheels** — Unwritten industry norms, undocumented standards, and tribal knowledge that lives in practitioners' heads isn't in any training set. Two flywheels stack: an across-customer flywheel (patterns that compound from seeing more variants of the same problem) and a within-customer flywheel (the *why* behind specific decisions, unsaid exceptions, firm-specific rules of thumb). Eval sets, labeled outputs, and edge-case taxonomies compound into vertical-specific data that fuels fine-tuning the next entrant can't replicate without comparable production exposure.
+
+2. **Managing model variability** — Labs route internally across their own model classes but can't route across vendors, evaluate a competitor's model for a specific sub-task, or use an open-source fine-tune where it's best. Vertical companies pick the right model per sub-task across the entire model market. They also absorb the migration work on every model upgrade — re-running evals, recalibrating prompts, rolling out without breaking production — that labs offload to the customer.
+
+3. **Cost optimization** — Running every query through a frontier model is the fastest path to negative gross margins. Vertical companies route across model tiers — frontier for the hardest tasks, mid-tier for the bulk, custom fine-tunes for narrow slices at a fraction of the cost. They sell the lowest dollar cost for the specific level of intelligence the workflow actually requires. That's only possible with deep knowledge of what each sub-task needs, which labs structurally can't know across every vertical.
+
+4. **Governance as moat** — Becoming the control plane for how customers run AI in that vertical — permissions, auditing, what the agent is allowed to do and actually did. These guardrails look completely different across industries and job types. Because vertical companies own tools, workflows, and data end-to-end, they can provide deterministic outcomes. They absorb regulatory complexity (FRCP in legal, HIPAA in healthcare, SEC/FINRA in finance, state insurance regulations) that horizontal players can't credibly handle without becoming a hundred verticals at once.
+
+**Three diagnostic tests — are you in the rest of Oz?**
+
+1. **Tools-and-steps test:** How many steps does the work take, and how complex are the tools you have to build? A horizontal AI search across Google Drive is one step against one tool with a forgiving outcome. A multi-step legal redline against three years of firm precedent is dozens of steps across many tools with output that must survive partner review and courtroom scrutiny.
+
+2. **System test:** Are you building a system the customer runs their work through, or a tool that sits on top of a system they already have? Systems own the workflow end-to-end — data capture, governance, records of what got done. If the customer would still need you after a lab ships a competing product, you're building a system.
+
+3. **Hedge fund / P&L test:** If your customer's success metric is a workflow-specific outcome (closed deal, correctly redlined contract, bound policy) rather than a generic capability benchmark, you're in the rest of Oz. The best vertical AI companies execute like hedge funds — winning on alpha measured in customer P&L, not benchmark scores.
+
 ## Comparable Cases
 
 - **Customer service:** Sierra ($165M+ ARR in 26 months), Decagon, Ada Support. Outcome-based pricing and omnichannel collapse make CX a natural vertical for managed AI agents. Salesforce Agentforce is the incumbent response but deploys on multi-quarter timelines.
 - **Healthcare:** Abridge (clinical intelligence layer, 100M+ conversations), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record. See also [AI Drug Discovery](../science/ai-drug-discovery.md) for how generative AI is compressing preclinical timelines in pharma.
+- **Sales:** 11x (AI SDR platform, CEO Prabhav Jain). Decomposes pipeline generation into agentic and non-agentic tasks — lead prospecting, enrichment, account research, CRM context, message writing, qualification, deliverability. Roughly half of any real workflow is non-agentic deterministic software where labs hold no advantage; the agentic half requires domain-specific skills that evolve as markets change. Positive reply rates up 4x in recent months despite market-wide AI email fatigue, generating hundreds of millions in pipeline.
+- **Insurance:** FurtherAI (CEO Aman Gour). Builds agentic workflows for insurance operations — submission, review, quote, bind — where carrier-specific logic (risk escalation, appetite rules, underwriting philosophy) is spread across SOPs, manager reviews, and years of operational experience. The workflow-plus-agent hybrid gives repeatability and auditability from the workflow, variability handling from the agent, and human-in-the-loop for judgment calls. The production loop — where every escalation becomes a signal and every human correction shows where the runbook was incomplete — is the moat, not the day-one workflow.
 - **Compliance:** Sardine (fraud/AML, replacing NICE Actimize), Valon (AI-native mortgage servicing), Vesta (mortgage origination compliance), Tako (payroll compliance in Brazil), Factor Labs (chargeback automation via computer-use agents). $40B+ labor market with chronic talent shortages. Three attack vectors: regulation-as-code, legacy system replacement, and agent augmentation.
 - **Code:** Cursor (reported explosive growth), Claude Code, Codex. Code is "upstream of all other applications" — AI accelerating code accelerates every domain.
 
@@ -207,6 +232,9 @@ See also: [Services-as-Software](services-as-software.md), [Business Moats in AI
 - Fertile ground: serving tech, legal, healthcare buyers — but no single winner; many sub-specialties within each
 - Look for high model capability but no breakout company yet (the company that builds early when capabilities arrive + has market awareness when they mature wins)
 - Watch where labs focus research: long-horizon agents, computer use, spreadsheet/presentation interfaces signal next unlocks
+- Avoid the Yellow Brick Road: if your product is a high-performing model plus off-the-shelf connectors plus agentic orchestration with no sub-agents, no vertical configuration, and no distribution, the labs will eat you
+- Focus compounds: vertical (insurance, legal, accounting) or functional (sales, customer support, finance) — either way, the work needs a team heads-down on one customer set, its workflows, edge cases, and regulations
+- Guardrails are the product, not just safety rails — per use case, per customer, continuously audited. This is where forward-deployed engineering and technical deployment strategists earn their keep
 
 See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Startup Distribution](ai-startup-distribution.md)
 
@@ -219,3 +247,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "Inside Abridge: The AI Listening to 100 Million Doctor Visits" — Latent Space / Janie Lee & Chai Asawa (video, 2026). Abridge clinical intelligence layer, healthcare vertical AI at scale, three-act strategy, eval rigor, data flywheel.
 - "Sierra went from $0 to $165M+ ARR in 26 months" — Ivan Landabaso (tweet thread, May 2026) ([link](https://x.com/IvanLandabaso/status/1924809153840267528)). Sierra growth playbook, outcome-based pricing, omnichannel collapse, deployment speed, Fortune 500 CX vertical.
 - "Everything, Everywhere is Compliance" — James da Costa & Angela Strange (a16z, 2026). Compliance as $40B+ vertical AI opportunity, three-layer framework (regulation-as-code, legacy replacement, agent augmentation), company examples (Tako, Valon, Vesta, Sardine, Factor Labs).
+- "Avoiding Death on the Yellow Brick Road" — Joe Schmidt IV (a16z, May 2026) ([link](https://www.a16z.news/p/avoiding-death-on-the-yellow-brick)). Yellow Brick Road framework (horizontal vs. vertical AI), four defensive moats (data flywheels, model variability, cost optimization, governance), three diagnostic tests, practical examples from 11x (sales) and FurtherAI (insurance).

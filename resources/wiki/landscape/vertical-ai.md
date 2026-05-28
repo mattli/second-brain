@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-05-26
+last_updated: 2026-05-28
 
 ---
 
@@ -172,10 +172,34 @@ Abridge (founded 2018, CEO is a practicing cardiologist) is a clinical intellige
 
 **Regulatory tailwinds:** Contrary to the assumption that healthcare regulation is purely a headwind, the FDA released updated clinical decision support guidance (Jan 2026) that is forward-looking and more permissive. Government interoperability mandates also help — they require the data exchange that makes agentic healthcare workflows possible.
 
+## Compliance: AI's Next Major Vertical
+
+Compliance is a $40B+ annual labor market with 400,000+ officers across the US — the second-fastest-growing occupation over the last 20 years. The work is stubbornly manual: copying information from documents, reviewing for accuracy, and repeating on a regular cadence. Despite massive headcount growth, outcomes haven't improved — TD Bank was fined $3B in 2024 for failing to monitor 92% of its transactions, with a backlog of 70,000 detection alerts [[source]](https://www.justice.gov/archives/opa/pr/td-bank-pleads-guilty-bank-secrecy-act-and-money-laundering-conspiracy-violations-18b). The talent pipeline is strained: 33,300+ openings annually, 87% of entrants eventually leave, and annual churn exceeds 20%.
+
+**Why now:** AI capabilities crossed the threshold from "good enough to pilot" to "good enough to trust." Vision Language Models handle document processing with near-human accuracy (critical for mortgage underwriting, insurance claims, business onboarding). Computer-use agents navigate legacy software without API integration. Long-horizon task execution runs entire workflows end-to-end. On the demand side, the risk of *not* modernizing now outweighs the risk of change — faster KYC means faster onboarding and less customer drop-off, making compliance a revenue driver rather than just a cost center.
+
+**Three layers of compliance AI:**
+
+1. **Turn regulation into code** — Parse regulatory text into structured obligations that software can check against. Monitoring becomes continuous instead of periodic; regulatory changes propagate in minutes instead of quarters. Best wedge in high-flux regulatory environments with many jurisdictions.
+   - *Tako* converts Brazil's labor regulations (10,000+ unions, ~900 rule changes/year) into a system of intelligence that audits payroll in real time.
+
+2. **Rip and replace legacy systems** — Legacy compliance platforms (Jack Henry, NICE Actimize, Smarsh) were built for humans: siloed data, hardcoded rules, batch workflows. AI-native replacements are now both possible and necessary to realize AI's value. Best wedge when going greenfield or when legacy systems are too costly to write back into.
+   - *Valon* built an AI-native mortgage servicer from scratch, replacing 25+ legacy systems with ValonOS and turning breakeven-margin operations into 60%+ margins.
+   - *Vesta* manages mortgage origination compliance across CFPB rules and 50-state variations — compliance updates ship as code pushes, delivering 25-50% efficiency gains.
+   - *Sardine* replaces NICE Actimize for fraud and AML monitoring. Its SAR summarizer agent automates 60-100 fields per entity, reducing SAR submission time from 30+ minutes to under 1 minute.
+
+3. **Augment the work of people** — Computer-use agents automate the connective tissue between document analysis, manual review, and ongoing monitoring. Best wedge for output-driven workstreams with large backlogs or labor shortages.
+   - *Factor Labs* deploys computer-use agents for chargeback dispute handling. Agents follow step-by-step "playbooks," logging into company systems (Outlook, Excel, CyberSource), pulling evidence, and compiling formatted dispute documents.
+
+**Convergence thesis:** Winning compliance AI companies will eventually do all three — turn regulation into code, own a new system of record, and deploy agent fleets on top. The starting wedge depends on market characteristics, but the endgame is the same integrated stack.
+
+See also: [Services-as-Software](services-as-software.md), [Business Moats in AI](../concepts/business-moats-in-ai.md)
+
 ## Comparable Cases
 
 - **Customer service:** Sierra ($165M+ ARR in 26 months), Decagon, Ada Support. Outcome-based pricing and omnichannel collapse make CX a natural vertical for managed AI agents. Salesforce Agentforce is the incumbent response but deploys on multi-quarter timelines.
 - **Healthcare:** Abridge (clinical intelligence layer, 100M+ conversations), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record. See also [AI Drug Discovery](../science/ai-drug-discovery.md) for how generative AI is compressing preclinical timelines in pharma.
+- **Compliance:** Sardine (fraud/AML, replacing NICE Actimize), Valon (AI-native mortgage servicing), Vesta (mortgage origination compliance), Tako (payroll compliance in Brazil), Factor Labs (chargeback automation via computer-use agents). $40B+ labor market with chronic talent shortages. Three attack vectors: regulation-as-code, legacy system replacement, and agent augmentation.
 - **Code:** Cursor (reported explosive growth), Claude Code, Codex. Code is "upstream of all other applications" — AI accelerating code accelerates every domain.
 
 ## Implications for Builders
@@ -194,3 +218,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "Mark Cuban Is Right About AI Agents" — Alton Syn (tweet, Apr 2026) ([link](https://x.com/altonsyn))
 - "Inside Abridge: The AI Listening to 100 Million Doctor Visits" — Latent Space / Janie Lee & Chai Asawa (video, 2026). Abridge clinical intelligence layer, healthcare vertical AI at scale, three-act strategy, eval rigor, data flywheel.
 - "Sierra went from $0 to $165M+ ARR in 26 months" — Ivan Landabaso (tweet thread, May 2026) ([link](https://x.com/IvanLandabaso/status/1924809153840267528)). Sierra growth playbook, outcome-based pricing, omnichannel collapse, deployment speed, Fortune 500 CX vertical.
+- "Everything, Everywhere is Compliance" — James da Costa & Angela Strange (a16z, 2026). Compliance as $40B+ vertical AI opportunity, three-layer framework (regulation-as-code, legacy replacement, agent augmentation), company examples (Tako, Valon, Vesta, Sardine, Factor Labs).

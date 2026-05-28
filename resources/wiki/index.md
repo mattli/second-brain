@@ -21,6 +21,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Agent Harness](tools/agent-harness.md) — Agent = Model + Harness; 12 components; memory; thin harness/fat skills; resolvers; testing pyramid; enterprise context synthesis; "Peggy" SMB case study
 - [Agentic Engineering](tools/agentic-engineering.md) — Harness design, self-improving agents, multi-agent orchestration, Managed Agents, Great Convergence, agent categorization framework, decade of agents
 - [AI-Native Product Development](tools/ai-native-product-development.md) — Docs-to-demos; AI-native company observations (Ann Miura-Ko); Delta Force teams (Owner); AI evals as PRD; Team OS
+- [AI Evals](tools/ai-evals.md) — Practical eval methodology (Hamel Husain); trace review → open/axial coding → LLM-as-judge; binary scoring; TPR/TNR over agreement; synthetic test dimensions; anti-patterns
 - [Voice AI Infrastructure](tools/voice-ai-infrastructure.md) — OpenAI's relay + transceiver WebRTC architecture; ICE ufrag routing; Global Relay geo-steering; Kubernetes-native voice AI at scale
 
 ## Models & Safety

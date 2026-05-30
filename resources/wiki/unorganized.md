@@ -33,3 +33,5 @@ Holding page for bookmarks and references that don't yet have a matching wiki to
 - **May 15, 2026** (rss, saved 2026-05-18, Readwise: 01kryfa4rtkf68wkb40zrce8c1) — Readwise & Reader Changelog: GPT-5.5 support, account selection, email/Kindle fixes, performance improvements
 - **Andon FM** (article, saved 2026-05-19, Readwise: 01ks0gpk4rpt1d2w5s385p3mrs) — AI agents running autonomous radio stations 24/7. https://andon.fm
 - **May 22, 2026** (rss, saved 2026-05-26, Readwise: 01ksjn8exe4p3j3rykvc1xhg8m) — Readwise & Reader Changelog: quick lookup feature, audio review improvements, parsing fixes
+- **Real-time semantic search for Conversational AI.** (article, saved 2026-05-30, Readwise: 01ksvcenas9byv9rqk92qb1dh2) — Moss: real-time semantic search (<10ms) for voice AI and conversational systems. https://read.readwise.io/read/01ksvcenas9byv9rqk92qb1dh2
+- **Moss adoption is growing 200% MoM** (tweet, saved 2026-05-30, Readwise: 01ksvavxy606waxctxqp5ecc33) — Moss (YC F25) 200% MoM growth, 50+ companies, 130+ projects, voice AI and multimodal agent teams

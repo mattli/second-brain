@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-27
+last_updated: 2026-05-31
 ---
 
 # Agent Proficiency
@@ -30,6 +30,19 @@ Karpathy's framing: "These are extremely powerful tools — they speak English a
 - Choosing which AI to point at which problem (BYOAI)
 
 Gupta's metaphor: "The 21st century power user looks less like a programmer and more like an editor-in-chief: deciding what goes in, what gets compiled, what gets published, and which AI gets the assignment."
+
+### The Skill File Method
+
+A concrete framework for building agent proficiency: write markdown "skill files" that encode how a specific task should be done — the criteria, preferences, and domain expertise that make your judgment valuable — then hand the file to an agent and iterate.
+
+The loop:
+1. Pick a repeatable task where you already know what good looks like
+2. Write the skill file yourself (the domain expertise must come from you, not the agent)
+3. Hand it to the agent, review the output, give feedback
+4. Let the agent improve the skill based on interactions
+5. Once the agent handles that task reliably, move to the next one
+
+The real signals that someone has built this kind of leverage: they can show a running agent setup, demonstrate real-time judgment on AI output, name things they've stopped delegating to AI and why, and point to the skill files their agents run on. Surface-level indicators — "knows how to prompt," "comfortable with ChatGPT," "uses AI tools daily" — are table stakes that don't distinguish.
 
 ## Staying in the Loop
 
@@ -71,11 +84,17 @@ This matters for agent proficiency because the frustration is a signal that you'
 
 The [Stanford CS230 lecture](../landscape/ai-careers.md) reinforces this from a different angle — the AI job market increasingly values people who can deliver business outcomes with AI tools, not just demonstrate technical knowledge. Agent proficiency is the practical manifestation of that shift.
 
+## The Brain Fry Trap
+
+Using AI tools without a structured system doesn't make you more productive — it often makes you less. The pattern: ask ChatGPT for a draft, copy it into a doc, ask another tool for a summary, paste into Slack, use another for research, another for editing. More tabs, same output, mounting cognitive overhead. HBR calls this "[Brain Fry](https://hbr.org/2026/03/when-using-ai-leads-to-brain-fry)" — working more while achieving less. This is the complement to the [frustration trap](#the-frustration-trap): where that one describes the emotional hazard of conversational agents, Brain Fry describes the productivity hazard of tool sprawl without integration.
+
 ## Corporate Adoption
 
 Companies are now evaluating employees on AI proficiency directly. Zapier and Shopify rate employees specifically on AI tool usage. Aakash Gupta's framework for PM AI tool proficiency identifies three tiers: (1) chat-based agents (ChatGPT agent mode), (2) no-code/low-code agent builders (Lindy, Relay.app, Zapier, Make.com), and (3) coding agents (Claude Code, Cursor). The shift from "prompt engineering" to "context engineering" reflects the same evolution: the skill is in structuring what the agent knows, not just what you ask it.
 
 [DHH](../people/dhh.md) frames it from the senior developer angle: agent proficiency lets senior developers "5x 10x their individual productivity" — the skill is knowing what to direct agents toward and how to evaluate their output. See [Knowledge Work Future](knowledge-work-future.md) for the broader implications.
+
+The restructuring is no longer theoretical. In mid-2026, ClickUp laid off 22% of its workforce and introduced $1M salary bands specifically to attract "agentic-native" hires — people who can use AI to compress headcount into leverage. Wix, Webflow, and Meta followed with similar moves the same week. The pattern: flatten the org, cut entry-level and white-collar roles that AI can approximate, and reinvest the budget into AI infrastructure and the smaller number of high-leverage people who can direct it. The ClickUp CEO's framing was explicit — create budget for AI infra, attract agent-native talent fast, and become the first in their vertical to grow through AI-restructured productivity.
 
 ## The Enterprise Agent Deployer (Aaron Levie)
 
@@ -101,3 +120,4 @@ The role description is essentially the enterprise version of what Karpathy call
 - "Don't stay out of the loop" — James Long (tweet, May 2026) ([link](https://x.com/jlongster/status/2058197974321070379/?s=12&rw_tt_thread=True))
 - "The User Is Visibly Frustrated" — Paolo Scanferla (article, May 2026) ([link](https://pscanf.com/the-user-is-visibly-frustrated/)) — added the frustration trap: conversational UX triggers social instincts that make agent failures disproportionately infuriating
 - "The Eternal Sloptember" — George Hotz (article, May 2026) ([link](https://substack.com/home/post/p-163103019)) — agents as statistical mimicry, organizational asymmetry in error correction, and the quality-vs-volume tradeoff
+- "How to become the AI-native hire every company wants" — Anita (tweet thread, May 2026) — skill file method for building agent proficiency, Brain Fry trap, ClickUp/Wix/Webflow restructuring signals

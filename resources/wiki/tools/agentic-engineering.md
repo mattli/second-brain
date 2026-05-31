@@ -125,6 +125,24 @@ Gas City (successor to Steve Yegge's Gas Town) is an open-source orchestration t
 
 **MiroFish** — Swarm intelligence prediction engine. Creates multi-agent simulations with independent personalities and long-term memory to predict outcomes from seed information (news, policies, financial signals).
 
+### The Orchestration Tax (Osmani)
+
+Addy Osmani names the structural cost most multi-agent practitioners underestimate: the **orchestration tax** — the gap between what agents can produce and what the human operator can actually review and merge. Starting agents is cheap (a keystroke); closing the loop is not. Someone must verify correctness, reconcile conflicts across parallel outputs, and maintain a coherent mental model of the system. That someone is a single-threaded serial resource.
+
+**The GIL analogy.** Python's Global Interpreter Lock lets you spawn threads freely, but only one executes bytecode at a time. The human is the GIL of their agent fleet — all agent output that requires genuine architectural understanding or conflict resolution must acquire the lock. There is one lock. Amdahl's Law makes the ceiling precise: speedup from parallelization is capped by the fraction of work that stays serial. Spawning eight agents doesn't speed up judgment time; it deepens the queue feeding into it.
+
+**Grinding won't fix structural limits.** Running the serial processor at 100% with no slack produces a specific kind of exhaustion: constant context-switch cost (flushing and cold-reloading mental state per agent), background anxiety about which thread is silently failing, and eventual cognitive surrender — accepting agent output because forming an independent opinion costs attention you no longer have. The tax gets paid either deliberately or by quietly destroying your understanding of your own system.
+
+**Architect your attention as a scarce resource:**
+
+- **Scale fleet to review rate, not the UI.** Backpressure: the right number of parallel agents is how many you can properly code-review, typically low single digits. The tool will let you spawn twenty; that is a UI feature, not a throughput feature.
+- **Sort work into two piles.** Isolated tasks (background agents, async, gate at the end) vs. complex tasks where judgment *is* the work (architecture, subtle bugs). The mistake is trying to parallelize the second pile — it thrashes the lock and everything comes out worse.
+- **Batch reviews.** Context switching is the dominant cost. Reviewing four agents in one sitting is far cheaper than checking one, leaving, and returning cold. Give agents a long leash; process the batch.
+- **Only spend the lock on judgment.** Make agents prove the boring 80% themselves (passing tests, screenshots, self-verification) so scarce attention goes to the 20% that genuinely needs a human.
+- **Protect serial time.** The bottleneck needs your best hours, not leftover minutes between agent check-ins. Sometimes the highest-leverage move is to stop orchestrating entirely and think hard about one problem with the lock held.
+
+The orchestration tax left unpaid accumulates both technical debt (merged code you didn't read well) and cognitive debt (a stale mental model of your own codebase). Neither shows on a dashboard today; both show when production breaks and you realize you have no idea how the system works anymore. See also: the [delegation–collaboration split](#the-delegationcollaboration-split) for how to classify which work mode fits which task.
+
 ## Managed Agents (Anthropic)
 
 Anthropic's hosted agent infrastructure (April 2026). The key insight: harnesses "encode assumptions about what Claude can't do on its own" — and those assumptions go stale as models improve. Managed Agents is designed to outlast any particular harness implementation.
@@ -333,3 +351,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Ep. #9, The AI Coding Paradigm Shift with Simon Willison" — Simon Willison / High Leverage podcast (May 2026) — vibe coding vs agentic engineering distinction, trust model for agent output, security-adjacent review line, usage-over-tests heuristic, parallel agent workflow, deterministic-core pattern, RL on code as training breakthrough
 - "An Interview with OpenAI CEO Sam Altman and AWS CEO Matt Garman About Bedrock Managed Agents" — Ben Thompson / Stratechery (Apr 2026) — OpenAI + AWS Bedrock Managed Agents announcement, model-harness convergence thesis, agent identity problem, local vs cloud agents, intelligence-as-utility pricing, platform strategy (neutral vs integrated)
 - "How To Be A World-Class Agentic Engineer" — SysLS (tweet thread, May 2026) — practitioner minimalism: context-is-everything principle, research/implementation separation, adversarial triangulation for sycophancy, task contracts with stop-hooks, CLAUDE.md as conditional routing table, consolidation cycle for rules and skills
+- "The Orchestration Tax" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/orchestration-tax/)) — human as GIL of agent fleet, Amdahl's Law applied to review bottleneck, cognitive surrender failure mode, five attention-architecture principles (scale to review rate, sort work, batch reviews, lock on judgment only, protect serial time)

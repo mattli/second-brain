@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-05-31
 
 
 
@@ -48,6 +48,27 @@ The blur: as models improve (Willison dates the tipping point to Claude Opus 4.5
 **The deterministic-core pattern.** For production systems, Willison advocates investing deeply in a "perfect" database schema and robust API, then vibe-coding all UI on top. Customers get customization flexibility without risking the data model. The principle: push determinism into the core, let non-determinism live at the edges where the blast radius is small.
 
 **Why code became the breakthrough domain.** Reinforcement learning needs clean reward signals. Code provides the cleanest: did the script pass its tests? Binary, instant, scalable to 10,000 parallel VMs. Anthropic and OpenAI spent 2025 on RL against simulated software environments. Labs that didn't (xAI, Gemini) fell 12 months behind. Willison expects Gemini to close the gap by end of 2026. The same RL approach is far harder to apply to law (six-month trial feedback loops) or medicine — making software engineering, ironically, the field most susceptible to AI-driven change.
+
+## Practitioner Principles (SysLS)
+
+SysLS distills months of production agentic work into a minimalist philosophy: strip dependencies, control context, and iterate on rules and skills — nothing else.
+
+**Context is the bottleneck, not tooling.** The single most important variable in agent performance is what's in the context window. Every plugin, memory system, and harness injects information the agent must process. When you ask for a hangman game and the context contains memory notes from 26 sessions ago plus plugin instructions for unrelated capabilities, the agent's attention is diluted. "You want to give your agents only the exact amount of information they need to do their tasks and nothing more."
+
+**Separate research from implementation.** "Go build an auth system" forces the agent to research options and implement in the same context — filling the window with alternatives it won't use, increasing confusion and hallucination risk. Instead: run a research session to evaluate options and decide on an approach, then hand a fresh-context agent precise specs ("JWT authentication with bcrypt-12 password hashing, refresh token rotation with 7-day expiry"). The implementation agent never sees the alternatives it didn't choose.
+
+**Exploit sycophancy with adversarial patterns.** Agents are trained to please, which means "find me a bug" will produce a bug — even a fabricated one. Two countermeasures:
+
+- *Neutral prompts:* Instead of "find bugs in the database," say "follow the logic of each component and report all findings." This doesn't bias toward a predetermined outcome.
+- *Adversarial triangulation:* Run a bug-finder agent (incentivized to find issues), an adversarial agent (incentivized to disprove them, penalized for false disprovals), and a referee agent (told you have ground truth and scored on accuracy). The bug-finder produces the superset of possible bugs; the adversary narrows to the subset of real bugs; the referee adjudicates. Each agent's sycophancy is channeled toward a different objective, producing "frighteningly high fidelity" results.
+
+**Define task completion with contracts.** Agents know how to start tasks but not when to stop — leading to stubs declared as finished work. The fix: write a `TASK_CONTRACT.md` specifying tests that must pass, screenshots to verify, and other acceptance criteria. A stop-hook prevents session termination until the contract is fulfilled. For automation, create one contract per unit of work and spawn a fresh session per contract — this avoids the context bloat of long-running sessions while ensuring each task meets its acceptance criteria.
+
+**CLAUDE.md as a conditional directory.** Treat the root instruction file not as a document to read but as a routing table: "if coding, read `coding-rules.md`; if tests are failing, read `test-failing-rules.md`." Rules can nest and branch arbitrarily. This keeps each agent session loading only the context relevant to its current scenario. Skills serve the same purpose but encode recipes (how to do something) rather than preferences (what not to do).
+
+**The consolidation cycle.** As rules and skills accumulate, they start contradicting each other and bloating context — the same problem they were designed to solve. Periodically consolidate: have agents audit the rule set, surface contradictions, and merge redundant entries. Performance degrades, you clean up, "and it will feel like magic again. That's it. That's really the secret."
+
+**Let frontier companies do the R&D.** Useful patterns (planning before implementation, skills, memory, subagents) get absorbed into base products. If something is genuinely valuable, the foundation companies — who are the heaviest users of their own tools — will ship it. "Just update your CLI tool of choice every once in awhile and read what new features have been added. That's MORE than sufficient."
 
 ## Harness Design: "Seeing Like an Agent"
 
@@ -311,3 +332,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "CLI Printing Press" — mvanhorn (GitHub, 2026) ([link](https://github.com/mvanhorn/cli-printing-press)) — agent-first CLI factory: absorb-and-transcend generation, creativity ladder (5 rungs from wrapper to behavioral insight), dual CLI+MCP from one spec, SQLite local-first data layer
 - "Ep. #9, The AI Coding Paradigm Shift with Simon Willison" — Simon Willison / High Leverage podcast (May 2026) — vibe coding vs agentic engineering distinction, trust model for agent output, security-adjacent review line, usage-over-tests heuristic, parallel agent workflow, deterministic-core pattern, RL on code as training breakthrough
 - "An Interview with OpenAI CEO Sam Altman and AWS CEO Matt Garman About Bedrock Managed Agents" — Ben Thompson / Stratechery (Apr 2026) — OpenAI + AWS Bedrock Managed Agents announcement, model-harness convergence thesis, agent identity problem, local vs cloud agents, intelligence-as-utility pricing, platform strategy (neutral vs integrated)
+- "How To Be A World-Class Agentic Engineer" — SysLS (tweet thread, May 2026) — practitioner minimalism: context-is-everything principle, research/implementation separation, adversarial triangulation for sycophancy, task contracts with stop-hooks, CLAUDE.md as conditional routing table, consolidation cycle for rules and skills

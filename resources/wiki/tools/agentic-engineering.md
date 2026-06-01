@@ -84,6 +84,8 @@ The Claude Code team (Thariq, Anthropic) published key lessons on designing agen
 - **Search evolution** — Started with RAG vector database, moved to Grep tool for self-directed search, then progressive disclosure via skills. Over one year: "Claude went from not being able to build its own context to nested search across several layers of files."
 - **Progressive disclosure** — Add functionality without adding tools. The Claude Code Guide subagent loads docs on demand rather than stuffing everything in the system prompt. ~20 tools total, high bar to add more.
 
+For evaluation methodology that applies directly to agent systems — floor-raising over benchmark-maxxing, trace review pipelines, LLM-as-judge — see [AI Evals](ai-evals.md).
+
 ## Self-Improving Agents (AutoAgent)
 
 Kevin Gu released AutoAgent — first library for autonomously improving agent harnesses. Key results:

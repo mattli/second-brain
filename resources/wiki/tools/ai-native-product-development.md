@@ -98,7 +98,7 @@ Key insights: companies operate at multiple levels simultaneously (engineering a
 
 Aneesh Chukla's framework (via Aakash Gupta): for AI features, evals *are* the PRD. "The way the best AI companies work is that the AI PM defines these evals and that is basically the PRD for the AI engineers." The workflow: define success criteria and expected behavior → build offline evals → only then launch to real users with online evals (observability platforms like Arise, TruLens). If offline evals fail, "you have not even created a product that can be actually launched."
 
-This shifts PM work from spec writing to evaluation design — a fundamentally different skill. See [Agent Proficiency](../concepts/agent-proficiency.md).
+This shifts PM work from spec writing to evaluation design — a fundamentally different skill. See [Agent Proficiency](../concepts/agent-proficiency.md). For a deeper treatment of eval methodology (floor-raising, LLM-as-judge pipelines, golden cases), see [AI Evals](ai-evals.md).
 
 ### How Evals Actually Work
 

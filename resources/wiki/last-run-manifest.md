@@ -1,114 +1,118 @@
 ---
-wrap_up_date: 2026-05-24
-wrap_up_start: "2026-05-24T02:00:00Z"
-wrap_up_end: "2026-05-24T02:15:00Z"
-week_start: "2026-05-17T00:00:00Z"
-pages_created_this_week: 0
-pages_updated_this_week: 0
-workers_succeeded: 0
-workers_failed: 12
-worker_veto_rate: "0/0 (N/A)"
+wrap_up_date: 2026-05-31
+wrap_up_start: "2026-05-31T12:00:00Z"
+wrap_up_end: "2026-05-31T12:15:00Z"
+week_start: "2026-05-24T00:00:00Z"
+pages_created_this_week: 2
+pages_updated_this_week: 16
+workers_succeeded: 56
+workers_failed: 0
+worker_veto_rate: "0/56 (0%)"
 auto_merges: 0
 dedup_candidates_flagged: 0
-orphans_flagged: 5
-synthesis_candidates_flagged: 0
-split_candidates_flagged: 0
+orphans_flagged: 0
+synthesis_candidates_flagged: 1
+split_candidates_flagged: 1
 unorganized_clusters_promoted: 0
 ---
 
-# Weekly Wrap-Up — 2026-05-24
+# Weekly Wrap-Up — 2026-05-31
 
 ## This Week at a Glance
 
-Another quiet week. The list-maker ran daily (May 18–24) and dispatched 12 workers across 4 runs, but none produced commits — this is the second consecutive week of silent worker failures (23 total across two weeks). Two Tier D bookmarks (Andon FM, Readwise changelog) were added to unorganized.md. No wiki pages were created or updated by workers. Two cohesion cross-links were added (frontier-models ← claude-mythos, ai-regulation ← ai-safety-interpretability), reducing orphans from 7 to 5.
+Active week with 56 worker commits across 18 pages. Two new pages created (AI Evals, Voice AI Infrastructure). Heaviest activity on agentic-engineering.md (orchestration tax, Willison's vibe coding distinction, managed agents updates) and agent-proficiency.md (staying in the loop, skill file method). No worker failures or vetoes. Wiki cohesion is strong — cross-links added for the two new pages.
 
 ## Pages Created
 
 | Page | From | Folder |
 |------|------|--------|
-
-(None)
+| tools/ai-evals.md | 01ksp07e | tools/ |
+| tools/voice-ai-infrastructure.md | 01kqz1c9 | tools/ |
 
 ## Pages Updated
 
 | Page | Updates this week |
 |------|-------------------|
-
-(None by workers — only list-maker-log.md and unorganized.md were touched)
+| tools/agentic-engineering.md | 8 |
+| concepts/agent-proficiency.md | 4 |
+| tools/claude-code-skill-frameworks.md | 4 |
+| landscape/services-as-software.md | 4 |
+| tools/ai-native-product-development.md | 4 |
+| tools/agent-harness.md | 4 |
+| landscape/vertical-ai.md | 3 |
+| concepts/knowledge-work-future.md | 4 |
+| landscape/ai-careers.md | 3 |
+| models-safety/ai-safety-interpretability.md | 3 |
+| tools/ai-evals.md | 2 |
+| landscape/ai-organization-design.md | 2 |
+| concepts/business-moats-in-ai.md | 1 |
+| concepts/llm-knowledge-bases.md | 2 |
+| models-safety/frontier-models.md | 1 |
+| models-safety/claude-mythos.md | 1 |
+| landscape/ai-startup-distribution.md | 1 |
 
 ## Auto-Merges
 
 | Merged | Into | Reason |
 |--------|------|--------|
-
-(None — no pages created this week)
+| (none) | — | — |
 
 ## Dedup Candidates (flagged for review)
 
 | Page A | Page B | Rationale |
 |--------|--------|-----------|
-
-(None)
+| (none) | — | — |
 
 ## Cohesion Fixes
 
 | Action | Page | Detail |
 |--------|------|--------|
-| Index check | index.md | All 35 topic pages present — no additions needed |
-| Cross-link added | models-safety/claude-mythos.md | Added link to frontier-models.md in "Related" line |
-| Cross-link added | models-safety/ai-safety-interpretability.md | Added link to landscape/ai-regulation.md in OpenAI safety controversy section |
+| Cross-link added | tools/ai-native-product-development.md | Added link to tools/ai-evals.md in eval-as-PRD section |
+| Cross-link added | landscape/vertical-ai.md | Added link to tools/voice-ai-infrastructure.md in omnichannel collapse section |
+| Cross-link added | tools/agentic-engineering.md | Added link to tools/ai-evals.md before Self-Improving Agents section |
 
 ## Orphans (true)
 
 | Page | Why no good link |
 |------|------------------|
-| concepts/synthetic-personas.md | Niche topic (evolutionary LLM personas); no other page discusses persona generation |
-| culture/internet-as-mediating-layer.md | Cultural/philosophical frame; no natural cross-link from AI-focused pages |
-| culture/museum-design-curation.md | Standalone cultural topic; no overlap with other wiki content |
-| music/beatles-early-period.md | Standalone music analysis; no overlap with other wiki content |
-| writing/writing-craft.md | Standalone writing topic; no overlap with other wiki content |
+| (none — all resolved) | — |
 
 ## Stale Claims
 
 | Page | Stale claim | Newer source |
 |------|-------------|--------------|
-
-(None identified — no pages were updated this week to create contradictions)
+| (none detected) | — | — |
 
 ## Lint Findings — Synthesis Candidates
 
 | Page | Sections most in need of restructuring | Rationale |
 |------|----------------------------------------|-----------|
-
-(None — no pages touched this week by workers)
+| tools/agentic-engineering.md | "Claude Psychology and Criticism Spirals", "Agent Marketplace Infrastructure" | These sections are organized around a single contributor's argument rather than synthesized with other perspectives. Mild — the page overall is concept-organized, but these subsections read as standalone summaries. |
 
 ## Lint Findings — Page Split Candidates
 
 | Page | Suggested new titles | Rationale |
 |------|---------------------|-----------|
-
-(None — no pages touched this week by workers)
+| tools/agentic-engineering.md | "Managed Agents" (combining Anthropic + OpenAI+AWS sections) | At 356 lines with 17 H2 sections, the page is the largest in the wiki. The two Managed Agents sections (65+ lines combined) describe hosted agent infrastructure products rather than engineering practices — they could form a coherent standalone page about the productization of agent hosting. |
 
 ## Unorganized Promotions
 
 | Cluster topic | Items moved | Destination | New or existing |
 |---------------|-------------|-------------|-----------------|
-
-(None — no clusters of 3+ items on a single topic found)
+| (none — no clusters of 3+ found) | — | — | — |
 
 ## Worker Veto Trail
 
 | Commit | Page | Vetoed hint reason |
 |--------|------|--------------------|
-
-(No vetoed hints this week — 0 worker commits)
+| (none) | — | — |
 
 ## Worker Errors
 
 | Date | Doc ID | Error |
 |------|--------|-------|
-| May 18–24 | (12 dispatched workers) | No WORKER_ERRORS.md found; all 12 dispatched workers failed silently — no commits produced. Second consecutive week of total worker failure (23 total). Likely scheduling/execution infrastructure issue. |
+| (none — WORKER_ERRORS.md not found) | — | — |
 
 ## QUEUE.md
 
-Refreshed. 2 items in long-form queue (unchanged: Claude Mythos Preview 70K words, Knowledge About Knowledge 131K words).
+Refreshed. 2 items in long-form queue (unchanged from last week).

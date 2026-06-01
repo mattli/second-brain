@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-05-24
+last_updated: 2026-05-31
 ---
 
 # Long-Form Synthesis Queue

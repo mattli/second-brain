@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-06-02
 ---
 
 # AI Careers
@@ -125,6 +125,18 @@ This creates a new surface area for career positioning. The content that gets ci
 
 One underappreciated angle: LinkedIn shares user data with Microsoft for AI training by default (since 2024), and opting out doesn't retroactively remove previously shared data. Users who opt out still appear in recruiter searches, including natural language queries. The implication is that your professional data is already part of the AI training corpus whether you actively manage your presence or not — which strengthens the case for shaping it intentionally rather than passively.
 
+## The Mid-Career Satisfaction Trap
+
+The skills and market sections above address what gets you hired and how to stay relevant. But mid-career dissatisfaction often has little to do with either — it stems from career envy and optimizing for the wrong metrics.
+
+Shreyas Doshi's framework distinguishes two sets of career attributes. **External markers** — title, compensation, scope — are what others judge your career by and what feels good at offer-acceptance time. **Intrinsic markers** — competence in your role, flow state at work, culture fit, work-life harmony, how you feel on Sunday evenings — are what actually sustain satisfaction after day one. The problem: ambitious people reliably optimize for the external set, take it for granted once obtained, and then wonder why they feel empty.
+
+This dynamic is amplified in AI. The polarized outcomes of frontier AI companies — early employees at hot startups minting generational wealth while peers at established companies watch from the sidelines — make career envy especially acute in the Bay Area tech scene. LinkedIn, already identified above as a key discoverability surface, doubles as a career-envy accelerator; Doshi recommends temporary breaks from it as a coping tactic.
+
+The deeper insight connects to the generalists-vs.-specialists debate: "when it comes to your career, you are the user." Just as product builders must understand their users before building, career builders must understand themselves — their actual sources of satisfaction, not the ones they've been conditioned to pursue. Once you reach baseline security and competence, career becomes a performance for an audience of one (you and your dependents), not for the imagined audience of peers whose judgment is mostly projection of their own insecurities.
+
+This reframes the page's career strategy advice: the skills roadmaps, role archetypes, and market positioning above are necessary but insufficient. Without the self-knowledge to choose roles that align with intrinsic satisfaction markers, even the most strategically optimized career path leads to the same dissatisfaction trap.
+
 ## Sources
 
 - "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online (Andrew Ng, Laurence Moroney) ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
@@ -133,3 +145,4 @@ One underappreciated angle: LinkedIn shares user data with Microsoft for AI trai
 - "Agent Strategist: Your PhD in applied AI" — Sierra (tweet) — the Agent Strategist as a new hybrid role combining building, consulting, and go-to-market
 - "How to Become an AI Engineer in 2026 (Builder's Roadmap)" — Avid (tweet) — 17-week agent engineer roadmap centered on harness engineering, with LangGraph and Claude Agent SDK as the two recommended stacks
 - "How to Get Discovered in AI Search (and Why It Matters for Your Career)" — Jeff Rumage, Built In ([link](https://builtin.com/articles/linkedin-chatgpt-ai-search-careers)) — LinkedIn's rise as top AI-cited domain for professional queries; profile optimization and content strategy for AI discoverability
+- "On mid-career satisfaction" — Shreyas Doshi (tweet) — external vs. intrinsic career satisfaction markers; career envy as the hidden driver of mid-career dissatisfaction, amplified by AI's polarized outcomes

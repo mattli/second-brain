@@ -55,11 +55,31 @@ Harvey ($0 → $200M+ ARR in 36 months; ~$11B valuation) is the canonical vertic
 
 **Competitive landscape:** Harvey vs. Legora. Harvey: ~$200M ARR, backed by Sequoia/a16z/Kleiner. Legora: ~$100M ARR est., backed by Benchmark/Bessemer. Both using Claude heavily.
 
-## Harvey's Tech Architecture
+## Harvey's Cloud Agent Infrastructure
 
-- Runs ~6 foundation models (OpenAI, Anthropic, Google, Mistral) with an orchestration layer that picks the best per task
-- Proprietary process data from inside law firms sits on top
-- 40% of engineering/product/design team is senior infrastructure engineers (moat is the system, not the prompt)
+Harvey built a custom agent runtime rather than adopting managed runtimes from frontier labs (Anthropic's Claude Managed Agents, OpenAI's) or cloud providers (AWS, Microsoft Foundry, Google). Three requirements drove the decision — none met by any single external platform today [[source]](https://www.harvey.ai/blog/why-we-built-our-own-cloud-agent-infrastructure).
+
+**Multi-model as a hard requirement:**
+- **Conflicts of interest** force multi-model. A firm representing a model provider faces commercial pressure to use that provider's model; a client building its own models won't allow confidential matters routed through a competitor's model. As more companies train models and labs expand into more industries, the set of conflicted firms grows. Within a few years, any firm serving a broad client base will need to run on essentially any model.
+- **Quality and cost separation** compounds the case. Harvey's [Legal Agent Benchmark](https://www.harvey.ai/blog/legal-agent-benchmark-initial-results) (LAB) shows clear model performance separation by practice area and task type, and that spread is widening as open-source models improve. The question has shifted from "which model is best?" to "which model is most efficient for this specific task?"
+- **Platform risk is acute for agents.** If a firm commits to a single provider's managed runtime and that provider's models fall behind, runs out of capacity, changes pricing, or drops a feature, the firm is stranded — and the lock-in now extends beyond the model to the entire agent workforce (formats, orchestration, tuned behaviors). Lab runtimes tie you to one vendor's models (maximum lock-in); cloud provider runtimes are model-flexible but lag on newest models and have uptime limits.
+- Harvey built an **abstraction layer** that normalizes agent harness differences (tool-call formats, stop conditions, streaming behavior, failure modes), execution sandboxes, and behavioral differences beneath a single interface — making model choice a routing decision invisible to everything above it.
+
+**Zero data retention (ZDR):**
+- Every law firm and enterprise contract requires ZDR. Privileged, confidential data cannot sit on a third party's servers — this is a gate, not a negotiable preference.
+- ZDR cannot be bolted on. "Store during the run, delete after" is retention followed by deletion, not zero retention. ZDR means data is never written to persistent storage in the first place — an architectural property of the runtime, not a toggle.
+- Agents make this harder than chat: long-running agents accumulate working memory, intermediate files, tool results, and recovery checkpoints. A managed runtime persists all of that in its cloud — automatic state persistence and zero retention are mutually exclusive.
+- By owning the runtime, Harvey scopes agent state to the session and purges it, so the ZDR guarantee covers the whole workflow rather than just the final model call.
+
+**Cost optimization:**
+- A single agent run can involve hundreds of model and tool calls over a large corpus. Routing everything to the best frontier model is not sustainable at scale.
+- For most tasks, the largest model is unnecessary. As models improve, a growing share of legal work becomes **intelligence-saturated**: the task sits within reach of a smaller or open-source model, and a frontier model is overspending capability the task doesn't require. LAB confirms open-source models match frontier quality on many task types at a fraction of the cost.
+- Owning the runtime enables fine-grained control over both model routing and the execution sandbox — how files are loaded, work is parallelized, and compute is sized — optimized for legal workloads specifically. Managed platforms don't expose enough of either to optimize aggressively.
+- Harvey reports **3–5x cost reductions** versus frontier-only routing, depending on model and workload — the difference that makes serving agents over hundreds of thousands of documents economically viable.
+
+**Future outlook:** Harvey expects to eventually absorb external runtime improvements as cloud providers close the gaps on multi-model routing, ZDR, and open-source support. The durable layer is legal-specific: multi-cloud resilience, data residency (keeping matters within specific jurisdictions), sovereign/self-hosted deployments for the most regulated customers, conflict-aware governance encoding which models a given matter is allowed to touch, and complete inspectable audit trails for work-product privilege.
+
+**Team composition:** ~6 foundation models (OpenAI, Anthropic, Google, Mistral) with the orchestration layer above; 40% of engineering/product/design team is senior infrastructure engineers (moat is the system, not the prompt).
 
 ## Harvey's Vertical Model U-Turn (2025-2026)
 
@@ -248,3 +268,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "Sierra went from $0 to $165M+ ARR in 26 months" — Ivan Landabaso (tweet thread, May 2026) ([link](https://x.com/IvanLandabaso/status/1924809153840267528)). Sierra growth playbook, outcome-based pricing, omnichannel collapse, deployment speed, Fortune 500 CX vertical.
 - "Everything, Everywhere is Compliance" — James da Costa & Angela Strange (a16z, 2026). Compliance as $40B+ vertical AI opportunity, three-layer framework (regulation-as-code, legacy replacement, agent augmentation), company examples (Tako, Valon, Vesta, Sardine, Factor Labs).
 - "Avoiding Death on the Yellow Brick Road" — Joe Schmidt IV (a16z, May 2026) ([link](https://www.a16z.news/p/avoiding-death-on-the-yellow-brick)). Yellow Brick Road framework (horizontal vs. vertical AI), four defensive moats (data flywheels, model variability, cost optimization, governance), three diagnostic tests, practical examples from 11x (sales) and FurtherAI (insurance).
+- "Why we Built our own Cloud Agent Infrastructure" — Gabe Pereyra / Harvey (blog, 2026) ([link](https://www.harvey.ai/blog/why-we-built-our-own-cloud-agent-infrastructure)). Harvey's custom agent runtime: multi-model as hard requirement (conflicts, platform risk, abstraction layer), zero data retention as architectural property, 3–5x cost reductions via model routing, intelligence saturation thesis, legal-specific durable layer.

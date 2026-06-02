@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-05-26
+last_updated: 2026-06-02
 
 ---
 
@@ -38,7 +38,7 @@ Claude Code's leaked source code (March 2026, accidentally shipped to npm) was 5
 
 1. *Orchestration loop* — the Thought-Action-Observation (TAO/ReAct) cycle. Often just a while loop; complexity lives in everything it manages. Anthropic describes their runtime as a "dumb loop" — all intelligence lives in the model.
 
-2. *Tools* — the agent's hands. Defined as schemas injected into context. Handles registration, validation, argument extraction, sandboxed execution, result capture, formatting.
+2. *Tools* — the agent's hands. Defined as schemas injected into context. Handles registration, validation, argument extraction, sandboxed execution, result capture, formatting. Anthropic frames tools as a new kind of software: a contract between deterministic systems and non-deterministic agents. A function call like `getWeather("NYC")` always fetches weather the same way; a tool invoked by an agent might be called, skipped, or preceded by a clarifying question depending on context. This means tool design must account for how agents *perceive* available actions (their "affordances"), not just what the tools technically do. See *Tool Design Principles* below for the implications.
 
 3. *Memory* — see section below.
 
@@ -172,9 +172,25 @@ Key lessons:
 
 5. *Permission architecture* — permissive (fast but risky) vs. restrictive (safe but slow). Depends on deployment context.
 
-6. *Tool scoping* — more tools often means worse performance. Vercel removed 80% of tools from v0 and got better results. Claude Code achieves 95% context reduction via lazy loading.
+6. *Tool scoping* — more tools often means worse performance. Vercel removed 80% of tools from v0 and got better results. Claude Code achieves 95% context reduction via lazy loading. See *Tool Design Principles* below for detailed guidance.
 
 7. *Harness thickness* — Anthropic bets on thin harnesses + model improvement. Graph-based frameworks bet on explicit control. "Anthropic regularly deletes planning steps from Claude Code's harness as new model versions internalize that capability."
+
+## Tool Design Principles
+
+Anthropic's internal tool evaluation work distills five principles for writing effective agent tools, validated by held-out test sets against their Slack, Asana, and other internal MCP servers.
+
+**Choose the right tools (and skip the wrong ones).** Agents have limited context; computer memory is cheap. A `list_contacts` tool that dumps an entire address book wastes the agent's context window on brute-force search — the better tool is `search_contacts` or `message_contact`. Build a few thoughtful tools targeting high-impact workflows, then scale from there. Tools should consolidate multi-step operations: instead of separate `list_users`, `list_events`, and `create_event` tools, a single `schedule_event` tool that finds availability and books the meeting. Instead of `get_customer_by_id` + `list_transactions` + `list_notes`, a single `get_customer_context` tool that compiles everything at once.
+
+**Namespace to define boundaries.** When agents face dozens of MCP servers with hundreds of tools, overlapping or vaguely named tools cause confusion. Grouping by service (`asana_search`, `jira_search`) and by resource (`asana_projects_search`, `asana_users_search`) helps agents select the right tool. Prefix- vs. suffix-based namespacing has non-trivial effects on evaluation performance and varies by model — choose based on your own evals.
+
+**Return meaningful context, not raw data.** Prioritize contextual relevance over flexibility. Eschew low-level identifiers (`uuid`, `256px_image_url`, `mime_type`) in favor of semantically meaningful fields (`name`, `image_url`, `file_type`). Resolving arbitrary alphanumeric UUIDs to natural language or even 0-indexed IDs significantly improves precision in retrieval tasks by reducing hallucinations. Where agents need both natural-language and technical identifiers (e.g., `search_user(name='jane')` → `send_message(id=12345)`), expose a `response_format` enum (`"concise"` vs. `"detailed"`) so the agent controls verbosity — concise for final answers, detailed when downstream tool calls need IDs.
+
+**Optimize for token efficiency.** Implement pagination, range selection, filtering, and/or truncation with sensible defaults. Claude Code caps tool responses at 25,000 tokens by default. Truncated responses should steer agents toward efficient strategies ("many small targeted searches instead of one broad search"). Error responses should communicate specific, actionable improvements — not opaque error codes or tracebacks. The response structure itself (XML, JSON, Markdown) affects performance; there is no universal best format.
+
+**Prompt-engineer tool descriptions.** Think of describing your tool to a new hire: make implicit context explicit — query formats, niche terminology, relationships between resources. Name parameters unambiguously (`user_id` not `user`). Even small refinements to descriptions yield dramatic gains: Claude Sonnet 3.5 achieved state-of-the-art SWE-bench Verified performance after precise tool description edits alone [[source]](https://www.anthropic.com/engineering/writing-effective-tools-for-agents). MCP [tool annotations](https://modelcontextprotocol.io/specification/2025-06-18/server/tools) disclose which tools require open-world access or make destructive changes.
+
+**Evaluation-driven improvement.** The inner loop: (1) prototype tools, (2) generate realistic eval tasks grounded in real-world complexity (multi-tool, multi-step — not simplified sandboxes), (3) run evals programmatically with simple agentic loops, (4) analyze results — including agent reasoning/CoT — to identify rough edges, (5) let agents (e.g., Claude Code) refine tools by analyzing concatenated eval transcripts, (6) validate against held-out test sets. Anthropic's internal Slack and Asana tools improved beyond expert-written baselines through this cycle. Interleaved thinking helps probe *why* agents do or don't call certain tools. Tracking metrics beyond accuracy — runtime, token consumption, tool call counts, error rates — reveals consolidation opportunities and workflow patterns.
 
 ## Cache-Aware Harness Design
 
@@ -384,3 +400,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Your OpenClaw / Hermes Gets Neurological Conditions Too" — Vox (tweet thread, May 2026) ([link](https://x.com/Vox)) — six neurological conditions mapped to agent harness failure modes: source amnesia, phantom limb state, locked-in syndrome, confabulation, disinhibition, anosognosia
 - "The AI Agent Complexity Ratchet: Why 90% Test Coverage Is Required" — Garry Tan (tweet thread, May 2026) ([link](https://x.com/garrytan)) — complexity ratchet mechanism (tests + docs + evals as forward-only quality floor), 90% coverage threshold backed by Capers Jones DRE data and DO-178C, AI agents removing the effort wall, expanded test surface including TTY behavioral testing
 - "Dreams" — Anthropic Claude API Docs (May 2026) ([link](https://platform.claude.com/docs/en/managed-agents/memory)) — async memory consolidation for managed agents: reads memory store + session transcripts, produces deduplicated/reorganized output store
+- "Writing effective tools for agents — with agents" — Ken Aizawa et al., Anthropic (Jun 2026) ([link](https://www.anthropic.com/engineering/writing-effective-tools-for-agents)) — tool design principles (consolidation, namespacing, meaningful context, token efficiency, description prompt-engineering) and evaluation-driven improvement loop; validated on internal Slack/Asana MCP servers with held-out test sets

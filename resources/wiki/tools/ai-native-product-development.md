@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-06-02
 ---
 
 # AI-Native Product Development
@@ -289,6 +289,20 @@ When agents generate UI, each screen can look fine in isolation but feel like a 
 
 This connects directly to Ann Miura-Ko's feature factory risk: when execution is nearly free, DESIGN.md becomes one mechanism for encoding the taste that prevents agent-generated UI from diverging into chaos.
 
+## Code-Native Visual Generation
+
+The most interesting visual AI tools have stopped trying to generate the final output and instead generate the source code behind it. Where pixel-native generation (diffusion models) produces images or videos directly, code-native generation produces a symbolic representation — SVG, HTML/CSS, React components, Lottie JSON, Blender scripts, USD scene graphs — that is then rendered by an engine. The visual output is still pixels, but the source of truth is a structured, editable artifact.
+
+This distinction matters because production workflows care about what happens *after* generation. A generated image is useful as an output, but a generated visual program is useful as an artifact: it can be edited, reused, versioned, integrated into the software stack, and validated against constraints. If one curve in a logo is wrong, editing an SVG path is precise; inpainting a raster image is a gamble.
+
+**The test-time compute advantage.** Code-native generation creates a tight iteration loop: Code → Render → Inspect → Revise. The model produces the artifact, renders it, sees what broke, and patches the source. Each iteration improves the underlying artifact, not just the rendered output. This is fundamentally different from pixel-native generation, where more inference usually means sampling more outputs and picking the best one. In code-native generation, the model is debugging a visual program in a closed-loop, verifiable environment — which is why it benefits directly from more tokens and test-time compute [[source]](https://www.a16z.news/p/the-next-frontier-of-visual-ai-is).
+
+**Market organization by runtime.** Each rendering environment creates a different product wedge: browsers (HTML/CSS, React), SVG renderers (vector graphics, logos), Lottie players (motion design), Blender and game engines (3D scenes), simulators (articulated assets). Examples include Quiver (SVG logo generation where designers edit paths in Figma), Paper (all UI represented as code), and OmniLottie (turning Lottie JSON into model-friendly command sequences for editable animation generation).
+
+**3D as the strongest case.** A rendered image of a chair is not a chair — it's a picture of one. For 3D assets to be useful in games, simulations, or editing tools, they need consistent geometry, materials, part hierarchy, and scene context. Code-native generation is a natural fit because the iteration loop can propose geometry, render it, inspect whether parts make sense across views, and revise the underlying representation. Projects like VIGA (using Blender as a rendering and feedback environment with semantic tools for observation, modification, and memory) and Articraft3D (framing articulated 3D generation as writing programs that define parts, joints, and tests) show the direction.
+
+**The hybrid future.** Pixel-native models will remain best for realism, texture, and exploration. Code-native systems will be better for structure, iteration, and production integration. The most useful workflows will combine both. This connects to Saarinen's point in [Output Isn't Design](#output-isnt-design) — image generation breaks down with iterations because it's hard to change one specific thing without reshaping the whole output. Code-native generation solves exactly this problem by giving the model (and the human) source-level access to what went wrong.
+
 ## The Bottleneck Cascade (Andrew Ng)
 
 Andrew Ng (deeplearning.ai, Apr 2026) frames the PM bottleneck as just the first in a cascade. When AI coding speeds up 10-100x, every adjacent function becomes the new bottleneck in turn:
@@ -368,3 +382,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "/goal for Product Managers" — George / prodmgmt.world (tweet, May 2026) ([link](https://twitter.com/nurijanian/status/2053364576369172940)) — Ralph Wiggum loops, agent-ready requirements, strong vs. weak goals, /goal template, PM OS v2 structured memory (capture, daily-drip, recall)
 - "The Culture of AI Engineering" — Noah Brier / Every (May 2026) — software company vs. software factory, Warhol vs. Ford metaphor, pace layers for AI engineering, agent onboarding as culture problem
 - "The Long Becoming" — Alfred Lin / Sequoia (tweet, May 2026) — five sequential bottlenecks of AI-native transformation, enabled vs. native framing, development OS as internal tooling layer, becoming harder than declaring
+- "The Next Frontier of Visual AI Is Code" — Yoko Li / a16z (May 2026) ([link](https://www.a16z.news/p/the-next-frontier-of-visual-ai-is)) — code-native vs. pixel-native visual generation, Code→Render→Inspect→Revise loop, test-time compute advantage, 3D as strongest case, market organization by runtime

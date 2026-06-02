@@ -60,6 +60,17 @@ If the list-maker runs cleanly but no `wiki: update ...` commits land, and `WORK
 2. **Watch for the `"Task created via IPC"` line** in `~/nanoclaw/logs/nanoclaw.log` after the list-maker finishes. If the list-maker container completes but no `Task created via IPC` entries follow, the dispatch is being dropped.
 3. **`current_tasks.json` is read-only output.** Editing `~/nanoclaw/data/ipc/<group>/current_tasks.json` does nothing — NanoClaw writes that file as a snapshot for containers to read via MCP. The scheduler reads only from the SQLite DB.
 
+## Done-ping notifications (the 1am chime)
+
+The `📚 Wiki list-maker (daily): ✅ done` Telegram ping is emitted by NanoClaw's scheduler (`task-scheduler.ts:303`), not the agent. The scheduler sends `${display_name}: ✅ done` to `task.chat_jid` after a non-main task completes successfully. Setting `chat_jid = task:readwise-wiki` (required for worker dispatch — see above) used to silently drop this ping because Telegram only owns `tg:` jids; the warn went to `logs/nanoclaw.error.log` and was easy to miss.
+
+Fixed 2026-06-02 (NanoClaw commit `1116d2d`): pseudo-prefix jids (`task:`, `internal:`) now fall back to the registered main group's jid at send time, and the ping requires `task.display_name` so internal worker tasks stay silent. The three wiki tasks (`readwise-wiki`, `readwise-wiki-weekly-wrap-up`, `readwise-wiki-folder-review`) all have a display_name set and route to telegram_main via the fallback. No DB change needed — `chat_jid` stays at `task:readwise-wiki`.
+
+**If the 1am ping stops arriving again,** check:
+1. `grep -E "Telegram message sent" ~/nanoclaw/logs/nanoclaw.log` right after the list-maker's `Task completed` line — should see a send to `tg:8790860459` length ~34.
+2. `grep "No channel owns JID" ~/nanoclaw/logs/nanoclaw.error.log` — if firing, the fallback didn't kick in (means main group registration is wrong or the registered_groups row's `is_main` flag is 0).
+3. `sqlite3 ~/nanoclaw/store/messages.db "SELECT display_name FROM scheduled_tasks WHERE id='readwise-wiki'"` — must be non-empty under the new gate.
+
 ## Manual rewind / replay
 
 The list-maker reads its `updated_after` cutoff from the previous `list-maker-log.md`'s **`run_end`** field. Editing the log to rewind the cutoff is fragile — the LLM in the container has been observed to **override suspiciously-old values** with a "more recent" guess. To force a backlog replay reliably, drop hand-crafted MCP IPC payloads directly into `~/nanoclaw/data/ipc/readwise-wiki/tasks/` (see `session-tasks.md` entry for 2026-05-26 for the payload shape and a working replay script).

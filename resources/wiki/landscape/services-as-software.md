@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-16
-last_updated: 2026-05-26
+last_updated: 2026-06-02
 ---
 
 # Services-as-Software
@@ -31,6 +31,16 @@ Today's judgement becomes tomorrow's intelligence. As AI systems accumulate prop
 If a task is already outsourced, three things are true: (1) the company accepted external execution, (2) there's an existing budget line, (3) the buyer already purchases outcomes. Replacing an outsourcing contract is a vendor swap. Replacing headcount is a reorg.
 
 **Playbook:** Start with the outsourced, intelligence-heavy task. Nail distribution. Expand toward insourced, judgement-heavy work as AI compounds.
+
+## The Death of the Three-Act Playbook
+
+The traditional enterprise software scaling playbook had three sequential acts: start with a **wedge** (a feature or niche made 10x better during a platform shift, scaling to $10–50M ARR over 3–5 years), expand into a **suite** of adjacent products to reach $200–500M ARR, then earn the right to **rebundle** as the platform and rip-and-replace the system of record underneath.
+
+AI is compressing this sequence to near-zero. The cost of building software is dropping so fast that Acts I and II can be executed simultaneously rather than sequentially. The number of companies that have gone from ~$0 to $100M ARR in the past two years — Cursor, Cognition, Clay, Harvey, Sierra, Lovable — is evidence the timeline has collapsed [[source]](https://x.com/mikevernal).
+
+This has direct implications for the wedge strategies discussed above. The outsourcing-as-wedge playbook remains sound for services-as-software companies entering a vertical — the buyer dynamics (existing budget, accepted external execution, outcome-based purchasing) still hold. But the *protective harbor* that a wedge once provided is shrinking. When competitors can build the full suite from day one, a narrow wedge that would have guaranteed 3–5 years of runway now buys months. The rational response: plan to build it all quickly, mostly from the start.
+
+The shift revalues ambition over defensibility at the seed stage. The Anysphere (Cursor) case is instructive: at seed, building a full VS Code replacement seemed reckless when an extension would have been the "sensible" wedge. In hindsight, even replacing VS Code feels under-ambitious. For services-as-software founders, the equivalent question is whether to start with one outsourced task in one vertical or to go directly for the full service delivery platform.
 
 ## Opportunity Map (by vertical)
 
@@ -181,4 +191,5 @@ Counterintuitively, agent commerce may prove safer than human web shopping. Huma
 - "From 'System of Record' to 'System of Intelligence'" — Gio Ahern, Steph Zhang, Alex Immerman, a16z ([link](https://www.a16z.news/p/from-system-of-record-to-system-of)) — CRM-to-intelligence-layer inversion; orchestration as the new gravity well; GTM TAM expansion
 - "Is Software Losing Its Head?" — Seema Amble, a16z ([link](https://x.com/seamble/status/1927893610047545700)) — Headless SoR defensibility shift; historical vs. agentic stickiness factors; proprietary data, action-layer ownership, and network effects as new moats
 - "The next $1T company… Services-as-software (how to do it)" — Eric Siu ([link](https://x.com/ericosiu/status/2052091708826063284/)) — Managed growth loops framework; seven loops for agency transformation; codified expertise as compounding infrastructure
+- "The Death of the Three-Act Playbook" — Mike Vernal ([link](https://x.com/mikevernal)) — AI collapses the traditional wedge → suite → platform scaling sequence; ambition over defensibility at seed stage; Cursor as case study for skipping the wedge
 - "What I Learned About AI Economics at Stripe Sessions 2026" — Gao Fei — Agentic commerce data from Stripe ($1.9T volume, 5M businesses); micropayments and streaming payments via Tempo blockchain; MPP and UCP protocols; compute-as-cash fraud patterns; Coasean argument for agent-enabled solopreneurship

@@ -38,12 +38,12 @@
 
 ## Wiki usage vs general knowledge
 
-| Source | Approx turns | Notes |
-|--------|--------------|-------|
-| On-demand wiki pages | 4 | Two lookups (vertical-ai.md, ai-native-product-development.md) explicitly triggered. |
-| Pre-loaded wiki | ~8 | Abridge examples, clinician-scientist embedding, FDA Jan 2026 guidance, LFD terminology all sourced from loaded context. |
-| General LLM knowledge | ~4 | Framing around evals, failure modes, LLM-as-judge pattern, progressive rollout (standard ML practice). |
-| Matt's own ideas | 1 | Interview context and specific product focus (voice healthcare) came from Matt. |
+| Source                | Approx turns | Notes                                                                                                                    |
+| --------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| On-demand wiki pages  | 4            | Two lookups (vertical-ai.md, ai-native-product-development.md) explicitly triggered.                                     |
+| Pre-loaded wiki       | ~8           | Abridge examples, clinician-scientist embedding, FDA Jan 2026 guidance, LFD terminology all sourced from loaded context. |
+| General LLM knowledge | ~4           | Framing around evals, failure modes, LLM-as-judge pattern, progressive rollout (standard ML practice).                   |
+| Matt's own ideas      | 1            | Interview context and specific product focus (voice healthcare) came from Matt.                                          |
 
 **Key finding:** Wiki was **central**. The conversation was almost entirely scaffolded by Matt's pre-loaded healthcare AI notes. On-demand lookups pulled supporting detail rather than introducing new topics. LLM synthesized rather than invented.
 

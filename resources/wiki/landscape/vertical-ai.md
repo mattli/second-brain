@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-05-28
+last_updated: 2026-06-02
 ---
 
 # Vertical AI

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-06-02
 
 ---
 
@@ -11,6 +11,20 @@ last_updated: 2026-05-26
 ## Overview
 
 The explosion of AI coding tools (Cursor, Claude Code, Replit) has made building trivially easy. The constraint has shifted entirely to distribution and customer acquisition. This is the central challenge for solo founders and small teams in the AI era.
+
+The speed-to-scale data makes the shift concrete: Lovable crossed $100M ARR in eight months, Cursor in twelve, and bolt.new went from $4M to $40M ARR in its first five months [[source]](https://x.com/alexjvacca/status/2047408037078536482). A decade ago those milestones took years. The cost of building collapsed, but the cost of acquiring customers went the other direction — median B2B SaaS CAC payback now sits around 20 months (vs. the long-standing 12-month benchmark), and the median company spends $2.00 of sales and marketing to acquire $1 of new ARR [[source]](https://x.com/alexjvacca/status/2047408037078536482). Treat distribution as an afterthought and you pay that tax every quarter for the life of the company.
+
+## How AI Is Rewiring Buyer Discovery
+
+Three shifts are happening simultaneously, and most GTM teams are only tracking the first:
+
+1. **Buyers ask AI before they ask you.** 94% of B2B decision-makers used at least one LLM somewhere in their 2025 purchase research (Forrester 2026 State of Business Buying) [[source]](https://x.com/alexjvacca/status/2047408037078536482). That number was effectively zero in early 2024. A chunk of the buyer journey now happens inside a conversation the vendor can't see or influence directly.
+
+2. **AI engines recommend a short list, not a page of links.** Perplexity typically cites 3–4 sources per answer; Google AI Overviews surface ~10 links from roughly 4 unique domains. The signals that earn a citation aren't your own blog posts — they're third-party authority: G2/Capterra reviews, Reddit threads, comparison content, and founders talking about you in public. See [Reddit as Acquisition Channel](#reddit-as-acquisition-channel) for tactical patterns.
+
+3. **Outbound is decaying as AI floods it.** Average cold email reply rates slid from ~8.5% in 2019 to ~5% in 2025 to 3.4% on Instantly's 2026 benchmark [[source]](https://x.com/alexjvacca/status/2047408037078536482). When everyone uses AI to mass-personalize cold email, personalization stops being a signal.
+
+If AI commoditizes the *how* of distribution, the edge moves to two things AI can't copy: **proprietary signal** (buying triggers only you can watch, because they come from your own data and instrumentation) and **un-fakeable trust** (real community, real referrals, real usage). Clay rode the proprietary-signal thesis from $1M to $100M ARR in roughly two years by helping teams act on custom signals nobody else tracks [[source]](https://x.com/alexjvacca/status/2047408037078536482).
 
 ## Distribution Strategies That Work (2026)
 
@@ -80,6 +94,16 @@ Adrianna Lakatos (pre-seed investor at f.inc, $100-250K checks into AI/hardware/
 **The template (40%+ reply rate):** Specific subject line → one sentence showing you paid attention → one sentence on why (framed around them) → one sentence on outcome → low-friction ask. Five lines.
 
 **The real secret:** Volume + iteration. Send 100 emails. Track replies. Kill what doesn't work. Double down on what does. First 50 will suck. By email 100, you'll have a system.
+
+## GTM as the MVP
+
+When building is fast and cheap, the first thing worth proving changes. "GTM as the MVP" means your first real deliverable is a working channel — proof that you can reach the people who'd pay, and that they answer when you do. A working channel clears three bars: you can rebuild the same target list on repeat, replies come at a rate that sustains a business, and the cost to reach those buyers scales.
+
+**Signal-timed outreach** demonstrates the difference instrumentation makes: sends timed to intent signals (job changes, funding rounds, hiring surges, new tech in the stack) land between 5–11% reply rate; the same list without timing sits under 2% [[source]](https://x.com/alexjvacca/status/2047408037078536482). The toolchain (Clay for list assembly, PredictLeads and Common Room for signal, Smartlead/Instantly for email, HeyReach for LinkedIn) matters less than the principle — stack 5+ intent signals before anyone gets a message.
+
+**Content-fed outbound** compounds the effect: a prospect who has seen you 3+ times converts at 2–3x the rate of a cold one. Putting 80% of ad budget behind founder content rather than brand ads, combined with signal-timed sends, shifted one team from $40K to $90K/month, with 65% of inbound eventually coming from LinkedIn [[source]](https://x.com/alexjvacca/status/2047408037078536482).
+
+The compounding loop: content earns trust that lifts reply rate → replies become closed-won data that sharpens the next list → a newsletter (or similar owned-audience channel) keeps no-reply accounts orbiting until their signal fires. Every channel hands data and trust to the next one. Simon Wu (Cathay) offers a useful counter: distribution gets you the at-bat, but what holds up over time is a distribution motion that compounds into embedded workflows and proprietary data loops, so every cycle makes the next one cheaper.
 
 ## X (Twitter) as Launch Channel
 
@@ -249,3 +273,4 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "Most companies are laying off marketers. Smart ones are replacing the org chart entirely." — ericosiu (tweet, Apr 2026) ([link](https://x.com/ericosiu)) — Full 2x2 marketer classification and 100x marketer framework
 - "I'm a Serial Founder. Here's how I come up with Business Ideas." — ssbmomelette / Troy (Reddit r/startups, Apr 2026)
 - "How I Consistently Book 2–5 Meetings Per Day with Claude MCP and LinkedIn" — Romàn (tweet, Apr 2026) ([link](https://x.com))
+- "How to Win Distribution When Anyone Can Build the Product" — Alex Vacca (tweet, May 2026) ([link](https://x.com/alexjvacca/status/2047408037078536482)) — Speed-to-scale data, CAC economics shift, AI rewiring buyer discovery (Forrester 94% stat, outbound decay), signal-timed outreach, GTM-as-MVP framework, compounding distribution loops

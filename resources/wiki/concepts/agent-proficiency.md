@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-31
+last_updated: 2026-06-02
 ---
 
 # Agent Proficiency
@@ -43,6 +43,23 @@ The loop:
 5. Once the agent handles that task reliably, move to the next one
 
 The real signals that someone has built this kind of leverage: they can show a running agent setup, demonstrate real-time judgment on AI output, name things they've stopped delegating to AI and why, and point to the skill files their agents run on. Surface-level indicators — "knows how to prompt," "comfortable with ChatGPT," "uses AI tools daily" — are table stakes that don't distinguish.
+
+## Levels of Delegation
+
+A core dimension of agent proficiency is choosing the right level of AI delegation for a given task. Mike Taylor's eight-level framework maps the progression from basic chatbot use to full agent orchestration:
+
+1. **Chatbot** — you ask, it answers (ChatGPT, Claude). Manual context setup each session.
+2. **Copilot** — AI embedded in your workspace (Cursor, Gemini in Docs). Removes copy-paste but limited to single-file context.
+3. **Agent** — multi-step execution with human approval at each step. Reactive — waits for you to initiate.
+4. **Autopilot** — you describe the goal, the agent runs end-to-end, you review the result. This is where "vibe coding" lives.
+5. **Workflows** — structured harnesses around the agent (plan-review-implement loops, compound engineering). The transition from vibe coding to agentic engineering.
+6. **Assistant** — proactive, always-on agents that act without being prompted (monitoring, recurring work, background triage).
+7. **Multi-agent** — parallel long-running agents with distinct responsibilities. Your role becomes team lead.
+8. **Orchestrator** — a manager agent coordinates sub-agents. Highly experimental; even frontier engineers mostly fill the orchestrator role themselves.
+
+The key insight: higher isn't better. The most proficient AI users operate at several levels simultaneously, matching the level to the task. The selection criteria is a trust-stakes calculus — how much you trust the AI to produce good output unsupervised, weighed against how consequential a failure would be. High-stakes tasks warrant lower levels (more supervision) or heavy engineering investment to make higher levels reliable. [[source]](https://every.to/guides/the-eight-levels-of-ai-adoption)
+
+This also explains the [role asymmetry](#corporate-adoption) in adoption: knowledge workers currently cluster at levels 1–4, while engineers push into 5–8 because they can build the scaffolding (test suites, eval harnesses, structured workflows) that makes the higher levels safe. As platforms bake this scaffolding in, the accessible ceiling rises for everyone — but the skill of choosing the right level remains.
 
 ## Staying in the Loop
 
@@ -121,3 +138,4 @@ The role description is essentially the enterprise version of what Karpathy call
 - "The User Is Visibly Frustrated" — Paolo Scanferla (article, May 2026) ([link](https://pscanf.com/the-user-is-visibly-frustrated/)) — added the frustration trap: conversational UX triggers social instincts that make agent failures disproportionately infuriating
 - "The Eternal Sloptember" — George Hotz (article, May 2026) ([link](https://substack.com/home/post/p-163103019)) — agents as statistical mimicry, organizational asymmetry in error correction, and the quality-vs-volume tradeoff
 - "How to become the AI-native hire every company wants" — Anita (tweet thread, May 2026) — skill file method for building agent proficiency, Brain Fry trap, ClickUp/Wix/Webflow restructuring signals
+- "The Eight Levels of AI Adoption" — Mike Taylor, Every (article, May 2026) ([link](https://every.to/guides/the-eight-levels-of-ai-adoption)) — eight-level framework from chatbot to orchestrator; trust-stakes calculus for choosing delegation level; role asymmetry between knowledge workers and engineers

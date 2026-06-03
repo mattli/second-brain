@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-27
+last_updated: 2026-06-03
 ---
 
 # Claude Code Skill Frameworks
@@ -221,6 +221,35 @@ The `/schedule` command inside Claude Code creates a routine interactively — C
 
 See [Agent Harness](agent-harness.md) for the broader infrastructure concept that Routines implements as a managed service.
 
+## Dynamic Workflows: Self-Authored Harnesses
+
+Dynamic workflows let Claude Code write its own JavaScript harness on the fly, custom-built for the task at hand. Instead of relying on a fixed set of skill files, Claude generates a workflow script that spawns and coordinates [subagents](agent-harness.md) — choosing models, isolation levels (worktrees), and orchestration patterns dynamically. This is the logical endpoint of the thin-harness/fat-skills philosophy: the harness itself becomes authored by the agent.
+
+**Why a separate harness matters.** The default Claude Code harness plans and executes in one context window. Over long-running or massively parallel tasks, three failure modes emerge:
+- **Agentic laziness** — Claude declares the job done after partial progress (e.g., addressing 20 of 50 items in a security review)
+- **Self-preferential bias** — Claude favors its own results when asked to verify them
+- **Goal drift** — lossy compaction erodes fidelity to the original objective, especially edge-case requirements and "don't do X" constraints
+
+A workflow structurally prevents these by giving each subagent its own context window and focused goal.
+
+**Orchestration patterns.** Claude composes these when building a workflow:
+- **Classify-and-act** — a classifier routes to different agents or behavior based on task type
+- **Fan-out-and-synthesize** — split a task into many steps, run an agent per step, then merge results at a barrier
+- **Adversarial verification** — for each worker agent, a separate agent adversarially checks its output against a rubric
+- **Generate-and-filter** — generate ideas, then filter by rubric/verification and dedupe
+- **Tournament** — N agents compete on the same task with different approaches; a judging agent runs pairwise comparisons until a winner emerges
+- **Loop until done** — spawn agents in a loop until a stop condition is met (no new findings, no more errors) rather than a fixed number of passes
+
+**Use cases beyond coding.** Workflows are sometimes more useful for non-technical work: sorting support tickets by severity via tournament (comparative judgment beats absolute scoring), mining session history for recurring corrections to distill into CLAUDE.md rules, triaging bug backlogs at scale with quarantine patterns (agents reading untrusted content are barred from high-privilege actions), root-cause investigation with structurally independent hypothesis generation, and taste-based exploration (design or naming) with rubric-driven review agents.
+
+**Migrations and refactors** are a signature use case — Bun's rewrite from Zig to Rust used workflows to break the migration into per-callsite/per-module subagents running in worktrees, with adversarial review agents merging results.
+
+**Dynamic vs. static.** Static workflows (built with the Claude Agent SDK or `claude -p`) must handle all edge cases generically. Dynamic workflows are tailor-made: Claude analyzes the specific task and writes a custom harness. The trigger word "ultracode" ensures Claude creates a workflow rather than working inline.
+
+**Practical tips:** pair workflows with `/goal` (hard completion requirement) and `/loop` (repeated execution for triage, research, or verification). Set explicit token budgets ("use 10k tokens") to cap usage. Save workflows by pressing "s" in the workflow menu — they can be checked into `~/.claude/workflows` or distributed as skills.
+
+**Tradeoff:** dynamic workflows use significantly more tokens than working in a single context. Best reserved for tasks that genuinely need parallel subagents, adversarial verification, or structured multi-step orchestration — not routine coding where one context window suffices.
+
 ## Tools Noted
 
 - **Codex plugin for Claude Code** (OpenAI) — `/codex:review`, `/codex:adversarial-review`, `/codex:rescue` for delegating to Codex from within Claude Code
@@ -252,3 +281,4 @@ See [Agent Harness](agent-harness.md) for the broader infrastructure concept tha
 - "Using Claude Code: The Unreasonable Effectiveness of HTML" — Thariq (tweet, May 2026). HTML as artifact format for Claude Code outputs — specs, plans, reports, prototypes, interactive editors.
 - "Agent Skills" — Addy Osmani (blog, May 2026) ([link](https://addyosmani.com/blog/agent-skills/)). Twenty markdown skill files encoding senior-engineer SDLC phases for AI coding agents. Anti-rationalization tables, progressive disclosure, Google engineering practices, portable across Claude Code / Cursor / Gemini CLI / Codex.
 - "Build a proactive agent workflow with Claude Code" — Maya / Anthropic Applied AI (Code with Claude workshop video, May 2026). Introduces Routines: managed-infrastructure proactive automation for Claude Code with schedule and event-based triggers, connectors, and interactive steerability.
+- "A harness for every task: dynamic workflows in Claude Code" — Thariq / Anthropic (tweet + blog, Jun 2026) ([link](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)). Dynamic workflows: Claude writes its own JavaScript harness on the fly. Orchestration patterns (fan-out, adversarial verification, tournament, classify-and-act), failure modes (agentic laziness, self-preferential bias, goal drift), use cases from migrations to non-technical work, and tips for token budgets and sharing.

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-02
+last_updated: 2026-06-04
 ---
 
 # AI-Native Product Development
@@ -289,6 +289,22 @@ When agents generate UI, each screen can look fine in isolation but feel like a 
 
 This connects directly to Ann Miura-Ko's feature factory risk: when execution is nearly free, DESIGN.md becomes one mechanism for encoding the taste that prevents agent-generated UI from diverging into chaos.
 
+## Brand-as-Code (Atomic Kits)
+
+Little Plains (Emmett Shine, Alex Leiphart) ships brand identity not as PDFs or design files but as structured code — YAML, JSON, Markdown, HTML, CSS, and SVG organized into an "atomic kit" that any AI agent can read and build from. The deliverable is a zip file with two folders: `/human` (traditional brand guidelines) and `/agent` (machine-readable instructions encoding positioning, voice, visual system, motion specs, and UI components). The same brand in two formats — one for understanding, one for extending.
+
+The practical test: a founder drops the agent folder into Cursor, types one prompt, and gets a near-complete landing page with correct fonts, hover states, motion matching the spec, and copy following the brand voice — because the strategic thinking is embedded in the file structure, not described in a deck someone has to interpret.
+
+**Value concentrates upstream.** In traditional engagements, value accrues gradually as deliverables pile up. With atomic kits, the highest-value work happens at the very start: deep research, positioning judgment, the bold calls about who the brand is for, what it says, and how it sounds. Once that thinking is encoded, downstream outputs run on its logic. The engagement's value curve looks like a funnel on its side rather than a steady climb.
+
+**The magic_trick.md problem.** Everything an atomic kit produces is a recombination of its inputs — consistent, branded, shippable, and gravitating toward the median. Correctness and originality are not the same thing. Little Plains keeps a `magic_trick.md` file in every kit: the placeholder for a human creative idea that couldn't have been predicted from the system's inputs. A launch film concept from a film-noir binge, a billboard line that lands harder than the system would produce on its own. Without it, the output is correct and forgettable. The analogy: a well-produced agentic system is an enormous, perfectly cross-referenced record library — useless without a DJ who knows which record to pull in which room on which night.
+
+**HTML as the right medium.** A component expressed in structured HTML is parseable by any modern agent. An SVG has its logic in geometry. A CSS file encodes visual language structurally. Flat raster exports — PNG, JPEG, PDF — can be looked at but not built from. When systems are structured as HTML, CSS, and SVG, they're built for how agents read and construct, not just how humans view.
+
+**Pricing implications.** If the kit is the product, pricing moves from time-and-materials toward software-like models: scoped strategy on the front end, ongoing licensing for the living system. The kit isn't a finished asset — it's a system that produces finished assets. What's sold is the encoded thinking that makes every future artifact feel like the same brand.
+
+This extends the [DESIGN.md pattern](#designmd--text-based-design-systems-for-agents) from UI consistency to full brand coherence, and operationalizes the [code-native visual generation](#code-native-visual-generation) thesis at the brand-system level. Where DESIGN.md ensures agent-generated screens look like the same product, an atomic kit ensures agent-generated *everything* — landing pages, campaigns, product UI, motion — feels like the same brand. The [magic_trick.md concept](#brand-as-code-atomic-kits) also reinforces why [taste becomes the moat](#ai-native-companies-in-practice-ann-miura-ko) when execution is nearly free: the system handles correctness, but only human judgment produces the memorable departure from the median.
+
 ## Code-Native Visual Generation
 
 The most interesting visual AI tools have stopped trying to generate the final output and instead generate the source code behind it. Where pixel-native generation (diffusion models) produces images or videos directly, code-native generation produces a symbolic representation — SVG, HTML/CSS, React components, Lottie JSON, Blender scripts, USD scene graphs — that is then rendered by an engine. The visual output is still pixels, but the source of truth is a structured, editable artifact.
@@ -383,3 +399,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "The Culture of AI Engineering" — Noah Brier / Every (May 2026) — software company vs. software factory, Warhol vs. Ford metaphor, pace layers for AI engineering, agent onboarding as culture problem
 - "The Long Becoming" — Alfred Lin / Sequoia (tweet, May 2026) — five sequential bottlenecks of AI-native transformation, enabled vs. native framing, development OS as internal tooling layer, becoming harder than declaring
 - "The Next Frontier of Visual AI Is Code" — Yoko Li / a16z (May 2026) ([link](https://www.a16z.news/p/the-next-frontier-of-visual-ai-is)) — code-native vs. pixel-native visual generation, Code→Render→Inspect→Revise loop, test-time compute advantage, 3D as strongest case, market organization by runtime
+- "The HTML Brand: Input-Based Outcomes" — Emmett Shine / Little Plains (Jun 2026) ([link](https://x.com/emmettshine)) — brand-as-code atomic kits, value-upstream model, magic_trick.md, HTML as agent-readable brand medium, licensing-model implications

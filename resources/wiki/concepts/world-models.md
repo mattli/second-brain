@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-20
+last_updated: 2026-06-04
 ---
 
 # World Models
@@ -17,6 +17,23 @@ The original architecture (David Ha, 2018) uses three components:
 3. **Controller** — Samples from both components to produce actions
 
 The key claim: this modeling approach is closer to how humans develop understanding and may get closer to AGI than pure language models.
+
+## A Functional Taxonomy
+
+"World model" is one of the most overloaded terms in AI. Computer vision, robotics, reinforcement learning, and generative AI each claim to be building world models — and each means something different. A video model producing gorgeous but physically impossible flames, a language model improvising a playable game, and a physics engine faithfully simulating combustion all go by the same name.
+
+Fei-Fei Li and the World Labs team cut through this by returning to the formal structure underneath: the partially observable Markov decision process (POMDP). The loop works as follows:
+
+1. An **agent** (person, robot, or software system) takes **actions**
+2. Actions affect the **state** of the world — a complete description of what is happening at a given moment (every object, position, velocity, property)
+3. The agent never sees state directly; it receives **observations** — photons on a retina, sensor readings, pixels in a frame
+4. Observations inform new actions, and the loop continues
+
+State is the underlying reality; observations are an agent's partial view of it. This distinction matters: where language models learn the statistical structure of text, world models learn the statistical structure of space and time — how light falls on a surface, how a scene looks from an unseen angle, how objects respond to force.
+
+The key insight of the taxonomy is that the different things now called "world models" are in fact **different projections of this same loop**. Each one outputs a different piece of it — some predict observations (video generators), some predict state transitions (physics engines), some plan actions (RL agents). Recognizing which piece a system actually models clarifies what it can and cannot do.
+
+The term's lineage predates deep learning entirely. Kenneth Craik proposed in 1943 that minds reason by running "small-scale models" of reality, and the idea was carried into neural networks by the late 1980s. The POMDP formalization (canonical in Sutton and Barto's RL textbook) gave "world model" its modern technical meaning.
 
 ## The LLM vs. World Models Debate
 
@@ -68,7 +85,7 @@ Nathan Lambert (Apr 2026) published 13 beliefs on the open vs. closed model dyna
 ## Key Players
 
 - **AMI** (Yann LeCun) — Advanced Machine Intelligence, JEPA-based world models
-- **World Labs** (Fei-Fei Li) — Spatial intelligence startup ($230M+ raised). Product: Marble (Gaussian splat environments)
+- **World Labs** (Fei-Fei Li) — Spatial intelligence startup ($230M+ raised). Product: Marble (Gaussian splat environments). Li's functional taxonomy grounds the field in the POMDP loop, classifying systems by which piece of the agent–state–observation cycle they model
 - **Google** — SEMA (Mar 2024), SEMA 2 (Nov 2025), Genie 3 (hyperrealistic interactive worlds)
 - **NVIDIA Cosmos** — Open-source world foundation model for data augmentation and downstream training (autonomous vehicles, robots, video agents)
 
@@ -85,3 +102,4 @@ Y Combinator's [2026 RFS](../landscape/yc-ai-thesis.md) explicitly calls out spa
 - "World Models explained in 10min" — Caleb Writes Code (video, Apr 2026) ([link](https://youtube.com/watch?v=ECWC-YlAk1o&si=JtFcOyR1f29mfqpi))
 - "How Not to Be Stupid About AI, With Yann LeCun" — Steven Levy / Wired ([link](https://www.wired.com/story/how-not-to-be-stupid-about-ai-with-yann-lecun/))
 - "My bets on open models, mid-2026" — Nathan Lambert (Apr 2026) ([link](https://www.interconnects.ai/p/my-bets-on-open-models-mid-2026))
+- "A Functional Taxonomy of World Models" — Fei-Fei Li / World Labs (2026) ([link](https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models)) — POMDP-based framework classifying world models by which piece of the agent–action–state–observation loop they output

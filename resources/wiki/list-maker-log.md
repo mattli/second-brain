@@ -1,27 +1,24 @@
 ---
-run_date: 2026-06-04
-run_start: "2026-06-04T08:00:59Z"
-run_end: "2026-06-04T08:01:30Z"
-updated_after: "2026-06-03T00:48:00Z"
-items_total: 3
-workers_dispatched: 3
+run_date: 2026-06-05
+run_start: "2026-06-05T08:00:00Z"
+run_end: "2026-06-05T08:01:00Z"
+updated_after: "2026-06-04T08:01:30Z"
+items_total: 1
+workers_dispatched: 0
 tier_c_referenced: 0
 tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-06-04
+# List-Maker Run — 2026-06-05
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-03T00:48:00Z. Found 3 new documents — all Tier A, all dispatched as update workers to existing pages.
+Cutoff from previous run_end: 2026-06-04T08:01:30Z. Found 1 document — the Claude Mythos Preview system card PDF (70K words, Tier C). Already referenced in models-safety/claude-mythos.md from a prior run. No workers dispatched.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01kt8fbzkcq1cj4h9nth6n4jje | A | update | landscape/services-as-software.md | Solo AI agency playbook ($40k MRR, no employees) extends services-as-software thesis with concrete operator case study |
-| 01kt7fvk54xx329ve5z4jdpkhx | A | update | tools/ai-native-product-development.md | Brand-as-code concept (structured HTML brand systems for AI-generated assets) extends AI-native product development coverage |
-| 01kt79r4p49c9qp3py68z0xjnn | A | update | concepts/world-models.md | Fei-Fei Li's functional taxonomy of world models directly extends existing page with formal framework |
 
 ## Tier C — References Added
 
@@ -37,6 +34,7 @@ Cutoff from previous run_end: 2026-06-03T00:48:00Z. Found 3 new documents — al
 
 | ID | Title | Reason |
 |----|-------|--------|
+| 01knnraph8fhxanxpk246qj76j | System Card: Claude Mythos Preview | already_in_wiki |
 
 ## Carry-Over (deferred to next run)
 

@@ -89,6 +89,38 @@ Skill files work like method calls: same procedure + different arguments = diffe
 
 See [Agent Harness](agent-harness.md) for the full principle and why "fat harness with thin skills" is the anti-pattern.
 
+## Building Your First Skill Library
+
+The most common mistake when starting a skill library is beginning with lightweight tasks — summarizing meeting minutes, polishing paragraphs, categorizing emails. These produce a tidy folder of prompts that nobody opens, because today's models already handle them out of the box.
+
+**Start with judgment-heavy work instead.** The right first question isn't "what prompts can I organize?" but "what task recurs frequently where I still feel the need to personally double-check it?" PRD reviews, support escalations, launch QA, code reviews, brand voice checks, sales call prep — these follow a process on the surface, but at critical junctures they require an experienced pair of eyes. When those judgments live only in someone's head, the company pays a recurring cost: a senior goes on PTO and review quality drops, a project pauses and the agent references outdated state, old project preferences pollute a new one.
+
+A skill library captures the **sequence of judgment** — not what was said last time, but what to check first next time, who to trust, where to stop, and how to fix errors. The difference between a prompt and a skill: the prompt saves "assess severity and draft a reply"; the skill encodes "check customer tier first, review the last interaction, scan for risk keywords, route to the right team, trust the latest CRM record over older threads, and stop for a human if refund status or delivery timeline is uncertain."
+
+### Five Layers of a Skill Library
+
+**Layer 1 — Skill Map.** List skills by workflow (escalation triage, launch QA, content review), not by tool (Slack skill, Notion skill). An agent matching a task asks "what work am I doing," not "what tool should I open." A v0 library needs only 3–5 skills.
+
+**Layer 2 — Boundaries.** Every skill must know when to step in and exactly when to exit. Content review owns quality, not fact-checking. Research synthesis owns data aggregation, not final tone. Without boundaries, three skills fight over one problem, or one skill tries to do everything and degrades into a generic CLAUDE.md.
+
+**Layer 3 — State Source.** Multi-day tasks need a current state source (STATUS.md, Notion page, Linear issue, CRM record) answering: what version are we on, what's locked, what's pending, why did we change it last time, which old directions were already rejected. Many agent failures trace to looking at the wrong version.
+
+**Layer 4 — Routing.** As the library grows, never dump all skill documents into context at once. A good library acts as a receptionist: "client wants a refund" routes to Escalation, "last look before go-live" routes to Launch QA. Skills need internal micro-routers too — starting a project loads templates, fixing a wrong output loads failure modes, a quick question skips historical context. This is [progressive disclosure](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) applied at the library level: show the entrance first, read the full skill after a match, load deeper references only when needed.
+
+**Layer 5 — Maintenance.** Skill libraries rot. Models upgrade, making old rules a burden. Team members rotate, owners vanish. Projects pivot, state sources expire. Maintenance protocols: failed to trigger → fix the description. Triggered by mistake → narrow boundaries. Referenced old state → fix the source of truth. Repeated an error → add a failure mode. Model handles it natively now → delete the rule. Unused for three months → archive. For stricter maintenance, give every skill a small trigger eval with should-trigger and should-not-trigger queries.
+
+### Failure Records Over Prompts
+
+Three recurring failure patterns illustrate why encoding judgment matters more than saving prompts:
+
+- **Phase transitions** — rules that work in one phase break in the next. A storyboard requires clear separation between frames; production requires smooth transitions. Baked into a skill: "before entering a new phase, verify if the correct practices from the previous phase still apply."
+- **Conflicting inputs** — when text instructions say one thing but reference images, old versions, or state logs say another, output drifts. Skill discipline: input materials are also instructions. Old examples are for structural reference only; current state, brand guidelines, and client brief are the source of truth.
+- **Ambiguous feedback** — "I don't like blue" doesn't mean all blues are wrong. "It doesn't feel premium" doesn't mean start over. Codified workflow: review the output yourself, ask for the specific pain point, judge if it's a minor tweak / pivot / redo, draft a revision plan, execute only after confirmation. This saves not one generation cost but three rounds of pointless rework.
+
+### Sizing V1
+
+Pick three workflows that recur most frequently and rely most heavily on judgment. For V1, each skill needs to clearly define six things: (1) when to use it, (2) what to read before starting, (3) what the key judgment points are, (4) what the output format is, (5) what actions require stopping to ask a human, (6) how to patch rules when it fails. V1 can be short — build it out as it runs. In month one, adoption matters far more than perfection. Three skills used daily deliver more value than thirty skills rotting in a folder.
+
 ## Related Concepts
 
 - [Agent Proficiency](../concepts/agent-proficiency.md) — The skill of managing these frameworks effectively
@@ -290,3 +322,4 @@ A workflow structurally prevents these by giving each subagent its own context w
 - "Agent Skills" — Addy Osmani (blog, May 2026) ([link](https://addyosmani.com/blog/agent-skills/)). Twenty markdown skill files encoding senior-engineer SDLC phases for AI coding agents. Anti-rationalization tables, progressive disclosure, Google engineering practices, portable across Claude Code / Cursor / Gemini CLI / Codex.
 - "Build a proactive agent workflow with Claude Code" — Maya / Anthropic Applied AI (Code with Claude workshop video, May 2026). Introduces Routines: managed-infrastructure proactive automation for Claude Code with schedule and event-based triggers, connectors, and interactive steerability.
 - "A harness for every task: dynamic workflows in Claude Code" — Thariq / Anthropic (tweet + blog, Jun 2026) ([link](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)). Dynamic workflows: Claude writes its own JavaScript harness on the fly. Orchestration patterns (fan-out, adversarial verification, tournament, classify-and-act), failure modes (agentic laziness, self-preferential bias, goal drift), use cases from migrations to non-technical work, and tips for token budgets and sharing.
+- "Start with Repetitive, High-Judgment Work: Building Your First Skill Library" — Vox (tweet, Jun 2026). Practical guide to building a first skill library: start with judgment-heavy recurring work, five-layer library architecture (skill map, boundaries, state source, routing, maintenance), failure records over prompts, and V1 sizing.

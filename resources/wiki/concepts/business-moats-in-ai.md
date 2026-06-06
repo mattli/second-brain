@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-06-06
 ---
 
 # Business Moats in AI
@@ -163,6 +163,24 @@ The pattern in every case: the winner recognized when the critical input had bee
 
 **Applied to AI:** Companies racing to adopt AI fastest are optimizing for intelligence as a scarce input. That input is becoming a commodity. The five durable moats above (data, network effects, regulatory permission, capital, physical infrastructure) are all things that *can't* be parallelized by AI and *can't* be commoditized quickly. Building those is the niche construction play. Optimizing AI token usage metrics and winning "most AI-native company" press releases is the Red Queen trap.
 
+## The Terminal Value Collapse Thesis
+
+Chamath Palihapitiya inverts the entire moat framework with a thought experiment: what if AI lowers the cost of disruption so dramatically that no company can credibly project free cash flow beyond five years? If moats become temporary by default, equities should be priced not as discounted streams of future cash flows but as short-duration multiples of current earnings — the same way markets priced taxi medallions right before Uber.
+
+**The repricing math:** Start from the risk-free rate (~4.5% on 10-year Treasuries), add the equity risk premium (4–5%), and the required return on a stable, no-growth equity lands at roughly 9% — implying a baseline multiple of 10–12x FCF. Now add a 20% annual probability of AI-driven obsolescence. The expected business lifespan drops to ~5 years, and the rational multiple compresses to ~3.9x FCF. At 30% disruption probability: ~2.8x. At 10%: ~6.5x. The S&P 500 currently trades at ~22x earnings; repricing to the midpoint (5x FCF) would imply a drawdown from $58T to $14T in aggregate market cap.
+
+**Historical precedent:** Markets have already applied this logic sector by sector. Newspapers compressed from 12–15x EBITDA to 2–4x between 2005 and 2015 as digital advertising destroyed the print model. Department stores fell to 3–6x FCF as Amazon dismantled brick-and-mortar economics. Oil majors traded at 4–6x FCF when markets began pricing stranded reserves. NYC taxi medallions collapsed from over $1M to under $100K. In every case, the market correctly identified duration risk: real cash flows today, uncertain survival tomorrow.
+
+**The self-defeating paradox:** AI infrastructure requires $300–500B per year in long-duration capital expenditure — investments that only make sense over 7–15 year horizons. But if markets reprice to 2–7x FCF, that capex becomes unfinanceable. The disruption engine disrupts itself. This creates an oscillating dynamic rather than a permanent regime: compression → capex drought → slower disruption → moats re-harden → multiples recover → capex resumes → cycle repeats.
+
+**Capital rotates to the physical world:** Money flows toward assets insulated from AI disruption — energy infrastructure, farmland, toll roads, water rights, commodity producers, short-duration sovereign bonds. This reinforces the physical infrastructure and capital-at-scale moats: the same assets that are "hard to get" in Bloch's framework are also the assets that retain terminal value in Chamath's.
+
+**Nation-states fill the void:** If private capital can't finance long-duration projects, sovereign capital steps in. Countries with high savings rates, large borrowing capacity, or patient state investment vehicles (US, China, Gulf states, Norway, Singapore) gain a structural advantage. Industrial policy stops being fringe; strategic infrastructure becomes a national security question rather than an ROE question.
+
+**The likely outcome** is not a permanent 5x-FCF world but structurally higher equity risk premiums, shorter capital cycles, fatter tails, and periodic crises of confidence in terminal values. Even a partial compression — 30–40% rather than 90% — would represent the most significant structural shift in capital markets since the postwar era.
+
+The tension with the five durable moats above is productive: Chamath's framework doesn't invalidate them so much as compress the timeline over which they compound. The meta-question becomes whether any moat can accumulate fast enough to outrun the accelerating disruption cycle — or whether the cycle itself is self-limiting.
+
 ## The Meta-Moat
 
 "Time that can't be parallelized." Network density takes years of human adoption. Regulatory approval takes years of political process. Infrastructure takes years to build. Data takes years to compound. Capital relationships take decades to earn.
@@ -180,3 +198,4 @@ The pattern in every case: the winner recognized when the critical input had bee
 - "The AI SaaS Squeeze" — Tyler Tringas (Calm Fund, Jun 2025 / published Apr 2026) ([link](https://x.com/tylertringas))
 - "Running Faster to Go Nowhere: The AI Adoption Trap" — BuccoCapital / Educated Guess (Apr 2026) ([link](https://www.educatedguess.com)) — Red Queen dynamics in AI adoption, Fractal of AI Panic, niche construction historical case studies (Amazon, GM/Sloan, Toyota)
 - "AI Eats the World" — Benedict Evans / Slush (video, 2025) ([link](https://www.youtube.com/watch?v=FtG8fMGHbNY)) — Platform shift framing, model commoditization data, capital-vs-network-effects fork for model labs, $400B infrastructure spend, absorption-to-disruption deployment cycle
+- "The Collapse of Terminal Value" — Chamath Palihapitiya (tweet, Jun 2026) — Disruption repricing framework: if AI makes moats temporary, equities compress to 2–7x FCF; historical precedents (newspapers, retail, energy, taxi medallions); self-defeating paradox of AI capex; capital rotation to physical assets and sovereign investors

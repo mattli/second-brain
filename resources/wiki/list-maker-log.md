@@ -1,24 +1,29 @@
 ---
-run_date: 2026-06-05
-run_start: "2026-06-05T08:00:00Z"
-run_end: "2026-06-05T08:01:00Z"
-updated_after: "2026-06-04T08:01:30Z"
-items_total: 1
-workers_dispatched: 0
+run_date: 2026-06-06
+run_start: "2026-06-06T08:01:00Z"
+run_end: "2026-06-06T08:02:00Z"
+updated_after: "2026-06-05T08:01:00Z"
+items_total: 5
+workers_dispatched: 5
 tier_c_referenced: 0
 tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-06-05
+# List-Maker Run — 2026-06-06
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-04T08:01:30Z. Found 1 document — the Claude Mythos Preview system card PDF (70K words, Tier C). Already referenced in models-safety/claude-mythos.md from a prior run. No workers dispatched.
+Cutoff from previous run_end: 2026-06-05T08:01:00Z. Found 5 new documents, all Tier A tweets. All dispatched to per-doc workers for synthesis into existing pages.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
+| 01ktdnjqbp5d5dt263bgg42d60 | A | update | tools/claude-code-skill-frameworks.md | Dynamic Workflows in Claude Code — 6 patterns for agent task splitting |
+| 01ktdg75tb5a6g48wpfv4c4w5p | A | update | concepts/business-moats-in-ai.md | Chamath's "Collapse of Terminal Value" — AI making moats temporary |
+| 01ktctdq4eh1m3cap74kyrg3tf | A | update | tools/claude-code-skill-frameworks.md | Building skill libraries from repetitive high-judgment work |
+| 01ktcc219fzphpw32mce1q60pf | A | update | tools/ai-native-product-development.md | Generative UI patterns (Controlled, Declarative, Open-ended) |
+| 01ktcbhw462x5m3y1x2tm2javh | A | update | landscape/yc-ai-thesis.md | Garry Tan's "99.1% Totality" — founder mindset on pushing past almost-good |
 
 ## Tier C — References Added
 
@@ -34,7 +39,6 @@ Cutoff from previous run_end: 2026-06-04T08:01:30Z. Found 1 document — the Cla
 
 | ID | Title | Reason |
 |----|-------|--------|
-| 01knnraph8fhxanxpk246qj76j | System Card: Claude Mythos Preview | already_in_wiki |
 
 ## Carry-Over (deferred to next run)
 

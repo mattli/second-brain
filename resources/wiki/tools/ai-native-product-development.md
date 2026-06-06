@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-04
+last_updated: 2026-06-06
 ---
 
 # AI-Native Product Development
@@ -319,6 +319,24 @@ This distinction matters because production workflows care about what happens *a
 
 **The hybrid future.** Pixel-native models will remain best for realism, texture, and exploration. Code-native systems will be better for structure, iteration, and production integration. The most useful workflows will combine both. This connects to Saarinen's point in [Output Isn't Design](#output-isnt-design) — image generation breaks down with iterations because it's hard to change one specific thing without reshaping the whole output. Code-native generation solves exactly this problem by giving the model (and the human) source-level access to what went wrong.
 
+## Generative UI Patterns
+
+When agents stop describing results and start showing them, the frontend becomes something the agent draws at runtime rather than something designers ship in advance. Three architectural patterns have emerged, each with different trade-offs on control, scalability, and brand consistency.
+
+**The protocol stack.** Three protocols divide the work: MCP connects agents to tools, A2A connects agents to each other, and AG-UI connects agents to users via SSE streaming. A2UI (Google's spec for agents emitting UI as schema) rides on AG-UI. State flows both ways on the same stream — user edits propagate to the agent, agent mutations propagate to the user.
+
+**Pattern 1: Controlled.** Pre-build React components, bind each to a tool name. The agent picks the tool and the component renders inline with the agent's args as props. Your design system stays in charge. The cost: every registered component sits in the agent's context window (~400 tokens per tool description). At 25 components, that's 10,000 tokens of tax per turn before the user says anything. The agent also starts confusing semantically similar components — "pie chart" and "donut chart" both "show proportions." Ship Controlled for ten or fewer high-value flows where design precision matters.
+
+**Pattern 2: Declarative (A2UI).** The agent emits a JSON schema describing the UI; a component catalog maps schema nodes to renderers. One tool, many UIs. Token cost stays flat regardless of how many card types exist — the agent sees a single function, not 50 tool descriptions. The catalog is the contract: definitions list allowed components with Zod schemas for props, and renderers fill in the React. The trade-off is that the LLM owns the layout, so output varies run to run within the catalog's constraints. Ship Declarative for the long tail of dashboards, results, forms, and widgets.
+
+**Pattern 3: Open-ended.** No catalog, no schema. The agent writes raw HTML rendered inside a sandboxed iframe. Maximum flexibility, minimum brand consistency. "Neo-brutalist on Tuesday, iOS 4 clone on Wednesday" — style rules in the prompt nudge toward a brand but don't guarantee it. Ship Open-ended only for throwaway interactions: one-shot visualizations, sandboxed experiments, disposable explanations. Never as the primary surface.
+
+**The decision heuristic:** Pixel-perfect mockups for this flow → Controlled. Dozens of card types to ship → Declarative. One-shot visualization the user will never see twice → Open-ended. Can't decide → default to Declarative, then upgrade to Controlled for the top three flows.
+
+**The core insight:** "The mistake isn't picking the wrong pattern. It's not knowing you picked one." Most teams default to Controlled because their framework defaults to it, hit the wall at 25 components, and reach for Open-ended because it demos well. Neither was a decision — both were drift.
+
+This connects directly to the [DESIGN.md pattern](#designmd--text-based-design-systems-for-agents) and [Brand-as-Code](#brand-as-code-atomic-kits) — both encode taste into files that constrain agent-generated UI. Generative UI is the runtime layer those systems inform. It also extends [Code-Native Visual Generation](#code-native-visual-generation): where code-native tools produce editable artifacts (SVG, React components), generative UI patterns determine how agents select and compose those artifacts for the user in real time.
+
 ## The Bottleneck Cascade (Andrew Ng)
 
 Andrew Ng (deeplearning.ai, Apr 2026) frames the PM bottleneck as just the first in a cascade. When AI coding speeds up 10-100x, every adjacent function becomes the new bottleneck in turn:
@@ -400,3 +418,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "The Long Becoming" — Alfred Lin / Sequoia (tweet, May 2026) — five sequential bottlenecks of AI-native transformation, enabled vs. native framing, development OS as internal tooling layer, becoming harder than declaring
 - "The Next Frontier of Visual AI Is Code" — Yoko Li / a16z (May 2026) ([link](https://www.a16z.news/p/the-next-frontier-of-visual-ai-is)) — code-native vs. pixel-native visual generation, Code→Render→Inspect→Revise loop, test-time compute advantage, 3D as strongest case, market organization by runtime
 - "The HTML Brand: Input-Based Outcomes" — Emmett Shine / Little Plains (Jun 2026) ([link](https://x.com/emmettshine)) — brand-as-code atomic kits, value-upstream model, magic_trick.md, HTML as agent-readable brand medium, licensing-model implications
+- "Generative UI Is the New Frontend" — Shubham Saboo (tweet, Jun 2026) ([link](https://x.com/Saboo_Shubham_)) — three generative UI patterns (Controlled, Declarative/A2UI, Open-ended), AG-UI protocol stack, token economics of component registration, brand inconsistency in open-ended rendering

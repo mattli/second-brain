@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-03
+last_updated: 2026-06-06
 ---
 
 # Claude Code Skill Frameworks
@@ -230,7 +230,9 @@ Dynamic workflows let Claude Code write its own JavaScript harness on the fly, c
 - **Self-preferential bias** — Claude favors its own results when asked to verify them
 - **Goal drift** — lossy compaction erodes fidelity to the original objective, especially edge-case requirements and "don't do X" constraints
 
-A workflow structurally prevents these by giving each subagent its own context window and focused goal.
+A workflow structurally prevents these by giving each subagent its own context window and focused goal. Three capabilities make this possible: per-agent isolation (own context, no cross-contamination), per-agent model choice (Opus for hard reasoning, Haiku for cheap exploration, Sonnet for the middle), and per-agent isolation level (worktree for an isolated git checkout, or remote for no checkout).
+
+**Core API.** Three functions do most of the work: `agent()` spawns a single subagent with a prompt, model, and optional structured output schema. `parallel()` fans out multiple agent calls and acts as a **barrier** — it waits for all results before returning. `pipeline()` is **streaming** — each item flows through every stage independently, which is cheaper and faster when you don't need all results before proceeding. The decision rule: *do I need all results before I can do anything next?* Yes → `parallel()`. No → `pipeline()`.
 
 **Orchestration patterns.** Claude composes these when building a workflow:
 - **Classify-and-act** — a classifier routes to different agents or behavior based on task type
@@ -244,9 +246,15 @@ A workflow structurally prevents these by giving each subagent its own context w
 
 **Migrations and refactors** are a signature use case — Bun's rewrite from Zig to Rust used workflows to break the migration into per-callsite/per-module subagents running in worktrees, with adversarial review agents merging results.
 
-**Dynamic vs. static.** Static workflows (built with the Claude Agent SDK or `claude -p`) must handle all edge cases generically. Dynamic workflows are tailor-made: Claude analyzes the specific task and writes a custom harness. The trigger word "ultracode" ensures Claude creates a workflow rather than working inline.
+**Pattern composition.** The six patterns rarely appear alone. Real workflows compose 2–4: migrations use fan-out (one agent per callsite in a worktree) → adversarial verification (separate agent reviews each fix) → loop until done. Deep research uses fan-out (parallel searches) → adversarial verification (each claim checked independently) → synthesize (one cited report). Root-cause investigation generates theories from disjoint evidence via fan-out → runs a panel of verifiers and refuters per theory → loops until one survives. Sorting 1,000+ items uses tournament with pairwise comparison, never absolute scoring. The selection heuristic: identify which failure mode your task suffers from, then pick the pattern that structurally prevents it — drift → fan-out, self-preference → adversarial verification, open-ended → loop until done, hard-to-score → tournament.
 
-**Practical tips:** pair workflows with `/goal` (hard completion requirement) and `/loop` (repeated execution for triage, research, or verification). Set explicit token budgets ("use 10k tokens") to cap usage. Save workflows by pressing "s" in the workflow menu — they can be checked into `~/.claude/workflows` or distributed as skills.
+**Quarantine pattern.** Any workflow processing untrusted content — support tickets, bug reports, scraped data, third-party API output — needs a quarantine boundary. Agents that *read* untrusted content are barred from high-privilege actions. Separate agents, with no exposure to the raw content, do the acting. A 30-line read-only reader agent costs almost nothing and removes an entire class of prompt injection risk.
+
+**Dynamic vs. static.** Static workflows (built with the Claude Agent SDK or `claude -p`) must handle all edge cases generically. Dynamic workflows are tailor-made: Claude analyzes the specific task and writes a custom harness. The dynamic version wins because the workflow shapes itself around your context — reading your code, checking each feature against actual docs, pricing at your transaction volume, and running adversarial passes against its own emerging answer. The trigger word "ultracode" ensures Claude creates a workflow rather than working inline.
+
+**Practical tips:** pair workflows with `/goal` (hard completion requirement) and `/loop` (repeated execution for triage, research, or verification). Set explicit token budgets ("use 10k tokens") to cap usage — without a cap, ambitious workflows balloon to 5–10x expected token usage. Save workflows by pressing "s" in the workflow menu — they go to `~/.claude/workflows`. From there, bundle the JavaScript file inside a Skill folder and reference it in SKILL.md to distribute as a shareable skill. When packaging a workflow into a Skill, prompt Claude to treat the workflow as a template rather than a script to run verbatim — this leaves room for adaptation while keeping the overall structure intact.
+
+**Common mistakes:** reaching for a workflow when a single context window would suffice; no token budget (costs balloon); one agent doing both work and verification (self-preferential bias); treating `parallel()` and `pipeline()` as interchangeable (the barrier semantics matter); skipping `/goal` on loop patterns (workflow stops at the first soft completion point); letting untrusted content reach the actor (quarantine is mandatory); sorting with absolute scores instead of comparative judgment; never saving working workflows (re-prompting the same shape every week).
 
 **Tradeoff:** dynamic workflows use significantly more tokens than working in a single context. Best reserved for tasks that genuinely need parallel subagents, adversarial verification, or structured multi-step orchestration — not routine coding where one context window suffices.
 

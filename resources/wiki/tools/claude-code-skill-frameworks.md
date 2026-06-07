@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-06
+last_updated: 2026-06-07
 ---
 
 # Claude Code Skill Frameworks
@@ -290,6 +290,26 @@ A workflow structurally prevents these by giving each subagent its own context w
 
 **Tradeoff:** dynamic workflows use significantly more tokens than working in a single context. Best reserved for tasks that genuinely need parallel subagents, adversarial verification, or structured multi-step orchestration — not routine coding where one context window suffices.
 
+## Anti-Fabrication Stack
+
+A 4-layer configuration that makes fabrication structurally expensive rather than relying on model improvements alone. The core insight: Claude is a text predictor, and when it doesn't know something it predicts text that *looks* right — made-up function names, fake imports, "tests pass" when nothing ran. The fix is making output checkable in real time and making "I don't know" cheaper than guessing.
+
+**Layer 1 — CLAUDE.md honesty rules.** Explicit rules requiring verification before claiming a function/class/import exists, prohibiting fabricated error messages or stack traces, and — critically — granting an "I don't know" license. By default Claude is optimized to look helpful, and admitting ignorance feels unhelpful unless given explicit permission. The rule "when you genuinely don't know, the correct answer is 'I don't know'" is the most important line because most people never grant it.
+
+**Layer 2 — Verification-before-write protocol.** Before writing code that uses a symbol, Claude must read the defining file, grep for it, or check the dependency manifest. If verification is skipped, the code must be prefixed with `// UNVERIFIED: I have not confirmed this symbol exists`. Plan mode is preferred for multi-file tasks — it's where wrong assumptions surface before any code is written.
+
+**Layer 3 — PostToolUse hooks.** Type checkers and linters run automatically every time Claude writes or edits a file. If Claude invents an import, `tsc` or `pyright` fails instantly and the error goes back into context — Claude must fix it before claiming the task is done. A `Stop` hook running the test suite prevents "done, tests pass" claims without actual execution. No invented code survives a PostToolUse check.
+
+**Layer 4 — Fact-checker subagent.** A dedicated `.claude/agents/fact-checker.md` agent whose only job is verifying claims before they ship. It identifies every factual claim in the conversation (code behavior, test results, library capabilities, import correctness), independently verifies each one by reading files and running commands, and produces a VERIFIED / WRONG / UNVERIFIABLE report. Invoked before commits or before sharing results.
+
+**The human layer.** The four technical layers don't stick without the behavioral one: rewarding "I haven't verified this" with patience rather than frustration. Punish honesty once and Claude reverts to guessing.
+
+**Signs it's working:** Claude asks before adding dependencies instead of silently installing. Claude references `file:line` when discussing code. Type checker and linter output stays clean because hooks catch fabrications instantly and Claude self-corrects.
+
+**Common setup mistakes:** CLAUDE.md too long (honesty rules must be in the first 50 lines). Hook output not reaching stdout (Claude doesn't know it lied). Skipping plan mode (cheapest moment to catch wrong assumptions). Not invoking the fact-checker agent. Reacting badly to "I don't know."
+
+This pattern complements the [Agent Skills](agent-harness.md) principle that verification is non-negotiable — every skill terminates in concrete evidence. It also aligns with [dynamic workflows'](agent-harness.md) adversarial verification pattern, but operates at the session level rather than the workflow level.
+
 ## Tools Noted
 
 - **Codex plugin for Claude Code** (OpenAI) — `/codex:review`, `/codex:adversarial-review`, `/codex:rescue` for delegating to Codex from within Claude Code
@@ -323,3 +343,4 @@ A workflow structurally prevents these by giving each subagent its own context w
 - "Build a proactive agent workflow with Claude Code" — Maya / Anthropic Applied AI (Code with Claude workshop video, May 2026). Introduces Routines: managed-infrastructure proactive automation for Claude Code with schedule and event-based triggers, connectors, and interactive steerability.
 - "A harness for every task: dynamic workflows in Claude Code" — Thariq / Anthropic (tweet + blog, Jun 2026) ([link](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)). Dynamic workflows: Claude writes its own JavaScript harness on the fly. Orchestration patterns (fan-out, adversarial verification, tournament, classify-and-act), failure modes (agentic laziness, self-preferential bias, goal drift), use cases from migrations to non-technical work, and tips for token budgets and sharing.
 - "Start with Repetitive, High-Judgment Work: Building Your First Skill Library" — Vox (tweet, Jun 2026). Practical guide to building a first skill library: start with judgment-heavy recurring work, five-layer library architecture (skill map, boundaries, state source, routing, maintenance), failure records over prompts, and V1 sizing.
+- "How to Make Claude Code Stop Making Stuff Up When It Doesn't Know" — rody (tweet, Jun 2026). 4-layer anti-fabrication setup: CLAUDE.md honesty rules, verification-before-write protocol, PostToolUse hooks for real-time type checking, and a fact-checker subagent.

@@ -310,6 +310,20 @@ A 4-layer configuration that makes fabrication structurally expensive rather tha
 
 This pattern complements the [Agent Skills](agent-harness.md) principle that verification is non-negotiable — every skill terminates in concrete evidence. It also aligns with [dynamic workflows'](agent-harness.md) adversarial verification pattern, but operates at the session level rather than the workflow level.
 
+## Verification Feedback Loops
+
+Claude already self-verifies against deterministic signals — type errors, lint errors, failing tests, runtime errors. The gap is the *manual* checks developers run after Claude responds and before merging: opening a browser, clicking through the UI, checking the console, watching for layout shifts, running a performance trace. Encoding those checks as skills closes the loop and lets Claude work more independently on long-running tasks.
+
+**The process:** start by writing down the best-practices version of what you already do manually. Every domain has one — frontend developers open the dev server and click around; backend developers hit endpoints and check logs; data engineers validate row counts and schema. For each step, identify a tool Claude can use: browser DevTools MCP for performance traces, Agent Browser for visual inspection, test runners for integration checks, accessibility auditors for a11y compliance.
+
+**Encode as a skill.** The `skill-creator` plugin interviews you about your workflow and generates a skill file. Taste and judgment are hard to codify, but many checks have measurable criteria: a performance budget, an accessibility checklist, design-system rules, good-vs-bad examples. A frontend-verify skill might instruct Claude to open the URL in a browser, interact with the changed element, then run a mobile performance audit via Chrome DevTools MCP — all before responding to the user.
+
+**Two verification layers.** The full model has two structurally distinct layers:
+1. **In-loop verification** — skills that run *while Claude is building*, catching issues before the first response. This is where encoded manual checks live.
+2. **Pre-merge review from a separate agent** — a fresh agent reviews the code without carrying the authoring agent's biases. Options range from `/review` (built-in single-pass) to `/code-review` (plugin spinning up parallel subagents, each reading the diff from a different angle) to Claude Code Review (managed service on every PR for Team/Enterprise plans). The isolation is the point: a new context window produces a more honest review.
+
+**Composing skills.** Skills can call other skills, rolling an entire development lifecycle into one workflow. The Claude Code team bundles `/simplify` (clean up the diff), a custom `/verify` (end-to-end confirmation), a design check (if UI changed), PR creation, and CI monitoring into a single composite skill. The user kicks off one command; Claude verifies and ships without babysitting. This is the same thin-harness/fat-skills principle applied to the verification layer: each skill is a focused procedure, and the composite skill is the orchestration.
+
 ## Tools Noted
 
 - **Codex plugin for Claude Code** (OpenAI) — `/codex:review`, `/codex:adversarial-review`, `/codex:rescue` for delegating to Codex from within Claude Code
@@ -344,3 +358,4 @@ This pattern complements the [Agent Skills](agent-harness.md) principle that ver
 - "A harness for every task: dynamic workflows in Claude Code" — Thariq / Anthropic (tweet + blog, Jun 2026) ([link](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)). Dynamic workflows: Claude writes its own JavaScript harness on the fly. Orchestration patterns (fan-out, adversarial verification, tournament, classify-and-act), failure modes (agentic laziness, self-preferential bias, goal drift), use cases from migrations to non-technical work, and tips for token budgets and sharing.
 - "Start with Repetitive, High-Judgment Work: Building Your First Skill Library" — Vox (tweet, Jun 2026). Practical guide to building a first skill library: start with judgment-heavy recurring work, five-layer library architecture (skill map, boundaries, state source, routing, maintenance), failure records over prompts, and V1 sizing.
 - "How to Make Claude Code Stop Making Stuff Up When It Doesn't Know" — rody (tweet, Jun 2026). 4-layer anti-fabrication setup: CLAUDE.md honesty rules, verification-before-write protocol, PostToolUse hooks for real-time type checking, and a fact-checker subagent.
+- "Feedback loops: Help Claude Code complete ambitious tasks with less babysitting" — Delba (tweet, Jun 2026). Encoding manual verification processes as skills, two-layer verification model (in-loop + pre-merge review), and composing skills into end-to-end workflows.

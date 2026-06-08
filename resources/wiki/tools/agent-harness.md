@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-06-02
+last_updated: 2026-06-08
 
 ---
 
@@ -26,6 +26,8 @@ Claude Code is a harness. Codex is a harness. Cursor is a harness. They all run 
 
 Claude Code's leaked source code (March 2026, accidentally shipped to npm) was 512,000 lines. That code is the harness. Even the makers of the best model in the world invest heavily in harnesses.
 
+*The derivation pattern:* Harness components aren't arbitrary — they can be derived by working backwards from desired agent behavior to the engineering that enables it. Models take in data (text, images, audio) and output text. They cannot maintain durable state, execute code, access real-time knowledge, or set up environments out of the box. Each harness feature exists to close one of these gaps. The simplest example: "chatting" requires wrapping the model in a while loop that tracks messages. Every harness component follows this pattern: **behavior we want → gap in the raw model → harness feature that bridges it.**
+
 *R.E.S.T. framework* (TRAE, Apr 2026): Four production-readiness objectives for any agent system — **Reliability** (fault recovery, idempotent operations, behavioral consistency), **Efficiency** (resource budgets, low-latency response, high throughput), **Security** (least privilege, sandboxed execution, I/O filtering), **Traceability** (end-to-end tracing, explainable decisions, auditable state). "To move agents beyond the toy stage, they must anchor on these four objectives."
 
 ## Three Levels of Engineering
@@ -42,7 +44,7 @@ Claude Code's leaked source code (March 2026, accidentally shipped to npm) was 5
 
 3. *Memory* — see section below.
 
-4. *Context management* — model performance degrades 30%+ when key content falls in mid-window positions ("Lost in the Middle"). Production strategies: compaction, observation masking, just-in-time retrieval, sub-agent delegation. TRAE formalizes context management as a **Token Transformation Pipeline**: Collection (aggregate inputs + memory + retrievals) → Ranking (score by recency/relevance) → Compression (summarize low-density content) → Budgeting (allocate token limits per category) → Assembly (structured templates with explicit blocks). "Rather than hoping the model figures out what to focus on, actively build the context."
+4. *Context management* — model performance degrades 30%+ when key content falls in mid-window positions ("Lost in the Middle"). [Context rot](https://research.trychroma.com/context-rot) formalizes this: models become worse at reasoning and completing tasks as their context window fills, making context a precious, scarce resource. Three harness-level mitigations: **compaction** (intelligently summarizing existing context when the window nears capacity), **tool call offloading** (keeping only head and tail tokens of large tool outputs, writing the full result to the filesystem for on-demand access), and **skills as progressive disclosure** (loading skill front-matter lazily rather than injecting all tool definitions at startup, protecting the model from context rot before work begins). TRAE formalizes broader context management as a **Token Transformation Pipeline**: Collection (aggregate inputs + memory + retrievals) → Ranking (score by recency/relevance) → Compression (summarize low-density content) → Budgeting (allocate token limits per category) → Assembly (structured templates with explicit blocks). "Rather than hoping the model figures out what to focus on, actively build the context."
 
 5. *Prompt construction* — assembles system prompt, tool definitions, memory files, conversation history, current message.
 
@@ -373,9 +375,13 @@ TRAE's comprehensive guide (Apr 2026) reframes the harness architecturally as a 
 
 ## Harness Coevolution with Models
 
-Models are now post-trained with specific harnesses in the loop. Claude Code's model learned to use the specific harness it was trained with. Changing tool implementations can degrade performance.
+Models are now post-trained with specific harnesses in the loop. Claude Code's model learned to use the specific harness it was trained with. Changing tool implementations can degrade performance. A concrete example: OpenAI's Codex-5.3 prompting guide documents how the `apply_patch` tool logic for file editing is tightly coupled to training — a truly general intelligence should handle switching between patch methods trivially, but training with a harness in the loop creates overfitting to specific tool implementations [[source]](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide/#apply_patch).
+
+This co-evolution creates a feedback loop: useful primitives are discovered in practice, added to the harness, then used when training the next generation of models. As the cycle repeats, models become more capable within the harness they were trained in — but not necessarily outside it. On the [Terminal Bench 2.0 Leaderboard](https://www.tbench.ai/leaderboard/terminal-bench/2.0), Opus 4.6 in Claude Code scores far below Opus 4.6 in other harnesses, demonstrating that the best harness for a task is not necessarily the one a model was post-trained with.
 
 The "future-proofing test": if performance scales up with more powerful models without adding harness complexity, the design is sound. Manus was rebuilt 5 times in 6 months, each rewrite removing complexity.
+
+*The long-term trajectory:* As models improve, some of what currently lives in the harness will be absorbed into the model — planning, self-verification, and long-horizon coherence will require less external scaffolding. But harness engineering is unlikely to become obsolete: a well-configured environment, the right tools, durable state, and verification loops make any model more efficient regardless of its base intelligence. Open problems include orchestrating hundreds of agents working in parallel on a shared codebase, agents that analyze their own traces to identify and fix harness-level failure modes, and harnesses that dynamically assemble the right tools and context just-in-time rather than being pre-configured.
 
 See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Frameworks](claude-code-skill-frameworks.md)
 
@@ -401,3 +407,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "The AI Agent Complexity Ratchet: Why 90% Test Coverage Is Required" — Garry Tan (tweet thread, May 2026) ([link](https://x.com/garrytan)) — complexity ratchet mechanism (tests + docs + evals as forward-only quality floor), 90% coverage threshold backed by Capers Jones DRE data and DO-178C, AI agents removing the effort wall, expanded test surface including TTY behavioral testing
 - "Dreams" — Anthropic Claude API Docs (May 2026) ([link](https://platform.claude.com/docs/en/managed-agents/memory)) — async memory consolidation for managed agents: reads memory store + session transcripts, produces deduplicated/reorganized output store
 - "Writing effective tools for agents — with agents" — Ken Aizawa et al., Anthropic (Jun 2026) ([link](https://www.anthropic.com/engineering/writing-effective-tools-for-agents)) — tool design principles (consolidation, namespacing, meaningful context, token efficiency, description prompt-engineering) and evaluation-driven improvement loop; validated on internal Slack/Asana MCP servers with held-out test sets
+- "Deriving Agent Harnesses from First Principles" — Viv (Vivek Trivedy), LangChain (tweet thread, Jun 2026) ([link](https://x.com/Vtrivedy10)) — systematic derivation of harness components from model limitations; filesystem as foundational primitive; context rot mitigations (compaction, tool call offloading, progressive disclosure); apply_patch overfitting as coevolution example; Terminal Bench 2.0 harness variance data

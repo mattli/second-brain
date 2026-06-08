@@ -45,7 +45,7 @@ The GENIUS and CLARITY Acts are placing stablecoins between DeFi and TradFi. Roo
 Paul Graham's classic essay "How to Get Startup Ideas" (2012) remains the philosophical foundation underlying YC's thesis. Key principles that map directly to the AI moment:
 
 - **"Live in the future, then build what's missing."** People at the leading edge of AI are living in the future right now — they see gaps others can't.
-- **The well, not the crater.** Good startup ideas start narrow and deep (small number of people who want it desperately), not broad and shallow. This explains why vertical AI (Harvey for law, coding agents for developers) beats horizontal "AI for everything."
+- **The well, not the crater.** Good startup ideas start narrow and deep (small number of people who want it desperately), not broad and shallow. This explains why [vertical AI](../landscape/vertical-ai.md) (Harvey for law, coding agents for developers) beats horizontal "AI for everything."
 - **Schlep blindness.** The best ideas involve schleps (hard, messy work) that scare away competitors. Processing payments (Stripe), processing legal documents (Harvey), automating manufacturing scheduling — the schlep is the moat.
 - **Organic > manufactured.** The best ideas come from founders solving their own problems, not brainstorming "startup ideas." Career-Ops (evaluating 740+ job offers to land a role) is a textbook example.
 

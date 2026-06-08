@@ -9,7 +9,7 @@ last_updated: 2026-06-02
 
 ## Overview
 
-Andrej Karpathy coined "agent proficiency" as a "CORE SKILL of the 21st century" in April 2026. The argument: as AI agents become capable of handling increasingly complex tasks autonomously, the highest-leverage human skill shifts from doing the work to directing the systems that do it. This is not prompt engineering — it's the broader capability of maintaining structured data, writing clear agent instructions, and building feedback loops.
+[Andrej Karpathy](../people/andrej-karpathy.md) coined "agent proficiency" as a "CORE SKILL of the 21st century" in April 2026. The argument: as AI agents become capable of handling increasingly complex tasks autonomously, the highest-leverage human skill shifts from doing the work to directing the systems that do it. This is not prompt engineering — it's the broader capability of maintaining structured data, writing clear agent instructions, and building feedback loops.
 
 ## The Shift
 

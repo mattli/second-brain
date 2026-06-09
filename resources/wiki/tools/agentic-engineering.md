@@ -4,6 +4,7 @@ last_updated: 2026-06-09
 
 
 
+
 ---
 
 # Agentic Engineering
@@ -145,9 +146,21 @@ Addy Osmani names the structural cost most multi-agent practitioners underestima
 
 The orchestration tax left unpaid accumulates both technical debt (merged code you didn't read well) and cognitive debt (a stale mental model of your own codebase). Neither shows on a dashboard today; both show when production breaks and you realize you have no idea how the system works anymore. See also: the [delegation–collaboration split](#the-delegationcollaboration-split) for how to classify which work mode fits which task.
 
-### Loop Engineering (Osmani)
+### Loop Engineering
 
 Loop engineering is the practice of replacing yourself as the person who prompts the agent — you design the system that prompts it instead. Where [harness design](agent-harness.md) shapes the environment a single agent runs inside, and orchestration coordinates multiple agents, loop engineering sits one level above both: a recurring system that discovers work, dispatches agents, checks results, records state, and decides the next step — all without a human in the turn-by-turn prompting seat.
+
+Boris Cherny, who created Claude Code as a side project in September 2024, gave the clearest definition: "I don't prompt Claude anymore. I have loops that are running. They're the ones that are prompting Claude and figuring out what to do. My job is to write loops" [[source]](https://www.youtube.com/watch?v=RkQQ7WEor7w). He describes three stages of progression: writing code by hand with autocomplete, running 5–10 parallel Claude sessions and prompting each one, then writing loops that prompt Claude while hundreds of agents read his GitHub, Slack, and Twitter and decide what to build next. He deleted his IDE in November 2025 and hasn't opened it since.
+
+**The five-stage lineage.** The concept has a real history, and conflating stages is what makes discourse around "loops" incoherent:
+
+1. **ReAct (2022)** — The academic while-loop: reason, call a tool, read the result, repeat. One model, one loop, a human watching.
+2. **AutoGPT (2023)** — Goal-driven self-prompting. Became famous for spinning forever doing nothing — seeding years of "agents are a toy."
+3. **Ralph loop (Huntley, Jul 2025)** — A bash one-liner piping the same prompt file into the agent repeatedly, resetting context to fixed anchor files each iteration. Geoffrey Huntley built an entire programming language with it for ~$297.
+4. **/goal (spring 2026)** — Productized ralph: both Codex and Claude Code ship a command that runs the loop until a small validator model confirms the task is done.
+5. **Orchestration loops (2026)** — The genuinely new layer. Loops supervise other loops concurrently and on a schedule. Scheduling replaces human kickoff. Durability becomes explicit — git-backed state and crash recovery — because these loops must survive a restart. Ralph assumed your terminal stayed open; the 2026 version assumes it doesn't.
+
+**The cron distinction.** The sharpest skeptic line — "Cronjobs have funny re-branding rn" — deserves a straight answer. The scheduling layer *is* cron; Boris literally runs his on cron. What cron never had is the decision-maker in the body: a model that looks at current state, decides what to do, does it, checks whether it worked, and decides whether to keep going. The decision is the agent's, not a hardcoded branch. Stack those, let one loop dispatch and supervise others, give them durable shared state, and you have something cron cannot express. Loops are cron plus a decision-maker in the body, and the interesting engineering is everything you wrap around that decision so it doesn't run off a cliff.
 
 **Five building blocks.** A loop requires five capabilities plus persistent memory:
 
@@ -163,7 +176,13 @@ Loop engineering is the practice of replacing yourself as the person who prompts
 
 **Tool convergence.** The five building blocks now ship inside both Claude Code and Codex — different names, same capabilities. Once you recognize the shared shape, you stop arguing about which tool and design loops that work regardless of which one you're sitting in.
 
-**What loops don't solve.** Three problems get sharper as the loop gets better: *verification* remains on the human (a loop running unattended is also a loop making mistakes unattended), *comprehension debt* grows faster when the loop ships code you didn't write, and *cognitive surrender* — accepting agent output because forming an independent opinion costs attention you no longer have — becomes the default posture if you're not deliberate about staying engaged. These risks compound with the [orchestration tax](#the-orchestration-tax-osmani): the same review bottleneck that limits parallel agents also limits how much loop output you can meaningfully absorb.
+**The loop is now the expensive part.** Once the model writes code for almost nothing, cost migrates to the loop that runs it. Uber capped engineers at $1,500/person/tool/month for Claude Code and Cursor after burning its annual AI budget in four months [[source]](https://x.com/mattvanhorn). The failure mode everyone in production fears is the loop that doesn't stop — without guardrails, infinite loops produce billing surprises orders of magnitude over budget. Every serious 2026 implementation converges on three hard stops: a maximum iteration count, no-progress detection, and a token or dollar budget ceiling.
+
+**The durable asset is the skill, not the loop.** The loop is plumbing. A loop with no reusable skills inside it is a while-true around a stranger; a loop that calls a library of sharp, tested, named skills is a system that compounds. Steinberger's complementary point: if you do something more than once, turn it into an automated skill; if you do something hard, turn it into a skill afterward so next time is free. This aligns with the [thin harness / fat skills](agent-harness.md) pattern — the loop provides the rhythm, the skills provide the leverage.
+
+**Verification is the essential feedback.** A loop is only as trustworthy as its ability to check its own work. An open loop that writes code with no feedback is a machine for generating confident mistakes; a loop that writes, runs, reads the result, and corrects is the thing that actually works. The maker/checker split operationalizes this: the model that wrote the code is too agreeable grading its own homework, so a second agent with different instructions catches what the first talked itself into.
+
+**What loops don't solve.** Three problems get sharper as the loop gets better: *verification* remains on the human (a loop running unattended is also a loop making mistakes unattended), *comprehension debt* grows faster when the loop ships code you didn't write, and *cognitive surrender* — accepting agent output because forming an independent opinion costs attention you no longer have — becomes the default posture if you're not deliberate about staying engaged. These risks compound with the [orchestration tax](#the-orchestration-tax-osmani): the same review bottleneck that limits parallel agents also limits how much loop output you can meaningfully absorb. Gartner puts agentic AI at the peak of inflated expectations, with only ~17% of organizations actually deploying agents — the gap between the timeline discourse and production receipts remains wide.
 
 ## Managed Agents (Anthropic)
 
@@ -375,3 +394,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "How To Be A World-Class Agentic Engineer" — SysLS (tweet thread, May 2026) — practitioner minimalism: context-is-everything principle, research/implementation separation, adversarial triangulation for sycophancy, task contracts with stop-hooks, CLAUDE.md as conditional routing table, consolidation cycle for rules and skills
 - "The Orchestration Tax" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/orchestration-tax/)) — human as GIL of agent fleet, Amdahl's Law applied to review bottleneck, cognitive surrender failure mode, five attention-architecture principles (scale to review rate, sort work, batch reviews, lock on judgment only, protect serial time)
 - "Loop Engineering" — Addy Osmani (tweet thread, Jun 2026) — five building blocks of agent loops (automations, worktrees, skills, plugins, sub-agents), memory as persistent spine, maker/checker split, tool convergence across Claude Code and Codex, loop risks (verification, comprehension debt, cognitive surrender)
+- "WTF Is a Loop? Peter Steinberger vs. Boris Cherny" — Matt Van Horn (Jun 2026) — Boris Cherny's definition of loops, five-stage lineage (ReAct → AutoGPT → ralph → /goal → orchestration), cron-vs-loop distinction, loop cost dynamics (Uber $1,500 cap), three hard stops (iterations/progress/budget), skills-over-loops thesis, verification as essential feedback

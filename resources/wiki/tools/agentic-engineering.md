@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-31
+last_updated: 2026-06-09
 
 
 
@@ -144,6 +144,26 @@ Addy Osmani names the structural cost most multi-agent practitioners underestima
 - **Protect serial time.** The bottleneck needs your best hours, not leftover minutes between agent check-ins. Sometimes the highest-leverage move is to stop orchestrating entirely and think hard about one problem with the lock held.
 
 The orchestration tax left unpaid accumulates both technical debt (merged code you didn't read well) and cognitive debt (a stale mental model of your own codebase). Neither shows on a dashboard today; both show when production breaks and you realize you have no idea how the system works anymore. See also: the [delegation–collaboration split](#the-delegationcollaboration-split) for how to classify which work mode fits which task.
+
+### Loop Engineering (Osmani)
+
+Loop engineering is the practice of replacing yourself as the person who prompts the agent — you design the system that prompts it instead. Where [harness design](agent-harness.md) shapes the environment a single agent runs inside, and orchestration coordinates multiple agents, loop engineering sits one level above both: a recurring system that discovers work, dispatches agents, checks results, records state, and decides the next step — all without a human in the turn-by-turn prompting seat.
+
+**Five building blocks.** A loop requires five capabilities plus persistent memory:
+
+1. **Automations** — Scheduled triggers that discover and triage work (cron jobs, CI hooks, `/loop`, `/goal`). The heartbeat that makes a loop a loop rather than a one-shot run.
+2. **Worktrees** — Isolated git checkouts so parallel agents don't collide on the same files. Same principle as branch-per-engineer, enforced at the filesystem level.
+3. **Skills** — Codified project knowledge (conventions, build steps, "we don't do it like this because of that one incident") that prevents the agent from re-deriving your entire project from zero every cycle. Without skills, loops accumulate [intent debt](https://addyosmani.com/blog/intent-debt/) — the agent fills every hole in your intent with a confident guess.
+4. **Plugins and connectors** — MCP-based integrations that let the loop act inside your actual environment (issue trackers, staging APIs, Slack) rather than just proposing what it would do.
+5. **Sub-agents** — The maker/checker split. The model that wrote the code is too agreeable grading its own homework; a second agent with different instructions catches what the first talked itself into. This is also how `/goal` works under the hood — a fresh model decides if the loop is done instead of the one that did the work.
+
+**Memory is the spine.** A markdown file, a Linear board, anything that lives outside the conversation and holds what's done and what's next. The agent forgets everything between runs, so state must live on disk. This is the same persistence pattern used by every [long-running agent](https://addyosmani.com/blog/long-running-agents/) architecture.
+
+**A concrete loop shape:** An automation runs every morning, calling a triage skill that reads yesterday's CI failures, open issues, and recent commits, then writes findings to a state file. For each actionable finding, the system opens an isolated worktree, sends a sub-agent to draft the fix, and a second sub-agent reviews against project skills and tests. Connectors open the PR and update the ticket. Anything the loop can't handle lands in a triage inbox. The state file remembers what got tried, what passed, and what's still open — so tomorrow's run picks up where today stopped.
+
+**Tool convergence.** The five building blocks now ship inside both Claude Code and Codex — different names, same capabilities. Once you recognize the shared shape, you stop arguing about which tool and design loops that work regardless of which one you're sitting in.
+
+**What loops don't solve.** Three problems get sharper as the loop gets better: *verification* remains on the human (a loop running unattended is also a loop making mistakes unattended), *comprehension debt* grows faster when the loop ships code you didn't write, and *cognitive surrender* — accepting agent output because forming an independent opinion costs attention you no longer have — becomes the default posture if you're not deliberate about staying engaged. These risks compound with the [orchestration tax](#the-orchestration-tax-osmani): the same review bottleneck that limits parallel agents also limits how much loop output you can meaningfully absorb.
 
 ## Managed Agents (Anthropic)
 
@@ -354,3 +374,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "An Interview with OpenAI CEO Sam Altman and AWS CEO Matt Garman About Bedrock Managed Agents" — Ben Thompson / Stratechery (Apr 2026) — OpenAI + AWS Bedrock Managed Agents announcement, model-harness convergence thesis, agent identity problem, local vs cloud agents, intelligence-as-utility pricing, platform strategy (neutral vs integrated)
 - "How To Be A World-Class Agentic Engineer" — SysLS (tweet thread, May 2026) — practitioner minimalism: context-is-everything principle, research/implementation separation, adversarial triangulation for sycophancy, task contracts with stop-hooks, CLAUDE.md as conditional routing table, consolidation cycle for rules and skills
 - "The Orchestration Tax" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/orchestration-tax/)) — human as GIL of agent fleet, Amdahl's Law applied to review bottleneck, cognitive surrender failure mode, five attention-architecture principles (scale to review rate, sort work, batch reviews, lock on judgment only, protect serial time)
+- "Loop Engineering" — Addy Osmani (tweet thread, Jun 2026) — five building blocks of agent loops (automations, worktrees, skills, plugins, sub-agents), memory as persistent spine, maker/checker split, tool convergence across Claude Code and Codex, loop risks (verification, comprehension debt, cognitive surrender)

@@ -36,3 +36,4 @@ Holding page for bookmarks and references that don't yet have a matching wiki to
 - **Real-time semantic search for Conversational AI.** (article, saved 2026-05-30, Readwise: 01ksvcenas9byv9rqk92qb1dh2) — Moss: real-time semantic search (<10ms) for voice AI and conversational systems. https://read.readwise.io/read/01ksvcenas9byv9rqk92qb1dh2
 - **Moss adoption is growing 200% MoM** (tweet, saved 2026-05-30, Readwise: 01ksvavxy606waxctxqp5ecc33) — Moss (YC F25) 200% MoM growth, 50+ companies, 130+ projects, voice AI and multimodal agent teams
 - **May 29, 2026** (rss, saved 2026-06-01, Readwise: 01kt215x8m36ved50197k8p329) — Readwise & Reader Changelog: better search, Quick Lookup/citations/Kindle sync/EPUB fixes, dark mode and e-ink improvements
+- **June 5, 2026** (rss, saved 2026-06-08, Readwise: 01ktmbn8h39e3mdq9zxetcegbd) — Readwise & Reader Changelog: Quick Lookup semantic improvements, Android speed, video/podcast duration in API, Apple subscription fixes

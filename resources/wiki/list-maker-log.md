@@ -1,25 +1,26 @@
 ---
-run_date: 2026-06-08
-run_start: "2026-06-08T08:01:00Z"
-run_end: "2026-06-08T08:01:30Z"
-updated_after: "2026-06-07T08:04:00Z"
-items_total: 1
-workers_dispatched: 1
+run_date: 2026-06-09
+run_start: "2026-06-09T06:00:00Z"
+run_end: "2026-06-09T06:01:00Z"
+updated_after: "2026-06-08T08:01:30Z"
+items_total: 3
+workers_dispatched: 2
 tier_c_referenced: 0
-tier_d_bookmarked: 0
+tier_d_bookmarked: 1
 ---
 
-# List-Maker Run — 2026-06-08
+# List-Maker Run — 2026-06-09
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-07T08:04:00Z. Found 1 new document — a Tier A tweet on agent harness first principles. Dispatched to update existing agent-harness.md page.
+Cutoff from previous run_end: 2026-06-08T08:01:30Z. Found 3 new documents — two Tier A tweets on AI agent loops (Addy Osmani + Steinberger vs Cherny debate), both routed to existing agentic-engineering.md. One Tier D RSS changelog bookmarked to unorganized.md.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01kthesr9nn9tkdjmpccj0y1vs | A | update | tools/agent-harness.md | Thread on deriving agent harnesses from first principles — direct match to existing agent-harness.md |
+| 01ktndwqh44d32raq2w1sgdsr5 | A | update | tools/agentic-engineering.md | Addy Osmani on "loop engineering" — maker/checker agent loop patterns |
+| 01ktkx9vphsea35by21sa4qjn1 | A | update | tools/agentic-engineering.md | Steinberger vs Cherny on loop definition, reliability, cost dynamics |
 
 ## Tier C — References Added
 
@@ -30,6 +31,7 @@ Cutoff from previous run_end: 2026-06-07T08:04:00Z. Found 1 new document — a T
 
 | Title | Added To |
 |-------|----------|
+| June 5, 2026 (Readwise Changelog) | unorganized.md |
 
 ## Skipped
 

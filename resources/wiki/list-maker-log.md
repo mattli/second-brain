@@ -1,27 +1,33 @@
 ---
-run_date: 2026-06-10
-run_start: "2026-06-10T08:01:28Z"
-run_end: "2026-06-10T08:02:00Z"
-updated_after: "2026-06-09T06:01:00Z"
-items_total: 3
-workers_dispatched: 3
+run_date: 2026-06-11
+run_start: "2026-06-11T08:02:17Z"
+run_end: "2026-06-11T08:03:30Z"
+updated_after: "2026-06-10T08:02:00Z"
+items_total: 9
+workers_dispatched: 9
 tier_c_referenced: 0
 tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-06-10
+# List-Maker Run — 2026-06-11
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-09T06:01:00Z. Found 3 new documents — all Tier A, all routed to tools/agentic-engineering.md which already has active loop engineering content from yesterday's batch. Strong topical cluster: Fable 5 loop design, autonomous coding agent ("Ralph Wiggum"), and agent loop patterns with product examples (Siri AI, Gemini).
+Cutoff from previous run_end: 2026-06-10T08:02:00Z. Found 9 new documents — all Tier A. Strong cluster around agentic engineering (loop design, long-running agents). Notable: a Dario Amodei policy essay, Rich Sutton on AI creativity limits, and a Ray Dalio geopolitics piece (saved Apr 7, resurfaced via Readwise update). One create dispatched for geopolitics — no existing page within 1 hop.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01ktqh9hxhm30q0x859b1ysmes | A | update | tools/agentic-engineering.md | Lance Martin on designing loops with Fable 5 — self-correcting loops and cross-session memory |
-| 01ktqa69p3wrnrsb9n44j3eeq6 | A | update | tools/agentic-engineering.md | Greg Isenberg video on "Ralph Wiggum" autonomous coding agent — task picking, coding, testing, committing |
-| 01ktpm05gc2f8eycc521c6xnaz | A | update | tools/agentic-engineering.md | Ben Tossell on agent loop design patterns plus Siri AI and Gemini as real-world implementations |
+| 01kttk66327vepbexph05901cq | A | update | tools/agentic-engineering.md | Rahul on loop engineering — discovery/planning/execution/verification/iteration cycles |
+| 01ktsvgcgkkg8z71fmg85ydbs2 | A | update | tools/ai-native-product-development.md | Mike Krieger on how Anthropic uses Claude Fable 5 for productivity and collaboration |
+| 01ktsvfka4vn1nb9q6we1nzfet | A | update | tools/agentic-engineering.md | Anthropic workshop on building long-running agents with planner/generator/evaluator loops |
+| 01ktssq0h9ak30be05v91zqvcf | A | update | landscape/ai-organization-design.md | David Haber on recording all work conversations, AI learning company culture from meetings |
+| 01ktsq2c5t79n0zkzd86v0jm52 | A | update | people/dario-amodei.md | Dario Amodei's "Policy on the AI Exponential" — AI growth, safety policy, job creation |
+| 01ktsq1wttxp01m05hcv6xazj5 | A | update | concepts/world-models.md | Rich Sutton on AI creativity limits — variation/evaluation/retention framework |
+| 01kts602q06vxk3pxzy6brwaqf | A | update | concepts/business-moats-in-ai.md | Sarah Guo's "The Untrainable" — trust and relationships as durable value |
+| 01kts2vkmp84hx5wd9d4ejbe42 | A | update | models-safety/frontier-models.md | Karpathy's reaction to Claude Fable 5 — safety, benchmarks, long-task capability |
+| 01knm97zg3ce8s88py6svbrysc | A | create | landscape/geopolitics-world-order.md | Ray Dalio on interconnected global conflicts reshaping world order |
 
 ## Tier C — References Added
 

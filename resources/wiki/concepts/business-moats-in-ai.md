@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-06
+last_updated: 2026-06-11
 ---
 
 # Business Moats in AI
@@ -50,7 +50,6 @@ Evans' benchmark data reinforces this: the top 10 foundation models cluster with
 
 ## Open Questions
 
-- **Trust as moat?** — When AI does more work, someone must be accountable. Institutions that bear liability might become more valuable.
 - **Human attention as moat?** — When content creation cost drops to zero, brands that already hold attention may have the most compounding advantage.
 
 ## Two Paths for Software Companies
@@ -101,6 +100,24 @@ Why opinions compound into defensibility:
 The new competitive landscape: "Your competition isn't only other startups, it's also your user deciding they could probably just do this themselves on a Saturday." In that world, only one thing matters: having a perspective worth paying for.
 
 This aligns with the "taste as moat" observation from Ann Miura-Ko's AI-native company visits: "When execution is nearly free, taste becomes the moat."
+
+## The Untrainable: Private Correctness as Moat
+
+Sarah Guo's framework (Jun 2026) reframes defensibility around a single filter: *can you train against it?* Anything whose correctness can be cheaply verified — a compiler check, a test suite, a benchmark score — gets ground down to commodity by models iterating against that free verifier. What survives is work whose correctness is private, expensive to establish, and locked inside systems you can't access from outside.
+
+**The 2x2:** Cross task saturation (commodity vs. frontier) with answer visibility (public vs. private). Saturated work with public answers is commodity tokens — open models own it. Frontier work with public answers (coding benchmarks) is where labs win, because owning the free eval counts for nothing. The prize is the last corner: frontier work whose correctness exists only in private. The best AI-native companies already show this — the vast majority of their inference tokens come from custom models, not generic open ones.
+
+**The legibility trap:** Measurable work is what's leaving. The MIT study (Demirer et al.) quantified the gap: across 100,000+ developers, coding agents lifted code *written* by ~180% but code that actually *shipped* by only ~30% [[source]](https://open.substack.com/pub/saranormous/p/the-untrainable). Writing got cheap; the rest — deciding whether a change is right for a decade-old codebase with undocumented dependencies — still runs through a person. As Noam Brown noted, the only sure way to evaluate an agent over a one-year horizon may be to run it for a year.
+
+**Permission and accountability, not intelligence:** A model can be far smarter than any person and still has to be let in the door, and someone still has to put their name on what it does. Intelligence isn't the bottleneck — permission is, and so is liability. This extends the regulatory permission moat beyond government: every enterprise has its own trust architecture of security reviews, integration contracts, and named accountability.
+
+**Trust as the deadbolt:** A majority of American doctors now open OpenEvidence daily. No amount of compute buys that habit. A lab can train a flawless medical model and still have no path into the physician's decision flow or UCSF's systems, because trust is built slowly, on relationships, not gradient descent. This resolves the "trust as moat?" open question from Bloch's framework: trust isn't speculative — it's already the binding constraint in high-stakes verticals.
+
+**The absorption frontier:** Labs are pulling scaffolding into weights — retrieval, routing, tool use, reasoning policy — so the wrapper becomes the model. But a general agent must be ready for anything (expensive), while a focused application can tune one workflow to run on a fraction of the token spend and keep the difference. Margin pressure cuts both ways.
+
+**Private evals as moat:** The evaluation that decides real money is private and per-firm. Harvey publishes benchmarks for law, Sierra for voice agents. You earn the right to define what "good" means in a field by being the one the field already uses. A foundation lab can't author that standard however smart it gets — the standing only exists inside the domain. Defining "resolved" or "safe clinical answer" falls to whoever already holds that authority.
+
+**Offense is harder than defense:** Choosing what to build is the scarcest capability. The model will do whatever you point it at but can't tell you what's worth pointing at — and you can't benchmark that, so you can't train it. This is also why incumbents don't take everything: they keep existing ground, and the next thing comes from someone who finds a use before the rest.
 
 ## The Perennial "What If Big Co Builds This?"
 
@@ -198,4 +215,5 @@ The tension with the five durable moats above is productive: Chamath's framework
 - "The AI SaaS Squeeze" — Tyler Tringas (Calm Fund, Jun 2025 / published Apr 2026) ([link](https://x.com/tylertringas))
 - "Running Faster to Go Nowhere: The AI Adoption Trap" — BuccoCapital / Educated Guess (Apr 2026) ([link](https://www.educatedguess.com)) — Red Queen dynamics in AI adoption, Fractal of AI Panic, niche construction historical case studies (Amazon, GM/Sloan, Toyota)
 - "AI Eats the World" — Benedict Evans / Slush (video, 2025) ([link](https://www.youtube.com/watch?v=FtG8fMGHbNY)) — Platform shift framing, model commoditization data, capital-vs-network-effects fork for model labs, $400B infrastructure spend, absorption-to-disruption deployment cycle
+- "The Untrainable" — Sarah Guo (essay, Jun 2026) ([link](https://open.substack.com/pub/saranormous/p/the-untrainable)) — Private correctness as moat framework, the legibility trap (measurable work → commodity), permission/accountability > intelligence, trust as deadbolt, absorption frontier, private evals as defensibility, MIT coding agent data (180% written / 30% shipped)
 - "The Collapse of Terminal Value" — Chamath Palihapitiya (tweet, Jun 2026) — Disruption repricing framework: if AI makes moats temporary, equities compress to 2–7x FCF; historical precedents (newspapers, retail, energy, taxi medallions); self-defeating paradox of AI capex; capital rotation to physical assets and sovereign investors

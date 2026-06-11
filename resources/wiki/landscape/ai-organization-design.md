@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-06-11
 ---
 
 
@@ -79,7 +79,19 @@ Organizational legibility is the prerequisite for AI to do anything useful. The 
 
 Raw recordings aren't enough — 100,000 hours of audio can't fit in a context window. The data must be diarized and synthesized into structured, navigable knowledge. YC's example: Haj took 2,000 hours of recorded office hours from three months and regenerated the YC user manual over a weekend — a 150-page document "dramatically better than the existing user manual." Now it self-updates monthly: new advice is compared against the existing manual and either incorporated or discarded. The manual becomes a living, self-improving artifact that feeds into AI agents, giving them the combined wisdom of 16 YC partners.
 
+**Recording as the default.** David Haber (a16z) argues that universal meeting recording has already happened as a bottom-up shift — not debated, just adopted — because the productivity advantages for both individuals and leaders are too large to resist. The key insight: you need to onboard AI like you would onboard employees. You don't hand a new hire a wiki and expect them to get up to speed — you invite them to meetings and let them learn through osmosis. Meetings are where culture resides, where expectations live, where edge-case handling gets done. AI operates the same way, except it can attend every meeting, reason over every interaction, and never get bored. Bridgewater's policy of recording everything looked eccentric for years; it turns out it was prescient. OpenAI now runs with essentially everything recorded, with agents standing in for senior leaders in meetings they can't attend. Granola, which sits in on a16z meetings, has better context on the firm's culture and investments than almost any other tool — because it's been in the room.
+
+The default is flipping from "don't record unless you opt in" to "assume you're being recorded unless a meeting is explicitly designated otherwise." The deeper reason: the old principle already applies to text — never put anything in writing you wouldn't want made public. Meeting recording is the same principle, applied to conversation. Sensitive meetings (HR, legal) will get special designations, but the controls get retrofitted on top of widespread recording, not the other way around.
+
 The principle: if an interaction produces an artifact that can self-improve, it's valuable. If it doesn't, it's disposable.
+
+## Voice as the New System of Record
+
+The current enterprise system of record is structured data: CRM entries, tickets, docs. But the highest-value context lives in conversation — the nuance on a customer call, the real argument in a product review, the offhand comment in a leadership meeting that quietly changes the roadmap. LLMs are uniquely suited to taking unstructured voice data and making it structured, searchable, and queryable. A new category of enterprise software is emerging, organized around voice instead of text.
+
+This creates a structural advantage for **verbal cultures** (Shopify, OpenAI) over **written cultures** (Stripe, Anthropic) — though not in the way you'd expect. Written cultures already capture most of their context by construction. The historical bottleneck for verbal cultures was that important context happened in conversation and then evaporated. When AI can attend every meeting and synthesize what happened, verbal culture finally scales. AI disproportionately enhances verbal cultures by eliminating their core weakness.
+
+Recording also creates a decisive wedge between AI-native companies (where it's the obvious default) and incumbents that have to overcome inertia. The competitive cost of not recording — measured in forgone context for the intelligence layer — is enormous. Every recorded meeting makes the system smarter; both the bottom-up advantage (AI with full company context as a force multiplier for ICs) and the top-down advantage (executive oversight via AI present in meetings they can't attend) compound over time.
 
 ## Ephemeral Software, Durable Context
 
@@ -169,3 +181,4 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "2× – nine months later: We did it. You can too." — Darragh Curran / Intercom (Apr 2026) ([link](https://ideas.fin.ai/p/2x-nine-months-later))
 - "How to Build a Self-Improving Company with AI" — YC Root Access (video, May 2026) — Self-improving loop architecture, organizational legibility imperative, YC monitoring agent example, burn tokens not headcount
 - "Most Companies Aren't Anywhere Near Ready for AI" — Daniel Miessler (article, May 2026) ([link](https://danielmiessler.com/p/most-companies-arent-anywhere-near-ready-for-ai)) — Strategic clarity as AI prerequisite, small-company structural advantage in legibility
+- "Everything Is Recorded Now" — David Haber (tweet, Jun 2026) — Recording as default, AI onboarding through meeting attendance, voice as new system of record, verbal vs written culture advantage

@@ -1,10 +1,6 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-06-11
-
-
-
-
 ---
 
 # Agentic Engineering
@@ -86,6 +82,56 @@ The Claude Code team (Thariq, Anthropic) published key lessons on designing agen
 - **Progressive disclosure** — Add functionality without adding tools. The Claude Code Guide subagent loads docs on demand rather than stuffing everything in the system prompt. ~20 tools total, high bar to add more.
 
 For evaluation methodology that applies directly to agent systems — floor-raising over benchmark-maxxing, trace review pipelines, LLM-as-judge — see [AI Evals](ai-evals.md).
+
+## Planner/Generator/Evaluator Harness (Anthropic Applied AI)
+
+Ash Prabaker and Andrew Wilson (Anthropic applied AI team) presented a three-role harness architecture for long-running agent builds — the system behind Anthropic's internal one-shot app demos that run 4–6 hours and produce fully functional applications from single-line prompts.
+
+**The three roles, each in its own context window:**
+
+- **Planner** — Takes the user's one-line prompt and produces a deliberately high-level spec broken into sprints. It does *not* plan granular technical details. The reason: a single wrong technical decision in the plan cascades through every subsequent sprint, magnifying errors over multi-hour horizons. The planner sets hard outer lines; the other two agents figure out the details.
+- **Generator** — Builds the code. Works from the planner's spec but negotiates scope and acceptance criteria with the evaluator before writing a single line.
+- **Evaluator** — Not a code reviewer — an actual user of the app. Launches Playwright (or Claude for Chrome MCP), navigates live pages, clicks around, tries things, then scores against a rubric and writes critique. The evaluator catches bugs that pass CI because it interacts with the running application the way a human would.
+
+**The critic-gap exploit.** The entire pattern is inspired by GANs. The key insight: tuning a standalone critic to be harsh is tractable; tuning a builder to be self-critical is not. The same asymmetry that makes it easy for a person to critique a meal but hard to cook one applies to LLMs — they can identify quality gaps in output far more reliably than they can prevent those gaps during generation. The harness exploits this by splitting the roles into separate context windows with separate system prompts, channeling the model's sycophancy into two opposing objectives.
+
+**Contract negotiation before building.** Before each build phase, the generator proposes: "I'm going to build X feature, and you should verify it by testing Y." The evaluator pushes back: "Scope is too big, those tests are too weak, you've missed these edge cases." They iterate via files on disk until both agents agree on a contract — what "done" means, expressed as specific, testable assertions. The generator is then graded against this negotiated contract, not the original planner spec. In the retro game maker demo, the agents settled on 27 contract criteria. Granular criteria produce actionable critiques; vague criteria produce vague critiques that the generator shrugs off. This contract negotiation is framed as the key innovation over Ralph loops, which had a fixed plan.md with no one arguing back.
+
+**Grading subjective quality.** For front-end applications, the evaluator grades against a four-criteria rubric: design, originality, craft, and functionality — weighted toward design and originality (since Opus 4.6 already handles functionality well). The rubric is calibrated with few-shot examples on reference sites so the evaluator's taste converges on the builder's intended aesthetic. The claim: "Most people say you can't grade taste, but you can if you have a strong enough opinion on it and you just kind of write it down." The practical target: preventing purple gradients and generic AI-slop aesthetics.
+
+**Evaluator isolation — do NOT share traces.** The team explicitly tested giving the evaluator access to the generator's reasoning traces. It made things worse. When the evaluator sees *why* the generator made a decision, it gets talked into agreeing. The effective pattern: the evaluator judges output only, never sees the reasoning that produced it, and reports "this is an issue" without diagnosing the cause. The generator then reflects on its own work to figure out the fix. This independently confirms the [verifier sub-agent principle](#loop-engineering) from Lance Martin's work — grading in an independent context window prevents the grader from being influenced by the generator's reasoning.
+
+**Pivot behavior.** Unlike single-pass generation or Ralph loops that keep patching the same approach, the PGE harness pivots. When the generator gets stuck — scoring low on one rubric criterion through multiple rounds — the evaluator tells it to throw everything away and restart from scratch. With Opus 4.6, this willingness to discard hours of work and try a fundamentally different approach emerged naturally under adversarial pressure. The same model, self-evaluating, would never restart — it's too attached to its own output. The adversarial split makes restart a tractable option.
+
+**Concrete results (retro game maker demo):** Same prompt, same model, solo loop vs. PGE harness. Solo: sprite editor works, play mode renders entities but arrow keys do nothing, space key does nothing — the agent didn't know how to test whether a game was playable. PGE (~$200, ~6 hours, 5–15 rounds): the agent named itself "Retro Forge," created a project dialogue, built a full 54-color palette, a sprite editor with game-scale preview, an AI level-design assistant (the planner decided "AI features" should exist, the generator/evaluator turned that into a working assistant), and a play mode with working physics, collision detection, arrow-key movement, and a live debug HUD — which exists because the evaluator needed it to test gameplay.
+
+**Harness co-evolution with models.** The same harness architecture required different configuration across model generations. What changed from Opus 4.5 to 4.6:
+
+- *Context resetting between sessions* — dropped entirely. Opus 4.5 had severe context anxiety; Opus 4.6 doesn't. Single continuous session with compaction replaced fresh context windows.
+- *Sprint decomposition* — previously critical to keep Opus 4.5 on track (force-fed one feature at a time). Opus 4.6 holds a 2-hour continuous build coherently without it.
+- *Evaluator cadence* — previously ran every sprint. Now runs at the end of a full generation pass, then hands back critique. Fewer interruptions, roughly half the cost.
+
+The lesson: the harness wasn't wrong for 4.5 — it was right for 4.5. The frontier moved. "It's really important to get a feel for what the spiky behaviors of any individual model are, and then try to adapt your harness to fill the gaps." This mirrors the [model-quality-changes-loop-behavior](#loop-engineering) finding — the same architecture produces qualitatively different behavior depending on the model inside it.
+
+**Model capability timeline for long-running agents** (minimal scaffold, 50% task completion):
+
+| Model | Release | Duration | Key capability |
+|---|---|---|---|
+| Sonnet 3.5 | Pre-Claude Code | — | First model to verify and iterate on its own output |
+| Sonnet 3.7 | Feb 2025 | ~1 hr | Claude Code research preview; SWE-Bench SOTA |
+| Opus 4 / Sonnet 4.4 | May 2025 | — | Better context management, task completion without reward hacking; Claude Code GA + SDK |
+| Sonnet 4.5 | — | ~30 hrs | Context-aware (tracks token consumption); checkpoints; Agent SDK rename |
+| Haiku 4.5 / Opus 4.5 | — | — | Economical sub-agents (Haiku); Opus excels at planning → model-routing pattern (Opus plans, Sonnet executes) |
+| Opus 4.6 / Sonnet 4.6 | — | ~12 hrs | "Very much an agentic model"; agent teams (sub-agents communicate peer-to-peer); server-side compaction; 1M context GA |
+
+The harness and models co-evolve: each model release ships alongside harness changes. Features that start in the harness get trained into the model, the harness drops that feature, and new gaps emerge at the new frontier. "The harness doesn't just disappear as the models get better. It's really evolving as the models change over time."
+
+**Practical takeaways from Q&A:**
+
+- *File system for shared state, not context windows.* Persistent artifacts (feature lists in JSON — models overwrite markdown but respect JSON), progress files, and timestamped learning logs. These breadcrumbs let another model (or human) pick up where the previous session left off.
+- *Traces are the primary debugging loop.* "By far and away the best approach is just reading the traces by hand." Not running more experiments — reading what the agent actually did, finding where its judgment diverged from yours, and tuning the prompt for that specific divergence. Same muscle as reading a stack trace.
+- *Agent empathy.* The Claude for Chrome team's technique: close your eyes, open them every 10 seconds to see a static page, close again, try to navigate. Putting yourself in the model's perceptual position reveals why it makes the choices it does. "There's this empathetic skill set which you need to develop."
+- *Brownfield applicability.* The PGE pattern is primarily greenfield. For brownfield, pair it with autonomous monitoring → issue generation → agent PR → human review. The rubric-based evaluator still applies but needs customization per project.
 
 ## Self-Improving Agents (AutoAgent)
 
@@ -406,4 +452,5 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "WTF Is a Loop? Peter Steinberger vs. Boris Cherny" — Matt Van Horn (Jun 2026) — Boris Cherny's definition of loops, five-stage lineage (ReAct → AutoGPT → ralph → /goal → orchestration), cron-vs-loop distinction, loop cost dynamics (Uber $1,500 cap), three hard stops (iterations/progress/budget), skills-over-loops thesis, verification as essential feedback
 - "\"Ralph Wiggum\" AI Agent will 10x Claude Code/Amp" — Greg Isenberg ft. Ryan Carson (video, Jun 2026) — Ralph loop practitioner walkthrough: PRD-to-JSON pipeline, atomic user stories with acceptance criteria, dual memory (agents.md long-term + progress.txt short-term), fresh context per iteration, $3/iteration cost, 14-iteration feature build
 - "Hey Siri, meet AI" — Ben Tossell / Ben's Bites (Jun 2026) ([link](https://bensbites.beehiiv.com/p/hey-siri-meet-ai)) — practitioner framing of skills-composition pipelines as loop design pattern (planning → PRD → research → build → review → test)
+- "Build Agents That Run for Hours" — Ash Prabaker & Andrew Wilson / Anthropic Applied AI, AI Engineer conference (video, Jun 2026) — planner/generator/evaluator harness architecture, critic-gap exploit (GAN-inspired role separation), contract negotiation before building, grading subjective quality via weighted rubrics, evaluator trace isolation, pivot-over-patch behavior, harness co-evolution across model generations (Opus 4.5 → 4.6), model capability timeline for long-running agents
 - "Designing loops with Fable 5" — Lance Martin / Anthropic (tweet thread, Jun 2026) ([link](https://x.com/RLanceMartin/status/2072674851995906113)) — self-correction loops via /goal and Outcomes, verifier sub-agent > self-critique (independent context window), Parameter Golf benchmark (Fable 5 ~6× over Opus 4.7, structural vs scalar experimentation), cross-session memory as outer loop, five-stage memory progression (fail → investigate → verify → distill → consult), Continual Learning Bench 1.0 results across Fable/Opus/Sonnet

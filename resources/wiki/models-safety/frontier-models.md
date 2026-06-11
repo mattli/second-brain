@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-27
-last_updated: 2026-05-26
+last_updated: 2026-06-11
 ---
 
 # Frontier Models
@@ -76,6 +76,16 @@ Meta's pivot away from open weights is described as "a significant loss for the 
 
 Meta's stated goal is to compete for business customers alongside OpenAI, Google, and Anthropic. Health specialization and multimodal capabilities align with Meta's product interests (billions of camera-equipped users, health as a top AI query category).
 
+## Claude Fable 5 and the Long-Task Frontier (June 2026)
+
+Anthropic released Claude Fable 5 in June 2026 — the same underlying model as Mythos but with added safety safeguards. Fable 5 claimed state-of-the-art on nearly all tested benchmarks, with particular strength in software engineering, knowledge work, scientific research, and vision. Critically, the model's lead over competitors grows with task length and complexity — the longer and more difficult the problem, the wider the margin.
+
+Practitioners report that Fable 5 represents a qualitative step change on par with the November 2025 Claude 4.5 release, especially for extended problem-solving sessions. The model handles significantly more ambitious tasks with less supervision, reaching a point where it becomes "tempting to stop looking at the code at all" — though premature trust remains inadvisable in production [[source]](https://x.com/karpathy/status/2064433620832493812).
+
+The safety layer is notable: Fable 5 ships with safeguards that are deliberately configured conservatively for launch, erring on the side of over-triggering rather than under-triggering. Anthropic has indicated these will be tuned over time based on real-world feedback. See [AI Safety & Interpretability](ai-safety-interpretability.md) for the broader trend of safety-capability bundling in frontier releases.
+
+An adjacent observation: as frontier model capability improves, demand for software does not plateau — it accelerates. Karpathy describes a Jevon's paradox dynamic where working software "on a tap" expands what practitioners ask for: bespoke single-use apps, project-specific dashboards, massively expanded test suites, automated optimization, and large-scale research projects with custom interfaces. The implication is that frontier models don't reduce overall engineering effort — they shift it toward higher-leverage, more ambitious tasks.
+
 ## See Also
 
 - [AGI Definitions](../landscape/agi-definitions.md) — how labs define progress and milestones
@@ -88,3 +98,4 @@ Meta's stated goal is to compete for business customers alongside OpenAI, Google
 
 - "Big Pharma Bets Big on AI" — Andrew Ng / deeplearning.ai (newsletter, Apr 2026) ([link](https://read.readwise.io/read/01kq881g9mf0dfc4nzk8eyywt1)) — Muse Spark release, Meta's closed-weights pivot, benchmark data, contemplating mode, multi-agent inference trend
 - [The last six months in LLMs in five minutes](https://simonwillison.net/2026/May/19/5-minute-llms/) — Simon Willison (May 2026) — November 2025 inflection point, model rotation, RLVR-driven coding agent quality, small/open-weight models closing the frontier gap
+- "This is a super exciting release - Claude Fable 5…" — Andrej Karpathy (tweet, Jun 2026) — Claude Fable 5 qualitative assessment, SOTA benchmark claims, long-task capability lead, safety safeguard tuning, Jevon's paradox of software demand

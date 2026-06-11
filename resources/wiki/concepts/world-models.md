@@ -1,11 +1,11 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-06-04
+last_updated: 2026-06-11
 ---
 
 # World Models
 
-> TLDR: An alternative AI paradigm to LLMs — models that simulate the physical world internally rather than predicting text tokens. Relevant to robotics, autonomous vehicles, video generation, and spatial reasoning. Key players: Yann LeCun/AMI, World Labs (Fei-Fei Li), Google (SEMA/Genie), NVIDIA (Cosmos).
+> TLDR: An alternative AI paradigm to LLMs — models that simulate the physical world internally rather than predicting text tokens. Relevant to robotics, autonomous vehicles, video generation, and spatial reasoning. Key players: Yann LeCun/AMI, World Labs (Fei-Fei Li), Google (SEMA/Genie), NVIDIA (Cosmos). Sutton argues world models are necessary but insufficient — true discovery also requires evaluation and selective retention (the RL loop).
 
 ## Overview
 
@@ -65,6 +65,24 @@ In a detailed Wired interview (Steven Levy), LeCun laid out his comprehensive st
 
 See also: [AGI Definitions](../landscape/agi-definitions.md) for where LeCun's views fit in the broader AGI debate.
 
+## Sutton's Discovery Framework: Why World Models Aren't Enough Either
+
+Rich Sutton argues that the limitation of generative AI goes deeper than the text-vs-spatial divide. Even world models, when trained via supervised learning, share the same fundamental gap: they can produce output that is novel *or* good, but never both simultaneously. Novel output comes from stochastic variation; good output comes from training data. The two sources don't interact at runtime.
+
+True creativity and discovery require three steps operating together:
+
+1. **Variation** — generating candidates (partly informed, partly blind)
+2. **Evaluation** — judging candidates against a clear objective
+3. **Selective retention** — keeping only what works
+
+Generative AI has variation (stochastic sampling) but lacks runtime evaluation. Without evaluation there can be no selective retention, and "the novelty flickers into existence, but if its value is unrecognized, then it flickers away and is lost." This applies equally to language models, image generators, and supervised world models.
+
+The systems that *have* achieved genuine discovery — AlphaGo's move 37, AlphaZero's chess style, AlphaFold's protein structures, AlphaProof's mathematical advances — all include the evaluation step, typically via reinforcement learning or search against an explicit objective. Sutton traces the pattern to evolution (natural selection), the scientific method, and operant conditioning — all instances of the same generate-evaluate-retain loop.
+
+Sutton explicitly includes world modeling in the insufficient category: "creativity and discovery are more than what can be done by supervised learning. More than what can be done by pattern recognition or prediction, even more than what can be done with world modeling." The implication is that world models are a necessary component (better representations enable better variation) but not sufficient without the discovery loop on top.
+
+This reframes the LLM-vs-world-models debate. LeCun argues world models are the missing piece; Sutton argues that *evaluation against objectives* is the missing piece, and that neither LLMs nor world models provide it on their own. The two views are complementary — world models give richer representations of the environment, while RL and search provide the evaluation loop that turns those representations into discovery.
+
 ## Open vs. Closed Models: The Mid-2026 Landscape
 
 Nathan Lambert (Apr 2026) published 13 beliefs on the open vs. closed model dynamic, extending the debate LeCun framed around open-source AI:
@@ -103,3 +121,4 @@ Y Combinator's [2026 RFS](../landscape/yc-ai-thesis.md) explicitly calls out spa
 - "How Not to Be Stupid About AI, With Yann LeCun" — Steven Levy / Wired ([link](https://www.wired.com/story/how-not-to-be-stupid-about-ai-with-yann-lecun/))
 - "My bets on open models, mid-2026" — Nathan Lambert (Apr 2026) ([link](https://www.interconnects.ai/p/my-bets-on-open-models-mid-2026))
 - "A Functional Taxonomy of World Models" — Fei-Fei Li / World Labs (2026) ([link](https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models)) — POMDP-based framework classifying world models by which piece of the agent–action–state–observation loop they output
+- "AI creativity & discovery" — Rich Sutton (video, 2026) — Variation/evaluation/retention framework; argues world models (and all supervised learning) lack the evaluation step needed for true discovery

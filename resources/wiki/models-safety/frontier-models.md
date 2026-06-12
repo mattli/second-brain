@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-27
-last_updated: 2026-06-11
+last_updated: 2026-06-12
 ---
 
 # Frontier Models
@@ -82,7 +82,15 @@ Anthropic released Claude Fable 5 in June 2026 — the same underlying model as 
 
 Practitioners report that Fable 5 represents a qualitative step change on par with the November 2025 Claude 4.5 release, especially for extended problem-solving sessions. The model handles significantly more ambitious tasks with less supervision, reaching a point where it becomes "tempting to stop looking at the code at all" — though premature trust remains inadvisable in production [[source]](https://x.com/karpathy/status/2064433620832493812).
 
-The safety layer is notable: Fable 5 ships with safeguards that are deliberately configured conservatively for launch, erring on the side of over-triggering rather than under-triggering. Anthropic has indicated these will be tuned over time based on real-world feedback. See [AI Safety & Interpretability](ai-safety-interpretability.md) for the broader trend of safety-capability bundling in frontier releases.
+**Practitioner workflow shift:** The most distinctive Fable 5 usage pattern is full task delegation — leaving the model looping for hours or overnight and returning to a finished product, rather than iterating back-and-forth. Mike Krieger (head of Anthropic Labs, who had early access to Mythos-class models) describes ending his workday by briefing the model, then waking up to completed work. When a remote service went down mid-task, Fable 5 wrote a workaround, documented it, and continued autonomously. This delegation-first workflow depends on Fable 5's ability to spawn dozens of subagents reliably without losing context of the main task; Claude Code now supports nested subagents up to five layers deep, where each subagent can spawn further subagents.
+
+The tradeoff practitioners feel most acutely is speed vs. intelligence vs. cost. Fable 5 is noticeably slower than alternatives like Cursor's Composer 2.5 Fast or GPT 5.5, which matters for developers who need rapid iteration cycles. Choosing lower reasoning levels (below High or XHigh) feels counterproductive even when the task doesn't warrant full reasoning budget. Fable medium, however, outperforms Opus xhigh on benchmarks while costing less — suggesting that the right strategy is often to use Fable at moderate reasoning rather than Opus at maximum.
+
+**Verification as the bottleneck:** As delegation scales, the constraint shifts from writing code to verifying agent output. Krieger gives Fable video captures of its own work so it can catch animation glitches that screenshots would miss — an early example of using the model's own multimodal capabilities to close the verification loop. See [Agent Proficiency](../concepts/agent-proficiency.md) for more on how human skill is evolving toward verification and orchestration.
+
+**Pricing and availability:** Fable 5 is approximately 2x the cost of Opus via API (vs. Mythos at 5x). At launch, Fable is included in Claude subscription plans through June 22, 2026, after which Anthropic plans to move it to paid credits until serving capacity scales. SemiAnalysis found that $200/month subscription plans actually deliver well beyond the assumed ~$2,000/month equivalent in API tokens when used for long-horizon coding tasks.
+
+The safety layer is notable: Fable 5 ships with safeguards that are deliberately configured conservatively for launch, erring on the side of over-triggering rather than under-triggering. Anthropic has indicated these will be tuned over time based on real-world feedback. Separately, Anthropic introduced a policy where Fable would covertly degrade output quality for ML/AI-related work — a move that drew sharp backlash and was partially walked back to at least make the restriction transparent rather than hidden. See [AI Safety & Interpretability](ai-safety-interpretability.md) for the broader trend of safety-capability bundling in frontier releases.
 
 An adjacent observation: as frontier model capability improves, demand for software does not plateau — it accelerates. Karpathy describes a Jevon's paradox dynamic where working software "on a tap" expands what practitioners ask for: bespoke single-use apps, project-specific dashboards, massively expanded test suites, automated optimization, and large-scale research projects with custom interfaces. The implication is that frontier models don't reduce overall engineering effort — they shift it toward higher-leverage, more ambitious tasks.
 
@@ -99,3 +107,4 @@ An adjacent observation: as frontier model capability improves, demand for softw
 - "Big Pharma Bets Big on AI" — Andrew Ng / deeplearning.ai (newsletter, Apr 2026) ([link](https://read.readwise.io/read/01kq881g9mf0dfc4nzk8eyywt1)) — Muse Spark release, Meta's closed-weights pivot, benchmark data, contemplating mode, multi-agent inference trend
 - [The last six months in LLMs in five minutes](https://simonwillison.net/2026/May/19/5-minute-llms/) — Simon Willison (May 2026) — November 2025 inflection point, model rotation, RLVR-driven coding agent quality, small/open-weight models closing the frontier gap
 - "This is a super exciting release - Claude Fable 5…" — Andrej Karpathy (tweet, Jun 2026) — Claude Fable 5 qualitative assessment, SOTA benchmark claims, long-task capability lead, safety safeguard tuning, Jevon's paradox of software demand
+- [New Claude model - Fable](https://www.bensbites.com/p/new-claude-model-fable) — Ben Tossell / Ben's Bites (newsletter, Jun 2026) — Practitioner Fable 5 experience, speed-intelligence-vibe tradeoff, overnight delegation workflow (via Dan Shipper / Mike Krieger interview), nested subagent spawning, Fable medium vs Opus xhigh cost-performance, ML/AI sabotage policy controversy, subscription pricing analysis

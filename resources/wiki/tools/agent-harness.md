@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-06-08
+last_updated: 2026-06-13
 
 ---
 
@@ -146,6 +146,28 @@ A follow-up to "Thin Harness, Fat Skills" that expands on definition #3 (resolve
 
 **GBrain:** Open-sourced system shipping with the resolver pattern built in. `gbrain init` creates RESOLVER.md, the decision tree, and disambiguation rules. 25,000 files, 200 inputs/day, compounding. GStack (72K+ stars) is the coding layer; OpenClaw or Hermes Agent is the conductor.
 
+## Context as Knowledge Hierarchy
+
+With the model fixed, accuracy is a function of context quality: bloated context buries the signal, missing context forces guessing, and both cost accuracy. The relationship is nonlinear — a task that scores 99% is worth 10x more than one at 95%. But the agent cannot hold the union of everything in context at once. The real objective: minimize the context spent per task, averaged over the task distribution.
+
+This is exactly the problem a CPU faces. A program may touch gigabytes of data, but the storage next to the processor is tiny — so computers stack memory in tiers: a small, instant cache (L1), bigger-and-slower ones below it (L2, L3), then main memory and disk. It works because access is long-tailed: keep the hot set in the fast tier, reach down to the slow tiers only for the rare stuff.
+
+Agent context should have the same structure:
+
+**L1 — always resident.** The operations on the steep part of the frequency curve. These get feature-engineered, token-compressed, consequence-reporting wrappers that live in the system prompt on every single task. The investment in L1 is disproportionate because the agent pays the cost on every call. Concrete example from a spreadsheet agent: a `getCellRange` call normalizes 500 near-identical formulas into a single aliased pattern (R1C1 form), attaches the header row and row labels automatically (free context the model never asked for), and compresses cell styles into grouped ranges — turning 600 formulas and 400 styled cells into a handful of lines with zero information loss. On the write side, a structured diff groups and samples changed cells, then triages them into "clean writes" and "cells that need review" with `MUST FIX` flags for things like `#REF!` errors — a built-in linter on the agent's own edits [[source]](https://x.com/brainsandtennis/status/2065190286519906657/?rw_tt_thread=True).
+
+**L2 — curated specs, on demand.** Important-but-occasional capabilities (conditional formatting, pivot tables, charts) that would bloat every task if placed in L1. Written as hand-crafted prose — not type-signature dumps but gotcha-aware recipes that encode the canonical procedure and the constraints you'd otherwise learn only by failing. Retrieved via a single discovery step (e.g., `console.log(getAPIInfo("pivot_tables"))`). Cost: zero tokens until needed, one cache miss when invoked. The same pattern applies to deferred tools — a meta-tool wall of one-liners where the model loads full schemas only on selection (see [deferred tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference) for the Claude implementation).
+
+**L3 — the raw substrate, plus a skill to mine it.** The complete reference that can't be anticipated — 70K lines of raw API surface, too large for prompt context, but reachable via a short skill file (~100 lines) that teaches the model how to grep through it. Three to six targeted searches surface the exact signature needed. The system prompt makes this escape hatch explicit: "If the wrapped API can't do it, use the raw API — don't compromise." The agent should never be stuck.
+
+**Prompt budget shape mirrors the frequency curve:** Most of the system prompt is L1 (a few hundred lines). L2 is ~50 lines of pointers and allowlists. L3 is ~5 lines — the skill name and a reference. The allocation is exactly what the cache-hierarchy framing predicts.
+
+**The tiers drift with model strength.** Early, weak models needed tiny single-purpose tools and everything spelled out. Today's models absorb a larger L2 spec in one shot and reason over more raw L3 detail without choking. Yesterday's L3 becomes tomorrow's L2; yesterday's L2 collapses into L1. But the hierarchy itself never goes away — context will always be scarce relative to everything you could put in it, and noise will always cost accuracy. Bigger context windows tempt people to paste in more; the better instinct is summaries in cache, details on demand, the raw substrate as the last resort. (See also [Harness Coevolution with Models](#harness-coevolution-with-models).)
+
+**Porting the hierarchy to any domain** requires three questions: (1) What do you wrap into L1? The bread-and-butter operations — make them brutally token-efficient and make them report consequences. (2) What do you defer to L2? The important-but-occasional capabilities — curated, English, gotcha-aware specs reachable in one discovery step. (3) What is your L3 escape hatch? The raw, complete substrate plus a skill that teaches the agent to mine it. It doesn't have to be ergonomic; it has to be reachable, complete, and findable in a bounded number of steps.
+
+This pattern is the concrete architectural instantiation of [Thin Harness, Fat Skills](#thin-harness-fat-skills-garry-tan-yc): L1 is the thin harness kept tight; L2 specs are the fat skills loaded by resolvers; L3 is the substrate that ensures the agent is never truly stuck.
+
 ## OpenAI's Harness Engineering Lessons (Ryan Lopopolo)
 
 Team built a product with 1M+ lines of code and 0 manually-written lines over 5 months (3.5 PRs per engineer per day, using Codex).
@@ -181,6 +203,8 @@ Key lessons:
 ## Tool Design Principles
 
 Anthropic's internal tool evaluation work distills five principles for writing effective agent tools, validated by held-out test sets against their Slack, Asana, and other internal MCP servers.
+
+**Fewer tools, higher accuracy.** Model accuracy degrades as tool count increases — every tool added is more schema in the prompt, more surface to confuse, more ways to pick the wrong one. Popular agents vary 4x on this most basic design question: Codex and Claude Code ship ~30 tools each; Pi ships 7. One spreadsheet agent collapsed all capabilities into a single `execute_code` tool — no `read_range`, no `write_range`, no `make_chart` — letting the model compose capabilities with the full expressive power of code instead of stitching together rigid tool calls [[source]](https://x.com/brainsandtennis/status/2065190286519906657/?rw_tt_thread=True). This is consistent with Vercel's experience: they removed 80% of tools from v0 and got better results (see [Seven Harness Design Decisions](#seven-harness-design-decisions), point 6).
 
 **Choose the right tools (and skip the wrong ones).** Agents have limited context; computer memory is cheap. A `list_contacts` tool that dumps an entire address book wastes the agent's context window on brute-force search — the better tool is `search_contacts` or `message_contact`. Build a few thoughtful tools targeting high-impact workflows, then scale from there. Tools should consolidate multi-step operations: instead of separate `list_users`, `list_events`, and `create_event` tools, a single `schedule_event` tool that finds availability and books the meeting. Instead of `get_customer_by_id` + `list_transactions` + `list_notes`, a single `get_customer_context` tool that compiles everything at once.
 
@@ -407,4 +431,5 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "The AI Agent Complexity Ratchet: Why 90% Test Coverage Is Required" — Garry Tan (tweet thread, May 2026) ([link](https://x.com/garrytan)) — complexity ratchet mechanism (tests + docs + evals as forward-only quality floor), 90% coverage threshold backed by Capers Jones DRE data and DO-178C, AI agents removing the effort wall, expanded test surface including TTY behavioral testing
 - "Dreams" — Anthropic Claude API Docs (May 2026) ([link](https://platform.claude.com/docs/en/managed-agents/memory)) — async memory consolidation for managed agents: reads memory store + session transcripts, produces deduplicated/reorganized output store
 - "Writing effective tools for agents — with agents" — Ken Aizawa et al., Anthropic (Jun 2026) ([link](https://www.anthropic.com/engineering/writing-effective-tools-for-agents)) — tool design principles (consolidation, namespacing, meaningful context, token efficiency, description prompt-engineering) and evaluation-driven improvement loop; validated on internal Slack/Asana MCP servers with held-out test sets
+- "Building a Good Vertical Agent" — Peter Wang (tweet thread, Jun 2026) ([link](https://x.com/brainsandtennis/status/2065190286519906657/?rw_tt_thread=True)) — L1/L2/L3 knowledge hierarchy for agent context (CPU cache analogy), single-tool architecture, compression engineering for domain operations, prompt budget allocation mirroring task frequency curves; from building Shortcut (spreadsheet agent deployed at 3 of top 4 multistrategy hedge funds)
 - "Deriving Agent Harnesses from First Principles" — Viv (Vivek Trivedy), LangChain (tweet thread, Jun 2026) ([link](https://x.com/Vtrivedy10)) — systematic derivation of harness components from model limitations; filesystem as foundational primitive; context rot mitigations (compaction, tool call offloading, progressive disclosure); apply_patch overfitting as coevolution example; Terminal Bench 2.0 harness variance data

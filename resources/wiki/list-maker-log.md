@@ -1,26 +1,26 @@
 ---
-run_date: 2026-06-12
-run_start: "2026-06-12T08:01:23Z"
-run_end: "2026-06-12T08:02:05Z"
-updated_after: "2026-06-11T08:03:30Z"
+run_date: 2026-06-13
+run_start: "2026-06-13T08:00:33Z"
+run_end: "2026-06-13T08:01:15Z"
+updated_after: "2026-06-12T08:02:05Z"
 items_total: 2
 workers_dispatched: 2
 tier_c_referenced: 0
 tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-06-12
+# List-Maker Run — 2026-06-13
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-11T08:03:30Z. Found 2 new documents — both Tier A. One practitioner take on Claude Fable 5 (Ben Tossell), one on loop engineering patterns (Addy Osmani). Both route to existing pages with strong topic overlap from yesterday's batch.
+Cutoff from previous run_end: 2026-06-12T08:02:05Z. Found 2 new documents — both Tier A tweets. One on self-improving agent systems with Fable 5 (Codez), one on vertical agent architecture (Peter Wang). Both route to existing tools/ pages.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01ktvvqz8t5rhgg6t4tn64cjdz | A | update | models-safety/frontier-models.md | Ben Tossell on Fable 5 long-task capability and subagent spawning — practitioner perspective |
-| 01ktndwqh44d32raq2w1sgdsr5 | A | update | tools/agentic-engineering.md | Addy Osmani on loop engineering — maker/checker loops, quality gates, oversight patterns |
+| 01ktz87vfxp2d1eq0y0wehzb5w | A | update | tools/agentic-engineering.md | Codez on self-improving agent systems with Fable 5 — loops, dynamic workflows, routines |
+| 01ktz87bxad11vn9vp2gpwff35 | A | update | tools/agent-harness.md | Peter Wang on vertical agent design — layered context, tool design, tiered knowledge hierarchy |
 
 ## Tier C — References Added
 

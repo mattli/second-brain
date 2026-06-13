@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-11
+last_updated: 2026-06-13
 ---
 
 # Agentic Engineering
@@ -133,7 +133,50 @@ The harness and models co-evolve: each model release ships alongside harness cha
 - *Agent empathy.* The Claude for Chrome team's technique: close your eyes, open them every 10 seconds to see a static page, close again, try to navigate. Putting yourself in the model's perceptual position reveals why it makes the choices it does. "There's this empathetic skill set which you need to develop."
 - *Brownfield applicability.* The PGE pattern is primarily greenfield. For brownfield, pair it with autonomous monitoring → issue generation → agent PR → human review. The rubric-based evaluator still applies but needs customization per project.
 
-## Self-Improving Agents (AutoAgent)
+## Self-Improving Agents
+
+### The Distinction: Self-Improving ≠ Self-Learning
+
+The phrase "self-improving agent system" gets used carelessly. The version that works today and the version that's hype are different things:
+
+- **Self-learning** — the agent updates its own weights from experience. No publicly available model does this in production. Recursive self-improvement (RSI) is a long-term research direction, not a shipping capability.
+- **Self-improving** — the *system around the agent* compounds. Each session writes lessons to memory. Skills sharpen as edge cases accumulate. State files collect verified facts. Eval loops refine prompts and rubrics. The model stays the same; the environment it runs in gets sharper.
+
+Self-improvement, in this sense, is a property of the system you build — not a property of the model. The model provides the raw capability (long context, sub-agent delegation, vision self-check); the system provides the feedback loop that makes it compound run over run.
+
+### The Compound Stack
+
+The architecture that makes agent systems compound has four layers, read bottom-up in the order they get built:
+
+1. **Primitives** — The model itself, sub-agents, worktrees, tools. Raw capability with no system around it. This is where most users stop.
+2. **Orchestration** — /goal and Outcomes for self-correcting loops. [Dynamic Workflows](#loop-engineering) for multi-step orchestration. Routines for laptop-off cloud runs. Turns primitives into workflows.
+3. **Memory** — State files, Skills, Knowledge Bases, lessons written down. Makes tomorrow's session resume instead of restart.
+4. **Self-improvement** — Vision self-checks, eval loops, rule distillation. The agent grades its own output, refines the Skill that produced it, writes the lesson back to memory.
+
+The compounding mechanism: every output from layer 1 flows up through layer 4, where it gets graded, distilled, and written back to layer 3. Tomorrow's run at layer 1 inherits the sharpened memory and refined Skills from yesterday. The model is stateless; the system around it isn't.
+
+### Cost-Routing for Production Systems
+
+Not every step in a self-improving system needs the top-tier model. Teams running these systems in production route by task complexity:
+
+- **Frontier model** (Fable 5 / most capable available) for the orchestrator role: planning across days, delegating to sub-agents, checking work with vision, distilling rules from accumulated evidence. Use where days-long capability earns its pricing.
+- **Strong model** (Opus-class) for hard-but-bounded subtasks: architecture decisions, complex debugging, deep code reviews. Also the explicit fallback for any request the frontier model's safety classifiers block.
+- **Fast model** (Sonnet-class) for high-volume worker tasks: lint passes, simple refactors, test scaffolding, doc updates. The bulk of fan-out work.
+- **Cheap model** (Haiku-class) for grader sub-agents and classifiers. Independent context window, low cost — ideal for the [verifier role](#loop-engineering).
+
+The pattern: **orchestrator on the frontier model, workers on the fast model, graders on the cheap model, fallback to the strong model on classifier blocks**.
+
+### Safety Boundary as Architecture Constraint
+
+Frontier models increasingly ship with built-in safety classifiers that decline to respond in specific high-risk domains (cybersecurity vulnerability research, biology, chemistry, model distillation). When the classifier triggers, the model falls back silently — and a self-improving system running autonomously can't distinguish a classifier block from a real error.
+
+Design implications:
+
+- If your system touches security tooling, expect classifier blocks. Route those tasks to a non-frontier model explicitly, or surface the block to a human reviewer.
+- Skills should document which task types may hit the classifier and specify expected fallback behavior.
+- Treat the safety boundary as a known architectural constraint, not a failure mode. A system with explicit handling stays robust as classifiers evolve; a system that ignores them produces silent regressions.
+
+### AutoAgent
 
 Kevin Gu released AutoAgent — first library for autonomously improving agent harnesses. Key results:
 - Hit #1 on SpreadsheetBench (96.5%) and #1 GPT-5 score on TerminalBench (55.1%) after 24+ hours of autonomous optimization
@@ -453,4 +496,5 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "\"Ralph Wiggum\" AI Agent will 10x Claude Code/Amp" — Greg Isenberg ft. Ryan Carson (video, Jun 2026) — Ralph loop practitioner walkthrough: PRD-to-JSON pipeline, atomic user stories with acceptance criteria, dual memory (agents.md long-term + progress.txt short-term), fresh context per iteration, $3/iteration cost, 14-iteration feature build
 - "Hey Siri, meet AI" — Ben Tossell / Ben's Bites (Jun 2026) ([link](https://bensbites.beehiiv.com/p/hey-siri-meet-ai)) — practitioner framing of skills-composition pipelines as loop design pattern (planning → PRD → research → build → review → test)
 - "Build Agents That Run for Hours" — Ash Prabaker & Andrew Wilson / Anthropic Applied AI, AI Engineer conference (video, Jun 2026) — planner/generator/evaluator harness architecture, critic-gap exploit (GAN-inspired role separation), contract negotiation before building, grading subjective quality via weighted rubrics, evaluator trace isolation, pivot-over-patch behavior, harness co-evolution across model generations (Opus 4.5 → 4.6), model capability timeline for long-running agents
+- "Build self-improving agent system with Fable 5 in 14 steps" — Codez (tweet thread, Jun 2026) ([link](https://x.com/0xcodez/status/2065089060104720776/?rw_tt_thread=True)) — self-improving vs self-learning distinction, 4-layer compound stack (primitives → orchestration → memory → self-improvement), cost-routing pattern for production (frontier orchestrator, fast workers, cheap graders), safety boundary as architecture constraint
 - "Designing loops with Fable 5" — Lance Martin / Anthropic (tweet thread, Jun 2026) ([link](https://x.com/RLanceMartin/status/2072674851995906113)) — self-correction loops via /goal and Outcomes, verifier sub-agent > self-critique (independent context window), Parameter Golf benchmark (Fable 5 ~6× over Opus 4.7, structural vs scalar experimentation), cross-session memory as outer loop, five-stage memory progression (fail → investigate → verify → distill → consult), Continual Learning Bench 1.0 results across Fable/Opus/Sonnet

@@ -1,11 +1,12 @@
 ---
 created_at: 2026-04-27
 last_updated: 2026-06-14
+
 ---
 
 # Frontier Models
 
-> TLDR: The frontier model landscape (2026) is defined by rapid competitive rotation among Anthropic, OpenAI, and Google, inference-time multi-agent scaling as an alternative to ever-larger single models, and a narrowing gap between frontier and open-weight local models.
+> TLDR: The frontier model landscape (2026) is defined by rapid competitive rotation among Anthropic, OpenAI, and Google, inference-time multi-agent scaling as an alternative to ever-larger single models, a narrowing gap between frontier and open-weight local models, and a paradigm shift where the binding constraint on progress is high-quality training data — not raw compute.
 
 ## Overview
 
@@ -96,6 +97,20 @@ The safety layer is notable: Fable 5 ships with safeguards that are deliberately
 
 An adjacent observation: as frontier model capability improves, demand for software does not plateau — it accelerates. Karpathy describes a Jevon's paradox dynamic where working software "on a tap" expands what practitioners ask for: bespoke single-use apps, project-specific dashboards, massively expanded test suites, automated optimization, and large-scale research projects with custom interfaces. The implication is that frontier models don't reduce overall engineering effort — they shift it toward higher-leverage, more ambitious tasks.
 
+## Scaling Philosophy: Data Quality Over Compute
+
+Raw compute capacity is growing rapidly — global AI chip production is on a steep exponential, and Anthropic's ARR alone grew from $9B (end of 2025) to $47B (May 2026), with much of it flowing to compute capex. But the consensus among frontier lab insiders is shifting: compute is no longer the binding constraint on progress. The true bottleneck is the data pipeline — specifically, the ability to generate high-quality training signal for increasingly complex tasks.
+
+**The RLVR revolution and its limits.** Before OpenAI's o1 model, training data meant text: scraped from the internet, written by paid humans, or synthetically augmented. This was expensive and finite, prompting predictions the industry would run out of data. RLVR changed the economics: for tasks where answers can be verified programmatically (give the model a coding problem, run the output through tests, train on what passes), a single well-designed task yields far more supervision than a single written solution. An ecosystem of companies — Mercor, Datacurve, Mechanize — now builds these verification environments at scale, running LLMs in virtual computers and scoring their outputs deterministically. This pipeline has made frontier models exceptionally strong at verifiable tasks like software engineering.
+
+But RLVR has exposed two structural limitations. First, the marginal cost of creating verification environments scales with task complexity — as tasks surpass human capabilities, building fair and deterministic scoring requires teams of specialists, driving costs up sharply. Second, domains that resist deterministic scoring are correspondingly hard to improve. Writing is the canonical example: reward models and LLM judges tend to optimize for coherence and predictability rather than genuine quality, producing output that is competent but recognizably generic. Fable 5 demolishes coding benchmarks but [performs relatively poorly](https://x.com/andonlabs/status/2064429817530085804) on Vending-Bench, which evaluates open-ended business decision-making — precisely the kind of task where deterministic scoring breaks down [[source]](https://x.com/golokhvastov/status/2066269917386027293).
+
+**The real-world feedback hypothesis.** One speculative but economically plausible path forward: instead of humans manually designing test environments, train models on direct feedback from reality. Rather than simulating business decisions, have AI agents actually run companies and score on real-world metrics — revenue, growth, churn. A marketing subagent gets evaluated on ad campaign performance; an engineering subagent gets scored on technical issues real users encounter. The company-level reward signal would be sparse (perhaps 1% of AI-run companies crossing a meaningful success threshold), requiring large batch sizes — on the order of 5,000–10,000 microcompanies per quarter. At $25K–$100K per company-run, annual costs would range from hundreds of millions to a few billion dollars, feasible given Anthropic's projected budget [[source]](https://x.com/golokhvastov/status/2066269917386027293).
+
+To bootstrap this, frontier labs could employ small human teams to manage groups of AI agents in real business contexts, documenting decisions and information flows. These records would seed synthetic training pipelines, gradually bringing open-ended executive judgment into the training distribution. The thesis: management is simply another domain to be trained on, following the same trajectory that brought software engineering from "often-work" to "mostly-work" in late 2025.
+
+**The convergence argument.** Whether LLMs have fundamental out-of-distribution creativity limitations matters less than it might seem. If sufficient compute is available, context limits can substitute for sample efficiency — creativity might emerge when models can simulate a lifetime's worth of experiences in context. If compute is insufficient, the result is a transient period of very capable but not omnipotent AIs: enough to automate most computer work and drive rapid economic growth, but potentially bottlenecked on novel innovation. Either way, the economic flywheel — profitable AI agents funding development of smarter AI — points toward continued rapid capability growth. See [AGI Definitions](../landscape/agi-definitions.md) for how labs frame this trajectory.
+
 ## See Also
 
 - [AGI Definitions](../landscape/agi-definitions.md) — how labs define progress and milestones
@@ -111,3 +126,4 @@ An adjacent observation: as frontier model capability improves, demand for softw
 - "This is a super exciting release - Claude Fable 5…" — Andrej Karpathy (tweet, Jun 2026) — Claude Fable 5 qualitative assessment, SOTA benchmark claims, long-task capability lead, safety safeguard tuning, Jevon's paradox of software demand
 - [New Claude model - Fable](https://www.bensbites.com/p/new-claude-model-fable) — Ben Tossell / Ben's Bites (newsletter, Jun 2026) — Practitioner Fable 5 experience, speed-intelligence-vibe tradeoff, overnight delegation workflow (via Dan Shipper / Mike Krieger interview), nested subagent spawning, Fable medium vs Opus xhigh cost-performance, ML/AI sabotage policy controversy, subscription pricing analysis
 - "If you aren't using models with different effort levels, you're probably wasting tokens, and time" — Morgan (tweet thread, Jun 2026) — Fable 5 low-effort outperforming Opus 4.8/GPT 5.5 at high effort on agentic coding, effort-level selection heuristics, practitioner evidence that routine tasks need less reasoning budget than defaults suggest
+- [The path from Fable to superintelligence](https://x.com/golokhvastov/status/2066269917386027293) — Goliath (tweet thread, Jun 2026) — Data pipeline as true bottleneck over compute, RLVR ecosystem (Mercor/Datacurve/Mechanize), deterministic scoring limitations, real-world feedback hypothesis for training on business outcomes, economic flywheel to superintelligence, Anthropic ARR growth ($9B→$47B)

@@ -1,26 +1,26 @@
 ---
-run_date: 2026-06-13
-run_start: "2026-06-13T08:00:33Z"
-run_end: "2026-06-13T08:01:15Z"
-updated_after: "2026-06-12T08:02:05Z"
+run_date: 2026-06-14
+run_start: "2026-06-14T08:00:43Z"
+run_end: "2026-06-14T08:01:00Z"
+updated_after: "2026-06-13T08:01:15Z"
 items_total: 2
 workers_dispatched: 2
 tier_c_referenced: 0
 tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-06-13
+# List-Maker Run — 2026-06-14
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-12T08:02:05Z. Found 2 new documents — both Tier A tweets. One on self-improving agent systems with Fable 5 (Codez), one on vertical agent architecture (Peter Wang). Both route to existing tools/ pages.
+Cutoff from previous run_end: 2026-06-13T08:01:15Z. Found 2 new documents — both Tier A tweets. Both route to models-safety/frontier-models.md: one on inference-time effort levels (Morgan), one on the Fable-to-superintelligence scaling path (Goliath/Anthropic).
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01ktz87vfxp2d1eq0y0wehzb5w | A | update | tools/agentic-engineering.md | Codez on self-improving agent systems with Fable 5 — loops, dynamic workflows, routines |
-| 01ktz87bxad11vn9vp2gpwff35 | A | update | tools/agent-harness.md | Peter Wang on vertical agent design — layered context, tool design, tiered knowledge hierarchy |
+| 01kv1yypjw1msmy8yn902h75tf | A | update | models-safety/frontier-models.md | Morgan on effort-level inference scaling with Fable 5 — token/time tradeoffs |
+| 01kv1yy09sqqg0znzg7674a1tm | A | update | models-safety/frontier-models.md | Goliath on path from Fable to superintelligence — data quality, real-world feedback training, economic implications |
 
 ## Tier C — References Added
 

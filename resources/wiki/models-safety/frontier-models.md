@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-27
-last_updated: 2026-06-12
+last_updated: 2026-06-14
 ---
 
 # Frontier Models
@@ -86,6 +86,8 @@ Practitioners report that Fable 5 represents a qualitative step change on par wi
 
 The tradeoff practitioners feel most acutely is speed vs. intelligence vs. cost. Fable 5 is noticeably slower than alternatives like Cursor's Composer 2.5 Fast or GPT 5.5, which matters for developers who need rapid iteration cycles. Choosing lower reasoning levels (below High or XHigh) feels counterproductive even when the task doesn't warrant full reasoning budget. Fable medium, however, outperforms Opus xhigh on benchmarks while costing less — suggesting that the right strategy is often to use Fable at moderate reasoning rather than Opus at maximum.
 
+**Effort-level efficiency in practice:** Early practitioner testing suggests the bias toward high effort is even more misguided than benchmark tables imply. On agentic coding tasks, Fable 5 at *low* effort outperforms both Opus 4.8 and GPT 5.5 at high effort; at medium effort it beats Opus 4.8 on xhigh and max. Across hours of routine coding — small updates in medium codebases, larger changes in big ones — low effort produced identical solutions to high effort, just faster and cheaper. One useful heuristic: asking the model itself to recommend an effort level per task phase. In one practitioner's project plan, only one of four phases warranted high effort; the rest were fine at medium or low. The implication is that most developer tokens spent on elevated reasoning levels are wasted — the model arrives at the same solution, just slower and at higher cost.
+
 **Verification as the bottleneck:** As delegation scales, the constraint shifts from writing code to verifying agent output. Krieger gives Fable video captures of its own work so it can catch animation glitches that screenshots would miss — an early example of using the model's own multimodal capabilities to close the verification loop. See [Agent Proficiency](../concepts/agent-proficiency.md) for more on how human skill is evolving toward verification and orchestration.
 
 **Pricing and availability:** Fable 5 is approximately 2x the cost of Opus via API (vs. Mythos at 5x). At launch, Fable is included in Claude subscription plans through June 22, 2026, after which Anthropic plans to move it to paid credits until serving capacity scales. SemiAnalysis found that $200/month subscription plans actually deliver well beyond the assumed ~$2,000/month equivalent in API tokens when used for long-horizon coding tasks.
@@ -108,3 +110,4 @@ An adjacent observation: as frontier model capability improves, demand for softw
 - [The last six months in LLMs in five minutes](https://simonwillison.net/2026/May/19/5-minute-llms/) — Simon Willison (May 2026) — November 2025 inflection point, model rotation, RLVR-driven coding agent quality, small/open-weight models closing the frontier gap
 - "This is a super exciting release - Claude Fable 5…" — Andrej Karpathy (tweet, Jun 2026) — Claude Fable 5 qualitative assessment, SOTA benchmark claims, long-task capability lead, safety safeguard tuning, Jevon's paradox of software demand
 - [New Claude model - Fable](https://www.bensbites.com/p/new-claude-model-fable) — Ben Tossell / Ben's Bites (newsletter, Jun 2026) — Practitioner Fable 5 experience, speed-intelligence-vibe tradeoff, overnight delegation workflow (via Dan Shipper / Mike Krieger interview), nested subagent spawning, Fable medium vs Opus xhigh cost-performance, ML/AI sabotage policy controversy, subscription pricing analysis
+- "If you aren't using models with different effort levels, you're probably wasting tokens, and time" — Morgan (tweet thread, Jun 2026) — Fable 5 low-effort outperforming Opus 4.8/GPT 5.5 at high effort on agentic coding, effort-level selection heuristics, practitioner evidence that routine tasks need less reasoning budget than defaults suggest

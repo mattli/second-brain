@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-13
+last_updated: 2026-06-15
 ---
 
 # Agentic Engineering
@@ -165,6 +165,8 @@ Not every step in a self-improving system needs the top-tier model. Teams runnin
 - **Cheap model** (Haiku-class) for grader sub-agents and classifiers. Independent context window, low cost — ideal for the [verifier role](#loop-engineering).
 
 The pattern: **orchestrator on the frontier model, workers on the fast model, graders on the cheap model, fallback to the strong model on classifier blocks**.
+
+**Personal agent economics.** At the other end of the scale, a single-purpose personal agent (e.g., a Telegram bot backed by Sonnet-class on a $4–6/month VPS) runs at roughly $1–5/month in API costs for ~50 messages/day. The entire stack — hosting, API, and deployment — fits under $10/month. This makes personal agents economically viable as always-on utilities rather than experiments, and the deployment is trivial: Claude Code generates the bot code from a plain-English description, systemd keeps it running, and skills (web search, note-taking, scheduled briefings) bolt on as incremental prompts.
 
 ### Safety Boundary as Architecture Constraint
 
@@ -503,4 +505,5 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Hey Siri, meet AI" — Ben Tossell / Ben's Bites (Jun 2026) ([link](https://bensbites.beehiiv.com/p/hey-siri-meet-ai)) — practitioner framing of skills-composition pipelines as loop design pattern (planning → PRD → research → build → review → test)
 - "Build Agents That Run for Hours" — Ash Prabaker & Andrew Wilson / Anthropic Applied AI, AI Engineer conference (video, Jun 2026) — planner/generator/evaluator harness architecture, critic-gap exploit (GAN-inspired role separation), contract negotiation before building, grading subjective quality via weighted rubrics, evaluator trace isolation, pivot-over-patch behavior, harness co-evolution across model generations (Opus 4.5 → 4.6), model capability timeline for long-running agents
 - "Build self-improving agent system with Fable 5 in 14 steps" — Codez (tweet thread, Jun 2026) ([link](https://x.com/0xcodez/status/2065089060104720776/?rw_tt_thread=True)) — self-improving vs self-learning distinction, 4-layer compound stack (primitives → orchestration → memory → self-improvement), cost-routing pattern for production (frontier orchestrator, fast workers, cheap graders), safety boundary as architecture constraint
+- "AI Agents. What they are and how to Build Your Own Step by Step." — Anatoli Kopadze (tweet thread, Jun 2026) ([link](https://x.com/anatolikopadze/status/2063985608381362576/?rw_tt_thread=True)) — beginner-accessible agent spectrum (chat → tools → workflows → autonomous), personal agent deployment economics ($1-5/month API + $4-6/month VPS), Telegram bot tutorial using Claude Code on a Linux VPS, skill composition pattern (bolt-on capabilities via incremental prompts)
 - "Designing loops with Fable 5" — Lance Martin / Anthropic (tweet thread, Jun 2026) ([link](https://x.com/RLanceMartin/status/2072674851995906113)) — self-correction loops via /goal and Outcomes, verifier sub-agent > self-critique (independent context window), Parameter Golf benchmark (Fable 5 ~6× over Opus 4.7, structural vs scalar experimentation), cross-session memory as outer loop, five-stage memory progression (fail → investigate → verify → distill → consult), Continual Learning Bench 1.0 results across Fable/Opus/Sonnet

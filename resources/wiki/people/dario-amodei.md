@@ -50,7 +50,7 @@ Amodei's most comprehensive policy essay, written as evidence of AI's power beca
 
 **4. Civil liberties and state power.** Warns that AI could enable unprecedented autocratic power — fully automated drone armies, mass surveillance at scale, secret power seizures. Proposes: accountability rules for autonomous weapons, banning domestic use of autonomous weapons, closing the bulk data collection loophole, and guaranteeing citizens access to AI at least as capable as what the government deploys against them. Notes that companies, not just governments, can accumulate dangerous AI-driven power. See [AI Regulation](../landscape/ai-regulation.md).
 
-**5. Geopolitics.** Frames AI as a game-board-resetting technology comparable to nuclear weapons. Proposes a democratic coalition: shared chip supply chains, coordinated safety regulation, mutual AI defense, shared benefits for developing countries, and rejection of AI-powered repression. Builds on existing US export controls and endorses pending legislation (MATCH, OVERWATCH).
+**5. Geopolitics.** Frames AI as a game-board-resetting technology comparable to nuclear weapons. Proposes a democratic coalition: shared chip supply chains, coordinated safety regulation, mutual AI defense, shared benefits for developing countries, and rejection of AI-powered repression. Builds on existing US export controls and endorses pending legislation (MATCH, OVERWATCH). See [Geopolitics & World Order](../landscape/geopolitics-world-order.md) for the broader structural dynamics shaping this landscape.
 
 The essay represents a notable shift from Anthropic's earlier "preserve optionality" stance toward actively pushing binding regulation — reflecting Amodei's view that the evidence threshold for action has been crossed.
 

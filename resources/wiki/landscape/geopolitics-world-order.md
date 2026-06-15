@@ -62,7 +62,7 @@ The aggregate probability of at least one major escalation exceeds 50%.
 
 The Big Cycle framework suggests that at this stage, conflicts intensify rather than subside. Countries are recalculating their security postures: those relying on US defense guarantees are watching how the US performs in current theaters to decide whether to seek nuclear weapons, build independent defense capacity, or realign toward the opposing bloc. These recalculations — not the wars themselves — may be the most consequential geopolitical dynamic of the next decade.
 
-For investors and decision-makers, the key takeaway is that "back to normal" is unlikely. The transition from a rules-based to a might-based order implies structurally higher geopolitical risk, defense spending, and potential for capital controls, financial repression, and market disruptions — patterns that have accompanied every prior cycle transition. See [[concepts/knowledge-work-future]] for how these macro shifts intersect with technology-driven economic transformation.
+For investors and decision-makers, the key takeaway is that "back to normal" is unlikely. The transition from a rules-based to a might-based order implies structurally higher geopolitical risk, defense spending, and potential for capital controls, financial repression, and market disruptions — patterns that have accompanied every prior cycle transition. See [Knowledge Work Future](../concepts/knowledge-work-future.md) for how these macro shifts intersect with technology-driven economic transformation. See also [Dario Amodei](../people/dario-amodei.md) for a frontier AI lab CEO's policy proposal responding to these geopolitical dynamics (democratic AI coalition, coordinated safety regulation).
 
 ## Sources
 

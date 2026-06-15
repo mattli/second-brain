@@ -171,6 +171,11 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 
 **Key contrast with Block's model:** Block's "From Hierarchy to Intelligence" describes the organizational *structure* (world model + intelligence layer + capabilities). Architect Mode describes the *leadership posture* — what the CEO actually does all day when the intelligence layer handles coordination. They're complementary: Block answers "what does the company look like?" and Al-Abdullah answers "what does the CEO do?"
 
+## See Also
+
+- [Agentic Engineering](../tools/agentic-engineering.md) — technical patterns for the self-improving loops and multi-agent orchestration that the organizational models here depend on
+- [AI-Native Product Development](../tools/ai-native-product-development.md) — the "docs to demos" workflow and team structures emerging from AI-native development
+
 ## Sources
 
 - "From Hierarchy to Intelligence" — Jack Dorsey / Block (tweet, Mar 2026) ([link](https://x.com/jack/status/2039003879841362278/?s=12&rw_tt_thread=True))

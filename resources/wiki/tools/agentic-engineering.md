@@ -466,6 +466,12 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - **MuleRun** — No-code AI agent platform for business automation. Dedicated compute per agent, runs 24/7
 - **Base44 Superagent** — 130+ built-in skills, stack skills into workflows
 
+## See Also
+
+- [AI Organization Design](../landscape/ai-organization-design.md) — how self-improving agent loops reshape company structure (Block's intelligence layer, YC's recursive loops)
+- [Agent Harness](agent-harness.md) — the harness-level patterns that individual agents use
+- [AI-Native Product Development](ai-native-product-development.md) — product workflows built on agentic engineering patterns
+
 ## Sources
 
 - "Lessons from Building Claude Code: Seeing like an Agent" — Thariq (Anthropic, Feb 2026)

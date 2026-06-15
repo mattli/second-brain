@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-05-26
+last_updated: 2026-06-15
 
 
 ---
@@ -36,6 +36,8 @@ Sam Altman describes emotional clarity as "one of the most critical skills in a 
 The ability to see clearly and zero in on what matters — especially when drowning in data. Analysis paralysis from data overload is already the #1 source of C-suite decision failure (Deloitte, 2024).
 
 The deeper principle: self-perception enables world perception. If you can't see yourself clearly (blind spots, limiting beliefs, false assumptions), you can't assess external situations accurately. Discernment is as much inner work as analytical skill.
+
+**Taste as a trainable muscle.** Problem selection — knowing *what* to work on — is the highest-leverage form of discernment and the one least taught. Hamming had a habit at Bell Labs of asking colleagues what the important problems in their field were, then asking why they weren't working on them. People changed tables. The question stings because most people absorb problems (from advisors, from whatever a big lab announced, from what's trending) rather than choosing them — holding conclusions without the reasoning behind them. Schulman splits research into two modes: hunting the literature for things to improve, or choosing an outcome you genuinely want and reasoning backward to the experiments. The second mode manufactures originality because a goal you actually care about drags you into territory no survey paper covers [[source]](https://x.com/VivsThoughts). Taste itself responds to a simple training protocol: predict the result of every experiment before running it, cover a paper's results and guess the numbers from the method, mark which releases will matter in two years and check your hit rate later. A forecast plus a correction, repeated hundreds of times, is how every good model gets trained — including the one in your head.
 
 ### Connection
 Deep relational presence — attuning to others, creating psychological safety, vulnerability without performance. Human connection requires mutual embodied presence that AI cannot replicate: nervous systems coregulating, micro-expressions, pulse changes.
@@ -174,12 +176,17 @@ The deskilling research points to a clear intervention: the problem isn't AI use
 - **Treat AI output like a junior engineer's PR.** Read it, critique it, push back. Passing tests is not sufficient reason to merge.
 - **Re-derive periodically.** Take AI-generated code and recreate it from scratch — a calibration check on what you've quietly lost.
 - **Ask the model to teach what it just did.** One extra prompt ("what concepts did you use? what should I read?") changes what you take away from a session.
+- **Write as a defense against self-deception.** Paul Graham's observation: an idea can feel fully formed until you try to put it into words — the page finds gaps your head papers over. Darwin made this procedural, writing down any fact that cut against his theory on the spot because he'd caught his own memory deleting inconvenient evidence. A lab log — hypothesis, setup, expectation, result, updated belief — is humbling in a way no reviewer can match [[source]](https://x.com/VivsThoughts). In an AI-heavy workflow, the temptation to skip the written-reasoning step is strongest precisely when it matters most.
 
 Product teams are experimenting with structural interventions: Anthropic's Learning Mode uses Socratic questioning and asks users to write code before continuing; OpenAI and Google have shipped similar features. Adoption remains low — users file them under "for students" — but the same feature that helps a sophomore learn React works for a senior engineer learning Rust.
 
 **Unlearn as fast as you learn.** The half-life of expertise is shrinking. Tactics that worked two months ago don't always transfer cleanly, and what was once an advantage can harden into habit. The people who stay sharp let go the fastest — admitting something no longer works and moving on without over-identifying with it. This is the inverse of the deskilling problem: deskilling happens when you stop practicing, but rigidity happens when you keep practicing the *wrong* thing. Both are failure modes of the same underlying challenge — maintaining an adaptive relationship with your own expertise.
 
+**Tighten the feedback loop.** Research speed — and by extension, knowledge-work speed — is mostly the speed at which you discover you're wrong. This makes tooling a first-class activity: launching a run should be one command, plotting it one more, comparing two runs seconds not an afternoon. Karpathy's recipe has a step that pays for itself a hundred times: overfit a single batch before training at scale — thirty seconds, half your bugs, gone. The principle generalizes beyond ML: shrink everything until it's cheap, get it right, *then* spend the resources. The researcher (or knowledge worker) who can build the harness, the eval, and the data pipeline is the one whose hypotheses actually get tested; everyone else is waiting in a queue [[source]](https://x.com/VivsThoughts).
+
 **The "ship and learn" dual metric:** Shipping and learning are separate metrics. Managers and customers only ask about the first; the second is self-directed. Optimizing purely for task closure — the default UX gravity of every AI coding tool — accumulates cognitive debt invisibly. The correction is small: end sessions asking "did I learn anything today, or did I just close issues?"
+
+**Breadth as insurance.** Subfields saturate — usually right after they peak on social media. The people who keep producing through transitions already know their way around the neighboring territory. Range matters as much as depth: interpretability borrows from neuroscience, eval design is mechanism design wearing a lab coat, a working sense of hardware memory hierarchy tells you which architecture papers are doomed before the benchmarks do. Shannon's 1952 trick — shrink a problem until it's nearly trivial, crack the small version, reintroduce difficulty one piece at a time — carries through more walls than any modern productivity framework [[source]](https://x.com/VivsThoughts). Old material is criminally underpriced; this field reruns its own past on a delay.
 
 ## New AI-Era Job Categories (Kingsbury)
 
@@ -219,3 +226,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "When Knowledge Is Cheap, Insight Is Everything: Jevons Paradox applied to Torah Learning" — Zohar Atkins (May 2026) ([link](https://x.com/ZoharAtkins)) — Jevons Paradox in deep knowledge domains; chiddush as the bottleneck when consultation becomes cheap; wheat-to-bread metaphor for knowledge vs. insight
 - "Everyone is uncertain" — Grant Lee (tweet, May 2026) — universal uncertainty across the AI stack (foundation models through new grads); diffuse anxiety vs. specific fear; the unlearning imperative
 - "The 'AI Job Apocalypse' Is a Complete Fantasy" — David George (a16z, May 2026) ([link](https://www.a16z.news/p/the-ai-job-apocalypse-is-a-complete)) — lump-of-labor fallacy framing; historical precedents (tractors, electrification, VisiCalc, travel agents); augmentation vs. substitution data (Goldman, 8:1 earnings-call ratio); 2026 academic research roundup (NBER, Atlanta Fed, Census, Yale Budget Lab) showing no net employment effect; new business formation and app-store growth correlating with AI adoption
+- "How to be good at research" — Vivek (tweet, Jun 2026) ([link](https://x.com/VivsThoughts)) — taste as trainable muscle (predict-then-correct loop); Hamming's problem-selection question; writing as defense against self-deception (Graham, Darwin); tightening feedback loops as the core research skill; breadth as insurance against subfield saturation; Shannon's shrink-then-expand method

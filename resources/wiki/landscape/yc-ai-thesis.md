@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-06
+last_updated: 2026-06-15
 ---
 
 # Y Combinator AI Thesis (2026)
 
-> TLDR: YC's 2026 bet areas span AI-native agencies, "Cursor for PM," AI hedge funds, government AI tools, spatial reasoning models, and reindustrialized manufacturing. Garry Tan's "totality threshold" frames the meta-shift: AI collapsed the cost of building, so the scarce skill moved from *can you build it* to *can you finish it* at 100%.
+> TLDR: YC's 2026 bet areas span AI-native agencies, "Cursor for PM," AI hedge funds, government AI tools, spatial reasoning models, and reindustrialized manufacturing. The S26 batch confirms the thesis at scale: 95% of 196 companies touch AI, 70% build LLM agents, and 44% are B2B Agent-as-a-Service plays. Garry Tan's "totality threshold" frames the meta-shift: AI collapsed the cost of building, so the scarce skill moved from *can you build it* to *can you finish it* at 100%.
 
 ## Overview
 
-YC's RFS document represents their current view of where the biggest opportunities lie. Several ideas come directly from YC founders seeing opportunities on the frontier.
+YC's RFS document represents their current view of where the biggest opportunities lie. Several ideas come directly from YC founders seeing opportunities on the frontier. An independent analysis of the full S26 batch (196 companies, 395 founders) reveals how thoroughly the thesis has permeated: AI is no longer a differentiator — it's the baseline.
 
 ## Key RFS Areas
 
@@ -40,6 +40,40 @@ The GENIUS and CLARITY Acts are placing stablecoins between DeFi and TradFi. Roo
 ### LLM Training Tooling
 "Training large language models is still surprisingly difficult." Broken SDKs, busted GPU instances, major bugs in open-source tooling. Need: training APIs, large dataset databases, ML-native dev environments.
 
+## S26 Batch Composition
+
+An analysis of all 196 companies in YC's Spring 2026 batch quantifies the shift from AI-as-pitch to AI-as-default.
+
+### AI Saturation
+
+95% of S26 companies touch AI, up from 85% AI-first in the prior batch. 80% are AI-native — the AI isn't a feature bolted onto the product, the AI *is* the product. Only 10 of 196 companies don't use AI at all. The ceiling hasn't arrived.
+
+### The Agent Baseline
+
+137 of 196 companies (70%) build LLM agents — more than every other technical category combined. Data infrastructure is a distant second at 38; computer vision, robotics, and voice all trail. A year ago "AI agent" was a pitch. Now it's the baseline. The interesting question stopped being *whether* you use agents and became *which job* you point them at. See [Agentic Engineering](../tools/agentic-engineering.md).
+
+### B2B and Agent-as-a-Service
+
+62% of the batch sells to businesses. Consumer is just 12 companies. The single most common profile is an AI-native B2B Agent-as-a-Service (AaaS) company: 86 companies, 44% of the batch, fit that description. This validates the [services-as-software](../landscape/services-as-software.md) thesis — but it also concentrates risk. When 86 teams build the same kind of product, the advantage isn't the technology; it's the specific vertical and speed to market.
+
+### Hardware and Defense Cluster
+
+The biggest surprise in a batch where 95% touch AI: several of the most differentiated companies barely use it and build physical things. ~13 defense, drone, and aerospace companies appeared — mass-producible strike drones, counter-drone systems already sold to the DoD, in-space manufacturing, and compact nuclear reactors. Other unexpected clusters: 6 companies building infrastructure for prediction markets (rails for Polymarket/Kalshi, not consumer betting apps), 6 deep-tech/bio hardware plays, and 4 AI-security companies building the safety layer for the agents everyone else is shipping.
+
+### Founder Demographics
+
+Amazon/AWS is the most common prior employer (33 founders), ahead of Meta (17), Google/DeepMind (17), Microsoft (12), and Apple (8). 70% of founders are technical; 49% of companies have an all-technical founding team. Only 5% hold a PhD and 3% dropped out to start a company — the dropout-founder story is the exception.
+
+Schools follow the usual funnel — Stanford (24), Berkeley (21), MIT (15) — but a deep European bench has emerged: Oxford (11), TU Munich (8), Imperial, and ETH show a real cohort from outside the US.
+
+### Solo Founders Enabled by AI
+
+Two co-founders remains the most common setup (116 companies), but 38 founders are solo — and 29 of those are AI-native. The tooling is now good enough that one person can credibly ship an infrastructure product. 45% of companies have at least one repeat founder, with a growing share being YC alumni returning with new companies. Clear spin-out clusters are visible: colleagues tend to leave and start companies in groups.
+
+### Execution Over Insight
+
+The batch-level conclusion reinforces the totality threshold below: AI is no longer the differentiator. For most of these companies the value proposition is clear and the product is faster to build, so execution is the core advantage — getting to market faster than everyone else building the same thing. S26 won't be won on insight; it'll be won on speed.
+
 ## The PG Foundation: "Live in the Future"
 
 Paul Graham's classic essay "How to Get Startup Ideas" (2012) remains the philosophical foundation underlying YC's thesis. Key principles that map directly to the AI moment:
@@ -65,4 +99,5 @@ This connects directly to PG's "live in the future" principle: founders at the l
 
 - "Requests for Startups" — Y Combinator (2026) ([link](https://www.ycombinator.com/rfs))
 - "How to Get Startup Ideas" — Paul Graham (2012, saved Apr 2026) ([link](https://paulgraham.com/startupideas.html))
+- "I analyzed all 196 YC Spring 2026 companies" — Chris Lu (2026) — S26 batch composition: 95% AI, 70% agents, 44% B2B AaaS; founder demographics; execution > insight.
 - "99.1% Totality" — Garry Tan (2025) ([link](https://x.com/garrytan/status/1930068271083036847)) — The last 1% is the entire phenomenon; AI shifted the scarce skill from building to finishing.

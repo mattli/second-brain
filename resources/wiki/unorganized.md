@@ -37,3 +37,4 @@ Holding page for bookmarks and references that don't yet have a matching wiki to
 - **Moss adoption is growing 200% MoM** (tweet, saved 2026-05-30, Readwise: 01ksvavxy606waxctxqp5ecc33) — Moss (YC F25) 200% MoM growth, 50+ companies, 130+ projects, voice AI and multimodal agent teams
 - **May 29, 2026** (rss, saved 2026-06-01, Readwise: 01kt215x8m36ved50197k8p329) — Readwise & Reader Changelog: better search, Quick Lookup/citations/Kindle sync/EPUB fixes, dark mode and e-ink improvements
 - **June 5, 2026** (rss, saved 2026-06-08, Readwise: 01ktmbn8h39e3mdq9zxetcegbd) — Readwise & Reader Changelog: Quick Lookup semantic improvements, Android speed, video/podcast duration in API, Apple subscription fixes
+- **June 12, 2026** (rss, saved 2026-06-15, Readwise: 01kv6s4hrz1k8631bhzyz4mrd7) — Readwise & Reader Changelog: bug fixes for loading, saving, Twitter/YouTube connections, stale tab refresh, email handling, Android/iOS improvements

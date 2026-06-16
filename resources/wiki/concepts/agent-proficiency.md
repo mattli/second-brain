@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-02
+last_updated: 2026-06-16
 ---
 
 # Agent Proficiency
@@ -30,6 +30,8 @@ Karpathy's framing: "These are extremely powerful tools — they speak English a
 - Choosing which AI to point at which problem (BYOAI)
 
 Gupta's metaphor: "The 21st century power user looks less like a programmer and more like an editor-in-chief: deciding what goes in, what gets compiled, what gets published, and which AI gets the assignment."
+
+A practitioner-oriented distillation reduces agent proficiency to five discrete, learnable skills: (1) writing a persistent context file so the AI knows your work without re-explanation, (2) designing tasks that run on a schedule without you present, (3) connecting the AI to your real tools and data, (4) building custom tools by describing them instead of buying SaaS, and (5) knowing which model to point at which task and what it should cost. Each maps to an existing concept on this page — [knowledge bases](llm-knowledge-bases.md), [delegation levels](#levels-of-delegation) 6–7, tool integration, [vibe coding](../landscape/vibe-coding.md), and the trust-stakes calculus — but the framing as a sequential checklist ("start with the context file, add the next when it's running") offers a concrete onramp for non-technical practitioners.
 
 ### The Skill File Method
 
@@ -139,3 +141,4 @@ The role description is essentially the enterprise version of what Karpathy call
 - "The Eternal Sloptember" — George Hotz (article, May 2026) ([link](https://substack.com/home/post/p-163103019)) — agents as statistical mimicry, organizational asymmetry in error correction, and the quality-vs-volume tradeoff
 - "How to become the AI-native hire every company wants" — Anita (tweet thread, May 2026) — skill file method for building agent proficiency, Brain Fry trap, ClickUp/Wix/Webflow restructuring signals
 - "The Eight Levels of AI Adoption" — Mike Taylor, Every (article, May 2026) ([link](https://every.to/guides/the-eight-levels-of-ai-adoption)) — eight-level framework from chatbot to orchestrator; trust-stakes calculus for choosing delegation level; role asymmetry between knowledge workers and engineers
+- "5 AI Skills That Will Pay Six Figures By 2027" — Zephyr (tweet, Jun 2026) — practitioner checklist distilling agent proficiency into five sequential skills: context files, scheduled automation, tool integration, custom tool building, model selection

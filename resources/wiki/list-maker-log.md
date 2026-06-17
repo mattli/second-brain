@@ -1,27 +1,27 @@
 ---
-run_date: 2026-06-16
-run_start: "2026-06-16T06:00:30Z"
-run_end: "2026-06-16T06:01:30Z"
-updated_after: "2026-06-15T08:01:04Z"
-items_total: 4
+run_date: 2026-06-17
+run_start: "2026-06-17T08:01:10Z"
+run_end: "2026-06-17T08:02:00Z"
+updated_after: "2026-06-16T06:01:30Z"
+items_total: 3
 workers_dispatched: 3
 tier_c_referenced: 0
-tier_d_bookmarked: 1
+tier_d_bookmarked: 0
 ---
 
-# List-Maker Run — 2026-06-16
+# List-Maker Run — 2026-06-17
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-15T08:01:04Z. Found 4 new documents — 3 Tier A tweets and 1 Tier D RSS changelog. Two loop engineering tweets both routed to agentic-engineering.md; AI skills tweet routed to agent-proficiency.md.
+Cutoff from previous run_end: 2026-06-16T06:01:30Z. Found 3 new documents — all Tier A tweets. Two loop engineering tweets routed to agentic-engineering.md; knowledge vault tweet routed to llm-knowledge-bases.md.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01kv7g3m5mndwr6jrskaxgs1wd | A | update | concepts/agent-proficiency.md | Five AI skills for six-figure earnings — maps to agent proficiency's managing-AI-as-core-skill coverage |
-| 01kv6xf1g2hxq1ckgswsjx9rgb | A | update | tools/agentic-engineering.md | Practical loop creation guide — triggers, memory files, isolated workspaces |
-| 01kv6vnwk9y4415aetm55yxcps | A | update | tools/agentic-engineering.md | Loop engineering principles — verifier design, evaluation over prompts |
+| 01kva0x67c85g70q2m2sac746k | A | update | tools/agentic-engineering.md | Revenue engineering via AI loops — monetizing loop patterns fits existing loop engineering coverage |
+| 01kv9tgtxg5nr0bt32hthp5aeq | A | update | tools/agentic-engineering.md | Art of loop engineering — agent loops, verification, event-driven triggers, continuous improvement |
+| 01kv8jkzb4qwr5ck75b5wqx3a6 | A | update | concepts/llm-knowledge-bases.md | Markdown knowledge vault with AI agents (KIMI Work) — fits LLM wiki pattern and AI memory tools coverage |
 
 ## Tier C — References Added
 
@@ -32,7 +32,6 @@ Cutoff from previous run_end: 2026-06-15T08:01:04Z. Found 4 new documents — 3 
 
 | Title | Added To |
 |-------|----------|
-| June 12, 2026 (Readwise Changelog) | unorganized.md |
 
 ## Skipped
 

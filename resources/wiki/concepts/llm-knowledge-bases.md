@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-05-26
+last_updated: 2026-06-17
 ---
 
 # LLM Knowledge Bases
@@ -49,6 +49,8 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 **Farzapedia (Farza):** 2,500 diary/notes/iMessage entries → LLM-compiled 400 articles covering friends, startups, research, anime. Built for the agent, not the human — the wiki structure and backlinks make it crawlable from `index.md`. Claude Code navigates it well. Previously tried RAG, found it inferior.
 
 **Tw93's learning workflow:** A structured pattern for converting learning into output in the AI era. Stages: collect high-quality material → read and filter → build mental map → outline → draft → refine with AI → publish. The key principle: *"AI is most useful when attached to real output."* The workflow treats AI as a final-stage refinement tool applied after the human has already done the sense-making work, not as a shortcut that replaces it. Also introduced the Waza `/learn` skill — open-source Claude Code skill that scaffolds this workflow, allowing agents to execute the entire pipeline from a topic input.
+
+**Familiar (Avid):** Full vault system with 13 agents, cron-automated capture/processing/review, KIMI Work desktop agent for local-first operation. Designed as infrastructure: MCP server exposure makes the vault queryable by any agent in the stack. Open source at [github.com/codejunkie99/familiar-second-brain](https://github.com/codejunkie99/familiar-second-brain). See § File > App for architecture details.
 
 **Community tools mentioned in gist comments:**
 - qmd (by Tobi Lutke) — local search engine for markdown with hybrid BM25/vector search and LLM re-ranking, CLI + MCP server
@@ -101,6 +103,12 @@ This architecture particularly benefits enterprise users: agents running on lapt
 Related: Balaji Srinivasan's thesis that local files outlast apps, and Paul Graham's observation that "the best designs are often simple." HTTP was controversial for being plain text on the wire — turned out to be one of the best design decisions ever made.
 
 The [Obsidian Second Brain](https://twitter.com/CyrilXBT) pattern (CyrilXBT) demonstrates this in practice: using Obsidian + Claude to build a personal knowledge system where the agent reads and writes to the same markdown files the human uses.
+
+**Familiar (Avid/codejunkie99):** An Obsidian-like vault built from scratch, designed for fully automated agent processing via Moonshot's [KIMI Work](../tools/kimi-work.md) desktop agent (built on the open-weight Kimi K2.6 model). Goes beyond the "invoke when needed" pattern — three cron-driven skills run the vault autonomously: morning web capture (7am), inbox processing (8am), and weekly review (Friday 6pm). KIMI Work's Agent Swarm parallelizes bulk processing across up to 300 sub-agents (a 50-file inbox batch completes in under 4 minutes). Vault reached 347 notes with hundreds of cross-links in 11 weeks.
+
+Architecture follows the three-layer pattern closely — immutable `/resources/` folder (agents never modify sources), agent-generated `/wiki/` pages with YAML frontmatter (including `confidence` and `last_updated_by` fields for auditability), and an `AGENTS.md` schema file portable across any agent. Adds **tiered memory** (journal / projects / wiki / CRM) to prevent stale project context from contaminating synthesis. Key safety rule: *agents never write to `/journal/`* — human timestamped thinking is ground truth everything else builds on.
+
+Notable features: global quick-capture hotkey (Cmd+Shift+K) that drops thoughts into the inbox from anywhere on the desktop; vault exposed as an MCP server so Claude Code, Cursor, or any MCP-compatible agent queries the same knowledge base; weekly lint pass filtering `last_updated_by: agent` with `confidence: low` for human review (~20 min/week). Voice memo ingestion via local Whisper and WebBridge reading-list capture are in development.
 
 **Defileo's "Claude + Obsidian" implementation** takes this further with a full operational playbook. Key additions beyond the basic pattern:
 
@@ -202,3 +210,4 @@ The standard coexists with `robots.txt` (access policy) and `sitemap.xml` (exhau
 - "I Went Through Every AI Memory Tool I Could Find. There Are Two Camps." — witcheer (tweet thread, Apr 2026) ([link](https://x.com/witcheer))
 - "The /llms.txt file" — Jeremy Howard (llmstxt.org) ([link](https://llmstxt.org/)): Proposed web standard for LLM-friendly site content via markdown at `/llms.txt`; connects the "file over app" principle to publisher-side knowledge access.
 - "NotebookLM alternatives I'm actually using in 2026 (after getting burned by Plus)" — Realistic-Spare97 (Reddit r/notebooklm, May 2026): Audio learning tool landscape; SurfSense, Recall, BeFreed, Illuminate, NoteGPT, ElevenLabs Reader, StewReads.
+- "I Built My Own Obsidian. Then put Kimi Work. Which Turned It Into a Second Brain." — Avid (@Av1dlive, tweet thread, Jun 2026) ([link](https://x.com/Av1dlive/status/2065475063928000681)): Familiar vault system — local-first Obsidian clone with KIMI Work agent automation, cron-driven capture/processing/review, MCP server exposure, tiered memory architecture.

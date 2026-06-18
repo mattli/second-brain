@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-17
+last_updated: 2026-06-18
 ---
 
 # LLM Knowledge Bases
@@ -80,6 +80,7 @@ The pattern: knowledge bases handle *compilation and synthesis*, audio tools han
 ## Tooling Tips
 
 - **Obsidian Web Clipper** — browser extension converting web articles to markdown
+- **Smart Connections** — Obsidian plugin (4,700+ GitHub stars, 786K+ downloads) that indexes an entire vault via embeddings and finds semantic connections between notes automatically. Surfaces relationships the user never explicitly linked — turns the knowledge graph from a visualization into a working search mechanism. Pairs with MCP servers (e.g. `obsidian-mcp`) so external agents can read, search, and write to the vault.
 - **Download images locally** — Set Obsidian attachment folder, bind hotkey. Lets LLM reference images directly instead of relying on URLs
 - **Obsidian graph view** — Best way to see wiki shape, connections, orphans
 - **Marp** — Markdown slide decks, Obsidian plugin available
@@ -104,7 +105,7 @@ Related: Balaji Srinivasan's thesis that local files outlast apps, and Paul Grah
 
 The [Obsidian Second Brain](https://twitter.com/CyrilXBT) pattern (CyrilXBT) demonstrates this in practice: using Obsidian + Claude to build a personal knowledge system where the agent reads and writes to the same markdown files the human uses.
 
-**Familiar (Avid/codejunkie99):** An Obsidian-like vault built from scratch, designed for fully automated agent processing via Moonshot's [KIMI Work](../tools/kimi-work.md) desktop agent (built on the open-weight Kimi K2.6 model). Goes beyond the "invoke when needed" pattern — three cron-driven skills run the vault autonomously: morning web capture (7am), inbox processing (8am), and weekly review (Friday 6pm). KIMI Work's Agent Swarm parallelizes bulk processing across up to 300 sub-agents (a 50-file inbox batch completes in under 4 minutes). Vault reached 347 notes with hundreds of cross-links in 11 weeks.
+**Familiar (Avid/codejunkie99):** An Obsidian-like vault built from scratch, designed for fully automated agent processing via Moonshot's [KIMI Work](../tools/kimi-work.md) desktop agent (built on the open-weight Kimi K2.6 model). Goes beyond the "invoke when needed" pattern — three cron-driven skills run the vault autonomously: morning web capture (7am), inbox processing (8am), and weekly review (Friday 6pm). KIMI Work's Agent Swarm parallelizes bulk processing across up to 300 sub-agents (a 50-file inbox batch completes in under 4 minutes). Vault reached 347 notes with hundreds of cross-links in 11 weeks. Kimi K2.6 also introduces **Document to Skill** — upload an exemplar note (e.g. how you structure research or analysis) and the model captures its "structural DNA," reproducing your format and approach in subsequent outputs. The more notes converted into skills, the less generic the results become — a form of style transfer that compounds alongside the vault's content.
 
 Architecture follows the three-layer pattern closely — immutable `/resources/` folder (agents never modify sources), agent-generated `/wiki/` pages with YAML frontmatter (including `confidence` and `last_updated_by` fields for auditability), and an `AGENTS.md` schema file portable across any agent. Adds **tiered memory** (journal / projects / wiki / CRM) to prevent stale project context from contaminating synthesis. Key safety rule: *agents never write to `/journal/`* — human timestamped thinking is ground truth everything else builds on.
 
@@ -211,3 +212,4 @@ The standard coexists with `robots.txt` (access policy) and `sitemap.xml` (exhau
 - "The /llms.txt file" — Jeremy Howard (llmstxt.org) ([link](https://llmstxt.org/)): Proposed web standard for LLM-friendly site content via markdown at `/llms.txt`; connects the "file over app" principle to publisher-side knowledge access.
 - "NotebookLM alternatives I'm actually using in 2026 (after getting burned by Plus)" — Realistic-Spare97 (Reddit r/notebooklm, May 2026): Audio learning tool landscape; SurfSense, Recall, BeFreed, Illuminate, NoteGPT, ElevenLabs Reader, StewReads.
 - "I Built My Own Obsidian. Then put Kimi Work. Which Turned It Into a Second Brain." — Avid (@Av1dlive, tweet thread, Jun 2026) ([link](https://x.com/Av1dlive/status/2065475063928000681)): Familiar vault system — local-first Obsidian clone with KIMI Work agent automation, cron-driven capture/processing/review, MCP server exposure, tiered memory architecture.
+- "Obsidian + Kimi K2.6 turned my 7,000 notes into a $15,000/month research system" — Noisy (@noisyb0y1, tweet thread, Jun 2026) ([link](https://x.com/noisyb0y1/status/2066856811404087519)): Practical walkthrough of connecting Obsidian vault to Kimi K2.6 via Smart Connections plugin and MCP server; Document to Skill feature for style transfer.

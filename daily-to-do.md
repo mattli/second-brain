@@ -1,3 +1,13 @@
+# June 15 – June 21
+*Goal: tomorrow never knows*
+
+### Friday, June 19
+
+- [ ] Send Jumpspeak the Google Doc
+- [ ] Practice stripped-down cycle of fifths — left-hand bass note, right-hand guide tones
+
+---
+
 # May 18 – May 24
 *Goal: get ready for my trip to Seattle*
 

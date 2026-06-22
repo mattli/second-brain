@@ -33,19 +33,19 @@ last_updated: YYYY-MM-DD
 # Page Title
 
 ## TLDR
-One-paragraph summary.
+Two to four sentences. What the topic is and the key insight. Reader should be able to decide from this alone whether the rest of the page is worth their time.
 
-## Overview
-Longer prose synthesis.
+## Recent Updates
+(Maintained by per-doc workers. Only present once a worker has touched the page post-2026-06-22.)
 
-## Key Concepts
-- Bullet list of core ideas.
+## Body sections
+Use `## Section Name` and `### Subsection` for navigability — Obsidian's outline panel and Cold Mountain's renderer both consume these. Avoid `**Bold paragraph headings.**` as section dividers; they don't show up in outlines.
 
 ## Sources
 - [Source title](URL) — one-line note on what it added
 ```
 
-Sections beyond these are fine when the topic warrants — keep them descriptive (`## Tools`, `## Pitfalls`, `## Further Reading`).
+Body section names should be descriptive and topic-specific (`## Open vs. Closed Loops`, `## Pitfalls`, `## Further Reading`). The page should NOT have an `## Overview` section — that convention was retired 2026-06-22 because Overview sections consistently restated TLDR and became filler. Framing lives in TLDR; everything else lives in the body sections.
 
 **Frontmatter rules — strict.** The only allowed keys are `created_at` (set once, never changed) and `last_updated` (today, on every edit). Do **not** invent additional keys — no `sources:`, no `sources_updated:`, no `tags:`, no `title:`. The `## Sources` section in the body is the sole record of contributing documents. Each frontmatter key must appear exactly once; YAML rejects duplicates and the Cold Mountain build will fail on parse.
 

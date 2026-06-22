@@ -1,6 +1,6 @@
 # Per-Doc Worker — Stage 2 Instructions
 
-> Version: 2.1 | Last updated: 2026-06-22
+> Version: 2.2 | Last updated: 2026-06-22
 
 ## Purpose
 
@@ -56,7 +56,7 @@ Do not silently route differently. The veto trail is how the list-maker learns w
 Follow the wiki conventions in `readwise-wiki.md`:
 
 - **Update path:** integrate insights from this source into the page. Restructure opportunistically if you encounter author-branded sections (promote concept to heading, move attribution inline) — but only what you touch, don't refactor the whole page in one pass.
-- **Create path:** start from the page template in `readwise-wiki.md`. Set `created_at` and `last_updated` to today. Write a 1–2 sentence TLDR, an Overview, the body sections, and a Sources section.
+- **Create path:** start from the page template in `readwise-wiki.md`. Set `created_at` and `last_updated` to today. Write a TLDR (2–4 sentences), then go straight to body sections. Do NOT write an `## Overview` section — that convention was retired 2026-06-22. End with `## Sources`.
 - **Frontmatter rules — strict.** The ONLY allowed frontmatter keys are `created_at` (set once at creation, never changed afterward) and `last_updated` (set to today on every edit). Do NOT add `sources:`, `sources_updated:`, `tags:`, `title:`, or any other key — even if it seems useful. Each key must appear exactly once; YAML rejects duplicate mapping keys and the Cold Mountain build will fail to parse the file. Contributing documents are tracked in the body's `## Sources` section, not in frontmatter.
 - Add the source to the page's `## Sources` section. Use the document's original `source_url` from Readwise metadata, **not** the Readwise reader URL. If `source_url` is missing, use plain-text title with no link. Include title, author, and a one-line contribution note. Dedupe by URL — if the doc is already listed, leave the existing entry alone.
 - **Inline citations:** reserved for direct quotes, specific statistics/numbers, and contested or surprising claims. Format: `[[source]](source_url)` immediately after the cited sentence. Do NOT add inline citations for synthesis, definitions, connective prose, or general framing — the `## Sources` section covers those. Default bias is to under-cite inline; the wiki should read as distilled understanding, not an annotated bibliography. See `readwise-wiki.md` § Citations.
@@ -80,6 +80,19 @@ If the dispatched item is thin (a pointer tweet, a bare bookmark, a sub-200-word
 - Don't manufacture body content from thin source material — the source attribution in `## Sources` is enough on its own when there's nothing else to say.
 
 If the hint was `create` but the doc is too thin to anchor a real page on its own, veto: route to the closest existing page and add the item where it fits proportionally.
+
+### 4c. Stale Overview cleanup (reactive)
+
+The `## Overview` section was retired from the page template on 2026-06-22 — Overviews consistently restated TLDR with no added information. Older pages still have one until a worker comes along to clean it up.
+
+If the page you're editing has an `## Overview` section:
+
+1. Read it.
+2. If it contains any framing, thesis, or organizing principle NOT already in the TLDR, fold that into the TLDR (still keep TLDR to ~2–4 sentences) OR into the most relevant body section.
+3. Remove the `## Overview` heading and its content.
+4. Note the cleanup in your `## Recent Updates` entry — e.g., "Removed stale Overview; folded framing into TLDR."
+
+Only do this if you're already editing the page for your own dispatch. Don't scan and clean up pages you weren't going to touch — that's not your dispatch's scope.
 
 ### 5. Update index.md if you created a new page
 

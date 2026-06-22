@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-11
-last_updated: 2026-06-11
+last_updated: 2026-06-22
 ---
 
 # Geopolitics & World Order
@@ -58,12 +58,35 @@ Dalio assigns rough five-year escalation probabilities to major flashpoints:
 
 The aggregate probability of at least one major escalation exceeds 50%.
 
+## US Reindustrialization Strategy
+
+The US response to this geopolitical landscape centers on reindustrialization through AI infrastructure — a strategy articulated by NVIDIA CEO Jensen Huang as a five-layer investment stack: energy, chips, infrastructure (land, power, data centers), AI models, and applications. The scale is enormous: tens of trillions of dollars in new computing infrastructure over the next decade, replacing systems built over the previous sixty years.
+
+The reindustrialization is concentrated in advanced manufacturing — chip fabs, packaging plants, optical component factories, and data centers — rather than a return to commodity manufacturing. This targets precisely the kind of high-skilled, high-wage production work that the US has lost over the past several decades. Roughly 600,000 jobs have already been created in this build-out in just the last few years.
+
+Energy policy is the binding constraint. Without sufficient energy production, no amount of chip fabs or data centers can be built. The current administration's pro-energy-growth stance is framed not as climate policy but as industrial prerequisite — the argument being that market demand from AI infrastructure can fund sustainable energy upgrades (solar, nuclear) without government subsidies for the first time.
+
+## Taiwan's Dual Strategic Role
+
+Taiwan occupies a unique position in this landscape: it is simultaneously the world's most critical semiconductor supply chain node and a strategic partner actively helping the US diversify away from dependence on that very node. Taiwanese companies (TSMC, Foxconn, Wistron) are building fabs and factories on US soil, bringing expertise, labor, and integrated supply chain knowledge.
+
+This creates a tighter economic stitching between the US and Taiwan that has geopolitical implications. The US now imports more goods from Taiwan than directly from China — a shift driven partly by AI infrastructure demand. Taiwan's role as both irreplaceable supplier and onshore manufacturing partner strengthens the US commitment to its defense, adding economic interdependence to the existing security treaty relationship.
+
+## Export Controls as Geopolitical Instrument
+
+Export controls on AI chips illustrate the tension between national security and economic competitiveness. Before export restrictions, NVIDIA held roughly 95% market share in China. The ban eliminated that position, but the strategic concern is that ceding the Chinese market allows domestic competitors to scale into giants whose capabilities eventually extend beyond China.
+
+The "false choice" framing argues that national security, technology leadership, and economic prosperity can be pursued simultaneously — that the US has historically managed all three and should not sacrifice trade competitiveness for security when more targeted controls could achieve the same protection. The counterargument (implicit in the Dalio framework above) is that in a might-based order, economic entanglement with adversaries creates vulnerabilities that targeted controls cannot fully address.
+
 ## Implications
 
 The Big Cycle framework suggests that at this stage, conflicts intensify rather than subside. Countries are recalculating their security postures: those relying on US defense guarantees are watching how the US performs in current theaters to decide whether to seek nuclear weapons, build independent defense capacity, or realign toward the opposing bloc. These recalculations — not the wars themselves — may be the most consequential geopolitical dynamic of the next decade.
+
+The reindustrialization push adds an economic dimension to these recalculations. If the US successfully rebuilds domestic manufacturing capacity for advanced technology, it reduces the leverage that supply chain chokepoints (particularly Taiwan) provide to adversaries and strengthens the economic foundation needed to sustain the military commitments described above. The scale of investment — half a trillion dollars from NVIDIA alone, plus CHIPS Act awards and state incentives — suggests this is not speculative but already underway.
 
 For investors and decision-makers, the key takeaway is that "back to normal" is unlikely. The transition from a rules-based to a might-based order implies structurally higher geopolitical risk, defense spending, and potential for capital controls, financial repression, and market disruptions — patterns that have accompanied every prior cycle transition. See [Knowledge Work Future](../concepts/knowledge-work-future.md) for how these macro shifts intersect with technology-driven economic transformation. See also [Dario Amodei](../people/dario-amodei.md) for a frontier AI lab CEO's policy proposal responding to these geopolitical dynamics (democratic AI coalition, coordinated safety regulation).
 
 ## Sources
 
 - [The Big Thing: We Are In A World War That Isn't Going To End Anytime Soon](https://raydalio.substack.com/p/the-big-thing-we-are-in-a-world-war) — Ray Dalio — Core framework: Big Cycle escalation model, 13-step sequence, alliance mapping, overextension thesis, flashpoint probability estimates, rules-based to might-based transition
+- AP EXCLUSIVE: Nvidia CEO Jensen Huang says society needs 'new social norms' in age of AI — Associated Press / Jensen Huang — US reindustrialization strategy, five-layer AI stack, energy as binding constraint, Taiwan dual role, export control trade-offs, Coherent partnership and domestic manufacturing scale-up

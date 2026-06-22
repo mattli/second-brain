@@ -42,7 +42,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [AGI Definitions](landscape/agi-definitions.md) — 4 definitions (DeepMind, Bengio, Hinton, OpenAI); current AI capability gaps; jagged capabilities; milestone taxonomy
 - [AI Regulation](landscape/ai-regulation.md) — US state AI law patchwork (CA, CO, MN, NY, OH, UT); Trump federal preemption efforts; compliance implications; common regulatory themes
 - [Venture Capital Access](landscape/venture-capital-access.md) — Private markets democratizing; USVC (AngelList) indexed low-fee vehicle for retail investors; the "Vanguard moment" for private markets
-- [Geopolitics & World Order](landscape/geopolitics-world-order.md) — Dalio's Big Cycle framework; rules-based to might-based transition; alliance blocs; overextension thesis; flashpoint probability estimates
+- [Geopolitics & World Order](landscape/geopolitics-world-order.md) — Dalio's Big Cycle framework; rules-based to might-based transition; alliance blocs; overextension thesis; flashpoint probability estimates; US reindustrialization strategy; Taiwan dual role; export controls
 
 ## People
 

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-27
-last_updated: 2026-06-14
+last_updated: 2026-06-22
 
 ---
 
@@ -77,6 +77,28 @@ Meta's pivot away from open weights is described as "a significant loss for the 
 
 Meta's stated goal is to compete for business customers alongside OpenAI, Google, and Anthropic. Health specialization and multimodal capabilities align with Meta's product interests (billions of camera-equipped users, health as a top AI query category).
 
+### The Capability Gap as Economic Contest
+
+Despite significant compute advantages at closed labs, top closed models have *not* shown a growing capability margin over open models through mid-2026 — a surprising outcome given the resource differential [[source]](https://www.interconnects.ai/p/open-models-in-perpetual-catch-up). Open model labs have proven technically strong at matching well-established benchmarks, reflecting abundant talent and sufficient compute. However, closed models tend to be more robust and generally useful than similarly scoring open models, exhibiting hard-to-measure qualities not captured in current benchmarks — particularly relevant for supporting knowledge workers who constantly present novel challenges [[source]](https://www.interconnects.ai/p/open-models-in-perpetual-catch-up).
+
+The open vs. closed race, monitored through benchmarks, is largely a game of **economic staying power** and fast-following until the market structure constricts. Chinese open-weight labs (which focus slightly more on benchmark scores than comparable US closed labs, partly aided by [distillation](../concepts/model-quantization.md)) may face funding difficulties first, with capability trajectory impacts following 3–9 months later. Distillation helps but is not a panacea; changes to the distillation dynamic (e.g., regulation) will not be the determining factor.
+
+### RL Training and the Closed-Lab Advantage
+
+The RL-dominated training era has created the first clear technical area where closed labs can structurally dominate open-weight models: distribution to real-world use cases. Tasks where users directly interact with tools like Claude Code or Codex generate feedback loops that closed labs can leverage — potentially through [online RL based on user interactions](https://cursor.com/blog/real-time-rl-for-composer) — to drive continued capability improvements in ways open models cannot easily replicate.
+
+### Market Segmentation and Open Model Adoption
+
+Open models are increasingly adopted for **repetitive automation tasks**, capturing growing relative share of the API market across AI-native applications and business backend automation. This success is expected to drive more investment in domain-specific, efficient open models [[source]](https://www.interconnects.ai/p/the-next-phase-of-open-models). Local agents and personal AI tools represent a large, mostly ignored market — a kind of "dark matter" with massive potential influence on the balance of open-to-closed models.
+
+Meanwhile, the second derivative of influence on open models has shifted: the US is expected to slowly regain ground in open model adoption metrics starting in early 2027, driven by releases like Google's Gemma 4, Nvidia's Nemotron, and companies like Arcee AI going all-in on open models.
+
+### Regulation and Sovereignty
+
+Recurring calls to ban certain types of open models are in practice impossible to implement: training strong near-frontier models is a relatively small cost compared to large-scale deployments, and if one jurisdiction bans open models above a compute threshold, another sovereign entity will eventually train and release them publicly — with less oversight. At the same time, as ever-stronger closed models are built, safety-shock reactions (similar to responses to [Claude Mythos](ai-safety-interpretability.md)) will periodically spur calls for burdensome regulation on open models.
+
+Counterbalancing this: sovereign entities and existing power structures increasingly realize that super-powerful AI tools concentrated in a few companies pose governance risks. Open models represent an alternative governance paradigm, and new funding structures for open models are expected to emerge as stakeholders recognize that dependencies on single for-profit companies for access to intelligence are unreliable.
+
 ## Claude Fable 5 and the Long-Task Frontier (June 2026)
 
 Anthropic released Claude Fable 5 in June 2026 — the same underlying model as Mythos but with added safety safeguards. Fable 5 claimed state-of-the-art on nearly all tested benchmarks, with particular strength in software engineering, knowledge work, scientific research, and vision. Critically, the model's lead over competitors grows with task length and complexity — the longer and more difficult the problem, the wider the margin.
@@ -127,3 +149,4 @@ To bootstrap this, frontier labs could employ small human teams to manage groups
 - [New Claude model - Fable](https://www.bensbites.com/p/new-claude-model-fable) — Ben Tossell / Ben's Bites (newsletter, Jun 2026) — Practitioner Fable 5 experience, speed-intelligence-vibe tradeoff, overnight delegation workflow (via Dan Shipper / Mike Krieger interview), nested subagent spawning, Fable medium vs Opus xhigh cost-performance, ML/AI sabotage policy controversy, subscription pricing analysis
 - "If you aren't using models with different effort levels, you're probably wasting tokens, and time" — Morgan (tweet thread, Jun 2026) — Fable 5 low-effort outperforming Opus 4.8/GPT 5.5 at high effort on agentic coding, effort-level selection heuristics, practitioner evidence that routine tasks need less reasoning budget than defaults suggest
 - [The path from Fable to superintelligence](https://x.com/golokhvastov/status/2066269917386027293) — Goliath (tweet thread, Jun 2026) — Data pipeline as true bottleneck over compute, RLVR ecosystem (Mercor/Datacurve/Mechanize), deterministic scoring limitations, real-world feedback hypothesis for training on business outcomes, economic flywheel to superintelligence, Anthropic ARR growth ($9B→$47B)
+- [My bets on open models, mid-2026](https://www.interconnects.ai/p/open-models-in-perpetual-catch-up) — Nathan Lambert / Interconnects (Jun 2026) — Open vs. closed capability gap as economic contest, closed model robustness advantage, Chinese lab funding risks, RL training as closed-lab structural advantage, open model adoption in automation, regulation impossibility, sovereign interest in open models as governance paradigm

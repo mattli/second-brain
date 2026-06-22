@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-02
+last_updated: 2026-06-22
 
 ---
 
@@ -274,3 +274,5 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "I'm a Serial Founder. Here's how I come up with Business Ideas." — ssbmomelette / Troy (Reddit r/startups, Apr 2026)
 - "How I Consistently Book 2–5 Meetings Per Day with Claude MCP and LinkedIn" — Romàn (tweet, Apr 2026) ([link](https://x.com))
 - "How to Win Distribution When Anyone Can Build the Product" — Alex Vacca (tweet, May 2026) ([link](https://x.com/alexjvacca/status/2047408037078536482)) — Speed-to-scale data, CAC economics shift, AI rewiring buyer discovery (Forrester 94% stat, outbound decay), signal-timed outreach, GTM-as-MVP framework, compounding distribution loops
+- "ok this startup is cool but…" — Andrew Chen (tweet, Apr 2026) — founders building despite big-company threats
+- "how to cold DM anyone: complete basics" — Founders Inc (tweet thread, May 2026) — cold DM basics, 181w

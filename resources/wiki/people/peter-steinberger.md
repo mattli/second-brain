@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-09
+last_updated: 2026-06-22
 ---
 
 # Peter Steinberger
@@ -65,3 +65,4 @@ The triad — identity, experience, integration — works across Claude, GPT, Gr
 - "OpenClaw, Claude Code, and the Future of Software" — Peter Yang on The a16z Show ([link](https://youtube.com/watch?v=UE8jx4dvlSQ&si=GjAYLtlY5pE380BK))
 - "A Theory of Mind in Three Files" — Dave Morin (tweet thread, Apr 2026) ([link](https://x.com/davemorin/status/2040999146694553761/?rw_tt_thread=True))
 - "OpenClaw FULL COURSE" — Min Choi (tweet, Mar 2026) — from installed to actually working ([link](https://x.com/minchoi/status/2034998743112531998))
+- "How I created OpenClaw" — Peter Steinberger (article, Apr 2026) — origin story of OpenClaw AI agent (170w)

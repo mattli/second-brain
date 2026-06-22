@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-06-11
+last_updated: 2026-06-22
 ---
 
 # World Models
@@ -122,3 +122,4 @@ Y Combinator's [2026 RFS](../landscape/yc-ai-thesis.md) explicitly calls out spa
 - "My bets on open models, mid-2026" — Nathan Lambert (Apr 2026) ([link](https://www.interconnects.ai/p/my-bets-on-open-models-mid-2026))
 - "A Functional Taxonomy of World Models" — Fei-Fei Li / World Labs (2026) ([link](https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models)) — POMDP-based framework classifying world models by which piece of the agent–action–state–observation loop they output
 - "AI creativity & discovery" — Rich Sutton (video, 2026) — Variation/evaluation/retention framework; argues world models (and all supervised learning) lack the evaluation step needed for true discovery
+- [Beliefs guiding our path to superintelligence](https://www.ineffable.ai) — ineffable.ai (article, Apr 2026) — alternative-paradigm lab building a "superlearner" from experience without human data

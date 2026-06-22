@@ -1,6 +1,6 @@
 ---
 created_at: 2026-05-26
-last_updated: 2026-05-26
+last_updated: 2026-06-22
 ---
 
 # Voice AI Infrastructure
@@ -65,3 +65,6 @@ The relay maintains only ephemeral state: a small, short-timeout, in-memory map 
 ## Sources
 
 - [How OpenAI delivers low-latency voice AI at scale](https://openai.com/index/how-openai-delivers-low-latency-voice-ai-at-scale/) — Full architecture walkthrough of the relay + transceiver split, ICE ufrag routing, Global Relay, and Go implementation details
+- [Andon FM](https://andon.fm) — AI agents running autonomous radio stations 24/7
+- "Real-time semantic search for Conversational AI" — Moss (article, May 2026) — real-time semantic search (<10ms) for voice AI and conversational systems
+- "Moss adoption is growing 200% MoM" — Moss (tweet, May 2026) — YC F25; 50+ companies, 130+ projects, voice AI and multimodal agent teams

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-04-13
+last_updated: 2026-06-22
 ---
 
 # Andrej Karpathy
@@ -69,3 +69,4 @@ On the coding stack: autocomplete is high-bandwidth ("you point to the code wher
 - "Stanford CS230 | Autumn 2025 | Lecture 9: Career Advice in AI" — Stanford Online ([link](https://www.youtube.com/watch?v=AuZoDsNmG_s))
 - "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026) ([link](https://www.youtube.com/watch?v=lXUZvyajciY&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=12))
 - "The gap between casual ChatGPT users and professional agentic users..." — Andrej Karpathy (tweet, Apr 2026)
+- "Andrej Karpathy on the shift to agentic engineering" — Ben Lang (tweet, May 2026) — pointer tweet on Karpathy's agentic engineering perspective

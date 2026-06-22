@@ -14,6 +14,8 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [World Models](concepts/world-models.md) — Alternative AI paradigm to LLMs; spatial reasoning; LeCun's full position; open vs. closed models (Lambert); key players (AMI, World Labs, Google, NVIDIA)
 - [Model Quantization](concepts/model-quantization.md) — How LLM weight quantization works; 8-bit is nearly free, 4-bit is ~90% quality, 2-bit breaks
 - [Synthetic Personas](concepts/synthetic-personas.md) — Using evolutionary optimization to generate diverse LLM personas; Persona Generators (Google); coverage of attitudinal range; PM bottleneck applications
+- [Psychology & Trauma](concepts/psychology-trauma.md) — Gabor Maté frames on narcissism, addiction, mind-body unity, authenticity vs. attachment, and political psychology as adaptations to childhood wounds
+- [AI, Society & Epistemic Collapse](concepts/ai-society-epistemic-collapse.md) — Kingsbury on epistemic corrosion (info ecology, hyperscale propaganda, end of evidence); Diamandis on five speciation forks; AI's slower societal effects beyond labor/safety
 
 ## Tools & Frameworks
 
@@ -36,20 +38,20 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Services as Software](landscape/services-as-software.md) — Sequoia's services-as-software thesis; copilot vs autopilot; ColdIQ playbook; vertical opportunity map
 - [AI Startup Distribution](landscape/ai-startup-distribution.md) — Distribution strategies; Distribution Engineer; 100x marketer; cold outreach; Reddit; AI marketing agents; pain-first ideation
 - [AI Organization Design](landscape/ai-organization-design.md) — Block's "company as intelligence" model; Sequoia endorsement; intelligence layer; self-improving loops; organizational legibility; people at the edge
-- [Y Combinator AI Thesis](landscape/yc-ai-thesis.md) — YC's 2026 RFS: Cursor for PM, AI agencies, spatial reasoning, reindustrialized mills; S26 batch data (95% AI, 70% agents, 44% AaaS); PG's "Live in the Future"
+- [Y Combinator AI Thesis](landscape/yc-ai-thesis.md) — YC's 2026 RFS: Cursor for PM, AI agencies, spatial reasoning, reindustrialized mills; PG's "Live in the Future"
 - [Vertical AI](landscape/vertical-ai.md) — Enterprise AI adoption data; Harvey's $0→$200M ARR playbook; Sierra's $0→$165M ARR in 26 months (outcome-based pricing, omnichannel CX); Harvey vertical model U-turn
 - [AI User Perspectives](landscape/ai-user-perspectives.md) — Anthropic's 81K-person survey; what users want; fears (unreliability, displacement, autonomy loss); light and shade framework
 - [AGI Definitions](landscape/agi-definitions.md) — 4 definitions (DeepMind, Bengio, Hinton, OpenAI); current AI capability gaps; jagged capabilities; milestone taxonomy
 - [AI Regulation](landscape/ai-regulation.md) — US state AI law patchwork (CA, CO, MN, NY, OH, UT); Trump federal preemption efforts; compliance implications; common regulatory themes
 - [Venture Capital Access](landscape/venture-capital-access.md) — Private markets democratizing; USVC (AngelList) indexed low-fee vehicle for retail investors; the "Vanguard moment" for private markets
-- [Geopolitics & World Order](landscape/geopolitics-world-order.md) — Dalio's Big Cycle framework; rules-based to might-based transition; alliance blocs; overextension thesis; flashpoint probability estimates; US reindustrialization strategy; Taiwan dual role; export controls
 
 ## People
 
 - [Andrej Karpathy](people/andrej-karpathy.md) — AI researcher; LLM wikis; autoresearch; two-tier perception gap; "decade of agents"; "ghosts not animals"
 - [DHH](people/dhh.md) — Ruby on Rails creator; 180-turn on AI tools; taste/craft as differentiator; speed concerns; competence preservation; VR parallel
 - [Peter Steinberger](people/peter-steinberger.md) — OpenClaw creator, prolific AI tool builder; SOUL.md/MEMORY.md/DREAMS.md agent identity
-- [Dario Amodei](people/dario-amodei.md) — Anthropic CEO; three major essays (Loving Grace, Adolescence, Policy on the AI Exponential); safety-first AI scaling; FAA-style regulation advocate
+- [Dario Amodei](people/dario-amodei.md) — Anthropic CEO; "Machines of Loving Grace" and "Adolescence of Technology" essays; safety-first AI scaling
+- [Lenny Rachitsky](people/lenny-rachitsky.md) — Creator-operator behind the Lenny newsletter/podcast empire; ruthless quality bar, radical saying-no, zero full-time employees, LLM-augmented podcast prep
 
 ## Science & Health
 
@@ -68,6 +70,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Museum Design & Curation](culture/museum-design-curation.md) — Architecture as institutional strategy; encyclopedic vs. global museum; thematic vs. chronological display; LACMA/David Geffen Galleries case study
 - [Internet as Mediating Layer](culture/internet-as-mediating-layer.md) — Internet as real life; cultural production downstream of TikTok/subcultures; traditional media's surviving roles (leaks, coordination, normalization); technology-as-mediating-layer philosophical frame
 
-## Holding
+## Personal
 
-- [Unorganized](unorganized.md) — Bookmarks and references not yet matched to a topic page
+- [Recipes](personal/recipes.md) — Personal recipe bookmarks worth keeping
+- [Personal Tool Bookmarks](personal/tools.md) — Tools/products bookmarked but not yet evaluated (Ghostty, Perplexity Comet, x-bookmarks)

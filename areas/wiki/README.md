@@ -4,16 +4,14 @@ Readwise wiki compiler — processes Readwise saves into a persistent, interlink
 
 ## How It Runs
 
-As of 2026-04-27, the wiki is built by a **three-stage per-doc pipeline** instead of a single weekly compiler. The old monolithic compiler kept dying mid-stream on Anthropic edge 502s during 30–60 min sessions. Splitting into short-lived stages eliminates that failure mode. Plan: [`2026-04-27-per-doc-pipeline-plan.md`](2026-04-27-per-doc-pipeline-plan.md).
+As of 2026-06-22, the wiki is built by a **two-stage pipeline**. Earlier iterations had a weekly wrap-up, monthly folder review, and on-demand long-form synthesis; those stages produced signal that wasn't being consumed and have been collapsed out. Structural changes (page splits, folder reorgs, dedup) happen ad-hoc in Claude Code sessions, not on a schedule.
 
-Four NanoClaw scheduled tasks now maintain the wiki:
+Two NanoClaw scheduled tasks now maintain the wiki:
 
-- **Daily list-maker** — runs 1am every night. Reads the wiki INDEX and recently-touched pages, fetches new Readwise saves since `list-maker-log.md`'s last `run_start` (fallback: 7 days), and decides per-item whether to create, update, skip, or hold in `unorganized.md`. For each non-skip decision it dispatches a per-doc worker via the `schedule_task` MCP tool. Bookkeeping only — never synthesizes content itself. Runs on Opus, ~1–2 min.
-- **Per-doc workers** — dispatched by the list-maker, run sequentially via GroupQueue immediately after dispatch. Each worker handles exactly one Readwise document: fetches it, follows the dispatch hint (with veto power if the rationale doesn't hold up against the content), writes/updates one wiki page, commits and pushes. ~2–3 min per worker on Opus.
-- **Weekly wrap-up** — runs Sunday 11pm. Dedup pass, cohesion linking, index.md refresh, `long-form/QUEUE.md` regen, `unorganized.md` cluster-promotion sweep (3+ items on a topic → promote to existing or new page), worker error summary, and writes `last-run-manifest.md`. Read-mostly over a known set — much shorter session than the old compiler.
-- **Monthly structure review** — runs 3am on the 1st of each month. Evaluates folder organization and index.md alignment, writes a proposal to `resources/wiki/folder-review.md`. Proposal-only; never auto-applies.
+- **Daily list-maker** — runs 1am every night. Reads the wiki `index.md` and recently-touched pages, fetches new Readwise saves since `list-maker-log.md`'s `run_end` (fallback: 7 days), and decides per-item whether to drop (deterministic pre-filter), update an existing page, or create a new one. Dispatches a per-doc worker for every update/create via the `schedule_task` MCP tool. Bookkeeping only — never synthesizes content itself. Runs on Opus, ~1–2 min.
+- **Per-doc workers** — dispatched by the list-maker, run sequentially via GroupQueue immediately after dispatch. Each worker handles exactly one Readwise document: fetches it, follows the dispatch hint (with veto power if the rationale doesn't hold up), writes/updates one wiki page, updates `index.md` if creating a new page, adds cross-links, commits and pushes. ~2–3 min per worker on Opus.
 
-**On-demand long-form synthesis** — user-triggered via the main Telegram group. Synthesizes a Readwise PDF (50K–200K words) into a dedicated page in `resources/wiki/long-form/`. Unchanged.
+There is no holding bin. Every save that passes the pre-filter lands in a real wiki page.
 
 ## Key Files
 
@@ -22,18 +20,12 @@ Four NanoClaw scheduled tasks now maintain the wiki:
 | `instructions/readwise-wiki.md` | Pipeline pointer + shared conventions (page format, linking, paths) |
 | `instructions/list-maker.md` | Stage 1 — daily list-maker procedure and dispatch template |
 | `instructions/per-doc-worker.md` | Stage 2 — per-doc worker procedure |
-| `instructions/weekly-wrap-up.md` | Stage 3 — weekly dedup, cohesion, manifest, unorganized.md sweep |
-| `instructions/folder-review.md` | Monthly folder/structure review (review mode + apply mode) |
-| `instructions/long-form-synthesis.md` | On-demand long-form synthesis (single-doc + queue regeneration) |
-| `instructions/_archive/readwise-wiki-monolithic-2026-04-27.md` | Archived old monolithic compiler instructions |
+| `instructions/_archive/` | Archived stage instructions (weekly-wrap-up, folder-review, long-form-synthesis) and the monolithic compiler |
 | `../../resources/wiki/` | Wiki output — all compiled pages live here |
 | `../../resources/wiki/index.md` | Topic index with links and one-line summaries |
-| `../../resources/wiki/list-maker-log.md` | Most recent list-maker run; `run_start` is the next run's `updated_after` cutoff |
-| `../../resources/wiki/last-run-manifest.md` | Latest weekly wrap-up summary |
-| `../../resources/wiki/long-form/QUEUE.md` | Pending long-form items (refreshed weekly) |
-| `../../resources/wiki/folder-review.md` | Latest structure proposal (refreshed monthly) |
-| `../../resources/wiki/unorganized.md` | Tier C/D items the list-maker couldn't place; wrap-up promotes 3+-item clusters |
-| `../../resources/wiki/WORKER_ERRORS.md` | Per-doc worker failures; summarized and archived weekly by wrap-up |
+| `../../resources/wiki/list-maker-log.md` | Most recent list-maker run; `run_end` is the next run's `updated_after` cutoff |
+| `../../resources/wiki/WORKER_ERRORS.md` | Per-doc worker failures (append-only; clean manually when noisy) |
+| `../../resources/wiki/_archive/` | Archived wiki content and prior pipeline artifacts |
 
 ## Container Path Mapping
 
@@ -49,14 +41,14 @@ All page paths in stage instructions (e.g. `resources/wiki/index.md`) are writte
 
 Two NanoClaw groups use the wiki:
 
-- **readwise-wiki** — the compiler agent (list-maker, per-doc workers, wrap-up, folder review). Mounts `areas/wiki/`, `resources/`, and the full vault. Runs on **Opus**.
+- **readwise-wiki** — the compiler agent (list-maker + per-doc workers). Mounts `areas/wiki/`, `resources/`, and the full vault. Runs on **Opus**.
 - **wiki-tutor** — a read-only librarian agent. Mounts `resources/wiki/` read-only. Reads pages, serves nuggets, logs research entries to `research-log.md` for the list-maker to process. Runs on **Opus**.
 
 ## Debugging silent worker failures
 
 If the list-maker runs cleanly but no `wiki: update ...` commits land, and `WORKER_ERRORS.md` is empty:
 
-1. **Check `chat_jid` on the wiki cron tasks.** Source of truth is `~/nanoclaw/store/messages.db` (not the 0-byte `nanoclaw.db` in the repo root — that file is a misleading sibling). All `readwise-wiki*` rows must have `chat_jid = task:readwise-wiki`. If they point at `tg:8790860459` instead, MCP `schedule_task` calls from the list-maker fail authorization and get dropped *silently* — NanoClaw is supposed to log `"Unauthorized schedule_task attempt blocked"` but doesn't. Fix: `sqlite3 ~/nanoclaw/store/messages.db "UPDATE scheduled_tasks SET chat_jid='task:readwise-wiki' WHERE group_folder='readwise-wiki'"` then restart NanoClaw with `launchctl kickstart -k gui/$(id -u)/com.nanoclaw`.
+1. **Check `chat_jid` on the wiki cron tasks.** Source of truth is `~/nanoclaw/store/messages.db` (not the 0-byte `nanoclaw.db` in the repo root — that file is a misleading sibling). The `readwise-wiki` row must have `chat_jid = task:readwise-wiki`. If it points at `tg:8790860459` instead, MCP `schedule_task` calls from the list-maker fail authorization and get dropped *silently* — NanoClaw is supposed to log `"Unauthorized schedule_task attempt blocked"` but doesn't. Fix: `sqlite3 ~/nanoclaw/store/messages.db "UPDATE scheduled_tasks SET chat_jid='task:readwise-wiki' WHERE group_folder='readwise-wiki'"` then restart NanoClaw with `launchctl kickstart -k gui/$(id -u)/com.nanoclaw`.
 2. **Watch for the `"Task created via IPC"` line** in `~/nanoclaw/logs/nanoclaw.log` after the list-maker finishes. If the list-maker container completes but no `Task created via IPC` entries follow, the dispatch is being dropped.
 3. **`current_tasks.json` is read-only output.** Editing `~/nanoclaw/data/ipc/<group>/current_tasks.json` does nothing — NanoClaw writes that file as a snapshot for containers to read via MCP. The scheduler reads only from the SQLite DB.
 
@@ -64,7 +56,7 @@ If the list-maker runs cleanly but no `wiki: update ...` commits land, and `WORK
 
 The `📚 Wiki list-maker (daily): ✅ done` Telegram ping is emitted by NanoClaw's scheduler (`task-scheduler.ts:303`), not the agent. The scheduler sends `${display_name}: ✅ done` to `task.chat_jid` after a non-main task completes successfully. Setting `chat_jid = task:readwise-wiki` (required for worker dispatch — see above) used to silently drop this ping because Telegram only owns `tg:` jids; the warn went to `logs/nanoclaw.error.log` and was easy to miss.
 
-Fixed 2026-06-02 (NanoClaw commit `1116d2d`): pseudo-prefix jids (`task:`, `internal:`) now fall back to the registered main group's jid at send time, and the ping requires `task.display_name` so internal worker tasks stay silent. The three wiki tasks (`readwise-wiki`, `readwise-wiki-weekly-wrap-up`, `readwise-wiki-folder-review`) all have a display_name set and route to telegram_main via the fallback. No DB change needed — `chat_jid` stays at `task:readwise-wiki`.
+Fixed 2026-06-02 (NanoClaw commit `1116d2d`): pseudo-prefix jids (`task:`, `internal:`) now fall back to the registered main group's jid at send time, and the ping requires `task.display_name` so internal worker tasks stay silent. The `readwise-wiki` task has a display_name set and routes to telegram_main via the fallback. No DB change needed — `chat_jid` stays at `task:readwise-wiki`.
 
 **If the 1am ping stops arriving again,** check:
 1. `grep -E "Telegram message sent" ~/nanoclaw/logs/nanoclaw.log` right after the list-maker's `Task completed` line — should see a send to `tg:8790860459` length ~34.
@@ -77,5 +69,5 @@ The list-maker reads its `updated_after` cutoff from the previous `list-maker-lo
 
 ## Related
 
-- [Wiki README](../../resources/wiki/README.md) — describes the wiki content, page design, and deferred items
+- [Wiki README](../../resources/wiki/README.md) — describes the wiki content and philosophy
 - [Intelligence pipeline](../intelligence/README.md) — the briefing system (separate project)

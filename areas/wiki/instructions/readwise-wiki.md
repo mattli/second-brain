@@ -1,21 +1,20 @@
 # Readwise Wiki — Pipeline Pointer
 
-> Version: 3.0 | Last updated: 2026-04-27
-> Supersedes the monolithic weekly compiler (archived at `_archive/readwise-wiki-monolithic-2026-04-27.md`).
+> Version: 4.0 | Last updated: 2026-06-22
+> Supersedes the three-stage pipeline (wrap-up, folder-review, and long-form-synthesis archived).
 
-The wiki is now built by a three-stage pipeline. Each stage has its own instructions file. Read the one that matches the task you were dispatched for — do not run all three.
+The wiki is built by a two-stage pipeline. Each stage has its own instructions file.
 
 | Stage | When | Instructions |
 |-------|------|--------------|
 | 1. List-maker | Daily @ 1am | `list-maker.md` |
 | 2. Per-doc worker | Dispatched ad-hoc by list-maker | `per-doc-worker.md` |
-| 3. Weekly wrap-up | Sunday @ 11pm | `weekly-wrap-up.md` |
-| Folder review | Monthly | `folder-review.md` |
-| Long-form synthesis | On-demand | `long-form-synthesis.md` |
 
-## Why split
+Structural changes (page splits, folder reorgs, dedup, cohesion audits) happen ad-hoc in Claude Code sessions when the user wants them — not on a schedule. There is no weekly wrap-up, no monthly folder review, no holding bin.
 
-The old single-session compiler streamed for 30–60 min per run and kept dying mid-flight on Anthropic edge 502s. Splitting into short-lived stages (list-maker is bookkeeping-only; each per-doc worker handles exactly one document; wrap-up is read-mostly) keeps every session well under the failure threshold and makes restarts cheap.
+## Why two stages
+
+Splitting into short-lived sessions (list-maker is bookkeeping-only; each per-doc worker handles exactly one document) keeps every session well under Anthropic edge-502 failure thresholds and makes restarts cheap. The list-maker dispatches all routing; the worker is responsible for everything that touches a wiki page (synthesis, INDEX update, cross-linking).
 
 ## Shared conventions
 
@@ -64,30 +63,30 @@ Inline format: `[[source]](source_url)` immediately after the cited sentence. Ev
 
 ### Linking
 
-- Use `[[wiki-link]]` syntax for internal links between wiki pages.
+- Use standard markdown links between wiki pages: `[link text](path/to/page.md)`.
 - Always update `last_updated:` in frontmatter when editing a page.
-- Cross-link aggressively: when a new page or section relates to existing content, link both directions.
+- Cross-link when a new page or section relates to existing content. The per-doc worker is responsible for this at edit time — there's no later stage that fills in cross-links.
 
 ### Cohesion bias
 
-**Extend before creating.** When in doubt, add to an existing page rather than spinning up a new one. The wiki gets less useful as it fragments. The list-maker enforces this at intake; the wrap-up enforces it again at the cluster level.
+**Extend before creating.** When in doubt, add to an existing page rather than spinning up a new one. The wiki gets less useful as it fragments. The list-maker enforces this at intake. The per-doc worker enforces it again at synthesis (e.g., a thin tweet doesn't earn its own page — it earns a bullet on a related page).
 
 ### Folder structure
 
 The wiki is organized into broad-topic folders under `resources/wiki/`. Check `resources/wiki/index.md` for the current layout. New folders are allowed when nothing fits — use short kebab-case names — but don't over-fragment.
 
-### Holding files
+### Persistent files
 
-- `resources/wiki/unorganized.md` — Tier C/D items the list-maker couldn't place. Wrap-up sweeps this for clusters of 3+ and promotes them.
-- `resources/wiki/long-form/QUEUE.md` — long-form sources awaiting on-demand synthesis (see `long-form-synthesis.md`).
-- `resources/wiki/WORKER_ERRORS.md` — per-doc worker failures, summarized and archived weekly by wrap-up.
+- `resources/wiki/index.md` — sidebar / navigation index. Updated by per-doc workers when creating new pages.
+- `resources/wiki/list-maker-log.md` — daily list-maker output (overwritten each run; the `run_end` timestamp becomes tomorrow's cutoff).
+- `resources/wiki/WORKER_ERRORS.md` — per-doc worker failures (append-only; clean manually when noisy).
 
 ### Path mapping
 
 Inside the container the `readwise-wiki` group has three relevant mounts:
 
 - `/workspace/extra/wiki/` → these instruction files (e.g. `instructions/list-maker.md`).
-- `/workspace/extra/resources/wiki/` → the wiki content itself (pages, index.md, unorganized.md, etc.).
+- `/workspace/extra/resources/wiki/` → the wiki content itself (pages, index.md, etc.).
 - `/workspace/extra/vault/` → the full second-brain vault (used for `git add` / `git commit` / `git push`).
 
-All page paths in the per-stage instructions (`resources/wiki/index.md`, `resources/wiki/unorganized.md`, etc.) are written assuming `cd /workspace/extra/vault` as the working directory before reading/writing.
+All page paths in the per-stage instructions are written assuming `cd /workspace/extra/vault` as the working directory before reading/writing.

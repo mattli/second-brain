@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-15
+last_updated: 2026-06-22
 ---
 
 # Y Combinator AI Thesis (2026)
@@ -101,3 +101,5 @@ This connects directly to PG's "live in the future" principle: founders at the l
 - "How to Get Startup Ideas" — Paul Graham (2012, saved Apr 2026) ([link](https://paulgraham.com/startupideas.html))
 - "I analyzed all 196 YC Spring 2026 companies" — Chris Lu (2026) — S26 batch composition: 95% AI, 70% agents, 44% B2B AaaS; founder demographics; execution > insight.
 - "99.1% Totality" — Garry Tan (2025) ([link](https://x.com/garrytan/status/1930068271083036847)) — The last 1% is the entire phenomenon; AI shifted the scarce skill from building to finishing.
+- "Here's YC's official advice about being truthful…" — Garry Tan (tweet, Apr 2026) — pilot/bookings/revenue terminology precision
+- "YC on how to build a company with AI" — Ben Lang (tweet, Apr 2026) — pointer to YC video on AI-native building

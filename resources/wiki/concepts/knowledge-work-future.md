@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-06-15
+last_updated: 2026-06-22
 
 
 ---
@@ -227,3 +227,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "Everyone is uncertain" — Grant Lee (tweet, May 2026) — universal uncertainty across the AI stack (foundation models through new grads); diffuse anxiety vs. specific fear; the unlearning imperative
 - "The 'AI Job Apocalypse' Is a Complete Fantasy" — David George (a16z, May 2026) ([link](https://www.a16z.news/p/the-ai-job-apocalypse-is-a-complete)) — lump-of-labor fallacy framing; historical precedents (tractors, electrification, VisiCalc, travel agents); augmentation vs. substitution data (Goldman, 8:1 earnings-call ratio); 2026 academic research roundup (NBER, Atlanta Fed, Census, Yale Budget Lab) showing no net employment effect; new business formation and app-store growth correlating with AI adoption
 - "How to be good at research" — Vivek (tweet, Jun 2026) ([link](https://x.com/VivsThoughts)) — taste as trainable muscle (predict-then-correct loop); Hamming's problem-selection question; writing as defense against self-deception (Graham, Darwin); tightening feedback loops as the core research skill; breadth as insurance against subfield saturation; Shannon's shrink-then-expand method
+- "Feeling stupid is a crucial part of science" — Nicholas Fabiano (tweet, May 2026) — embracing uncertainty as signal of pushing into the unknown

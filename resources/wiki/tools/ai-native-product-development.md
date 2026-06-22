@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-11
+last_updated: 2026-06-22
 ---
 
 # AI-Native Product Development
@@ -456,3 +456,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "Generative UI Is the New Frontend" — Shubham Saboo (tweet, Jun 2026) ([link](https://x.com/Saboo_Shubham_)) — three generative UI patterns (Controlled, Declarative/A2UI, Open-ended), AG-UI protocol stack, token economics of component registration, brand inconsistency in open-ended rendering
 - "The Claude Code + Cursor + Kombai Workflow" — Suryansh Tiwari (tweet, Jun 2026) ([link](https://x.com/AskSuryansh)) — AI-generated sameness problem, specialization stack (reasoning/implementation/refinement), four-way design-code sync pattern
 - "How Anthropic Uses Claude Fable 5 With Mike Krieger" — Every / Dan Shipper (video, Jun 2026) — delegation model (overnight tasks, concurrent sessions), verification loops (screenshots, video, mock backends), dynamic workflows, DRI model, PM/eng diffusion, non-technical builder empowerment, software engineering evolving not dying
+- "must read" — Dan Shipper (tweet, May 2026) — pointer to Marcus Moretti's agent-native PM guide

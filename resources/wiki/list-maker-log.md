@@ -1,27 +1,28 @@
 ---
-run_date: 2026-06-21
-run_start: "2026-06-21T08:01:07Z"
-run_end: "2026-06-21T08:01:45Z"
-updated_after: "2026-06-20T08:00:30Z"
-items_total: 3
-workers_dispatched: 3
+run_date: 2026-06-22
+run_start: "2026-06-22T08:01:58Z"
+run_end: "2026-06-22T08:02:30Z"
+updated_after: "2026-06-21T08:01:45Z"
+items_total: 5
+workers_dispatched: 4
 tier_c_referenced: 0
-tier_d_bookmarked: 0
+tier_d_bookmarked: 1
 ---
 
-# List-Maker Run — 2026-06-21
+# List-Maker Run — 2026-06-22
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-06-20T08:00:30Z. Three new documents found — all Tier A, all routed to existing pages.
+Cutoff from previous run_end: 2026-06-21T08:01:45Z. Five documents found — four Tier A dispatched as workers, one Tier D bookmarked to unorganized.md.
 
 ## Workers Dispatched
 
 | Doc ID | Tier | Hint | Target | Rationale |
 |--------|------|------|--------|-----------|
-| 01kvjhw8mdms1dmganbben96k6 | A | update | tools/agentic-engineering.md | Loop engineering — writing small programs that prompt agents repeatedly — extends harness design and agent loop architecture already on this page |
-| 01ktvvqz8t5rhgg6t4tn64cjdz | A | update | models-safety/frontier-models.md | Fable 5 is a new Anthropic frontier model with subagent orchestration capabilities — extends frontier model landscape |
-| 01ktpm05gc2f8eycc521c6xnaz | A | update | tools/agentic-engineering.md | Agent loop design patterns and consumer AI integration (Siri, Gemini) — fits agentic engineering page's loop architecture coverage |
+| 01kvnj8av1n3595zfvgn69qgfd | A | update | landscape/geopolitics-world-order.md | Jensen Huang interview on US reindustrialization through AI chip manufacturing — extends geopolitics page's US industrial policy coverage |
+| 01kvnj7vs6vcbfk2eswkcznc3c | A | update | tools/agentic-engineering.md | Practical comparison of agent loop implementations across Claude, GPT, Mira — extends loop architecture coverage |
+| 01kpevwnk2wr12wk52yacagwvj | A | update | models-safety/frontier-models.md | Nathan Lambert's mid-2026 open vs closed model analysis — extends open vs closed weights pivot section |
+| 01kpbs3ad7vd2spbc27qmqvjrs | A | update | tools/agentic-engineering.md | Agent taxonomy (simple flows, reasoning agents, multi-agent networks) — enriches agent categorization framework |
 
 ## Tier C — References Added
 
@@ -32,6 +33,7 @@ Cutoff from previous run_end: 2026-06-20T08:00:30Z. Three new documents found �
 
 | Title | Added To |
 |-------|----------|
+| Build your own knowledge base with the /add-karpathy-llm-wiki skill! | unorganized.md |
 
 ## Skipped
 

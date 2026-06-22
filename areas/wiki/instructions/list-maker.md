@@ -1,6 +1,6 @@
 # Wiki List-Maker — Stage 1 Instructions
 
-> Version: 1.0 | Last updated: 2026-04-27
+> Version: 1.1 | Last updated: 2026-06-22
 
 ## Purpose
 
@@ -35,6 +35,14 @@ Call `mcp__readwise__reader_list_documents` with `updated_after=<your cutoff>`. 
 Do NOT call `reader_get_document_details`. Summaries are enough for triage.
 
 ### 3. Triage each save
+
+**Pre-filter (deterministic, source-based):** Before tier classification, drop items matching the following narrow patterns. Dropped items are logged in your run output (Section 7) but NOT appended to any wiki page or to `unorganized.md`.
+
+- **Readwise/Reader product changelogs** — RSS items whose title matches `Readwise & Reader Changelog` or `Reader Changelog`, or whose URL is on `readwise.io` / `readwise.com`. These are tooling release notes, not knowledge.
+- **Self-referential wiki-pipeline promo** — items promoting the `karpathy-llm-wiki` skill, the wiki compiler itself, or NanoClaw tweets about the wiki feature.
+- **Orphan highlights** — items with `category=highlight` whose title is empty or literally `(untitled highlight)` and which have no parent document context. These are standalone snippets with no source to synthesize from.
+
+Extend this list ONLY when a new clear noise pattern recurs across multiple runs. This filter is for deterministic source/title matching only — the existing rule still applies: topic, relevance, and perceived value are NEVER valid drop reasons.
 
 For each item, classify size:
 
@@ -124,6 +132,7 @@ items_total: N
 workers_dispatched: N
 tier_c_referenced: N
 tier_d_bookmarked: N
+items_dropped: N
 ---
 
 # List-Maker Run — YYYY-MM-DD
@@ -151,6 +160,11 @@ tier_d_bookmarked: N
 
 | ID | Title | Reason |
 |----|-------|--------|
+
+## Dropped (pre-filter)
+
+| ID | Title | Pattern |
+|----|-------|---------|
 
 ## Carry-Over (deferred to next run)
 

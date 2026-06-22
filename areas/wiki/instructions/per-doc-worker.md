@@ -1,6 +1,6 @@
 # Per-Doc Worker — Stage 2 Instructions
 
-> Version: 2.0 | Last updated: 2026-06-22
+> Version: 2.1 | Last updated: 2026-06-22
 
 ## Purpose
 
@@ -10,8 +10,9 @@ You are a single-document Readwise wiki worker. You were dispatched by the list-
 2. Synthesize it into one wiki page (the hinted target, or a different one if the hint doesn't hold up against the content).
 3. Update `index.md` if you created a new page.
 4. Add cross-links to related pages where the new material mentions other wiki entities.
-5. Commit and push.
-6. Exit.
+5. Log a one-line entry in the page's `## Recent Updates` section.
+6. Commit and push.
+7. Exit.
 
 You handle exactly one document, then you're done.
 
@@ -91,6 +92,31 @@ After writing your content, scan it for entity, concept, or person names that ma
 Cross-linking is the wiki's connective tissue. Without it, the wiki becomes a pile of disconnected pages. There is no later stage that does this — you are responsible at edit time.
 
 Do NOT scan the entire target page and add links to material you didn't touch — only the material you added or modified in this run.
+
+### 5b. Log to `## Recent Updates`
+
+Every page edit gets a one-line entry in a `## Recent Updates` section placed **immediately after the `## TLDR` section and before `## Overview`**. This lets a returning reader see what's new on the page without having to re-read it or diff against git.
+
+Format — link to the section you touched so the reader can jump to it:
+
+```markdown
+## Recent Updates
+
+- **2026-06-22:** Added Lance Martin's verifier sub-agent principle to [Verification](#verification-is-the-essential-feedback)
+- **2026-06-15:** Updated [Open vs. Closed Loops](#open-vs-closed-loops) with Alex Vacca's token cost data
+- **2026-06-08:** Added Eric Siu's revenue engineering five-part anatomy to [Business Loops](#business-loops--revenue-engineering)
+```
+
+Rules:
+
+- **Always link the section name** using a markdown anchor: `[Section Name](#section-name-kebab-case)`. Convert the heading to its anchor form: lowercase, spaces → hyphens, drop punctuation except hyphens, em-dashes become hyphens. When in doubt, copy the heading text and lowercase-hyphenate. Both Obsidian and Cold Mountain resolve these.
+- **Prepend** the new entry (newest at top, oldest at bottom).
+- **Cap at 10 entries.** If adding the new one would make 11, drop the oldest. Don't archive — the git history is the durable record.
+- **If the section doesn't exist yet,** create it in the correct position (after TLDR, before Overview). Older pages won't have one until you're the first to touch them post-2026-06-22.
+- **The description should name the substance**, not just the location. Good: "Added Lance Martin's verifier sub-agent principle to [Verification](#verification-is-the-essential-feedback)." Bad: "Updated Verification section."
+- **For thin contributions** (a Sources-only addition, a one-line bullet under Further Reading), still log with a link to the section: "Added Vercel × NanoClaw approval-system reference to [Sources](#sources)."
+- **If you touched multiple sections in one edit,** link to the primary one in the entry and mention the others by name: "Reworked [Verification](#verification) and updated [Five Building Blocks](#five-building-blocks) with the new framing."
+- **If you vetoed the hint and edited a different page,** log on the page you actually edited, not the original target.
 
 ### 6. Commit and push
 

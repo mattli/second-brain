@@ -1,11 +1,15 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-04-13
+last_updated: 2026-06-23
 ---
 
 # AGI Definitions
 
-> TLDR: "AGI" is contested and often misused. On the most prominent definitions — DeepMind, Bengio 2025, Hinton, OpenAI — current AI (Claude Opus 4.6, GPT-5) is superhuman in some cognitive tasks but still below most humans at multi-day tasks, visual navigation, adversarial social interactions, and metacognition. We're at "emerging AGI," not "competent AGI."
+> TLDR: "AGI" is contested and often misused. On the most prominent definitions — DeepMind, Bengio 2025, Hinton, OpenAI — current AI (Claude Opus 4.6, GPT-5) is superhuman in some cognitive tasks but still below most humans at multi-day tasks, visual navigation, adversarial social interactions, and metacognition. We're at "emerging AGI," not "competent AGI." Multiple researchers now advocate replacing "AGI" with more precise milestone taxonomies — six transformative capability thresholds offer a sharper lens than a single contested label.
+
+## Recent Updates
+
+- **2026-06-23:** Added alternative replacement terms, six transformative capability thresholds, and updated article additions to [Better: Specific Capability Milestones](#better-specific-capability-milestones) and [Six Transformative Capability Thresholds](#six-transformative-capability-thresholds)
 
 ## The Term's History
 
@@ -70,7 +74,26 @@ AI Futures (AI 2027) proposes dropping "AGI" in favor of:
 - *Top-Human-Expert-Dominating AI (TED-AI)* — at least as good as top human experts at virtually all cognitive tasks
 - *Artificial Superintelligence (ASI)* — 2x better than best humans vs. median professional, at virtually all cognitive tasks
 
-Also: *Transformative AI* (Holden Karnofsky) — AI capable of causing socioeconomic change of a similar scale to the industrial revolution. Allows for transformative systems that aren't highly general (e.g., amazing at scientific research, bad at most other jobs).
+Also proposed:
+
+- *Transformative AI* (Holden Karnofsky) — AI capable of causing socioeconomic change of a similar scale to the industrial revolution. Allows for transformative systems that aren't highly general (e.g., amazing at scientific research, bad at most other jobs). Downside: doesn't specify *what* might be transformative; hasn't caught on in search traffic.
+- *Human Level AI* (Helen Toner) — makes the relevant bar explicit and the vagueness obvious. But risks confusion: Toner herself argues AI will remain extremely jagged long into the transformative period, so transformative systems may not feel "human-like" at all.
+- *Six milestones for AI automation* (Ajeya Cotra) and a similar set from Helen Toner — additional granular milestone proposals published after the AI Futures taxonomy.
+- *"A drop-in remote worker"* (Leopold Aschenbrenner, *Situational Awareness*) — an AI you can hire to do almost any remote work job, including scientific research.
+- *"A country of geniuses in a datacentre"* ([Dario Amodei](../people/dario-amodei.md)) — evocative framing that sidesteps definitions entirely and describes the functional endpoint.
+
+## Six Transformative Capability Thresholds
+
+Rather than debating a single contested label, Todd argues for tracking six specific capabilities whose arrival would each change the socioeconomic landscape differently:
+
+1. **Automate coding** — important waypoint to automating AI R&D; may arrive soon; generates revenue to fund further research.
+2. **Automate AI R&D** — could accelerate AI progress and may happen before AI that can do most other jobs.
+3. **Do most economically important remote work tasks** (at or below the cost of a skilled human) — generates huge revenues; important waypoint.
+4. **Automate scientific research** — could accelerate technological progress broadly.
+5. **Automate its own factors of production** (chips, solar panels, software) — creates a feedback loop leading to an industrial explosion.
+6. **Do most economically important tasks** (including robotic manipulation) more efficiently than humans — results in human economic obsolescence.
+
+None have been fully achieved as of mid-2026, but all sit on plausible near-term trajectories.
 
 ## Timeline Estimates (Benjamin Todd, Apr 2026)
 
@@ -82,6 +105,9 @@ See also: [AI Safety & Interpretability](../models-safety/ai-safety-interpretabi
 
 ## Sources
 
-- "Do we already have AGI?" — Benjamin Todd (80,000 Hours, Apr 2026) ([link](https://benjamintodd.substack.com/p/do-we-already-have-agi))
+- "Do we already have AGI?" — Benjamin Todd (80,000 Hours, Apr 2026, updated) ([link](https://benjamintodd.substack.com/p/do-we-already-have-agi)). Six transformative capability thresholds, alternative replacement terms (Cotra, Toner, Aschenbrenner, Amodei framings) added from article update.
 - "Levels of AGI" — Legg et al., Google DeepMind (2023) ([link](https://arxiv.org/pdf/2311.02462))
 - "A definition of AGI" — Bengio et al. (2025) ([link](https://arxiv.org/pdf/2510.18212))
+- "Six Milestones for AI Automation" — Ajeya Cotra ([link](https://www.planned-obsolescence.org/p/six-milestones-for-ai-automation))
+- "The Term AGI Is Almost Useless" — Helen Toner ([link](https://helentoner.substack.com/p/the-term-agi-is-almost-useless-at))
+- "Taking Jaggedness Seriously" — Helen Toner ([link](https://helentoner.substack.com/p/taking-jaggedness-seriously))

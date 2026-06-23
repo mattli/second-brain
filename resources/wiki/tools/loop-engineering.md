@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-06-22
+last_updated: 2026-06-23
 ---
 
 # Loop Engineering
@@ -9,11 +9,14 @@ last_updated: 2026-06-22
 
 Loop engineering is the practice of replacing yourself as the person who prompts the agent — you design the system that prompts it instead. Where [harness design](agent-harness.md) shapes the environment a single agent runs inside, and [orchestration](agentic-engineering.md#multi-agent-orchestration) coordinates multiple agents, loop engineering sits one level above both: a recurring system that discovers work, dispatches agents, checks results, records state, and decides the next step — all without a human in the turn-by-turn prompting seat.
 
-## Overview
+## Recent Updates
 
-Boris Cherny, who created Claude Code as a side project in September 2024, gave the clearest definition: "I don't prompt Claude anymore. I have loops that are running. They're the ones that are prompting Claude and figuring out what to do. My job is to write loops" [[source]](https://www.youtube.com/watch?v=RkQQ7WEor7w). He describes three stages of progression: writing code by hand with autocomplete, running 5–10 parallel Claude sessions and prompting each one, then writing loops that prompt Claude while hundreds of agents read his GitHub, Slack, and Twitter and decide what to build next. He deleted his IDE in November 2025 and hasn't opened it since.
+- **2026-06-23:** Added [Context Hygiene](#context-hygiene) section (context rot, doom loop, mitigations) and [Tool Design for Loops](#tool-design-for-loops) subsection under Five Building Blocks. Removed stale Overview; folded Cherny biographical detail into [The Five-Stage Lineage](#the-five-stage-lineage).
+- **2026-06-22:** Page created with synthesis from 13 sources covering the full loop engineering landscape.
 
 ## The Five-Stage Lineage
+
+Boris Cherny, who created Claude Code as a side project in September 2024, gave the clearest definition: "I don't prompt Claude anymore. I have loops that are running. They're the ones that are prompting Claude and figuring out what to do. My job is to write loops" [[source]](https://www.youtube.com/watch?v=RkQQ7WEor7w). He describes three stages of progression: writing code by hand with autocomplete, running 5–10 parallel Claude sessions and prompting each one, then writing loops that prompt Claude while hundreds of agents read his GitHub, Slack, and Twitter and decide what to build next. He deleted his IDE in November 2025 and hasn't opened it since.
 
 The concept has a real history, and conflating stages is what makes discourse around "loops" incoherent:
 
@@ -38,6 +41,16 @@ Dan Farrelly (Inngest) reframes the agent loop as three explicit architectural l
 ## Open vs. Closed Loops
 
 The sharpest practical distinction in loop design is between open and closed loops. An open loop gives the agent a goal and lets it explore freely — choosing paths, discovering things, building beyond the spec. This is what senior engineers at OpenAI and Anthropic run with unlimited API access, and it burns tokens at rates that make normal budgets irrelevant (a fleet loop with orchestrator and specialists can consume 500K–2M tokens per run). A closed loop bounds the agent inside a human-designed path: clear goal, defined steps, an evaluation gate at each stage, and an explicit stop condition. The agent still loops — but inside a framework you built, and each pass feeds the next. For most real work, closed loops are the ones that pay off. The practical advice: start closed, build a tight system that works reliably, then open it up once quality gates are proven.
+
+## Context Hygiene
+
+Long loops rot from the inside. As turns accumulate, old tool outputs, dead-end reasoning, and stale intermediate results pile into the context window — a process called **context rot**. Model performance degrades as this noise grows, and in a loop the degradation compounds: a rotted context produces a worse decision, which adds more noise, which rots the context further. This spiral is the **doom loop** — the agent gets measurably dumber the longer it runs. The instinct is to keep everything in context just in case; the skill is knowing what to throw away. Three techniques form the standard defense:
+
+- **Compaction.** Summarize the conversation when it gets long, then continue from the summary. The agent trades fidelity on old details for headroom on new decisions.
+- **Offloading.** Push large tool outputs (build logs, API responses, search results) to a file and keep only the relevant slice in context.
+- **Sub-agents.** Hand a messy subtask to a separate agent running in its own context window. Only the clean result returns to the parent loop. This is the same [maker/checker split](#verification-is-the-essential-feedback) applied to context isolation — the parent never ingests the noise the child waded through.
+
+Context hygiene is a prerequisite for the longer loops described in the [autonomy ladder](#the-autonomy-ladder) — a loop that can't manage its own context window won't survive long enough to reach level three or four.
 
 ## The Four-Box Test — When a Loop Is Worth Building
 
@@ -64,6 +77,14 @@ A loop requires five capabilities plus persistent memory:
 3. **Skills** — Codified project knowledge (conventions, build steps, "we don't do it like this because of that one incident") that prevents the agent from re-deriving your entire project from zero every cycle. Without skills, loops accumulate [intent debt](https://addyosmani.com/blog/intent-debt/) — the agent fills every hole in your intent with a confident guess.
 4. **Plugins and connectors** — MCP-based integrations that let the loop act inside your actual environment (issue trackers, staging APIs, Slack) rather than just proposing what it would do.
 5. **Sub-agents** — The maker/checker split. The model that wrote the code is too agreeable grading its own homework; a second agent with different instructions catches what the first talked itself into. This is also how `/goal` works under the hood — a fresh model decides if the loop is done instead of the one that did the work.
+
+### Tool Design for Loops
+
+A loop is only as good as the tools inside it, and tool design for loops has different priorities than tool design for single-shot agents. Three principles emerge:
+
+- **Keep the set small and non-overlapping.** Pile on a hundred tools and the agent loses track of which one to reach for. Anthropic's rule of thumb: if a human engineer can't say with certainty which tool fits a given situation, the agent has no chance either.
+- **Make writes idempotent.** Loops retry — by design (verification failures) and by accident (crashes, timeouts). If a retried "create customer" call produces a second customer, you wake up to duplicate records and double billing. Anything that changes state must be safe to call twice with the same arguments.
+- **Write error messages for the agent, not the human.** In a loop, an error isn't a dead end — it's the next instruction. A good error tells the agent what to do next. Before shipping a tool, ask whether an LLM reading its error output would know the correct next move.
 
 ## Memory
 
@@ -134,5 +155,6 @@ Three problems get sharper as the loop gets better: *verification* remains on th
 - "From Prompting Agents to Loop Engineering" — Elvis / DAIR.AI (tweet thread, Jun 2026) ([link](https://x.com/omarsar0/status/2068008743153832264/?rw_tt_thread=True)) — practitioner synthesis: /goal-as-contract framing (end state, evidence, constraints, budget), six-part loop anatomy (trigger, isolation, written-down context, tool reach, second-agent check, state on disk), crabfleet orchestration tool, PR babysitter as concrete loop shape
 - "Loops explained: Claude, GPT, Mira and what actually works" — Anatoli Kopadze (tweet thread, Jun 2026) ([link](https://x.com/AnatoliKopadze/status/2068328135611822149/?rw_tt_thread=True)) — beginner-accessible loop explainer: four-box test for when loops are worth building, cost-per-accepted-change as key metric, prove-then-harden-then-automate build order
 - "How to Create Loops with Claude" — MIKE (tweet, Jun 2026) — popularized loop-design guide synthesizing Cherny, Osmani, and Huntley; introduces four-level autonomy ladder (suggest → draft → apply-with-approval → fully automatic), silent-archiving heuristic for no-op runs
+- "Loop Engineering Clearly Explained" — Akshay Pachaar (tweet thread, Jun 2026) ([link](https://x.com/akshay_pachaar/status/2069118430582866051/?rw_tt_thread=True)) — beginner-accessible explainer: context rot and doom loop terminology, tool design principles for loops (idempotent writes, agent-readable errors, small non-overlapping toolsets), four-level progression (prompt → context → harness → loop), stopping conditions taxonomy, maker/checker split framing
 - "\"Ralph Wiggum\" AI Agent will 10x Claude Code/Amp" — Greg Isenberg ft. Ryan Carson (video, Jun 2026) — Ralph loop practitioner walkthrough: PRD-to-JSON pipeline, atomic user stories with acceptance criteria, dual memory (agents.md long-term + progress.txt short-term), fresh context per iteration, $3/iteration cost, 14-iteration feature build
 - "Hey Siri, meet AI" — Ben Tossell / Ben's Bites (Jun 2026) ([link](https://bensbites.beehiiv.com/p/hey-siri-meet-ai)) — practitioner framing of skills-composition pipelines as loop design pattern (planning → PRD → research → build → review → test)

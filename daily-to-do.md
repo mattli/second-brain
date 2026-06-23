@@ -1,4 +1,5 @@
 # June 22 – June 28
+*Goal: deep breathing*
 
 ### Tuesday, June 23
 

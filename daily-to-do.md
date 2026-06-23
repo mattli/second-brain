@@ -1,3 +1,14 @@
+# June 22 – June 28
+
+### Tuesday, June 23
+
+- [ ] Go to the gym
+- [ ] Stop by leasing office — check on lease, get door lock fixed
+- [ ] Mrs. Winston's
+- [ ] Read Infinite Jest
+
+---
+
 # June 15 – June 21
 *Goal: tomorrow never knows*
 

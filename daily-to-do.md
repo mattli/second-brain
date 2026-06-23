@@ -3,7 +3,7 @@
 
 ### Friday, June 19
 
-- [ ] Send Jumpspeak the Google Doc
+- [x] Send Jumpspeak the Google Doc
 - [ ] Practice stripped-down cycle of fifths — left-hand bass note, right-hand guide tones
 
 ---

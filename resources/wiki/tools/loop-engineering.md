@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-06-23
+last_updated: 2026-06-24
 ---
 
 # Loop Engineering
@@ -11,6 +11,7 @@ Loop engineering is the practice of replacing yourself as the person who prompts
 
 ## Recent Updates
 
+- **2026-06-24:** Added [The Planner-Generator-Evaluator Harness](#the-planner-generator-evaluator-harness) section and [Harness Co-Evolution](#harness-co-evolution) section. Extended [Verification](#verification-is-the-essential-feedback) with contract negotiation, evaluator independence, and design-taste-as-rubric patterns from Anthropic's internal long-running agent work.
 - **2026-06-23:** Added [Context Hygiene](#context-hygiene) section (context rot, doom loop, mitigations) and [Tool Design for Loops](#tool-design-for-loops) subsection under Five Building Blocks. Removed stale Overview; folded Cherny biographical detail into [The Five-Stage Lineage](#the-five-stage-lineage).
 - **2026-06-22:** Page created with synthesis from 13 sources covering the full loop engineering landscape.
 
@@ -52,6 +53,34 @@ Long loops rot from the inside. As turns accumulate, old tool outputs, dead-end 
 
 Context hygiene is a prerequisite for the longer loops described in the [autonomy ladder](#the-autonomy-ladder) — a loop that can't manage its own context window won't survive long enough to reach level three or four.
 
+## The Planner-Generator-Evaluator Harness
+
+Anthropic's applied AI team (Ash Prabaker and Andrew Wilson) builds long-running agents around three separated roles, each in its own context window: a **planner** that decomposes a one-line prompt into high-level sprints (deliberately not granular technical specs — a planning error at that level cascades through every sprint), a **generator** that builds code, and an **evaluator** that uses Playwright to actually open the live app, click around, test interactions, and score against a weighted rubric. The pattern is GAN-inspired: the generator produces, the evaluator grades, and adversarial pressure between them drives quality. If you squint, it's a PM–IC–QA org chart where each role gets its own context window.
+
+The key mechanism that distinguishes this from a simple maker/checker split is **contract negotiation**. Before the generator writes a single line, the two agents negotiate what "done" means by passing markdown files on disk back and forth. The generator proposes: "I'll build X and you should verify by testing Y." The evaluator pushes back: "Scope is too big, those tests are too weak, you've missed edge case Z." They iterate until both agree. The generator then builds against the contract, and the evaluator grades against it — not the planner's original spec. This converts vague user stories into tangible, testable assertions without the planner having to over-specify upfront. It's the innovation the Ralph loop never had: Ralph had a fixed plan.md, but nobody on the other side argued with it.
+
+Three implementation details matter:
+
+- **The evaluator must not see the generator's reasoning.** Anthropic tried giving the evaluator the generator's traces and found it performed worse — the evaluator starts agreeing with the reasoning that produced the output instead of judging the output on its own terms. Let the evaluator say "this is broken"; let the generator figure out why from its own reflection.
+- **Design taste is gradable.** The evaluator uses a rubric with four weighted criteria — design, originality, craft, functionality — calibrated with few-shot examples on reference sites. With Opus 4.6 already strong on functionality, the weights shift toward design and originality to suppress AI-slop aesthetics (purple gradients, generic layouts). The lesson: if you have a strong opinion on what good looks like, write it down as a rubric — "subjective" becomes tractable once the opinion is explicit.
+- **The model will throw everything away.** With adversarial pressure from a separate evaluator, the generator willingly discards ten passes of work and restarts from scratch when it can't hill-climb against the rubric. This never happens in single-agent loops, where the generator is too proud of its own work to delete it. The evaluator sometimes gets fed up and tells the generator to just scrap the whole approach — a behavior Anthropic's team recognized as mirroring what human engineers do when they benefit from a fresh start.
+
+Contract granularity drives critique quality. For a retro game maker demo, the agents negotiated 27 contract criteria. Vague criteria produce vague critiques and the generator shrugs; granular criteria tell it exactly which line to fix.
+
+### Trace Reading as the Primary Debugging Loop
+
+The harness team's primary method for improving their system is not running more experiments — it's reading agent traces line by line, finding where the model's judgment diverged from human judgment, and tuning the prompt for that specific divergence. "It was the same kind of muscle as reading a stack trace." They pipe transcripts to files, sometimes point another agent at a batch of traces to surface issues, but the irreducible work is a human sitting with the traces and empathizing with what the model was trying to do. This is how they discovered, for example, that the QA agent was finding bugs and then marking them "fix later, might take two weeks" instead of failing the sprint — a sycophancy pattern invisible from the outside.
+
+## Harness Co-Evolution
+
+The [agent harness](agent-harness.md) doesn't disappear as models improve — it co-evolves. Anthropic tracks this with a "meter chart": minimal-scaffold task completion at 50% went from ~1 hour (Opus 3.7) to 12 hours (Opus 4.6) in one year. But the interesting pattern is what changes in the harness at each model generation:
+
+- **Context resetting** — critical for Opus 4.5 (which had context anxiety near window limits) — was dropped entirely for Opus 4.6, which runs coherently in a single continuous session with compaction.
+- **Sprint decomposition** — required for Opus 4.5, which needed to be force-fed one feature at a time — became optional for Opus 4.6, which can hold a 2-hour continuous build coherently.
+- **Evaluator cadence** — shifted from running per-sprint to running once at the end of a full generation pass, because Opus 4.6 produces coherent enough output that per-sprint checking adds cost without proportional quality gain.
+
+The lesson isn't that the harness was wrong — it was right for 4.5. The frontier moved, and the team ran a simplified version to see if it still needed the complexity. Some components get absorbed into the model; others evolve; new gaps appear. Every model release is a signal to re-evaluate which harness components earn their keep.
+
 ## The Four-Box Test — When a Loop Is Worth Building
 
 A loop earns its setup cost only when all four conditions hold: (1) the task repeats at least weekly — less than that and the overhead never pays back; (2) something can automatically reject bad output — a test, a type check, a build, a linter; (3) the agent can do the work end-to-end without handing half of it back to you; (4) "done" is objective, not a judgment call. Miss one box, keep it as a manual prompt. The honest version: most people don't need the heavy loop yet — the light version (a single prompt with built-in self-check criteria) covers the common case.
@@ -90,7 +119,7 @@ A loop is only as good as the tools inside it, and tool design for loops has dif
 
 ### Memory Is the Spine
 
-A markdown file, a Linear board, anything that lives outside the conversation and holds what's done and what's next. The agent forgets everything between runs, so state must live on disk. This is the same persistence pattern used by every [long-running agent](https://addyosmani.com/blog/long-running-agents/) architecture.
+A markdown file, a Linear board, anything that lives outside the conversation and holds what's done and what's next. The agent forgets everything between runs, so state must live on disk. This is the same persistence pattern used by every [long-running agent](https://addyosmani.com/blog/long-running-agents/) architecture. Anthropic's harness team prefers JSON files for persistent state over markdown — models are less likely to overwrite JSON than markdown, and the timestamped breadcrumb pattern (what was tried, what was evaluated, what was found, what was fixed) gives the next agent or human enough context to pick up where the last run stopped.
 
 ### Memory as an Outer Loop
 
@@ -116,7 +145,7 @@ The loop is plumbing. A loop with no reusable skills inside it is a while-true a
 
 ### Verification Is the Essential Feedback
 
-A loop is only as trustworthy as its ability to check its own work. An open loop that writes code with no feedback is a machine for generating confident mistakes; a loop that writes, runs, reads the result, and corrects is the thing that actually works. The maker/checker split operationalizes this: the model that wrote the code is too agreeable grading its own homework, so a second agent with different instructions catches what the first talked itself into. Lance Martin (Anthropic) adds a specific mechanism: verifier sub-agents outperform self-critique because grading happens in an independent context window — the grader never saw the reasoning that produced the output, so it can't be talked into agreeing with it. Outcomes in Claude Managed Agents implements this by spawning a separate grader sub-agent automatically [[source]](https://x.com/RLanceMartin/status/2072674851995906113).
+A loop is only as trustworthy as its ability to check its own work. An open loop that writes code with no feedback is a machine for generating confident mistakes; a loop that writes, runs, reads the result, and corrects is the thing that actually works. The maker/checker split operationalizes this: the model that wrote the code is too agreeable grading its own homework, so a second agent with different instructions catches what the first talked itself into. Lance Martin (Anthropic) adds a specific mechanism: verifier sub-agents outperform self-critique because grading happens in an independent context window — the grader never saw the reasoning that produced the output, so it can't be talked into agreeing with it. Outcomes in Claude Managed Agents implements this by spawning a separate grader sub-agent automatically [[source]](https://x.com/RLanceMartin/status/2072674851995906113). Anthropic's applied AI team takes this further: tuning a standalone critic to be harsh is tractable, but tuning a builder to be self-critical is not — the asymmetry is the same reason it's easy to critique a meal but hard to cook one. Self-evaluation is a trap; adversarial evaluation is the pattern that works (see [Planner-Generator-Evaluator](#the-planner-generator-evaluator-harness)).
 
 ### Model Quality Changes Loop Behavior
 
@@ -156,5 +185,6 @@ Three problems get sharper as the loop gets better: *verification* remains on th
 - "Loops explained: Claude, GPT, Mira and what actually works" — Anatoli Kopadze (tweet thread, Jun 2026) ([link](https://x.com/AnatoliKopadze/status/2068328135611822149/?rw_tt_thread=True)) — beginner-accessible loop explainer: four-box test for when loops are worth building, cost-per-accepted-change as key metric, prove-then-harden-then-automate build order
 - "How to Create Loops with Claude" — MIKE (tweet, Jun 2026) — popularized loop-design guide synthesizing Cherny, Osmani, and Huntley; introduces four-level autonomy ladder (suggest → draft → apply-with-approval → fully automatic), silent-archiving heuristic for no-op runs
 - "Loop Engineering Clearly Explained" — Akshay Pachaar (tweet thread, Jun 2026) ([link](https://x.com/akshay_pachaar/status/2069118430582866051/?rw_tt_thread=True)) — beginner-accessible explainer: context rot and doom loop terminology, tool design principles for loops (idempotent writes, agent-readable errors, small non-overlapping toolsets), four-level progression (prompt → context → harness → loop), stopping conditions taxonomy, maker/checker split framing
+- "Build Agents That Run for Hours" — Ash Prabaker & Andrew Wilson / Anthropic, AI Engineer Conference (video, Jun 2026) — Planner-generator-evaluator harness pattern (GAN-inspired adversarial roles), contract negotiation between generator and evaluator before building, evaluator must not see generator reasoning, design taste as weighted rubric (design/originality/craft/functionality), harness co-evolution with model generations (what changed Opus 4.5 → 4.6), trace reading as primary debugging loop, file-system-as-state over context windows, model willingness to discard under adversarial pressure
 - "\"Ralph Wiggum\" AI Agent will 10x Claude Code/Amp" — Greg Isenberg ft. Ryan Carson (video, Jun 2026) — Ralph loop practitioner walkthrough: PRD-to-JSON pipeline, atomic user stories with acceptance criteria, dual memory (agents.md long-term + progress.txt short-term), fresh context per iteration, $3/iteration cost, 14-iteration feature build
 - "Hey Siri, meet AI" — Ben Tossell / Ben's Bites (Jun 2026) ([link](https://bensbites.beehiiv.com/p/hey-siri-meet-ai)) — practitioner framing of skills-composition pipelines as loop design pattern (planning → PRD → research → build → review → test)

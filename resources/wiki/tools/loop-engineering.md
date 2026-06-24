@@ -1,6 +1,7 @@
 ---
 created_at: 2026-06-22
 last_updated: 2026-06-24
+
 ---
 
 # Loop Engineering
@@ -11,6 +12,7 @@ Loop engineering is the practice of replacing yourself as the person who prompts
 
 ## Recent Updates
 
+- **2026-06-24:** Added [The Session-Mining Loop](#the-session-mining-loop) — personal self-improvement pattern with seven improvement targets, from Cathryn's practitioner template.
 - **2026-06-24:** Added [Security](#security--the-unattended-attack-surface) section and concrete good/bad first-loop examples to [The Four-Box Test](#the-four-box-test--when-a-loop-is-worth-building). Extended [Cost](#cost--the-loop-is-now-the-expensive-part) with economic accessibility framing.
 - **2026-06-24:** Added [The Planner-Generator-Evaluator Harness](#the-planner-generator-evaluator-harness) section and [Harness Co-Evolution](#harness-co-evolution) section. Extended [Verification](#verification-is-the-essential-feedback) with contract negotiation, evaluator independence, and design-taste-as-rubric patterns from Anthropic's internal long-running agent work.
 - **2026-06-23:** Added [Context Hygiene](#context-hygiene) section (context rot, doom loop, mitigations) and [Tool Design for Loops](#tool-design-for-loops) subsection under Five Building Blocks. Removed stale Overview; folded Cherny biographical detail into [The Five-Stage Lineage](#the-five-stage-lineage).
@@ -130,6 +132,24 @@ A markdown file, a Linear board, anything that lives outside the conversation an
 
 Within-run persistence keeps a single loop on track; cross-session memory is an outer loop that lets the agent compound learning across runs. Martin tested Fable 5, Opus 4.7, and Sonnet 4.6 on Continual Learning Bench 1.0 (sequential questions against a SQL database, each question in a separate agent session with shared memory). Effective memory use follows a five-stage progression: *fail* (get something wrong and document it), *investigate* (figure out why before moving on), *verify* (turn the diagnosis into a checked fact), *distill* (turn verification into a general rule), and *consult* (read the rule instead of re-deriving it). Sonnet 4.6 exits around stage 1 — a list of failure notes and open guesses, rarely consulted. Opus 4.7 reaches stage 3 — schema references with uncertainty flagged but low verification coverage (~17% median). Fable 5 tends to complete the full progression, with verification coverage up to 73% and distilled rules that transfer to future tasks. The practical implication: less capable models need task-specific memory instructions to progress beyond note-taking, while stronger models can self-organize the fail-investigate-verify-distill-consult cycle with minimal scaffolding.
 
+### The Session-Mining Loop
+
+The personal variant of the hill-climbing loop doesn't optimize a harness — it optimizes the practitioner. Cathryn's self-improvement loop reads your own Claude Code and Codex sessions as ops data and asks two questions: *What should I create from this?* and *What should I fix so tomorrow is easier?* The inner loop is the work you already do in the terminal; the outer loop watches those runs after the fact, not to redo the work but to extract what it revealed about your setup and habits.
+
+The key contribution is a taxonomy of seven targets for each lesson the outer loop discovers:
+
+1. **Content idea** — a workflow, shortcut, or judgment call another person would ask you to explain. The terminal is full of accidental curriculum invisible to you until someone watches over your shoulder.
+2. **Context file** — a path, convention, or correction you told the agent twice; it should be written down once in CLAUDE.md or AGENTS.md.
+3. **Slash command** — a multi-step instruction you typed from scratch; that's a command you don't have yet.
+4. **Skill** — a skill that needs updating, or one that should exist because you keep doing the same thing by hand. Patch existing skills before minting new ones.
+5. **Hook** — something that should happen automatically every time instead of depending on memory. Hooks never have a bad Tuesday.
+6. **Tool or CLI** — a tool that stumbled: awkward syntax, unclear errors, missing flags, forcing three commands where one would do. A tool fix is permanent; a prompt workaround is not.
+7. **Config** — a permission you keep approving by hand, an environment variable, a default that's wrong for how you work.
+
+The design rule is strict: the scan stages proposals, the human approves. The loop stores evidence (not transcript dumps), detects real tool use (not mentions), separates durable lessons from one-off incidents, and requires approval before anything changes. Cathryn calls this *controlled compounding* — the system makes you slightly better at your own work tomorrow because of what happened today, without the agent quietly rewriting your setup. On its first production run, the loop found signals in 37 sessions and staged 7 proposals: one CLI fix, four skill reviews, one memory update, and one backlog item.
+
+This sits at level one on the [autonomy ladder](#the-autonomy-ladder) — suggest only, human acts — and maps to level four of Runkle's [four-level stack](#the-four-level-stack) (the hill-climbing loop) but with the human as the final actuator rather than an automated rewrite. Schedule the scan, never the changes.
+
 ## A Concrete Loop Shape
 
 An automation runs every morning, calling a triage skill that reads yesterday's CI failures, open issues, and recent commits, then writes findings to a state file. For each actionable finding, the system opens an isolated worktree, sends a sub-agent to draft the fix, and a second sub-agent reviews against project skills and tests. Connectors open the PR and update the ticket. Anything the loop can't handle lands in a triage inbox. The state file remembers what got tried, what passed, and what's still open — so tomorrow's run picks up where today stopped.
@@ -206,4 +226,5 @@ The security tax scales with the [autonomy ladder](#the-autonomy-ladder) — a l
 - "Build Agents That Run for Hours" — Ash Prabaker & Andrew Wilson / Anthropic, AI Engineer Conference (video, Jun 2026) — Planner-generator-evaluator harness pattern (GAN-inspired adversarial roles), contract negotiation between generator and evaluator before building, evaluator must not see generator reasoning, design taste as weighted rubric (design/originality/craft/functionality), harness co-evolution with model generations (what changed Opus 4.5 → 4.6), trace reading as primary debugging loop, file-system-as-state over context windows, model willingness to discard under adversarial pressure
 - "\"Ralph Wiggum\" AI Agent will 10x Claude Code/Amp" — Greg Isenberg ft. Ryan Carson (video, Jun 2026) — Ralph loop practitioner walkthrough: PRD-to-JSON pipeline, atomic user stories with acceptance criteria, dual memory (agents.md long-term + progress.txt short-term), fresh context per iteration, $3/iteration cost, 14-iteration feature build
 - "Hey Siri, meet AI" — Ben Tossell / Ben's Bites (Jun 2026) ([link](https://bensbites.beehiiv.com/p/hey-siri-meet-ai)) — practitioner framing of skills-composition pipelines as loop design pattern (planning → PRD → research → build → review → test)
+- "Your first AI loop should be for yourself (template included)" — Cathryn (tweet thread, Jun 2026) ([link](https://x.com/cathrynlavery/status/2069193102586474781/)) — personal session-mining loop pattern: inner loop (the work) + outer loop (reviewing sessions as ops data), seven improvement targets (content idea, context file, slash command, skill, hook, tool/CLI, config), controlled compounding over autonomy, open-source template (agent-improvement-loop)
 - "Loop engineering: the 14-step roadmap from prompter to loop designer" — Codez / Lev Deviatkin (tweet thread, Jun 2026) ([link](http://linkedin.com/in/lev-deviatkin)) — 14-step three-tier progression (why/test → building blocks → build it right), 30-second tactical loop check (hard stop + human gate criteria), good vs bad first-loop examples, economic accessibility framing (who benefits vs who should skip), security tax (unreviewed code, skill injection, credential leakage, permission scope creep)

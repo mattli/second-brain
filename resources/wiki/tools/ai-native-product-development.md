@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-22
+last_updated: 2026-06-24
 ---
 
 # AI-Native Product Development
 
-> TLDR: The shift from traditional PRDs and sprint planning to rapid prototyping with AI agents — "docs to demos" — where the bottleneck moves from engineering to deciding what to build.
+> TLDR: The shift from traditional PRDs and sprint planning to rapid prototyping with AI agents — "docs to demos" — where the bottleneck moves from engineering to deciding what to build. As AI coding tools mature (Catherine Wu's Anthropic workflow, community adoption patterns), the hard part is no longer building — it's figuring out what to build.
 
-## Overview
+## Recent Updates
 
-As AI coding tools mature, the product development lifecycle is being rethought. Anthropic's "docs to demos" approach (Catherine Wu) and community adoption patterns reveal a consistent theme: the hard part is no longer building, it's figuring out what to build.
+- **2026-06-24:** Added Dewey's reflective thought framework for hypothesis-driven PM to [Hypothesis-Driven PM](#hypothesis-driven-pm-dewey); removed stale Overview (folded framing into TLDR)
 
 ## Anthropic's PDLC ("Docs to Demos")
 
@@ -288,6 +288,16 @@ Linear's approach: six-month directional plans with the ability to change priori
 
 This connects to the tools-steer-you problem: AI tools are *thinking* tools, not just mechanical ones. Their ability to influence your work direction is greater than any previous tool. Vibe coding done well is following the grain of the tool — but without planning, you may never notice you've drifted.
 
+## Hypothesis-Driven PM (Dewey)
+
+George (prodmgmt.world, Jun 2026) distills John Dewey's *How We Think* into a PM operating loop that directly addresses the "deciding what to build" bottleneck. The core move: treat every feature idea as a hypothesis, not a conclusion, and subject it to Dewey's five phases of reflective thought — felt difficulty, problem definition, rival hypotheses, reasoned predictions, and experimental corroboration.
+
+The framework attacks the failure mode that recurs across this page: teams that ship fast but don't know *why* something should be built. Dewey's discipline adds structure to the gap between "users seem lost" (a felt difficulty) and "we're building tooltips" (a commitment). In between sit three steps most teams skip: defining which part of the situation is actually uncertain, generating at least three rival explanations, and reasoning through what each would predict before choosing a test. "A feature idea should enter the room as a hypothesis. It should not enter the room as a commitment wearing a nicer shirt."
+
+**The practical translation for AI-native teams:** When build cost approaches zero, the cost of a wrong hypothesis stays the same. A [feature factory](#ai-native-companies-in-practice-ann-miura-ko) ships ten hypotheses without testing any of them. Dewey's loop inserts the test before the build: if the onboarding problem is hidden next-step feedback, then smaller screens should perform worse, session recordings should show pauses, and moving the action into view should improve continuation for the affected segment. If those predictions don't appear, the explanation weakens — regardless of how fast the team could have shipped a fix.
+
+Three artifacts operationalize this: (1) an **assumption ledger** (belief, evidence, confidence, rival explanation, prediction, next test, owner, review date) that makes hidden judgment visible; (2) a **PRD if-then section** ("If we build X for Y, we expect Z because [belief]; we'll strengthen it if [signal], weaken it if [negative signal]"); and (3) a **corroboration review** after every launch comparing predicted consequences with observed behavior. The if-then template complements the [eval-as-PRD approach](#ai-evals-as-the-new-prd) — evals define *how* to measure, Dewey's framework defines *what belief you're measuring against*.
+
 ## Output Isn't Design
 
 Saarinen invokes Christopher Alexander's definition of design: "good fit between form and context." The form is the solution; the context is the problem space — user needs, constraints, trade-offs, the environment the product lives in.
@@ -457,3 +467,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "The Claude Code + Cursor + Kombai Workflow" — Suryansh Tiwari (tweet, Jun 2026) ([link](https://x.com/AskSuryansh)) — AI-generated sameness problem, specialization stack (reasoning/implementation/refinement), four-way design-code sync pattern
 - "How Anthropic Uses Claude Fable 5 With Mike Krieger" — Every / Dan Shipper (video, Jun 2026) — delegation model (overnight tasks, concurrent sessions), verification loops (screenshots, video, mock backends), dynamic workflows, DRI model, PM/eng diffusion, non-technical builder empowerment, software engineering evolving not dying
 - "must read" — Dan Shipper (tweet, May 2026) — pointer to Marcus Moretti's agent-native PM guide
+- "How We Think: A Practical Guide for PM Work" — George / prodmgmt.world (tweet, Jun 2026) — Dewey's reflective thought applied to PM: five-phase inquiry loop, hypothesis-driven feature development, assumption ledger, PRD if-then template, corroboration review

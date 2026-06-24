@@ -1,16 +1,16 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-22
+last_updated: 2026-06-24
 
 ---
 
 # AI Startup Distribution
 
-> TLDR: Code is commoditized — 200K+ vibe-coded projects created daily but almost none get customers. Distribution, not building, is now the bottleneck for AI-era startups.
+> TLDR: Code is commoditized — 200K+ vibe-coded projects created daily but almost none get customers. Distribution, not building, is now the bottleneck for AI-era startups. AI coding tools (Cursor, Claude Code, Replit) have made building trivially easy; the constraint has shifted entirely to distribution and customer acquisition. Meanwhile, a new consumer platform wave is opening as AI capabilities meet a generation of native world-builders.
 
-## Overview
+## Recent Updates
 
-The explosion of AI coding tools (Cursor, Claude Code, Replit) has made building trivially easy. The constraint has shifted entirely to distribution and customer acquisition. This is the central challenge for solo founders and small teams in the AI era.
+- **2026-06-24:** Added Josh Elman's consumer platform-wave thesis to [The Consumer AI Opportunity Window](#the-consumer-ai-opportunity-window); removed stale Overview; folded framing into TLDR.
 
 The speed-to-scale data makes the shift concrete: Lovable crossed $100M ARR in eight months, Cursor in twelve, and bolt.new went from $4M to $40M ARR in its first five months [[source]](https://x.com/alexjvacca/status/2047408037078536482). A decade ago those milestones took years. The cost of building collapsed, but the cost of acquiring customers went the other direction — median B2B SaaS CAC payback now sits around 20 months (vs. the long-standing 12-month benchmark), and the median company spends $2.00 of sales and marketing to acquire $1 of new ARR [[source]](https://x.com/alexjvacca/status/2047408037078536482). Treat distribution as an afterthought and you pay that tax every quarter for the life of the company.
 
@@ -25,6 +25,18 @@ Three shifts are happening simultaneously, and most GTM teams are only tracking 
 3. **Outbound is decaying as AI floods it.** Average cold email reply rates slid from ~8.5% in 2019 to ~5% in 2025 to 3.4% on Instantly's 2026 benchmark [[source]](https://x.com/alexjvacca/status/2047408037078536482). When everyone uses AI to mass-personalize cold email, personalization stops being a signal.
 
 If AI commoditizes the *how* of distribution, the edge moves to two things AI can't copy: **proprietary signal** (buying triggers only you can watch, because they come from your own data and instrumentation) and **un-fakeable trust** (real community, real referrals, real usage). Clay rode the proprietary-signal thesis from $1M to $100M ARR in roughly two years by helping teams act on custom signals nobody else tracks [[source]](https://x.com/alexjvacca/status/2047408037078536482).
+
+## The Consumer AI Opportunity Window
+
+Josh Elman (joining a16z as partner, 2026) frames consumer tech as a series of platform waves where "world-building doors open" — moments when new technology creates behaviors that aren't built out yet. The social wave (Facebook, Twitter, LinkedIn) and the mobile wave (Robinhood, Musical.ly/TikTok) each opened a window where early teams could discover a spark of consumer behavior and then build the world around it. Most great products in these waves started out looking like toys — Twitter was "a dumb site where people posted what they had for breakfast," Robinhood was "a simple stock trading app no one would ever use with their real money" [[source]](https://www.joshelman.com/p/the-world-building-doors-are-open).
+
+Two shifts are reopening the doors now:
+
+1. **AI upends what ordinary users can do.** ChatGPT introduced open-ended conversations with software, but the bigger unlock is that the [harnesses, loops, and context](../tools/agent-harness.md) around models — not the models themselves — will drive consumer product differentiation. Inference costs are dropping via open and on-device models, making always-on AI-native consumer experiences viable.
+
+2. **Gen Alpha are native world-builders.** The newest consumer cohort grew up on Roblox and Minecraft with no preconceived limits on what an app can be. They expect to customize or build anything for themselves and with their friends. AI tools now let them actually do it.
+
+The implication for founders: the "messy middle" — laying rails, mapping towns, going from an early spark to a durable platform — is where the real work lives. Distribution is the bottleneck, but the opportunity window is as wide as it was at the start of social or mobile. Elman expects billions of people to discover new AI-first ways to explore, learn, shop, manage money, travel, and communicate — all getting reinvented around interfaces that are "far more generous and accommodating for users' peculiar needs, or creative spark."
 
 ## Distribution Strategies That Work (2026)
 
@@ -276,3 +288,4 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "How to Win Distribution When Anyone Can Build the Product" — Alex Vacca (tweet, May 2026) ([link](https://x.com/alexjvacca/status/2047408037078536482)) — Speed-to-scale data, CAC economics shift, AI rewiring buyer discovery (Forrester 94% stat, outbound decay), signal-timed outreach, GTM-as-MVP framework, compounding distribution loops
 - "ok this startup is cool but…" — Andrew Chen (tweet, Apr 2026) — founders building despite big-company threats
 - "how to cold DM anyone: complete basics" — Founders Inc (tweet thread, May 2026) — cold DM basics, 181w
+- "The World-Building Doors Are Open, Again." — Josh Elman (Substack, 2026) ([link](https://www.joshelman.com/p/the-world-building-doors-are-open)) — Consumer platform-wave thesis: AI + Gen Alpha reopening world-building doors; toys-to-platforms pattern; harnesses/loops/context over models

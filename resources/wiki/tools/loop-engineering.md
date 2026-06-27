@@ -12,6 +12,7 @@ Loop engineering is the practice of replacing yourself as the person who prompts
 
 ## Recent Updates
 
+- **2026-06-27:** Added [Production Patterns](#production-patterns) section with six named patterns and CLI tooling, and [Failure Modes and Anti-Patterns](#failure-modes-and-anti-patterns) section from Greyling's reference repo.
 - **2026-06-27:** Added Zakariasson's five verification-target categories to [Verification](#verification-is-the-essential-feedback) and notification-channel human-in-the-loop pattern to [The Autonomy Ladder](#the-autonomy-ladder).
 - **2026-06-24:** Added [The Session-Mining Loop](#the-session-mining-loop) — personal self-improvement pattern with seven improvement targets, from Cathryn's practitioner template.
 - **2026-06-24:** Added [Security](#security--the-unattended-attack-surface) section and concrete good/bad first-loop examples to [The Four-Box Test](#the-four-box-test--when-a-loop-is-worth-building). Extended [Cost](#cost--the-loop-is-now-the-expensive-part) with economic accessibility framing.
@@ -153,6 +154,23 @@ The design rule is strict: the scan stages proposals, the human approves. The lo
 
 This sits at level one on the [autonomy ladder](#the-autonomy-ladder) — suggest only, human acts — and maps to level four of Runkle's [four-level stack](#the-four-level-stack) (the hill-climbing loop) but with the human as the final actuator rather than an automated rewrite. Schedule the scan, never the changes.
 
+## Production Patterns
+
+Greyling's reference repo catalogs six named production patterns, each with a recommended cadence, starter kit, and token-cost profile:
+
+| Pattern | Cadence | Week-1 level | Token cost |
+|---|---|---|---|
+| **Daily Triage** | 1d–2h | L1 report | Low |
+| **PR Babysitter** | 5–15m | L1 watch | High |
+| **CI Sweeper** | 5–15m | L2 cautious | Very high |
+| **Dependency Sweeper** | 6h–1d | L2 patch-only | Medium |
+| **Changelog Drafter** | 1d or tag | L1 draft | Low |
+| **Post-Merge Cleanup** | 1d–6h | L1 off-peak | Low |
+
+The "week-1 level" column is the key operational insight: every pattern starts at L1 (report-only) or L2 (assisted), never L3 (unattended). This enforces the same [prove-then-harden-then-automate](#the-build-order--prove-harden-automate) discipline described above, but with a concrete promotion path per pattern rather than a general principle. A pattern picker decision guide helps teams choose which loop to build first — the recommendation is to start with a low-cost, high-cadence L1 pattern (Daily Triage or Changelog Drafter) before attempting the high-token-burn patterns like CI Sweeper.
+
+Two CLI tools support the workflow: `loop-audit` scores a project's loop readiness against a checklist (scaffolding, state management, verification gates, stop conditions) and `loop-init` generates starter kits for a chosen pattern and tool (Grok, Claude Code, or Codex). The audit produces a score that climbs from empty → L1 → L2 as the developer adds the missing pieces — turning the abstract [four-box test](#the-four-box-test--when-a-loop-is-worth-building) into a concrete, gradeable rubric.
+
 ## A Concrete Loop Shape
 
 An automation runs every morning, calling a triage skill that reads yesterday's CI failures, open issues, and recent commits, then writes findings to a state file. For each actionable finding, the system opens an isolated worktree, sends a sub-agent to draft the fix, and a second sub-agent reviews against project skills and tests. Connectors open the PR and update the ticket. Anything the loop can't handle lands in a triage inbox. The state file remembers what got tried, what passed, and what's still open — so tomorrow's run picks up where today stopped.
@@ -192,6 +210,10 @@ Samuel McDonnell's distillation cuts through the naming confusion: the generator
 The same loop architecture applies beyond engineering. Eric Siu frames "revenue engineering" as pointing loops at the parts of a business that generate money — sales, content, recruiting, ops — using the same structural discipline. The business-oriented anatomy maps five parts: (1) a *trigger* — a signal that work needs to happen (a deal goes quiet for fourteen days, a lead fills out a form); (2) *signal and context* — the loop pulls account history, CRM state, recent interactions before acting, so the agent doesn't act blind; (3) the *action* — the agent drafts the output (a revival email, an outreach sequence), meaningful only because it sits inside the other four parts; (4) an *eval gate* — a definition of what good looks like, checked by a human or automated verifier before anything ships; (5) a *stop condition* — shipped, approved, or killed after N days with no reply. Missing any one part produces a broken loop. This five-part anatomy is the business equivalent of the technical building blocks above — trigger maps to automations, context maps to plugins/connectors, action to the agent call, eval gate to the maker/checker split, and stop condition to budget ceilings and no-progress detection.
 
 The practical corollary is the *broken loop audit*: most teams already have proto-loops scattered across Slack threads and half-finished agent conversations — a trigger with no action behind it, an action with no eval gate, a thread with no kill criteria. Each is a workflow leaking time. The audit asks: which workflows eat the most time? Where does work sit idle? Who decides if the output is good enough? When does it stop? Does the next run improve from the last? Any workflow that can't answer those questions is a broken loop worth fixing before building new ones.
+
+## Failure Modes and Anti-Patterns
+
+Greyling's repo catalogs failure modes as an incident-style catalog and anti-patterns as design mistakes caught before production — a useful complement to the conceptual risks in [What Loops Don't Solve](#what-loops-dont-solve). Three categories emerge: *multi-loop coordination failures* (when loops collide — two loops editing the same file, a CI sweeper and a dependency sweeper racing to fix the same build, or a triage loop spawning work that a cleanup loop deletes), *operational failures* (cost overruns from unmonitored loops, logging that either says too much or too little, and the question of when to kill a loop that's technically still running but no longer producing value), and *design anti-patterns* (skipping the L1 report phase and going straight to L3 unattended, building a loop for a task that doesn't repeat, or letting a loop auto-install community skills without auditing them — the last of which connects directly to the [security](#security--the-unattended-attack-surface) concerns above). The operational guidance converges on a single principle: the loop must be cheaper to run than the human time it replaces, measured not per-token but per-accepted-change — the same metric flagged in [Cost](#cost--the-loop-is-now-the-expensive-part).
 
 ## What Loops Don't Solve
 
@@ -234,3 +256,4 @@ The security tax scales with the [autonomy ladder](#the-autonomy-ladder) — a l
 - "Your first AI loop should be for yourself (template included)" — Cathryn (tweet thread, Jun 2026) ([link](https://x.com/cathrynlavery/status/2069193102586474781/)) — personal session-mining loop pattern: inner loop (the work) + outer loop (reviewing sessions as ops data), seven improvement targets (content idea, context file, slash command, skill, hook, tool/CLI, config), controlled compounding over autonomy, open-source template (agent-improvement-loop)
 - "Human in the /loop" — Eric Zakariasson (tweet thread, Jun 2026) ([link](https://x.com/ericzakariasson/status/2070493377267646797)) — practitioner loop setup: five verification-target categories by task type (score, QA pass, test suite, benchmark, count), notification channel as human-in-the-loop mechanism (Slack pings, reply-as-next-input), cloud execution for multi-hour loops, concurrent loop self-regulation heuristic (stop starting when three are waiting on review), explicitness gradient for prompt tuning
 - "Loop engineering: the 14-step roadmap from prompter to loop designer" — Codez / Lev Deviatkin (tweet thread, Jun 2026) ([link](http://linkedin.com/in/lev-deviatkin)) — 14-step three-tier progression (why/test → building blocks → build it right), 30-second tactical loop check (hard stop + human gate criteria), good vs bad first-loop examples, economic accessibility framing (who benefits vs who should skip), security tax (unreviewed code, skill injection, credential leakage, permission scope creep)
+- "Loop Engineering reference repo" — Cobus Greyling (GitHub, Jun 2026) ([link](https://github.com/cobusgreyling/loop-engineering)) — six named production patterns with cadence and token cost (Daily Triage, PR Babysitter, CI Sweeper, Dependency Sweeper, Changelog Drafter, Post-Merge Cleanup), L1/L2/L3 phased rollout per pattern, loop-audit CLI (readiness scoring) and loop-init CLI (starter scaffolding), primitives matrix (Grok vs Claude Code vs Codex), failure modes catalog and anti-patterns guide, pattern picker decision framework

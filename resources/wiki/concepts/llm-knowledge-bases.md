@@ -1,17 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-18
+last_updated: 2026-06-27
 ---
 
 # LLM Knowledge Bases
 
-> TLDR: Using LLMs to compile and maintain personal knowledge bases from raw sources — markdown wikis that the LLM writes, organizes, and queries, replacing traditional RAG with file-system-native agent navigation.
+> TLDR: Using LLMs to compile and maintain personal knowledge bases from raw sources — markdown wikis that the LLM writes, organizes, and queries, replacing traditional RAG with file-system-native agent navigation. Popularized by [Andrej Karpathy](../people/andrej-karpathy.md) in April 2026 as an intentionally abstract "idea file" designed to be shared with any LLM agent — in the agent era, you share ideas as text, not code.
 
-## Overview
+## Recent Updates
 
-A pattern popularized by [Andrej Karpathy](../people/andrej-karpathy.md) in April 2026: instead of relying on RAG pipelines or app-locked AI memory, you collect raw source material (articles, papers, notes, images) and have an LLM "compile" it into an interlinked wiki of markdown files. The LLM maintains the wiki — writing articles, adding backlinks, categorizing concepts — and you rarely edit it directly. The wiki becomes both a reference for you and a structured knowledge base your AI agent can navigate.
-
-Karpathy published a formal "idea file" as a GitHub gist (1,000+ stars in the first day) — intentionally abstract so anyone's agent can customize and build it for their specific needs. The concept: in the agent era, you share ideas as text, not code.
+- **2026-06-27:** Removed stale Overview; folded Karpathy attribution and "ideas as text" framing into [TLDR](#llm-knowledge-bases).
 
 ## Architecture
 

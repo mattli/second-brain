@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-22
+last_updated: 2026-06-27
 ---
 
 # Claude Code Skill Frameworks
 
-> TLDR: Four major skill frameworks — gstack, Superpowers, Compound Engineering, and Agent Skills — have emerged to add structured workflows on top of Claude Code, each solving a different layer: decisions/QA, process discipline, cross-session knowledge accumulation, and senior-engineer SDLC enforcement. Anthropic's first-party Routines feature adds managed-infrastructure proactive automation with schedule and event-based triggers.
+> TLDR: Claude Code is a full agent platform, not just a coding tool — it shares every capability that made OpenClaw go viral (broad context, real-world actions, memory, teachable skills, autonomous scheduling) but with cleaner session architecture and plain-text debuggability. Out of the box it's a powerful but "mushy" single-mode tool; four major skill frameworks — gstack, Superpowers, Compound Engineering, and Agent Skills — add explicit cognitive modes and structured workflows on top, each solving a different layer: decisions/QA, process discipline, cross-session knowledge accumulation, and senior-engineer SDLC enforcement. Anthropic's first-party Routines feature adds managed-infrastructure proactive automation with schedule and event-based triggers.
 
-## Overview
+## Recent Updates
 
-Claude Code out of the box is a powerful but "mushy" single-mode tool. These frameworks add explicit cognitive modes and structured workflows. A comparison by Vox (Mar 2026) mapped them to Anthropic's harness architecture: planning, execution, evaluation, and cross-session state.
+- **2026-06-27:** Added [Claude Code as Agent Platform](#claude-code-as-agent-platform) section with OpenClaw comparison and Claudie case study; removed stale Overview; folded framing into TLDR.
 
 ## The Four Frameworks
 
@@ -88,6 +88,22 @@ Garry Tan's architectural principle (from the same author as gstack): *push inte
 Skill files work like method calls: same procedure + different arguments = different capabilities. The skill encodes *how*; the invocation supplies the world. This is why gstack's six slash commands can power radically different workflows — the same /review skill yields different outputs depending on what code it encounters.
 
 See [Agent Harness](agent-harness.md) for the full principle and why "fat harness with thin skills" is the anti-pattern.
+
+## Claude Code as Agent Platform
+
+The perception gap between Claude Code and [OpenClaw](../people/peter-steinberger.md) was always marketing, not capability. OpenClaw was marketed as an AI agent; Claude Code was marketed as a coding tool. Underneath, both are the same thing: a [harness](agent-harness.md) for an AI model — the software layer deciding how the model receives context, which tools it can use, how it remembers things, and how it talks to the outside world.
+
+Five capabilities made OpenClaw go viral, and Claude Code has every one:
+
+1. **Broad context** — OpenClaw feels like an employee because it runs from the home folder, seeing every file and note. Claude Code can do the same — most people just confine it to a single project folder, which makes it *feel* like a coding tool. Give it broader filesystem access and it becomes a general-purpose agent.
+2. **Real-world actions** — Both operate computers directly (creating files, running programs, reading webpages) and integrate external services via MCP.
+3. **Memory** — Claude Code offers three layers: CLAUDE.md files (plain text, always in context), built-in memory tracking, and optional search engines indexing documents.
+4. **Teachable skills** — Both use text-based skill definitions that transfer between platforms. This is the layer the frameworks on this page operate on.
+5. **Autonomous scheduling** — Claude Code's headless mode (`claude -p`) pairs with cron jobs or [Routines](#routines-first-party-proactive-automation) to replicate OpenClaw's heartbeat feature for overnight task execution.
+
+**Where Claude Code wins architecturally:** OpenClaw accumulates tokens in a single session — 50,000+ by midday — causing unpredictable costs and context degradation. Claude Code starts fresh threads with 2,000–5,000 token baselines. OpenClaw's memory uses eight bootstrap files plus dreaming processes and multiple storage layers, making debugging difficult; Claude Code's plain-text CLAUDE.md approach is straightforward to inspect and fix. [[source]](https://every.to/source-code/claude-code-is-the-openclaw-alternative-you-already-have)
+
+**Claudie — production case study:** Every's consulting team built an AI employee ("Claudie") on Claude Code running 24/7 on a Mac Mini. The implementation required ~1,100 lines of Python connecting Claude Code to Slack, then Claude handled scheduling, memory management, and Google Workspace/Asana integration independently. The team chose Claude Code over OpenClaw specifically for operational reliability — shifting development focus from infrastructure maintenance toward feature development. [[source]](https://every.to/source-code/claude-code-is-the-openclaw-alternative-you-already-have)
 
 ## Building Your First Skill Library
 
@@ -359,4 +375,5 @@ Claude already self-verifies against deterministic signals — type errors, lint
 - "Start with Repetitive, High-Judgment Work: Building Your First Skill Library" — Vox (tweet, Jun 2026). Practical guide to building a first skill library: start with judgment-heavy recurring work, five-layer library architecture (skill map, boundaries, state source, routing, maintenance), failure records over prompts, and V1 sizing.
 - "How to Make Claude Code Stop Making Stuff Up When It Doesn't Know" — rody (tweet, Jun 2026). 4-layer anti-fabrication setup: CLAUDE.md honesty rules, verification-before-write protocol, PostToolUse hooks for real-time type checking, and a fact-checker subagent.
 - "Feedback loops: Help Claude Code complete ambitious tasks with less babysitting" — Delba (tweet, Jun 2026). Encoding manual verification processes as skills, two-layer verification model (in-loop + pre-merge review), and composing skills into end-to-end workflows.
+- "Claude Code Is the OpenClaw Alternative You Already Have" — Nityesh Agarwal / Every (article, Jun 2026) ([link](https://every.to/source-code/claude-code-is-the-openclaw-alternative-you-already-have)). Claude Code as full agent platform vs OpenClaw: five shared capabilities, session architecture advantages, Claudie production case study.
 - [Welcome to the Printing Press](https://printingpress.dev) — landing page for Printing Press CLI factory

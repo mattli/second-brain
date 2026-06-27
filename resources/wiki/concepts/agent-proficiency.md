@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-16
+last_updated: 2026-06-27
 ---
 
 # Agent Proficiency
 
-> TLDR: The skill of effectively managing and directing AI agents — structuring inputs, evaluating outputs, maintaining knowledge bases — is emerging as a core competency of the AI era, distinct from both coding and prompting.
+> TLDR: The skill of effectively managing and directing AI agents — structuring inputs, evaluating outputs, maintaining knowledge bases — is emerging as a core competency of the AI era, distinct from both coding and prompting. [Andrej Karpathy](../people/andrej-karpathy.md) coined the term as a "CORE SKILL of the 21st century" in April 2026: as agents handle increasingly complex tasks, the highest-leverage human skill shifts from doing the work to directing the systems that do it.
 
-## Overview
+## Recent Updates
 
-[Andrej Karpathy](../people/andrej-karpathy.md) coined "agent proficiency" as a "CORE SKILL of the 21st century" in April 2026. The argument: as AI agents become capable of handling increasingly complex tasks autonomously, the highest-leverage human skill shifts from doing the work to directing the systems that do it. This is not prompt engineering — it's the broader capability of maintaining structured data, writing clear agent instructions, and building feedback loops.
+- **2026-06-27:** Added Sean Goedecke's staff-engineer delegation patterns and review discipline to [What It Looks Like in Practice](#what-it-looks-like-in-practice) and [Staying in the Loop](#staying-in-the-loop). Removed stale Overview; folded Karpathy attribution into TLDR.
 
 ## The Shift
 
@@ -30,6 +30,8 @@ Karpathy's framing: "These are extremely powerful tools — they speak English a
 - Choosing which AI to point at which problem (BYOAI)
 
 Gupta's metaphor: "The 21st century power user looks less like a programmer and more like an editor-in-chief: deciding what goes in, what gets compiled, what gets published, and which AI gets the assignment."
+
+Sean Goedecke (staff engineer at GitHub) documents the concrete shift between early 2025 and mid-2026. In 2025 he used agents occasionally — autocomplete, throwaway scripts, learning questions. By mid-2026 he starts every code change by asking an agent, typically pushes the PR after a single editing pass, and runs tens of agent sessions per day. The tasks that migrated to agents: writing or drafting every code change, investigating bugs (agents correctly diagnose ~80% of issues autonomously), codebase research, manual testing, and local-machine troubleshooting. What stayed human: all public communication (PR descriptions, ADRs, Slack messages), careful code review, and UI testing. The boundary moved substantially toward the agents, but "finding the balance remains as tricky as ever." [[source]](https://www.seangoedecke.com/how-i-use-llms-in-2026/)
 
 A practitioner-oriented distillation reduces agent proficiency to five discrete, learnable skills: (1) writing a persistent context file so the AI knows your work without re-explanation, (2) designing tasks that run on a schedule without you present, (3) connecting the AI to your real tools and data, (4) building custom tools by describing them instead of buying SaaS, and (5) knowing which model to point at which task and what it should cost. Each maps to an existing concept on this page — [knowledge bases](llm-knowledge-bases.md), [delegation levels](#levels-of-delegation) 6–7, tool integration, [vibe coding](../landscape/vibe-coding.md), and the trust-stakes calculus — but the framing as a sequential checklist ("start with the context file, add the next when it's running") offers a concrete onramp for non-technical practitioners.
 
@@ -72,6 +74,10 @@ Two non-negotiable review habits:
 - **Always run the product alongside the agent.** Your users will experience whatever you ship. If you stay out of the loop, you can't guarantee good experience. Interacting with live changes surfaces UX issues — like discovering that "Tab" is the instinctively correct keybinding for focus switching, not "f" — that no amount of code review alone would catch.
 
 The cost of late discovery is asymmetric: the later you find issues, the harder they are to unwind. You could argue agents make it easier to refactor bad decisions after the fact, but by then users may already depend on the bad thing. Staying in the loop produces better outcomes from the start, with less total churn.
+
+Goedecke's practice confirms this with concrete discipline: he does "a *lot* of skimming through and evaluating agent changes," rejecting most attempts outright within about thirty seconds based on whether the approach matches his mental model. For difficult tasks, he rejects five or six agent attempts before accepting one — or gives up and writes the change by hand. Even when an agent's output is acceptable, he still does an editing pass to remove over-commenting and other LLM-isms. He writes PR descriptions by hand both because agents "over-communicate and are bad at expressing the core idea" and because it signals to reviewers that a human has actually reviewed the diff. [[source]](https://www.seangoedecke.com/how-i-use-llms-in-2026/)
+
+His bug investigation workflow illustrates the loop at its most active. He opens a new agent session, pastes the bug report, and lets the agent chase it — but simultaneously digs up extra context from logs and Slack, builds his own reproduction, and feeds "no, your theory can't be right because of X" back into agent sessions. On a recent tricky bug, it took fourteen agent sessions before one found the root cause — but by that point Goedecke had narrowed the search space enough that agent #14 had a "significantly easier problem to solve than agent #1." The agent gets credit for the final diagnosis, but the human expertise that compressed the problem was what made it possible.
 
 This maps directly to the "evaluate and curate agent work" bullet in the skill set above — the curation isn't a passive review gate but an active, continuous engagement with what the agent is producing.
 
@@ -141,4 +147,5 @@ The role description is essentially the enterprise version of what Karpathy call
 - "The Eternal Sloptember" — George Hotz (article, May 2026) ([link](https://substack.com/home/post/p-163103019)) — agents as statistical mimicry, organizational asymmetry in error correction, and the quality-vs-volume tradeoff
 - "How to become the AI-native hire every company wants" — Anita (tweet thread, May 2026) — skill file method for building agent proficiency, Brain Fry trap, ClickUp/Wix/Webflow restructuring signals
 - "The Eight Levels of AI Adoption" — Mike Taylor, Every (article, May 2026) ([link](https://every.to/guides/the-eight-levels-of-ai-adoption)) — eight-level framework from chatbot to orchestrator; trust-stakes calculus for choosing delegation level; role asymmetry between knowledge workers and engineers
+- "How I use LLMs as a staff engineer in 2026" — Sean Goedecke (article, Jun 2026) ([link](https://www.seangoedecke.com/how-i-use-llms-in-2026/)) — concrete 2025→2026 delegation shift: every code change starts with an agent, 80% of bugs diagnosed autonomously, but all communication and code review stays human; review discipline of rapid rejection and editing passes
 - "5 AI Skills That Will Pay Six Figures By 2027" — Zephyr (tweet, Jun 2026) — practitioner checklist distilling agent proficiency into five sequential skills: context files, scheduled automation, tool integration, custom tool building, model selection

@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-22
+last_updated: 2026-06-28
 ---
 
 # Agentic Engineering
 
 > TLDR: The emerging discipline of designing, optimizing, and orchestrating AI agents — including harness design, tool construction, self-improving agents, and multi-agent coordination.
 
-## Overview
+## Recent Updates
 
-Distinct from simply using AI tools, agentic engineering is about building the systems that make agents effective. The field is moving fast, with key contributions from Anthropic's Claude Code team, the AutoAgent project, and multiple open-source orchestration frameworks.
+- **2026-06-28:** Added Google Agents CLI to [Tools Noted](#tools-noted); added eval adoption gap stat to [Harness Design](#harness-design-seeing-like-an-agent). Removed stale Overview; content was redundant with TLDR.
 
 ## The Delegation–Collaboration Split
 
@@ -81,7 +81,7 @@ The Claude Code team (Thariq, Anthropic) published key lessons on designing agen
 - **Search evolution** — Started with RAG vector database, moved to Grep tool for self-directed search, then progressive disclosure via skills. Over one year: "Claude went from not being able to build its own context to nested search across several layers of files."
 - **Progressive disclosure** — Add functionality without adding tools. The Claude Code Guide subagent loads docs on demand rather than stuffing everything in the system prompt. ~20 tools total, high bar to add more.
 
-For evaluation methodology that applies directly to agent systems — floor-raising over benchmark-maxxing, trace review pipelines, LLM-as-judge — see [AI Evals](ai-evals.md).
+The eval gap remains the widest hole in production agent work: 89% of teams running agents have observability set up, but only 52% have evals [[source]](https://x.com/akshay_pachaar/status/2070860837448040832/?rw_tt_thread=True). For evaluation methodology that applies directly to agent systems — floor-raising over benchmark-maxxing, trace review pipelines, LLM-as-judge — see [AI Evals](ai-evals.md).
 
 ## Planner/Generator/Evaluator Harness (Anthropic Applied AI)
 
@@ -437,6 +437,7 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - **Factory.ai** — "Agent-native software development" platform. Agents for refactors, incident response, migrations across IDE, CI/CD, CLI, Slack
 - **MuleRun** — No-code AI agent platform for business automation. Dedicated compute per agent, runs 24/7
 - **Base44 Superagent** — 130+ built-in skills, stack skills into workflows
+- **Google Agents CLI** — Injects 7 ADK skills into any coding agent (Claude Code, Cursor, Codex), covering scaffolding, [eval](ai-evals.md) setup with LLM-as-judge scoring, deployment to Agent Runtime / Cloud Run, and Cloud Trace observability. Full lifecycle from natural language prompts without leaving the editor. https://github.com/google/agents-cli
 
 ## See Also
 
@@ -485,3 +486,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "From Prompting Agents to Loop Engineering" — Elvis / DAIR.AI (tweet thread, Jun 2026) ([link](https://x.com/omarsar0/status/2068008743153832264/?rw_tt_thread=True)) — practitioner synthesis of loop engineering: /goal-as-contract framing (end state, evidence, constraints, budget), six-part loop anatomy (trigger, isolation, written-down context, tool reach, second-agent check, state on disk), crabfleet orchestration tool, PR babysitter as concrete loop shape
 - "Loops explained: Claude, GPT, Mira and what actually works" — Anatoli Kopadze (tweet thread, Jun 2026) ([link](https://x.com/AnatoliKopadze/status/2068328135611822149/?rw_tt_thread=True)) — beginner-accessible loop explainer: four-box test for when loops are worth building, cost-per-accepted-change as key metric, prove-then-harden-then-automate build order
 - "We've partnered with @Vercel" — NanoClaw (tweet, Apr 2026) — NanoClaw + Vercel approval system for AI actions in Slack/WhatsApp/Teams
+- "Karpathy's Agentic Engineering Finally Has Proper Tooling" — Akshay (tweet thread, Jun 2026) ([link](https://x.com/akshay_pachaar/status/2070860837448040832/?rw_tt_thread=True)) — Google Agents CLI walkthrough: 7 injected ADK skills, full-lifecycle from scaffold to deploy, eval adoption gap stat (89% observability vs 52% evals)

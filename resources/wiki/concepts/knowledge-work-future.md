@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-06-22
+last_updated: 2026-06-29
 
 
 ---
@@ -8,6 +8,10 @@ last_updated: 2026-06-22
 # The Future of Knowledge Work
 
 > TLDR: AI is commoditizing knowledge — facts, skills, and expertise — shifting competitive advantage toward wisdom: emotional clarity, discernment, and connection. Knowledge workers face restructuring; wisdom workers are ascendant.
+
+## Recent Updates
+
+- **2026-06-29:** Added Boris Cherny's five phase-based product archetypes to [Phase-Based Role Archetypes](#phase-based-role-archetypes-cherny)
 
 See also: [AI User Perspectives](../landscape/ai-user-perspectives.md) for empirical data (Anthropic's 81K-person survey) on what users want from AI and where they see risk — grounding the theoretical labor-market analysis below.
 
@@ -204,6 +208,22 @@ As ML deploys broadly, new kinds of work emerge at the boundary between human an
 
 - **Haruspices** — Named after Roman diviners who read entrails. Responsible for sifting through model inputs, outputs, and internal states to explain behavior post-hoc. Deep investigations into single cases or broader statistical analysis. Could serve ML companies, their users, journalists, courts, or agencies like the NTSB.
 
+## Phase-Based Role Archetypes (Cherny)
+
+Boris Cherny observes that as engineering, product, design, and data science melt together, roles are reorganizing around *phase of work* rather than domain expertise. Watching the Claude Code team, he identifies five archetypes:
+
+1. **Prototyper** — generates novel ideas; high volume, low ship rate.
+2. **Builder** — turns a prototype into production-grade product and infrastructure.
+3. **Sweeper** — simplifies code and UI, unships features, optimizes performance.
+4. **Grower** — iterates on a shipped product to improve product-market fit.
+5. **Maintainer** — owns a mature system for security, reliability, and efficiency at scale.
+
+Most people span two roles, sometimes three — and critically, the archetypes cut across traditional job functions. Some designers are Prototypers, others are Sweepers; the same spread holds for engineers, PMs, and data scientists.
+
+The framework also prescribes team composition by product stage: pre-PMF teams need Prototypers + Builders + Sweepers; growth-stage teams shift toward Builders + Sweepers + Growers; mature products weight toward Sweepers + Growers + Maintainers. This maps to the [allocation economy](#the-allocation-economy) framing — what you allocate shifts from domain skills to phase-appropriate capability.
+
+Where Kingsbury's categories (above) describe new roles at the *human-AI boundary*, Cherny's describe how AI collapses *domain boundaries* between existing roles, producing a phase-based taxonomy that may replace "engineer," "designer," and "PM" entirely.
+
 ## What This Doesn't Mean
 
 This isn't a soft-skills argument against technical depth. The framing is about what becomes *differentiating* when AI can match technical performance. Deep technical knowledge still matters — it's just no longer sufficient on its own.
@@ -228,3 +248,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "The 'AI Job Apocalypse' Is a Complete Fantasy" — David George (a16z, May 2026) ([link](https://www.a16z.news/p/the-ai-job-apocalypse-is-a-complete)) — lump-of-labor fallacy framing; historical precedents (tractors, electrification, VisiCalc, travel agents); augmentation vs. substitution data (Goldman, 8:1 earnings-call ratio); 2026 academic research roundup (NBER, Atlanta Fed, Census, Yale Budget Lab) showing no net employment effect; new business formation and app-store growth correlating with AI adoption
 - "How to be good at research" — Vivek (tweet, Jun 2026) ([link](https://x.com/VivsThoughts)) — taste as trainable muscle (predict-then-correct loop); Hamming's problem-selection question; writing as defense against self-deception (Graham, Darwin); tightening feedback loops as the core research skill; breadth as insurance against subfield saturation; Shannon's shrink-then-expand method
 - "Feeling stupid is a crucial part of science" — Nicholas Fabiano (tweet, May 2026) — embracing uncertainty as signal of pushing into the unknown
+- "As engineering, product, design, DS, etc. melt into a new kind of role" — Boris Cherny (tweet, Jun 2026) — five phase-based product archetypes (Prototyper, Builder, Sweeper, Grower, Maintainer) replacing domain-specific roles; team composition by product stage

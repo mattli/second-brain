@@ -10,6 +10,7 @@
 - [ ] Investigate add-ollama-tool — local models as tools inside containers, zero API cost for cheap tasks
 
 ### Intelligence Pipeline
+- [ ] Debug broken links in the wiki — identify and fix broken wikilinks or dead references across wiki pages.
 - [ ] Make weekly summary shorter — current output is too long; investigate prompt changes or structural cuts to reduce length without losing signal.
 - [ ] Wiki Tutor conversation synthesis — investigate whether the Wiki Tutor Telegram bot's stored message history is worth synthesizing. If users are asking questions and getting answers grounded in wiki pages, those exchanges could be backlinked from the source wiki pages as "discussions" or used to surface gaps and update the wiki. Evaluate: (1) is there enough volume? (2) does the Q&A reveal knowledge gaps worth filling? (3) would linking conversation excerpts back to wiki pages add value for future sessions?
 - [ ] Schedule atomic notes compiler — weekly NanoClaw task that compiles atomic notes from the previous 7 days of Telegram conversation history (main group). Output to resources/atomic-notes/. Pipeline scaffold already exists at projects/atomic-notes/; one-off experiment ran 2026-04-13 and produced 13 usable notes. Decide cadence, prompt format, and whether notes should update in place or append new. Evaluate after ~4 runs whether output is actually useful or just noise.

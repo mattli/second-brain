@@ -1,3 +1,12 @@
+# June 29 – July 5
+*Goal: get a rhythm with AI, work, and career*
+
+### Tuesday, June 30
+
+- [ ] Debug broken links in the wiki
+
+---
+
 # June 22 – June 28
 *Goal: deep breathing*
 

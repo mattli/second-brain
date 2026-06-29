@@ -4,6 +4,7 @@
 ### Tuesday, June 30
 
 - [ ] Debug broken links in the wiki
+- [ ] Investigate Playwright MCP — see [[evaluator-qa-loop]]
 
 ---
 

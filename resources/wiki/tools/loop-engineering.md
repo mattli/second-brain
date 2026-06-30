@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-06-27
+last_updated: 2026-06-30
 
 ---
 
@@ -12,6 +12,7 @@ Loop engineering is the practice of replacing yourself as the person who prompts
 
 ## Recent Updates
 
+- **2026-06-30:** Added HuaShu's IEEE paper contributions: [The Engineering Stack](#the-engineering-stack) taxonomy, five-moves-to-six-parts mapping in [Five Building Blocks](#five-building-blocks), five structural anti-patterns in [Failure Modes](#failure-modes-and-anti-patterns), Stripe case study in [Loops in Production](#loops-in-production), reinforcing cost cycle in [What Loops Don't Solve](#what-loops-dont-solve), and local vs. cloud scheduling axis.
 - **2026-06-27:** Added [Production Patterns](#production-patterns) section with six named patterns and CLI tooling, and [Failure Modes and Anti-Patterns](#failure-modes-and-anti-patterns) section from Greyling's reference repo.
 - **2026-06-27:** Added Zakariasson's five verification-target categories to [Verification](#verification-is-the-essential-feedback) and notification-channel human-in-the-loop pattern to [The Autonomy Ladder](#the-autonomy-ladder).
 - **2026-06-24:** Added [The Session-Mining Loop](#the-session-mining-loop) — personal self-improvement pattern with seven improvement targets, from Cathryn's practitioner template.
@@ -35,6 +36,17 @@ The concept has a real history, and conflating stages is what makes discourse ar
 ## The Four-Level Stack
 
 Orthogonal to the historical lineage, Sydney Runkle (LangChain) frames loop engineering as four concentric loops, each wrapping the one inside it: (1) the *agent loop* — a model calling tools until a task is complete, the innermost primitive; (2) the *verification loop* — a grader (deterministic or agentic) that checks the agent's output against a rubric and sends feedback back for another pass when it falls short; (3) the *event-driven loop* — triggers (webhooks, cron, incoming messages) that invoke the agent automatically so it runs as a background component, not something you call manually; (4) the *hill-climbing loop* — an analysis agent that reads traces from prior runs, detects patterns of failure or inefficiency, and rewrites the harness (prompts, tool configs, grader criteria) so the next cycle is better than the last. The key structural insight: the return arrow of the outermost loop reaches *inside* the inner loops and modifies them — each cycle of the hill-climbing loop makes the agent, verification, and event layers more effective. This four-level taxonomy names the same concepts scattered across the rest of this page — the agent loop is the core primitive, verification maps to the maker/checker split, the event-driven layer maps to automations, and hill climbing is the [self-improving agent](agentic-engineering.md#self-improving-agents) pattern reframed as the outermost loop. Human oversight slots in at every level: requiring approval before sensitive tool calls (level 1), using a human as the grader (level 2), gating published output on sign-off (level 3), and reviewing proposed harness changes before deployment (level 4).
+
+## The Engineering Stack
+
+Complementary to Runkle's concentric-loop taxonomy, HuaShu's IEEE paper frames the same territory as four layers of engineering concern, each minding a larger unit:
+
+1. **Prompt engineering** — what to tell the model: wording, examples, role, tone. Boundary is one exchange.
+2. **Context engineering** — what goes in the window so the model can crack the problem. Minds the model's entire field of view — what to retrieve, how to summarize, what stale information to clear.
+3. **[Harness](agent-harness.md) engineering** — which tools, which actions, when to load context, how to recover from failure, what state counts as done. Arms one run.
+4. **Loop engineering** — make it run itself, over and over. The loop wraps the harness: the harness below arms a single agent run; the loop above makes it run itself repeatedly.
+
+Each layer up, the unit of concern grows one size: from one sentence, to one window, to one run, to a loop that runs itself. The change from layer three to four is one of identity — from the person who operates the agent to the person who schedules it. Value moves from "knowing how to direct" to "knowing how to build a loop that can say no." A single error at the prompt layer is caught within one exchange; at the harness layer it affects one run but the diff is visible; at the loop layer the same misreading is written into state, read back as established fact, and built upon across many turns. By the time anyone looks, the wrong assumption is load-bearing. This is the single most important intuition in loop engineering: every turn is a chance for an unnoticed mistake to entrench itself, and a loop is, by construction, a machine for maximizing the number of turns.
 
 ## The Cron Distinction
 
@@ -110,13 +122,16 @@ Loops operate at two scales. A single-agent loop runs the full discover–plan�
 
 ## Five Building Blocks
 
-A loop requires five capabilities plus persistent memory:
+A single turn of a loop makes five moves: **discovery** (figure out what this turn should do), **handoff** (isolate and dispatch the work to an agent), **verification** (check whether the result is right), **persistence** (land the result somewhere that survives the conversation), and **scheduling** (close the cycle — decide the next step and ensure the loop turns again). Drop any one move and the loop either won't turn or will turn in place. These five moves are realized by six parts — and the failures of a loop are simply those moves skipped:
 
 1. **Automations** — Scheduled triggers that discover and triage work (cron jobs, CI hooks, `/loop`, `/goal`). The heartbeat that makes a loop a loop rather than a one-shot run.
 2. **Worktrees** — Isolated git checkouts so parallel agents don't collide on the same files. Same principle as branch-per-engineer, enforced at the filesystem level.
 3. **Skills** — Codified project knowledge (conventions, build steps, "we don't do it like this because of that one incident") that prevents the agent from re-deriving your entire project from zero every cycle. Without skills, loops accumulate [intent debt](https://addyosmani.com/blog/intent-debt/) — the agent fills every hole in your intent with a confident guess.
 4. **Plugins and connectors** — MCP-based integrations that let the loop act inside your actual environment (issue trackers, staging APIs, Slack) rather than just proposing what it would do.
 5. **Sub-agents** — The maker/checker split. The model that wrote the code is too agreeable grading its own homework; a second agent with different instructions catches what the first talked itself into. This is also how `/goal` works under the hood — a fresh model decides if the loop is done instead of the one that did the work.
+6. **Memory** — Anything that lives outside the conversation and holds what's done and what's next. The agent forgets everything between runs; memory must land on disk. Memory is not context: context is what the agent sees this round and is flushed afterward; memory is what lets it pick up today where it left off yesterday.
+
+The moves map to parts: discovery runs on skills, handoff on worktrees, verification on sub-agents, persistence on memory, scheduling on automations. Connectors (plugins) decide the loop's radius of vision — what the loop can see and act on in the outside world. With all six in place a loop has a skeleton: automation makes it move, worktrees keep it from fighting itself, skills keep it from redoing work, connectors let it see outside, sub-agents let it correct itself, and memory lets it remember.
 
 ### Tool Design for Loops
 
@@ -175,6 +190,16 @@ Two CLI tools support the workflow: `loop-audit` scores a project's loop readine
 
 An automation runs every morning, calling a triage skill that reads yesterday's CI failures, open issues, and recent commits, then writes findings to a state file. For each actionable finding, the system opens an isolated worktree, sends a sub-agent to draft the fix, and a second sub-agent reviews against project skills and tests. Connectors open the PR and update the ticket. Anything the loop can't handle lands in a triage inbox. The state file remembers what got tried, what passed, and what's still open — so tomorrow's run picks up where today stopped.
 
+## Loops in Production
+
+### Stripe: Enterprise-Scale Loop Architecture
+
+Stripe's agent pipeline merges more than 1,300 pull requests per week, not one line written by a human. The trigger is light — @ the bot in Slack, or an automated event — but before the model wakes up, a deterministic orchestrator prepares all context. The core architectural principle: everything rule-bound is kept out of the probabilistic model. Letting the LLM find its own context is the least controllable part, so Stripe draws a sharp line between what is deterministic and what goes to a probabilistic model — where you draw that line decides the loop's reliability. The system is a fork of the open-source tool Goose, and its core claim is that reliability comes from the quality of the constraints, not the size of the model. Its architecture interleaves deterministic gates and creative LLM steps: if the linter runs and the agent cannot skip it, the agent fixes the lint rather than arguing about it. Environments run on EC2 on a "cattle not pets" basis — each environment is swapped out at will, so a thousand-plus agents run at once without stepping on each other. Notably, those 1,300 PRs are still human-reviewed — the loop executes but a human approves before merge.
+
+### Local vs. Cloud Scheduling
+
+The choice between local and cloud scheduling is not a matter of taste; it follows from one question: is the loop's work glued to the local machine, or can it leave? Two concrete cases illustrate. A loop should watch a local dev server and rerun when it detects UI regressions — that must run locally, because the cloud cannot see a process on one's laptop. A loop should scan the repository's open issues at three in the morning — that must run in the cloud, because laptops get their lids closed, lose power, and get carried out the door. Local scheduling means "run a few extra rounds while I am here"; cloud scheduling means "run even when I am not." These are different capabilities — local buys tighter iteration while the machine is on, while cloud buys true autonomy at the cost of a more constrained environment. A mature loop often uses both: local for the tight feedback cycle, cloud for the overnight run.
+
 ## Tool Convergence
 
 The five building blocks now ship inside both Claude Code and Codex — different names, same capabilities. Once you recognize the shared shape, you stop arguing about which tool and design loops that work regardless of which one you're sitting in.
@@ -213,11 +238,32 @@ The practical corollary is the *broken loop audit*: most teams already have prot
 
 ## Failure Modes and Anti-Patterns
 
+HuaShu maps five structural anti-patterns one-to-one onto the five moves of a single turn — each anti-pattern is one move skipped:
+
+1. **Self-approval loop** (no verification) — the agent writes code and the same agent declares it good. The symptom is a loop that has never once said "no" to itself across hundreds of turns — a statistical impossibility for any real workload.
+2. **Amnesia loop** (no persistence) — the loop discovers work, does it, then forgets it happened because the result lived only in a context window that was flushed. Each morning it starts from zero.
+3. **Show-once loop** (no scheduling) — it works impressively the day it is built and silently stops contributing because it is a script the human runs by hand and then forgets to run. The last successful run was the day it was demoed.
+4. **Manual discovery** (no discovery skill) — the human still hand-picks "fix these three bugs," so the loop has automated the doing but not the finding. Choosing what to work on is often the expensive part.
+5. **Collision mess** (no worktrees) — parallel agents change the same working directory, so edits collide and the merge is untangleable. The problem appears only the first morning five agents run at once.
+
+In practice these cluster: the hasty loop installs the two moves that produce visible output (handoff and scheduling) and skips the three that produce safety (verification, persistence, discovery).
+
 Greyling's repo catalogs failure modes as an incident-style catalog and anti-patterns as design mistakes caught before production — a useful complement to the conceptual risks in [What Loops Don't Solve](#what-loops-dont-solve). Three categories emerge: *multi-loop coordination failures* (when loops collide — two loops editing the same file, a CI sweeper and a dependency sweeper racing to fix the same build, or a triage loop spawning work that a cleanup loop deletes), *operational failures* (cost overruns from unmonitored loops, logging that either says too much or too little, and the question of when to kill a loop that's technically still running but no longer producing value), and *design anti-patterns* (skipping the L1 report phase and going straight to L3 unattended, building a loop for a task that doesn't repeat, or letting a loop auto-install community skills without auditing them — the last of which connects directly to the [security](#security--the-unattended-attack-surface) concerns above). The operational guidance converges on a single principle: the loop must be cheaper to run than the human time it replaces, measured not per-token but per-accepted-change — the same metric flagged in [Cost](#cost--the-loop-is-now-the-expensive-part).
 
 ## What Loops Don't Solve
 
-Three problems get sharper as the loop gets better: *verification* remains on the human (a loop running unattended is also a loop making mistakes unattended), *comprehension debt* grows faster when the loop ships code you didn't write, and *cognitive surrender* — accepting agent output because forming an independent opinion costs attention you no longer have — becomes the default posture if you're not deliberate about staying engaged. These risks compound with the [orchestration tax](agentic-engineering.md#the-orchestration-tax-osmani): the same review bottleneck that limits parallel agents also limits how much loop output you can meaningfully absorb. Gartner puts agentic AI at the peak of inflated expectations, with only ~17% of organizations actually deploying agents — the gap between the timeline discourse and production receipts remains wide.
+Four costs accrue silently while a loop runs, none of which sounds an alarm:
+
+1. **Verification debt** — the loop generates faster than the human reviews, so the saved time turns into unverified output. The problem hides where tests do not cover, accumulating until it blows up at once.
+2. **Comprehension rot** — the more the loop writes, the bigger the gap between what exists and what the human understands. The codebase grows while the human's mental model falls behind.
+3. **Cognitive surrender** — accepting agent output because forming an independent opinion costs attention you no longer have. The more reliable the loop, the easier it is to outsource judgment entirely.
+4. **Cost surprise** — a loop that runs overnight may spawn helpers and retry freely, producing an unfamiliar bill rather than fixed code. The guard is hard caps set before shipping: per-run budget, daily budget, emergency stop.
+
+These four form a reinforcing cycle: without an independent evaluator, verification debt accumulates; because the human merged twenty PRs without reading them, their mental model now lags by twenty changes (comprehension rot); because the loop ran so smoothly, the human stops reading the next morning's batch entirely (cognitive surrender); and because the loop spawned helpers and retried freely all night, the bill is triple what was budgeted (cost surprise). The result is a loop that generates mistakes, guarded by a human who has stopped looking, discovered only when one surfaces as a production incident.
+
+HuaShu's central thesis: a loop is a faithful multiplier — the same loop, built by two people, yields opposite outcomes separated by one or two human checkpoints. Bring judgment and the loop amplifies judgment; bring laziness and it amplifies laziness. Three disciplines counter the erosion: *sample regularly* (read a representative sample of output every day — it need not be large, it needs to be regular and genuinely examined), *cap budgets before shipping* (per-run, daily, and emergency stop — a loop without caps has delegated its spending authority to the model), and *keep the human checkpoint permanent* (not a temporary scaffold to be removed once the loop is trusted — it is the permanent feature that keeps the loop trustworthy, and the day it is removed is the day comprehension rot begins in earnest).
+
+These risks compound with the [orchestration tax](agentic-engineering.md#the-orchestration-tax-osmani): the same review bottleneck that limits parallel agents also limits how much loop output you can meaningfully absorb. Gartner puts agentic AI at the peak of inflated expectations, with only ~17% of organizations actually deploying agents — the gap between the timeline discourse and production receipts remains wide.
 
 ## Security — The Unattended Attack Surface
 
@@ -257,3 +303,4 @@ The security tax scales with the [autonomy ladder](#the-autonomy-ladder) — a l
 - "Human in the /loop" — Eric Zakariasson (tweet thread, Jun 2026) ([link](https://x.com/ericzakariasson/status/2070493377267646797)) — practitioner loop setup: five verification-target categories by task type (score, QA pass, test suite, benchmark, count), notification channel as human-in-the-loop mechanism (Slack pings, reply-as-next-input), cloud execution for multi-hour loops, concurrent loop self-regulation heuristic (stop starting when three are waiting on review), explicitness gradient for prompt tuning
 - "Loop engineering: the 14-step roadmap from prompter to loop designer" — Codez / Lev Deviatkin (tweet thread, Jun 2026) ([link](http://linkedin.com/in/lev-deviatkin)) — 14-step three-tier progression (why/test → building blocks → build it right), 30-second tactical loop check (hard stop + human gate criteria), good vs bad first-loop examples, economic accessibility framing (who benefits vs who should skip), security tax (unreviewed code, skill injection, credential leakage, permission scope creep)
 - "Loop Engineering reference repo" — Cobus Greyling (GitHub, Jun 2026) ([link](https://github.com/cobusgreyling/loop-engineering)) — six named production patterns with cadence and token cost (Daily Triage, PR Babysitter, CI Sweeper, Dependency Sweeper, Changelog Drafter, Post-Merge Cleanup), L1/L2/L3 phased rollout per pattern, loop-audit CLI (readiness scoring) and loop-init CLI (starter scaffolding), primitives matrix (Grok vs Claude Code vs Codex), failure modes catalog and anti-patterns guide, pattern picker decision framework
+- "Loop Engineering" — HuaShu (IEEE-formatted paper, Jun 2026) ([link](https://huasheng.ai/orange-books)) — four-layer engineering stack (prompt → context → harness → loop), five moves of a single turn (discovery/handoff/verification/persistence/scheduling) mapped to six parts, five structural anti-patterns mapped one-to-one to skipped moves, generator/evaluator separation (GAN-inspired, independent context prevents self-persuasion), Stripe case study (1,300+ PRs/week, deterministic orchestrator, Goose fork, cattle-not-pets EC2), local vs. cloud scheduling axis, four hidden costs as reinforcing cycle (verification debt → comprehension rot → cognitive surrender → cost surprise), "faithful multiplier" thesis (same loop yields opposite outcomes by builder), three staying-in-control disciplines (sample regularly, cap budgets, keep human checkpoint permanent)

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-24
+last_updated: 2026-07-01
 ---
 
 # AI-Native Product Development
@@ -9,6 +9,7 @@ last_updated: 2026-06-24
 
 ## Recent Updates
 
+- **2026-07-01:** Added Gothelf's behavior-based OKR framework for AI features to [Measuring AI Products Through Human Behavior](#measuring-ai-products-through-human-behavior)
 - **2026-06-24:** Added Dewey's reflective thought framework for hypothesis-driven PM to [Hypothesis-Driven PM](#hypothesis-driven-pm-dewey); removed stale Overview (folded framing into TLDR)
 
 ## Anthropic's PDLC ("Docs to Demos")
@@ -298,6 +299,20 @@ The framework attacks the failure mode that recurs across this page: teams that 
 
 Three artifacts operationalize this: (1) an **assumption ledger** (belief, evidence, confidence, rival explanation, prediction, next test, owner, review date) that makes hidden judgment visible; (2) a **PRD if-then section** ("If we build X for Y, we expect Z because [belief]; we'll strengthen it if [signal], weaken it if [negative signal]"); and (3) a **corroboration review** after every launch comparing predicted consequences with observed behavior. The if-then template complements the [eval-as-PRD approach](#ai-evals-as-the-new-prd) — evals define *how* to measure, Dewey's framework defines *what belief you're measuring against*.
 
+## Measuring AI Products Through Human Behavior
+
+Jeff Gothelf and Josh Seiden argue that AI product OKRs should never measure AI output — not accuracy, not model performance, not features shipped. Instead, every key result should be a measure of human behavior: what a user does differently because of the work you put into the world. AI makes this rule harder to follow because the output is probabilistic and varies from user to user and prompt to prompt, which means you can't honestly commit to a single accuracy number anyway. The goal belongs where it always should have been: on the human on the other side of the output [[source]](https://jeffgothelf.com/blog/how-to-write-okrs-for-an-ai-product/).
+
+Three types of behavior-based key results cover an AI feature end-to-end:
+
+**Outcome KR — what users do after the AI answers.** The first question: once your feature hands the user an output, what do they do next? When the output is valuable, users act on it — export, share, integrate into their deliverable, move on. When it isn't, they regenerate, abandon, or quietly rewrite. The KR names the good behavior and puts a number on it using the "Who does what by how much?" formula. Example: "Increase the share of meetings where the user sends the AI-created summary without rewriting it from 40% to 65%."
+
+**Calibration KR — behavior that proves quality.** This is where teams want to sneak the accuracy number back in. Instead: if the output is genuinely accurate, what does the user do differently? They stop checking it. They stop correcting it. They accept the output as written instead of opening the source to verify every line. Example: "Reduce the percentage of sessions where the user opens the transcript to fact-check the summary from 60% to 30%." The quality threshold is still there — measured as the moment the user decides the output is good enough to use as-is.
+
+**Trust KR — what users hand over.** Real trust isn't a survey response — it's a change in what someone is willing to delegate. A user who trusts the tool starts using it for the meetings that matter (client calls, exec reviews, not just internal standups), turns on auto-send instead of reviewing every output privately, and stops expecting to find mistakes. Example: "Keep the rate at which users manually override or rewrite the AI's proposed next steps under 8%." Both override rates and expansion behaviors (enabling auto-share, using the tool for higher-stakes contexts) answer the same question: when people believe the system, what do they let it do that they used to do themselves?
+
+The three KRs together measure an AI feature without once measuring the AI itself. Accuracy, model quality, and calibration still matter enormously — but as the driver of human success, not the measure of it. This complements the [eval-as-PRD approach](#ai-evals-as-the-new-prd) (evals define *how* to measure quality technically) and [hypothesis-driven PM](#hypothesis-driven-pm-dewey) (hypotheses define *what belief* you're testing). Gothelf's framework adds the layer above both: the behavioral signal that tells you whether the feature earned its place in the user's workflow.
+
 ## Output Isn't Design
 
 Saarinen invokes Christopher Alexander's definition of design: "good fit between form and context." The form is the solution; the context is the problem space — user needs, constraints, trade-offs, the environment the product lives in.
@@ -468,3 +483,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "How Anthropic Uses Claude Fable 5 With Mike Krieger" — Every / Dan Shipper (video, Jun 2026) — delegation model (overnight tasks, concurrent sessions), verification loops (screenshots, video, mock backends), dynamic workflows, DRI model, PM/eng diffusion, non-technical builder empowerment, software engineering evolving not dying
 - "must read" — Dan Shipper (tweet, May 2026) — pointer to Marcus Moretti's agent-native PM guide
 - "How We Think: A Practical Guide for PM Work" — George / prodmgmt.world (tweet, Jun 2026) — Dewey's reflective thought applied to PM: five-phase inquiry loop, hypothesis-driven feature development, assumption ledger, PRD if-then template, corroboration review
+- "How to write OKRs for an AI product" — Jeff Gothelf (Jun 2026) ([link](https://jeffgothelf.com/blog/how-to-write-okrs-for-an-ai-product/)) — behavior-based AI product OKRs: outcome/calibration/trust KR framework, "Who does what by how much?" formula, measure the human not the machine

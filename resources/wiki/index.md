@@ -45,6 +45,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [AGI Definitions](landscape/agi-definitions.md) — 4 definitions (DeepMind, Bengio, Hinton, OpenAI); current AI capability gaps; jagged capabilities; milestone taxonomy
 - [AI Regulation](landscape/ai-regulation.md) — US state AI law patchwork (CA, CO, MN, NY, OH, UT); Trump federal preemption efforts; compliance implications; common regulatory themes
 - [Solo Business](landscape/solo-business.md) — One-person empire model; DeMarco's five money trees; 95/95 profit-and-automation method; audience ownership over rented reach; seven profit levers
+- [Tech Crash Cycles](landscape/tech-crash-cycles.md) — Perez surge-cycle pattern applied to AI; crash as forcing function; spreading means vs redistribution; three-sets-of-hands rebuild model
 - [Venture Capital Access](landscape/venture-capital-access.md) — Private markets democratizing; USVC (AngelList) indexed low-fee vehicle for retail investors; the "Vanguard moment" for private markets
 
 ## People

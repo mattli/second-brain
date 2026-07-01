@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-06-29
+last_updated: 2026-07-01
 
 
 ---
@@ -11,6 +11,7 @@ last_updated: 2026-06-29
 
 ## Recent Updates
 
+- **2026-07-01:** Added Anthropic/LinkedIn PM-ratio evidence to [The Allocation Economy](#the-allocation-economy); added review-as-leverage and first-principles framing to [Maintaining Skill While Using AI](#maintaining-skill-while-using-ai)
 - **2026-06-29:** Added Boris Cherny's five phase-based product archetypes to [Phase-Based Role Archetypes](#phase-based-role-archetypes-cherny)
 
 See also: [AI User Perspectives](../landscape/ai-user-perspectives.md) for empirical data (Anthropic's 81K-person survey) on what users want from AI and where they see risk — grounding the theoretical labor-market analysis below.
@@ -51,6 +52,8 @@ Google's Project Aristotle finding: of all factors studied, psychological safety
 ## The Allocation Economy
 
 Dan Shipper's related framing: we're entering the "allocation economy" where everyone becomes a manager. You won't be judged on how much you know but on how well you can allocate and manage resources (including AI agents) to get work done. Being a great manager requires all three wisdom skills.
+
+The PM-ratio strain is the clearest organizational symptom. Anthropic's growth team found that Claude Code had turned its engineering org into a team shipping at roughly three times its headcount — and responded by hiring *more* product managers, not fewer [[source]](https://venturebeat.com/ai/claude-code-turned-every-engineer-into-three-now-companies-need-more-product-thinkers/). The traditional 1:8 PM-to-engineer ratio, already strained, now plays out closer to an effective 1:20 because each engineer ships more per day. LinkedIn replaced its associate PM track with a "Product Builder" program that trains generalists across product, design, and engineering. The system is producing built features faster than it is producing decisions about what should be built — which is exactly what the allocation economy predicts: the bottleneck moves from execution to direction-setting.
 
 See [Agent Proficiency](agent-proficiency.md) — agent management is arguably the knowledge work skill with the most staying power, sitting at the intersection of direction-setting and wisdom.
 
@@ -173,6 +176,8 @@ Kyle Kingsbury resurfaces Lisanne Bainbridge's 1983 paper "Ironies of Automation
 
 The deskilling research points to a clear intervention: the problem isn't AI use itself but *passive* AI use — delegating without engaging. The same tools that produce cognitive debt can sharpen engineers when used with active learning intent.
 
+**Review is the new writing.** Engineers in 2026 generate code at a rate that exceeds what any of them can read carefully. The 2025 Stack Overflow developer survey put 84% of developers on AI tools, with 46% saying they do not trust the output — up from 31% the year before. That gap (heavy use, low trust) is exactly where review skills matter most. The corollary: first principles are now a *leverage* skill, not a hygiene skill. In 2014, knowing how a TCP retransmit worked closed a debug ticket faster. In 2026, the same knowledge keeps an entire agent-driven release pipeline from shipping a regression at scale. The blast radius of the engineer who knows what is happening underneath has gone up, not down [[source]](https://venturebeat.com/ai/claude-code-turned-every-engineer-into-three-now-companies-need-more-product-thinkers/).
+
 **Posture shifts that preserve skill:**
 
 - **Form a hypothesis before prompting.** Write down what you think the problem is; use the model's answer to test your theory, not replace it.
@@ -249,3 +254,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "How to be good at research" — Vivek (tweet, Jun 2026) ([link](https://x.com/VivsThoughts)) — taste as trainable muscle (predict-then-correct loop); Hamming's problem-selection question; writing as defense against self-deception (Graham, Darwin); tightening feedback loops as the core research skill; breadth as insurance against subfield saturation; Shannon's shrink-then-expand method
 - "Feeling stupid is a crucial part of science" — Nicholas Fabiano (tweet, May 2026) — embracing uncertainty as signal of pushing into the unknown
 - "As engineering, product, design, DS, etc. melt into a new kind of role" — Boris Cherny (tweet, Jun 2026) — five phase-based product archetypes (Prototyper, Builder, Sweeper, Grower, Maintainer) replacing domain-specific roles; team composition by product stage
+- "Claude Code turned every engineer into three. Now companies need more product thinkers" — Ishan Gupta (VentureBeat, Jun 2026) ([link](https://venturebeat.com/ai/claude-code-turned-every-engineer-into-three-now-companies-need-more-product-thinkers/)) — Anthropic 3x engineering productivity and PM hiring response; PM ratio strain (1:8 → effective 1:20); LinkedIn Product Builder program; review as the new writing (84% AI adoption, 46% distrust); first principles as leverage skill

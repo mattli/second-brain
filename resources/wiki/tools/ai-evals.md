@@ -6,9 +6,7 @@ last_updated: 2026-05-28
 
 # AI Evals
 
-## TLDR
-
-Effective AI evaluation starts with manually reviewing production traces — not with generic metrics dashboards. For agents specifically, the goal is usually floor-raising (eliminating failures that destroy trust) rather than benchmark-maxxing. Label ~100 traces by hand, categorize the failures, fix the obvious ones without an eval, then build targeted LLM-as-judge evals for the subjective problems that remain. Test the running agent path (tools, state, side effects), not isolated prompts. Keep eval suites small and grounded in real failures — prune cases that haven't failed in months.
+> TLDR: Effective AI evaluation starts with manually reviewing production traces — not with generic metrics dashboards. For agents specifically, the goal is usually floor-raising (eliminating failures that destroy trust) rather than benchmark-maxxing. Label ~100 traces by hand, categorize the failures, fix the obvious ones without an eval, then build targeted LLM-as-judge evals for the subjective problems that remain. Test the running agent path (tools, state, side effects), not isolated prompts. Keep eval suites small and grounded in real failures — prune cases that haven't failed in months.
 
 ## Overview
 

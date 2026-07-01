@@ -32,8 +32,7 @@ last_updated: YYYY-MM-DD
 
 # Page Title
 
-## TLDR
-Two to four sentences. What the topic is and the key insight. Reader should be able to decide from this alone whether the rest of the page is worth their time.
+> TLDR: Two to four sentences on a single line. What the topic is and the key insight. Reader should be able to decide from this alone whether the rest of the page is worth their time. Must be a `> TLDR:` blockquote (not an `## TLDR` heading) — Cold Mountain's renderer lifts this line into the page subtitle and the index description, and the build fails if it's missing.
 
 ## Recent Updates
 (Maintained by per-doc workers. Only present once a worker has touched the page post-2026-06-22.)

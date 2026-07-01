@@ -5,9 +5,7 @@ last_updated: 2026-06-22
 
 # Geopolitics & World Order
 
-## TLDR
-
-The post-1945 rules-based international order led by the US is fragmenting into a might-is-right multipolar system. Interconnected shooting wars, economic conflicts, and alliance realignment follow a recurring historical pattern — Dalio's "Big Cycle" — that has preceded every major power transition in the last 500 years.
+> TLDR: The post-1945 rules-based international order led by the US is fragmenting into a might-is-right multipolar system. Interconnected shooting wars, economic conflicts, and alliance realignment follow a recurring historical pattern — Dalio's "Big Cycle" — that has preceded every major power transition in the last 500 years.
 
 ## Overview
 

@@ -5,8 +5,7 @@ last_updated: 2026-06-22
 
 # AI, Society & Epistemic Collapse
 
-## TLDR
-Two complementary frames on AI's societal impact beyond the labor/safety axes: Kingsbury on epistemic collapse (information ecology pollution, end of evidence, hyperscale propaganda) and Diamandis on speciation (five forks driven by exponential tech that are already producing divergence between groups). The unifying claim: AI's biggest societal effects aren't job displacement — they're the slow corrosion of shared reality and the splitting of humanity along lines that compounded inequality couldn't have produced alone.
+> TLDR: Two complementary frames on AI's societal impact beyond the labor/safety axes: Kingsbury on epistemic collapse (information ecology pollution, end of evidence, hyperscale propaganda) and Diamandis on speciation (five forks driven by exponential tech that are already producing divergence between groups). The unifying claim: AI's biggest societal effects aren't job displacement — they're the slow corrosion of shared reality and the splitting of humanity along lines that compounded inequality couldn't have produced alone.
 
 ## Overview
 The standard frames on AI's societal impact — labor displacement and safety risk — cover the loudest topics but miss two slower-moving classes of effect: (1) the degradation of the epistemic substrate that lets societies agree on what is real, and (2) the divergence of human populations along technological-access lines. Both are happening now, both are downstream of capabilities already in production, and neither shows up in benchmark conversations.

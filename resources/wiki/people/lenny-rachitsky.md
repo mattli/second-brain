@@ -5,8 +5,7 @@ last_updated: 2026-06-22
 
 # Lenny Rachitsky
 
-## TLDR
-Creator-operator who built a top-tier product newsletter into an empire (1.2M newsletter subscribers, 500K YouTube subscribers, ~25 pieces/month). Defining operating principles: ruthless quality bar, radical saying-no, zero full-time employees.
+> TLDR: Creator-operator who built a top-tier product newsletter into an empire (1.2M newsletter subscribers, 500K YouTube subscribers, ~25 pieces/month). Defining operating principles: ruthless quality bar, radical saying-no, zero full-time employees.
 
 ## Overview
 Born in Odesa, Ukraine; parents were Soviet "refuseniks." Career arc: 9 years at Webmetrics/NeuStar → founded Localmind → 7 years at Airbnb as an early PM → newsletter/podcast empire. The empire is built almost entirely solo: no full-time employees, ~10 contractors.

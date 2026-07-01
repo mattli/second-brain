@@ -6,9 +6,7 @@ last_updated: 2026-06-30
 
 # Loop Engineering
 
-## TLDR
-
-Loop engineering is the practice of replacing yourself as the person who prompts the agent — you design the system that prompts it instead. Where [harness design](agent-harness.md) shapes the environment a single agent runs inside, and [orchestration](agentic-engineering.md#multi-agent-orchestration) coordinates multiple agents, loop engineering sits one level above both: a recurring system that discovers work, dispatches agents, checks results, records state, and decides the next step — all without a human in the turn-by-turn prompting seat.
+> TLDR: Loop engineering is the practice of replacing yourself as the person who prompts the agent — you design the system that prompts it instead. Where [harness design](agent-harness.md) shapes the environment a single agent runs inside, and [orchestration](agentic-engineering.md#multi-agent-orchestration) coordinates multiple agents, loop engineering sits one level above both: a recurring system that discovers work, dispatches agents, checks results, records state, and decides the next step — all without a human in the turn-by-turn prompting seat.
 
 ## Recent Updates
 

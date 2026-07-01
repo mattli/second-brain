@@ -5,9 +5,7 @@ last_updated: 2026-06-22
 
 # Voice AI Infrastructure
 
-## TLDR
-
-Voice AI only feels natural when latency is invisible. OpenAI's relay-plus-transceiver architecture splits stateless UDP packet forwarding from stateful WebRTC session ownership, solving the tension between Kubernetes-native deployment and WebRTC's one-port-per-session model at global scale.
+> TLDR: Voice AI only feels natural when latency is invisible. OpenAI's relay-plus-transceiver architecture splits stateless UDP packet forwarding from stateful WebRTC session ownership, solving the tension between Kubernetes-native deployment and WebRTC's one-port-per-session model at global scale.
 
 ## Overview
 

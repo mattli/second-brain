@@ -56,7 +56,7 @@ Do not silently route differently. The veto trail is how the list-maker learns w
 Follow the wiki conventions in `readwise-wiki.md`:
 
 - **Update path:** integrate insights from this source into the page. Restructure opportunistically if you encounter author-branded sections (promote concept to heading, move attribution inline) — but only what you touch, don't refactor the whole page in one pass.
-- **Create path:** start from the page template in `readwise-wiki.md`. Set `created_at` and `last_updated` to today. Write a TLDR (2–4 sentences), then go straight to body sections. Do NOT write an `## Overview` section — that convention was retired 2026-06-22. End with `## Sources`.
+- **Create path:** start from the page template in `readwise-wiki.md`. Set `created_at` and `last_updated` to today. Write the TLDR as a `> TLDR:` blockquote (2–4 sentences on one line) — NOT an `## TLDR` heading; the Cold Mountain renderer only recognizes the blockquote form and the build fails without it. Then go straight to body sections. Do NOT write an `## Overview` section — that convention was retired 2026-06-22. End with `## Sources`.
 - **Frontmatter rules — strict.** The ONLY allowed frontmatter keys are `created_at` (set once at creation, never changed afterward) and `last_updated` (set to today on every edit). Do NOT add `sources:`, `sources_updated:`, `tags:`, `title:`, or any other key — even if it seems useful. Each key must appear exactly once; YAML rejects duplicate mapping keys and the Cold Mountain build will fail to parse the file. Contributing documents are tracked in the body's `## Sources` section, not in frontmatter.
 - Add the source to the page's `## Sources` section. Use the document's original `source_url` from Readwise metadata, **not** the Readwise reader URL. If `source_url` is missing, use plain-text title with no link. Include title, author, and a one-line contribution note. Dedupe by URL — if the doc is already listed, leave the existing entry alone.
 - **Inline citations:** reserved for direct quotes, specific statistics/numbers, and contested or surprising claims. Format: `[[source]](source_url)` immediately after the cited sentence. Do NOT add inline citations for synthesis, definitions, connective prose, or general framing — the `## Sources` section covers those. Default bias is to under-cite inline; the wiki should read as distilled understanding, not an annotated bibliography. See `readwise-wiki.md` § Citations.
@@ -108,7 +108,7 @@ Do NOT scan the entire target page and add links to material you didn't touch �
 
 ### 5b. Log to `## Recent Updates`
 
-Every page edit gets a one-line entry in a `## Recent Updates` section placed **immediately after the `## TLDR` section and before `## Overview`**. This lets a returning reader see what's new on the page without having to re-read it or diff against git.
+Every page edit gets a one-line entry in a `## Recent Updates` section placed **immediately after the `> TLDR:` line (it is the first `##` section on the page)**. This lets a returning reader see what's new on the page without having to re-read it or diff against git.
 
 Format — link to the section you touched so the reader can jump to it:
 
@@ -125,7 +125,7 @@ Rules:
 - **Always link the section name** using a markdown anchor: `[Section Name](#section-name-kebab-case)`. Convert the heading to its anchor form: lowercase, spaces → hyphens, drop punctuation except hyphens, em-dashes become hyphens. When in doubt, copy the heading text and lowercase-hyphenate. Both Obsidian and Cold Mountain resolve these.
 - **Prepend** the new entry (newest at top, oldest at bottom).
 - **Cap at 10 entries.** If adding the new one would make 11, drop the oldest. Don't archive — the git history is the durable record.
-- **If the section doesn't exist yet,** create it in the correct position (after TLDR, before Overview). Older pages won't have one until you're the first to touch them post-2026-06-22.
+- **If the section doesn't exist yet,** create it in the correct position (immediately after the `> TLDR:` line, as the first `##` section). Older pages won't have one until you're the first to touch them post-2026-06-22.
 - **The description should name the substance**, not just the location. Good: "Added Lance Martin's verifier sub-agent principle to [Verification](#verification-is-the-essential-feedback)." Bad: "Updated Verification section."
 - **For thin contributions** (a Sources-only addition, a one-line bullet under Further Reading), still log with a link to the section: "Added Vercel × NanoClaw approval-system reference to [Sources](#sources)."
 - **If you touched multiple sections in one edit,** link to the primary one in the entry and mention the others by name: "Reworked [Verification](#verification) and updated [Five Building Blocks](#five-building-blocks) with the new framing."

@@ -5,9 +5,7 @@ last_updated: 2026-06-28
 
 # Solo Business
 
-## TLDR
-
-A solo business (or "one-person empire") stacks three of MJ DeMarco's five "money trees" — content, software, and distribution — under a single operator with no employees. The model optimizes for profit margin and automation rate over revenue, deliberately refusing the human-resource tree that scales headcount. Digital products, owned audiences (email lists over social followers), and evergreen funnels replace the agency/team playbook.
+> TLDR: A solo business (or "one-person empire") stacks three of MJ DeMarco's five "money trees" — content, software, and distribution — under a single operator with no employees. The model optimizes for profit margin and automation rate over revenue, deliberately refusing the human-resource tree that scales headcount. Digital products, owned audiences (email lists over social followers), and evergreen funnels replace the agency/team playbook.
 
 ## Recent Updates
 

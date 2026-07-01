@@ -5,8 +5,7 @@ last_updated: 2026-06-22
 
 # Psychology & Trauma
 
-## TLDR
-Frames from Gabor Maté on how trauma, attachment, and the mind-body relationship shape adult behavior — including political and organizational psychology. Seeds a topic page that can grow as more psychology-domain saves accrue.
+> TLDR: Frames from Gabor Maté on how trauma, attachment, and the mind-body relationship shape adult behavior — including political and organizational psychology. Seeds a topic page that can grow as more psychology-domain saves accrue.
 
 ## Overview
 The throughline of Maté's framework: behaviors that look like personality (narcissism, addiction, achievement-drive, "psychopathy" in leadership) are protective adaptations built in childhood, not innate traits. Treatment and self-understanding both start from "not why the addiction, but why the pain?" — locating the wound, not labeling the symptom.

@@ -5,7 +5,7 @@ status: work-in-progress
 type: design-spec
 ---
 
-# loop-forge — Adversarial Agentic-Dev Loop (Design Spec)
+# dev-harness — Adversarial Agentic-Dev Loop (Design Spec)
 
 > **Status: WORK IN PROGRESS.** Draft for review. Decisions below are approved-in-principle from the brainstorming session on 2026-06-30; treat open questions at the bottom as live.
 
@@ -80,7 +80,7 @@ Each module has one job, a typed interface, and can be understood/tested alone.
 ### Proposed repo layout
 
 ```
-loop-forge/
+dev-harness/
   src/
     cli/
     orchestrator/
@@ -171,12 +171,12 @@ Keeping them separate means the deterministic gate is unit-testable without any 
 
 ## Open Questions (to resolve on next pass)
 
-1. **Name** — `loop-forge` is a placeholder. Keep, or something else?
+1. **Name** — resolved: `dev-harness` (chosen 2026-07-01; plain/internal, not branded).
 2. **Score threshold & no-progress definition** — what score gate advances a sprint, and how many flat iterations count as "no progress"? Probably start explicit/strict, then loosen (Zakariasson's explicitness gradient).
 3. **Negotiation round cap** — how many contract back-and-forths before forcing a freeze? (Retro-game demo negotiated 27 *criteria*; that's criteria count, not round count — need a round cap to bound cost.)
 4. **Budget defaults** — starting token/$ ceiling and max-iteration count for a typical run.
 5. **Where does the built code land on approval?** Merge worktree → branch → you PR it yourself? Define the handoff.
-6. **Repo location** — where does the `loop-forge` repo itself live on disk (`~/loop-forge`?), and does it get its own GitHub remote (noreply-email caveat applies on first push)?
+6. **Repo location** — where does the `dev-harness` repo itself live on disk (`~/dev-harness`?), and does it get its own GitHub remote (noreply-email caveat applies on first push)?
 
 ---
 

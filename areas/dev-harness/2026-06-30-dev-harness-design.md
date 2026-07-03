@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-30
-last_updated: 2026-06-30
+last_updated: 2026-07-02
 status: work-in-progress
 type: design-spec
 ---
@@ -35,6 +35,7 @@ Source reference: `~/second-brain/resources/wiki/tools/loop-engineering.md`
 - No automated hill-climbing loop that rewrites its own prompts (Phase 3).
 - No Playwright / design-taste evaluation yet (Phase 2).
 - No refuter panel yet (Phase 3).
+- No target-project skills layer yet — v1 hardcodes a single project's context; the skills abstraction (codified conventions/build steps/gotchas the generator + evaluator read instead of re-deriving) lands when the harness goes multi-project. *Deferred consciously, not by omission.*
 
 Deferring these is deliberate — it follows the article's **prove → harden → automate** build order. We prove the hard part (adversarial loop quality) by hand before automating it. "Skipping ahead is how loops blow up while you sleep."
 
@@ -52,6 +53,18 @@ Deferring these is deliberate — it follows the article's **prove → harden �
 | **Models by role** | Planner + generator = Opus; evaluator configurable (Opus default, Sonnet option); all per-run overridable | Planning errors cascade → strongest model. |
 | **Hard stops** | max-iteration, no-progress detection, token/$ ceiling — all v1 | Article is emphatic: these ship day one, not later. |
 | **v1 autonomy** | Attended core loop (autonomy ladder L1–L2) | Prove loop quality by hand before automating. |
+
+---
+
+## Design Principle — Harness-as-Product
+
+The "thin harness, fat skills" rule ([[agent-harness]]) — logic lives in skills/prompts, not scaffolding — governs building an agent *to do a task*: keep the scaffolding generic and reusable, push task-specific behavior into swappable skills. NanoClaw is that shape and stays thin accordingly.
+
+dev-harness is a different category: **the harness is the product.** The orchestrator, contract-negotiation, verifier, evaluator, budget, state, and trace modules are the irreducible mechanism of the planner-generator-evaluator loop itself — not scaffolding wrapped around a separate task. There is no other task the harness serves; the mechanism *is* the deliverable. So on the *thickness* axis the rule doesn't apply — thinning the harness would delete the point.
+
+The rule still binds on the *behavior-location* axis: don't hardcode behavior that should be externalized. Two places that lands here — (1) agent behavior stays in editable markdown (`prompts/*.md`), never buried in TS; (2) codified knowledge about the *target project* the harness is pointed at belongs in a **skills layer** the generator + evaluator read, not baked into prompts or re-derived each run (deferred for v1 — see Non-Goals).
+
+Restated: the principle was never thin-vs-fat *harness* — it's *don't hardcode what should be swappable.* Here that means keep the fat harness (it's the product) and keep behavior in prompts + skills.
 
 ---
 
@@ -76,6 +89,7 @@ Each module has one job, a typed interface, and can be understood/tested alone.
 | `budget/` | Three hard stops: max-iteration, no-progress detection, token/$ ceiling. Checked every turn. | trace |
 | `config/` | Per-run config: goal, model overrides, caps, which verifier, worktree path. | — |
 | `prompts/*.md` | All three agents' system prompts as **editable markdown**, not buried in TS — so trace-reading → prompt-tuning is a one-file edit. | — |
+| `skills/` | Codified knowledge about the *target project* (conventions, build steps, known-gotchas) the generator + evaluator read so they don't re-derive the project each run. **Deferred for v1** (single-target hardcode); the "fat skills" half of the design principle above. | — |
 
 ### Proposed repo layout
 

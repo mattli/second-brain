@@ -1,17 +1,15 @@
 ---
 created_at: 2026-06-11
-last_updated: 2026-06-22
+last_updated: 2026-07-04
 ---
 
 # Geopolitics & World Order
 
-> TLDR: The post-1945 rules-based international order led by the US is fragmenting into a might-is-right multipolar system. Interconnected shooting wars, economic conflicts, and alliance realignment follow a recurring historical pattern — Dalio's "Big Cycle" — that has preceded every major power transition in the last 500 years.
+> TLDR: The post-1945 rules-based international order led by the US is fragmenting into a might-is-right multipolar system. Multiple active conflicts — Russia-Ukraine, Middle East, trade and technology wars — are interconnected fronts in what amounts to a world war by historical standards, following Dalio's "Big Cycle" pattern that has preceded every major power transition in the last 500 years. The US response combines AI-driven reindustrialization with a defense startup ecosystem ("American Dynamism") racing to rebuild domestic industrial capacity and critical technology leadership.
 
-## Overview
+## Recent Updates
 
-The current geopolitical landscape is defined by the simultaneous unraveling of several pillars of the postwar order: US military and economic dominance, multilateral institutions, and the norm that disputes are resolved through negotiation rather than force. Multiple active conflicts — Russia-Ukraine, Middle East theaters, trade and technology wars — are not isolated crises but interconnected fronts in what amounts to a world war by historical standards. Past "world wars" likewise consisted of interrelated conflicts that were slipped into without clear start dates or declarations of war.
-
-Two broad alliance blocs are consolidating: a US-aligned grouping (Europe, Israel, GCC states, Japan, Australia) and a China-Russia-Iran-North Korea axis, with allegiances measurable through UN voting, treaty commitments, economic ties, and leaders' statements. The cohesion and credibility of these alliances — especially whether the US can and will defend its partners — is the central variable shaping the next decade.
+- **2026-07-04:** Added American Dynamism defense startup data and critical technology leadership shift to [US Reindustrialization Strategy](#us-reindustrialization-strategy); removed stale Overview, folded alliance bloc framing into [Alliance Blocs and Strategic Chokepoints](#alliance-blocs-and-strategic-chokepoints)
 
 ## The Big Cycle Framework
 
@@ -37,6 +35,8 @@ Dalio argues the most reliable predictor of who wins a conflict is not raw power
 
 ## Alliance Blocs and Strategic Chokepoints
 
+Two broad alliance blocs are consolidating, with allegiances measurable through UN voting, treaty commitments, economic ties, and leaders' statements. The cohesion and credibility of these alliances — especially whether the US can and will defend its partners — is the central variable shaping the next decade.
+
 Key alliance structures:
 
 - **US-aligned:** NATO (Article 5), US-Japan, US-South Korea, US-Philippines, AUKUS, Abraham Accords / GCC partnerships
@@ -58,11 +58,15 @@ The aggregate probability of at least one major escalation exceeds 50%.
 
 ## US Reindustrialization Strategy
 
-The US response to this geopolitical landscape centers on reindustrialization through AI infrastructure — a strategy articulated by NVIDIA CEO Jensen Huang as a five-layer investment stack: energy, chips, infrastructure (land, power, data centers), AI models, and applications. The scale is enormous: tens of trillions of dollars in new computing infrastructure over the next decade, replacing systems built over the previous sixty years.
+The US response to this geopolitical landscape has two reinforcing prongs: AI-driven infrastructure build-out and a defense startup ecosystem racing to compress decades of procurement timelines.
 
-The reindustrialization is concentrated in advanced manufacturing — chip fabs, packaging plants, optical component factories, and data centers — rather than a return to commodity manufacturing. This targets precisely the kind of high-skilled, high-wage production work that the US has lost over the past several decades. Roughly 600,000 jobs have already been created in this build-out in just the last few years.
+**AI infrastructure.** NVIDIA CEO Jensen Huang articulates reindustrialization as a five-layer investment stack: energy, chips, infrastructure (land, power, data centers), AI models, and applications. The scale is enormous: tens of trillions of dollars in new computing infrastructure over the next decade, replacing systems built over the previous sixty years. The reindustrialization is concentrated in advanced manufacturing — chip fabs, packaging plants, optical component factories, and data centers — rather than a return to commodity manufacturing, targeting precisely the high-skilled, high-wage production work the US has lost. Roughly 600,000 jobs have already been created in this build-out.
 
-Energy policy is the binding constraint. Without sufficient energy production, no amount of chip fabs or data centers can be built. The current administration's pro-energy-growth stance is framed not as climate policy but as industrial prerequisite — the argument being that market demand from AI infrastructure can fund sustainable energy upgrades (solar, nuclear) without government subsidies for the first time.
+**Defense startups and American Dynamism.** The technology leadership gap is stark: the US once led in 60 of 64 critical technologies tracked by ASPI; China now leads in 57 and the US in only 7. [[source]](https://www.a16z.news/p/america-securing-next-250-years) The a16z "American Dynamism" thesis frames the startup ecosystem as a national security accelerant. Legacy defense primes once needed nearly 30 years to reach their first $100M program; the first generation of government-facing startups did it in 15 years; today's cohort — powered by AI, autonomy, and new acquisition pathways — is hitting those milestones in under 5 years. Anduril won its first program of record in 3 years; Saronic did it in under 3. [[source]](https://www.a16z.news/p/america-securing-next-250-years)
+
+The scope extends beyond defense into the full "shift left" electro-industrial stack — batteries, motors, chemicals, materials, mining — everything enabling domestic resilience and nearshored supply chains. Crucially, while startups are often headquartered in coastal tech hubs, scale manufacturing returns jobs to the heartland: Anduril's Arsenal-1 hyperscale factory in Columbus, Ohio, is expected to create over 4,000 direct jobs (the largest single job-creation project in the state's history), and Saronic's Louisiana shipyard expansion projects about 3,270 jobs at average pay roughly 46% above the parish average. [[source]](https://www.a16z.news/p/america-securing-next-250-years)
+
+**Energy as binding constraint.** Without sufficient energy production, no amount of chip fabs or data centers can be built. The current administration's pro-energy-growth stance is framed not as climate policy but as industrial prerequisite — the argument being that market demand from AI infrastructure can fund sustainable energy upgrades (solar, nuclear) without government subsidies for the first time.
 
 ## Taiwan's Dual Strategic Role
 
@@ -88,3 +92,4 @@ For investors and decision-makers, the key takeaway is that "back to normal" is 
 
 - [The Big Thing: We Are In A World War That Isn't Going To End Anytime Soon](https://raydalio.substack.com/p/the-big-thing-we-are-in-a-world-war) — Ray Dalio — Core framework: Big Cycle escalation model, 13-step sequence, alliance mapping, overextension thesis, flashpoint probability estimates, rules-based to might-based transition
 - AP EXCLUSIVE: Nvidia CEO Jensen Huang says society needs 'new social norms' in age of AI — Associated Press / Jensen Huang — US reindustrialization strategy, five-layer AI stack, energy as binding constraint, Taiwan dual role, export control trade-offs, Coherent partnership and domestic manufacturing scale-up
+- [America: The Next 250 Years](https://www.a16z.news/p/america-securing-next-250-years) — David Ulevitch / a16z — American Dynamism thesis, critical technology leadership shift (ASPI data), defense startup procurement acceleration (Anduril, Saronic), heartland manufacturing job creation, shift-left electro-industrial stack

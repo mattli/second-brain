@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-06-30
+last_updated: 2026-07-05
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-06-30
 
 ## Recent Updates
 
+- **2026-07-05:** Added loop-prompt-as-final-condition framing and starter template to [The Build Order](#the-build-order--prove-harden-automate) from AI Edge's beginner guide.
 - **2026-06-30:** Added HuaShu's IEEE paper contributions: [The Engineering Stack](#the-engineering-stack) taxonomy, five-moves-to-six-parts mapping in [Five Building Blocks](#five-building-blocks), five structural anti-patterns in [Failure Modes](#failure-modes-and-anti-patterns), Stripe case study in [Loops in Production](#loops-in-production), reinforcing cost cycle in [What Loops Don't Solve](#what-loops-dont-solve), and local vs. cloud scheduling axis.
 - **2026-06-27:** Added [Production Patterns](#production-patterns) section with six named patterns and CLI tooling, and [Failure Modes and Anti-Patterns](#failure-modes-and-anti-patterns) section from Greyling's reference repo.
 - **2026-06-27:** Added Zakariasson's five verification-target categories to [Verification](#verification-is-the-essential-feedback) and notification-channel human-in-the-loop pattern to [The Autonomy Ladder](#the-autonomy-ladder).
@@ -107,6 +108,8 @@ Concrete examples help calibrate. Good first loops are tasks where the work repe
 ## The Build Order — Prove, Harden, Automate
 
 The practitioners who ship loops that survive in production all follow the same sequence: first prove the task works by running it manually (one good prompt, verified by hand), then harden it (add the verifier gate, the stop condition, the state file), then automate it (schedule, trigger, run unattended). Skipping ahead — scheduling something you haven't made reliable by hand — is exactly how loops blow up while you sleep.
+
+The mental shift at the "prove" stage: a loop prompt is not an instruction, it's a *final condition* — you're telling the agent when to stop, not what to do. A practical starter template: `/loop [verifiable end state], only touching [scope], stop after [N] iterations, use [skills], use verifier agents for [checkpoint], and keep a memory file of all your work.` Three elements make or break the prompt: a verifiable end state, a scope constraint (which files, which folders, which tasks), and a stop rule (iteration cap or token budget).
 
 ## The Autonomy Ladder
 
@@ -301,4 +304,5 @@ The security tax scales with the [autonomy ladder](#the-autonomy-ladder) — a l
 - "Human in the /loop" — Eric Zakariasson (tweet thread, Jun 2026) ([link](https://x.com/ericzakariasson/status/2070493377267646797)) — practitioner loop setup: five verification-target categories by task type (score, QA pass, test suite, benchmark, count), notification channel as human-in-the-loop mechanism (Slack pings, reply-as-next-input), cloud execution for multi-hour loops, concurrent loop self-regulation heuristic (stop starting when three are waiting on review), explicitness gradient for prompt tuning
 - "Loop engineering: the 14-step roadmap from prompter to loop designer" — Codez / Lev Deviatkin (tweet thread, Jun 2026) ([link](http://linkedin.com/in/lev-deviatkin)) — 14-step three-tier progression (why/test → building blocks → build it right), 30-second tactical loop check (hard stop + human gate criteria), good vs bad first-loop examples, economic accessibility framing (who benefits vs who should skip), security tax (unreviewed code, skill injection, credential leakage, permission scope creep)
 - "Loop Engineering reference repo" — Cobus Greyling (GitHub, Jun 2026) ([link](https://github.com/cobusgreyling/loop-engineering)) — six named production patterns with cadence and token cost (Daily Triage, PR Babysitter, CI Sweeper, Dependency Sweeper, Changelog Drafter, Post-Merge Cleanup), L1/L2/L3 phased rollout per pattern, loop-audit CLI (readiness scoring) and loop-init CLI (starter scaffolding), primitives matrix (Grok vs Claude Code vs Codex), failure modes catalog and anti-patterns guide, pattern picker decision framework
+- "A Beginner's Guide to Loop Engineering" — AI Edge (tweet thread, Jul 2026) — beginner-accessible six-component anatomy (trigger, execution layer, verifier, stop rules, memory, skills/CLAUDE.md), loop-prompt-as-goal-condition framing (verifiable end state + scope constraint + stop rule), practical /loop template, pro tips (start with /goal, cap iterations, run /compact before long sessions)
 - "Loop Engineering" — HuaShu (IEEE-formatted paper, Jun 2026) ([link](https://huasheng.ai/orange-books)) — four-layer engineering stack (prompt → context → harness → loop), five moves of a single turn (discovery/handoff/verification/persistence/scheduling) mapped to six parts, five structural anti-patterns mapped one-to-one to skipped moves, generator/evaluator separation (GAN-inspired, independent context prevents self-persuasion), Stripe case study (1,300+ PRs/week, deterministic orchestrator, Goose fork, cattle-not-pets EC2), local vs. cloud scheduling axis, four hidden costs as reinforcing cycle (verification debt → comprehension rot → cognitive surrender → cost surprise), "faithful multiplier" thesis (same loop yields opposite outcomes by builder), three staying-in-control disciplines (sample regularly, cap budgets, keep human checkpoint permanent)

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-30
-last_updated: 2026-07-02
+last_updated: 2026-07-06
 status: work-in-progress
 type: design-spec
 ---
@@ -29,7 +29,7 @@ Source reference: `~/second-brain/resources/wiki/tools/loop-engineering.md`
 
 ## Non-Goals (v1)
 
-- No Docker sandbox yet (Phase 3).
+- No Docker sandbox in v1 — deferred as a *reliability* call for attended runs, not a blanket Phase-3 default; revisit on *security* grounds before unattended runs or untrusted-dependency exposure (see Sandboxing).
 - No scheduler / cron / unattended overnight runs yet (Phase 3).
 - No notification channel (Slack/Telegram pings) yet (Phase 3).
 - No automated hill-climbing loop that rewrites its own prompts (Phase 3).
@@ -45,7 +45,7 @@ Deferring these is deliberate — it follows the article's **prove → harden �
 
 | Decision | Choice | Rationale |
 |---|---|---|
-| **Substrate** | Standalone git repo; worktree isolation inner, Docker outer (deferred to Phase 3) | Literal "sandbox," reusable across every product, most modular. Not coupled to NanoClaw (which is a chat assistant, wrong shape, and would burn its shared Max budget). |
+| **Substrate** | Standalone git repo; git-worktree isolation (inner, v1) + Docker (outer). Docker deferral is a reliability call, not a blanket Phase-3 one — see Sandboxing. | Standalone repo = modularity + reuse, not coupled to NanoClaw (wrong shape, burns shared Max budget). Worktrees give git-disposability, *not* a security boundary; Docker is the real isolation and its timing is revisited on security grounds before untrusted-dependency or unattended exposure. |
 | **Target / verifier** | Pluggable `Verifier` interface; ship `TestSuiteVerifier` first | Deterministic + objective gate works on any codebase. Playwright design-taste gate added Phase 2. Interface = modularity backbone. |
 | **Adversarial shape** | Contract negotiation + blind eval | The article's proven pattern. Full three-way debate backfires (evaluator agrees with reasoning it sees; mutual debate converges on shared blind spots). |
 | **Tracing** | Rich human-readable JSONL + rendered markdown transcript | Trace-reading is the primary debugging loop. Automation on top (analyst sub-agent, hill-climbing) deferred. |
@@ -65,6 +65,24 @@ dev-harness is a different category: **the harness is the product.** The orchest
 The rule still binds on the *behavior-location* axis: don't hardcode behavior that should be externalized. Two places that lands here — (1) agent behavior stays in editable markdown (`prompts/*.md`), never buried in TS; (2) codified knowledge about the *target project* the harness is pointed at belongs in a **skills layer** the generator + evaluator read, not baked into prompts or re-derived each run (deferred for v1 — see Non-Goals).
 
 Restated: the principle was never thin-vs-fat *harness* — it's *don't hardcode what should be swappable.* Here that means keep the fat harness (it's the product) and keep behavior in prompts + skills.
+
+---
+
+## Sandboxing — Two Senses
+
+"Sandbox" carries two meanings in this spec; they have different answers.
+
+1. **Standalone project** (organizational) — own repo, pointable at any project, not bolted into NanoClaw. Buys modularity and reuse, *not* containment. Unambiguously right (see Substrate).
+2. **Execution isolation** (safety) — the boundary around what a run can do to the host. This is the live question.
+
+On the isolation axis the two layers are **not** interchangeable:
+
+- **Git worktrees (inner)** isolate git *state* — disposable branches, cattle-not-pets, a bad run thrown away. But code inside a worktree still runs as you, with your filesystem, network, and env (incl. API keys). Worktrees are git-hygiene, **not a security boundary.**
+- **Docker (outer)** is the actual boundary — confined filesystem, controllable network, no host secrets unless mounted.
+
+Why isolation isn't only a Phase 3 concern: Docker is filed under *automate* (Phase 3) alongside scheduling, which treats sandboxing as an *autonomy* problem. But half of what it guards against is **arbitrary code execution**, live from the first attended run — an honest destructive command, or a dependency's install hook, both faster than you can react. "Attended" stops a *runaway loop*; it does not stop a *single bad command*. Autonomy risk and code-execution risk are different clocks, and flat Phase-3 deferral collapses them.
+
+**v1 posture:** worktree-only attended is a *defensible risk acceptance* — but a conscious one, not a category default. Cheap mitigations even without full Docker: run the loop's working dir well away from the vault and anything precious, and scope the generator's shell env to what a run needs (don't hand it the whole `.env`). Pulling a minimal container forward is low-cost here since Docker already runs on the Mini for NanoClaw — which weakens the main reason to defer it.
 
 ---
 

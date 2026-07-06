@@ -1,13 +1,13 @@
 ---
 created_at: 2026-06-30
 last_updated: 2026-07-06
-status: work-in-progress
+status: design-complete
 type: design-spec
 ---
 
 # dev-harness — Adversarial Agentic-Dev Loop (Design Spec)
 
-> **Status: WORK IN PROGRESS.** Draft for review. Decisions below are approved-in-principle from the brainstorming session on 2026-06-30; treat open questions at the bottom as live.
+> **Status: DESIGN COMPLETE.** All open questions resolved 2026-07-06 (see [Resolved Decisions](#resolved-decisions)). Ready to turn into a step-by-step implementation plan. (The Docker/execution-isolation timing in [Sandboxing](#sandboxing--two-senses) is a live design thread, not a blocking open question.)
 
 ## TLDR
 
@@ -51,7 +51,7 @@ Deferring these is deliberate — it follows the article's **prove → harden �
 | **Tracing** | Rich human-readable JSONL + rendered markdown transcript | Trace-reading is the primary debugging loop. Automation on top (analyst sub-agent, hill-climbing) deferred. |
 | **Stack** | TypeScript, Claude Agent SDK | First-class SDK support; matches builder fluency (NanoClaw). |
 | **Models by role** | Planner + generator = Opus; evaluator configurable (Opus default, Sonnet option); all per-run overridable | Planning errors cascade → strongest model. |
-| **Hard stops** | max-iteration, no-progress detection, token/$ ceiling — all v1 | Article is emphatic: these ship day one, not later. |
+| **Hard stops** | max-iteration, no-progress detection, token/$ ceiling, run wall-clock deadline — all v1 | Article is emphatic: these ship day one, not later. Defaults in [Loop-Tuning Defaults](#loop-tuning-defaults-v1). |
 | **v1 autonomy** | Attended core loop (autonomy ladder L1–L2) | Prove loop quality by hand before automating. |
 
 ---
@@ -104,7 +104,7 @@ Each module has one job, a typed interface, and can be understood/tested alone.
 | `workspace/` | Creates/cleans git worktrees per run (disposable — "cattle not pets"). | — |
 | `trace/` | `TraceWriter` (JSONL events) + `TranscriptRenderer` (markdown for eyeballing). | — |
 | `state/` | Durable run state as JSON (what was tried, contract version, scores, status). Survives restart. | — |
-| `budget/` | Three hard stops: max-iteration, no-progress detection, token/$ ceiling. Checked every turn. | trace |
+| `budget/` | Hard stops checked every turn: max-iteration, no-progress detection, token/$ ceiling, run wall-clock deadline. Defaults in Loop-Tuning Defaults. | trace |
 | `config/` | Per-run config: goal, model overrides, caps, which verifier, worktree path. | — |
 | `prompts/*.md` | All three agents' system prompts as **editable markdown**, not buried in TS — so trace-reading → prompt-tuning is a one-file edit. | — |
 | `skills/` | Codified knowledge about the *target project* (conventions, build steps, known-gotchas) the generator + evaluator read so they don't re-derive the project each run. **Deferred for v1** (single-target hardcode); the "fat skills" half of the design principle above. | — |
@@ -150,14 +150,14 @@ loop run --goal "build X" --project ./app
       [DECIDE]    score ≥ threshold → sprint done, next sprint
                   else → findings back to generator → re-generate
                          (budget / no-progress / max-iter checked EACH turn)
-  → final state written → transcript rendered → worktree left for YOUR review (merge gate)
+  → final state written → transcript rendered → run branch left in target repo for YOUR review (merge gate)
 ```
 
 ### The three adversarial guarantees, made structural
 
 1. **Contract negotiation is its own phase, before any code.** Generator and evaluator pass markdown files back and forth ("I'll build X, verify by testing Y" / "scope too big, tests too weak, missed edge case Z") until both agree on granular, testable criteria. Contract granularity drives critique quality — vague criteria → vague critiques the generator shrugs off. The evaluator later grades against *the contract*, not the planner's original spec.
 2. **Blind evaluation.** The evaluator runs in a fresh SDK session seeing only `contract + artifact` — never the generator's reasoning or transcript. Anthropic found feeding the evaluator the generator's traces made it *worse*: it starts agreeing with the reasoning that produced the output instead of judging the output on its own terms.
-3. **Human merge gate.** The loop never merges. It leaves the worktree for your review (autonomy ladder L2 — "a human must review before anything irreversible").
+3. **Human merge gate.** The loop never merges. On a passing run it commits to a per-run branch (`run/<goal-slug>-<run_id>`) in the *target* repo's local git and stops; the rendered transcript is your review artifact, and you merge/PR it yourself. (Autonomy ladder L2 — "a human must review before anything irreversible.") Auto-draft-PR handoff is a Phase 3 unattended-mode feature — see [Resolved Decisions](#resolved-decisions).
 
 ### Separation of concerns: verifier vs evaluator
 
@@ -170,10 +170,28 @@ Keeping them separate means the deterministic gate is unit-testable without any 
 
 ## Error Handling & Stops
 
-- `budget/` checked every turn → on any of the three stops (max-iteration, no-progress, token/$ ceiling), clean halt + reason written to state and trace.
+- `budget/` checked every turn → on any stop (max-iteration, no-progress, token/$ ceiling, run wall-clock deadline), clean halt + reason written to state and trace.
 - Transient API/SDK errors → bounded retry at the agent-invoke layer (mirrors NanoClaw's credential-proxy retry pattern: bounded attempts + wall-clock deadline).
 - Any phase failure → traced, state marked, graceful halt. Never corrupt state; never leave the loop turning in place.
 - Writes idempotent where feasible; worktree is disposable, so a failed run is thrown away, not repaired.
+
+---
+
+## Loop-Tuning Defaults (v1)
+
+Starting dial positions, all per-run overridable via `config/`. Philosophy per [[loop-engineering]]: **start strict, loosen once real runs calibrate** (the explicitness gradient). The two host-level backstops — the per-run `$` ceiling and the run wall-clock deadline — trip regardless of per-sprint logic, so a run always halts gracefully even if a sprint's own caps misbehave.
+
+| Knob | Default | Rationale |
+|---|---|---|
+| Score scale | 0–100 rubric | Evaluator grades artifact vs contract on a weighted 0–100 rubric. Legible in traces. |
+| Advance threshold | **≥ 85** | Sprint passes only at 85+. Strict start — churn beats advancing mediocre work. Most likely knob to loosen after calibration. |
+| No-progress | **2 flat iterations** (< +5 pts each) | Two consecutive re-generations improving < 5 pts → "stuck," halt the sprint. Catches thrashing early. |
+| Max iterations / sprint | **6** | Hard cap on regenerate cycles per sprint regardless of score. Backstop if no-progress doesn't trip. |
+| Negotiation round cap | **5 rounds** | One round = generator proposes ⇄ evaluator critiques. Force a contract freeze at 5. (Retro-game demo's "27" was *criteria* count, not rounds.) |
+| Per-run $ ceiling | **$10** | Hard dollar stop, checked every turn. A runaway costs a coffee, not a paycheck. |
+| Run wall-clock deadline | **30 min** | v1 is attended; a stuck run can't silently burn while you step away. (Distinct from the per-invoke retry deadline in Error Handling.) |
+
+Worst-case per-sprint spend ≈ (5 negotiation rounds × 2 agents) + (6 iterations × generate + evaluate); the `$10` / 30-min ceilings are the real backstops. Expect the **85 threshold** (may over-churn) and the **$10 ceiling** (an ambitious multi-sprint goal on Opus can exceed it — for v1 prove-out, hitting the ceiling and stopping *is* correct, informative behavior) to need the earliest tuning.
 
 ---
 
@@ -187,7 +205,7 @@ Keeping them separate means the deterministic gate is unit-testable without any 
 
 ## Testing Strategy
 
-- **Unit** — pure modules against their interfaces: `verifier`, `budget` (all three stops), contract-agreement detection, `trace` writer, `state` serialization.
+- **Unit** — pure modules against their interfaces: `verifier`, `budget` (all four stops), contract-agreement detection, `trace` writer, `state` serialization.
 - **Integration** — one cheap-model test: does the loop turn, freeze a contract, and halt on budget?
 - **E2E smoke** — trivial goal ("a function returning 2+2 with a passing test") through the full loop under a tight cap. Proves the whole pipeline end to end for a few cents.
 
@@ -201,14 +219,20 @@ Keeping them separate means the deterministic gate is unit-testable without any 
 
 ---
 
-## Open Questions (to resolve on next pass)
+## Resolved Decisions
 
-1. **Name** — resolved: `dev-harness` (chosen 2026-07-01; plain/internal, not branded).
-2. **Score threshold & no-progress definition** — what score gate advances a sprint, and how many flat iterations count as "no progress"? Probably start explicit/strict, then loosen (Zakariasson's explicitness gradient).
-3. **Negotiation round cap** — how many contract back-and-forths before forcing a freeze? (Retro-game demo negotiated 27 *criteria*; that's criteria count, not round count — need a round cap to bound cost.)
-4. **Budget defaults** — starting token/$ ceiling and max-iteration count for a typical run.
-5. **Where does the built code land on approval?** Merge worktree → branch → you PR it yourself? Define the handoff.
-6. **Repo location** — where does the `dev-harness` repo itself live on disk (`~/dev-harness`?), and does it get its own GitHub remote (noreply-email caveat applies on first push)?
+Open questions from the 2026-06-30 brainstorm, resolved 2026-07-06.
+
+1. **Name** — `dev-harness` (chosen 2026-07-01; plain/internal, not branded).
+2. **Score threshold & no-progress** — advance a sprint at **≥ 85/100**; **no-progress = 2 consecutive re-generations improving < 5 pts**. Strict start, loosen after calibration. See [Loop-Tuning Defaults](#loop-tuning-defaults-v1).
+3. **Negotiation round cap** — **5 rounds** (generator proposal ⇄ evaluator critique), then force a contract freeze. See Loop-Tuning Defaults.
+4. **Budget defaults** — **$10** per-run hard `$` ceiling, **30-min** run wall-clock deadline, **6** max iterations/sprint. All per-run overridable. See Loop-Tuning Defaults.
+5. **Approval handoff** — v1 leaves finished work on a per-run branch (`run/<goal-slug>-<run_id>`) in the *target* repo's local git; the rendered transcript is the review artifact; you merge/PR manually. **Auto-draft-PR handoff deferred to Phase 3** (unattended mode) — it requires a *pre-existing* remote and never auto-creates one (use a remote only if one already exists, else fall back to local). Rationale: pushing to a remote is an outward-facing action; v1 stays fully contained, and a PR buys little while you're watching.
+6. **Repo location** — the dev-harness repo lives at **`~/dev-harness`** as a standalone **private** GitHub repo, remote created upfront. Set repo-local `user.email` to the noreply form (`mattli@users.noreply.github.com`) **before the first commit** to avoid the GH007 private-email rejection.
+
+### Still live (not blocking the implementation plan)
+
+- **Docker / execution-isolation timing** — whether to pull a minimal container forward into v1 rather than defer to Phase 3, on *security* (not autonomy) grounds. See [Sandboxing](#sandboxing--two-senses). Tracked as a design thread; v1 can start worktree-only-attended (a conscious risk acceptance) while this is decided.
 
 ---
 

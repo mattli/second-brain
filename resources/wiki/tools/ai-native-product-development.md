@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-01
+last_updated: 2026-07-07
 ---
 
 # AI-Native Product Development
@@ -9,6 +9,7 @@ last_updated: 2026-07-01
 
 ## Recent Updates
 
+- **2026-07-07:** Added Lesse's "attack the hard part" decision framework and Stripe/Anthropic case studies to [Attacking the Hard Part](#attacking-the-hard-part)
 - **2026-07-01:** Added Gothelf's behavior-based OKR framework for AI features to [Measuring AI Products Through Human Behavior](#measuring-ai-products-through-human-behavior)
 - **2026-06-24:** Added Dewey's reflective thought framework for hypothesis-driven PM to [Hypothesis-Driven PM](#hypothesis-driven-pm-dewey); removed stale Overview (folded framing into TLDR)
 
@@ -263,6 +264,22 @@ Deano (Owner, Apr 2026) articulates the most extreme version of the small-elite-
 
 Key contrast with [AI Organization Design](../landscape/ai-organization-design.md): Block replaces hierarchy with an intelligence layer. Owner replaces hierarchy with extreme talent density and minimal process. Both bet against middle management but for different reasons — Block because AI can coordinate, Owner because exceptional people don't need coordination.
 
+## Attacking the Hard Part
+
+Katelyn Lesse (Anthropic, Jul 2026) articulates a decision framework for when teams face an obviously hard problem at the center of a project. The core test: can you avoid the hard part and still succeed? If yes, avoid it. If no, the incremental path isn't actually safe — it's just delaying the inevitable failure.
+
+**The decision framework.** When a project has a known hard part, teams face two paths. The safe, incremental approach minimizes visible risk but typically works around the core challenge rather than solving it. The bold approach attacks the hard part head-on with a big, risky swing. Lesse's heuristic for choosing: hold the risky swing constant — assume it works. Is the rest of the plan solid enough that the overall project succeeds? If yes, and you genuinely want the project to succeed, take the swing.
+
+**Case study: Stripe v2 Accounts.** Stripe needed a unified abstraction (v2 accounts) to replace multiple disconnected models (v1/accounts, v1/customers). The hard part: every API and piece of business logic across Stripe's codebase had to learn the new abstraction. The safe path — standing up the new model alongside the old ones with two-way syncing — avoided the hard part but introduced a lurking problem: syncing three underlying models per account would be brittle at scale. After exploring multiple avoidance paths, a small group identified "encapsulation" — building an interface to replace every read and write callsite. The estimate was engineering years, and everyone had previously dismissed it. But when they asked "if encapsulation works, does the project succeed?", the answer was yes. They empowered a small group of engineers who were fired up by the challenge, used codemods to keep it centralized rather than federating across dozens of teams, and shipped it.
+
+**Case study: Anthropic [Managed Agents](../tools/agentic-engineering.md).** The first version ran everything — Claude's reasoning loop, code execution, MCP credentials — in a single container. The team treated latency, reliability, and credential isolation as separate problems and patched each one. Eventually they admitted all three traced back to the single-container architecture. Fixing it meant separating the brain (harness loop) from the hands (code execution) — a full distributed-system rearchitecture close to a public beta launch. They asked the same question: could they go to beta on the existing architecture and succeed? They couldn't. They delayed, rebuilt, and the reliability and latency problems vanished [[source]](https://x.com/KatelynLesse/status/2048092458685501837).
+
+**Two prerequisites for taking the big swing.** First, you need people who get fired up about the challenge — not consensus, just the ones who see the most interesting problem they've ever gotten to tackle. Give them ownership of the approach. Second, leadership must personally take accountability and cover the team. "If it doesn't work out, it's on you." This requires the leader to genuinely believe both that the project matters and that the bold path is necessary.
+
+**AI is shifting the line.** Some previously daunting swings are becoming tractable — Lesse notes that Stripe's encapsulation effort might not have been so daunting with coding agents. But AI leaves teams with the truly hardest parts. The crux question remains unchanged: if you can't avoid the hard part and still succeed, the safe path is just pushing your failure out.
+
+This connects to the [Delta Force Teams](#delta-force-teams-owner) philosophy (empowering exceptional individuals with full ownership), [Planning in the AI Era](#planning-in-the-ai-era) (choosing what matters over what's easy), and the [bottleneck cascade](#the-bottleneck-cascade-andrew-ng) (as AI removes engineering bottlenecks, the remaining hard parts become more salient).
+
 ## Living Software vs. Tool-Like Software
 
 Jack Cheng (Every, Apr 2026) identifies a fundamental tension in AI-accelerated development: software exists on a spectrum between two types, and AI coding acceleration is breaking the social contract of one of them.
@@ -484,3 +501,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "must read" — Dan Shipper (tweet, May 2026) — pointer to Marcus Moretti's agent-native PM guide
 - "How We Think: A Practical Guide for PM Work" — George / prodmgmt.world (tweet, Jun 2026) — Dewey's reflective thought applied to PM: five-phase inquiry loop, hypothesis-driven feature development, assumption ledger, PRD if-then template, corroboration review
 - "How to write OKRs for an AI product" — Jeff Gothelf (Jun 2026) ([link](https://jeffgothelf.com/blog/how-to-write-okrs-for-an-ai-product/)) — behavior-based AI product OKRs: outcome/calibration/trust KR framework, "Who does what by how much?" formula, measure the human not the machine
+- "You can't avoid the hard part" — Katelyn Lesse (tweet, Jul 2026) ([link](https://x.com/KatelynLesse/status/2048092458685501837)) — decision framework for bold vs. incremental paths, Stripe v2 Accounts and Anthropic Managed Agents case studies, leadership accountability for big swings

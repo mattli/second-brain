@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-28
+last_updated: 2026-07-07
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-06-28
 
 ## Recent Updates
 
+- **2026-07-07:** Added Thariq's unknowns framework — map-vs-territory metaphor and phased discovery techniques — to [Discovering Unknowns](#discovering-unknowns-thariq)
 - **2026-06-28:** Added Google Agents CLI to [Tools Noted](#tools-noted); added eval adoption gap stat to [Harness Design](#harness-design-seeing-like-an-agent). Removed stale Overview; content was redundant with TLDR.
 
 ## The Delegation–Collaboration Split
@@ -66,6 +67,33 @@ SysLS distills months of production agentic work into a minimalist philosophy: s
 **The consolidation cycle.** As rules and skills accumulate, they start contradicting each other and bloating context — the same problem they were designed to solve. Periodically consolidate: have agents audit the rule set, surface contradictions, and merge redundant entries. Performance degrades, you clean up, "and it will feel like magic again. That's it. That's really the secret."
 
 **Let frontier companies do the R&D.** Useful patterns (planning before implementation, skills, memory, subagents) get absorbed into base products. If something is genuinely valuable, the foundation companies — who are the heaviest users of their own tools — will ship it. "Just update your CLI tool of choice every once in awhile and read what new features have been added. That's MORE than sufficient."
+
+## Discovering Unknowns (Thariq)
+
+Thariq (Anthropic, Claude Code team) frames the core bottleneck of agentic work as **unknowns** — the gap between the map (your prompts, skills, and context) and the territory (the codebase, the real world, its actual constraints). With Fable-class models, work quality is no longer bottlenecked by model capability but by the operator's ability to surface and clarify unknowns before the agent encounters them mid-run.
+
+**The four types of unknowns** (the Rumsfeld matrix applied to agentic work):
+
+- **Known knowns** — what's in your prompt. What you explicitly tell the agent you want.
+- **Known unknowns** — what you haven't figured out yet but are aware of. You know you don't know the right database schema.
+- **Unknown knowns** — what's so obvious you'd never write it down, but would recognize if you saw it done wrong. Taste, layout preferences, implicit conventions.
+- **Unknown unknowns** — what you haven't considered at all. Edge cases in the codebase, better approaches you don't know exist, quality levels you haven't imagined.
+
+The best agentic coders have relatively few unknowns — they are deeply in sync with both the codebase and the model's behaviors. But they also *assume* unknowns exist and plan for them. Reducing unknowns is the skill of agentic coding, and Claude itself is the best tool for doing it.
+
+**Pre-implementation discovery techniques:**
+
+- **Blind spot pass** — ask Claude to find your unknown unknowns before you start building. Give it context about your experience level and what you know. "I'm working on adding a new auth provider but I know nothing about the auth modules in this codebase. Can you do a blindspot pass to help me figure out my relevant unknown unknowns?" Especially valuable when working in unfamiliar parts of the codebase.
+- **Brainstorms and prototypes** — for surfacing unknown knowns (criteria you can only define when you see them). Ask for multiple design directions to react to rather than articulating requirements upfront. Visual design and UX are prime examples — difficult to describe, easy to evaluate. "Make me an HTML page with 4 wildly different design directions so I can react to them." This also prevents setting too narrow or too wide a scope.
+- **Interviews** — ask Claude to interview you about ambiguities, one question at a time, prioritizing questions where the answer would change the architecture. This surfaces unknowns you couldn't have found by brainstorming alone.
+- **References as specification** — when you can't describe what you want, point Claude at source code that implements the behavior you need. Source code is a richer reference than screenshots or documentation because it captures structure, edge-case handling, and implementation decisions. Claude Design uses this same principle — it reads the underlying code of a reference component, not just its visual appearance.
+- **Implementation plans with decision surfaces** — ask for plans that lead with the parts most likely to change: data models, type interfaces, UX flows. Bury mechanical refactoring at the bottom. This lets Claude surface unknowns you'd otherwise discover mid-implementation.
+
+**During implementation:** keep a temporary `implementation-notes.md` where the agent logs deviations from the plan. "If you hit an edge case that forces you to deviate from the plan, pick the conservative option, log it under 'Deviations', and keep going." No amount of planning eliminates unknown unknowns — the notes file captures them for the next attempt.
+
+**Post-implementation:** two techniques for closing the loop. First, package the prototype, spec, and implementation notes into explainer artifacts — this accelerates buy-in by showing reviewers you accounted for the unknowns they would have anticipated. Second, ask Claude to quiz you on the changes. Reading diffs gives only surface understanding; a quiz forces comprehension of behavior changes across existing code paths. "Give me an HTML report on the changes with context and intuition, and a quiz at the bottom that I must pass." Only merge after passing.
+
+**The instructing balance:** being too specific makes Claude follow instructions even when a pivot is better; being too vague lets it default to industry best practices that may not fit. The unknowns framework resolves this — you don't need to specify everything upfront if you've systematically reduced the gap between your map and the territory. This complements the [SysLS principle](#practitioner-principles-sysls) of separating research from implementation — Thariq's techniques are how you do the research phase well.
 
 ## Harness Design: "Seeing Like an Agent"
 
@@ -487,3 +515,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Loops explained: Claude, GPT, Mira and what actually works" — Anatoli Kopadze (tweet thread, Jun 2026) ([link](https://x.com/AnatoliKopadze/status/2068328135611822149/?rw_tt_thread=True)) — beginner-accessible loop explainer: four-box test for when loops are worth building, cost-per-accepted-change as key metric, prove-then-harden-then-automate build order
 - "We've partnered with @Vercel" — NanoClaw (tweet, Apr 2026) — NanoClaw + Vercel approval system for AI actions in Slack/WhatsApp/Teams
 - "Karpathy's Agentic Engineering Finally Has Proper Tooling" — Akshay (tweet thread, Jun 2026) ([link](https://x.com/akshay_pachaar/status/2070860837448040832/?rw_tt_thread=True)) — Google Agents CLI walkthrough: 7 injected ADK skills, full-lifecycle from scaffold to deploy, eval adoption gap stat (89% observability vs 52% evals)
+- "A Field Guide to Fable: Finding Your Unknowns" — Thariq (tweet thread, Jul 2026) — map-vs-territory metaphor for agentic work, four types of unknowns (Rumsfeld matrix), phased discovery techniques (blind spot pass, brainstorms, interviews, references, implementation plans, quizzes)

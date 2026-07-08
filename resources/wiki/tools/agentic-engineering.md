@@ -9,6 +9,7 @@ last_updated: 2026-07-08
 
 ## Recent Updates
 
+- **2026-07-08:** Added Anthropic's advisor/orchestrator benchmark data (92%@63% cost, 96%@46% cost) to [Cost-Routing](#cost-routing-for-production-systems) and cached context sharing to [Managed Agents](#managed-agents-anthropic)
 - **2026-07-08:** Added Replit's continual learning pipeline — ViBench, Telescope trace clustering, and production self-improvement loop — to [Self-Improving Agents](#self-improving-agents)
 - **2026-07-07:** Added Thariq's unknowns framework — map-vs-territory metaphor and phased discovery techniques — to [Discovering Unknowns](#discovering-unknowns-thariq)
 - **2026-06-28:** Added Google Agents CLI to [Tools Noted](#tools-noted); added eval adoption gap stat to [Harness Design](#harness-design-seeing-like-an-agent). Removed stale Overview; content was redundant with TLDR.
@@ -195,6 +196,8 @@ Not every step in a self-improving system needs the top-tier model. Teams runnin
 
 The pattern: **orchestrator on the frontier model, workers on the fast model, graders on the cheap model, fallback to the strong model on classifier blocks**.
 
+Anthropic's own benchmarks quantify the savings from two variants of this pattern. In the **advisor pattern**, a Sonnet-class executor calls a Fable-class model for guidance — typically once per task for strategic steering while the executor handles the bulk of the work. On SWE-bench Pro, this recovers ~92% of the frontier model's score at ~63% of the cost. In the **orchestrator pattern**, a Fable-class model plans and delegates to Sonnet-class workers. On BrowseComp, the orchestrator configuration achieves 96% of solo-frontier performance at 46% of the price, because token-heavy research is delegated to the cheaper workers [[source]](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool).
+
 **Personal agent economics.** At the other end of the scale, a single-purpose personal agent (e.g., a Telegram bot backed by Sonnet-class on a $4–6/month VPS) runs at roughly $1–5/month in API costs for ~50 messages/day. The entire stack — hosting, API, and deployment — fits under $10/month. This makes personal agents economically viable as always-on utilities rather than experiments, and the deployment is trivial: Claude Code generates the bot code from a plain-English description, systemd keeps it running, and skills (web search, note-taking, scheduled briefings) bolt on as incremental prompts.
 
 ### Safety Boundary as Architecture Constraint
@@ -314,6 +317,8 @@ Anthropic's hosted agent infrastructure (April 2026). The key insight: harnesses
 **Many brains, many hands:** Multiple orchestrator agents can share hands (sandboxes) — and can pass hands to each other. The harness doesn't know whether the sandbox is a container, a phone, or a Pokémon emulator.
 
 The design philosophy mirrors Unix: virtualize components into general interfaces (like `read()` being agnostic to disk hardware) that outlast any specific implementation underneath. See the Anthropic engineering blog: "Scaling Managed Agents: Decoupling the brain from the hands."
+
+**Cached context across sub-agents:** Each sub-agent in [Managed Agents](#managed-agents-anthropic) keeps its own prompt cache, so repeat calls within the same sub-agent don't pay full price for the same context twice. This makes both the advisor and orchestrator cost-routing patterns above more economical at scale — the frontier model's cache persists across its sparse advisory calls, and each worker's cache persists across its dense execution steps.
 
 **In production — Spiral:** Every's writing tool Spiral is one of the first products using Managed Agents' multi-agent capabilities in production. When a user requests multiple drafts, a managed agent spins up multiple Opus-class subagents to write drafts in parallel, cutting response time by 20–30 seconds per draft. This demonstrates the "many brains, many hands" architecture working at product scale — orchestration as a feature, not infrastructure overhead.
 
@@ -532,3 +537,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Karpathy's Agentic Engineering Finally Has Proper Tooling" — Akshay (tweet thread, Jun 2026) ([link](https://x.com/akshay_pachaar/status/2070860837448040832/?rw_tt_thread=True)) — Google Agents CLI walkthrough: 7 injected ADK skills, full-lifecycle from scaffold to deploy, eval adoption gap stat (89% observability vs 52% evals)
 - "A Field Guide to Fable: Finding Your Unknowns" — Thariq (tweet thread, Jul 2026) — map-vs-territory metaphor for agentic work, four types of unknowns (Rumsfeld matrix), phased discovery techniques (blind spot pass, brainstorms, interviews, references, implementation plans, quizzes)
 - "Continual Learning for Agents" — Michele Catasta / Replit (tweet, Jul 2026) — three-layer continual learning (model/harness/context), ViBench vibe coding benchmark, Telescope trace clustering, production self-improvement loop, human judgment insertion points
+- "A few patterns we frequently use with Fable 5" — ClaudeDevs (tweet, Jul 2026) ([advisor docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool), [cookbook](https://github.com/anthropics/claude-cookbooks/blob/main/managed_agents/CMA_plan_big_execute_small.ipynb)) — advisor pattern (92% of Fable score at 63% cost on SWE-bench Pro), orchestrator pattern (96% at 46% cost on BrowseComp), cached context sharing across Managed Agents sub-agents

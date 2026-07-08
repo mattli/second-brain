@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-27
+last_updated: 2026-07-08
 ---
 
 # LLM Knowledge Bases
@@ -9,6 +9,7 @@ last_updated: 2026-06-27
 
 ## Recent Updates
 
+- **2026-07-08:** Added [The Scaling Wall](#the-scaling-wall) section — retrieval ceiling, identity gap, and OWASP memory-poisoning risk; expanded GBrain and Claude Code entries with concrete scaling limits.
 - **2026-06-27:** Removed stale Overview; folded Karpathy attribution and "ideas as text" framing into [TLDR](#llm-knowledge-bases).
 
 ## Architecture
@@ -49,6 +50,10 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 **Tw93's learning workflow:** A structured pattern for converting learning into output in the AI era. Stages: collect high-quality material → read and filter → build mental map → outline → draft → refine with AI → publish. The key principle: *"AI is most useful when attached to real output."* The workflow treats AI as a final-stage refinement tool applied after the human has already done the sense-making work, not as a shortcut that replaces it. Also introduced the Waza `/learn` skill — open-source Claude Code skill that scaffolds this workflow, allowing agents to execute the entire pipeline from a topic input.
 
 **Familiar (Avid):** Full vault system with 13 agents, cron-automated capture/processing/review, KIMI Work desktop agent for local-first operation. Designed as infrastructure: MCP server exposure makes the vault queryable by any agent in the stack. Open source at [github.com/codejunkie99/familiar-second-brain](https://github.com/codejunkie99/familiar-second-brain). See § File > App for architecture details.
+
+**GBrain (Garry Tan):** Open-sourced as the brain behind Tan's own agents. Follows the LLM Wiki pattern — knowledge lives as markdown in a git "brain repo" with a CLAUDE.md-style schema — but adds a knowledge graph auto-built from entity references. What makes it work at 146,646 pages (not Karpathy's ~100): GBrain doesn't query the markdown directly. It syncs the repo into Postgres — pgvector for semantic search, tsvector for keyword search, Reciprocal Rank Fusion to combine them. The markdown is the interface you edit; the database is what answers your questions. The clearest proof that crossing the flat-file ceiling means building a search engine underneath.
+
+**Claude Code auto memory:** Ships on by default since v2.1.59. Memory lives at `~/.claude/projects/<project>/memory/` as plain markdown — structurally the LLM Wiki almost line-for-line. `MEMORY.md` is a concise index loaded every session; topic files like `debugging.md` are read on demand. No embeddings, no vector store. Anthropic caps it hard: only the first 200 lines or 25KB of the index load per session, memory is scoped to one git repo, and it is "machine-local" — explicitly not shared across machines or cloud environments. The company that could build any retrieval system chose plain files, and the price is a memory that cannot leave your laptop or your repo. That is not a bug — it is the pattern's ceiling, drawn by the people who know it best.
 
 **Community tools mentioned in gist comments:**
 - qmd (by Tobi Lutke) — local search engine for markdown with hybrid BM25/vector search and LLM re-ranking, CLI + MCP server
@@ -159,6 +164,18 @@ Stanford researchers exposed a fundamental scaling limit in RAG systems called "
 
 This validates the LLM Wiki approach: compiled, cross-referenced markdown files where synthesis is done once and kept current — rather than re-derived via vector search on every query. At moderate scale (~100 sources, hundreds of pages), agent-navigable file structure with backlinks and index files outperforms RAG without the scaling cliff.
 
+## The Scaling Wall
+
+Every second brain implementation, once it grows past a toy vault, hits the same two walls in the same order.
+
+**First, retrieval.** The "just read the index" trick works until the index no longer fits in the context window. [Karpathy](../people/andrej-karpathy.md) drew the line at ~100 sources and pointed to hybrid BM25/vector search past it. Anthropic drew it at 200 lines and a single machine. GBrain and the Obsidian plugins arrive at the same answer from different directions: a vector index under the files. For every implementation that crossed this line, the files were never the retrieval system — the database underneath was. A folder of markdown is a good way to store knowledge and a bad way to find it.
+
+**Second, identity.** A second brain compiles knowledge about a corpus — what your documents say about a topic. That is different from remembering a user: preferences, past decisions, what an agent tried in a different app yesterday. A vault has no notion of identity. Claude Code's memory is bound to one repository on one machine because a pile of files has no way to know *whose* memory it is or to follow that person across sessions, machines, and apps. The moment you need memory scoped to a person rather than a document set, you need something the file-system pattern cannot provide: identity-tagged storage with cross-app retrieval.
+
+**Third, security.** Because a second brain trusts whatever is written into it, the files are an attack surface. In December 2025, OWASP named Memory and Context Poisoning as ASI06 in its Top 10 for Agentic Applications — a dedicated top-tier risk in which attacker-controlled content persists in memory and is trusted across sessions, long after a prompt injection would have reset. A vault the agent reads on every startup is exactly that surface. The risk scales with openness: the more sources an agent ingests, the larger the window for poisoned content to enter the memory layer.
+
+None of this makes the pattern bad. For a personal wiki of a few hundred notes, or one repo's build quirks, files plus keyword search are genuinely enough. The wall is about scale, multiple agents, and multiple apps — not about note-taking.
+
 ## Context Engineering vs RAG
 
 Nyk (Apr 2026) argues RAG was an engineering workaround for small context windows — you couldn't fit the whole document, so you chunked, embedded, searched, and injected. With Claude Opus 4.6 at 1M tokens (750K words, 3,000 pages) and Gemini 3 Pro at 2M, context capacity grew 500x in three years. The bottleneck moved from retrieval to curation. "70% of LLM errors come from bad context, not bad models."
@@ -211,3 +228,4 @@ The standard coexists with `robots.txt` (access policy) and `sitemap.xml` (exhau
 - "NotebookLM alternatives I'm actually using in 2026 (after getting burned by Plus)" — Realistic-Spare97 (Reddit r/notebooklm, May 2026): Audio learning tool landscape; SurfSense, Recall, BeFreed, Illuminate, NoteGPT, ElevenLabs Reader, StewReads.
 - "I Built My Own Obsidian. Then put Kimi Work. Which Turned It Into a Second Brain." — Avid (@Av1dlive, tweet thread, Jun 2026) ([link](https://x.com/Av1dlive/status/2065475063928000681)): Familiar vault system — local-first Obsidian clone with KIMI Work agent automation, cron-driven capture/processing/review, MCP server exposure, tiered memory architecture.
 - "Obsidian + Kimi K2.6 turned my 7,000 notes into a $15,000/month research system" — Noisy (@noisyb0y1, tweet thread, Jun 2026) ([link](https://x.com/noisyb0y1/status/2066856811404087519)): Practical walkthrough of connecting Obsidian vault to Kimi K2.6 via Smart Connections plugin and MCP server; Document to Skill feature for style transfer.
+- "Second Brain and the Wall it Hits" — Mem0 / In Context #16 (tweet thread, Jul 2026): Survey of five second-brain implementations (Karpathy, Claude Code, GBrain, Obsidian plugins); the scaling wall (retrieval ceiling → identity gap); OWASP ASI06 memory poisoning risk; concrete scaling numbers from Anthropic and GBrain.

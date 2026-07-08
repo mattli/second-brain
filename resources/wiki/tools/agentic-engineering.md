@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-07
+last_updated: 2026-07-08
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-07
 
 ## Recent Updates
 
+- **2026-07-08:** Added Replit's continual learning pipeline — ViBench, Telescope trace clustering, and production self-improvement loop — to [Self-Improving Agents](#self-improving-agents)
 - **2026-07-07:** Added Thariq's unknowns framework — map-vs-territory metaphor and phased discovery techniques — to [Discovering Unknowns](#discovering-unknowns-thariq)
 - **2026-06-28:** Added Google Agents CLI to [Tools Noted](#tools-noted); added eval adoption gap stat to [Harness Design](#harness-design-seeing-like-an-agent). Removed stale Overview; content was redundant with TLDR.
 
@@ -229,6 +230,20 @@ Kevin Gu released AutoAgent — first library for autonomously improving agent h
 - **Agents overfit** — Meta-agents insert rubric-specific prompting to game metrics. Constrained by forcing self-reflection.
 
 **Emergent behaviors:** Spot checking, forced verification loops, writing own unit tests, progressive disclosure, orchestration logic with subagents.
+
+### Continual Learning in Production (Replit)
+
+Replit's Michele Catasta frames continual learning as operating at three layers — model, harness, and context — and argues that the latter two are where most production teams should focus, since frontier model weights are off the table for fine-tuning. Harness-level learning mines production traces to systematically improve code, tools, and instructions across all agent instances. Context-level learning personalizes at agent, user, and org scope so the product compounds with every interaction.
+
+The practical system has two measurement pillars and one optimization loop, following a Swiss cheese model where each layer has gaps but together they catch more than any single layer:
+
+- **Offline benchmarks ([ViBench](https://vibench.ai/))** — Replit's public benchmark for vibe coding. Unlike SWE-bench or Terminal-Bench, ViBench starts from a plain-English PRD (drawn from anonymized production traces) and grades whether the built application meets the spec. The eval agent uses Playwright to progressively discover and exercise whatever the coding agent invented — no fixed locators, routes, or test harnesses. Natural-language test plans replace hard-coded assertions. Early results showed that frontier coding-benchmark scores don't reliably transfer to full app building, and most models degrade when extending their own code as errors compound. See [AI Evals](ai-evals.md) for complementary evaluation frameworks.
+- **Online A/B tests** — Most agent-affecting changes (prompts, tools, harness revisions, model swaps) get A/B tested in production. Results are hard to interpret: longer runs may mean more useful work or the agent getting stuck; lower cost may mean efficiency or silently dropped capability.
+- **Telescope (trace clustering)** — At production scale, no engineer can read every trace. Telescope organizes repeated failure patterns into issue clusters using density-based clustering on evidence-grounded facets (inspired by Anthropic's Clio). It reconstructs sessions from user messages, agent replies, tool calls, and errors, then summarizes, embeds, and clusters what went wrong. Engineers search the compact facet layer first, then drill into representative sessions. In aggregate, Telescope answers which workflows dominate, which get abandoned, and whether a mitigation is shrinking its target cluster.
+
+**The self-improvement loop.** Once measurement exists, the bottleneck shifts to turning evidence into fixes. Each loop pass reads production logs, trace clusters, and recent failures to form a hypothesis, builds a candidate fix, opens a draft PR with reasoning attached, measures against ViBench and A/B baselines, and recommends whether to ship, iterate, or drop. Engineers still review and own the launch decision — the loop prepares the evidence and first-pass implementation. Each run records what it tried (including failures), so future runs reuse what worked and avoid known dead ends.
+
+**Where human judgment remains essential:** hypothesis selection (deciding which clusters deserve the loop's overnight budget), implementation architecture (traces show abandonment but humans decide whether to smooth the path or redesign the surface), [eval](ai-evals.md) curation (shaping the hill the agent climbs — wrong rewards produce wrong optimizations), and launch approval (reading evidence, understanding blast radius, owning the rollout).
 
 ## Multi-Agent Orchestration
 
@@ -516,3 +531,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "We've partnered with @Vercel" — NanoClaw (tweet, Apr 2026) — NanoClaw + Vercel approval system for AI actions in Slack/WhatsApp/Teams
 - "Karpathy's Agentic Engineering Finally Has Proper Tooling" — Akshay (tweet thread, Jun 2026) ([link](https://x.com/akshay_pachaar/status/2070860837448040832/?rw_tt_thread=True)) — Google Agents CLI walkthrough: 7 injected ADK skills, full-lifecycle from scaffold to deploy, eval adoption gap stat (89% observability vs 52% evals)
 - "A Field Guide to Fable: Finding Your Unknowns" — Thariq (tweet thread, Jul 2026) — map-vs-territory metaphor for agentic work, four types of unknowns (Rumsfeld matrix), phased discovery techniques (blind spot pass, brainstorms, interviews, references, implementation plans, quizzes)
+- "Continual Learning for Agents" — Michele Catasta / Replit (tweet, Jul 2026) — three-layer continual learning (model/harness/context), ViBench vibe coding benchmark, Telescope trace clustering, production self-improvement loop, human judgment insertion points

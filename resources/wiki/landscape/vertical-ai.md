@@ -1,11 +1,15 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-06-02
+last_updated: 2026-07-11
 ---
 
 # Vertical AI
 
 > TLDR: Domain-specific AI applications are finding product-market fit faster than horizontal AI, especially in legal, healthcare, customer service, and coding. Harvey ($0→$200M ARR in 36 months) and Sierra ($0→$165M ARR in 26 months) are the benchmark case studies; both combine vertical domain expertise with outcome-aligned pricing.
+
+## Recent Updates
+
+- **2026-07-11:** Added low-margin traditional industries (manufacturing, logistics, staffing) as coordination-cost thesis to [Low-Margin Industries](#low-margin-industries-the-coordination-cost-thesis)
 
 ## Enterprise AI Adoption (2026 Data)
 
@@ -214,6 +218,22 @@ Compliance is a $40B+ annual labor market with 400,000+ officers across the US �
 
 See also: [Services-as-Software](services-as-software.md), [Business Moats in AI](../concepts/business-moats-in-ai.md)
 
+## Low-Margin Industries: The Coordination Cost Thesis
+
+The conventional AI adoption narrative focuses on tech-forward, high-margin sectors (software, legal, finance). Daniel Kornum argues the biggest *profit impact* from AI will come from the opposite end: manufacturers, trucking carriers, distributors, staffing agencies, and field-service operators running on single-digit margins for decades — businesses nobody would call AI companies.
+
+**Why low margins amplify AI returns:** A software company at 30% margins gains efficiency but doesn't change its trajectory. A business at 3% margins is structurally different: a sub-1% cost reduction can produce a >25% profit increase. The math makes AI transformation existential rather than incremental.
+
+**Coordination costs are the target.** In labor-intensive companies, labor typically accounts for ~25% of revenue. Roughly a quarter of that spend (~6% of revenue) is tied to *managing, coordinating, and administering* work — scheduling, dispatching, approvals, exception handling, back-office reconciliation. For a company at 3% margin, easing coordination burden by 10% improves earnings by ~20%. A logistics company case study showed coordination infrastructure (dispatch teams, routing changes, customer updates, claims, invoicing, exceptions) adding up to nearly 10% of revenue.
+
+**The adoption paradox:** The companies with the most to gain from AI are often the least able to adopt it. Enterprise AI assumes employees will learn a new tool and gradually turn usage into value — an assumption that fails even inside tech companies, let alone a manufacturing floor or trucking dispatch center.
+
+**AI as infrastructure, not software:** The solution is embedding AI at the infrastructure level — layered on top of existing systems (inboxes, ERPs, spreadsheets, approval workflows) so value is engineered into the deployment rather than depending on employee behavior change. If accounts payable runs through NetSuite, email, PDFs, and spreadsheets, the agent should operate across all four: extract invoices, match to purchase orders, flag exceptions, prepare approvals, and route to humans only when judgment is needed. Software asks employees to adopt a tool; infrastructure changes the operating layer underneath them.
+
+**First-mover advantage in commodity markets:** Early movers capture coordination savings as margin before competitors force the gains back into lower prices. Efficiency eventually spreads across commoditized markets, but the early adopters bank the earnings uplift and reset their cost position ahead of the field.
+
+This thesis complements the [1-1-1 Playbook](#the-1-1-1-playbook-alton-syn--mark-cuban) (one vertical, one workflow, one painful problem) and the [Services-as-Software](services-as-software.md) autopilot wedge — the coordination cost frame explains *why* traditional industries are fertile ground for both approaches.
+
 ## Why Vertical Beats Horizontal (The Yellow Brick Road Framework)
 
 The "Yellow Brick Road" is the path the labs are walking — horizontal problems (code generation, writing, image creation) that improve directly with raw model capability, where every dollar of pre-training and post-training spend improves product quality. The labs own the model, the margins, and the distribution for these problems. A startup running the same playbook — high-performing model plus off-the-shelf connectors plus agentic orchestration — is walking the road to nowhere.
@@ -269,3 +289,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "Everything, Everywhere is Compliance" — James da Costa & Angela Strange (a16z, 2026). Compliance as $40B+ vertical AI opportunity, three-layer framework (regulation-as-code, legacy replacement, agent augmentation), company examples (Tako, Valon, Vesta, Sardine, Factor Labs).
 - "Avoiding Death on the Yellow Brick Road" — Joe Schmidt IV (a16z, May 2026) ([link](https://www.a16z.news/p/avoiding-death-on-the-yellow-brick)). Yellow Brick Road framework (horizontal vs. vertical AI), four defensive moats (data flywheels, model variability, cost optimization, governance), three diagnostic tests, practical examples from 11x (sales) and FurtherAI (insurance).
 - "Why we Built our own Cloud Agent Infrastructure" — Gabe Pereyra / Harvey (blog, 2026) ([link](https://www.harvey.ai/blog/why-we-built-our-own-cloud-agent-infrastructure)). Harvey's custom agent runtime: multi-model as hard requirement (conflicts, platform risk, abstraction layer), zero data retention as architectural property, 3–5x cost reductions via model routing, intelligence saturation thesis, legal-specific durable layer.
+- "AI's Biggest Winners Have the Lowest Margins" — Daniel Kornum (tweet, 2026) ([link](https://x.com)). Low-margin traditional industries (manufacturing, logistics, staffing, field services) as largest AI profit-impact opportunity; coordination cost thesis (~6% of revenue); AI as infrastructure vs. software; first-mover advantage in commodity markets.

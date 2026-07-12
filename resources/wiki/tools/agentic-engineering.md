@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-08
+last_updated: 2026-07-12
 ---
 
 # Agentic Engineering
@@ -9,10 +9,10 @@ last_updated: 2026-07-08
 
 ## Recent Updates
 
+- **2026-07-12:** Added Eric Siu's compounding-vs-leaking framework and cross-tool resolver pattern to [Compounding vs. Leaking](#compounding-vs-leaking-eric-siu)
 - **2026-07-08:** Added Anthropic's advisor/orchestrator benchmark data (92%@63% cost, 96%@46% cost) to [Cost-Routing](#cost-routing-for-production-systems) and cached context sharing to [Managed Agents](#managed-agents-anthropic)
 - **2026-07-08:** Added Replit's continual learning pipeline — ViBench, Telescope trace clustering, and production self-improvement loop — to [Self-Improving Agents](#self-improving-agents)
 - **2026-07-07:** Added Thariq's unknowns framework — map-vs-territory metaphor and phased discovery techniques — to [Discovering Unknowns](#discovering-unknowns-thariq)
-- **2026-06-28:** Added Google Agents CLI to [Tools Noted](#tools-noted); added eval adoption gap stat to [Harness Design](#harness-design-seeing-like-an-agent). Removed stale Overview; content was redundant with TLDR.
 
 ## The Delegation–Collaboration Split
 
@@ -293,6 +293,20 @@ Addy Osmani names the structural cost most multi-agent practitioners underestima
 
 The orchestration tax left unpaid accumulates both technical debt (merged code you didn't read well) and cognitive debt (a stale mental model of your own codebase). Neither shows on a dashboard today; both show when production breaks and you realize you have no idea how the system works anymore. See also: the [delegation–collaboration split](#the-delegationcollaboration-split) for how to classify which work mode fits which task.
 
+### Compounding vs. Leaking (Eric Siu)
+
+Eric Siu, running 10–15 agents daily (Hermes in Slack, Claude Code, Codex), names the failure mode that the orchestration tax creates when left unmanaged: **leaking**. Work either compounds — today's output builds on yesterday's, making the pile more valuable over time — or it leaks, vanishing into threads you'll never reopen, forcing you to pay for the same work twice.
+
+Symptoms of leaking: asking your own threads to summarize what they were for, dreading old sessions because you can't remember their state, shipping something and finding a near-identical agent-produced version from two days earlier. The feeling is "busy all day, moving slowly" — the worst kind of problem because you can't point at it to fix it.
+
+**Workspace over stream.** Chat apps are streams — newest on top, no sense of priority, no memory of what's still open. That model breaks at 15 concurrent workstreams because the human becomes the memory for all of it. The fix is treating agent work as sessions with state, status, and priority — the same model Claude Code and Codex use. Siu's first move: point an agent at his own backlog and have it sort by priority, grouping P0s (CFO spend thread, HubSpot work, pre-meeting context cron) at the top. "That single change moved me from a stream to a workspace."
+
+**Skill reuse.** Building a good [skill](claude-code-skill-frameworks.md), using it once, then forgetting it exists is compounding running in reverse. A searchable skill library turns past work into an asset; an unsearchable one turns it into "a story about a thing you once did." The same applies to artifacts (pages, images, creatives) — when they live in one searchable place, last month's output becomes this month's starting point.
+
+**Cross-tool resolver.** The highest-leverage piece: a resolver that runs at end of day, reads across all tools (Hermes, Claude Code, Codex), finds overlapping work, and gives a straight call on each cluster — keep this, consolidate these, delete that. Any single tool can only see its own sessions, but duplicate work typically spans tools (thread in Hermes Monday, half-solution in Codex Tuesday). The resolver is the only view that sees the whole day at once.
+
+**Scaffolding compounds, models don't.** Swapping in a new model gives a slightly better answer; you're back to square one when the next one lands. Scaffolding — workspace organization, reusable skills, prep crons, resolvers — stacks permanently. "Build a couple of these a week, and six months from now you're operating at a level no model release can hand you."
+
 ### Loop Engineering
 
 > The loop engineering concept has grown into its own dedicated topic. For a full treatment — five-stage lineage (ReAct → Reflexion → AutoGPT → Ralph → /goal → orchestration), the four-level stack, open vs. closed loops, the four-box test, autonomy ladder, five building blocks, verification patterns, business loops, and the cost dynamics — see [Loop Engineering](loop-engineering.md).
@@ -538,3 +552,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "A Field Guide to Fable: Finding Your Unknowns" — Thariq (tweet thread, Jul 2026) — map-vs-territory metaphor for agentic work, four types of unknowns (Rumsfeld matrix), phased discovery techniques (blind spot pass, brainstorms, interviews, references, implementation plans, quizzes)
 - "Continual Learning for Agents" — Michele Catasta / Replit (tweet, Jul 2026) — three-layer continual learning (model/harness/context), ViBench vibe coding benchmark, Telescope trace clustering, production self-improvement loop, human judgment insertion points
 - "A few patterns we frequently use with Fable 5" — ClaudeDevs (tweet, Jul 2026) ([advisor docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool), [cookbook](https://github.com/anthropics/claude-cookbooks/blob/main/managed_agents/CMA_plan_big_execute_small.ipynb)) — advisor pattern (92% of Fable score at 63% cost on SWE-bench Pro), orchestrator pattern (96% at 46% cost on BrowseComp), cached context sharing across Managed Agents sub-agents
+- "How To Run 15 AI Agents at Once (Without Losing Half the Work)" — Eric Siu (tweet thread, Jul 2026) ([link](https://x.com/ericosiu/status/2075640250626715833/?rw_tt_thread=True)) — compounding-vs-leaking framework for multi-agent output management, workspace-over-stream organization, cross-tool resolver pattern, skill reuse as compounding, scaffolding > models thesis

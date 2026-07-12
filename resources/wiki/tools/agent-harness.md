@@ -1,12 +1,16 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-06-13
+last_updated: 2026-07-12
 
 ---
 
 # Agent Harness
 
 > TLDR: The harness is everything that wraps a model to make it an agent — orchestration loop, tools, memory, context management, state, and safety. The same model can jump 20+ positions on a benchmark by changing only the harness. "If you're not the model, you're the harness."
+
+## Recent Updates
+
+- **2026-07-12:** Added Walking Labs harness engineering course to [Sources](#sources)
 
 ## What Is a Harness
 
@@ -433,3 +437,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Writing effective tools for agents — with agents" — Ken Aizawa et al., Anthropic (Jun 2026) ([link](https://www.anthropic.com/engineering/writing-effective-tools-for-agents)) — tool design principles (consolidation, namespacing, meaningful context, token efficiency, description prompt-engineering) and evaluation-driven improvement loop; validated on internal Slack/Asana MCP servers with held-out test sets
 - "Building a Good Vertical Agent" — Peter Wang (tweet thread, Jun 2026) ([link](https://x.com/brainsandtennis/status/2065190286519906657/?rw_tt_thread=True)) — L1/L2/L3 knowledge hierarchy for agent context (CPU cache analogy), single-tool architecture, compression engineering for domain operations, prompt budget allocation mirroring task frequency curves; from building Shortcut (spreadsheet agent deployed at 3 of top 4 multistrategy hedge funds)
 - "Deriving Agent Harnesses from First Principles" — Viv (Vivek Trivedy), LangChain (tweet thread, Jun 2026) ([link](https://x.com/Vtrivedy10)) — systematic derivation of harness components from model limitations; filesystem as foundational primitive; context rot mitigations (compaction, tool call offloading, progressive disclosure); apply_patch overfitting as coevolution example; Terminal Bench 2.0 harness variance data
+- "Learn Harness Engineering" — Walking Labs (course, 2026) ([link](https://walkinglabs.github.io/learn-harness-engineering/)) — structured course teaching harness engineering: constraining agent behavior with rules/boundaries, maintaining context across sessions, preventing premature victory declaration, verification via full-pipeline tests, and runtime observability/debugging

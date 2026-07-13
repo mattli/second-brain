@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-07
+last_updated: 2026-07-13
 ---
 
 # AI-Native Product Development
@@ -9,6 +9,7 @@ last_updated: 2026-07-07
 
 ## Recent Updates
 
+- **2026-07-13:** Added Leon Lin's three-tier AI design workflow (skills → inspiration board → component-by-component) to [The AI-Generated Sameness Problem](#the-ai-generated-sameness-problem)
 - **2026-07-07:** Added Lesse's "attack the hard part" decision framework and Stripe/Anthropic case studies to [Attacking the Hard Part](#attacking-the-hard-part)
 - **2026-07-01:** Added Gothelf's behavior-based OKR framework for AI features to [Measuring AI Products Through Human Behavior](#measuring-ai-products-through-human-behavior)
 - **2026-06-24:** Added Dewey's reflective thought framework for hypothesis-driven PM to [Hypothesis-Driven PM](#hypothesis-driven-pm-dewey); removed stale Overview (folded framing into TLDR)
@@ -348,6 +349,8 @@ This connects to the "docs to demos" workflow: the prototype is cheap, but knowi
 
 The concrete symptom of the output-isn't-design gap: AI-built products are converging on a recognizable "AI-generated SaaS" aesthetic. Different founders, different industries, but the same cards, dashboards, layouts, and visual hierarchy. The code works, but the interfaces are interchangeable. This happens because most AI coding tools understand prompts but not design systems — they don't ask "does this component already exist?", "does this follow the typography scale?", or "is this pattern reusable?" A senior frontend engineer's mental model is a system of compounding decisions; an AI tool's default is a collection of plausible components.
 
+**The taste gap and three practitioner methods.** Leon Lin frames the root cause bluntly: AI understands design rules — spacing, typography, color theory, hierarchy — but it does not understand taste. It doesn't know what feels original, meaningful, or genuinely good. Working around that limitation produces a quality/effort trade-off with three tiers. *Design skills* (prebuilt style libraries like TasteSkill or Emil Kowalski's UI skills dropped into [Cursor](tools/claude-code-skill-frameworks.md) or Claude) are fast but produce the sameness described above — "decent" results that still feel interchangeable. *Inspiration boards* — curated screenshot collections from Mobbin, Awwwards, or Savee fed to the model with "combine, don't copy" instructions — are a middle ground that injects taste by reference. *Component-by-component building* is the slowest but highest-quality path: define meaning and audience first, collect references, map the page structure, then prompt the AI one section at a time ("create a hero section based on this style, adapted to my branding") rather than asking for a full site in one shot. The key discipline is that the idea, direction, and feeling still come from the human; AI executes. The best results come not from better prompts but from better taste — which itself develops by studying references and asking *why* a design works, not just noting that it does.
+
 The emerging practitioner response is a **specialization stack** — separate tools for reasoning (architecture, planning), implementation (turning plans into code), and frontend refinement (design consistency, component reuse, design-system awareness). Each layer has a clear job; none tries to replace the others. The argument: the future belongs to AI stacks, not single AI tools, because specialized tools solving specialized problems outperform generalist tools attempting everything. This mirrors the [pace layers](#software-company-not-software-factory) insight — different layers of the stack should move at different speeds and be governed by different constraints.
 
 The four-way sync pattern addresses Saarinen's iteration problem directly: instead of code → refresh → inspect → repeat, some tools now maintain bidirectional sync between design canvas, source code, and rendered UI — editing any one updates the others. This shortens the feedback loop for the dozens of frontend decisions made daily and keeps the design system as the source of truth rather than the prompt.
@@ -502,3 +505,4 @@ This connects to the [DESIGN.md pattern](#designmd--text-based-design-systems-fo
 - "How We Think: A Practical Guide for PM Work" — George / prodmgmt.world (tweet, Jun 2026) — Dewey's reflective thought applied to PM: five-phase inquiry loop, hypothesis-driven feature development, assumption ledger, PRD if-then template, corroboration review
 - "How to write OKRs for an AI product" — Jeff Gothelf (Jun 2026) ([link](https://jeffgothelf.com/blog/how-to-write-okrs-for-an-ai-product/)) — behavior-based AI product OKRs: outcome/calibration/trust KR framework, "Who does what by how much?" formula, measure the human not the machine
 - "You can't avoid the hard part" — Katelyn Lesse (tweet, Jul 2026) ([link](https://x.com/KatelynLesse/status/2048092458685501837)) — decision framework for bold vs. incremental paths, Stripe v2 Accounts and Anthropic Managed Agents case studies, leadership accountability for big swings
+- "How To Actually Design With AI" — Leon Lin (tweet, Jul 2026) — three-tier AI design workflow (design skills / inspiration board / component-by-component), taste as the gap AI cannot fill, reference-driven taste development

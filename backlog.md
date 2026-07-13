@@ -10,6 +10,7 @@
 - [ ] Update main chat group behavior — think through how Second Brain should ask clarifying questions and follow best practices before making changes (e.g. confirm scope, warn about side effects, suggest alternatives)
 
 ### Skills & Tools
+- [ ] Investigate `ce-compound` skill — rule: after a solved, verified problem produces a non-trivial, reusable learning, auto-invoke `ce-compound` with `mode:headless`. Only applies in repos that accept `docs/solutions/` as a tracked knowledge store. Evaluate: what the skill does, whether to adopt the rule, and which repos qualify.
 - [ ] Install frontend-design skill in Claude Code — enables polished UI component generation as part of the Claude Design → v0 → Claude Code workflow. See products/strategy/design-workflow.md.
 - [ ] Install add-compact — adds /compact command for context compaction; needed when Phase 2 PM agent is built
 - [ ] Install add-telegram-swarm — agent teams in Telegram, each subagent gets its own bot identity; relevant to Phase 3. Potential use case: adversarial agent debates — one optimistic, one pessimistic, one focused on execution risk — for stress-testing product decisions like pmtxt direction or YC application strategy. Related to the debate-perspectives project in the vault.

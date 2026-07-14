@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-28
-last_updated: 2026-06-28
+last_updated: 2026-07-14
 ---
 
 # Solo Business
@@ -9,6 +9,7 @@ last_updated: 2026-06-28
 
 ## Recent Updates
 
+- **2026-07-14:** Added Zephyr's "system builder" identity and AI arbitrage window to [Implications for AI-Era Solo Operators](#implications-for-ai-era-solo-operators)
 - **2026-06-28:** Created page with Pascal's High-Profit One-Person Empire framework covering [Money Trees](#money-trees), [Profit Levers](#profit-levers), and [Audience Ownership](#audience-ownership)
 
 ## The Anti-Scale Thesis
@@ -61,6 +62,9 @@ The conversion path is: organic content → free lead magnet → email subscribe
 
 Pascal frames the current moment as uniquely favorable for solo businesses: AI tools let one person do the work of ten, audiences are still reachable organically, and most competitors are still chasing the VC-funded, team-heavy model. The [services-as-software](../landscape/services-as-software.md) thesis — where AI agents replace human service delivery — is the enterprise-scale version of the same insight: manage leverage, not people.
 
+Zephyr sharpens the identity label: the winning skill isn't coding or prompting but *system building* — setting AI up to do real work and running it the way a company runs staff. The operator gives AI full context, connects it to tools, and puts it on a schedule; one person directing that stack produces what used to take a floor of employees. This reframes the solo operator from craftsperson to orchestrator, echoing the [agent harness](../tools/agent-harness.md) pattern (model + harness) at the individual-business level. Zephyr also highlights a temporary arbitrage window: the skill is new, unpriced by the market, and learnable for the cost of a subscription — but the window closes as adoption spreads.
+
 ## Sources
 
 - "Everyone should build a High-Profit One-Person Empire" — Pascal. Thread outlining the HOPE framework, 95/95 Method, DeMarco's five money trees, and seven profit levers. Full framework for this page.
+- "The Skill Quietly Minting The First Solo Millionaires Of The AI Era" — Zephyr. Tweet thread on the "system builder" identity and AI arbitrage window for solo operators.

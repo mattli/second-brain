@@ -1,13 +1,13 @@
 ---
 created_at: 2026-06-30
-last_updated: 2026-07-06
-status: design-complete
+last_updated: 2026-07-13
+status: in-progress-phase-2
 type: design-spec
 ---
 
 # dev-harness — Adversarial Agentic-Dev Loop (Design Spec)
 
-> **Status: DESIGN COMPLETE.** All open questions resolved 2026-07-06 (see [Resolved Decisions](#resolved-decisions)). Ready to turn into a step-by-step implementation plan. (The Docker/execution-isolation timing in [Sandboxing](#sandboxing--two-senses) is a live design thread, not a blocking open question.)
+> **Status: PHASE 1 SHIPPED — now in phase ② "Harden."** Original design resolved 2026-07-06; re-sequenced 2026-07-13 into five phases after the first real run (see [Phasing](#phasing-prove--harden--automate) and [Resolved 2026-07-13](#resolved-2026-07-13)). Current milestone: make the attended loop trustworthy on one project. Build phase ② when ready — it needs its own step-by-step implementation plan first.
 
 ## TLDR
 
@@ -213,9 +213,76 @@ Worst-case per-sprint spend ≈ (5 negotiation rounds × 2 agents) + (6 iteratio
 
 ## Phasing (Prove → Harden → Automate)
 
-- **Phase 1 (this spec):** Attended core loop — planner/contract-negotiation/generator/blind-evaluator, worktrees, `TestSuiteVerifier`, rich traces, budget stops, CLI. No Docker/scheduler.
-- **Phase 2:** Playwright design-taste gate (`Verifier` #2, weighted design/originality/craft/functionality rubric with few-shot calibration) + trace-analyst sub-agent (point it at a batch of runs to surface recurring failure patterns).
-- **Phase 3:** Docker sandbox boundary → cron scheduling → notification channel (interrupt-driven review) → refuter panel (dedicated break-it sub-agent) → hill-climbing loop (reads traces, rewrites prompts/rubric). Each promotion up the autonomy ladder triggers a security review, not just a reliability review.
+Status as of 2026-07-13. Phase 1 shipped; two unplanned surfaces (legible runs, run
+observability) shipped on top of it. We are now in "Harden." The old three-phase plan
+has been re-sequenced into five; the cap/verification/dashboard decisions are captured
+in [Resolved 2026-07-13](#resolved-2026-07-13).
+
+**① Prove — DONE.** Attended core loop (planner / contract negotiation / generator /
+blind evaluator), git worktrees, `TestSuiteVerifier`, rich traces, budget stops, CLI.
+Shipped on top: **legible runs** (human-readable transcript + dated run folders) and
+**run observability** (contract freeze reason + frozen contract embedded in the trace).
+
+**② Harden — CURRENT: "trustworthy on one project."** Make the attended loop reliable
+enough to actually reach for. Resolves the three stop-early items from the csv2json
+trial (2026-07-07) as one coherent design:
+
+- **Caps rebuilt around a subscription, not an API bill.** Wall-clock is the **primary
+  cap, scoped per-sprint** (generous default, 30 min/sprint); the dollar figure is
+  **informational and off by default**; an Anthropic **usage-limit becomes a graceful
+  first-class stop**; hitting any cap is a **pause, not a failure**; caps are **honestly
+  labeled as approximate** (checked between steps, can overshoot by one in-flight step).
+- **Enforce the sprint-count cap in code (≤6)** so the worst-case run length is bounded
+  in fact, not just by a planner instruction.
+- **Honest CLI** — wire `--wall-clock-ms` (now the primary cap) and fix the docs so every
+  advertised flag is real.
+- **Every sprint leaves tested, working code** — the planner stops deferring tests to a
+  terminal sprint; each sprint is a vertical slice (behavior + its tests) whose contract
+  includes test criteria, so the generator writes tests as it goes; an early stop is
+  reported honestly ("sprint N incomplete, unverified").
+- Fold in the `parseScore` pre-verdict residual (last known score-misread path).
+- **Read-only live dashboard** — stage 1 of the [Dashboard](#dashboard) vision.
+
+**③ Breadth — "works on any project": the skills layer.** Today the harness hardcodes a
+single target project's context. The skills layer lets the generator + evaluator read a
+project's conventions / build steps / gotchas so the harness can be pointed at any repo.
+The natural milestone after "trustworthy": solid on one project → portable across many.
+(Promoted from the old "Deferred" list.)
+
+**④ New capability — the evaluation gate (was Phase 2).** Playwright design-taste gate
+(`Verifier` #2, weighted design/originality/craft/functionality rubric with few-shot
+calibration) + trace-analyst sub-agent (point it at a batch of runs to surface recurring
+failure patterns).
+
+**⑤ Automate — the autonomy ladder (was Phase 3).** Docker sandbox boundary → cron
+scheduling → notification channel (interrupt-driven review) → **the hard-stop machinery**
+(true mid-work interrupt + hung-call guard + hard *total* time ceiling — bundled here
+because all three only become load-bearing once no one is watching) → refuter panel
+(dedicated break-it sub-agent) → hill-climbing loop (reads traces, rewrites
+prompts/rubric). Plus **dashboard stage 2** (config editing + launch/stop control panel),
+which wants real usage behind it before it's designed. Each promotion up the autonomy
+ladder triggers a **security review**, not just a reliability review.
+
+## Dashboard
+
+An internal, local web dashboard for operating the harness — born from the same friction
+as legible runs (reading a raw transcript over SSH is painful). Staged in two increments:
+
+- **Stage 1 — read-only live monitor (Harden, ②).** A local web view of the active run:
+  goal, current sprint / round / step, scores so far, elapsed time and spend —
+  auto-refreshing from the run folder. Safe to build now because it only renders data the
+  run already writes; the one addition needed is slightly finer-grained progress events so
+  it can show *which negotiation round* it's in, not just the phase. It is "the transcript,
+  but live and formatted."
+- **Stage 2 — control panel (later, after real usage).** Edit caps/config and launch/stop
+  runs from a button. Deferred because launching means a backend that spawns and supervises
+  the harness process — the real work — and because the controls should be designed around
+  real usage, not guessed at up front.
+
+**Design constraint (locked now, both stages): config has a single source of truth.** One
+config object; the CLI, a config file, and the dashboard are all just *editors* that write
+to it. This keeps the surfaces from drifting — the same class of bug as the CLI advertising
+flags that don't exist.
 
 ---
 
@@ -237,15 +304,62 @@ Not in the original brainstorm — these surfaced when the built loop turned aga
 - **C1 — contract authorship.** **Option A**: the generator proposes the contract ⇄ the evaluator critiques it, with **both now seeing the goal + sprint** (the first build dropped the sprint on the floor — the generator invented contracts from nothing). Adversarial pressure comes from the evaluator's critique + the mutual-agreement freeze + the later independent blind grade, not from denying the generator authorship. **Option B** (evaluator authors the contract; generator only builds) is held as an **evidence-gated fallback** if traces show the generator gaming a lenient bar.
 - **C2 — evaluator artifact boundary.** During EVALUATE the evaluator sees **only the frozen contract + the artifact (the worktree diff) + the verifier result** — never the generator's transcript, its commit messages, or the goal/sprint (it grades against the *contract*, per guarantee #2; C1 makes the contract goal-faithful). The boundary is **enforced by a test** on the constructed prompt (it must contain the diff and exclude transcript/commit-messages/goal), not by the prompt wording alone. Editorializing code comments ride along in the diff and are **de-weighted by instruction**, with the non-LLM verifier as the hard signal.
 
-### Deferred to a later phase (not resolved)
+### Resolved 2026-07-13
 
-- **Target-project skills layer** — codified per-project conventions the generator + evaluator read instead of re-deriving. Phase 2+ (see Non-Goals).
-- **Docker / execution-isolation timing** — whether to pull a minimal container forward on *security* grounds. See [Sandboxing](#sandboxing--two-senses); v1 runs worktree-only-attended (a conscious risk acceptance).
-- **Single hung agent call is unguarded (Phase 1.5)** — the wall-clock/$ backstops are checked *between* agent calls (at DECIDE and each negotiation round), but nothing interrupts one `query()` that stalls mid-stream. Needs an AbortController + per-call deadline. TODO left in `invoke.ts`.
-- **`parseScore` pre-verdict-reasoning residual** — the score parser now requires a `SCORE:` label and takes the first labelled match (the verdict precedes findings). A colon-*labelled* score appearing in the model's reasoning *before* the verdict line could still be mis-selected. Lower-probability than the fixed findings-after case; a robust fix anchors the verdict to its own line. Phase 2.
+Surfaced by the first real external run (csv2json trial, 2026-07-07) and settled in a
+product-planning pass on 2026-07-13. The three "stop-early" backlog items turned out to be
+one question — *what should a run guarantee when it stops early?* — resolved together.
+
+- **Caps measured the wrong unit for a subscription.** The dollar ceiling was designed as
+  if paying per-token; on a subscription it's a notional number, not real money, while the
+  true constraint is the plan's usage window. Decision: **wall-clock is the primary cap,
+  scoped per-sprint** (generous default 30 min/sprint — the planner is expected to split
+  work into manageable sprints); the **dollar figure stays visible as a "what did this
+  cost" signal but does not halt by default** (opt-in for pay-per-token use); an **Anthropic
+  usage-limit is caught and handled as a graceful first-class stop** (commit partial work,
+  say so plainly, don't crash). *Per-sprint* (not total-run) was chosen so a slow early
+  sprint can't starve later ones — the "don't fail easily" goal. A **hard total-run ceiling
+  is deferred to ⑤**, because while attended the human is the total-time backstop.
+- **A cap is a pause, not a failure.** A halted run always ends with the partial work
+  committed to its branch and a plain-language transcript note — never lost work.
+- **Caps are honest about being approximate.** The budget is checked *between* the loop's
+  major steps, not during them, so a run stops at the next step boundary after crossing a
+  limit and can overshoot by one in-flight step (typically a few minutes). While attended
+  that's fine — the human is the real stop button. A precise mid-step interrupt, a
+  hung-call guard, and a hard total-time ceiling all need the same "interrupt an in-flight
+  call" machinery and all only matter unattended, so they're **built once, together, in ⑤**.
+- **Enforce the sprint-count cap in code (≤6).** The planner prompt requests 3–6 sprints
+  but nothing enforced it; without a code cap the worst-case run length is unbounded.
+  Enforcing it makes "6 sprints × 30 min = 3h worst case" true in fact, not just by
+  instruction.
+- **Verification moves into every sprint.** The planner no longer schedules "write the
+  tests" as a terminal sprint (the trial halted before reaching it, leaving unverified
+  work). Each sprint is a vertical slice whose contract includes test criteria; the
+  generator — which already authors both code and tests — writes tests as it goes. Grounded
+  in [[loop-engineering]]: "instrument the gate before you scale the loop." An early stop
+  then leaves N verified sprints instead of a pile of unchecked code.
+- **Honest CLI.** Wire `--wall-clock-ms`; remove or wire any advertised flag that isn't real.
+- **Dashboard (new direction).** An internal local web dashboard, staged monitor-first —
+  see [Dashboard](#dashboard).
+
+### Deferred items — now sequenced (updated 2026-07-13)
+
+The former "deferred, not resolved" items now have homes in the phasing above:
+
+- **Target-project skills layer** → promoted to phase **③** (was "Phase 2+"). See Non-Goals.
+- **Single hung agent call / mid-work interrupt (was Phase 1.5)** → phase **⑤**, bundled
+  with the hard-stop machinery (mid-work interrupt + hung-call guard + hard total-time
+  ceiling share one AbortController + per-call-deadline mechanism). TODO still in `invoke.ts`.
+- **`parseScore` pre-verdict-reasoning residual** → folded into phase **②** hardening.
+- **Docker / execution-isolation timing** → phase **⑤**, but note the risk is *not* purely
+  an autonomy concern: arbitrary code execution is live from the first attended run. See
+  [Sandboxing](#sandboxing--two-senses); v1 runs worktree-only-attended (a conscious risk
+  acceptance).
 
 ---
 
 ## Provenance
 
 Brainstormed 2026-06-30 via the superpowers brainstorming flow. Grounded in [[loop-engineering]]. Approved decisions captured above; this doc is the pre-implementation design spec. Next step when ready: turn this into a step-by-step implementation plan.
+
+Re-sequenced 2026-07-13 (brainstorming pass) after the first real external run: Phase 1 marked done, legible-runs + observability recorded as shipped, the three stop-early backlog items resolved as one "caps + verification" design, the skills layer promoted to its own phase, and the dashboard added as a monitor-first direction. See [Resolved 2026-07-13](#resolved-2026-07-13).

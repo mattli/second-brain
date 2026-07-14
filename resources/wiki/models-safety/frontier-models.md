@@ -1,16 +1,17 @@
 ---
 created_at: 2026-04-27
-last_updated: 2026-06-22
+last_updated: 2026-07-14
 
 ---
 
 # Frontier Models
 
-> TLDR: The frontier model landscape (2026) is defined by rapid competitive rotation among Anthropic, OpenAI, and Google, inference-time multi-agent scaling as an alternative to ever-larger single models, a narrowing gap between frontier and open-weight local models, and a paradigm shift where the binding constraint on progress is high-quality training data — not raw compute.
+> TLDR: The frontier model landscape (2026) is defined by rapid competitive rotation among Anthropic, OpenAI, and Google, inference-time multi-agent scaling as an alternative to ever-larger single models, a narrowing gap between frontier and open-weight local models, and a paradigm shift where the binding constraint on progress is high-quality training data — not raw compute. Per-token pricing is increasingly misleading; delegation-capable models can cost less overall despite higher unit prices, because the effective cost is dominated by management style — how many turns the lead takes, how much context it accumulates, and what it decides not to do itself.
 
-## Overview
+## Recent Updates
 
-Frontier AI model development is no longer dominated by a single architectural approach or a single lab. As of early 2026, major labs are experimenting with inference-time scaling — using multiple agents at generation time rather than simply training bigger models — and domain-specific specialization. Meanwhile, open-weight models running on consumer hardware are closing the capability gap faster than expected.
+- **2026-07-14:** Added Cognition's Fusion delegation cost analysis to [Delegation as Cost Optimization](#delegation-as-cost-optimization-the-fusion-experiment)
+- **2026-06-22:** Removed stale Overview; folded framing into TLDR
 
 ## The November 2025 Inflection Point
 
@@ -111,6 +112,16 @@ The tradeoff practitioners feel most acutely is speed vs. intelligence vs. cost.
 
 **Effort-level efficiency in practice:** Early practitioner testing suggests the bias toward high effort is even more misguided than benchmark tables imply. On agentic coding tasks, Fable 5 at *low* effort outperforms both Opus 4.8 and GPT 5.5 at high effort; at medium effort it beats Opus 4.8 on xhigh and max. Across hours of routine coding — small updates in medium codebases, larger changes in big ones — low effort produced identical solutions to high effort, just faster and cheaper. One useful heuristic: asking the model itself to recommend an effort level per task phase. In one practitioner's project plan, only one of four phases warranted high effort; the rest were fine at medium or low. The implication is that most developer tokens spent on elevated reasoning levels are wasted — the model arrives at the same solution, just slower and at higher cost.
 
+### Delegation as Cost Optimization: The Fusion Experiment
+
+Cognition's Fusion architecture — where a frontier lead model delegates to a cheaper sidekick — reveals that per-token pricing is the wrong lens for evaluating frontier model cost. In a 3,000-session evaluation on FrontierCode 1.1, Fable 5 + sidekick cost *less* than Opus 4.8 + sidekick ($1.86 vs. $2.04 per run) while scoring higher (60.7 vs. 54.6), despite Fable's 2x per-token premium [[source]](https://x.com/joon_h_lee/status/2076714221837173097). Compared with pure Fable, the sidekick configuration cut cost by 54% while leaving the score nearly unchanged.
+
+The cost reversal comes from management style, not delegation volume — both models hand off roughly three times per run. What differs is *when and what* they delegate. Fable's first handoff comes early: a few reconnaissance actions, then a spec-quality brief delegating the entire implement-test-lint loop. Opus explores for 20–45 solo turns before delegating late, after the expensive design work is done. The result: Fable's lead takes 11.5 turns per run to Opus's 26.5, consuming a third of the input and output tokens. In 81% of Fable-led runs, the lead never makes a single code edit; for Opus, only 24%.
+
+The quality of handoff briefs matters as much as their timing. Opus dictates implementation steps; Fable writes constraint-based design docs — enumerating edge cases, a definition of "done," and performance requirements. In one case, Opus implemented a hash function by hand and forgot a stated O(1) constraint, scoring 25; Fable's brief explicitly stated the constraint, and the sidekick implemented it correctly for a score of 94. After handoff, Opus pulls sidekick files back into its own context 2x more often and makes 4x more corrective edits at lead prices — distrust that does not increase correctness.
+
+Delegation fails when the task has no delegable components: short tasks with only a handful of lead turns, or serial debugging where the accumulated context *is* the work. Notably, Fable barely delegates on these tasks — the same judgment that writes a good brief knows when not to write one. See [Agentic Engineering](../tools/agentic-engineering.md) for the broader multi-agent orchestration patterns this extends.
+
 **Verification as the bottleneck:** As delegation scales, the constraint shifts from writing code to verifying agent output. Krieger gives Fable video captures of its own work so it can catch animation glitches that screenshots would miss — an early example of using the model's own multimodal capabilities to close the verification loop. See [Agent Proficiency](../concepts/agent-proficiency.md) for more on how human skill is evolving toward verification and orchestration.
 
 **Pricing and availability:** Fable 5 is approximately 2x the cost of Opus via API (vs. Mythos at 5x). At launch, Fable is included in Claude subscription plans through June 22, 2026, after which Anthropic plans to move it to paid credits until serving capacity scales. SemiAnalysis found that $200/month subscription plans actually deliver well beyond the assumed ~$2,000/month equivalent in API tokens when used for long-horizon coding tasks.
@@ -150,4 +161,5 @@ To bootstrap this, frontier labs could employ small human teams to manage groups
 - "If you aren't using models with different effort levels, you're probably wasting tokens, and time" — Morgan (tweet thread, Jun 2026) — Fable 5 low-effort outperforming Opus 4.8/GPT 5.5 at high effort on agentic coding, effort-level selection heuristics, practitioner evidence that routine tasks need less reasoning budget than defaults suggest
 - [The path from Fable to superintelligence](https://x.com/golokhvastov/status/2066269917386027293) — Goliath (tweet thread, Jun 2026) — Data pipeline as true bottleneck over compute, RLVR ecosystem (Mercor/Datacurve/Mechanize), deterministic scoring limitations, real-world feedback hypothesis for training on business outcomes, economic flywheel to superintelligence, Anthropic ARR growth ($9B→$47B)
 - [My bets on open models, mid-2026](https://www.interconnects.ai/p/open-models-in-perpetual-catch-up) — Nathan Lambert / Interconnects (Jun 2026) — Open vs. closed capability gap as economic contest, closed model robustness advantage, Chinese lab funding risks, RL training as closed-lab structural advantage, open model adoption in automation, regulation impossibility, sovereign interest in open models as governance paradigm
+- [Making Fable Cheaper Than Opus](https://x.com/joon_h_lee/status/2076714221837173097) — Joon Lee / Cognition (tweet thread, Jul 2026) — Fusion sidekick architecture cost analysis: Fable 5 + sidekick costs less than Opus 4.8 + sidekick despite 2x per-token premium; management style (turns, context, delegation timing) dominates cost over unit price; constraint-based vs. dictated handoff briefs; 81% of Fable leads never edit code
 - [Introducing Claude Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7) — Anthropic (Apr 2026) — Opus 4.7 release: 3.75MP vision, xhigh effort level, Project Glasswing safeguards, auto mode, task budgets, improved file-system memory across multi-session work

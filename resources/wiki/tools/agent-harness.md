@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-07-12
+last_updated: 2026-07-14
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-07-12
 
 ## Recent Updates
 
+- **2026-07-14:** Added Alex Ker's harness taxonomy and eight-property diagnostic to [Choosing a Harness](#choosing-a-harness)
 - **2026-07-12:** Added Walking Labs harness engineering course to [Sources](#sources)
 
 ## What Is a Harness
@@ -24,6 +25,8 @@ The harness is the complete software infrastructure wrapping an LLM: orchestrati
 
 Claude Code is a harness. Codex is a harness. Cursor is a harness. They all run the same underlying models; the harness is why they behave differently.
 
+*Three tiers of composability* (Alex Ker): (1) **Frameworks and SDKs** — building blocks for harnesses, not harnesses themselves (Vercel AI SDK, Anthropic Agent SDK, Mastra). Like Django: gives you components, not an app. (2) **Extensible** — minimal built-in features beyond the base tool-use loop; analogous to vanilla emacs or vim (Pi, Deep Agents). (3) **Turnkey** — batteries-included, often tied to paid or proprietary APIs (OpenCode, Codex, [Claude Code](claude-code-skill-frameworks.md), Cursor agent). The tiers trade composability for out-of-the-box utility.
+
 ## Why Harnesses Matter
 
 *Benchmark evidence:* LangChain changed only the infrastructure wrapping their LLM (same model, same weights) and jumped from outside the top 30 to rank 5 on TerminalBench 2.0. "The model is a constant. The harness is the variable."
@@ -33,6 +36,27 @@ Claude Code's leaked source code (March 2026, accidentally shipped to npm) was 5
 *The derivation pattern:* Harness components aren't arbitrary — they can be derived by working backwards from desired agent behavior to the engineering that enables it. Models take in data (text, images, audio) and output text. They cannot maintain durable state, execute code, access real-time knowledge, or set up environments out of the box. Each harness feature exists to close one of these gaps. The simplest example: "chatting" requires wrapping the model in a while loop that tracks messages. Every harness component follows this pattern: **behavior we want → gap in the raw model → harness feature that bridges it.**
 
 *R.E.S.T. framework* (TRAE, Apr 2026): Four production-readiness objectives for any agent system — **Reliability** (fault recovery, idempotent operations, behavioral consistency), **Efficiency** (resource budgets, low-latency response, high throughput), **Security** (least privilege, sandboxed execution, I/O filtering), **Traceability** (end-to-end tracing, explainable decisions, auditable state). "To move agents beyond the toy stage, they must anchor on these four objectives."
+
+## Choosing a Harness
+
+Alex Ker's decision framework starts from the role of the user:
+
+**Non-engineers (GTM, ops, knowledge workers)** should buy, not build. Out-of-the-box harnesses provide guardrails against degenerate behavior in mission-critical work, and maintaining your own evals is infeasible as an end-user. The real job is populating existing harnesses with the right context — being a good [context engineer](../concepts/knowledge-work-future.md). Find the best AI-native vertical application (Harvey for legal, Clay for GTM, Descript for video) and learn its constraints and strengths.
+
+**Engineers** benefit from bring-your-own-model setups: mixing frontier open-source, closed, and self-hosted models for performance and cost. Customization ranges from lightweight (encoding codebase structure in a root `.md` file, disconnecting unused tools to save context, documenting error cases to prevent recovery loops) to deep (post-training or fine-tuning the harness jointly with the model against evaluations — what teams like Cursor and OpenCode do with system prompts, tool formats, and online/offline metrics). Most teams should exhaust the lighter options first.
+
+**Harness-task fit** and **fluency** are the two selection dimensions. Harness-task fit asks whether the harness is post-trained with the models and tools you need and offers the right level of abstraction. Fluency asks whether you actually know how to drive it. Eight diagnostic properties score harness-task fit:
+
+1. **Context and state** — stateful context across turns, compaction mechanism and its lossiness, subagent strategies against [context rot](../concepts/context-engineering.md), parallelization support
+2. **Memory** — what persists between sessions, where (local cache, database, remote), and when it's retrieved
+3. **MCP/tool support** — extensible integration with MCP servers, faithfulness of interaction with external apps, tool-call compatibility
+4. **Standard adherence** — open spec vs. proprietary structure; open standards mean portability, proprietary structures mean tighter integration but harder migration
+5. **Model selection flexibility** — ease of trying new model endpoints, overriding config to point at non-native endpoints, whether all models work equally well
+6. **Remote access** — built-in remote sessions vs. third-party wrappers, session survival across disconnects
+7. **Observability and debugging** — logging, tracing, failure-mode detection, early warning signals, rollback or self-repair capabilities
+8. **Hackability spectrum** — the opinionated-vs-composable tradeoff. More opinions → less friction, easier enterprise adoption. More composability → higher ceiling, more pitfall surface. The sweet spot: shallow failure troughs, uncapped productivity ceiling.
+
+The gaps in this diagnostic tell you whether vanilla is sufficient or you need to build. Concrete recommendations age poorly as harnesses ship weekly; the diagnostic questions are timeless.
 
 ## Three Levels of Engineering
 
@@ -409,7 +433,9 @@ This co-evolution creates a feedback loop: useful primitives are discovered in p
 
 The "future-proofing test": if performance scales up with more powerful models without adding harness complexity, the design is sound. Manus was rebuilt 5 times in 6 months, each rewrite removing complexity.
 
-*The long-term trajectory:* As models improve, some of what currently lives in the harness will be absorbed into the model — planning, self-verification, and long-horizon coherence will require less external scaffolding. But harness engineering is unlikely to become obsolete: a well-configured environment, the right tools, durable state, and verification loops make any model more efficient regardless of its base intelligence. Open problems include orchestrating hundreds of agents working in parallel on a shared codebase, agents that analyze their own traces to identify and fix harness-level failure modes, and harnesses that dynamically assemble the right tools and context just-in-time rather than being pre-configured.
+*The long-term trajectory:* As models improve, some of what currently lives in the harness will be absorbed into the model — planning, self-verification, and long-horizon coherence will require less external scaffolding. But harness engineering is unlikely to become obsolete: a well-configured environment, the right tools, durable state, and verification loops make any model more efficient regardless of its base intelligence. Routing and performant serving will fold into the harness itself and become table stakes. Open problems include orchestrating hundreds of agents working in parallel on a shared codebase, agents that analyze their own traces to identify and fix harness-level failure modes, and harnesses that dynamically assemble the right tools and context just-in-time rather than being pre-configured.
+
+*Cache-aware model routing:* Within a multi-turn session, routing to different models incurs a cache miss (see [Cache-Aware Harness Design](#cache-aware-harness-design)). The harness architecture should be cache-aware so that requests hit the warm cache associated with a given model whenever possible. A lightweight classifier decides per-task whether to route to an inexpensive open-source default, a fine-tuned model optimized for latency or throughput, or a frontier closed model for a review pass — but the routing must account for cache reuse, not just model capability.
 
 See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Frameworks](claude-code-skill-frameworks.md)
 
@@ -438,3 +464,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Building a Good Vertical Agent" — Peter Wang (tweet thread, Jun 2026) ([link](https://x.com/brainsandtennis/status/2065190286519906657/?rw_tt_thread=True)) — L1/L2/L3 knowledge hierarchy for agent context (CPU cache analogy), single-tool architecture, compression engineering for domain operations, prompt budget allocation mirroring task frequency curves; from building Shortcut (spreadsheet agent deployed at 3 of top 4 multistrategy hedge funds)
 - "Deriving Agent Harnesses from First Principles" — Viv (Vivek Trivedy), LangChain (tweet thread, Jun 2026) ([link](https://x.com/Vtrivedy10)) — systematic derivation of harness components from model limitations; filesystem as foundational primitive; context rot mitigations (compaction, tool call offloading, progressive disclosure); apply_patch overfitting as coevolution example; Terminal Bench 2.0 harness variance data
 - "Learn Harness Engineering" — Walking Labs (course, 2026) ([link](https://walkinglabs.github.io/learn-harness-engineering/)) — structured course teaching harness engineering: constraining agent behavior with rules/boundaries, maintaining context across sessions, preventing premature victory declaration, verification via full-pipeline tests, and runtime observability/debugging
+- "The architect's guide to harness engineering" — Alex Ker (tweet thread, Jul 2026) ([link](https://x.com/thealexker)) — buy/customize/build decision framework, three-tier harness taxonomy (frameworks, extensible, turnkey), eight diagnostic properties for harness-task fit, cache-aware model routing

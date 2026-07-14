@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-07-07
+last_updated: 2026-07-14
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-07-07
 
 ## Recent Updates
 
+- **2026-07-14:** Added Anthropic free loop engineering course reference to [Sources](#sources).
 - **2026-07-07:** Added Karpathy AutoResearch three-file architecture and Lutke results to [A Loop Is a Generator Wired to a Verifier](#a-loop-is-a-generator-wired-to-a-verifier); added Bilevel Autoresearch meta-loop evidence to [The Four-Level Stack](#the-four-level-stack).
 - **2026-07-07:** Added Claude Code team's four-primitive taxonomy to [The Four Primitives](#the-four-primitives) and proactive composition pattern; added token-management guidance to [Cost](#cost--the-loop-is-now-the-expensive-part).
 - **2026-07-05:** Added loop-prompt-as-final-condition framing and starter template to [The Build Order](#the-build-order--prove-harden-automate) from AI Edge's beginner guide.
@@ -19,7 +20,6 @@ last_updated: 2026-07-07
 - **2026-06-24:** Added [The Session-Mining Loop](#the-session-mining-loop) — personal self-improvement pattern with seven improvement targets, from Cathryn's practitioner template.
 - **2026-06-24:** Added [Security](#security--the-unattended-attack-surface) section and concrete good/bad first-loop examples to [The Four-Box Test](#the-four-box-test--when-a-loop-is-worth-building). Extended [Cost](#cost--the-loop-is-now-the-expensive-part) with economic accessibility framing.
 - **2026-06-24:** Added [The Planner-Generator-Evaluator Harness](#the-planner-generator-evaluator-harness) section and [Harness Co-Evolution](#harness-co-evolution) section. Extended [Verification](#verification-is-the-essential-feedback) with contract negotiation, evaluator independence, and design-taste-as-rubric patterns from Anthropic's internal long-running agent work.
-- **2026-06-23:** Added [Context Hygiene](#context-hygiene) section (context rot, doom loop, mitigations) and [Tool Design for Loops](#tool-design-for-loops) subsection under Five Building Blocks. Removed stale Overview; folded Cherny biographical detail into [The Five-Stage Lineage](#the-five-stage-lineage).
 
 ## The Five-Stage Lineage
 
@@ -326,3 +326,4 @@ The security tax scales with the [autonomy ladder](#the-autonomy-ladder) — a l
 - "Loop Engineering" — HuaShu (IEEE-formatted paper, Jun 2026) ([link](https://huasheng.ai/orange-books)) — four-layer engineering stack (prompt → context → harness → loop), five moves of a single turn (discovery/handoff/verification/persistence/scheduling) mapped to six parts, five structural anti-patterns mapped one-to-one to skipped moves, generator/evaluator separation (GAN-inspired, independent context prevents self-persuasion), Stripe case study (1,300+ PRs/week, deterministic orchestrator, Goose fork, cattle-not-pets EC2), local vs. cloud scheduling axis, four hidden costs as reinforcing cycle (verification debt → comprehension rot → cognitive surrender → cost surprise), "faithful multiplier" thesis (same loop yields opposite outcomes by builder), three staying-in-control disciplines (sample regularly, cap budgets, keep human checkpoint permanent)
 - "Loop Engineering: The Karpathy Method" — codila (tweet thread, Jul 2026) ([link](https://x.com/0xCodila/status/2072329149520232639/)) — Karpathy AutoResearch three-file architecture (train.py mutable / prepare.py locked evaluator / program.md constraints), 700 experiments / 20 improvements in two days, Lutke overnight result (19% quality gain, half model size), Bilevel Autoresearch paper (5× improvement from meta-looping inner search process), four-box when-to-loop test, five building blocks, comprehension debt and cognitive surrender risks
 - "Getting started with loops" — ClaudeDevs / Delba Oliveira (tweet thread, Jul 2026) ([link](https://x.com/claudedevs/status/2074208949205881033/?rw_tt_thread=True)) — official Claude Code team four-primitive taxonomy (turn-based, goal-based /goal, time-based /loop+/schedule, proactive), trigger/stop/primitive/use-case properties for each type, proactive loop composition pattern (schedule + goal + skills + dynamic workflows + auto mode), code quality maintenance (clean codebase, skills for verification, reachable docs, second-agent review), five token-management levers (right primitive, clear criteria, pilot first, scripts for deterministic work, match interval to change frequency)
+- "Anthropic free 1-hour loop engineering course with Fable 5" — 0xMarioNawfal (tweet, Jul 2026) — pointer to Anthropic's free one-hour loop engineering course built around Fable 5

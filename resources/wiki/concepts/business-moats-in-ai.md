@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-11
+last_updated: 2026-07-14
 ---
 
 # Business Moats in AI
 
 > TLDR: As AI commoditizes everything "hard to do," the only durable moats are things "hard to get" — compounding proprietary data, network effects, regulatory permission, capital at scale, and physical infrastructure. Time that can't be parallelized is the meta-moat.
 
-## Overview
+## Recent Updates
 
-Michael Bloch's framework for defensibility in the AI era. The core filter: AI compresses the time it takes to DO things. It does not compress the time it takes for things to HAPPEN.
+- **2026-07-14:** Added Peter Wang's startup structural advantages framework to [The Focused Harness Advantage](#the-focused-harness-advantage) — lean context, model agnosticism, and customer workflow loops as moats against big labs. Removed stale Overview; framing already present in body sections.
 
 ## Platform Shifts and Value Capture
 
@@ -125,6 +125,20 @@ Andrew Chen's historical framing: every technology wave produces the same object
 
 "Pessimists ask 'what if they build it.' Founders ask 'what if I build it?'"
 
+## The Focused Harness Advantage
+
+Peter Wang (Shortcut) provides the concrete mechanics of how startups beat big labs at their own game — the operational playbook behind Chen's "what if they build this?" framing.
+
+**Smaller domain = leaner harness:** Big labs ship 30+ tools per agent because their tail of use cases is enormous. Every additional tool and instruction floods the agent's context, degrading both cost and accuracy. A startup serving one vertical can strip to 2–3 killer use cases and ruthlessly optimize. Wang's Shortcut agent, competing directly against Claude for Excel on the same base model (Opus 4.8), is 40% cheaper and 17% more accurate — making roughly half the tool calls (37 vs 61 per task) and consuming half the input tokens (3.7M vs 7.1M per task). A leaner context is both cheaper to run and smarter to reason over.
+
+This pattern extends beyond spreadsheets: Pi's stripped-down [agent harness](../tools/agent-harness.md) beats Claude Code and Codex on coding benchmarks at Databricks — not because Anthropic and OpenAI lack talent, but because Pi only serves devs and evals while the big agents serve millions of heterogeneous users wearing the "weighted vest" of breadth.
+
+**Model agnosticism as structural advantage:** By existing outside any one lab's ecosystem, startups can pick the best model per task. Wang's examples: replacing Opus with GPT 5.6 Sol when it proved 2x cheaper and faster at equal accuracy; routing image/PDF perception to Gemini Flash where it wins by a clear margin; offering GLM 5.2 for cost-sensitive users; and training a custom fine-tuned model (Pivot, off Qwen3.5-27B) for worker subagent tasks. A lab locked to its own models can't make these moves. The full landscape of closed and open-source models widens the gap against any walled-garden competitor.
+
+**The customer workflow loop:** Founders sit with customers and learn workflows firsthand. The team holds hands until each specific workflow works. Those workflows become benchmarks and evals written in the spirit of real tasks. They hillclimb against them obsessively. Research insights feed back into the product, so accuracy won for one customer gets delivered to all. A lab cannot run this loop for your vertical, because your vertical is not their main quest. This echoes the [opinionated perspective moat](#the-opinionated-perspective-moat) — but where that framework is about *having* a perspective, Wang describes the *operational mechanics* of building one.
+
+**The realistic scope:** Distribution remains the single biggest force in the market. It wins the enormous middle that is genuinely fine with "good enough." But in every domain, a real and valuable slice of users demand the best and will pick the product that is actually right more often — even from a smaller company they had to go find. Being right more often is winnable through model choice, a focused harness, and caring more.
+
 ## The AI SaaS Squeeze (Tyler Tringas) {#ai-saas-squeeze}
 
 See also: [Services as Software](../landscape/services-as-software.md) — Sequoia's thesis on the services-first pivot.
@@ -217,3 +231,4 @@ The tension with the five durable moats above is productive: Chamath's framework
 - "AI Eats the World" — Benedict Evans / Slush (video, 2025) ([link](https://www.youtube.com/watch?v=FtG8fMGHbNY)) — Platform shift framing, model commoditization data, capital-vs-network-effects fork for model labs, $400B infrastructure spend, absorption-to-disruption deployment cycle
 - "The Untrainable" — Sarah Guo (essay, Jun 2026) ([link](https://open.substack.com/pub/saranormous/p/the-untrainable)) — Private correctness as moat framework, the legibility trap (measurable work → commodity), permission/accountability > intelligence, trust as deadbolt, absorption frontier, private evals as defensibility, MIT coding agent data (180% written / 30% shipped)
 - "The Collapse of Terminal Value" — Chamath Palihapitiya (tweet, Jun 2026) — Disruption repricing framework: if AI makes moats temporary, equities compress to 2–7x FCF; historical precedents (newspapers, retail, energy, taxi medallions); self-defeating paradox of AI capex; capital rotation to physical assets and sovereign investors
+- "Building against the big labs that are trying to eat you" — Peter Wang (tweet, Jul 2026) ([link](https://x.com/BrainsAndTennis)) — Focused harness advantage: lean context beats broad tooling on cost and accuracy; model agnosticism as structural advantage; customer workflow loop as operational moat; Shortcut vs Claude for Excel benchmarks

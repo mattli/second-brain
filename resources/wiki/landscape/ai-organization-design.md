@@ -1,17 +1,17 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-11
+last_updated: 2026-07-15
 ---
 
 
 
 # AI Organization Design
 
-> TLDR: Block (Jack Dorsey) proposes replacing corporate hierarchy with an "intelligence layer" — a company organized as a mini-AGI where AI handles coordination that previously required layers of management, enabled by a "world model" of operations and customer data. A YC Root Access talk extends the model with a concrete architecture: recursive self-improving AI loops (sensor → policy → tool → quality gate → learning) that get better overnight without human intervention.
+> TLDR: Block (Jack Dorsey) proposes replacing corporate hierarchy with an "intelligence layer" — a company organized as a mini-AGI where AI handles coordination that previously required layers of management, enabled by a "world model" of operations and customer data. A YC Root Access talk extends the model with a concrete architecture: recursive self-improving AI loops (sensor → policy → tool → quality gate → learning) that get better overnight without human intervention. Sivulka (a16z) adds the management frame: agent workforces fail in the same ways human workforces fail — token waste mirrors headcount bloat, loops mirror meetings-about-meetings, and evals are the new OKRs.
 
-## Overview
+## Recent Updates
 
-Block's "From Hierarchy to Intelligence" essay (Jack Dorsey, Sequoia-endorsed) is the most ambitious articulation yet of how AI might restructure organizations. The argument: hierarchy exists because humans are the only coordination mechanism available. AI changes that.
+- **2026-07-15:** Added Sivulka's token-workforce parallels to [The Token Workforce](#the-token-workforce) and evals-as-management to [Organizational Legibility](#organizational-legibility)
 
 ## Historical Context
 
@@ -85,6 +85,8 @@ The default is flipping from "don't record unless you opt in" to "assume you're 
 
 The principle: if an interaction produces an artifact that can self-improve, it's valuable. If it doesn't, it's disposable.
 
+**[Evals](../tools/ai-evals.md) operationalize legibility.** Strategic clarity and data capture make the organization legible to AI, but evals are the mechanism that converts legibility into managed output. Without evals, token spend is unmanaged headcount — the AI equivalent of hiring without performance reviews. The real work of managing is turning fuzzy human processes into code, expressing the qualitative as quantitative. [[source]](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)
+
 ## Voice as the New System of Record
 
 The current enterprise system of record is structured data: CRM entries, tickets, docs. But the highest-value context lives in conversation — the nuance on a customer call, the real argument in a product review, the offhand comment in a leadership meeting that quietly changes the roadmap. LLMs are uniquely suited to taking unstructured voice data and making it structured, searchable, and queryable. A new category of enterprise software is emerging, organized around voice instead of text.
@@ -102,6 +104,20 @@ This inverts the traditional hierarchy of value. Business context, skills defini
 ## Burn Tokens, Not Headcount
 
 YC is seeing companies reach demo day with roughly 5x more revenue per employee than 18 months ago, a trend expected to continue through Series A and B. The constraint shifts from headcount to token usage. The speaker's rough heuristic: track who in the organization is "token-maxing" (experimenting aggressively with AI) and who isn't — not as a promotion metric (that gets gamed immediately), but as a signal for where to focus leadership attention.
+## The Token Workforce
+
+George Sivulka (a16z) inverts the standard narrative: AI didn't replace human labor — it created a new kind of workforce that's *more expensive* than humans on average. Token spend per employee at top firms now exceeds salary costs, and AI is creating more jobs than it eliminates. The core insight: agent workforces and human workforces fail in the same ways.
+
+Seven parallels between the two:
+
+1. **Tokenmaxxing = throwing bodies at the problem.** Most employees can't prompt effectively — maybe 1 in 100 can articulate a process clearly enough for an agent. The other 99 compensate with volume.
+2. **[Loops](../tools/loop-engineering.md) = meetings about meetings.** Agents calling themselves to fix themselves because the task was never articulated cleanly. "You are spending tokens on spending tokens."
+3. **Wasted tokens = headcount bloat.** Just as 80% of employees at mismanaged companies don't meaningfully impact the business, 80% of tokens today do nothing. Looping is the new empire building.
+4. **100X tokens = 10X engineers.** For any given task, some amount of context can cut AI effort by orders of magnitude. Finding and scaling these high-leverage tokens is the management challenge. "Humans are cheaper than tokens on average, but good tokens are cheaper at scale. Management converts one into the other." [[source]](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)
+5. **Context hoarding = job security.** Employees resist teaching AI their knowledge. The people who hold the 100X tokens have the least incentive to surrender them. Meta's stock-owning employees are outraged at using employee context as training data — at a *tech company*. Tribal knowledge has been job security for centuries; AI is the first technology that asks workers to hand all of it over at once.
+6. **[Evals](../tools/ai-evals.md) = OKRs.** Coding is the breakout AI use case because it has built-in evals — code runs or it doesn't. Broader adoption requires building evals for every domain. A firm's eval suite will become its most valuable resource, and no two firms will have the same one.
+7. **AI transformation companies > neofirms.** The next trillion-dollar businesses won't eat existing services spend — they'll sell ongoing AI transformation to incumbents. Palantir isn't selling software; it's selling transformation. Encoding each firm's nuances into agents may become the largest economic task of the decade. There's a Jevons paradox: every use case adopted surfaces ten more, so transformation never ends.
+
 ## People at the Edge
 
 In a conventional company, intelligence is spread throughout the people and the hierarchy routes it. In Block's model, the intelligence lives in the system. The people are on the *edge* — where the intelligence makes contact with reality.
@@ -187,3 +203,4 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "How to Build a Self-Improving Company with AI" — YC Root Access (video, May 2026) — Self-improving loop architecture, organizational legibility imperative, YC monitoring agent example, burn tokens not headcount
 - "Most Companies Aren't Anywhere Near Ready for AI" — Daniel Miessler (article, May 2026) ([link](https://danielmiessler.com/p/most-companies-arent-anywhere-near-ready-for-ai)) — Strategic clarity as AI prerequisite, small-company structural advantage in legibility
 - "Everything Is Recorded Now" — David Haber (tweet, Jun 2026) — Recording as default, AI onboarding through meeting attendance, voice as new system of record, verbal vs written culture advantage
+- "You Just Hired a Million Bad Employees" — George Sivulka / a16z (article, Jul 2026) ([link](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)) — Seven parallels between token and human workforces; 100X tokens; evals as OKRs; context hoarding; AI transformation companies

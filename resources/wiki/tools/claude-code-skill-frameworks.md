@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-27
+last_updated: 2026-07-15
 ---
 
 # Claude Code Skill Frameworks
@@ -9,6 +9,7 @@ last_updated: 2026-06-27
 
 ## Recent Updates
 
+- **2026-07-15:** Added [The .claude/ Folder Anatomy](#the-claude-folder-anatomy) section — full structural reference for project and global configuration directories, path-scoped rules, and the commands/skills/agents distinction.
 - **2026-06-27:** Added [Claude Code as Agent Platform](#claude-code-as-agent-platform) section with OpenClaw comparison and Claudie case study; removed stale Overview; folded framing into TLDR.
 
 ## The Four Frameworks
@@ -88,6 +89,26 @@ Garry Tan's architectural principle (from the same author as gstack): *push inte
 Skill files work like method calls: same procedure + different arguments = different capabilities. The skill encodes *how*; the invocation supplies the world. This is why gstack's six slash commands can power radically different workflows — the same /review skill yields different outputs depending on what code it encounters.
 
 See [Agent Harness](agent-harness.md) for the full principle and why "fat harness with thin skills" is the anti-pattern.
+
+## The .claude/ Folder Anatomy
+
+The `.claude/` folder is the control center for how Claude behaves in a project. Understanding its structure is a prerequisite for using any of the frameworks above effectively — gstack, Superpowers, Compound Engineering, and Agent Skills all live inside this folder as commands, rules, or skills.
+
+**Two directories, not one.** The project-level `.claude/` folder holds team configuration (committed to git). The global `~/.claude/` folder holds personal preferences and machine-local state like session history and auto-memory. Claude reads both and combines them.
+
+**CLAUDE.md** is the highest-leverage file in the system. It loads into the system prompt at session start and stays in context for the entire conversation. Best practice: keep it under 200 lines — longer files eat context and instruction adherence drops. Include build/test/lint commands, key architectural decisions, non-obvious gotchas, and import/naming conventions. Leave out anything that belongs in a linter config or a linked doc. A personal `CLAUDE.local.md` (auto-gitignored) sits alongside it for overrides you don't want committed.
+
+**The rules/ folder** solves the scaling problem. When CLAUDE.md gets crowded, split instructions into separate markdown files by concern (`code-style.md`, `testing.md`, `api-conventions.md`). Every file in `.claude/rules/` loads alongside CLAUDE.md automatically. Path-scoped rules add a YAML frontmatter `paths:` field and only activate when Claude is working with matching files — a rule scoped to `src/api/**/*.ts` won't load when editing a React component.
+
+**Commands vs. skills vs. agents** — three distinct extension points with different trigger models:
+
+- **Commands** (`.claude/commands/`) are user-invoked slash commands. A file named `review.md` becomes `/project:review`. They support shell interpolation (`!` backtick syntax embeds command output) and `$ARGUMENTS` for parameters. Single files, not packages. Personal commands in `~/.claude/commands/` show up as `/user:command-name`.
+- **Skills** (`.claude/skills/`) are workflows Claude can invoke on its own when the task matches the skill's description. Each skill lives in its own subdirectory with a `SKILL.md` file using YAML frontmatter (`name`, `description`, `allowed-tools`). Unlike commands, skills can bundle supporting files alongside them — a `@DETAILED_GUIDE.md` reference pulls in a companion document. Skills are packages; commands are single files.
+- **Agents** (`.claude/agents/`) are specialized subagent personas spawned in isolated context windows. Each agent markdown file specifies its own system prompt, tool restrictions (`tools: Read, Grep, Glob`), and model preference (`model: sonnet` or `haiku` for cheaper focused tasks). The agent does its work, compresses findings, and reports back without cluttering the main session.
+
+**settings.json** controls permissions via `allow` and `deny` lists. Allowed tools run without confirmation; denied tools are blocked entirely; anything unlisted prompts for approval. A sensible default allows `Bash(npm run *)`, read-only git commands, and file operations, while denying `rm -rf *`, `curl *`, and `.env` reads. `settings.local.json` (auto-gitignored) handles personal permission overrides.
+
+**The global ~/.claude/ folder** holds `CLAUDE.md` (loads in every session across all projects), `projects/` (session transcripts and auto-memory per project), and personal `commands/`, `skills/`, and `agents/` directories available everywhere.
 
 ## Claude Code as Agent Platform
 
@@ -376,4 +397,5 @@ Claude already self-verifies against deterministic signals — type errors, lint
 - "How to Make Claude Code Stop Making Stuff Up When It Doesn't Know" — rody (tweet, Jun 2026). 4-layer anti-fabrication setup: CLAUDE.md honesty rules, verification-before-write protocol, PostToolUse hooks for real-time type checking, and a fact-checker subagent.
 - "Feedback loops: Help Claude Code complete ambitious tasks with less babysitting" — Delba (tweet, Jun 2026). Encoding manual verification processes as skills, two-layer verification model (in-loop + pre-merge review), and composing skills into end-to-end workflows.
 - "Claude Code Is the OpenClaw Alternative You Already Have" — Nityesh Agarwal / Every (article, Jun 2026) ([link](https://every.to/source-code/claude-code-is-the-openclaw-alternative-you-already-have)). Claude Code as full agent platform vs OpenClaw: five shared capabilities, session architecture advantages, Claudie production case study.
+- "Anatomy of the .claude/ folder" — Akshay Pachaar (tweet, Jul 2026). Complete guide to the .claude/ folder structure: two directories (project vs global), CLAUDE.md best practices and 200-line limit, rules/ with path-scoped frontmatter, commands vs skills vs agents distinction, settings.json permissions, and progressive setup advice.
 - [Welcome to the Printing Press](https://printingpress.dev) — landing page for Printing Press CLI factory

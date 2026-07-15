@@ -6,6 +6,11 @@ Code: [github.com/mattli/voice-tutor](https://github.com/mattli/voice-tutor) (pr
 
 ## Status
 
+**TTS pacing controls + session-analysis source attribution** (2026-06-01). Two small tuning commits after a stretch of daily use:
+
+1. **Deliberate cadence** (commit `52258e7`). New `VOICE_TUTOR_TTS_SPEED` env var (unset by default) overrides Cartesia Sonic-3 generation speed at runtime, paired with a `BREVITY_REMINDER` cue — "Speak deliberately — use commas and brief pauses; don't rush." — so the LLM produces text with natural pauses. Prompt-level pacing is the primary lever; the TTS flag is a backstop if that alone isn't enough.
+2. **Session-analysis knowledge-source buckets** (commit `cd5c17a`). The post-session analyzer was lumping `memory.md`, the most-recent transcript, and the wiki INDEX into a single "Pre-loaded wiki" source, misattributing facts that actually came from prior-session memory. Split into six distinct buckets — four pre-loaded (on-demand wiki pages, wiki INDEX, prior-session memory, most-recent transcript) plus general LLM knowledge and Matt's own ideas — and told Haiku to be specific about which fact came from which source.
+
 **`/study/` UI redesign + telemetry-inline ended view** (2026-05-13). Both Beni-demo prep items from the Next steps now done. Two threads:
 
 1. **UI redesign via Claude Design handoff** (commit `6bfb4f3`). Ported the Claude Design output — paper aesthetic (`#faf7f0` background, Source Serif 4 headings, Inter body, ink-blue `#2d4a6b` accent), wordmark header, pulsing listening dot, book-style recap typography. UX tweaks during port: upload is one-step (file picker → auto-uploads); post-recap CTA reads "Start another session" (stays on the doc); session-idle screen shows a Haiku-generated 1–2 sentence doc summary so the user knows what they're about to discuss. Summaries persisted as `<doc_id>.summary.txt` sidecars; existing docs lazily backfilled in parallel on first list call.

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-07-01
+last_updated: 2026-07-15
 
 
 ---
@@ -11,6 +11,7 @@ last_updated: 2026-07-01
 
 ## Recent Updates
 
+- **2026-07-15:** Added Stanford Canaries Dashboard ADP data (3.8%/yr early-career contraction in exposed jobs, automation-ratio correlation) to [Augmentation vs. Substitution](#augmentation-vs-substitution) and [AI's Early Labor Market Impact](#ais-early-labor-market-impact-2026-data); added Takeoff Tracker findings to [Academic Research](#academic-research-on-net-employment-effects)
 - **2026-07-01:** Added Anthropic/LinkedIn PM-ratio evidence to [The Allocation Economy](#the-allocation-economy); added review-as-leverage and first-principles framing to [Maintaining Skill While Using AI](#maintaining-skill-while-using-ai)
 - **2026-06-29:** Added Boris Cherny's five phase-based product archetypes to [Phase-Based Role Archetypes](#phase-based-role-archetypes-cherny)
 
@@ -98,6 +99,8 @@ Each dominant economic sector has given way to an even larger successor. Tech to
 
 For some jobs, AI is an existential threat; for others, it's a force-multiplier that makes those roles more valuable. Goldman Sachs estimates that AI augmentation effects more than counterbalance AI substitution effects on aggregate employment. On earnings calls, management teams mention AI-as-augmentation at roughly 8:1 versus AI-as-substitution [[source]](https://www.a16z.news/p/the-ai-job-apocalypse-is-a-complete).
 
+Stanford's Canaries Dashboard (ADP payroll data covering 4.6M workers across 25,000 firms, June 2026) provides the first large-scale empirical test of this distinction. Among early-career workers (22–25), the occupation-level *automation ratio* — the share of AI usage classified as full task delegation — correlates clearly with employment declines: higher automation means contracting or slower-growing employment. The *augmentation ratio* shows no such monotonic relationship [[source]](https://digitaleconomy.stanford.edu/project/indicators/canaries-dashboard/). The implication: it is not AI exposure per se that displaces workers, but the *character* of that exposure. Where humans collaborate with AI, employment holds; where AI fully replaces task execution, it doesn't.
+
 Software engineering is a canonical augmentation case: git pushes and new app submissions are skyrocketing, new business formation correlates with AI adoption, and SWE job postings (both absolute count and share of overall market) have been increasing since early 2025. AI-exposed occupations show above-trend wage growth, especially in systems design. Product manager openings are also climbing, now more plentiful than at any point since 2022. Simultaneous growth in both engineers and PMs illustrates why lump-of-labor is wrong — if AI substituted thinking 1:1, you'd expect one to decline, but both are rebounding because people are getting more done.
 
 ### Anthropic's Observed Exposure Data
@@ -117,11 +120,15 @@ The recurring refrain from the most recent research is "no change on net, but so
 - **Census CES Working Paper 26-25:** Only ~5% of AI-using firms report any headcount impact, distributed nearly equally between increases (2.3% of firms) and decreases (2.0%) [[source]](https://www.a16z.news/p/the-ai-job-apocalypse-is-a-complete).
 - **Yale Budget Lab (Apr 2026):** "The picture of AI's impact on the labor market that emerges from our data is one that largely reflects stability, not major disruption at an economy-wide level" [[source]](https://www.a16z.news/p/the-ai-job-apocalypse-is-a-complete).
 
-One notable exception: researchers at Stanford, Dallas Fed, and Census found entry-level roles with high AI exposure are increasingly difficult to find — but also found increases in entry-level roles where AI is augmentative.
+One notable exception: researchers at Stanford, Dallas Fed, and Census found entry-level roles with high AI exposure are increasingly difficult to find — but also found increases in entry-level roles where AI is augmentative. Lambert and Schindler (2026) qualify the early-career findings further: some of the junior hiring share decline in AI-exposed jobs can be explained by exposure to remote work rather than AI alone. Johnston and Makridis (2026) find the opposite signal at the sector level — AI exposure is associated with employment *increases* through 2024, though measurement windows matter.
+
+**Macro takeoff indicators remain flat.** Stanford's Takeoff Tracker (June 2026) monitors 12 aggregate U.S. indicators of AI-driven explosive economic growth. Seven show no evidence of takeoff; three show mild evidence; two show strong evidence (notably the capital share of factor income, which continues a long-running upward trend). Total factor productivity growth — the proxy for economy-wide efficiency gains — shows no break from recent levels [[source]](https://digitaleconomy.stanford.edu/project/indicators/takeoff-tracker/). The gap between AI capability and macroeconomic impact remains wide: adoption is spreading but not yet bending the productivity curve.
 
 Overall: "still no statistically significant relationship between AI and unemployment or employment growth." Hiring growth appears stronger for AI-augmented industries, weaker for AI-substitution industries. The aggregate picture is neutral but not static — some destruction, some creation, some roles deprecated, others at a premium.
 
 *Employment impact so far:* No systematic increase in unemployment for highly exposed workers since ChatGPT's release. However, *tentative evidence that hiring of younger workers (22-25) into exposed occupations has slowed ~14%* (just barely statistically significant). Slowed hiring may not appear as unemployment if young workers exit the labor market rather than appear unemployed.
+
+Stanford's Canaries Dashboard (June 2026 update) sharpens this picture with ADP payroll data: early-career workers in the most AI-exposed occupations see employment *contracting* at 3.8% per year since November 2022, while the least exposed see 2.0% annual growth. The pattern weakens with age — muted evidence extends to workers up to 34, then disappears for older cohorts. Specific occupations illustrate the divergence: early-career software developers and customer service workers show substantial declines, while home health aides (low exposure) show growth [[source]](https://digitaleconomy.stanford.edu/project/indicators/canaries-dashboard/). Hosseini Maasoum and Lichtinger (2026) corroborate via résumé and job posting data: junior employment declines sharply at firms adopting AI, concentrated in generative-AI-exposed occupations, with exposed tasks increasingly removed from junior job postings.
 
 ### The Jevons Paradox of AI Labor
 
@@ -253,5 +260,6 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "The 'AI Job Apocalypse' Is a Complete Fantasy" — David George (a16z, May 2026) ([link](https://www.a16z.news/p/the-ai-job-apocalypse-is-a-complete)) — lump-of-labor fallacy framing; historical precedents (tractors, electrification, VisiCalc, travel agents); augmentation vs. substitution data (Goldman, 8:1 earnings-call ratio); 2026 academic research roundup (NBER, Atlanta Fed, Census, Yale Budget Lab) showing no net employment effect; new business formation and app-store growth correlating with AI adoption
 - "How to be good at research" — Vivek (tweet, Jun 2026) ([link](https://x.com/VivsThoughts)) — taste as trainable muscle (predict-then-correct loop); Hamming's problem-selection question; writing as defense against self-deception (Graham, Darwin); tightening feedback loops as the core research skill; breadth as insurance against subfield saturation; Shannon's shrink-then-expand method
 - "Feeling stupid is a crucial part of science" — Nicholas Fabiano (tweet, May 2026) — embracing uncertainty as signal of pushing into the unknown
+- "AI Economic Indicators: June 2026 Update" — Stanford Digital Economy Lab (Research Note No. 1, Jun 2026) ([link](https://digitaleconomy.stanford.edu/project/indicators/)) — Canaries Dashboard (ADP payroll data: 3.8%/yr early-career contraction in exposed occupations, automation-ratio employment correlation); Takeoff Tracker (7/12 indicators show no takeoff evidence, TFP flat); Adoption Monitor; literature review (Hosseini Maasoum & Lichtinger, Lambert & Schindler, Johnston & Makridis)
 - "As engineering, product, design, DS, etc. melt into a new kind of role" — Boris Cherny (tweet, Jun 2026) — five phase-based product archetypes (Prototyper, Builder, Sweeper, Grower, Maintainer) replacing domain-specific roles; team composition by product stage
 - "Claude Code turned every engineer into three. Now companies need more product thinkers" — Ishan Gupta (VentureBeat, Jun 2026) ([link](https://venturebeat.com/ai/claude-code-turned-every-engineer-into-three-now-companies-need-more-product-thinkers/)) — Anthropic 3x engineering productivity and PM hiring response; PM ratio strain (1:8 → effective 1:20); LinkedIn Product Builder program; review as the new writing (84% AI adoption, 46% distrust); first principles as leverage skill

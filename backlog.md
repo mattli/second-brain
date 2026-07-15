@@ -20,6 +20,7 @@
 - [ ] Schedule atomic notes compiler — weekly NanoClaw task that compiles atomic notes from the previous 7 days of Telegram conversation history (main group). Output to resources/atomic-notes/. Pipeline scaffold already exists at projects/atomic-notes/; one-off experiment ran 2026-04-13 and produced 13 usable notes. Decide cadence, prompt format, and whether notes should update in place or append new. Evaluate after ~4 runs whether output is actually useful or just noise.
 - [ ] Investigate whether it would be worthwhile to internal link weekly/monthly summaries back to weekly/daily briefings.
 - [ ] Key figure publishing alerts — figure out a way to get notified when people like Dario Amodei or DHH publish a new long-form piece or thesis. Could be RSS monitoring, a periodic agent task that checks their blogs/sites, or Readwise feed subscriptions. Goal is to catch essays and posts worth reading without having to actively follow them.
+- [ ] ~Aug 1: judge briefing test against products/briefing/validation-gate.md
 
 ### Cold Mountain (coldmountain.ai)
 

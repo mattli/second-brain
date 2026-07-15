@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-30
-last_updated: 2026-07-13
+last_updated: 2026-07-15
 status: in-progress-phase-2
 type: design-spec
 ---
@@ -223,7 +223,16 @@ blind evaluator), git worktrees, `TestSuiteVerifier`, rich traces, budget stops,
 Shipped on top: **legible runs** (human-readable transcript + dated run folders) and
 **run observability** (contract freeze reason + frozen contract embedded in the trace).
 
-**② Harden — CURRENT: "trustworthy on one project."** Make the attended loop reliable
+**② Harden — "trustworthy on one project."** ✅ **Stop-early core SHIPPED 2026-07-15**
+(`main` @ `0356ce2`): caps rework (wall-clock primary/per-sprint, dollar off-by-default,
+usage-limit graceful pause), ≤6 sprint cap in code, honest CLI flags, per-sprint tests,
+`FINAL SCORE:` marker (closes the score-misread residual), "Paused not failed" summary.
+Built subagent-driven (fresh implementer + independent reviewer per task); whole-branch
+reviewed on opus (one usage-limit over-match caught + fixed); verified live ($0.42 run
+scored 98/100, the sprint's contract required and the generator produced `sum.js` +
+`sum.test.js`). One watch-item: the real-SDK usage-limit *error shape* is still
+unconfirmed (only observable when an actual limit is hit). **Remaining in ②: the
+read-only dashboard** (below). — Make the attended loop reliable
 enough to actually reach for. Resolves the three stop-early items from the csv2json
 trial (2026-07-07) as one coherent design:
 

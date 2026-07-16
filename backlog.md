@@ -20,6 +20,7 @@
 - [ ] Schedule atomic notes compiler — weekly NanoClaw task that compiles atomic notes from the previous 7 days of Telegram conversation history (main group). Output to resources/atomic-notes/. Pipeline scaffold already exists at projects/atomic-notes/; one-off experiment ran 2026-04-13 and produced 13 usable notes. Decide cadence, prompt format, and whether notes should update in place or append new. Evaluate after ~4 runs whether output is actually useful or just noise.
 - [ ] Investigate whether it would be worthwhile to internal link weekly/monthly summaries back to weekly/daily briefings.
 - [ ] Key figure publishing alerts — figure out a way to get notified when people like Dario Amodei or DHH publish a new long-form piece or thesis. Could be RSS monitoring, a periodic agent task that checks their blogs/sites, or Readwise feed subscriptions. Goal is to catch essays and posts worth reading without having to actively follow them.
+- [ ] Sat 7/18: briefing edition 2 — bring raw weekly (resources/intelligence/weekly-products/2026-07-18.md) to Claude for public edit + cover image, post to X as article
 - [ ] ~Aug 1: judge briefing test against products/briefing/validation-gate.md
 
 ### Cold Mountain (coldmountain.ai)
@@ -28,6 +29,9 @@
 ### dotmd
 - [ ] Fix hardcoded `--version` output — `src/cli/index.ts:15` calls `.version("0.1.0")` literally, so `dotmd --version` reports `0.1.0` regardless of the installed package version. Replace with a `package.json` read (ESM pattern: `JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../../package.json"), "utf-8")).version`) so it stays in sync automatically.
 - [ ] Revisit extensibility for `~/.app-data/` runtime dirs — currently each new app that stores AI files outside the project repo (e.g. voice-tutor's `~/.voice-tutor/`) has to be added to `scan_roots` manually. Once this happens a few more times, build a repo-side opt-in (`.dotmd.yaml` declaring `extra_roots`) so projects can self-declare their runtime dirs. Don't pre-build — wait for the third manual addition before investing.
+
+### Voice Tutor
+- [ ] Resume harness work: cherry-pick sprint-0's 25 characterization tests from the run branch in ~/Development/voice-tutor-harness-run into the real repo (review diff — tests-only) → merge them into the clone's feat branch → uv sync full deps into .harness-venv → relaunch the bot.py helper relocation as a single sprint, 30-min cap unchanged. Context: products/voice-tutor/planning/harness-characterization-run-draft.md + run b79d8ron5 + docs/solutions/conventions/match-verifier-env-to-sprint-contract-imports.md (dev-harness repo).
 
 ### NanoClaw
 - [ ] Integrate Google Calendar with NanoClaw — connect calendar so NanoClaw can read events, add reminders, and surface scheduling context. Relevant to to-do list workflow and scheduled task reminders.

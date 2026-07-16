@@ -789,3 +789,23 @@ git commit -m "feat(report): paused-not-failed language, usage-limit line, appro
 - The **read-only live dashboard** (phase ② stage 1 of the Dashboard) — separate track.
 - The **true mid-work interrupt / hung-call guard / hard total-time ceiling** — phase ⑤ (only load-bearing unattended).
 - Any change to the **negotiation/blind-eval adversarial mechanics** beyond the two prompt additions.
+
+**Follow-ups surfaced by the first E2E run against a real repo (run `b79d8ron5`, Voice Tutor, 2026-07-15):**
+
+- **Contract feasibility smoke-check.** Before generation starts, verify the frozen
+  contract's acceptance-criteria commands can actually *execute* in the run env —
+  e.g. that the tests/imports the criteria demand can at least be collected. In
+  `b79d8ron5` sprint 1's contract required a dual-import proof (`import bot`), but the
+  minimal verifier env lacked `bot.py`'s eager top-level deps (`anthropic`, Pipecat),
+  so the suite died at collection and the contract was unsatisfiable — yet the loop
+  spent a full sprint and ~$25 discovering that the slow way. A pre-generation
+  feasibility gate would fail fast (or reject the contract at negotiation). See
+  `docs/solutions/conventions/match-verifier-env-to-sprint-contract-imports.md`.
+- **Stall detection — halt on no score improvement over N consecutive revisions.**
+  Sprint 1 scored 12 → 22 → 18 and ran out the 30-min wall-clock instead of halting
+  on lack of progress. Refines the existing no-progress mechanism
+  (`noProgressDelta`/`noProgressWindow`), which didn't fire here because the scores
+  oscillated (only one inter-iteration delta was < 5) and iterations were slow enough
+  that wall-clock bound first. Detect a *plateau/ceiling* (best score over a window
+  not improving), not just consecutive small deltas, so a stuck sprint stops on
+  signal rather than on the clock.

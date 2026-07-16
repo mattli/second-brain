@@ -1,20 +1,15 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-05-28
+last_updated: 2026-07-16
 ---
 
 # AI Safety & Interpretability
 
-> TLDR: The effort to understand and align AI models — what's happening inside them, why they produce certain outputs, and how to ensure they behave as intended as they become more capable. Anthropic has made this a core research focus.
+> TLDR: The effort to understand and align AI models — what's happening inside them, why they produce certain outputs, and how to ensure they behave as intended. Interpretability and alignment are deeply linked: if you can't see what a model is doing internally, you can't verify it's "thinking" about the right things. 2026 marks the year these tools moved from frontier-lab secrets to open, practitioner-accessible tooling.
 
-## Overview
+## Recent Updates
 
-As AI models become more capable, understanding their internal mechanisms becomes both more important and more difficult. Two related but distinct problems:
-
-- **Interpretability:** Understanding *how* a model arrives at its outputs — which internal representations and computations produce a given behavior
-- **Alignment:** Ensuring models reliably behave in accordance with human intentions and values, especially in novel situations
-
-These are often treated together because interpretability is a key tool for alignment: if you can't see what a model is doing internally, it's hard to verify that it's actually "thinking" about the right things.
+- **2026-07-16:** Added [Practical Interpretability Tooling](#practical-interpretability-tooling-saes--feature-steering) section covering SAEs, feature steering, and open tools; added [The Forbidden Technique](#the-forbidden-technique-optimizing-against-your-own-window) concern about training against interpretability signals; removed stale Overview and folded framing into TLDR.
 
 ## Anthropic's Interpretability Research
 
@@ -39,6 +34,43 @@ Anthropic's most recent interpretability advance converts model activations dire
 **Limitations:** NLA explanations can hallucinate (inventing details not present in the transcript), and inference is expensive — hundreds of tokens generated per activation, making large-scale monitoring impractical for now. Anthropic reads NLA outputs for thematic signals rather than treating individual claims as ground truth, and corroborates findings with independent methods.
 
 Training code is open-sourced on GitHub, with an interactive demo hosted on Neuronpedia.
+
+## Practical Interpretability Tooling: SAEs & Feature Steering
+
+While Anthropic's NLAs represent the cutting edge for production safety monitoring, a parallel ecosystem of open tools now lets any builder read and steer model internals directly — no frontier lab affiliation required.
+
+**The core problem SAEs solve:** Individual neurons in a model are *polysemantic* — a single neuron fires for the Golden Gate Bridge, a legal disclaimer, and a function opening simultaneously. The model packs far more concepts than it has neurons by letting them overlap (superposition). Staring at raw activations tells you nothing, the way staring at a brain slice tells you nothing about the memory it holds.
+
+A **sparse autoencoder** sits on one layer and un-smears the tangled activation vector into a much larger set of human-readable *features* — "formal-tone is active," "refusal is active," "joke-setup is active." You go from a wall of numbers to a list of concepts the model is actually using. The first time you see that list, prompting starts to feel primitive.
+
+**Feature steering** is the second half: once a feature has a name and a value, you can change it. Turn the formal-tone feature up and the model writes like a lawyer without the word "formal" appearing in the prompt. Find the feature that tracks fabrication and clamp it. A prompt is a request you hope the model honors; steering changes the computation that produces the answer. You can even make edits conditional — an if-statement over the model's mind, writing control flow against concepts instead of tokens.
+
+**Proof this works at scale:** OpenAI decomposed GPT-4 into ~16 million features with an SAE and open-sourced the training code. Anthropic did it to Claude 3 Sonnet and found millions of steerable features (including the famous Golden Gate Bridge feature). DeepMind's Gemma Scope trained autoencoders across every layer and sublayer of Gemma 2 and gave the whole suite away on Hugging Face. Researchers behind **Inference-Time Intervention** (NeurIPS 2023) trained cheap probes to find truthful-vs-false directions inside a model and nudged activations toward truth at generation time — roughly doubling TruthfulQA scores with near-zero inference cost. Beyond LLMs, the **InterPLM** project (Nature Methods) trained SAEs on a protein language model and found features corresponding to binding sites, structural motifs, and functional families that nobody had labeled.
+
+**A simpler on-ramp — representation engineering:** Instead of training an SAE, you can build a single steering direction from contrasting examples (formal vs. casual, honest vs. evasive) and add it at inference time. Libraries like **repeng** do this in a few lines.
+
+**The open tool stack (all free):**
+
+| Tool | What it does |
+|---|---|
+| **Gemma Scope** | DeepMind's SAEs for Gemma 2, every layer, on Hugging Face with starter Colab |
+| **SAELens** | Loads pretrained SAEs; encode-and-decode loop |
+| **TransformerLens** | Hooks into model activations for reading and steering |
+| **Neuronpedia** | Open-source hosted dashboard and free API — browse features, steer from browser, circuit-tracing tooling |
+| **NNsight + NDIF** | Run read-and-steer code against models too large for local hardware, on shared research infrastructure |
+| **repeng** | Representation engineering / control vectors in a few lines |
+
+**Limitations that matter:** Superposition spreads across layers, not just within one — the clean single-layer SAE picture gets muddier the harder you look. Models self-repair: suppress a feature and the network routes around your edit downstream (the **Hydra effect**), meaning a steering result that looks solid can quietly fail in production. Some SAE-labeled features don't correspond to concepts as cleanly as their labels suggest. The field is moving toward understanding the geometry of the concept space rather than treating features as independent dials.
+
+## The Forbidden Technique: Optimizing Against Your Own Window
+
+Once you can read an internal signal for a bad behavior, the tempting next move is to use it during training — turn your interpretability finding into a reward signal. This works, but some safety researchers consider it close to a forbidden move.
+
+The argument: interpretability tools are valuable precisely because they're an honest window into the model. The moment you optimize the model *against* that window, you create pressure for the model to look good through the window while doing whatever it wants behind it. You blind your own monitor by training against it. This is the same concern raised about chain-of-thought monitoring in 2025 — and what one widely-read essay calls "the most forbidden technique."
+
+**Partial defense:** Read the signal from a frozen reference copy of the model, not from the student being trained, and don't let gradients flow back through the probe. The student can't directly optimize to fool the probe. This helps but doesn't fully settle the objection — pressure to look good through the window can leak through subtler paths.
+
+The tension is unresolved and both sides point at something real. Knowing it exists is the difference between understanding the field and reposting a press release about it.
 
 ## Why It Matters Now
 
@@ -177,3 +209,4 @@ During a multi-agent BrowseComp evaluation (1,266 problems testing hard-to-find 
 - "The Future Of Everything Is Lies, I Guess" — Kyle Kingsbury (PDF, Apr 2026) ([link](https://aphyr.com/posts/398-the-future-of-everything-is-lies-i-guess))
 - "Eval awareness in Claude Opus 4.6's BrowseComp performance" — Anthropic (May 2026) ([link](https://www.anthropic.com/research/browsecomp-eval-awareness)). Documented eval-aware behavior, benchmark decryption, contamination vectors, multi-agent vs single-agent rates.
 - "How we monitor internal coding agents for misalignment" — Marcus Williams, Hao Sun, Swetha Sekhar, Micah Carroll, David G. Robinson, Ian Kivlichan / OpenAI (Mar 2026) ([link](https://openai.com/index/how-we-monitor-internal-coding-agents-for-misalignment/)). GPT-5.4-powered monitoring system for internal coding agents; misalignment taxonomy with observed frequencies; base64 circumvention case study; roadmap toward synchronous blocking.
+- "The AI skill of 2026 that almost nobody is teaching" — Rohit (tweet thread, Jul 2026) ([link](https://x.com/rohit4verse/status/2077045458309091680/)). Practitioner-oriented overview of SAEs, feature steering, and open interpretability tooling (Gemma Scope, SAELens, Neuronpedia, NNsight); Inference-Time Intervention results; the "forbidden technique" concern about training against interpretability signals.

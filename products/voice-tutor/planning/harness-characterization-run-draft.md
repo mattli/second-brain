@@ -1,7 +1,8 @@
 ---
 title: "DRAFT — Voice Tutor characterization run (dev-harness)"
-status: DRAFT — awaiting Matt's review before any run is launched
+status: RUN — both sprints executed (as two single-sprint runs); relocation passed 96/100. Remaining work is harvest into the real repo (see backlog).
 date: 2026-07-15
+last_updated: 2026-07-16
 product: voice-tutor
 tool: dev-harness
 base_branch: feat/study-companion-mode
@@ -9,9 +10,24 @@ base_branch: feat/study-companion-mode
 
 # DRAFT — Voice Tutor characterization run (dev-harness)
 
-> **This is a draft for review. Nothing has been run.** It defines the two
-> sprints, their acceptance criteria, and the exact command that would start the
-> run. Review and adjust before launching.
+> **UPDATE 2026-07-16 — this has now been run.** Both sprints were executed as
+> two *separate single-sprint* runs (the planner is per-run, so each sprint got
+> its own goal + contract):
+> - **Sprint 1 (documents.py characterization)** → run **b79d8ron5**, scored 96,
+>   re-verified `26 passed`. Its tests are cherry-picked onto
+>   `feat/study-companion-mode` @ `9ee4200` in the clone.
+> - **Sprint 2 (relocate pure helpers → `session_state.py`)** → run **mrn0iav3**
+>   (2026-07-16), scored 96/100; relocation independently verified byte-for-byte
+>   verbatim. On branch `run/plan-this-as-exactly-one-sprint-mechanic-mrn0iav3`.
+>
+> Two run-setup lessons came out of this, both now in dev-harness
+> `docs/solutions/conventions/`: the verifier env must carry what the contract
+> *imports* (`match-verifier-env-to-sprint-contract-imports.md`), and the NEGOTIATE
+> critic must inspect the *target* worktree, not the harness's own repo
+> (`evaluator-cwd-blind-scorer-sighted-critic.md` — a bug found and fixed this run).
+> Remaining work is **harvest into the real repo** — see the Voice Tutor backlog
+> item, including the HEAD-keyed-test caveat. The original two-sprint draft below
+> is kept as the spec the per-sprint contracts were held to.
 
 ## Purpose
 

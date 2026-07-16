@@ -1,6 +1,6 @@
 ---
 created_at: 2026-07-07
-last_updated: 2026-07-07
+last_updated: 2026-07-16
 type: explainer
 ---
 
@@ -41,7 +41,17 @@ The trick that makes the output better than one agent looping on its own: it use
 evaluator argue out a "contract" — the concrete acceptance criteria for the
 sprint (e.g. "`sum.js` exports `sum(a,b)` returning `a+b`; handles negatives").
 The evaluator pushes back on lenient or off-goal criteria. They go up to 5 rounds,
-then the contract is **frozen**. This is what the code gets measured against.
+then the contract is **frozen** (the transcript records whether it froze by
+*agreement* or by hitting the *round cap*). This is what the code gets measured
+against.
+
+One asymmetry matters here (added July 2026 after a real bug): the evaluator
+plays **two different roles with opposite information rules**. As the
+*negotiation critic* it is **sighted** — it inspects the actual project folder,
+because its job is to check the contract targets real code. As the *scorer* it
+is **blind** (next section). Wiring the critic to the wrong folder once produced
+a contract whose only passing outcome was "do nothing" — fixed and
+regression-tested; see `docs/solutions/conventions/` in the repo.
 
 **2. Blind evaluation.** When the evaluator scores the work, it sees **only the
 frozen contract and the actual code change (the diff)** — not the goal, not the
@@ -51,11 +61,26 @@ code has to actually satisfy the contract. (Off-goal code that happens to pass i
 own tests scores near zero.)
 
 There's also a **deterministic verifier** — it just runs your real test command
-(`npm test` by default) and reports pass/fail. That's the hard, non-negotiable
-signal; the evaluator's score is the judgment layer on top.
+(`npm test` by default; set `--test-cmd` for anything else, e.g. pytest). That's
+the hard, non-negotiable signal; the evaluator's score is the judgment layer on
+top. **One hard-won rule:** the environment the verifier runs in must contain
+everything the *contract's acceptance criteria* need to execute — not just what
+the code under test imports. A contract that demands `import bot` in a venv
+without bot's dependencies is unwinnable by construction: the loop retries until
+the **per-sprint wall clock** stops it, spending real money (~$25 in the run that
+taught us this) with nothing to show for it. Note that no dollar cap catches this
+by default — the wall clock is the only thing standing between a doomed contract
+and your whole subscription budget.
 
 Everything happens inside a **throwaway git worktree**, so your working copy is
 never touched. Nothing is ever auto-merged — a **human merge gate** is the point.
+
+**It works on existing codebases, not just fresh ones.** The target must already
+be a local git repo (the worktree is cut from its current HEAD); the generator
+reads and edits existing files freely, and commits land on a `run/…` branch that
+never touches your branches. First proven on a real repo July 2026 (the Voice
+Tutor characterization runs). For a first run on a repo you care about, point it
+at a clone.
 
 ---
 
@@ -81,12 +106,31 @@ The run halts the moment any of these trips:
 
 | Cap | Default |
 |-----|---------|
-| Money spent | $10 |
-| Retries per sprint | 6 |
-| Wall-clock time | 30 min |
-| No progress | score gains under 5 pts across 2 sprints |
+| Wall-clock time | 30 min **per sprint** (`--wall-clock-ms`) |
+| Retries per sprint | 6 (`--max-iterations`) |
+| No progress | score gains under 5 pts across consecutive retries |
+| Subscription usage limit | graceful pause when Anthropic says you're out |
+| Dollar ceiling | **off by default** — informational only; opt in with `--dollar-ceiling` to make spend halt the run |
 
-All of these are adjustable per run (CLI flags / config).
+The **wall clock is the primary backstop** on an unattended run. The dollar
+ceiling is *off* unless you set it, and on a subscription the dollar figure is
+notional anyway (shown for information, never halts). If a run runs away, the
+per-sprint wall clock is what stops it — not a budget.
+
+All of these are adjustable per run (CLI flags — there is no config file).
+A cap-stopped run reports itself as **"Paused"** with the reason, and all work
+up to that point is committed on the run branch — a timeout costs money, not
+progress.
+
+(Separately, the planner is capped at **6 sprints** — but that's a plan-time
+truncation, not a runtime halt: it limits how much work gets scheduled up front,
+it never stops a run mid-flight.)
+
+Two known gaps in the caps (both on the Phase 2 list, learned from real runs):
+the **wall-clock and any opted-in dollar ceiling are checked between sprints**,
+not mid-sprint, so one long sprint can overshoot; and the **no-progress detector
+misses oscillation** — scores bouncing (12 → 22 → 18) never trip the "consecutive
+small gains" rule, so the wall clock ends up doing the stall detector's job.
 
 ---
 
@@ -99,9 +143,11 @@ Four things, in two places:
   it. This survives after the run — it's what you review and choose to merge (or
   not). Your main branch is untouched.
 
-**In `runs/<runId>/`:**
-- **`transcript.md`** — a human-readable play-by-play: every phase, every sprint,
-  what each agent did, the tool calls, the scores. **Read this first.**
+**In `runs/<project>/<date>-<title>/`** (legible, dated folders — not opaque
+run-ID hashes):
+- **`transcript.md`** — opens with a plain-language summary, then narrates every
+  phase, sprint, agent action, and score. **Read this first.** (A `show` command
+  reprints the summary for any past run.)
 - **`state.json`** — the final machine state: `status`, the list of `scores`, how
   much was spent, and why it stopped (`haltReason`).
 - **`trace.jsonl`** — the raw event log (one line per phase). The source the
@@ -133,7 +179,7 @@ Don't just trust the score — check three things, in order:
    whether it was close or stuck.
 
 3. **Read the transcript.**
-   `runs/<runId>/transcript.md` shows where the generator and evaluator diverged —
+   The run folder's `transcript.md` shows where the generator and evaluator diverged —
    where the evaluator pushed back, what it docked points for, how the code
    evolved across retries. If a score looks too high or too low, this is where you
    find out why.
@@ -150,12 +196,42 @@ Green tests but off-goal code = the loop drifted; don't merge.
 
 ---
 
-## Good to know (v1 limits)
+## Known failure category: the unwinnable contract
 
-- **Attended, not autonomous.** You start it and watch; it's not a scheduled
-  overnight job yet.
+The harness's signature failure mode (two real occurrences, two distinct causes,
+both documented in the repo's `docs/solutions/conventions/` with a plain-language
+glossary in `CONCEPTS.md`):
+
+1. **Environment mismatch** — the contract's success checks need something the
+   verifier env doesn't have (missing deps → tests die before running). Feasible
+   task, impossible proof. Burned $25 before the wall clock stopped it.
+2. **Ungrounded critic** — the negotiation critic inspected the wrong folder,
+   concluded the target file didn't exist, and argued the contract down to
+   "success = change nothing." Caught before generation spend; the cwd wiring is
+   now fixed and pinned by a regression test.
+
+Neither is caught automatically yet — the planned guards (a contract
+feasibility smoke-check before generation, and a pause-for-human-glance after
+negotiation) are on the Phase 2 deferred list. Until then, **read the frozen
+contract when it prints**: does it describe the actual task, and can every
+criterion actually execute in this environment?
+
+One more harvest-time caveat: generated characterization tests sometimes key
+their "original" baseline on `git show HEAD:…`, which is only correct while the
+change is uncommitted (how the harness runs). Those tests break once the work is
+committed — pin them to a fixed commit or drop them at harvest. See
+`harness-generated-tests-keyed-on-git-head.md` in the repo.
+
+---
+
+## Good to know (current limits)
+
+- **Attended, not autonomous.** You start it and watch; scheduling/notifications
+  are Phase 3. (It *can* finish unattended — caps bound the cost — but nothing
+  glances at the contract on your behalf yet.)
 - **No Docker sandbox yet.** The generator runs shell commands directly in the
   worktree on your machine. Fine for trusted work you're watching; hardening is a
   later phase.
 - **Nothing auto-merges.** The branch is always left for you to review. That human
-  merge gate is a feature, not a missing step.
+  merge gate is a feature, not a missing step — and it caught real issues both
+  times it was exercised this month.

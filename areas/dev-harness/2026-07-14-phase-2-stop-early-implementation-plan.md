@@ -809,3 +809,17 @@ git commit -m "feat(report): paused-not-failed language, usage-limit line, appro
   that wall-clock bound first. Detect a *plateau/ceiling* (best score over a window
   not improving), not just consecutive small deltas, so a stuck sprint stops on
   signal rather than on the clock.
+- **Expose on-demand transcript rendering as a CLI command** — render any run's
+  `transcript.md` from its `trace.jsonl` at will (covers killed runs, crashes, and
+  re-rendering after renderer improvements). **Mostly built:** `renderTranscript(events,
+  state)` is already a pure function that works on any trace regardless of run state —
+  it has explicit branches for non-terminal runs ("Still running", "stopped while
+  preparing this stage"). Confirmed 2026-07-16 by rendering the killed run `mrmzffye`'s
+  transcript with a 9-line script that just duplicates `finalize()`'s body (read
+  `state.json` + `trace.jsonl` → `renderTranscript` → write) — no trace hand-editing,
+  no renderer workaround. Remaining work is thin wrapping: a `transcript <run>` command
+  that resolves the run dir and calls the existing path. One cosmetic caveat — an
+  externally *killed* process never writes a terminal status, so its `state.json` stays
+  `status: "running"` and the header reads "Still running" rather than "Killed"; the
+  command could optionally stamp a "(process not finalized)" note, but that's an
+  enhancement, not a blocker.

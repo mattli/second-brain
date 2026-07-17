@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-15
+last_updated: 2026-07-17
 ---
 
 
@@ -11,6 +11,7 @@ last_updated: 2026-07-15
 
 ## Recent Updates
 
+- **2026-07-17:** Added Kai-Fu Lee's CEO mandate thesis and activity-results gap to [Architect Mode](#architect-mode-the-post-founder-mode-framework), intelligence-scarcity capstone to [Historical Context](#historical-context)
 - **2026-07-15:** Added Sivulka's token-workforce parallels to [The Token Workforce](#the-token-workforce) and evals-as-management to [Organizational Legibility](#organizational-legibility)
 
 ## Historical Context
@@ -25,6 +26,8 @@ The essay traces 2,000 years of organizational evolution:
 - **Modern experiments** — Spotify squads, Zappos holacracy, Valve flat structure. All reverted toward hierarchy at scale.
 
 The constraint is unchanged: narrowing span of control means adding layers, but more layers means slower information flow.
+
+Kai-Fu Lee sharpens the underlying logic: organizations were designed to ration scarce intelligence. Expertise sat in departments, information moved through hierarchies, decisions waited for meetings, approvals, and handoffs. All of this was an organizational response to the fact that human intelligence — the most expensive input companies have ever purchased — was finite and unscalable. When intelligence becomes abundant and scalable through AI workers, the organizational structures built to ration it become the bottleneck, not the solution.
 
 ## Block's Model
 
@@ -185,6 +188,10 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 
 **The compounding data moat:** In Architect Mode, every customer interaction generates data that improves the intelligence layer, which improves the next interaction. The company's competitive advantage compounds automatically — but only if the architect designed the system to capture and learn from its own operations. This mirrors the [services-as-software](services-as-software.md) thesis: the data moat comes from running the work, not from building the tool.
 
+**The activity-results gap.** Kai-Fu Lee, after meeting hundreds of CEOs, identifies the central failure mode: resources flow into AI (top models, AI teams, pilots, training), but the business itself doesn't change. His test: "If your AI program has not moved a number on your earnings call, you have not transformed the company. You have funded an expensive AI laboratory." [[source]](https://x.com/kaaboreal/status/1926009872946987008) Too many companies mistake pilots for progress, tools for strategy, and adoption for transformation. Adding a chatbot to an old workflow doesn't make a company AI-native; neither does a collection of disconnected copilots.
+
+**AI transformation as CEO mandate.** Lee argues this is precisely why AI transformation cannot be delegated to the CIO or CTO as a technology project. Technology leaders are essential, but only the CEO can define the ambition, concentrate resources, redesign the operating model, remove barriers, and remain accountable for the result. This converges with Al-Abdullah's Architect Mode from a different angle: where Architect Mode describes the *posture* (designing the system), Lee emphasizes the *authority requirement* (only the CEO has the organizational leverage to force genuine restructuring). Lee's proposed mechanism — a "decision brain" for the enterprise with memory, context, company knowledge, and the ability to identify anomalies, execute actions, coordinate work, and learn from outcomes — maps directly to Block's intelligence layer.
+
 **Key contrast with Block's model:** Block's "From Hierarchy to Intelligence" describes the organizational *structure* (world model + intelligence layer + capabilities). Architect Mode describes the *leadership posture* — what the CEO actually does all day when the intelligence layer handles coordination. They're complementary: Block answers "what does the company look like?" and Al-Abdullah answers "what does the CEO do?"
 
 ## See Also
@@ -203,4 +210,5 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "How to Build a Self-Improving Company with AI" — YC Root Access (video, May 2026) — Self-improving loop architecture, organizational legibility imperative, YC monitoring agent example, burn tokens not headcount
 - "Most Companies Aren't Anywhere Near Ready for AI" — Daniel Miessler (article, May 2026) ([link](https://danielmiessler.com/p/most-companies-arent-anywhere-near-ready-for-ai)) — Strategic clarity as AI prerequisite, small-company structural advantage in legibility
 - "Everything Is Recorded Now" — David Haber (tweet, Jun 2026) — Recording as default, AI onboarding through meeting attendance, voice as new system of record, verbal vs written culture advantage
+- "Why I wrote 'AI Native'" — Kai-Fu Lee (tweet, Jul 2026) ([link](https://x.com/kaaboreal/status/1926009872946987008)) — Intelligence scarcity → abundance as organizational redesign driver; activity-results gap; AI transformation as CEO mandate; decision brain concept
 - "You Just Hired a Million Bad Employees" — George Sivulka / a16z (article, Jul 2026) ([link](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)) — Seven parallels between token and human workforces; 100X tokens; evals as OKRs; context hoarding; AI transformation companies

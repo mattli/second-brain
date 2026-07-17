@@ -1,14 +1,15 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-07-11
+last_updated: 2026-07-17
 ---
 
 # Vertical AI
 
-> TLDR: Domain-specific AI applications are finding product-market fit faster than horizontal AI, especially in legal, healthcare, customer service, and coding. Harvey ($0→$200M ARR in 36 months) and Sierra ($0→$165M ARR in 26 months) are the benchmark case studies; both combine vertical domain expertise with outcome-aligned pricing.
+> TLDR: Domain-specific AI applications are finding product-market fit faster than horizontal AI, especially in legal, healthcare, customer service, and coding. Harvey ($0→$200M ARR in 36 months) and Sierra ($0→$165M ARR in 26 months) are the benchmark case studies; both combine vertical domain expertise with outcome-aligned pricing. Sierra's Horizon platform extends the model beyond CX into long-horizon, multi-interaction agent goals — revenue growth, loan origination, healthcare scheduling — where the customer's proprietary interaction context becomes a compounding moat.
 
 ## Recent Updates
 
+- **2026-07-17:** Added Sierra's Horizon platform (long-horizon agent goals, context engine, outcome-based pricing expansion) to [Sierra: Customer Service Vertical AI](#sierra-customer-service-vertical-ai)
 - **2026-07-11:** Added low-margin traditional industries (manufacturing, logistics, staffing) as coordination-cost thesis to [Low-Margin Industries](#low-margin-industries-the-coordination-cost-thesis)
 
 ## Enterprise AI Adoption (2026 Data)
@@ -124,7 +125,9 @@ Sierra ($0 → $165M+ ARR in 26 months) is a managed AI agent platform for enter
 
 6. **Vertical sales org** — Sales organized by industry vertical (not geography), so reps speak the buyer's language on the first call. This compounds with customer referrals and industry-specific case studies.
 
-7. **Land-and-expand** — Customer service is the foot in the door. Expansion path: (1) CX wedge → (2) voice channel expansion (ACV doubles or triples) → (3) sales agents for commerce and cart recovery → (4) full-lifecycle digital interface.
+7. **Land-and-expand** — Customer service is the foot in the door. Expansion path: (1) CX wedge → (2) voice channel expansion (ACV doubles or triples) → (3) sales agents for commerce and cart recovery → (4) full-lifecycle digital interface. Horizon (see below) is the concrete product delivering stages 3–4.
+
+**Horizon — long-horizon agent goals (July 2026):** Sierra's most significant expansion since the 2024 launch. Where Agent OS powers individual conversations, Horizon enables agents to pursue goals that span days, weeks, or months — originating a loan, getting prior authorization for a healthcare procedure, or closing a subscription upgrade. Two new capabilities make this work: a **context engine** that stitches together any number of outbound and inbound interactions (texts, calls, chats) across multiple parties, and **[long-horizon planning](../tools/loop-engineering.md)** that lets agents reason between engagements about what actions to take next. A healthcare design partner uses Horizon to schedule specialist referrals — a process involving dozens of interactions with the patient, the specialist, and the referring physician — where existing platforms lacked the cross-interaction context to coordinate. Each interaction makes the agent more intelligent: when it closes a sale or gets rejected, it learns to improve decision-making for future conversations. The accumulated customer interaction data becomes a proprietary, compounding moat — context that remains yours as frontier models improve, deepening differentiation without ceding value to model providers. Pricing follows the same outcome-based model: you pay for business outcomes delivered, not tokens consumed, with Sierra bearing the token-spend optimization burden. Horizon extends Sierra's TAM from contact-center budgets into revenue growth and churn reduction — the transition from "delivering customer experiences" to "delivering outcomes." Agent OS now powers hundreds of companies including almost half of the Fortune 50 (Santander, Rocket Mortgage, Cigna).
 
 **Competitive positioning:** Sierra occupies the "managed agent vendor" quadrant where outcome pricing works because the vendor owns everything that determines the outcome. The biggest competitive threat is foundation labs (Anthropic, OpenAI, Google) moving downstream into managed deployment with outcome pricing — but that requires them to rebuild their business model away from selling tokens.
 
@@ -290,3 +293,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "Avoiding Death on the Yellow Brick Road" — Joe Schmidt IV (a16z, May 2026) ([link](https://www.a16z.news/p/avoiding-death-on-the-yellow-brick)). Yellow Brick Road framework (horizontal vs. vertical AI), four defensive moats (data flywheels, model variability, cost optimization, governance), three diagnostic tests, practical examples from 11x (sales) and FurtherAI (insurance).
 - "Why we Built our own Cloud Agent Infrastructure" — Gabe Pereyra / Harvey (blog, 2026) ([link](https://www.harvey.ai/blog/why-we-built-our-own-cloud-agent-infrastructure)). Harvey's custom agent runtime: multi-model as hard requirement (conflicts, platform risk, abstraction layer), zero data retention as architectural property, 3–5x cost reductions via model routing, intelligence saturation thesis, legal-specific durable layer.
 - "AI's Biggest Winners Have the Lowest Margins" — Daniel Kornum (tweet, 2026) ([link](https://x.com)). Low-margin traditional industries (manufacturing, logistics, staffing, field services) as largest AI profit-impact opportunity; coordination cost thesis (~6% of revenue); AI as infrastructure vs. software; first-mover advantage in commodity markets.
+- "The Next Horizon in Agents" — Bret Taylor (tweet, Jul 2026) ([link](https://sierra.ai/product/horizon)). Sierra Horizon platform: long-horizon agent goals, context engine, long-horizon planning, outcome-based pricing extended beyond CX, customer interaction data as compounding moat.

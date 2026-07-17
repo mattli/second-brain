@@ -40,7 +40,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [AI Startup Distribution](landscape/ai-startup-distribution.md) — Distribution strategies; Distribution Engineer; 100x marketer; cold outreach; Reddit; AI marketing agents; pain-first ideation
 - [AI Organization Design](landscape/ai-organization-design.md) — Block's "company as intelligence" model; Sequoia endorsement; intelligence layer; self-improving loops; organizational legibility; people at the edge
 - [Y Combinator AI Thesis](landscape/yc-ai-thesis.md) — YC's 2026 RFS: Cursor for PM, AI agencies, spatial reasoning, reindustrialized mills; PG's "Live in the Future"
-- [Vertical AI](landscape/vertical-ai.md) — Enterprise AI adoption data; Harvey's $0→$200M ARR playbook; Sierra's $0→$165M ARR in 26 months (outcome-based pricing, omnichannel CX); Harvey vertical model U-turn
+- [Vertical AI](landscape/vertical-ai.md) — Enterprise AI adoption data; Harvey's $0→$200M ARR playbook; Sierra's $0→$165M ARR in 26 months (outcome-based pricing, omnichannel CX, Horizon long-horizon agents); Harvey vertical model U-turn
 - [AI User Perspectives](landscape/ai-user-perspectives.md) — Anthropic's 81K-person survey; what users want; fears (unreliability, displacement, autonomy loss); light and shade framework
 - [AGI Definitions](landscape/agi-definitions.md) — 4 definitions (DeepMind, Bengio, Hinton, OpenAI); current AI capability gaps; jagged capabilities; milestone taxonomy
 - [AI Regulation](landscape/ai-regulation.md) — US state AI law patchwork (CA, CO, MN, NY, OH, UT); Trump federal preemption efforts; compliance implications; common regulatory themes

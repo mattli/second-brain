@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-17
+last_updated: 2026-07-18
 ---
 
 
@@ -11,6 +11,7 @@ last_updated: 2026-07-17
 
 ## Recent Updates
 
+- **2026-07-18:** Added Replit's self-driving company case study — 2.9x per-engineer output, cross-company agent adoption, continual learning system — to [Replit's Self-Driving Company](#replits-self-driving-company)
 - **2026-07-17:** Added Kai-Fu Lee's CEO mandate thesis and activity-results gap to [Architect Mode](#architect-mode-the-post-founder-mode-framework), intelligence-scarcity capstone to [Historical Context](#historical-context)
 - **2026-07-15:** Added Sivulka's token-workforce parallels to [The Token Workforce](#the-token-workforce) and evals-as-management to [Organizational Legibility](#organizational-legibility)
 
@@ -172,6 +173,29 @@ Darragh Curran (Intercom CTO, Apr 2026) published detailed results from a delibe
 
 Context: Intercom is not a startup — ~8.5M lines of code, 500+ people building/operating, 30K business customers, 2M+ QPS on datastores, 313 daily production deployments. This is Block's "intelligence layer" thesis playing out in practice at a mature company.
 
+## Replit's Self-Driving Company
+
+Amjad Masad (Replit CEO, Jul 2026) describes what happens when a company weaves agents into every function — not as editor copilots but as an "expanding system of agents operating across the company: taking goals from people, gathering context, performing work, checking the results, and escalating when human judgment is needed."
+
+**Engineering results (Jan–Jun 2026):**
+- **2.9x code output per engineer** on a consistent cohort (5.8x including new hires). Review latency flat — agents assess PR risk level and only escalate to a second human reviewer when necessary, saving 30%+ of human review time.
+- **Reversion rates and incidents flat** despite the output increase, meaning relative quality improved. Agent-assisted code review catches more bugs; agent-assisted incident investigation cuts mean time to mitigation.
+- **Project completion rate sharply up** — the additional code translates into shipped features, not just lines.
+
+**[Loop engineering](../tools/loop-engineering.md) at scale.** Every employee gets a manager agent that can spawn agent swarms for verifiable tasks. Engineers used this to complete a long-stalled CSS migration, automate product localization, maintain flaky tests, and debug a hard networking issue — all by orchestrating parallel agent fleets rather than doing the work step by step.
+
+**Self-improving loop in production.** Replit's AI team built a continual learning system that analyzes user feedback on Replit Agent, proposes improvements, validates them through benchmarks and A/B tests, and ships the winners — a concrete instance of the recursive self-improving loop architecture described in the YC Root Access talk. Replit Agent is improving Replit Agent.
+
+**Beyond engineering.** Adoption spread company-wide through a Slack interface — non-engineers saw engineers tagging the agent and started using it themselves:
+- **Data team** gave the agent a semantic layer over the data warehouse, making any employee capable of self-serve business intelligence. A PM ran complex launch analysis without data team involvement.
+- **Sales** uses the agent for lead enrichment from internal product data and to prepare branded account-specific slide decks for customer conversations.
+- **Support** gave the agent playbooks to investigate issues and draft responses. Hard tickets (those escalated to humans) now close 60% faster.
+- **Marketing** generates product specs from cross-team conversations and documents, enabling earlier launch planning without attending every meeting.
+
+**Build vs. buy inverted.** Replit's internal agent now outperforms market-leading vertical SaaS products they evaluated — an alert-triage tool and an automated pen-testing tool both matched quality at 10x the cost. They churned a seven-figure SaaS solution because employees had already migrated to the internally built replacement. Deep integration with internal knowledge bases makes generic solutions feel inferior.
+
+**The "promoted, not automated" framing.** Masad's recurring observation: "People don't feel like they've been automated. They feel like they've been promoted." Self-driving turns doers into directors — the people thriving think in outcomes and set direction. This complements the [people-at-the-edge](#people-at-the-edge) thesis: humans choose the destination; agents handle the steps.
+
 ## Architect Mode: The Post-Founder Mode Framework
 
 Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder Mode" is already obsolete — replaced by "Architect Mode," the leadership framework for the intelligence era.
@@ -211,4 +235,5 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "Most Companies Aren't Anywhere Near Ready for AI" — Daniel Miessler (article, May 2026) ([link](https://danielmiessler.com/p/most-companies-arent-anywhere-near-ready-for-ai)) — Strategic clarity as AI prerequisite, small-company structural advantage in legibility
 - "Everything Is Recorded Now" — David Haber (tweet, Jun 2026) — Recording as default, AI onboarding through meeting attendance, voice as new system of record, verbal vs written culture advantage
 - "Why I wrote 'AI Native'" — Kai-Fu Lee (tweet, Jul 2026) ([link](https://x.com/kaaboreal/status/1926009872946987008)) — Intelligence scarcity → abundance as organizational redesign driver; activity-results gap; AI transformation as CEO mandate; decision brain concept
+- "The Self-Driving Company" — Amjad Masad / Replit (tweet, Jul 2026) — 2.9x per-engineer output; cross-company agent adoption (data, sales, support, marketing); loop engineering at scale; continual learning system; build-vs-buy inversion; "promoted, not automated" framing
 - "You Just Hired a Million Bad Employees" — George Sivulka / a16z (article, Jul 2026) ([link](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)) — Seven parallels between token and human workforces; 100X tokens; evals as OKRs; context hoarding; AI transformation companies

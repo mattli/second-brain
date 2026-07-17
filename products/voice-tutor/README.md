@@ -6,6 +6,8 @@ Code: [github.com/mattli/voice-tutor](https://github.com/mattli/voice-tutor) (pr
 
 ## Status
 
+**Characterization-test harvest + `session_state.py` refactor** (2026-07-16, on `feat/study-companion-mode`, pushed `e0300af`). Landed the verified output of the dev-harness characterization runs into the repo: ~25 `documents.py` characterization tests + a `bot.py`→`session_state.py` pure-helper relocation (7 helpers + 4 constants moved verbatim into a new module `bot.py` re-imports) with its 6 behavior-pinning tests. First safety net of automated tests in the repo. The relocation was re-verified byte-identical after rebasing onto the (11-commit-newer) branch tip; the suite runs fully offline (the per-doc-summary Haiku call is stubbed in tests). No user-facing behavior change — pure test coverage + internal structure. Two harness runs whose transcripts are archived at `areas/dev-harness/runs/`.
+
 **TTS pacing controls + session-analysis source attribution** (2026-06-01). Two small tuning commits after a stretch of daily use:
 
 1. **Deliberate cadence** (commit `52258e7`). New `VOICE_TUTOR_TTS_SPEED` env var (unset by default) overrides Cartesia Sonic-3 generation speed at runtime, paired with a `BREVITY_REMINDER` cue — "Speak deliberately — use commas and brief pauses; don't rush." — so the LLM produces text with natural pauses. Prompt-level pacing is the primary lever; the TTS flag is a backstop if that alone isn't enough.

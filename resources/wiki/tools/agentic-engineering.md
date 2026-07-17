@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-12
+last_updated: 2026-07-17
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-12
 
 ## Recent Updates
 
+- **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
 - **2026-07-12:** Added Eric Siu's compounding-vs-leaking framework and cross-tool resolver pattern to [Compounding vs. Leaking](#compounding-vs-leaking-eric-siu)
 - **2026-07-08:** Added Anthropic's advisor/orchestrator benchmark data (92%@63% cost, 96%@46% cost) to [Cost-Routing](#cost-routing-for-production-systems) and cached context sharing to [Managed Agents](#managed-agents-anthropic)
 - **2026-07-08:** Added Replit's continual learning pipeline — ViBench, Telescope trace clustering, and production self-improvement loop — to [Self-Improving Agents](#self-improving-agents)
@@ -469,6 +470,8 @@ In the third model, the software's agent handles business logic, enforces rules,
 
 "Most companies will ship an MCP, check the box, and move on. Their usage will grow for a few quarters, then stall." The winners sweat the details of agent-to-agent design.
 
+**The retrieval tax.** Web search is how agents see anything that happened after training, but standard search APIs return links and thirty-word snippets — pointers to content, not content itself. The agent then pays to fetch the page, strip the HTML, and extract usable text before any reasoning starts. In a single-query task the overhead is invisible; in a multi-hop research loop each iteration re-bills the entire growing context window, because every prior page is still sitting in context. Benchmarking the same question across three retrieval setups showed the looping agent burning roughly 4x the tokens of an owned index that had already crawled and cleaned the pages ahead of time [[source]](https://x.com/akshay_pachaar/status/2077753829526056985/). The principle: good retrieval returns documents, not directions. An owned index does the fetch-and-clean work before the query arrives, so the agent goes straight to reasoning. This is the same architectural insight behind [agent-native CLI design](#agent-native-cli-design) below — pull data down and pre-process it so the agent's token budget goes to thinking, not janitorial I/O.
+
 ### Agent-Native CLI Design
 
 The CLI Printing Press (mvanhorn) crystallizes agent-first CLI design into a repeatable generation pattern. The thesis: a well-designed CLI is "muscle memory for an agent — no hunting through docs, no wrong turns, no wasted tokens." CLIs win for agents because they're 100x fewer tokens than MCP tool definitions, LLMs were trained on shell interactions, and exit code 0 = done [[source]](https://github.com/mvanhorn/cli-printing-press).
@@ -532,6 +535,7 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "How To Be A World-Class Agentic Engineer" — SysLS (tweet thread, May 2026) — practitioner minimalism: context-is-everything principle, research/implementation separation, adversarial triangulation for sycophancy, task contracts with stop-hooks, CLAUDE.md as conditional routing table, consolidation cycle for rules and skills
 - "The Orchestration Tax" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/orchestration-tax/)) — human as GIL of agent fleet, Amdahl's Law applied to review bottleneck, cognitive surrender failure mode, five attention-architecture principles (scale to review rate, sort work, batch reviews, lock on judgment only, protect serial time)
 - "Loops: What Every AI Engineer Needs to Know in 2026" — Rahul (@sairahul1, Jun 2026) — open vs closed loop taxonomy, single-agent vs fleet loop scales, token cost as the key accessibility barrier to loop engineering
+- "Agents Need a New Kind of Web Search" — Akshay (tweet thread, Jul 2026) ([link](https://x.com/akshay_pachaar/status/2077753829526056985/)) — retrieval tax concept: tokens agents burn on fetch-and-clean before reasoning; owned-index principle; 4x token cost gap between looping search and pre-crawled index
 - "Loop Engineering" — Addy Osmani (tweet thread, Jun 2026) — five building blocks of agent loops (automations, worktrees, skills, plugins, sub-agents), memory as persistent spine, maker/checker split, tool convergence across Claude Code and Codex, loop risks (verification, comprehension debt, cognitive surrender)
 - "WTF Is a Loop? Peter Steinberger vs. Boris Cherny" — Matt Van Horn (Jun 2026) — Boris Cherny's definition of loops, five-stage lineage (ReAct → AutoGPT → ralph → /goal → orchestration), cron-vs-loop distinction, loop cost dynamics (Uber $1,500 cap), three hard stops (iterations/progress/budget), skills-over-loops thesis, verification as essential feedback
 - "\"Ralph Wiggum\" AI Agent will 10x Claude Code/Amp" — Greg Isenberg ft. Ryan Carson (video, Jun 2026) — Ralph loop practitioner walkthrough: PRD-to-JSON pipeline, atomic user stories with acceptance criteria, dual memory (agents.md long-term + progress.txt short-term), fresh context per iteration, $3/iteration cost, 14-iteration feature build

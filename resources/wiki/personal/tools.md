@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-06-22
+last_updated: 2026-07-17
 ---
 
 # Personal Tool Bookmarks
@@ -8,13 +8,19 @@ last_updated: 2026-06-22
 ## TLDR
 Tools and products I've bookmarked but haven't deeply evaluated. Lives in `personal/` because the items aren't knowledge-domain content — they're "look at this later" pointers.
 
+## Recent Updates
+
+- **2026-07-17:** Added Claude Artifact (AI adoption steps) bookmark to [Tools](#tools).
+
 ## Tools
 
 - **Ghostty** — Fast, feature-rich, cross-platform terminal emulator with native UI and GPU acceleration. https://ghostty.org
 - **Perplexity Comet** — Perplexity's AI-driven browser product (saved March 2026, not yet explored). https://www.perplexity.ai/comet
 - **x-bookmarks.com** — Tool for exporting X bookmarks; potentially useful for tweet/bookmark synthesis workflows. https://x-bookmarks.com
+- **Claude Artifact: Steps of AI Adoption** — Saved Claude artifact on AI adoption stages; content not preserved in bookmark. https://claude.ai
 
 ## Sources
 - Ghostty product page — terminal emulator bookmark
 - (Perplexity) Comet product page — AI browser bookmark
 - x-bookmarks.com product page — X bookmark export tool
+- Claude Artifact (claude.ai) — bare bookmark, AI adoption steps artifact

@@ -1,7 +1,7 @@
 # Ignore everything except tracked folders
 *
 !.gitignore
-!system-overview.md
+!/system-overview.md
 !session-tasks.md
 !backlog.md
 !areas/
@@ -13,6 +13,9 @@
 !resources/wiki/**
 !resources/intelligence/
 !resources/intelligence/**
+!_archive/
+!_archive/session-tasks/
+!_archive/session-tasks/**
 
 # Always ignore system/local files
 **/.DS_Store

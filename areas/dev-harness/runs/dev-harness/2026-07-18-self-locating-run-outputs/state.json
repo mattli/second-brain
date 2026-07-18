@@ -4,7 +4,7 @@
   "title": "self-locating run outputs",
   "startedAt": "2026-07-18T14:22:45.648Z",
   "runDir": "runs/dev-harness/2026-07-18-self-locating-run-outputs",
-  "status": "running",
+  "status": "halted",
   "sprints": [
     {
       "id": 0,
@@ -16,10 +16,11 @@
   "contractVersion": 3,
   "scores": [
     3,
-    0
+    0,
+    4
   ],
   "iterations": 0,
-  "budgetSpentUsd": 1.9518439500000002,
-  "haltReason": null,
+  "budgetSpentUsd": 2.41429325,
+  "haltReason": "no-progress",
   "contractFreezeReason": "agreement"
 }

@@ -9,6 +9,7 @@ last_updated: 2026-07-18
 
 ## Recent Updates
 
+- **2026-07-18:** Added Flurry's virtual-OS thesis — WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes — to [Agent Runtime: Virtual Operating Systems](#agent-runtime-virtual-operating-systems)
 - **2026-07-18:** Added Osmani's outer-loop accountability framework — Quality/Verdict/Answerability triad, trust-verification gap, three hidden costs, back-pressure principle, four human loops — to [Owning the Outer Loop](#owning-the-outer-loop-osmani)
 - **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
 - **2026-07-12:** Added Eric Siu's compounding-vs-leaking framework and cross-tool resolver pattern to [Compounding vs. Leaking](#compounding-vs-leaking-eric-siu)
@@ -410,6 +411,23 @@ Nicholas Charriere's thesis (Apr 2026): app companies, model companies, and infr
 
 **Prediction:** By end of 2026, many software companies will look like they're selling the same thing. Winners will have distribution, trusted workflow positioning, proprietary context, and the shortest path from observation to improvement.
 
+## Agent Runtime: Virtual Operating Systems
+
+Nathan Flurry argues the industry's default approach to agent sandboxes — giving each coding agent a full Linux VM — is dramatically over-provisioned. The shift from "agents-with-tools" (AI SDK, Mastra) to "agents-with-linux" (Claude Code, Pi, OpenCode) drove sandbox adoption because agents perform vastly better with filesystem access and shell commands. But a full VM reserves gigabytes of RAM and a dedicated CPU per agent, most of which sits idle.
+
+**The alternative: a "virtual operating system."** Instead of a real Linux kernel, emulate the four things coding agents actually need — terminal commands, filesystem access, outbound networking, and dev servers — in a lightweight runtime. AgentOS, an open-source project from Rivet, compiles real Linux commands to WebAssembly so they execute cheaply without a full sandbox. By their benchmarks, a basic WASM shell uses ~22 MB of RAM vs. 1 GiB for the cheapest mainstream sandbox provider — roughly 47x less [[source]](https://agentos-sdk.dev/docs/benchmarks).
+
+**Key components of the virtual OS approach:**
+
+- **Shell emulation** — Agents don't need a kernel; they need `cat`, `ls`, and `grep` to behave correctly. These commands can be compiled to WASM or replaced with simple lookup maps. AgentOS adds full shell/Node.js/Python scripting, process trees, PATH, and shebang support.
+- **Network-attached filesystem** — Cloud filesystems are already network-attached (S3, Archil, Mesa). Mounting one for an agent is no different: reads become GETs, writes become PUTs. AgentOS provides a POSIX-compliant filesystem with pluggable backends.
+- **Granular network security** — A virtual OS gives programmatic control over the networking layer: domain allowlists, ingress/egress limits, rate limiting, SSRF protection. Most traditional sandboxes still lack this granularity despite networking being a primary attack vector.
+- **Stateless dev servers** — For static builds, the agent runs `vite build` on the host, writes output to the virtual filesystem, and a preview endpoint routes requests to the stored files. Live servers (hot reload, SSR, WebSockets) run inside the WASM runtime with native preview URLs.
+
+**Hybrid architecture for edge cases.** Docker-in-Docker, GPU workloads, and native binaries without WASM builds genuinely need a full sandbox. AgentOS supports "sandbox mounting" — default to the lightweight virtual OS, escalate to a full sandbox (E2B, Daytona) only for the rare operations that require it.
+
+**Prior art:** Mintlify, Upstash, and Turso have deployed virtual OS architectures in production. Parallel efforts include Vercel's just-bash (JavaScript reimplementations of Linux tools) and Cloudflare's Project Think (custom harness using JavaScript instead of bash for code execution on their proprietary stack).
+
 ## Agent Marketplace Infrastructure (Wright)
 
 Aaron Wright maps the infrastructure required for agents to operate as autonomous economic actors — not just execute tasks, but transact: find counterparties, make commitments, move money, build track records, survive disputes, and stay within authorized scope. The argument: without identity, trust, pricing, contracts, settlement, enforcement, and policy, "you do not have an economy. You have a demo."
@@ -589,5 +607,6 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Karpathy's Agentic Engineering Finally Has Proper Tooling" — Akshay (tweet thread, Jun 2026) ([link](https://x.com/akshay_pachaar/status/2070860837448040832/?rw_tt_thread=True)) — Google Agents CLI walkthrough: 7 injected ADK skills, full-lifecycle from scaffold to deploy, eval adoption gap stat (89% observability vs 52% evals)
 - "A Field Guide to Fable: Finding Your Unknowns" — Thariq (tweet thread, Jul 2026) — map-vs-territory metaphor for agentic work, four types of unknowns (Rumsfeld matrix), phased discovery techniques (blind spot pass, brainstorms, interviews, references, implementation plans, quizzes)
 - "Continual Learning for Agents" — Michele Catasta / Replit (tweet, Jul 2026) — three-layer continual learning (model/harness/context), ViBench vibe coding benchmark, Telescope trace clustering, production self-improvement loop, human judgment insertion points
+- "you probably don't need an expensive sandbox" — Nathan Flurry (tweet, Jul 2026) — virtual OS thesis: WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes, AgentOS open-source project, hybrid sandbox mounting for edge cases
 - "A few patterns we frequently use with Fable 5" — ClaudeDevs (tweet, Jul 2026) ([advisor docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool), [cookbook](https://github.com/anthropics/claude-cookbooks/blob/main/managed_agents/CMA_plan_big_execute_small.ipynb)) — advisor pattern (92% of Fable score at 63% cost on SWE-bench Pro), orchestrator pattern (96% at 46% cost on BrowseComp), cached context sharing across Managed Agents sub-agents
 - "How To Run 15 AI Agents at Once (Without Losing Half the Work)" — Eric Siu (tweet thread, Jul 2026) ([link](https://x.com/ericosiu/status/2075640250626715833/?rw_tt_thread=True)) — compounding-vs-leaking framework for multi-agent output management, workspace-over-stream organization, cross-tool resolver pattern, skill reuse as compounding, scaffolding > models thesis

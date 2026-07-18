@@ -8,7 +8,7 @@
 
 **Tech Stack:** TypeScript (strict, ESM), Node 22+, `@anthropic-ai/claude-agent-sdk`, `vitest` (test), `zod` (schema/validation), `commander` (CLI), `execa` (git/shell). npm as package manager.
 
-**Source spec:** `~/second-brain/areas/dev-harness/2026-06-30-dev-harness-design.md`
+**Source spec:** `~/second-brain/areas/dev-harness/planning/2026-06-30-dev-harness-design.md`
 
 ## Global Constraints
 

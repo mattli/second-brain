@@ -4,6 +4,8 @@
 
 > **2026-07-17 field evidence:** first real transcript handed to Matt (mrplqx5g, wiki-grounding extraction, 96/100) was unreadable to its intended audience — the verbatim frozen contract (~13 criteria of adversarial legalese) buried the story, and the 4-point deduction and 2 revisions had no narrative at all. Confirms the north star in one sentence: **summarize the contract, narrate the work.** Contract gist target: one line per criterion ("naming, verbatim moves, hermetic tests, exclusion rulings — all met; full text in trace appendix").
 
+> **2026-07-18 field evidence (Layer 2):** run mrqghymn (self-locating outputs — a dev-harness self-run) scored its own *correct, verifier-passing* work 3/0/4 and halted as "failed." Diagnosing **why** required re-running the verifier by hand and reconstructing the diff, because the trace persisted only the number — exactly the evaluator/verifier findings Layer 2 would keep (`verifierPassed`, `verifierFindings`, evaluator `feedback`). With Layer 2 this transcript would have been self-explaining: *"verifier passed; evaluator docked for editing a file outside the contract's allowlist."* Bumps Layer 2's evaluator+verifier fields from "cheap, high-value" to **demonstrated-necessary** — a surprising low score with no on-disk explanation is the exact failure the transcript-is-a-product-surface rule exists to prevent.
+
 ## The problem
 
 Today's `transcript.md` violates the "transcript is a product surface" rule two ways: it **dumps frozen contracts verbatim** (the v5 Voice-Tutor contract renders ~9 criteria of dense LLM prose inline, burying the story) and gives **no per-revision narrative** (sprint 1's 12→22→18 revisions collapse to one summed line — no evaluator feedback, no verifier output, no score-change story).

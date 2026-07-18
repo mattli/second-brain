@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-17
+last_updated: 2026-07-18
 ---
 
 # Agentic Engineering
@@ -9,11 +9,11 @@ last_updated: 2026-07-17
 
 ## Recent Updates
 
+- **2026-07-18:** Added Osmani's outer-loop accountability framework — Quality/Verdict/Answerability triad, trust-verification gap, three hidden costs, back-pressure principle, four human loops — to [Owning the Outer Loop](#owning-the-outer-loop-osmani)
 - **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
 - **2026-07-12:** Added Eric Siu's compounding-vs-leaking framework and cross-tool resolver pattern to [Compounding vs. Leaking](#compounding-vs-leaking-eric-siu)
 - **2026-07-08:** Added Anthropic's advisor/orchestrator benchmark data (92%@63% cost, 96%@46% cost) to [Cost-Routing](#cost-routing-for-production-systems) and cached context sharing to [Managed Agents](#managed-agents-anthropic)
 - **2026-07-08:** Added Replit's continual learning pipeline — ViBench, Telescope trace clustering, and production self-improvement loop — to [Self-Improving Agents](#self-improving-agents)
-- **2026-07-07:** Added Thariq's unknowns framework — map-vs-territory metaphor and phased discovery techniques — to [Discovering Unknowns](#discovering-unknowns-thariq)
 
 ## The Delegation–Collaboration Split
 
@@ -97,6 +97,39 @@ The best agentic coders have relatively few unknowns — they are deeply in sync
 **Post-implementation:** two techniques for closing the loop. First, package the prototype, spec, and implementation notes into explainer artifacts — this accelerates buy-in by showing reviewers you accounted for the unknowns they would have anticipated. Second, ask Claude to quiz you on the changes. Reading diffs gives only surface understanding; a quiz forces comprehension of behavior changes across existing code paths. "Give me an HTML report on the changes with context and intuition, and a quiz at the bottom that I must pass." Only merge after passing.
 
 **The instructing balance:** being too specific makes Claude follow instructions even when a pivot is better; being too vague lets it default to industry best practices that may not fit. The unknowns framework resolves this — you don't need to specify everything upfront if you've systematically reduced the gap between your map and the territory. This complements the [SysLS principle](#practitioner-principles-sysls) of separating research from implementation — Thariq's techniques are how you do the research phase well.
+
+## Owning the Outer Loop (Osmani)
+
+Addy Osmani frames the defining boundary of agentic engineering: agents run the **inner execution loop** (investigate → implement → verify → repeat); engineers own the **outer loop** — the accountability for what ships. As models gain capability, the outer loop becomes the scarce, high-leverage work. "An agent can write it. But before it reaches users, someone must explain why it should exist, why it's safe enough to be part of production, and what they will do when it is wrong."
+
+**The accountability triad.** Three concepts hold the outer loop together:
+
+- **Quality** — all the checks installed before the system runs: type checks, tests, hooks, sandbox limits, audit logs. These checks produce evidence, and from that evidence you derive a verdict.
+- **Verdict** — the production decision made from that evidence: ship, block, redirect, add a guardrail, or reject. The model may write the code, but the verdict belongs to the engineer. "The work of my team will not enter our dependent systems without my decision."
+- **Answerability** — the guarantee that if someone asks, you can explain why. With long-horizon agents making hundreds of intermediate decisions over hours, reconstructing the chain after the fact becomes impossible unless answerability is designed in from the start.
+
+**The trust-verification gap.** Code generation has outrun code control. Sonar's 2026 survey found 42% of committed code was AI-generated or significantly AI-assisted, with expectations for that share to keep growing [[source]](https://www.sonarsource.com/state-of-code-developer-survey-report.pdf). GitLab's June 2026 research showed governance typically happens *after* code creation — after risk has been accepted and ownership lost [[source]](https://ir.gitlab.com/news/news-details/2026/GitLab-Research-Reveals-Organizations-Are-Generating-AI-Code-Faster-Than-They-Can-Control-It/default.aspx). Many teams distrust AI code but haven't built that distrust into their verification processes. Creation is getting cheaper; review, validation, understanding, and maintenance are the scarce resources.
+
+**Three hidden costs of delegation:**
+
+- **Cognitive surrender** — blindly accepting AI output. A Wharton study found that when AI was wrong, nearly 75% of people accepted it anyway, and felt *more* confident than they would have without AI [[source]](https://executiveeducation.wharton.upenn.edu/thought-leadership/wharton-at-work/2026/05/thinking-fast-slow-and-artificially/). The agent's output becomes your answer; with it comes all the accountability.
+- **Cognitive debt** — erosion of understanding. An Anthropic randomized controlled trial found engineers who leaned on AI scored 17 percentage points lower on comprehension (50% vs 67%) than those who wrote code themselves [[source]](https://www.anthropic.com/research/AI-assistance-coding-skills). The longer the agentic planning horizon, the wider the gap between what the agent produces and what you understand. The debt compounds.
+- **Orchestration tax** — cognitive bandwidth doesn't parallelize the way agent fleets do. Steering, sorting, verifying, directing — none of it can be automated. See the [dedicated treatment](#the-orchestration-tax-osmani) for the full analysis.
+
+**Back pressure, not maximum autonomy.** Don't grant agents as much autonomy as they can exercise — grant just enough that you retain enough back pressure to stop them, check their work, and ensure your understanding. Ordinary engineering signals (type checks, tests, hooks, monitors) provide natural back pressure. As long as agents emit the same signals, the existing engineering system constrains them appropriately.
+
+**Four human loops (not the inner loop).** The human doesn't need to be in the agent's execution loop. They need to be in four surrounding loops:
+
+1. **Constraints loop** — what inputs, architectures, instructions, or invariants to set
+2. **Sampling loop** — how much output to sample and review
+3. **Audit loop** — what evidence to keep and how to ensure audit effectiveness
+4. **Ownership loop** — what part of the production boundary to own
+
+This maps directly to the [delegation–collaboration split](#the-delegationcollaboration-split): collaborative work keeps the human in the inner loop; delegated work moves them to these four outer loops. The [loop engineering](loop-engineering.md) concept of open vs. closed loops is the implementation-level version of the same boundary.
+
+**High agency as discernment.** The agency ladder runs from low to high: flag a problem → investigate → execute → diagnose → propose solutions → recommend → resolve. The highest rung is discernment: "found it, it's not worth fixing, moving on." High agency is knowing when to delegate, when to inspect, when to stop, and when to own the result.
+
+**Accountability scales the factory.** Without accountability, high agency brings chaos — no rules, no trade-offs, no safety nets. Skills give you leverage; accountability turns leverage into trust. The half-life of a technical edge is one release; the half-life of a signature — your name on work you stand behind — is a career. Every codebase should come with an accountability contract: the checklist understood when the change was accepted, the evidence behind the decision, who was accountable, and the system status after the change. The bottleneck moves from "can we build this?" to "should this exist, and can we answer for it?"
 
 ## Harness Design: "Seeing Like an Agent"
 
@@ -292,7 +325,7 @@ Addy Osmani names the structural cost most multi-agent practitioners underestima
 - **Only spend the lock on judgment.** Make agents prove the boring 80% themselves (passing tests, screenshots, self-verification) so scarce attention goes to the 20% that genuinely needs a human.
 - **Protect serial time.** The bottleneck needs your best hours, not leftover minutes between agent check-ins. Sometimes the highest-leverage move is to stop orchestrating entirely and think hard about one problem with the lock held.
 
-The orchestration tax left unpaid accumulates both technical debt (merged code you didn't read well) and cognitive debt (a stale mental model of your own codebase). Neither shows on a dashboard today; both show when production breaks and you realize you have no idea how the system works anymore. See also: the [delegation–collaboration split](#the-delegationcollaboration-split) for how to classify which work mode fits which task.
+The orchestration tax left unpaid accumulates both technical debt (merged code you didn't read well) and cognitive debt (a stale mental model of your own codebase). Neither shows on a dashboard today; both show when production breaks and you realize you have no idea how the system works anymore. Osmani later placed the orchestration tax alongside two companion costs — cognitive surrender and cognitive debt — within the broader [outer-loop accountability framework](#owning-the-outer-loop-osmani). See also: the [delegation–collaboration split](#the-delegationcollaboration-split) for how to classify which work mode fits which task.
 
 ### Compounding vs. Leaking (Eric Siu)
 
@@ -536,6 +569,7 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "The Orchestration Tax" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/orchestration-tax/)) — human as GIL of agent fleet, Amdahl's Law applied to review bottleneck, cognitive surrender failure mode, five attention-architecture principles (scale to review rate, sort work, batch reviews, lock on judgment only, protect serial time)
 - "Loops: What Every AI Engineer Needs to Know in 2026" — Rahul (@sairahul1, Jun 2026) — open vs closed loop taxonomy, single-agent vs fleet loop scales, token cost as the key accessibility barrier to loop engineering
 - "Agents Need a New Kind of Web Search" — Akshay (tweet thread, Jul 2026) ([link](https://x.com/akshay_pachaar/status/2077753829526056985/)) — retrieval tax concept: tokens agents burn on fetch-and-clean before reasoning; owned-index principle; 4x token cost gap between looping search and pre-crawled index
+- "Own the Outer Loop" — Addy Osmani (Jul 2026) — inner/outer loop accountability framework: Quality/Verdict/Answerability triad, trust-verification gap (Sonar 42% AI-assisted commits, GitLab governance gap), three hidden costs (cognitive surrender, cognitive debt, orchestration tax), back-pressure principle, four human loops, high agency ladder, accountability contracts
 - "Loop Engineering" — Addy Osmani (tweet thread, Jun 2026) — five building blocks of agent loops (automations, worktrees, skills, plugins, sub-agents), memory as persistent spine, maker/checker split, tool convergence across Claude Code and Codex, loop risks (verification, comprehension debt, cognitive surrender)
 - "WTF Is a Loop? Peter Steinberger vs. Boris Cherny" — Matt Van Horn (Jun 2026) — Boris Cherny's definition of loops, five-stage lineage (ReAct → AutoGPT → ralph → /goal → orchestration), cron-vs-loop distinction, loop cost dynamics (Uber $1,500 cap), three hard stops (iterations/progress/budget), skills-over-loops thesis, verification as essential feedback
 - "\"Ralph Wiggum\" AI Agent will 10x Claude Code/Amp" — Greg Isenberg ft. Ryan Carson (video, Jun 2026) — Ralph loop practitioner walkthrough: PRD-to-JSON pipeline, atomic user stories with acceptance criteria, dual memory (agents.md long-term + progress.txt short-term), fresh context per iteration, $3/iteration cost, 14-iteration feature build

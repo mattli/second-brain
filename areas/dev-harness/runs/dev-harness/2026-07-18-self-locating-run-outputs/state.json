@@ -1,0 +1,25 @@
+{
+  "runId": "mrqghymn",
+  "goal": "Make dev-harness run outputs self-locating. Plan this as exactly one sprint. Two changes.\n\n(1) In src/state/run-path.ts, change the runBranch(goal, runId) function so it returns the string 'run-' immediately followed by the runId (for example, runId 'abc' gives 'run-abc'). Drop the slugified goal and the 'run/' prefix entirely. Update its assertion in tests/run-path.test.ts to match.\n\n(2) Make renderSummary() in src/report/summary.ts self-locating using absolute paths. The 'Code' line must name the branch and the project's absolute path together, in the form: Code:     branch run-<runId> in <absolute project path>. Relabel the folder line to 'Records:' and print the absolute run directory, in the form: Records:  <absolute run directory>. This requires carrying the project path into run state: add an optional projectPath field to the RunState interface in src/state/types.ts (optional, mirroring the existing optional runDir field so older runs on disk do not break), set it from config.projectPath when the run state is first initialized in src/orchestrator/run.ts, and read it in renderSummary with a graceful fallback for when it is absent. Update tests/summary.test.ts to match the new header lines.\n\nChange nothing else in the codebase.\n\nAcceptance criteria (each mechanically checkable by the test suite):\n- runBranch('any goal text', 'abc') returns exactly 'run-abc' (no slug, no slash).\n- renderSummary() of a run state whose projectPath is set contains a line naming the branch run-<runId> and that absolute project path together.\n- renderSummary() contains a 'Records:' line showing the absolute run directory.\n- The verifier command, npx tsc --noEmit && npx vitest run, passes.",
+  "title": "self-locating run outputs",
+  "startedAt": "2026-07-18T14:22:45.648Z",
+  "runDir": "runs/dev-harness/2026-07-18-self-locating-run-outputs",
+  "status": "running",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "Self-locating run outputs",
+      "description": "Deliver two coordinated changes that make dev-harness run summaries self-locating via absolute paths, plus the tests that prove them. CHANGE 1 (run-path): In src/state/run-path.ts, rewrite runBranch(goal, runId) to return `run-${runId}` — drop the slugified goal and the 'run/' prefix entirely (the `goal` param stays in the signature for call-site compatibility but is unused; leave slugify import in place if still used by other exports like projectSlug/buildRunDir). In tests/run-path.test.ts, update the 'runBranch composes...' test so runBranch('Build a CSV converter', 'abc') asserts exactly 'run-abc' (no slug, no slash); confirm acceptance criterion runBranch('any goal text','abc')==='run-abc'. CHANGE 2 (self-locating summary): (a) In src/state/types.ts add an optional `projectPath?: string` field to RunState, placed and documented mirroring the existing optional `runDir?` field so legacy on-disk runs without it do not break. (b) In src/orchestrator/run.ts, when the initial RunState object literal is constructed (the `const state: RunState = {...}` around line 60), set `projectPath: config.projectPath` (config.projectPath already exists in RunConfig). (c) In src/report/summary.ts, rewrite renderSummary's last two lines: replace the 'Code:' line with `Code:     branch ${runBranch(state.goal, state.runId)} in ${state.projectPath ?? '(unknown project path)'}` (graceful fallback when projectPath is absent), and replace the 'Folder:' line with a relabeled `Records:  ${state.runDir ?? '(unknown)'}` line printing the absolute run directory. (d) In tests/summary.test.ts: extend the base() RunState factory to include a projectPath (an absolute path, e.g. '/Users/me/dev/csv-tool'); update the assertion currently checking 'branch run/build-a-csv-converter-abc' to assert the new 'Code:' line names branch 'run-abc' together with that absolute project path; and update the 'which folder holds the run's artifacts' test to assert the new 'Records:' line shows the absolute run directory. VERIFY the whole slice with `npx tsc --noEmit && npx vitest run` (both must pass). Touch nothing else in the codebase."
+    }
+  ],
+  "currentSprint": 0,
+  "contractVersion": 3,
+  "scores": [
+    3,
+    0
+  ],
+  "iterations": 0,
+  "budgetSpentUsd": 1.9518439500000002,
+  "haltReason": null,
+  "contractFreezeReason": "agreement"
+}

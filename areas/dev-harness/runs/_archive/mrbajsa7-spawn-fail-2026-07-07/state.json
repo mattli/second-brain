@@ -1,0 +1,38 @@
+{
+  "runId": "mrbajsa7",
+  "goal": "Build a small Node CSV<->JSON converter as a CLI. Provide a pure-function core module exporting csvToJson(text) (parse CSV with a header row into an array of objects) and jsonToCsv(rows) (serialize an array of objects back to CSV), handling standard CSV quoting rules correctly. Add a CLI entry that reads an input file (or stdin) plus a --to csv|json flag and writes the converted result to stdout. Include node:test unit tests for the core functions. Test command: npm test.",
+  "status": "running",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "Project scaffold and core module skeleton",
+      "description": "Initialize the Node project: package.json with name, version, type (CommonJS or ESM — pick one and stay consistent), a \"test\" script running node:test (e.g. 'node --test'), and a bin entry for the CLI. Create the directory layout: a pure-function core module file exporting two named functions csvToJson(text) and jsonToCsv(rows) as stubs, a separate CLI entry file, and a tests folder. No parsing logic yet — just importable/exportable shells that run without error and a passing smoke test to confirm wiring. Deliverable: repo where 'npm test' executes and the core module + CLI can be required/imported without crashing."
+    },
+    {
+      "id": 1,
+      "title": "Implement csvToJson with correct CSV parsing",
+      "description": "Implement the pure function csvToJson(text): treat the first row as the header, return an array of plain objects keyed by header names. Handle standard CSV quoting rules correctly: fields wrapped in double quotes, escaped double quotes inside quoted fields (\"\" -> \"), commas inside quoted fields, and newlines (CR, LF, CRLF) inside quoted fields. Handle edge cases: empty input, header-only input (empty array), trailing newline, and empty/whitespace fields. Keep it dependency-free and side-effect-free. Deliverable: fully working csvToJson that round-trips the quoting cases."
+    },
+    {
+      "id": 2,
+      "title": "Implement jsonToCsv with correct CSV serialization",
+      "description": "Implement the pure function jsonToCsv(rows): given an array of objects, produce CSV text with a header row. Derive the column set from the object keys (define and apply a clear, deterministic rule for column ordering and for rows with differing/missing keys). Apply correct quoting on output: quote any field containing a comma, double quote, CR, or LF; escape embedded double quotes by doubling them. Handle non-string values (numbers, booleans, null/undefined) with a documented, consistent stringification rule, and handle the empty-array case. Ensure csvToJson and jsonToCsv round-trip consistently for well-formed data. Deliverable: fully working jsonToCsv that is the faithful inverse of csvToJson."
+    },
+    {
+      "id": 3,
+      "title": "Build the CLI entry point",
+      "description": "Implement the CLI that wires the core module to the filesystem/stdio. It must accept an optional input file path (reading from stdin when no file is given), require a --to flag with value csv or json to select the conversion direction, invoke the appropriate core function, and write the result to stdout. Include basic argument validation and clear error messaging with a non-zero exit code on bad/missing flags or unreadable input; do not let core functions perform any I/O. Deliverable: a runnable CLI supporting both file and stdin input for both conversion directions."
+    },
+    {
+      "id": 4,
+      "title": "Comprehensive node:test unit tests for the core",
+      "description": "Write node:test unit tests covering the core functions: csvToJson and jsonToCsv for the happy path plus all quoting edge cases (embedded commas, quotes, newlines, escaped quotes), empty input, header-only input, non-string value serialization, and at least one round-trip test (csvToJson(jsonToCsv(x)) and vice versa). Ensure the tests run and pass via 'npm test'. Deliverable: a passing, meaningful test suite that would catch regressions in the parsing/serialization rules."
+    }
+  ],
+  "currentSprint": 0,
+  "contractVersion": 5,
+  "scores": [],
+  "iterations": 0,
+  "budgetSpentUsd": 0,
+  "haltReason": null
+}

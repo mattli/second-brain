@@ -1,0 +1,9 @@
+{"ts":"2026-07-06T21:40:13.626Z","runId":"e2e","sprint":0,"phase":"PLAN","agentRole":"planner","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"2 sprints","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T21:41:15.853Z","runId":"e2e","sprint":0,"phase":"NEGOTIATE","agentRole":"system","contractVersion":2,"inputDigest":"","toolCalls":[],"outputDigest":"frozen","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T21:41:37.304Z","runId":"e2e","sprint":0,"phase":"GENERATE","agentRole":"generator","contractVersion":0,"inputDigest":"","toolCalls":["Read","Bash","Write","Write","Bash"],"outputDigest":"","tokens":977,"costUsd":0.3525334}
+{"ts":"2026-07-06T21:41:49.789Z","runId":"e2e","sprint":0,"phase":"EVALUATE","agentRole":"evaluator","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"score 100","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T21:41:49.840Z","runId":"e2e","sprint":0,"phase":"DECIDE","agentRole":"system","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"advance (score 100)","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T21:43:00.435Z","runId":"e2e","sprint":0,"phase":"NEGOTIATE","agentRole":"system","contractVersion":2,"inputDigest":"","toolCalls":[],"outputDigest":"frozen","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T21:43:43.458Z","runId":"e2e","sprint":0,"phase":"GENERATE","agentRole":"generator","contractVersion":0,"inputDigest":"","toolCalls":["Write","Bash","Write","Write","Write","Read","Read","Edit","Edit","Bash"],"outputDigest":"","tokens":1899,"costUsd":0.5358358999999999}
+{"ts":"2026-07-06T21:44:02.765Z","runId":"e2e","sprint":0,"phase":"EVALUATE","agentRole":"evaluator","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"score 96","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T21:44:02.819Z","runId":"e2e","sprint":0,"phase":"DECIDE","agentRole":"system","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"advance (score 96)","tokens":0,"costUsd":0}

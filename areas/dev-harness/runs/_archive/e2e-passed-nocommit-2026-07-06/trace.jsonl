@@ -1,0 +1,4 @@
+{"ts":"2026-07-06T20:40:09.631Z","runId":"e2e","sprint":0,"phase":"PLAN","agentRole":"planner","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"2 sprints","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T20:40:33.331Z","runId":"e2e","sprint":0,"phase":"NEGOTIATE","agentRole":"system","contractVersion":1,"inputDigest":"","toolCalls":[],"outputDigest":"frozen","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T20:40:46.729Z","runId":"e2e","sprint":0,"phase":"GENERATE","agentRole":"generator","contractVersion":0,"inputDigest":"","toolCalls":["Write","Bash"],"outputDigest":"","tokens":487,"costUsd":0.2176389}
+{"ts":"2026-07-06T20:41:54.807Z","runId":"e2e","sprint":0,"phase":"EVALUATE","agentRole":"evaluator","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"score 0","tokens":0,"costUsd":0}

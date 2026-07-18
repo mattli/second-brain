@@ -1,0 +1,22 @@
+{
+  "runId": "mrmzffye",
+  "goal": "Plan this as exactly one sprint. Mechanically relocate the pure, Pipecat-free helper functions from bot.py ONLY into a new session_state.py that bot.py re-imports — a verbatim move with zero logic changes; any change to a moved function's logic is a failure — then add characterization tests for those helpers. Do NOT touch wiki.py, the STT/TTS/Pipecat pipeline, or the LLM-backed recap functions.",
+  "title": "extract session state helpers",
+  "startedAt": "2026-07-16T04:01:36.135Z",
+  "runDir": "runs/voice-tutor-harness-run/2026-07-16-extract-session-state-helpers",
+  "status": "running",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "extract pure helpers",
+      "description": "Identify every pure, Pipecat-free, non-LLM helper function currently defined in bot.py — functions that have no dependency on the STT/TTS/Pipecat pipeline, no LLM-backed recap logic, and no import from wiki.py. Move each of these helpers VERBATIM into a new module session_state.py: copy the function bodies exactly as-is with zero logic changes (identical signatures, control flow, return values, and any needed imports/constants they reference). Any alteration to a moved function's behavior is a failure. Update bot.py to delete the moved definitions and instead re-import them from session_state.py, so bot.py's public surface and runtime behavior are unchanged. Do NOT touch wiki.py, the STT/TTS/Pipecat pipeline code, or the LLM-backed recap functions. Then write characterization tests (in a test module targeting session_state.py) that pin down the current observed behavior of each moved helper across representative and edge-case inputs — capturing outputs exactly as they are today so any future logic drift is caught. Verify bot.py still imports and runs, and that the characterization test suite passes."
+    }
+  ],
+  "currentSprint": 0,
+  "contractVersion": 4,
+  "scores": [],
+  "iterations": 0,
+  "budgetSpentUsd": 0,
+  "haltReason": null,
+  "contractFreezeReason": "agreement"
+}

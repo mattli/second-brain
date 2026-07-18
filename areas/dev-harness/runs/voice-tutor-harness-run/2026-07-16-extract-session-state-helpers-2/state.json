@@ -1,0 +1,24 @@
+{
+  "runId": "mrn0iav3",
+  "goal": "Plan this as exactly one sprint. Mechanically relocate the pure, Pipecat-free helper functions from bot.py ONLY into a new session_state.py that bot.py re-imports — a verbatim move with zero logic changes; any change to a moved function's logic is a failure — then add characterization tests for those helpers. Do NOT touch wiki.py, the STT/TTS/Pipecat pipeline, or the LLM-backed recap functions.",
+  "title": "extract session state helpers",
+  "startedAt": "2026-07-16T04:31:49.120Z",
+  "runDir": "runs/voice-tutor-harness-run/2026-07-16-extract-session-state-helpers-2",
+  "status": "passed",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "extract pure helpers",
+      "description": "Identify the pure, Pipecat-free helper functions in bot.py ONLY (no dependencies on Pipecat, STT/TTS pipeline, LLM/recap functions, or wiki.py). Mechanically relocate them VERBATIM into a new session_state.py module — an exact copy-paste move with zero logic changes; any alteration to a moved function's behavior is a failure. Preserve function signatures, bodies, and any needed imports exactly. Update bot.py to re-import these helpers from session_state.py so all existing call sites continue to work unchanged. Do NOT touch wiki.py, the STT/TTS/Pipecat pipeline code, or the LLM-backed recap functions. Then add characterization tests in a new test file that pin the current observed behavior of each relocated helper (covering representative inputs, edge cases, and return values) to prove the move was behavior-preserving. Verify by running the test suite and confirming bot.py still imports and runs; the sprint ships as a self-contained, tested refactor."
+    }
+  ],
+  "currentSprint": 0,
+  "contractVersion": 5,
+  "scores": [
+    96
+  ],
+  "iterations": 0,
+  "budgetSpentUsd": 13.507471,
+  "haltReason": null,
+  "contractFreezeReason": "agreement"
+}

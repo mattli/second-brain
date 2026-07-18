@@ -1,0 +1,32 @@
+{
+  "runId": "mrmqlip7",
+  "goal": "Plan this as exactly two sprints. Add characterization tests that pin the CURRENT behavior of Voice Tutor, changing NO runtime behavior. Sprint 1: add pytest tests under `tests/` that characterize `documents.py` (title derivation, upload-validation error paths, text extraction — including the PDF path via the committed `tests/fixtures/sample.pdf` — and list/load), monkeypatching the documents directory to a temp path; change NO production source. Sprint 2: mechanically relocate the pure, Pipecat-free helper functions from `bot.py` ONLY into a new `session_state.py` that `bot.py` re-imports (a verbatim move — zero logic changes; any logic change inside a moved function is a failure), then add characterization tests for those helpers. Do NOT touch `wiki.py`, the STT/TTS/Pipecat pipeline, or the LLM-backed recap functions.",
+  "title": "voice tutor characterization",
+  "startedAt": "2026-07-15T23:54:23.084Z",
+  "runDir": "runs/voice-tutor-harness-run/2026-07-15-voice-tutor-characterization",
+  "status": "halted",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "characterize documents.py",
+      "description": "Add pytest characterization tests under tests/ that pin the CURRENT behavior of documents.py, changing NO production source. Monkeypatch the documents directory to a temporary path so tests are hermetic. Cover: title derivation logic; upload-validation error paths (invalid types, oversized/empty inputs, and any other rejection branches as they currently behave); text extraction for all supported formats, INCLUDING the PDF path exercised via the committed tests/fixtures/sample.pdf fixture; and the list/load functions (listing stored documents and loading their contents/metadata). Tests must assert the observed present-day outputs and error types/messages verbatim — they document behavior, not correctness. Ensure pytest is runnable (add tests/__init__.py or minimal conftest.py only if needed for discovery/fixtures; do not alter production code). This sprint is a self-contained, shippable slice: documents.py behavior is now pinned by passing tests."
+    },
+    {
+      "id": 1,
+      "title": "relocate and characterize bot helpers",
+      "description": "Mechanically extract the pure, Pipecat-free helper functions from bot.py ONLY into a new session_state.py — a VERBATIM move with zero logic changes (any edit to the body of a moved function is a failure). bot.py then re-imports these helpers from session_state.py so all existing call sites and the public surface remain identical. Do NOT touch wiki.py, the STT/TTS/Pipecat pipeline, or the LLM-backed recap functions — only the pure session-state helpers move. After the move, add pytest characterization tests under tests/ that pin the current behavior of the relocated helpers (input/output for representative and edge-case inputs, exactly as they behave today). Verify by importing via both bot.py (re-export) and session_state.py to prove the move preserved the interface. This sprint is a self-contained, shippable slice: the refactor is behavior-preserving and now guarded by passing tests."
+    }
+  ],
+  "currentSprint": 1,
+  "contractVersion": 5,
+  "scores": [
+    96,
+    12,
+    22,
+    18
+  ],
+  "iterations": 0,
+  "budgetSpentUsd": 27.808546349999993,
+  "haltReason": "wall-clock",
+  "contractFreezeReason": "round-cap"
+}

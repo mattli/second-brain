@@ -1,0 +1,10 @@
+{"ts":"2026-07-06T18:13:02.889Z","runId":"e2e","sprint":0,"phase":"PLAN","agentRole":"planner","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"2 sprints","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T18:13:23.078Z","runId":"e2e","sprint":0,"phase":"NEGOTIATE","agentRole":"system","contractVersion":1,"inputDigest":"","toolCalls":[],"outputDigest":"frozen","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T18:13:44.250Z","runId":"e2e","sprint":0,"phase":"GENERATE","agentRole":"generator","contractVersion":0,"inputDigest":"","toolCalls":["Write","Bash","Write"],"outputDigest":"","tokens":678,"costUsd":0.26690895000000003}
+{"ts":"2026-07-06T18:13:57.208Z","runId":"e2e","sprint":0,"phase":"EVALUATE","agentRole":"evaluator","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"score 0","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T18:14:23.672Z","runId":"e2e","sprint":0,"phase":"GENERATE","agentRole":"generator","contractVersion":0,"inputDigest":"","toolCalls":["Write","Bash","Write","Read"],"outputDigest":"","tokens":835,"costUsd":0.31062389999999995}
+{"ts":"2026-07-06T18:14:40.449Z","runId":"e2e","sprint":0,"phase":"EVALUATE","agentRole":"evaluator","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"score 95","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T18:15:06.408Z","runId":"e2e","sprint":0,"phase":"NEGOTIATE","agentRole":"system","contractVersion":1,"inputDigest":"","toolCalls":[],"outputDigest":"frozen","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T18:15:13.113Z","runId":"e2e","sprint":0,"phase":"GENERATE","agentRole":"generator","contractVersion":0,"inputDigest":"","toolCalls":["Write"],"outputDigest":"","tokens":356,"costUsd":0.14425634999999998}
+{"ts":"2026-07-06T18:16:39.463Z","runId":"e2e","sprint":0,"phase":"EVALUATE","agentRole":"evaluator","contractVersion":0,"inputDigest":"","toolCalls":[],"outputDigest":"score 0","tokens":0,"costUsd":0}
+{"ts":"2026-07-06T18:17:10.918Z","runId":"e2e","sprint":0,"phase":"GENERATE","agentRole":"generator","contractVersion":0,"inputDigest":"","toolCalls":["Write","Bash","Write","Read","Write"],"outputDigest":"","tokens":1746,"costUsd":0.44670575}

@@ -1,0 +1,22 @@
+{
+  "runId": "mrpk71c5",
+  "goal": "Plan this as exactly one sprint. Mechanically relocate the pure, Pipecat-free helper functions from wiki.py into a new Pipecat-free module (proposing the module name is part of contract negotiation — session_state.py is the wrong home for grounding logic; something like grounding.py or wiki_core.py; wiki.py re-imports so existing callers are unaffected). Verbatim move — zero logic changes; any change to a moved function's logic is a failure. Then add hermetic characterization tests for the moved helpers (stub any LLM/network calls; no HEAD-keyed baselines — pin behavior, not git state). Also evaluate build_system_instruction in bot.py: if it is pure and Pipecat-free, include it in the relocation; if it is tangled with Pipecat or LLM calls, EXCLUDE it and note why. Do not touch the STT/TTS/Pipecat pipeline or the LLM-backed recap functions.",
+  "title": "wiki grounding extraction",
+  "startedAt": "2026-07-17T23:18:28.230Z",
+  "runDir": "runs/voice-tutor/2026-07-17-wiki-grounding-extraction",
+  "status": "running",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "extract pure helpers to grounding module",
+      "description": "Locate wiki.py, bot.py, and session_state.py in the repo. Identify the pure, Pipecat-free helper functions in wiki.py (grounding logic with no Pipecat/pipeline/frame dependencies and no direct LLM/network I/O). Create a new Pipecat-free module named grounding.py (preferred; use wiki_core.py only if grounding.py is a poor semantic fit for the actual functions) and VERBATIM move those helpers into it — zero logic changes; any diff to a moved function's body is a failure. Update wiki.py to re-import the moved names so existing callers remain unaffected (verify no import cycles are introduced). Separately evaluate build_system_instruction in bot.py: if it is genuinely pure and Pipecat-free (no Pipecat context/frames, no LLM or network calls), include it in the relocation into the new module; if it is tangled with Pipecat or LLM calls, EXCLUDE it and record a one-line justification (in a code comment or commit message) explaining the specific coupling. Do NOT touch the STT/TTS/Pipecat pipeline or the LLM-backed recap functions. Then add hermetic characterization tests for every moved helper: stub/mock any LLM or network calls so tests run offline and deterministically, and pin concrete behavior (inputs → outputs / invariants) rather than HEAD-keyed or git-state baselines. Confirm the full test suite passes and that callers importing from wiki.py still resolve correctly."
+    }
+  ],
+  "currentSprint": 0,
+  "contractVersion": 0,
+  "scores": [],
+  "iterations": 0,
+  "budgetSpentUsd": 0,
+  "haltReason": null,
+  "contractFreezeReason": null
+}

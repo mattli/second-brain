@@ -1,0 +1,24 @@
+{
+  "runId": "mrplqx5g",
+  "goal": "Plan this as exactly one sprint. Mechanically relocate the pure, Pipecat-free helper functions from wiki.py into a new Pipecat-free module (proposing the module name is part of contract negotiation — session_state.py is the wrong home for grounding logic; something like grounding.py or wiki_core.py; wiki.py re-imports so existing callers are unaffected). Verbatim move — zero logic changes; any change to a moved function's logic is a failure. Then add hermetic characterization tests for the moved helpers (stub any LLM/network calls; no HEAD-keyed baselines — pin behavior, not git state). Also evaluate build_system_instruction in bot.py: if it is pure and Pipecat-free, include it in the relocation; if it is tangled with Pipecat or LLM calls, EXCLUDE it and note why. Do not touch the STT/TTS/Pipecat pipeline or the LLM-backed recap functions.",
+  "title": "wiki grounding extraction",
+  "startedAt": "2026-07-18T00:01:55.541Z",
+  "runDir": "runs/voice-tutor/2026-07-18-wiki-grounding-extraction",
+  "status": "passed",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "extract pure helpers and characterize",
+      "description": "Mechanically relocate the pure, Pipecat-free helper functions out of wiki.py into a new Pipecat-free module. Propose and create the module name (e.g. grounding.py or wiki_core.py — NOT session_state.py, which is the wrong home for grounding logic). The move must be VERBATIM: copy each helper's body character-for-character with zero logic changes; any alteration to a moved function's behavior is a failure. Leave the STT/TTS/Pipecat pipeline and the LLM-backed recap functions entirely untouched. Make wiki.py re-import the relocated helpers (e.g. `from grounding import *` or explicit re-exports) so that all existing callers of wiki.py continue to work unchanged. Separately, evaluate build_system_instruction in bot.py: if it is pure and Pipecat-free (no Pipecat imports, no LLM/network calls, deterministic given inputs), include it in the relocation and re-export it from bot.py; if it is tangled with Pipecat or LLM calls, EXCLUDE it, leave it in bot.py, and record a one-line note explaining the specific dependency that disqualified it. Then add hermetic characterization tests for every moved helper: pin their observable behavior (inputs -> outputs) as it exists today, not as it ideally should be. Stub or fake any LLM/network calls so tests run offline with no external dependencies. Do NOT key any baseline on git HEAD or commit state — assert on concrete expected values, not git-derived snapshots. Verify the full suite passes and that existing wiki.py callers still import and run against the re-export shim."
+    }
+  ],
+  "currentSprint": 0,
+  "contractVersion": 5,
+  "scores": [
+    96
+  ],
+  "iterations": 0,
+  "budgetSpentUsd": 3.422245350000001,
+  "haltReason": null,
+  "contractFreezeReason": "round-cap"
+}

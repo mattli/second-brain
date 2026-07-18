@@ -2,6 +2,8 @@
 
 *Extracted from backlog per the "backlog lines stay short, detail lives in linked docs" convention. Status: scoped, not built.*
 
+> **2026-07-17 field evidence:** first real transcript handed to Matt (mrplqx5g, wiki-grounding extraction, 96/100) was unreadable to its intended audience — the verbatim frozen contract (~13 criteria of adversarial legalese) buried the story, and the 4-point deduction and 2 revisions had no narrative at all. Confirms the north star in one sentence: **summarize the contract, narrate the work.** Contract gist target: one line per criterion ("naming, verbatim moves, hermetic tests, exclusion rulings — all met; full text in trace appendix").
+
 ## The problem
 
 Today's `transcript.md` violates the "transcript is a product surface" rule two ways: it **dumps frozen contracts verbatim** (the v5 Voice-Tutor contract renders ~9 criteria of dense LLM prose inline, burying the story) and gives **no per-revision narrative** (sprint 1's 12→22→18 revisions collapse to one summed line — no evaluator feedback, no verifier output, no score-change story).

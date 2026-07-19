@@ -4,7 +4,7 @@
 
 ## 2026-07-18
 
-- **Session recap browser** — display all previous session recaps in the app (list + read view over `~/.voice-tutor/artifacts/`). Makes the recap artifact a durable study surface instead of a one-shot file.
+- **Session recap browser** — display all previous session recaps in the app (list + read view over `~/.voice-tutor/artifacts/`). Makes the recap artifact a durable study surface instead of a one-shot file. → **Promoted to planning 2026-07-18: [past-sessions history goal](planning/2026-07-18-past-sessions-history-goal.md)** (dev-harness goal). Refinement from the design pass: the *list* is driven by `cost-log.jsonl` (it carries title/date/duration/cost — the `artifacts/` dir alone has none of that metadata); the *read* view reuses the existing `loadSessionView(sid)` path, not a new reader. Shared-pool / no-auth / cost-visible for this validation build.
 - **Live conversation text stream** — show the transcript text streaming in the UI while the voice conversation is happening. Voice-in/text-out visibility during the session, not just after.
 
 ### Harness angle on 1 & 2 (noted 2026-07-18)

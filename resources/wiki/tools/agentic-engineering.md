@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-18
+last_updated: 2026-07-19
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-18
 
 ## Recent Updates
 
+- **2026-07-19:** Added Machina's five-part agent composition template and engine-routing table to [Agent Composition Template](#agent-composition-template-machina), Raft to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-18:** Added Flurry's virtual-OS thesis — WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes — to [Agent Runtime: Virtual Operating Systems](#agent-runtime-virtual-operating-systems)
 - **2026-07-18:** Added Osmani's outer-loop accountability framework — Quality/Verdict/Answerability triad, trust-verification gap, three hidden costs, back-pressure principle, four human loops — to [Owning the Outer Loop](#owning-the-outer-loop-osmani)
 - **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
@@ -308,7 +309,25 @@ Gas City (successor to Steve Yegge's Gas Town) is an open-source orchestration t
 
 **Hermes Agent** (Nous Research) — Self-improving agent with closed learning loop: agent-curated memory, autonomous skill creation, skill self-improvement during use, FTS5 cross-session recall. Runs on 6 terminal backends (local, Docker, SSH, Daytona, Singularity, Modal). Lives on CLI, Telegram, Discord, Slack, WhatsApp.
 
+**Raft** — Shared workspace where humans and agents collaborate as teammates. Looks like Slack (channels, threads, tasks, DMs) but members include agents with persistent identity and memory. Agents claim tasks from channels, run in parallel, hand work to each other, and review each other's output in shared threads. Agents run locally via a lightweight process ("the Computer") using existing subscriptions (Claude Code, Codex, Gemini CLI, Cursor) — Raft never sits between agent and model. External agents (like [Hermes](#other-orchestration-tools)) join through a gateway process. 20,000+ builders; the Raft team itself runs 10 humans and 100+ named agents internally.
+
 **MiroFish** — Swarm intelligence prediction engine. Creates multi-agent simulations with independent personalities and long-term memory to predict outcomes from seed information (news, policies, financial signals).
+
+### Agent Composition Template (Machina)
+
+A practitioner template for standing up named agents as teammates rather than disposable sessions. Every agent is assembled from the same five parts:
+
+1. **Name** — A real name, not "agent-2." The name is how you route work ("give this to june") and how you audit it ("june drafted this, who reviewed it?").
+2. **Soul** — The agent's job description, scope constraints, and tone. Half a page is enough: role, scope boundaries, tone rules, daily deliverables, hard rules. On Raft this accumulates from chat corrections rather than being written up front — you tell the agent things ("drafts only, never contact a prospect") and its own version builds over time.
+3. **Memory** — Agent-maintained working notes (a `MEMORY.md` plus scratch files): what worked, what failed, which sources are gold, which are noise. The operator feeds it through corrections; the agent writes it down. Compress when notes pass a page — memory that grows forever stops being read.
+4. **Goals** — What the agent owns, what "done" looks like, and what it must escalate instead of deciding. Three buckets: own (steady flow of X), done (every output has Y), escalate (pricing, legal, anything answered).
+5. **Heartbeat** — The schedule it wakes on without being asked. Two are usually enough: a daily sweep and an hourly check that stays silent when nothing changed.
+
+**Engine-routing table.** Match engine to work type rather than defaulting everything to one model: Claude Code for writing-heavy tasks (content, client deliverables — strongest prose), Codex for building (internal tools, automations, scripts — sandboxed execution), Hermes for always-on monitoring (lead sweeps, reply watches — heartbeats, monitors, playbooks). The routing isn't about which model is "best" but which harness suits the task shape.
+
+**Cross-review as self-improvement.** No agent grades its own work — left alone, an agent approves its own output every time. Every deliverable crosses a second agent instructed to assume the work is broken. The same five agents review each other (cole reviews ray, etta reviews june, etc.). Every rejection carries a reason that gets written back into the soul and memory files, so the same mistake doesn't survive twice. See also [self-improving agents](#self-improving-agents) and [loop engineering](loop-engineering.md) for the broader pattern.
+
+**One pillar at a time.** Don't stand up five agents at once — "a team you can't feed is theater." Day 1: one agent for the pillar where you lose the most hours. Day 2: add its reviewer. Days 3–7: run the pair daily; every time you correct the same mistake twice, write it into the soul file. Week 2: add the next pillar only because the first one now runs without you.
 
 ### The Orchestration Tax (Osmani)
 
@@ -610,3 +629,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "you probably don't need an expensive sandbox" — Nathan Flurry (tweet, Jul 2026) — virtual OS thesis: WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes, AgentOS open-source project, hybrid sandbox mounting for edge cases
 - "A few patterns we frequently use with Fable 5" — ClaudeDevs (tweet, Jul 2026) ([advisor docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool), [cookbook](https://github.com/anthropics/claude-cookbooks/blob/main/managed_agents/CMA_plan_big_execute_small.ipynb)) — advisor pattern (92% of Fable score at 63% cost on SWE-bench Pro), orchestrator pattern (96% at 46% cost on BrowseComp), cached context sharing across Managed Agents sub-agents
 - "How To Run 15 AI Agents at Once (Without Losing Half the Work)" — Eric Siu (tweet thread, Jul 2026) ([link](https://x.com/ericosiu/status/2075640250626715833/?rw_tt_thread=True)) — compounding-vs-leaking framework for multi-agent output management, workspace-over-stream organization, cross-tool resolver pattern, skill reuse as compounding, scaffolding > models thesis
+- "How to build your first team of agents" — Machina (tweet thread, Jul 2026) — five-part agent composition template (name, soul, memory, goals, heartbeat), engine-routing table (Claude Code writes, Codex builds, Hermes monitors), cross-review self-improvement loop, one-pillar-at-a-time rollout, Raft shared workspace

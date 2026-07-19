@@ -1,6 +1,6 @@
 Monthly AI Intelligence Summary — Instructions
 
-> Version: 2.5 | Last updated: 2026-04-12
+> Version: 2.6 | Last updated: 2026-07-18
 
 ## Purpose
 On the 1st of each month, read the last 4–5 weekly summaries and synthesize them into a monthly intelligence summary. The goal is orientation: identify which problems are durable enough to watch, and which trends didn't hold up. This document is market intelligence, not idea generation — it should help the reader understand where the AI product landscape is heading, not produce candidates to build.
@@ -20,7 +20,7 @@ Save output to `resources/intelligence/monthly-summaries/YYYY-MM.md` (e.g. `2026
 ### 1. Read the Month's Weekly Summaries
 Read all files in `resources/intelligence/weekly-summaries/` from the last 4–5 weeks, plus the corresponding `resources/intelligence/weekly-products/` briefings. Use these as your primary sources — do not re-research news independently.
 
-From the weekly summaries, focus on the **Category Movement** section. From the weekly product briefings, read the problem categories and the products listed under each. Track across weeks:
+From the weekly summaries, focus on the **Category Movement** section. From the weekly product briefings, read the categories and the products listed under each. **Note (format change 2026-07-18): weekly product briefings from 2026-07-25 onward are raw lists — category headers and one-line product entries, with no engagement data and no analysis sections. Derive cross-week patterns yourself from the categories and product lists; never cite engagement metrics (likes, replies) in this summary.** Track across weeks:
 - Which problems appeared consistently (3+ weeks)?
 - Which categories showed real movement (growing, shifting, or consolidating)?
 - Which appeared once and didn't recur?

@@ -1,6 +1,6 @@
 Weekly Product Briefing — Instructions
 
-> Version: 1.1 | Last updated: 2026-03-28
+> Version: 2.0 | Last updated: 2026-07-18
 
 ## Purpose
 Each Saturday morning (before the weekly summary), research and compile a product intelligence briefing focused on what builders are actively shipping and promoting on X. The output should identify problem categories emerging from real builder activity and be saved to `resources/intelligence/weekly-products/YYYY-MM-DD.md` using today's actual date.
@@ -78,35 +78,38 @@ If a category has fewer than 3 products, fold it into the most related category 
 
 ## Output Format
 
-Save to `resources/intelligence/weekly-products/YYYY-MM-DD.md`:
+Save to `resources/intelligence/weekly-products/YYYY-MM-DD.md`.
+
+The output is a **raw list** — no editorial analysis, no engagement data. Engagement (replies, likes) is used only to SELECT threads in Step 1; it must never appear in the output in any form.
 
 ```
-# Weekly Product Briefing — YYYY-MM-DD
+# This Week in Indie Product Threads
 
-## Problem Categories
+**Weekly Product Briefing — [Month] [D], [YYYY] · Edition [N]**
 
-### [Category Name]
-- **Who it's for:** [developer / PM / non-technical user / enterprise team / etc.]
-- **Problem it's solving:** What is the underlying pain? Focus on the problem, not the solution.
-- **What's being built:** 1–2 sentences on the types of products appearing in this category.
-  - [Product Name](url) — one-line description (@handle, N likes)
-  - [repeat for each product in category]
-- **Engagement signal:** X engagement metrics (likes, replies). These measure thread visibility, not product traction. Note them for reference but do not draw conclusions about product-market fit from them.
-
-[Repeat for each category, sorted by number of products — largest first]
+*Every Saturday, a self-hosted AI agent I run scrapes the week's high-engagement "share your product" threads on X, extracts the product links, fetches and verifies the product pages, and compiles this list — about [N] confirmed products this week. Categories persist week to week. No sponsors, no affiliate links, no products I have a stake in.*
 
 ---
 
-## Summary Observations
-[3–5 sentences on what this week's builder activity reveals: which problem spaces are crowded, where builder energy is concentrating, what patterns are emerging]
+## [Category Name]
+
+- [Product Name](url) — one plain sentence on what it does; append pricing if known (e.g. "free tier, from $29/mo")
+- [repeat for each product in category]
+
+[Repeat for each category, sorted by number of products — largest first. Keep category names consistent with prior weeks where they overlap.]
+
+## Everything Else
+
+- [Products that don't cluster into a category, same one-line format]
 
 ---
 
-## Sources Log
-| Source | Searched | Items Used |
-|--------|----------|------------|
-| X — thread replies (6 keywords) | Y/N | [number of threads found, number of products extracted] |
+*Compiled weekly by an autonomous agent pipeline I built and self-host.*
 ```
+
+Edition number: count existing files in `resources/intelligence/weekly-products/` (excluding `_archive`) that are on or after 2026-07-11, plus this one. (Edition 1 = 2026-07-11.)
+
+Do NOT include: per-product engagement counts or @handles, "Who it's for" / "Problem it's solving" / "What's being built" / "Engagement signal" sections, summary observations, or a sources log.
 
 ---
 

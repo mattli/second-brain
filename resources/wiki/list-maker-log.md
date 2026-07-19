@@ -1,27 +1,29 @@
 ---
-run_date: 2026-07-18
-run_start: "2026-07-18T08:01:00Z"
-run_end: "2026-07-18T08:01:45Z"
-updated_after: "2026-07-17T02:55:30Z"
-items_total: 3
-workers_dispatched: 3
+run_date: 2026-07-19
+run_start: "2026-07-19T08:01:00Z"
+run_end: "2026-07-19T08:01:50Z"
+updated_after: "2026-07-18T08:01:45Z"
+items_total: 5
+workers_dispatched: 5
 items_dropped: 0
 items_skipped: 0
 ---
 
-# List-Maker Run — 2026-07-18
+# List-Maker Run — 2026-07-19
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-07-17T02:55:30Z. 3 items found, all dispatched. No drops, no skips, no carry-over. Two items route to agentic-engineering.md (outer loop accountability, WASM sandboxes); one to loop-engineering.md (Fable 5 self-improving agents).
+Cutoff from previous run_end: 2026-07-18T08:01:45Z. 5 items found, all dispatched. No drops, no skips, no carry-over. Three items route to loop-engineering.md (loops-to-graphs, Boris Cherny method, loop engineering overview); two to agentic-engineering.md (multi-agent team building, free agent repo).
 
 ## Workers Dispatched
 
 | Doc ID | Hint | Target | Rationale |
 |--------|------|--------|-----------|
-| 01kxr6zp095ecm4m693shvws15 | update | tools/agentic-engineering.md | Addy Osmani's "Own the Outer Loop" — engineer accountability and verification over AI agents |
-| 01kxr3wgwx329pgberpe976cf7 | update | tools/agentic-engineering.md | Nathan Flurry on lightweight WASM agent sandboxes (AgentOS) vs expensive Linux VMs |
-| 01ktz87vfxp2d1eq0y0wehzb5w | update | tools/loop-engineering.md | Fable 5 framework for self-improving agent systems with loops and dynamic workflows |
+| 01kxvrx7qct392sckwaxwezdrq | update | tools/loop-engineering.md | Carlos E. Perez on evolving from single feedback loops to networks of loops grounded in real-world facts |
+| 01kxvn4g4j8q9ntg7df647h3pw | update | tools/agentic-engineering.md | Machina's guide on building a 5-agent team with shared workspace (Raft) |
+| 01kxtpj9ace3japywkbw0ynykb | update | tools/loop-engineering.md | Boris Cherny's multi-session AI coding method with shared corrections file |
+| 01kxtpg3h1n4m2hmm4cy2a51bx | update | tools/loop-engineering.md | Rari's overview of loop engineering as essential 2026 AI builder skill |
+| 01kxtpatxa61bxk0w7sv8evfqa | update | tools/agentic-engineering.md | Thin tweet about free AI agent repo (LangChain, local LLMs, DuckDuckGo) |
 
 ## Skipped
 

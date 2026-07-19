@@ -9,6 +9,7 @@ last_updated: 2026-07-19
 
 ## Recent Updates
 
+- **2026-07-19:** Added free AI agent starter repo (LangChain + Groq/Gemini fallback) to [Tools Noted](#tools-noted)
 - **2026-07-19:** Added Machina's five-part agent composition template and engine-routing table to [Agent Composition Template](#agent-composition-template-machina), Raft to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-18:** Added Flurry's virtual-OS thesis — WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes — to [Agent Runtime: Virtual Operating Systems](#agent-runtime-virtual-operating-systems)
 - **2026-07-18:** Added Osmani's outer-loop accountability framework — Quality/Verdict/Answerability triad, trust-verification gap, three hidden costs, back-pressure principle, four human loops — to [Owning the Outer Loop](#owning-the-outer-loop-osmani)
@@ -573,6 +574,7 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - **MuleRun** — No-code AI agent platform for business automation. Dedicated compute per agent, runs 24/7
 - **Base44 Superagent** — 130+ built-in skills, stack skills into workflows
 - **Google Agents CLI** — Injects 7 ADK skills into any coding agent (Claude Code, Cursor, Codex), covering scaffolding, [eval](ai-evals.md) setup with LLM-as-judge scoring, deployment to Agent Runtime / Cloud Run, and Cloud Trace observability. Full lifecycle from natural language prompts without leaving the editor. https://github.com/google/agents-cli
+- **Free AI Agent Starter** (divyansh tiwari) — Beginner-friendly open-source agent repo: LangChain + LangGraph, Groq/Gemini free-tier LLMs with automatic fallback, DuckDuckGo search, LangGraph checkpoint memory. Runs locally, MIT licensed.
 
 ## See Also
 
@@ -601,6 +603,7 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "AI Work Is Splitting in Two" — Every Staff (May 2026) ([link](https://every.to/context-window/the-dawn-of-codex-native-apps)) — delegation vs collaboration bifurcation, Spiral as Managed Agents production case, Code with Claude 2026 announcements
 - "CLI Printing Press" — mvanhorn (GitHub, 2026) ([link](https://github.com/mvanhorn/cli-printing-press)) — agent-first CLI factory: absorb-and-transcend generation, creativity ladder (5 rungs from wrapper to behavioral insight), dual CLI+MCP from one spec, SQLite local-first data layer
 - "Ep. #9, The AI Coding Paradigm Shift with Simon Willison" — Simon Willison / High Leverage podcast (May 2026) — vibe coding vs agentic engineering distinction, trust model for agent output, security-adjacent review line, usage-over-tests heuristic, parallel agent workflow, deterministic-core pattern, RL on code as training breakthrough
+- "BUILD A REAL AI AGENT FOR $0 WITH THIS GITHUB REPO" — divyansh tiwari (tweet, Jul 2026) — pointer to beginner-friendly free agent repo (LangChain/LangGraph, Groq/Gemini, DuckDuckGo)
 - "An Interview with OpenAI CEO Sam Altman and AWS CEO Matt Garman About Bedrock Managed Agents" — Ben Thompson / Stratechery (Apr 2026) — OpenAI + AWS Bedrock Managed Agents announcement, model-harness convergence thesis, agent identity problem, local vs cloud agents, intelligence-as-utility pricing, platform strategy (neutral vs integrated)
 - "How To Be A World-Class Agentic Engineer" — SysLS (tweet thread, May 2026) — practitioner minimalism: context-is-everything principle, research/implementation separation, adversarial triangulation for sycophancy, task contracts with stop-hooks, CLAUDE.md as conditional routing table, consolidation cycle for rules and skills
 - "The Orchestration Tax" — Addy Osmani (May 2026) ([link](https://addyosmani.com/blog/orchestration-tax/)) — human as GIL of agent fleet, Amdahl's Law applied to review bottleneck, cognitive surrender failure mode, five attention-architecture principles (scale to review rate, sort work, batch reviews, lock on judgment only, protect serial time)

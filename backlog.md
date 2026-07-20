@@ -9,6 +9,9 @@
 - [ ] **Playwright verifier lane for UI goals** (2026-07-18). UI verification was part of the harness's original inspiration: add browser-driven checks (Playwright) as a verifier option alongside pytest, so contracts on UI goals can specify real browser assertions instead of fetch-level proxies. Trigger: first Voice Tutor UI run (recap browser — see products/voice-tutor/ideas.md) where fetch-level verification proves insufficient, or the live-transcript-stream goal, whichever comes first. Don't pre-build.
 - [ ] **Goal-intake interview step** (2026-07-18). Instead of hand-writing harness goals from scratch, a pre-run step where the harness (or a goal-authoring skill) interviews Matt with clarifying questions — flow, verifiable criteria, design references, scope-as-intent — and emits a harness-ready goal; same spirit as compound-engineering/Superpowers brainstorm steps. Interim workflow: brainstorm the goal conversationally with Claude, paste the distilled result. Don't build until hand-written goals repeatedly produce gaps the negotiation critic can't fill.
 
+### Second Brain / Vault
+- [ ] Add wikilink rule to the shared CLAUDE.md repo — when creating or updating vault files, link to related existing docs with Obsidian wikilinks where relevant (planning docs, backlog items, notes that share a topic). Rule belongs in the shared file so it applies on both Mac Mini and MacBook Pro.
+
 ### Agent Behavior
 - [ ] Periodic README audit — on a regular schedule, scan all folders in the vault for README files, compare contents against the current folder contents, and flag or update anything stale. Could be a NanoClaw cron task or a Claude Code session trigger. Define "stale" heuristic: file listed in README that no longer exists, or new files not mentioned.
 

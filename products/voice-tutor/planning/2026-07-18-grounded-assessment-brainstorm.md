@@ -5,6 +5,8 @@ status: exploration — not decided
 source: Claude.ai session, July 17–18 2026
 ---
 
+*Part of the bigger picture: [[strategic-roadmap]]*
+
 # Voice Tutor — Grounded Assessment
 
 > Generative session. Nothing here is decided. Captured so it's not lost.

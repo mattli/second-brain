@@ -4,7 +4,7 @@
   "title": "cost log audit",
   "startedAt": "2026-07-20T22:38:15.889Z",
   "runDir": "runs/voice-tutor/2026-07-20-cost-log-audit",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/development/voice-tutor",
   "sprints": [
     {
@@ -24,13 +24,14 @@
     }
   ],
   "currentSprint": 2,
-  "contractVersion": 3,
+  "contractVersion": 4,
   "scores": [
     98,
+    96,
     96
   ],
   "iterations": 0,
-  "budgetSpentUsd": 8.744069449999998,
+  "budgetSpentUsd": 12.913398649999998,
   "haltReason": null,
   "contractFreezeReason": "agreement"
 }

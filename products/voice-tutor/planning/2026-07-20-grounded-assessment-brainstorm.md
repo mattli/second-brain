@@ -1,8 +1,8 @@
 ---
 title: Voice Tutor — Grounded Assessment (brainstorm)
-date: 2026-07-18
+date: 2026-07-20
 status: exploration — not decided
-source: Claude.ai session, July 17–18 2026
+source: Claude.ai session, July 20 2026
 ---
 
 *Part of the bigger picture: [[strategic-roadmap]]*

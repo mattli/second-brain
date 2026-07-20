@@ -31,14 +31,20 @@ Both live in `~/.claude/` on the **Mac Mini only** (see sync note below).
 
 ### The two notifications
 
-Everything rides on a **single title line** — `<project> · <status>`:
+Three-line layout — **directory on top, the (unavoidable) topic in the middle, status on the bottom:**
 
-- **`<project> · ✅ Done`** — fires on the `Stop` event (every time Claude finishes a turn).
-- **`<project> · ❓ Needs you`** — fires on the `Notification` event (permission prompts / waiting for input).
+```
+second-brain          ← line 1: directory   (our OSC title)
+<session topic>       ← line 2: tab title    (forced in by Ghostty — see gotcha #6)
+✅ Done               ← line 3: status       (our OSC body)
+```
 
-Edit the `title=` lines in the script to change wording. The `body` is deliberately left empty (see the forced-subtitle gotcha below).
+- Line 1 `<project>` / line 3 **`✅ Done`** — fires on the `Stop` event (every time Claude finishes a turn).
+- Line 1 `<project>` / line 3 **`❓ Needs you`** — fires on the `Notification` event (permission prompts / waiting for input).
 
-**Why a single line, not title + body:** Ghostty forces a middle subtitle into every notification (see gotcha #6), so a two-field `title`/`body` layout gets a third line (the session topic) wedged between them. Keeping our content on one title line puts the useful info together, above the unavoidable topic line.
+Edit the `title=` (directory line) and `body=` (status line) values in the script to change wording.
+
+**What we settled for and why:** the ideal was directory + topic *merged onto one line* with status below, but that's not reachable — Ghostty renders the topic as its own separate row and the script has no access to the topic's text to combine it (gotcha #6). So directory and topic sit on adjacent lines instead. Rejected along the way: a fixed `Claude Code` title (redundant), and cramming `directory · status` onto one line (put status too far from where the eye lands). Settled 2026-07-20.
 
 ## Gotchas discovered while building this (the non-obvious parts)
 
@@ -53,6 +59,8 @@ Edit the `title=` lines in the script to change wording. The `body` is deliberat
 5. **Built-in channel turned off to avoid duplicates.** Claude Code has a native `preferredNotifChannel: "ghostty"` setting, but it's focus-gated and its message isn't customizable. Since the custom hooks now own both notifications, `preferredNotifChannel` is set to `"notifications_disabled"` so the built-in doesn't double-fire alongside the custom `Notification` hook. **Revert:** set it back to `"ghostty"` if the custom input notification ever goes silent.
 
 6. **Ghostty forces the tab title in as a middle subtitle — and it can't be turned off.** Every OSC 777 (and OSC 9) notification gets a middle line showing the terminal's tab title, which Claude Code sets to the session topic (e.g. "Set up Claude Code completion notifications"). Confirmed 2026-07-20 there is **no escape**: no Ghostty config toggles it ([open, unimplemented feature request — Ghostty #10186](https://github.com/ghostty-org/ghostty/discussions/10186)), OSC 9 behaves the same, and Claude Code has no documented way to stop setting the tab title. Blanking the title from the `Stop` hook doesn't work either — Claude Code re-writes the topic before Ghostty snapshots the notification (race). And overwriting the tab title would destroy the topic labels I *use* to tell my two tabs apart. **Decision:** accept the topic middle line, and merge project + status onto one title line above it (`second-brain · ✅ Done`) so our content stays together. If Ghostty ever ships the `no-pwd`/`no-subtitle` option from #10186, revisit — a two-field title/body layout would then look cleaner.
+
+7. **The `Notification` event is dual-purpose — it also fires an idle reminder, not just permission prompts.** Claude Code emits a `Notification` event in *two* situations: (a) a real permission prompt is waiting, and (b) Claude has been idle ~60s waiting for input after a turn ended. Both look identical to the hook. The naïve wiring — `Notification` → always ping "❓ Needs you" — therefore nags "Needs you" when nothing actually needs you: you already got the `Stop` hook's "✅ Done", then the idle reminder fires 60s later as a redundant "Needs you". **Fix (built 2026-07-20):** the `input` branch of `notify-done.sh` now reads the hook's stdin JSON and drops the message when it contains `waiting for your input`, so only genuine permission prompts ping. The message field is what distinguishes them — permission prompts read like `Claude needs your permission to use Bash`, the idle one reads `Claude is waiting for your input`. This is a script-body-only change, so **no `/hooks` reload** (per the maintenance note below). If a future notification type needs surfacing, branch on its message string the same way rather than pinging on every `Notification`.
 
 ## Editing / maintenance
 

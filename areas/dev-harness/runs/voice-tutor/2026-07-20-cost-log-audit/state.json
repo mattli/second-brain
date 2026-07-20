@@ -1,0 +1,36 @@
+{
+  "runId": "mrtt2vyo",
+  "goal": "# Goal: verify cost logging — dev-harness run\n\n> target_branch: main · date: 2026-07-20 · from ideas.md item 3\n\n## Goal\nBuild a pipecat-free `cost_audit.py` that validates `cost-log.jsonl` — recomputing each row's `cost_*_usd` fields from its own usage fields (tokens, tts_chars, stt_minutes_billed) using the pricing constants in `bot.py`, and flagging malformed rows, mismatched math, and orphan `artifact` rows (no matching `session` row) — plus a small CLI entry point that prints a summary report, so we finally know whether the cost numbers we've been trusting are right.\n\n## Verifiability constraints\n- The verifier env has no Pipecat, no network, no API keys. `import app` / `import bot` are unwinnable — the audit module must be pure (stdlib + pathlib), with pricing constants either imported from an importable location or relocated into the new module (if relocated, `bot.py` re-imports them; verbatim values).\n- Tests are hermetic characterization tests over fixture jsonl content (monkeypatch a module-level log path, same pattern as `sessions.py` / `grounding.py` conftest fixtures). Include fixtures for: a correct study session+artifact pair, a legacy row (no `kind`, no `mode`), a malformed line, an orphan artifact row, and a row whose stored cost disagrees with recomputation.\n- Accuracy against actual provider bills is NOT verifiable here — the audit checks internal consistency (stored cost vs. recomputed cost from the row's own fields). Comparing to Anthropic/Deepgram/Cartesia invoices stays a manual step for Matt.\n\n## Hard constraints / out of scope\n- Don't modify how costs are logged (no `bot.py` behavior changes beyond re-importing relocated constants, if that path is chosen). This run is read-only diagnosis, not repair — if the audit finds wrong math in the logger, that's a finding for the report, fixed in a follow-up.\n- Don't touch the voice pipeline, `app.py` routes, or `study.html`.\n- Legacy rows (pre-`kind`) must be tolerated, not flagged as errors.\n\n## Definition of done\n- `python -m cost_audit` (or equivalent CLI) against the real log path prints: rows read, rows valid, per-check failure counts, and a list of offending line numbers with reasons.\n- Recomputation logic covers session rows (llm/stt/tts/post-session components and `cost_total_usd`) and artifact rows (`cost_usd` from input/output tokens), within a small rounding tolerance.\n- All existing tests stay green; new tests are hermetic (pass with API keys unset).",
+  "title": "cost log audit",
+  "startedAt": "2026-07-20T22:38:15.889Z",
+  "runDir": "runs/voice-tutor/2026-07-20-cost-log-audit",
+  "status": "running",
+  "projectPath": "/Users/mattli/development/voice-tutor",
+  "sprints": [
+    {
+      "id": 0,
+      "title": "pure pricing core + constant sourcing",
+      "description": "Establish a Pipecat-free, network-free foundation for the audit. Make bot.py's pricing constants (LLM per-token in/out, TTS per-char, STT per-minute, post-session rates) importable by a pure module: either import them from an already-importable stdlib-safe location, or relocate the verbatim constant values into the new cost_audit module and have bot.py re-import them (values unchanged, no logger behavior change). Create cost_audit.py exposing pure recomputation helpers that, given a row's own usage fields (tokens, tts_chars, stt_minutes_billed, input/output tokens), recompute cost_*_usd and cost_total_usd for session rows and cost_usd for artifact rows within a small rounding tolerance. Ship hermetic unit tests that pin the recomputation math against known usage->cost fixtures and prove the module imports with API keys unset and no bot/app import. If constants were relocated, include a test asserting bot.py still exposes the same verbatim values."
+    },
+    {
+      "id": 1,
+      "title": "row parsing + validation checks",
+      "description": "Layer the actual audit checks over the recomputation core. Parse cost-log.jsonl line by line from a module-level log path (monkeypatchable in tests, following the sessions.py/grounding.py conftest fixture pattern). Implement per-row classification and checks: malformed lines (non-JSON / missing required fields), cost mismatch (stored cost_* disagrees with recomputed beyond tolerance), and orphan artifact rows (artifact with no matching session row). Tolerate legacy rows (no `kind`, no `mode`) as valid, never flagging them as errors. Each finding carries a line number and a human-readable reason. Ship hermetic characterization tests over fixture jsonl covering all required cases: a correct session+artifact pair, a legacy row, a malformed line, an orphan artifact, and a cost-mismatch row — asserting exactly which lines are flagged and why, and that legacy rows pass clean."
+    },
+    {
+      "id": 2,
+      "title": "CLI summary report + real-log smoke",
+      "description": "Add the CLI entry point (python -m cost_audit or equivalent) that runs the full audit against the real configured log path and prints a summary report: rows read, rows valid, per-check failure counts, and a list of offending line numbers with their reasons. Keep it read-only diagnosis — report findings (including any wrong logger math), never repair. Ship hermetic tests that invoke the CLI/report layer over a fixture log and assert the summary counts and the offending-line listing are correct and stable, and that the report renders cleanly with API keys unset. Confirm existing tests stay green."
+    }
+  ],
+  "currentSprint": 2,
+  "contractVersion": 3,
+  "scores": [
+    98,
+    96
+  ],
+  "iterations": 0,
+  "budgetSpentUsd": 8.744069449999998,
+  "haltReason": null,
+  "contractFreezeReason": "agreement"
+}

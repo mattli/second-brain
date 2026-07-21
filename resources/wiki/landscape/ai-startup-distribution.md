@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-24
+last_updated: 2026-07-21
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-06-24
 
 ## Recent Updates
 
+- **2026-07-21:** Expanded [X (Twitter) as Launch Channel](#x-twitter-as-launch-channel) with Fama/Okara's full viral launch playbook — preparation sequence, influencer recruitment process, hook writing, and iterative launch compounding.
 - **2026-06-24:** Added Josh Elman's consumer platform-wave thesis to [The Consumer AI Opportunity Window](#the-consumer-ai-opportunity-window); removed stale Overview; folded framing into TLDR.
 
 The speed-to-scale data makes the shift concrete: Lovable crossed $100M ARR in eight months, Cursor in twelve, and bolt.new went from $4M to $40M ARR in its first five months [[source]](https://x.com/alexjvacca/status/2047408037078536482). A decade ago those milestones took years. The cost of building collapsed, but the cost of acquiring customers went the other direction — median B2B SaaS CAC payback now sits around 20 months (vs. the long-standing 12-month benchmark), and the median company spends $2.00 of sales and marketing to acquire $1 of new ARR [[source]](https://x.com/alexjvacca/status/2047408037078536482). Treat distribution as an afterthought and you pay that tax every quarter for the life of the company.
@@ -124,6 +125,26 @@ Atomik Growth launched 3 startups in 1 week on X: 5.2M+ views, hundreds of US sa
 - Custom copy for each amplification layer
 - Timing so the algorithm sees density, not noise
 - "The story is the strategy. Great story/content beats hype every time"
+
+### The Viral Launch Playbook (Fama / Okara)
+
+Fama's team generated over 100M organic views across multiple launches with no agency and no ad spend. Okara's launch tweet hit 14M views in a day and drove 3M site visitors. The prior launch did 70M views in 3 weeks. The process is mechanical, not lucky — a checklist of unglamorous, tedious preparation steps.
+
+**Product readiness is prerequisite.** No launch technique saves a product people don't want. A launch sends thousands of skeptical strangers with ~30-second attention spans. The rule: show value in the first 30 seconds, reach the "aha" within 60. At Okara, you type in your website, log in, and agents start working — nothing is asked until the product has demonstrated itself. Test by watching five strangers use it and timing them; if it takes more than a minute to understand why it exists, fix that before planning anything else.
+
+**Write a one-page press release before anything else.** Amazon's culture of pre-build press releases applies: what you're launching, the problem (in the customer's words), who it's for, what it costs, plus FAQs. This becomes the source of truth for the video, the thread, the influencer packet, the newsletter. If you can't write this page crisply, you're confused about the product, not the marketing.
+
+**The video.** Use the press release as the script guide. Decide the outcome first — demo, awareness, or conversions. Format barely matters; fit between product, problem, and channel matters. High-production videos can backfire: Fama's team found that impressive production overshadowed the product, with comments praising the video quality instead of the product. First three seconds: show the product or state the problem. No logo animation, no "hey guys." Warning for AI products specifically: "We added AI" is no longer a launch — the novelty wore off. Lead with the problem and the outcome.
+
+**Recruit supporters weeks before launch day.** The first hour defines whether reach expands or decays — algorithms reward early velocity. Weeks before, reach out to friends, power users, ex-colleagues, VCs, and active X influencers. Anyone who says yes gets a calendar invite — the notification at launch minute is the difference between viral and dead. Organize ~50 people (influencers, friends, power users) to retweet and quote-tweet within 30 minutes of launch. Tuesday 9am EST works best for US audiences, especially for early-stage companies with no existing social traction. Check the calendar to avoid competing with major announcements.
+
+**Influencer recruitment (DIY process).** Fama's team never outsourced to agencies — agencies charge 15–30% commission, add markup on rates, and take 4–6 weeks to close. Target: X accounts with 10K+ followers, active posting in your niche, 3K+ minimum reach per tweet. The process: DM ~500 accounts to close ~50 influencers. Negotiate rates for retweets and quote-tweets. Follow X platform TOS — add sponsored tags to paid tweets. Give influencers product access a week early so posts are specific, not generic. Tell them you want honest reviews — readers smell coordinated copy. The most effective trick: screenshot viral quote-tweets from other launches and paste them into a reference doc. "Something like this, in your voice" gets 10x better posts than "please support our launch." Quote tweets with memes and brief one-line content increase reach.
+
+**The thread hook is where launches are won or lost.** People decide whether to stop scrolling within the first few words. Learn hooks empirically: pull up the twenty biggest product launches of the past year and read only their first lines. Notice patterns — an impossible-sounding claim, a number, a villain, a before-and-after. Write twenty hooks, kill nineteen. Copy should be at least one of: (1) emotional — the reader feels the pain, (2) divisive — it takes a side, (3) a hot take — saying what people believe but won't post. "If nobody could possibly disagree with your tweet, nobody will reply to it either, and replies are fuel." First tweet has the video and a clean, memorable CTA URL.
+
+**Launch day is 90% behind you if preparation is done.** The moment the tweet is live, ping the full supporter list with the direct link. Over the next few hours: repost every quote tweet, ship the newsletter, watch what lands. If you have an email list, use it — email has no algorithm between you and the audience. Keep the email short: what you launched, why it matters, one link, ask subscribers to engage with the launch tweet in the next hour.
+
+**Afterward and the iterative launch principle.** Virality decays in 48 hours. Follow up with everyone who engaged. Decide before launch what a visitor should become — customer, lead, or signup. "A launch that produces 100,000 visitors and no revenue is a fireworks show." The biggest misconception: that you get one launch. Every feature, milestone, and integration is a launch. Cursor launched 8 times. Airbnb launched 3 times. The audience compounds — companies that win at distribution aren't the ones that launch well once, they're the ones that launch constantly.
 
 ## AI-Powered LinkedIn Outreach (Claude MCP + GojiberryAI)
 
@@ -288,4 +309,5 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "How to Win Distribution When Anyone Can Build the Product" — Alex Vacca (tweet, May 2026) ([link](https://x.com/alexjvacca/status/2047408037078536482)) — Speed-to-scale data, CAC economics shift, AI rewiring buyer discovery (Forrester 94% stat, outbound decay), signal-timed outreach, GTM-as-MVP framework, compounding distribution loops
 - "ok this startup is cool but…" — Andrew Chen (tweet, Apr 2026) — founders building despite big-company threats
 - "how to cold DM anyone: complete basics" — Founders Inc (tweet thread, May 2026) — cold DM basics, 181w
+- "How to do a viral launch on X" — Fama (tweet thread, Jul 2026) — Full viral launch playbook: preparation sequence, product readiness rule (30s/60s), press release as source of truth, supporter coordination, influencer recruitment DIY process, hook writing, iterative launch compounding (Okara case study: 14M views, 3M visitors)
 - "The World-Building Doors Are Open, Again." — Josh Elman (Substack, 2026) ([link](https://www.joshelman.com/p/the-world-building-doors-are-open)) — Consumer platform-wave thesis: AI + Gen Alpha reopening world-building doors; toys-to-platforms pattern; harnesses/loops/context over models

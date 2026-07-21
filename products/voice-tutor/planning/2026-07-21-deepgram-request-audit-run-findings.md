@@ -5,7 +5,7 @@ run: 2026-07-21-deepgram-request-audit
 target_repo: /Users/mattli/development/deepgram-request-audit
 branch: run-mru5b2o4 (NOT merged — human merge gate)
 goal_doc: "[[2026-07-20-deepgram-request-audit-goal]]"
-status: fixed + verified offline; ONE live-API probe outstanding before numbers are trusted
+status: fixed + verified offline AND against the live API; open question resolved; ready for human review/merge
 ---
 
 # Deepgram request audit — run findings & status
@@ -49,21 +49,30 @@ status: fixed + verified offline; ONE live-API probe outstanding before numbers 
 - Cleanups: dedup extractor, unused const, centralized None→0 policy, cache the
   parsed timestamp.
 
-## THE open question — needs one live API probe before trusting totals
-Because the list endpoint's per-request `response` can be `null`, the tool may
-not receive billed seconds from the list call at all. Two things need a single
-real API call to confirm (both flagged in-code):
-1. Does the **list** `/requests` response carry STT billed audio seconds (and
-   under what field), or must the tool make a **second per-request detail fetch**
-   (`GET /requests/{id}`) to get them? If the latter, that's a follow-up build.
-2. Does a page requested **past the end** return an empty `requests` list (the
-   tool's termination assumption), vs. an error / repeated last page?
+## Open question — RESOLVED by a live read-only probe (2026-07-21)
+A live probe against the real API (read-only, key kept in the Authorization
+header, never printed) answered both questions and surfaced one more bug:
+1. **Billed seconds ARE in the list response** at `response.details.total_audio`
+   (audio seconds) for succeeded STT requests — NO second per-request fetch
+   needed. `response` is null only for non-succeeded states (pending/lost/error),
+   which carry no billed time and are counted as "billed unavailable". `duration`
+   sits alongside `total_audio` and is ~identical for STT; the tool correctly
+   uses `total_audio` and ignores the ambiguous `duration`.
+2. **A page past the end returns `{requests: []}`** — the tool's empty-page
+   termination assumption holds.
+3. **NEW bug the probe caught (offline review could not):** the live API rejects
+   `limit > 100` with 400, even though the OpenAPI says [1,1000]. The prior fix
+   pass had set limit=1000 "to restore capacity" — which would have made every
+   real fetch fail. Fixed to the real max (100), pinned by `DEEPGRAM_MAX_LIMIT`
+   + a test.
 
-Everything downstream (matching, timezones, aggregation, reporting) is correct
-and well-tested; the uncertainty is isolated to how billed seconds are obtained.
+**End-to-end proof:** the real production fetcher pulled 75 live requests across
+pages in ~0.9s and extracted ~1.96h of billed STT time (2026-04-22 → 07-18),
+0 skipped / 0 unavailable. The tool works against the real API.
 
-## Recommendation
-Before trusting the tool's reconciliation numbers against a real Deepgram bill,
-run one probe against the live API (a single `curl` to `/requests` with the real
-key) to answer the two questions above. If billed seconds require the per-request
-detail fetch, that's a small, well-scoped follow-up. The branch is not merged.
+## Recommendation / status
+The tool is validated against the live API and offline (74 tests). The only step
+left to run a full reconciliation is pointing `--ledger` at Voice Tutor's local
+session ledger (JSONL with session_start/session_end/session_duration_sec) and
+eyeballing the per-session delta/ratio. Branch `run-mru5b2o4` is ready for human
+review/merge (5 commits: 1 harness build + 4 fix passes). Nothing is merged.

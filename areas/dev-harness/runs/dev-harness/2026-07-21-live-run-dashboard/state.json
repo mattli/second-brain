@@ -4,7 +4,7 @@
   "title": "live run dashboard",
   "startedAt": "2026-07-21T17:42:45.353Z",
   "runDir": "runs/dev-harness/2026-07-21-live-run-dashboard",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/development/dev-harness",
   "sprints": [
     {
@@ -23,13 +23,15 @@
       "description": "Complete the served HTML page so it renders all required fields — goal text, current sprint number + title, current round (contractVersion), current step/phase, per-sprint scores, elapsed wall-clock, and spend when budgetSpentUsd is present — with absent fields shown as an explicit placeholder rather than an error. Embed client-side JavaScript that fetches /data on a fixed interval (setInterval + fetch) and updates the DOM in place: no <meta http-equiv=\"refresh\">, no full-page navigation, giving a continuously-live feel via polling only (no SSE/WebSocket). Wire optional CLI/arg target selection: explicit run-folder arg, else auto-discover the most-recently-modified folder under runs/. Strictly read-only — never write/create/modify any run-folder file or config. Vitest fetch-level tests against the fixtures assert GET / returns 200 and the page HTML contains the expected elements populated from the fixture (goal text, sprint title, a score, elapsed/spend), that the served JS contains evidence of the fetch/setInterval polling loop, and that NO meta-refresh tag is present; and that against the missing-fields, mid-run partial, and corrupt fixtures the page renders present fields without crashing. Confirm npm test passes offline (hermetic) with the full new suite green."
     }
   ],
-  "currentSprint": 1,
-  "contractVersion": 5,
+  "currentSprint": 2,
+  "contractVersion": 3,
   "scores": [
+    96,
+    96,
     96
   ],
   "iterations": 0,
-  "budgetSpentUsd": 4.071669549999998,
+  "budgetSpentUsd": 12.382805900000001,
   "haltReason": null,
   "contractFreezeReason": "agreement"
 }

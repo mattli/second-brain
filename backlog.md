@@ -38,7 +38,7 @@
 - [ ] Revisit extensibility for `~/.app-data/` runtime dirs — currently each new app that stores AI files outside the project repo (e.g. voice-tutor's `~/.voice-tutor/`) has to be added to `scan_roots` manually. Once this happens a few more times, build a repo-side opt-in (`.dotmd.yaml` declaring `extra_roots`) so projects can self-declare their runtime dirs. Don't pre-build — wait for the third manual addition before investing.
 
 ### Voice Tutor
-> Active ideas + harness sequencing live in [products/voice-tutor/ideas.md](products/voice-tutor/ideas.md) (recap browser ✓ shipped 7/18; live transcript stream, cost-logging verification, hourly cost — all candidates for harness runs).
+> Active ideas + harness sequencing live in [products/voice-tutor/ideas.md](products/voice-tutor/ideas.md) (recap browser ✓ shipped 7/18; cost-logging verification ✓ shipped 7/20 — [findings](products/voice-tutor/validation/2026-07-20-cost-audit-findings.md); live transcript stream + hourly cost still candidate harness runs; **provider cost reconciliation next — a regular CC task, not a harness run**).
 
 ### NanoClaw
 - [ ] Integrate Google Calendar with NanoClaw — connect calendar so NanoClaw can read events, add reminders, and surface scheduling context. Relevant to to-do list workflow and scheduled task reminders.

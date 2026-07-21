@@ -9,9 +9,9 @@
 |----------|-----------------|-----------------|---------|-----------|
 | **Anthropic** | $26.96 | **~$12.40** | ❌ DISCREPANCY (~2.2×) | ledger **over**-states |
 | **Cartesia** | $16.32 | **$7.09** | ❌ DISCREPANCY (~2.3×) | ledger **over**-states |
-| **Deepgram** | $1.54 | *unverified* | ⚠️ BLOCKED | app key lacks `usage:read` scope |
+| **Deepgram** | $1.54 | **$2.22** | ❌ DISCREPANCY (~1.44×) | ledger **under**-states |
 
-**Headline:** the ledger's *arithmetic* is honest (the internal audit was right — trustworthy to the cent), but its *usage inputs* are inflated. We have been **over-estimating our own spend by roughly 2×**. Confirmed actual spend on the two verifiable providers is **~$19.5 vs the ~$43.3 the ledger recorded** for them. This is a good-news surprise (we are not being over-billed by a provider) — but the ledger, `economics.md`, and any cost-per-hour figures derived from it are overstated and should be treated as an upper bound until the logging is fixed.
+**Headline:** the ledger's *arithmetic* is honest (the internal audit was right — trustworthy to the cent), but its *usage inputs* are wrong on all three providers. Net we have been **over-estimating our own spend by roughly 2×**: confirmed actual spend across all three is **~$21.7 vs the $44.8 the ledger recorded**. This is a good-news surprise (no provider is over-billing us) — but the ledger, `economics.md`, and any cost-per-hour figures derived from it are unreliable and should be treated as rough until the logging is fixed. Note the directions differ: Anthropic and Cartesia are **over**-counted (dominating the net), while Deepgram is **under**-counted — so the errors partially mask each other in the total.
 
 ## Anthropic — over-counts cache tokens, and misses off-ledger usage
 
@@ -49,21 +49,37 @@ Across all logged days the over-count ratio ranges 2×–5× and **grows with tu
 
 This matches the voice-seam hypothesis flagged in [[2026-07-20-cost-audit-findings]]: the ledger logs characters **submitted** to the TTS WebSocket, but Cartesia bills characters actually **synthesized**. On barge-in (user interrupts, speech cut off), text is submitted but not fully synthesized — so submitted > billed. A 2.3× ratio implies a large fraction of submitted TTS is interrupted before completion, which is plausible for a conversational tutor.
 
-## Deepgram — could not verify (credential scope)
+## Deepgram — under-counts STT minutes ~44% (verified 2026-07-20)
 
-`GET /v1/projects/{id}/usage/breakdown` returned **HTTP 403 INSUFFICIENT_PERMISSIONS**: the app's `DEEPGRAM_API_KEY` (from `.env`) lacks the `usage:read` scope on the project (`fef96cca-…`). The tool resolved the project correctly; the key just can't read usage. **To unblock:** create (or re-scope) a Deepgram key with `usage:read` and either put it in `.env` or pass it via env for a one-off run; the tool already supports a `DEEPGRAM_PROJECT_ID` override. Ledger recorded 199.86 STT minutes / $1.54 for the range — likely also affected by the same barge-in/retry seams, but unconfirmed until the scope is fixed.
+Initially blocked (the app's `.env` `DEEPGRAM_API_KEY` lacked the `usage:read` scope → HTTP 403). Re-run with a usage-scoped key + `DEEPGRAM_PROJECT_ID` (both in `~/.voice-tutor-secrets.env`) succeeded via `GET /v1/projects/{id}/usage/breakdown`:
+
+- Ledger: **199.86 STT minutes** / $1.54.
+- Deepgram billed: **287.65 minutes** (4.79 hours over 97 requests) / **$2.22**.
+- Ledger **under**-states by **87.79 minutes (1.44×) = ~$0.68**.
+
+**This is the opposite direction from Anthropic/Cartesia.** Likely mechanism (confirmed in code, see root cause below): the ledger records STT time as **session wall-clock duration** (`session_duration_sec / 60`, `bot.py:139`), not the actual audio duration Deepgram meters. Deepgram bills the audio streamed over the open connection (including silence / connection-open time beyond the measured session window), so it meters ~44% more than the wall-clock proxy. The one field that could have caught this (`stt_audio_sec_observed`) is itself corrupted by the Anthropic-side observer bug (below), so it reads ~8× and can't be trusted as a cross-check.
+
+## Root cause in `bot.py` (read-only trace, 2026-07-20)
+
+Both token and STT errors trace to `UsageAccumulator(BaseObserver)` and how it's wired.
+
+**Anthropic over-count — per-hop frame multi-counting (confirmed bug).** `UsageAccumulator.on_push_frame` (`bot.py:88-126`) does `self.<tokens> += …` for every `MetricsFrame` it sees, with **no dedup by frame identity and no source/direction filter**. Pipecat invokes `on_push_frame` **once per processor-to-processor hop** (`frame_processor.py:929` downstream, `:941` upstream), and the single observer is attached pipeline-wide (`observers=[usage]`, `bot.py:579`). So each LLM response's usage delta is added **once per hop the `MetricsFrame` traverses** — i.e., multiplied by the number of downstream processors. That produces the observed *exact-integer* ratios (cache_read and cache_write both exactly **5.00×** on the controlled 2026-07-18 session). NB: the values Pipecat emits are **per-response deltas, not cumulative running totals** — so the "summing cumulative values as deltas" theory is *refuted*; the real bug is frame-level multi-counting. Why the multiple varies 2×–5× across sessions (pipeline topology / mode / interruptions changing hop count) needs runtime evidence to pin down.
+
+**Deepgram under-count — wall-clock proxy for billed audio (confirmed).** `summary()` bills STT as `session_duration_sec / 60` (`bot.py:139`), where `session_duration_sec = (session_end − session_start)` between two `datetime.now()` calls (`bot.py:583`, `:607`). The comment at `bot.py:135-138` *assumes* "SmallWebRTCTransport streams continuously, so session_duration_sec is ground-truth" — the +44% billed gap refutes that assumption. Exact driver (connection-open time vs active window, silence billing, per-request overhead) needs runtime evidence.
+
+See the accompanying investigation notes for the per-hypothesis verdicts (confirmed / refuted / needs-runtime-evidence) and the exact logging that would settle the open pieces.
 
 ## The tool
 
 - `reconcile_costs.py` in the Voice Tutor repo root. Stdlib-only (imports pricing constants from `cost_audit.py` for a single source of truth); no pipecat/ML import surface. Read-only; never prints API keys.
-- Credentials: `~/.voice-tutor-secrets.env` (ANTHROPIC_ADMIN_KEY, CARTESIA_ADMIN_KEY) + the app's `.env` (DEEPGRAM_API_KEY, ANTHROPIC_API_KEY for key-id discovery).
+- Credentials: `~/.voice-tutor-secrets.env` (ANTHROPIC_ADMIN_KEY, CARTESIA_ADMIN_KEY, and a usage-scoped DEEPGRAM_API_KEY + DEEPGRAM_PROJECT_ID) + the app's `.env` (ANTHROPIC_API_KEY for key-id discovery; secrets-file values override `.env`).
 - Run: `.venv/bin/python reconcile_costs.py [--start YYYY-MM-DD] [--end YYYY-MM-DD] [--json] [--providers ...] [--tolerance-pct N]`. Default range = full ledger history; default tolerance ±1% (also settable via `RECONCILE_TOLERANCE_PCT`).
 - Timezone: ledger timestamps are naive local (America/Los_Angeles); the tool converts the local range to a padded UTC window before querying, and reconciles whole-range totals so day-boundary snapping is a non-issue.
 - Unit tests cover the pure ledger-summing + reconciliation math only (`tests/test_reconcile_costs.py`, 23 tests); the network fetchers are verified by this real run.
 
 ## Next steps (candidates, not yet scheduled)
 
-1. **Trace `bot.py`'s Anthropic usage aggregation** — confirm/fix the cache-token over-count (the exact 5× is the strongest lead). This is where the real money-visibility fix is: it would bring recorded Anthropic cost from $26.96 → ~$12.40 for this history.
-2. **Cartesia: log synthesized (billed) chars, not submitted** — or record both, so barge-in loss is visible instead of silently inflating cost.
-3. **Fix the Deepgram key scope** and re-run to close the last provider.
+1. **Fix `UsageAccumulator`'s per-hop multi-counting** (`bot.py:88-126`) — dedup each `MetricsFrame`/`InputAudioRawFrame` so its usage is counted once, not once per processor hop. This is the biggest money-visibility fix: it would bring recorded Anthropic cost from $26.96 → ~$12.40, and also un-corrupt `stt_audio_sec_observed`. (Root cause section above.)
+2. **Deepgram: bill on actual metered audio, not `session_duration_sec`** — once `stt_audio_sec_observed` is fixed (item 1) evaluate it as the billing basis, or pull Deepgram's per-request durations; the wall-clock proxy under-counts ~44%.
+3. **Cartesia: log synthesized (billed) chars, not submitted** — or record both, so barge-in loss is visible instead of silently inflating cost.
 4. Decide whether off-ledger key usage (dev/testing) matters enough to isolate (separate dev key) — for cost *accuracy* of real sessions it does not, but it means the provider dashboard will always read a bit higher than the ledger.

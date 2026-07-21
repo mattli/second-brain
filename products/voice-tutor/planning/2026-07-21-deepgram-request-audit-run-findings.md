@@ -92,9 +92,46 @@ STT") is **NOT confirmed** once retention is accounted for.
 
 **The one real thing to look at:** 46 Deepgram requests (~2,458s ≈ 41 min of
 billed STT) match NO ledger session — clustered on May 12–13 and June 1, days
-where the ledger has few/no sessions, mostly tiny (0–4s) calls. Either STT ran
-outside a logged study session (a ledger gap) or it's non-app traffic on the same
-Deepgram project. Worth a glance; not alarming.
+where the ledger has few/no sessions, mostly tiny (0–4s) calls. The daily
+breakdown corroborates the concentration: May 12 = 24 req (550s), May 13 = 13 req
+(788s), June 1 = 8 req (1,303s), all on days with little/no ledger activity. These
+same May 12–13 / June 1 dates line up with the zero-ledger days flagged in the
+Anthropic (LLM) reconciliation — **third-provider corroboration that this is
+off-ledger dev/testing usage**, not a per-session cost error.
+
+## Reconciling the two Deepgram sources (breakdown vs per-request) — ONE story
+Two Deepgram totals looked contradictory; live probing shows they are not — they
+just see different windows. All numbers verified against the live API 2026-07-21.
+
+| Window | usage/breakdown (aggregate) | /requests (per-request) |
+|---|---|---|
+| Full 04-15→07-18 | 15,409s (256.8 min, 89 req) | — retention-blocked |
+| Retained 04-22→07-18 | 7,059s (117.6 min, 75 req) | 7,059s (75 req) — **exact match** |
+| Pre-cutoff 04-15→04-21 | 8,350s (139.2 min, 14 req) | — purged |
+
+- **The breakdown endpoint is NOT retention-limited** (it returns the Apr 15–21
+  data /requests has dropped); the retention floor for /requests is exactly
+  2026-04-22 (earliest `created` = 2026-04-22T22:59:36Z = today − 90d). Additivity
+  holds: 7,059 + 8,350 = 15,409.
+- **Within the 90-day window the two sources agree to the second** (7,059s / 75
+  req both), so the per-request analysis is complete for what it can see; the
+  full-range gap is 100% pre-retention data, not a double-count or a bug.
+- **Pre-cutoff ratio = 8,350s billed ÷ 6,833s pre-cutoff session wall-clock =
+  1.22×** — a modest excess (14 Deepgram requests vs 10 ledger sessions in that
+  period), NOT the ~1.5× hypothesized. The 1.5× came from a cited 287.65-min
+  breakdown figure; the live endpoint returns 256.8 min for the same range and
+  the same summation `reconcile_costs.py` uses, so 1.5× was an artifact of that
+  higher input, not the data. Given the retained-window evidence (matched sessions
+  bill 0.89–0.99× wall-clock, and the >1 blended ratio comes from off-ledger dev
+  traffic), the pre-cutoff 1.22× is most consistent with early-April dev/testing
+  usage plus a little connection-open time — not systematic per-session over-bill.
+- **Current sessions are healthy:** matched ratios 0.89–0.99, wall-clock a
+  slightly conservative proxy for Deepgram-billed audio.
+
+**Open item for the fold-into-reconcile_costs work:** the `reconcile_costs.py`
+run reported 287.65 min for the full range; the live breakdown endpoint returns
+256.8 min for 04-15→07-18 with the same `hours`-summation. The ~31-min gap is
+likely a different date range in that run — verify when merging the tools.
 
 ## Status
 Tool validated live + offline (75 tests). Branch `run-mru5b2o4` ready for

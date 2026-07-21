@@ -38,6 +38,8 @@ This is **internal-consistency checking only**: it confirms the logger's arithme
 
 Both blind spots have the same fix, and it's the open next step: **reconcile the ledger against actual provider invoices/usage APIs** (Anthropic, Deepgram, Cartesia). See [[ideas]] — "provider cost reconciliation." Usage counts most plausibly drift at voice-specific seams: barge-in interruptions (characters submitted to TTS but speech cut off), retries/failed turns that still bill, and provider-side metering/rounding differing from ours.
 
+**Update 2026-07-20 — reconciliation now done ([[2026-07-20-provider-reconciliation]]).** It confirmed both blind spots are real: the usage *counts* are wrong (not merely untrusted). Anthropic & Cartesia over-count ~2.2–2.3×, Deepgram under-counts ~1.44×, net spend over-stated ~2×. Root cause is in `bot.py`'s usage logging (per-hop `MetricsFrame` multi-count; STT billed on session wall-clock, not metered audio), not in the price constants — so this internal audit's "trustworthy to the cent" verdict stands for the *arithmetic*, while the *inputs* need the logging fix.
+
 ## Status
 - Tool merged to Voice Tutor `main` (merge `cc9aad7`), 143 tests green, hermetic. Read-only diagnosis — no change to how costs are logged.
 - Sub-penny rounding is a candidate follow-up (tighten logger rounding so stored == recomputed exactly), not a bug fixed here.

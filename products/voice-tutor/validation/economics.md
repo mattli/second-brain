@@ -1,5 +1,7 @@
 # Voice Tutor — Economics
 
+> ⚠️ **Stale (2026-07-20): the cost figures below are inflated ~2× by ledger logging bugs.** Provider reconciliation confirmed the local ledger over-states spend — Anthropic ~2.2× (an exact ~5× per-hop `MetricsFrame` multi-count on cache tokens), Cartesia ~2.3× (submitted- vs synthesized-TTS chars); Deepgram *under*-counts ~1.44×. **Net real marginal cost is roughly half of every figure on this page.** Do NOT rewrite the numbers until the `bot.py` logging fix lands and a re-run confirms new figures. See [[2026-07-20-provider-reconciliation]].
+
 Originally written 2026-04-14 when first real session came in at $21/hr. Revised 2026-04-22 after two rounds of real optimization (slim cached system prompt, Haiku for post-session) plus one failed experiment (Inworld TTS).
 
 ## The question

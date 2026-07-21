@@ -37,6 +37,7 @@
 
 ### Voice Tutor
 > Active ideas + harness sequencing live in [products/voice-tutor/ideas.md](products/voice-tutor/ideas.md) (recap browser ✓ shipped 7/18; cost-logging verification ✓ shipped 7/20 — [findings](products/voice-tutor/validation/2026-07-20-cost-audit-findings.md); live transcript stream + hourly cost still candidate harness runs; **provider cost reconciliation next — a regular CC task, not a harness run**).
+- [ ] **Fold the Deepgram request-audit tool into `reconcile_costs`** (2026-07-21) — a standalone `deepgram_request_audit.py` was built + validated this session (branch `run-mru5b2o4` in `~/development/deepgram-request-audit`); it matches individual Deepgram-billed requests to sessions by time overlap, a sharper per-session lens than reconcile_costs.py's all-provider dollar totals. Next step is to merge that request-level matcher into `reconcile_costs` and compare Deepgram's *actual* billed seconds against the ledger's own `stt_minutes_billed` field (not just session wall-clock). First live run showed a healthy ~0.89 ratio inside Deepgram's 90-day window (the raw 0.38 was a retention artifact), plus ~41 min of Deepgram STT with no matching session worth a look. Detail + findings: [2026-07-21-deepgram-request-audit-run-findings](products/voice-tutor/planning/2026-07-21-deepgram-request-audit-run-findings.md).
 
 ### NanoClaw
 - [ ] Integrate Google Calendar with NanoClaw — connect calendar so NanoClaw can read events, add reminders, and surface scheduling context. Relevant to to-do list workflow and scheduled task reminders.

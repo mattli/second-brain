@@ -70,9 +70,34 @@ header, never printed) answered both questions and surfaced one more bug:
 pages in ~0.9s and extracted ~1.96h of billed STT time (2026-04-22 → 07-18),
 0 skipped / 0 unavailable. The tool works against the real API.
 
-## Recommendation / status
-The tool is validated against the live API and offline (74 tests). The only step
-left to run a full reconciliation is pointing `--ledger` at Voice Tutor's local
-session ledger (JSONL with session_start/session_end/session_duration_sec) and
-eyeballing the per-session delta/ratio. Branch `run-mru5b2o4` is ready for human
-review/merge (5 commits: 1 harness build + 4 fix passes). Nothing is merged.
+## Reconciliation results (ran against the real ledger 2026-07-21)
+Ledger: `~/second-brain/products/voice-tutor/validation/cost-log.jsonl` (mixed
+cost-log; `parse_ledger` fixed to skip non-session artifact/legacy rows).
+
+**Rule-out-yourself pass first (per the shared "diff vs external source" rule):**
+- **Window:** Deepgram retains only ~90 days of request logs; data floor is
+  2026-04-22 (= today − 90d, exact). The ledger's 10 oldest sessions (Apr 15–20,
+  6,833 wall-sec) have NO Deepgram data to compare — a retention artifact, not an
+  under-count. It alone accounts for ~92% of the raw gap.
+- **Coverage/units:** confirmed page-complete fetch; both sides in seconds; the
+  matched sessions line up (ratios mostly 0.95–0.99), which cross-checks units.
+
+**Full ledger (all 38 sessions):** wall 11,990s vs Deepgram-billed 4,601s,
+overall ratio **0.38** — dominated by the retention artifact above.
+
+**Clean 90-day window (28 in-retention sessions):** wall 5,157s vs billed 4,601s,
+overall ratio **0.89**. Deepgram bills ~89% of session wall-clock — healthy
+(the ~11% is in-session silence). Original worry ("ledger under-counts Deepgram
+STT") is **NOT confirmed** once retention is accounted for.
+
+**The one real thing to look at:** 46 Deepgram requests (~2,458s ≈ 41 min of
+billed STT) match NO ledger session — clustered on May 12–13 and June 1, days
+where the ledger has few/no sessions, mostly tiny (0–4s) calls. Either STT ran
+outside a logged study session (a ledger gap) or it's non-app traffic on the same
+Deepgram project. Worth a glance; not alarming.
+
+## Status
+Tool validated live + offline (75 tests). Branch `run-mru5b2o4` ready for
+human review/merge (6 commits: 1 harness build + 5 fix passes). Nothing merged.
+Follow-up: fold into `reconcile_costs.py` and compare Deepgram-billed against the
+ledger's own `stt_minutes_billed` (not just wall-clock) — see backlog.

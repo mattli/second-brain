@@ -4,7 +4,7 @@
   "title": "deepgram request audit",
   "startedAt": "2026-07-21T04:20:33.221Z",
   "runDir": "runs/deepgram-request-audit/2026-07-21-deepgram-request-audit",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/development/deepgram-request-audit",
   "sprints": [
     {
@@ -28,13 +28,18 @@
       "description": "Implement per-session summing of matched Deepgram-billed seconds, delta (wall-clock vs billed) and ratio, plus aggregate totals and overall ratio. Build the stdout table (session id/date, wall-clock seconds, summed billed seconds, delta, ratio), the separate unmatched-requests listing (timestamps + durations), and a --json machine-readable mode carrying the same information. Wire the CLI (--ledger, optional --start/--end as YYYY-MM-DD, --json) under the guarded main; when --start/--end omitted, fetch full available range. Output must state each side's time window AND timezone and keep seconds consistent on both sides so a reported gap reads as a real under-count, not a window/unit artifact. Runtime stays strictly read-only (stdout only, no files written). Tests (offline) cover: per-session delta/ratio computation from fixture matched data, aggregate totals, deterministic text-table rendering, and --json output shape carrying the same per-session + unmatched + aggregate data."
     }
   ],
-  "currentSprint": 1,
+  "currentSprint": 3,
   "contractVersion": 5,
   "scores": [
-    98
+    98,
+    0,
+    0,
+    96,
+    96,
+    96
   ],
   "iterations": 0,
-  "budgetSpentUsd": 1.22229665,
+  "budgetSpentUsd": 11.32047245,
   "haltReason": null,
-  "contractFreezeReason": "agreement"
+  "contractFreezeReason": "round-cap"
 }

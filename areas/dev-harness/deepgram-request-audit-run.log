@@ -191,3 +191,12 @@ from scratch. Do not import or depend on any other project's code.
   so a reader can trust that a reported gap is a real under-count and not a
   window/coverage/unit artifact.
 </content>
+
+deepgram request audit — 2026-07-21
+Outcome:  Finished successfully — all stages passed
+Progress: 4 of 4 stages finished
+Quality:  scored 98, 0, 0, 96, 96, 96 out of 100
+Spent:    $11.32
+Code:     branch run-mru5b2o4 in /Users/mattli/development/deepgram-request-audit
+Records:  runs/deepgram-request-audit/2026-07-21-deepgram-request-audit
+

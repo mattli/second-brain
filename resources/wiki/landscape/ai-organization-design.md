@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-17
+last_updated: 2026-07-21
 ---
 
 
@@ -11,6 +11,7 @@ last_updated: 2026-07-17
 
 ## Recent Updates
 
+- **2026-07-21:** Added NFX mission pod framework — 0→1 vs 1→2 bottleneck shift, five cardinal rules, five traps, junior apprenticeship model — to [Mission Pods](#mission-pods-the-nfx-structure)
 - **2026-07-17:** Added Sierra's Pinecone case study — "wisdom of the workforce," one-agent routing, build primitives not workflows — to [Sierra's Pinecone](#sierras-pinecone-wisdom-of-the-workforce)
 - **2026-07-18:** Added Replit's self-driving company case study — 2.9x per-engineer output, cross-company agent adoption, continual learning system — to [Replit's Self-Driving Company](#replits-self-driving-company)
 - **2026-07-17:** Added Kai-Fu Lee's CEO mandate thesis and activity-results gap to [Architect Mode](#architect-mode-the-post-founder-mode-framework), intelligence-scarcity capstone to [Historical Context](#historical-context)
@@ -146,6 +147,28 @@ The counter-view (from the same conversation): getting to 100% automation of any
 
 Miessler sharpens the competitive angle: the primary danger to large unwieldy companies is that a smaller company can now function with the strength of a much larger one — and it's far easier for a small company to maintain the strategic clarity that AI requires. Most large companies survive not because they're well-run but because their competition is equally chaotic. AI breaks that equilibrium. [[source]](https://danielmiessler.com/p/most-companies-arent-anywhere-near-ready-for-ai)
 
+## Mission Pods: The NFX Structure
+
+Gigi Levy-Weiss (NFX, Jul 2026) codifies the organizational unit emerging from three years of the "[three-person unicorn](https://www.nfx.com/post/the-3-person-unicorn-startup)" experiment: the **mission pod** — a small, cross-functional team organized around a specific outcome (customer problem, product surface, revenue target), not a job function. Each pod owns its outcome end-to-end: understand the customer, prototype, ship, measure, iterate — without waiting on another department.
+
+**The bottleneck shift: 0→1 is solved, 1→2 is your constraint.** The traditional org chart optimized for making the product exist — going from zero to one. AI has collapsed that phase. It has never been easier to fill a blank screen. The new bottleneck is 1→2: prototype → test → ship → learn → repeat. Companies that get stuck in "pre-launch purgatory" — using AI to endlessly generate and evaluate instead of shipping — are optimizing the wrong phase. The winning structure gets to the launch-and-learn cycle as fast as possible.
+
+**Five cardinal rules of mission pods:**
+
+1. **Hire generative people with strong communication skills.** Every person ships net-new output. But the distinguishing trait is that builders also refine, take feedback, and coordinate — "low ego, high EQ, team-players." Speed at the individual level without alignment at the team level produces a graveyard of half-finished, unlaunched work. (This reinforces the Intercom finding in [Intercom's 2x Experiment](#intercoms-2x-experiment-ai-acceleration-at-scale): their top 5% of engineers are distinguished not just by token spend but by prompt quality and depth of integration.)
+2. **Agents belong on the org chart.** Every team should articulate which work is done by humans, which by AI, and which requires human review. If that map doesn't exist, "you don't have an AI-native org — you have people with subscriptions."
+3. **Default to "can AI do this?" — and evaluate honestly.** Before hiring, ask whether AI or an existing person augmented by AI can do the work. Accept "good enough to ship" where it applies, but recognize where human expertise is genuinely needed. Reward automating processes that drive real outcomes, not vanity metrics.
+4. **Build [eval](../tools/ai-evals.md) culture.** Volume without judgment degrades the product. "If AI produces ten times more content, code, or answers, and your quality bar doesn't scale with it, you've automated your own decline." This is the applied form of Sivulka's [evals-as-OKRs](#the-token-workforce) principle.
+5. **Everyone talks to the customer.** Customer intelligence is now the scarcest input. When anyone can build anything in a week, the advantage goes to whoever understands the customer best. Engineers, designers, and operators should talk to customers directly — echoing the [people-at-the-edge](#people-at-the-edge) thesis.
+
+**Five traps of AI-first teams:**
+
+1. **Hiring ICs who can't communicate.** The best AI-native teams are staffed with experimentalist ICs who are also tier-1 communicators. Most companies adopt AI at the individual level without selecting for this — each person gets faster in their own bubble, nobody coordinates across bubbles.
+2. **Measuring the wrong kind of speed.** Companies measure 0→1 speed ("2 minutes to write a blog post," "a weekend to build a product") and neglect that those are rough drafts, not shipped output. The right metric is learning speed: how long from prototype to ship, from V1 to V2. "You *feel fast.* You *feel productive.* But you are spinning your wheels."
+3. **Tracking AI usage as a productivity metric.** Equating token consumption with outcomes is tokenmaxing in a nutshell — companies that embraced it are now cutting AI spend and complaining about ROI. An emerging corrective: revenue per million tokens. (This maps directly to Sivulka's [tokenmaxxing-as-headcount-bloat](#the-token-workforce) parallel.)
+4. **Not hiring juniors.** AI absorbs the work that trained juniors for fifty years, and the lazy answer is to stop hiring them. This eats your seed corn. The alternative is a new apprenticeship model: juniors who orchestrate agents, operate inside tight eval loops, and take ownership of outcomes from day one. "Today's juniors must rise to the challenge of execution and self-directed ownership faster than any generation in history."
+5. **Mistaking underbuilt for lean.** Small teams still need accountability, direction, and evaluation systems. If the team is automating and iterating and there's still work not getting done, hire. "AI-first is not AI-only" — companies that cut human support entirely watched quality collapse and had to restore it. Cost-cutting is the wrong function; growth is the right one.
+
 ## Broader Implications
 
 Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = difficult for error-prone people. Such domains = where AI agents will do best."
@@ -260,3 +283,4 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "The Self-Driving Company" — Amjad Masad / Replit (tweet, Jul 2026) — 2.9x per-engineer output; cross-company agent adoption (data, sales, support, marketing); loop engineering at scale; continual learning system; build-vs-buy inversion; "promoted, not automated" framing
 - "Pinecone: Harnessing the wisdom of the workforce" — Allen Chen / Sierra (blog, Jul 2026) ([link](https://sierra.ai/blog/ai-pilling-our-company-lessons-learned)) — One-agent routing; skills as organizational learning; build primitives not workflows; centralized improvement; 96% engineering adoption; 70% PRs through Pinecone
 - "You Just Hired a Million Bad Employees" — George Sivulka / a16z (article, Jul 2026) ([link](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)) — Seven parallels between token and human workforces; 100X tokens; evals as OKRs; context hoarding; AI transformation companies
+- "How The Fastest AI-First Companies Really Work" — Gigi Levy-Weiss / NFX (article, Jul 2026) ([link](https://www.nfx.com/post/how-the-fastest-ai-first-companies-really-work)) — Mission pod framework; 0→1 vs 1→2 bottleneck shift; five cardinal rules; five traps; junior apprenticeship model; revenue per million tokens metric

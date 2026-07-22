@@ -4,7 +4,7 @@
   "title": "dashboard v2 restyle",
   "startedAt": "2026-07-22T03:27:47.481Z",
   "runDir": "runs/dev-harness/2026-07-22-dashboard-v2-restyle",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/development/dev-harness",
   "sprints": [
     {
@@ -23,13 +23,15 @@
       "description": "Complete state coverage and the reachable full-goal view. Add the missing fixtures under tests/fixtures/dashboard/: a 'planning' run (plan not yet formed — goal prominent, strip at Plan, no stats tiles) and a 'halted' run carrying a real haltReason code with trace events that exercise the per-sprint metrics (multiple GENERATE events, 'Edit' entries in toolCalls[], per-event costUsd) plus a best-so-far score; ensure live (running) and passed remain covered by existing fixtures. Wire per-state rendering so planning shows the prominent verbatim goal with a full-goal link and omits stats tiles, while the other states show a small 'View goal' link; and provide a reachable full-goal view (a route or in-page view) that renders the complete state.goal via a stdlib-only markdown/goal renderer (no markdown library, no new deps). Ship with fetch-level tests asserting: GET / returns 200 for all four states with the correct structural elements per state (planning hides tiles + shows prominent goal; halted shows the halt banner text and 'best N'; passed/live show tiles), /data still returns 200 JSON and the page still polls, the full-goal view renders the complete goal, and the module stays import-safe with no changes outside src/dashboard/* and tests/dashboard-*/fixtures. Keep the entire existing suite green."
     }
   ],
-  "currentSprint": 1,
-  "contractVersion": 3,
+  "currentSprint": 2,
+  "contractVersion": 4,
   "scores": [
-    98
+    98,
+    95,
+    88
   ],
   "iterations": 0,
-  "budgetSpentUsd": 4.466397700000001,
+  "budgetSpentUsd": 32.90654905,
   "haltReason": null,
   "contractFreezeReason": "agreement"
 }

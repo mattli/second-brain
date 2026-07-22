@@ -93,7 +93,11 @@ read from state. Worth a tiny harness fix on its own.
    `renderPage` + reader derivations for the three metrics, per-sprint cost, and
    the halt-reason map). Start from branch `run-mruxypns`, which already has the
    elapsed-freeze + per-sprint breakdown groundwork committed.
-2. **Always-on Tailscale link** — run one persistent dashboard server on the Mac
-   Mini, bound to the Tailscale IP + fixed port, auto-discovering the newest run
-   (the reader already has latest-run discovery). Result: a single permanent
-   bookmark that shows whatever run is current, from any device — no per-run link.
+2. **Always-on Tailscale link + print it on every run** — run one persistent
+   dashboard server on the Mac Mini, bound to the Tailscale IP + fixed port,
+   auto-discovering the newest run (the reader already has latest-run discovery):
+   a single permanent bookmark that shows whatever run is current, from any device.
+   **Then have the CLI echo that dashboard URL at the top of every run's output** (a
+   one-line print in `src/cli/index.ts`'s run action) so it streams into Claude Code
+   each launch, ready to click. One job: the printed link only works if the server
+   is up, so build the server first.

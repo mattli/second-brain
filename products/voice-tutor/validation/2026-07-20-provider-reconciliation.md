@@ -69,6 +69,22 @@ Both token and STT errors trace to `UsageAccumulator(BaseObserver)` and how it's
 
 See the accompanying investigation notes for the per-hypothesis verdicts (confirmed / refuted / needs-runtime-evidence) and the exact logging that would settle the open pieces.
 
+## Addendum 2026-07-22 — runtime evidence + dedup fix (does not alter the findings above)
+
+Ran a live 12-turn session with a per-observation trace (`VOICE_TUTOR_USAGE_TRACE`) and tallied observations per `frame.id`. The per-hop multi-count is **confirmed and id-stable**, with the multiple pinned to exact integers:
+
+| frame kind | multiple | id-stable? |
+|---|---|---|
+| LLM tokens (`mtypes=LLM`) | **exactly 5.00×** | ✅ (same `frame.id` across 5 hops) |
+| STT audio (`InputAudioRawFrame`) | **exactly 8.00×** | ✅ (the write-up above only estimated "~8×") |
+| TTS audio (`TTSAudioRawFrame`) | ~2.63× | mostly (1–3) |
+
+**The "why does the multiple vary 2×–5×?" open question is answered:** the multiple = the number of downstream hops from the processor that *emits* the frame to the sink (LLM metrics emit mid-pipeline → 5 hops; STT input audio emits at the top → 8 hops; TTS audio emits near the bottom → 1–3). Cross-session variance is topology + interruptions changing that hop distance, not billing drift.
+
+**Cartesia re-derivation note (matters for the next pass):** the observed TTS-frame multi-count (~2.63×) is suspiciously close to the Cartesia submitted-vs-synthesized gap (2.3×) flagged above. These are *different* `mtypes`: the 2.3× is on `TTSUsageMetricsData` **character** counts (barge-in loss), while 2.63× is on `TTSAudioRawFrame` **audio-second** observations. But the proximity means the post-fix Cartesia analysis should **start from "expect the submitted-vs-billed gap to shrink toward ~0," not "expect 2.3×"** — some of the apparent barge-in loss may have been multi-count contamination. Barge-in attribution gets re-derived only after fresh, dedup'd sessions exist.
+
+**Fix:** dedup by `frame.id` in a new pure `usage_ledger.py`; `bot.py`'s `UsageAccumulator` is now a thin adapter over it. Gated by `VOICE_TUTOR_USAGE_DEDUP` (default on; `=0` restores legacy multi-count for instant revert). Branch `fix/usage-per-hop-dedup`, pending independent review + a live N=1 confirmation before merge. Note: because the multiple varies by frame kind, **historical ledger rows cannot be corrected by a single constant** — provider-API figures (via `reconcile_costs.py`) remain the only source of historical truth. See [[economics]].
+
 ## The tool
 
 - `reconcile_costs.py` in the Voice Tutor repo root. Stdlib-only (imports pricing constants from `cost_audit.py` for a single source of truth); no pipecat/ML import surface. Read-only; never prints API keys.

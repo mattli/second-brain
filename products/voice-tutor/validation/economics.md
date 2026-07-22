@@ -1,6 +1,8 @@
 # Voice Tutor — Economics
 
 > ⚠️ **Stale (2026-07-20): the cost figures below are inflated ~2× by ledger logging bugs.** Provider reconciliation confirmed the local ledger over-states spend — Anthropic ~2.2× (an exact ~5× per-hop `MetricsFrame` multi-count on cache tokens), Cartesia ~2.3× (submitted- vs synthesized-TTS chars); Deepgram *under*-counts ~1.44×. **Net real marginal cost is roughly half of every figure on this page.** Do NOT rewrite the numbers until the `bot.py` logging fix lands and a re-run confirms new figures. See [[2026-07-20-provider-reconciliation]].
+>
+> ⚠️ **Update 2026-07-22 — the old rows cannot be corrected by dividing by a constant.** Runtime tracing confirmed the per-hop multi-count is real and *id-stable*, but the multiple **varies by frame kind and pipeline topology**: measured LLM tokens **5.00×**, STT audio **8.00×**, TTS chars **~2.63×** in one session (the multiple = number of downstream hops from the emitting processor to the sink, so it shifts with mode/interruptions). So there is no single "÷2" that fixes the historical ledger. **Historical truth comes from the provider APIs via `reconcile_costs.py` only** (Anthropic ~$12.40 / Cartesia $7.09 / Deepgram $2.22 over the full range). The eventual economics rewrite must build on those provider-billed numbers plus **fresh, post-fix ledger data** — not a scaled version of the current rows. Dedup fix: branch `fix/usage-per-hop-dedup` (`usage_ledger.py`, flag `VOICE_TUTOR_USAGE_DEDUP`, default on).
 
 Originally written 2026-04-14 when first real session came in at $21/hr. Revised 2026-04-22 after two rounds of real optimization (slim cached system prompt, Haiku for post-session) plus one failed experiment (Inworld TTS).
 

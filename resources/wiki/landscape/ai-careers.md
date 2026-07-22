@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-02
+last_updated: 2026-07-22
 ---
 
 # AI Careers
 
-> TLDR: The AI job market is bifurcating into "big AI" and "small AI," but the highest-leverage roles are emerging at the intersection of building and strategy — hybrid positions like the Agent Strategist that combine technical depth, business acumen, and delivery skills.
+> TLDR: The AI job market is bifurcating into "big AI" and "small AI," but the highest-leverage roles are emerging at the intersection of building and strategy — hybrid positions like the Forward Deployed Engineer and Agent Strategist that combine technical depth, business acumen, and delivery skills. Intelligence is commoditizing; the scarce skill is knowing where and how to deploy it inside real business workflows.
 
-## Overview
+## Recent Updates
 
-Stanford CS230 Lecture 9 (Autumn 2025), featuring Andrew Ng and Laurence Moroney, covers the current AI career landscape. The core message: it's the best time ever to build with AI, but the market is noisy with hype, and many AI projects fail because teams lack fundamentals or business understanding.
+- **2026-07-22:** Added FDE role as a hybrid archetype with a 30-day builder playbook to [The Forward Deployed Engineer](#the-forward-deployed-engineer); removed stale Overview; folded framing into TLDR
 
 ## The Golden Age Argument
 
@@ -70,6 +70,21 @@ What makes it possible: tools like Sierra's Ghostwriter (an agent for building a
 **Why it matters for the career landscape:** The role validates the page's core themes — fundamentals matter, business focus matters, delivery over demos. But it goes further: it suggests that as AI tooling matures, the highest-leverage positions may not be pure engineering or pure strategy, but roles that span both. Agent Strategists come from diverse backgrounds (product management, engineering, consulting) and succeed by going deep on technical issues one moment and zooming out into change management the next.
 
 This parallels the generalists-vs.-specialists debate below — the Agent Strategist is essentially the hybrid archetype made concrete, with "unreasonable agency" (Sierra's phrase) as a cultural prerequisite. See also [Agentic Engineering](../tools/agentic-engineering.md) for the technical patterns these roles build on top of.
+
+## The Forward Deployed Engineer
+
+The Forward Deployed Engineer (FDE) is another hybrid archetype commanding $150K–$1M/year, born from the same market dynamic: intelligence is now commodity infrastructure — every enterprise runs the same stack (Claude Code, Codex, Cursor, Copilot) — so the moat has shifted from *buying* intelligence to *placing* it. Palantir proved the model first by sending engineers on-site to build ontologies and dashboards against real military and enterprise workflows. The FDE role generalizes this: consulting rebuilt from software.
+
+**Why it pays:** 95% of generative AI pilots fail (MIT). One exec burned a $10M compute budget in three months by handing AI to everyone without deployment judgment. The FDE is the person who prevents that — mapping real workflows (not the documented process, which is never the real process), deciding which of ten steps actually need an LLM versus an if/then, and deploying with guardrails that earn trust.
+
+**The three-stage engagement model:**
+1. **Audit** — Map every workflow and exception by sitting with workers for hours, not taking a one-hour briefing. The documented process misses the breakages, workarounds, and routing rules that live in one person's head. The audit alone can be worth 10× what the client paid — rebrand it a "sprint" since the word "audit" triggers resistance.
+2. **Evals** — Prove the agent behaves and route risky cases to humans. This is the trust-building stage.
+3. **Deployment** — Build on top of existing systems (NetSuite, Salesforce, SAP, Workday) — never rip and replace. Shadow mode first, then autonomy, then production. Monitor KPIs and SLAs so the client trusts the system.
+
+**The human objection:** People inside the client company fear being replaced. The FDE must de-risk adoption — do the first audit free, prove measurable value, get paid after. The measurement maps to three buckets: revenue uplift, risk mitigation, cost savings.
+
+The FDE and the [Agent Strategist](#the-agent-strategist-a-new-hybrid-role) are converging archetypes. Both require the rare combination of business-side fluency (workflows, cost, risk, internal politics) and technical depth (models, APIs, evals, guardrails). The key distinction: Agent Strategists tend to operate within a platform company (Sierra), while FDEs operate as independent consultants or within [services-as-software](../landscape/services-as-software.md) firms. Both validate the page's thesis that the highest-leverage AI careers sit at the intersection of building and strategy, not at either pole. See also [Loop Engineering](../tools/loop-engineering.md) for the recurring system patterns FDEs build, and [Agentic Engineering](../tools/agentic-engineering.md) for the harness design underlying their deployments.
 
 ## The AI Engineer Learning Path
 
@@ -146,3 +161,4 @@ This reframes the page's career strategy advice: the skills roadmaps, role arche
 - "How to Become an AI Engineer in 2026 (Builder's Roadmap)" — Avid (tweet) — 17-week agent engineer roadmap centered on harness engineering, with LangGraph and Claude Agent SDK as the two recommended stacks
 - "How to Get Discovered in AI Search (and Why It Matters for Your Career)" — Jeff Rumage, Built In ([link](https://builtin.com/articles/linkedin-chatgpt-ai-search-careers)) — LinkedIn's rise as top AI-cited domain for professional queries; profile optimization and content strategy for AI discoverability
 - "On mid-career satisfaction" — Shreyas Doshi (tweet) — external vs. intrinsic career satisfaction markers; career envy as the hidden driver of mid-career dissatisfaction, amplified by AI's polarized outcomes
+- "FDE: The $1M/Year AI Job Explained" — The Startup Ideas Podcast (tweet) — Forward Deployed Engineer role; three-stage engagement model (audit → evals → deployment); 30-day builder playbook; Palantir origins

@@ -1,29 +1,28 @@
 ---
-run_date: 2026-07-21
-run_start: "2026-07-21T08:01:40Z"
-run_end: "2026-07-21T08:02:10Z"
-updated_after: "2026-07-20T08:01:30Z"
-items_total: 6
-workers_dispatched: 5
-items_dropped: 1
+run_date: 2026-07-22
+run_start: "2026-07-22T08:01:42Z"
+run_end: "2026-07-22T08:02:30Z"
+updated_after: "2026-07-21T08:02:10Z"
+items_total: 4
+workers_dispatched: 4
+items_dropped: 0
 items_skipped: 0
 ---
 
-# List-Maker Run — 2026-07-21
+# List-Maker Run — 2026-07-22
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-07-20T08:01:30Z. 6 new saves found; 1 dropped (Readwise changelog), 5 dispatched as updates to existing pages.
+Cutoff from previous run_end: 2026-07-21T08:02:10Z. 4 new saves found; all dispatched as updates to existing pages.
 
 ## Workers Dispatched
 
 | Doc ID | Hint | Target | Rationale |
 |--------|------|--------|-----------|
-| 01ky0ry6yhsgqzykqnzyjj0dya | update | landscape/solo-business.md | Production AI stack for solo builders — security, ops, automation patterns |
-| 01ky0nk3j5h0fq19m6ny1gat9f | update | personal/tools.md | Bionic agent by LM Studio for open models — thin tool bookmark |
-| 01ky0jj0t1zmqxbrqgxabn7whw | update | landscape/ai-startup-distribution.md | Viral launch mechanics on X — supporter coordination, timing, iterative launches |
-| 01ky0b3jxg7pngfzpw8m8t3z4p | update | landscape/ai-organization-design.md | AI-first company organization — mission pods, AI as teammate, shipping cadence |
-| 01ky0azyhdszg4v4psv65bp7fr | update | landscape/ai-user-perspectives.md | AI enabling human creation and expression — happiness through making |
+| 01ky46frphmv2c4j6eagsxtr82 | update | landscape/vertical-ai.md | Enterprise AI economics as architecture problem — multi-step task costs, model selection, context management |
+| 01ky42rv5e34z5v7s2qttdzd6k | update | landscape/ai-careers.md | Forward Deployed Engineer (FDE) as high-paying AI role — building AI into real business workflows |
+| 01ky3z6wetvb3ffmr5qe689jns | update | tools/agentic-engineering.md | Boris Cherny on encoding engineering knowledge into tools/rules for AI agent automation |
+| 01ky3hy8se85meeam8y9qb8wqe | update | models-safety/ai-safety-interpretability.md | OpenAI model exploiting Hugging Face security weaknesses during eval — AI cybersecurity risk |
 
 ## Skipped
 
@@ -34,7 +33,6 @@ Cutoff from previous run_end: 2026-07-20T08:01:30Z. 6 new saves found; 1 dropped
 
 | ID | Title | Pattern |
 |----|-------|---------|
-| 01ky0fhy6vgxm2zq385z3jtht1 | July 17, 2026 | Readwise & Reader Changelog |
 
 ## Carry-Over (deferred to next run)
 

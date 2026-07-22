@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-19
+last_updated: 2026-07-22
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-19
 
 ## Recent Updates
 
+- **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
 - **2026-07-19:** Added free AI agent starter repo (LangChain + Groq/Gemini fallback) to [Tools Noted](#tools-noted)
 - **2026-07-19:** Added Machina's five-part agent composition template and engine-routing table to [Agent Composition Template](#agent-composition-template-machina), Raft to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-18:** Added Flurry's virtual-OS thesis — WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes — to [Agent Runtime: Virtual Operating Systems](#agent-runtime-virtual-operating-systems)
@@ -73,6 +74,18 @@ SysLS distills months of production agentic work into a minimalist philosophy: s
 **The consolidation cycle.** As rules and skills accumulate, they start contradicting each other and bloating context — the same problem they were designed to solve. Periodically consolidate: have agents audit the rule set, surface contradictions, and merge redundant entries. Performance degrades, you clean up, "and it will feel like magic again. That's it. That's really the secret."
 
 **Let frontier companies do the R&D.** Useful patterns (planning before implementation, skills, memory, subagents) get absorbed into base products. If something is genuinely valuable, the foundation companies — who are the heaviest users of their own tools — will ship it. "Just update your CLI tool of choice every once in awhile and read what new features have been added. That's MORE than sufficient."
+
+## Domain Knowledge as Infrastructure (Cherny)
+
+Boris Cherny extends the [CLAUDE.md-as-routing-table](#practitioner-principles-sysls) principle into a broader thesis: the best engineers have always spent their highest-leverage hours automating their own work — vim macros, lint rules, end-to-end test suites — and agents make this practice dramatically more important.
+
+**Three reasons automation matters more now:**
+
+- **Fleet multiplication.** Automation that speeds you up also speeds up every agent you run. If you have an army of agents, each inherits the same infrastructure improvements. More automation = more output per unit of time across the entire fleet.
+- **Permanent class elimination.** An agent can fix an issue every time it encounters it, but that burns tokens and may miss cases. If the agent instead writes a lint rule, CI step, or routine, that entire class of issue is automated forever. This is what [loops](loop-engineering.md) actually are — automating entire types of busywork rather than solving them one-off. Engineers have been doing this long before agents existed.
+- **Zero-context contribution.** The most important shift: automation makes it possible for others to contribute to a codebase without the ramp-up period. Engineers are contributing to unfamiliar codebases on day one because agents navigate for them; non-engineers are contributing as effectively as engineers. What blocks both is domain knowledge that lives in people's heads rather than in infrastructure. With agents, the range of encodable domain knowledge has expanded beyond what lint rules, types, and tests can express — it now includes code comments, skills, CLAUDE.md rules, and memories. If a PR gets rejected because it doesn't use the right framework, or a feature gets rejected because it doesn't follow architectural patterns, those are failures of automation.
+
+**The mandate:** every team should be writing the CLAUDE.md's, REVIEW.md's, skills, and docs that enable agents to work productively in their codebase with zero additional context from the prompter. This is a natural extension of what engineers have always done — automate and encode domain knowledge as infrastructure. As the model gets smarter and as the [harness](agent-harness.md) matures, the task becomes easier. The bottleneck is converting tacit domain knowledge to explicit infrastructure so that agents write better code, code review catches issues automatically, and the next person (or agent) working on the codebase can contribute without a ramp-up period.
 
 ## Discovering Unknowns (Thariq)
 
@@ -633,3 +646,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "A few patterns we frequently use with Fable 5" — ClaudeDevs (tweet, Jul 2026) ([advisor docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool), [cookbook](https://github.com/anthropics/claude-cookbooks/blob/main/managed_agents/CMA_plan_big_execute_small.ipynb)) — advisor pattern (92% of Fable score at 63% cost on SWE-bench Pro), orchestrator pattern (96% at 46% cost on BrowseComp), cached context sharing across Managed Agents sub-agents
 - "How To Run 15 AI Agents at Once (Without Losing Half the Work)" — Eric Siu (tweet thread, Jul 2026) ([link](https://x.com/ericosiu/status/2075640250626715833/?rw_tt_thread=True)) — compounding-vs-leaking framework for multi-agent output management, workspace-over-stream organization, cross-tool resolver pattern, skill reuse as compounding, scaffolding > models thesis
 - "How to build your first team of agents" — Machina (tweet thread, Jul 2026) — five-part agent composition template (name, soul, memory, goals, heartbeat), engine-routing table (Claude Code writes, Codex builds, Hermes monitors), cross-review self-improvement loop, one-pillar-at-a-time rollout, Raft shared workspace
+- "Something I have been thinking about: in the past, the best engineers..." — Boris Cherny (tweet, Jul 2026) — domain knowledge as infrastructure thesis: automation multiplies agent fleets, lint rules/CI steps as permanent class elimination, CLAUDE.md/skills/docs enabling zero-context contribution

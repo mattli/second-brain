@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-07-17
+last_updated: 2026-07-22
 ---
 
 # Vertical AI
@@ -9,6 +9,7 @@ last_updated: 2026-07-17
 
 ## Recent Updates
 
+- **2026-07-22:** Added cost-per-task architecture reframe (Chamath, Arora data) to [Enterprise AI Adoption](#enterprise-ai-adoption-2026-data), Glean context layer benchmarks, and open-model routing evidence (GLM-5.2, Kimi K3, Waldo) to [Harvey's Vertical Model U-Turn](#harveys-vertical-model-u-turn-2025-2026)
 - **2026-07-17:** Added Sierra's Horizon platform (long-horizon agent goals, context engine, outcome-based pricing expansion) to [Sierra: Customer Service Vertical AI](#sierra-customer-service-vertical-ai)
 - **2026-07-11:** Added low-margin traditional industries (manufacturing, logistics, staffing) as coordination-cost thesis to [Low-Margin Industries](#low-margin-industries-the-coordination-cost-thesis)
 
@@ -23,7 +24,7 @@ Per a16z analysis (Apr 2026), based on internal data and executive conversations
 **Top use cases by adoption:**
 1. **Coding** — Dominant by an order of magnitude. 10-20x productivity gains for engineers. Tight human-in-the-loop. Verifiable output. Tools: Cursor, Claude Code, Codex.
 2. **Support** — High volume, well-defined tasks, clear SOPs, verifiable resolution. Easy to A/B test ROI. Low change management (often outsourced to BPOs already).
-3. **Search** — Internal knowledge retrieval, industry-specific search. Glean (enterprise), Harvey (legal search), OpenEvidence (medical search).
+3. **Search** — Internal knowledge retrieval, industry-specific search. Glean (enterprise), Harvey (legal search), OpenEvidence (medical search). Glean's benchmarks quantify how much context quality matters: holding the model constant and swapping only the context layer, Glean-powered responses were preferred 2.5x as often as off-the-shelf MCP servers, which used ~30% more tokens for the same work (nearly double when they did reach a correct answer) — the advantage grew from 66% on simple tasks to 73% on complex multi-step work [[source]](https://www.glean.com/blog/cowork-mcp-eval).
 
 **Top industries:**
 - **Technology** — Always-early adopter, spawned the wave
@@ -31,6 +32,8 @@ Per a16z analysis (Apr 2026), based on internal data and executive conversations
 - **Healthcare** — Medical scribing (Abridge, Ambience), medical search (OpenEvidence), admin automation (Tennr)
 
 **Why these sectors:** Text-based work, rote and repetitive tasks, natural human-in-the-loop oversight, limited regulation, verifiable outputs. Industries requiring physical world interaction, interpersonal relationships, or heavy regulation are lagging.
+
+**The cost-per-task reframe:** Token prices keep falling, but enterprise AI bills keep rising — a single request now fans out into retrieval, tool calls, reasoning loops, and multi-step execution, so tokens per task climb faster than price per token drops. Chamath Palihapitiya described token costs "doubling every 45 days" against a productivity lift of "5%, max" [[source]](https://www.youtube.com/watch?v=PHL1j2ti420); Palo Alto Networks CEO Nikesh Arora told CNBC that AI pricing must fall ~90% before the technology is genuinely useful across the enterprise [[source]](https://www.cnbc.com/2026/07/09/palo-alto-ceo-arora-ai-pricing.html). The gap is not a token pricing problem — it's an architecture problem. Organizations should measure cost per successful task, not cost per token: a cheap model that produces rework is expensive, a capable model used at exactly the right step is efficient. Context assembly, model routing, and task-level cost optimization are where competitive advantage is emerging.
 
 ## Harvey AI: The Vertical AI Playbook
 
@@ -102,6 +105,8 @@ Frontier reasoning models from Google, xAI, OpenAI, and Anthropic started outper
 For many categories, the better bet remains exceptional workflow infrastructure, skill files, and agentic orchestration on top of frontier models — a fine-tuned model that requires sustained investment to stay ahead of a constantly improving baseline may not hold its advantage.
 
 *Counterexample:* Intercom's fin-cx-retrieval (custom retrieval model for customer service) works because customer service reasoning is structurally different from general language tasks, and 40M+ resolved conversations have compounded the advantage.
+
+The open-model trajectory reinforces the routing thesis: GLM-5.2 landed within ~1 point of the best closed models on long-horizon coding at roughly a sixth of the cost [[source]](https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost), and Kimi K3 debuted as the largest open-weight model yet, reaching #1 on a leading coding benchmark ahead of Anthropic and OpenAI. These are frontier-class systems that happen to be open, not budget compromises — which is why enterprises increasingly need architecture that routes across the full model market rather than locking into one provider. Glean's Model Hub (30+ commercial and open models through one governed layer) and Waldo (a specialized agentic search model built on open NVIDIA Nemotron that runs ahead of the frontier model on every query, cutting token use ~25% and latency ~50% at the same quality) exemplify the pattern: the frontier model does only the part it is uniquely good at, and token efficiency — not token count — becomes the metric that matters.
 
 Cursor launched Composer 2 (Apr 2026) — a proprietary coding model built on Moonshot AI's Kimi K2.5 with their own continued pre-training and RL. Scored 61.7% on Terminal-Bench 2.0, beating Claude Opus 4.6 (58.0%), at $0.50/M input tokens (1/10th of Anthropic's flagship). Cursor's strategy: frontier models for hardest reasoning tasks, custom vertical models for everything else.
 
@@ -294,3 +299,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "Why we Built our own Cloud Agent Infrastructure" — Gabe Pereyra / Harvey (blog, 2026) ([link](https://www.harvey.ai/blog/why-we-built-our-own-cloud-agent-infrastructure)). Harvey's custom agent runtime: multi-model as hard requirement (conflicts, platform risk, abstraction layer), zero data retention as architectural property, 3–5x cost reductions via model routing, intelligence saturation thesis, legal-specific durable layer.
 - "AI's Biggest Winners Have the Lowest Margins" — Daniel Kornum (tweet, 2026) ([link](https://x.com)). Low-margin traditional industries (manufacturing, logistics, staffing, field services) as largest AI profit-impact opportunity; coordination cost thesis (~6% of revenue); AI as infrastructure vs. software; first-mover advantage in commodity markets.
 - "The Next Horizon in Agents" — Bret Taylor (tweet, Jul 2026) ([link](https://sierra.ai/product/horizon)). Sierra Horizon platform: long-horizon agent goals, context engine, long-horizon planning, outcome-based pricing extended beyond CX, customer interaction data as compounding moat.
+- "Enterprise AI economics is an architecture problem" — Arvind Jain / Glean (tweet, Jul 2026). Cost-per-task reframe (Chamath "doubling every 45 days" quote, Arora 90% price drop needed); Glean context layer benchmarks (2.5x preference, 30% fewer tokens vs off-the-shelf MCP); open-model competitiveness (GLM-5.2, Kimi K3); Waldo specialized routing model (25% token reduction); Model Hub (30+ models, one governed layer).

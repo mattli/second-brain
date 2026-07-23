@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-08
+last_updated: 2026-07-23
 ---
 
 # LLM Knowledge Bases
@@ -9,6 +9,7 @@ last_updated: 2026-07-08
 
 ## Recent Updates
 
+- **2026-07-23:** Added DeepWiki, AutoWiki, and OpenWiki to [Implementations](#implementations) from mem0's agent wiki landscape survey; added fidelity (compression risk) to [The Scaling Wall](#the-scaling-wall).
 - **2026-07-08:** Added [The Scaling Wall](#the-scaling-wall) section — retrieval ceiling, identity gap, and OWASP memory-poisoning risk; expanded GBrain and Claude Code entries with concrete scaling limits.
 - **2026-06-27:** Removed stale Overview; folded Karpathy attribution and "ideas as text" framing into [TLDR](#llm-knowledge-bases).
 
@@ -52,6 +53,14 @@ Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowle
 **Familiar (Avid):** Full vault system with 13 agents, cron-automated capture/processing/review, KIMI Work desktop agent for local-first operation. Designed as infrastructure: MCP server exposure makes the vault queryable by any agent in the stack. Open source at [github.com/codejunkie99/familiar-second-brain](https://github.com/codejunkie99/familiar-second-brain). See § File > App for architecture details.
 
 **GBrain (Garry Tan):** Open-sourced as the brain behind Tan's own agents. Follows the LLM Wiki pattern — knowledge lives as markdown in a git "brain repo" with a CLAUDE.md-style schema — but adds a knowledge graph auto-built from entity references. What makes it work at 146,646 pages (not Karpathy's ~100): GBrain doesn't query the markdown directly. It syncs the repo into Postgres — pgvector for semantic search, tsvector for keyword search, Reciprocal Rank Fusion to combine them. The markdown is the interface you edit; the database is what answers your questions. The clearest proof that crossing the flat-file ceiling means building a search engine underneath.
+
+**DeepWiki (Cognition):** The LLM Wiki pattern applied as a public utility for code. Swap `github.com` for `deepwiki.com` in any public repo URL and get a generated, navigable wiki of the codebase — architecture overview, file index, dependency graph, and search with links back to source. Over 50,000 top public repositories indexed. The wiki is not the product's endpoint — it is retrieval infrastructure for the Devin coding agent, giving Devin's code search better-grounded context. The clearest example of a compiled wiki layer serving as an agent's knowledge substrate rather than a human-facing product.
+
+**AutoWiki (Factory):** Frames documentation as a build artifact — built from source, organized around how the codebase actually works, refreshed when the repo changes. Two-pass analysis: a structural scan (README, package manifests, CI config, entry points) then a deeper semantic scan (routes, API endpoints, service classes, database schemas, feature flags). Work is split across specialized agents, each scoped to one facet of the repository — a direct answer to the context problem that makes single-agent documentation generation mediocre at scale. Currency is treated as infrastructure: `/wiki` regenerates on demand, and `/install-wiki` writes a CI workflow that refreshes the wiki on every push. For GitHub repos it syncs into the repository's own wiki tab. Factory's CI-first framing is the sharpest line in the category — a wiki that is stale is worse than no wiki, because it is confidently wrong in a format that looks authoritative.
+
+**OpenWiki (LangChain):** Open-sourced CLI with two modes: **Code Brain** (repository documentation, the original use case) and **Personal Brain** (wiki compiled from connected personal sources — Gmail, Notion, git repos, X, Hacker News, web search). Personal Brain is the significant move — the category jumped from "document my repo" to "compile my working life." One design detail every team converged on: the output is structured markdown optimized for LLM context, with headings, cross-references, and summaries designed so an agent can find relevant context fast. The wiki is written for the reader that will actually read it, and that reader is a model.
+
+**The convergence:** Four teams (Cognition, Factory, LangChain, Garry Tan) shipped the same architecture without coordinating: markdown in git, a schema file the model obeys, synthesis at ingest, refresh on change, and pages written for an agent to read. When independent teams solving different problems land on the same shape, the shape is usually right. The divergence is about currency — Factory treats staleness as a build problem and solves it in CI; everyone else refreshes on demand [[source]](https://x.com/memaborges/status/2082421500091621790).
 
 **Claude Code auto memory:** Ships on by default since v2.1.59. Memory lives at `~/.claude/projects/<project>/memory/` as plain markdown — structurally the LLM Wiki almost line-for-line. `MEMORY.md` is a concise index loaded every session; topic files like `debugging.md` are read on demand. No embeddings, no vector store. Anthropic caps it hard: only the first 200 lines or 25KB of the index load per session, memory is scoped to one git repo, and it is "machine-local" — explicitly not shared across machines or cloud environments. The company that could build any retrieval system chose plain files, and the price is a memory that cannot leave your laptop or your repo. That is not a bug — it is the pattern's ceiling, drawn by the people who know it best.
 
@@ -174,6 +183,8 @@ Every second brain implementation, once it grows past a toy vault, hits the same
 
 **Third, security.** Because a second brain trusts whatever is written into it, the files are an attack surface. In December 2025, OWASP named Memory and Context Poisoning as ASI06 in its Top 10 for Agentic Applications — a dedicated top-tier risk in which attacker-controlled content persists in memory and is trusted across sessions, long after a prompt injection would have reset. A vault the agent reads on every startup is exactly that surface. The risk scales with openness: the more sources an agent ingests, the larger the window for poisoned content to enter the memory layer.
 
+**Fourth, fidelity.** Compiling at ingest means an early summary can quietly lose a detail from the source, and every later answer inherits that loss. Retrieval against raw chunks does not have this failure mode — the original text is always available. The trade-off is re-derivation cost for compression risk. The more aggressively a wiki distills, the more it risks silently dropping nuance that matters for a future query no one anticipated at ingest time.
+
 None of this makes the pattern bad. For a personal wiki of a few hundred notes, or one repo's build quirks, files plus keyword search are genuinely enough. The wall is about scale, multiple agents, and multiple apps — not about note-taking.
 
 ## Context Engineering vs RAG
@@ -229,3 +240,4 @@ The standard coexists with `robots.txt` (access policy) and `sitemap.xml` (exhau
 - "I Built My Own Obsidian. Then put Kimi Work. Which Turned It Into a Second Brain." — Avid (@Av1dlive, tweet thread, Jun 2026) ([link](https://x.com/Av1dlive/status/2065475063928000681)): Familiar vault system — local-first Obsidian clone with KIMI Work agent automation, cron-driven capture/processing/review, MCP server exposure, tiered memory architecture.
 - "Obsidian + Kimi K2.6 turned my 7,000 notes into a $15,000/month research system" — Noisy (@noisyb0y1, tweet thread, Jun 2026) ([link](https://x.com/noisyb0y1/status/2066856811404087519)): Practical walkthrough of connecting Obsidian vault to Kimi K2.6 via Smart Connections plugin and MCP server; Document to Skill feature for style transfer.
 - "Second Brain and the Wall it Hits" — Mem0 / In Context #16 (tweet thread, Jul 2026): Survey of five second-brain implementations (Karpathy, Claude Code, GBrain, Obsidian plugins); the scaling wall (retrieval ceiling → identity gap); OWASP ASI06 memory poisoning risk; concrete scaling numbers from Anthropic and GBrain.
+- "The State of Agent Wikis" — Mem0 / In Context #17 (tweet thread, Jul 2026): Agent wiki landscape survey; DeepWiki, AutoWiki, OpenWiki, GBrain technique matrix; four-team convergence on markdown-in-git architecture; compile-at-ingest vs query-time RAG; wiki-is-not-memory distinction; fidelity and staleness as named limits.

@@ -63,7 +63,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 
 ## Writing
 
-- [Writing Craft](writing/writing-craft.md) — Specificity as the single most powerful writing lever (Jason Cohen); Atomic Essays format for audience building (Dickie Bush)
+- [Writing Craft](writing/writing-craft.md) — Specificity as the single most powerful writing lever (Jason Cohen); Atomic Essays format for audience building (Dickie Bush); AI slop pattern taxonomy (Peter Yang)
 
 ## Music
 

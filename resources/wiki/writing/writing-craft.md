@@ -1,11 +1,15 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-04-13
+last_updated: 2026-07-23
 ---
 
 # Writing Craft
 
-> TLDR: Specificity is the single most powerful lever in writing — for clarity, persuasion, humor, and audience growth. Atomic essays (250-word single-idea pieces) are a practical format for building a writing habit and testing ideas at scale.
+> TLDR: Specificity is the single most powerful lever in writing — for clarity, persuasion, humor, and audience growth. Atomic essays (250-word single-idea pieces) are a practical format for building a writing habit and testing ideas at scale. Recognizing AI slop patterns — binary contrasts, throat-clearing openers, importance puffery, weasel attribution — is a necessary editing skill now that LLM-generated prose is everywhere.
+
+## Recent Updates
+
+- **2026-07-23:** Added AI slop pattern taxonomy to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
 
 ## The Specificity Principle
 
@@ -43,6 +47,29 @@ Dickie Bush built a 438,000-follower X audience and a $20M digital business usin
 
 7. **Publish and gather data** — Target: 30 atomic essays in 30 days. Volume generates data on what resonates. Data steers the direction — not guesses.
 
+## Recognizing and Removing AI Slop
+
+LLM-generated text has identifiable stylistic tics that weaken writing even when the underlying ideas are sound. Peter Yang's "no-ai-slop" taxonomy catalogs 20+ recurring patterns, grouped by the kind of damage they do:
+
+**Fake structure and drama:**
+- **Binary contrasts** — "It's not X. It's Y." Forces a false dichotomy to manufacture a reveal.
+- **Negative listing** — "Not a X. Not a Y. A Z." Stacks negations for rhetorical buildup that adds no information.
+- **Dramatic fragmentation** — "That's it. That's the whole thing." Short sentences used as mic-drops where no emphasis is earned.
+- **Colon reveals** — "The best part: it learns." The colon is doing the work of an argument the writer didn't make.
+
+**Vagueness disguised as authority:**
+- **Importance puffery** — "marks a pivotal moment," "game-changing." Asserts significance without evidence.
+- **Weasel attribution** — "experts agree," "studies show." Claims consensus without citing anyone specific — the opposite of Cohen's [specificity principle](#the-specificity-principle).
+- **Superficial analysis** — "highlighting the team's commitment." Restates surface-level observations as insight.
+- **Fake-strong verbs** — "serves as a centralized hub." Sounds active but says nothing.
+
+**Stylistic tells:**
+- **Throat-clearing openers** — "Here's the thing..." Delays the point with performative intimacy.
+- **Faux-insight setups** — "What nobody tells you..." Promises insider knowledge, delivers a commonplace.
+- **Synonym cycling** — referring to the same entity as "the agent," then "the assistant," then "the tool" to avoid repetition, creating confusion about whether these are distinct concepts.
+
+The antidotes are the fundamentals: lead with the point, use active voice, untangle hard-to-follow sentences, prefer concrete numbers over abstractions.
+
 ## Connections
 
 Writing craft is a foundational skill for [distribution](../landscape/ai-startup-distribution.md) — cold outreach, content marketing, and audience building all depend on clear, specific writing. The [cold outreach playbook](../landscape/ai-startup-distribution.md) emphasizes the same specificity principle: subject lines that feel written for exactly one person, openers that show you paid attention, asks that are too easy to say yes to.
@@ -55,3 +82,4 @@ Cohen's specificity principle and Bush's atomic essays reinforce each other. An 
 
 - "Specificity: A weapon of mass effectiveness" — Jason Cohen ([link](https://longform.asmartbear.com/specificity/))
 - "If you can write this, you can build a massive audience on X in 2026" — Dickie Bush ([link](https://x.com/dickiebush))
+- "no-ai-slop" — Peter Yang ([link](https://github.com/petergyang/no-ai-slop)) — AI slop pattern taxonomy: 20+ recurring LLM writing tics grouped by damage type

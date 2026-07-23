@@ -9,6 +9,7 @@ last_updated: 2026-07-23
 
 ## Recent Updates
 
+- **2026-07-23:** Added Machina's graph engineering principles — diamond pattern, stop rule, human gate, fake-edge audit — to [Graph Engineering](#graph-engineering-machina)
 - **2026-07-23:** Added Block's Buzz — agents as cryptographic team members, model-agnostic harnesses, peer-to-peer shared compute — to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
 - **2026-07-19:** Added free AI agent starter repo (LangChain + Groq/Gemini fallback) to [Tools Noted](#tools-noted)
@@ -18,7 +19,7 @@ last_updated: 2026-07-23
 - **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
 - **2026-07-12:** Added Eric Siu's compounding-vs-leaking framework and cross-tool resolver pattern to [Compounding vs. Leaking](#compounding-vs-leaking-eric-siu)
 - **2026-07-08:** Added Anthropic's advisor/orchestrator benchmark data (92%@63% cost, 96%@46% cost) to [Cost-Routing](#cost-routing-for-production-systems) and cached context sharing to [Managed Agents](#managed-agents-anthropic)
-- **2026-07-08:** Added Replit's continual learning pipeline — ViBench, Telescope trace clustering, and production self-improvement loop — to [Self-Improving Agents](#self-improving-agents)
+
 
 ## The Delegation–Collaboration Split
 
@@ -346,6 +347,20 @@ A practitioner template for standing up named agents as teammates rather than di
 
 **One pillar at a time.** Don't stand up five agents at once — "a team you can't feed is theater." Day 1: one agent for the pillar where you lose the most hours. Day 2: add its reviewer. Days 3–7: run the pair daily; every time you correct the same mistake twice, write it into the soul file. Week 2: add the next pillar only because the first one now runs without you.
 
+### Graph Engineering (Machina)
+
+Machina extends the [composition template](#agent-composition-template-machina) into a structural design language for agent workflows: the **graph** — a plan for AI work drawn out so you can see it. Every node is a job you'd hand to one assistant (research a competitor, write one draft, check one claim), and an edge between two nodes means the second job needs the first job's result before it can start.
+
+**Fake edges — the first audit.** Most existing agent systems run as a straight line where every job waits for the one before it. That's the slowest possible arrangement, because one stuck job blocks everything behind it. The fix: for every "and then" in your system, ask whether the next job actually needs the previous job's output. "Summarize this file and then check my calendar" sounds sequential, but the calendar step never reads the summary — the arrow is fake and the waiting is wasted. Removing fake edges is free and usually eliminates more latency than any tool purchase.
+
+**The diamond — the one pattern that pays.** Work splits, several workers dig in parallel, checkers attack what they found, and everything merges into one answer. This is the same fan-out/check/merge shape behind Anthropic's [planner/generator/evaluator harness](#plannergeneratorevaluator-harness-anthropic-applied-ai) and the [adversarial triangulation](#practitioner-principles-sysls) pattern. The checking step is non-negotiable: models miss most of their own mistakes, so the checker must be a separate job whose only task is to kill weak findings. Give every checker a different question — one asks if the finding is correct, one asks if it's current, one asks if the source is real. This independently confirms the [evaluator isolation principle](#plannergeneratorevaluator-harness-anthropic-applied-ai) — the checker judges output only, never sees the reasoning that produced it.
+
+**The stop rule.** A graph buys breadth, not better judgment. When researchers hand a team of agents and a single agent the same budget, the team wins on work that splits into independent pieces and loses on work where each step needs the previous one. Before adding a single agent, ask: *where does my work split?* If every step needs the full picture, stay with one agent. The moment the work divides into jobs that never read each other's results, the graph starts paying. This is the structural version of the [orchestration tax](#the-orchestration-tax-osmani) — parallelism only helps when the work is genuinely parallelizable.
+
+**The human gate.** Every serious system routes to a human before anything irreversible — the send, the publish, the refund, the invoice. Put approval where a mistake would be expensive to undo, not on every step. A gate on everything makes you the bottleneck; a gate on nothing means nobody is watching. This aligns with Osmani's [outer-loop accountability framework](#owning-the-outer-loop-osmani): the human doesn't need to be in the agent's execution loop, but must own the verdict at the irreversible boundary. Judge the whole system on numbers that can't argue back — money landed, customers retained, tests passed — because a system that only grades its own reports is confidently wrong.
+
+**Four safety rules for graphs:** every [loop](loop-engineering.md) gets a maximum number of rounds, only one job writes to any one file, the routing lives in written steps while the AI fills the jobs, and there is always a cap on how many agents can spawn.
+
 ### The Orchestration Tax (Osmani)
 
 Addy Osmani names the structural cost most multi-agent practitioners underestimate: the **orchestration tax** — the gap between what agents can produce and what the human operator can actually review and merge. Starting agents is cheap (a keystroke); closing the loop is not. Someone must verify correctness, reconcile conflicts across parallel outputs, and maintain a coherent mental model of the system. That someone is a single-threaded serial resource.
@@ -651,3 +666,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "This New App Gave Me an AI Team of Employees" — Creator Magic (video, Jul 2026) ([link](https://www.youtube.com/watch?v=g8dQBSKIGyc)) — Buzz (Block/Dorsey) walkthrough: cryptographic agent identity, model-agnostic harness switching, chief-of-staff delegation pattern, peer-to-peer shared compute
 - "How to build your first team of agents" — Machina (tweet thread, Jul 2026) — five-part agent composition template (name, soul, memory, goals, heartbeat), engine-routing table (Claude Code writes, Codex builds, Hermes monitors), cross-review self-improvement loop, one-pillar-at-a-time rollout, Raft shared workspace
 - "Something I have been thinking about: in the past, the best engineers..." — Boris Cherny (tweet, Jul 2026) — domain knowledge as infrastructure thesis: automation multiplies agent fleets, lint rules/CI steps as permanent class elimination, CLAUDE.md/skills/docs enabling zero-context contribution
+- "How to master graph engineering (Full Course)" — Machina (tweet thread, Jul 2026) — graph engineering for agent workflows: diamond pattern (fan-out/check/merge), stop rule (breadth not judgment), human gate (approval at irreversible boundary), fake-edge audit, four safety rules, three practical graph builds (research desk, SEO machine, GTM kit)

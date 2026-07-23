@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-14
+last_updated: 2026-07-23
 ---
 
 # AI-Native Product Development
@@ -9,6 +9,7 @@ last_updated: 2026-07-14
 
 ## Recent Updates
 
+- **2026-07-23:** Added Christine Zhu's systems thinking framework — Meadows-derived truths, product decomposition for AX, contracts over features, correction loops — to [Systems Thinking for AI Products](#systems-thinking-for-ai-products)
 - **2026-07-14:** Added Anish A's "paintbrush thesis" — AI as creation-over-consumption technology, execution cost collapse enabling individuality at scale — to [The Paintbrush Thesis](#the-paintbrush-thesis-creation-over-consumption)
 - **2026-07-13:** Added Leon Lin's three-tier AI design workflow (skills → inspiration board → component-by-component) to [The AI-Generated Sameness Problem](#the-ai-generated-sameness-problem)
 - **2026-07-07:** Added Lesse's "attack the hard part" decision framework and Stripe/Anthropic case studies to [Attacking the Hard Part](#attacking-the-hard-part)
@@ -239,6 +240,28 @@ Four diagnostic questions cut across every level:
 **Asymmetry as diagnostic.** Companies rarely answer all four questions at the same level. The asymmetry reveals where the next intervention should focus: AI might see a lot but can't act, or act a lot but only engineers can extend it, or the org chart changed but the substrate is thin.
 
 This framework refines the [Notion AI Transformation Model](#ai-transformation-model-notion) (four levels, from thought partner to system) with sharper diagnostic questions and harder tests at each level. It also formalizes what Miura-Ko's earlier field observations described anecdotally — the companies she visited were operating at L3–L4, while most companies claiming to be "AI-pilled" are at L1. The L4 description of non-engineers shipping production tools matches her earlier observation that "the most underestimated shift isn't what AI does for engineers — it's what it does for everyone else." Lin's [five bottlenecks](#the-five-bottlenecks-of-becoming-ai-native-alfred-lin) maps a different axis — the sequential order companies move through — while Miura-Ko's levels describe the *state* at each plateau.
+
+## Systems Thinking for AI Products
+
+Christine Zhu frames the core shift: software is designed, but models are *grown*. AI products have an organic nature — PM'ing them is closer to gardening (creating conditions for growth) than architecture (specifying the final form). This makes systems thinking tablestakes for PMs, drawing on Donella Meadows' *Thinking in Systems*.
+
+**Three truths from systems theory applied to AI products:**
+
+1. **Behavior arises from interactions, not parts.** You can perfect every component and still get a broken whole. Traditional PMs optimize their scope by org design (Conway's law), but agents don't know the org chart — they need to act holistically across the product. Systems thinking means optimizing the *connections* between parts, not the parts themselves.
+
+2. **Structure and rules have greater leverage than parameters.** Tweaking feature variants is parameter-level intervention — weak leverage. Designing the *contract* that many teams build on is a rule — much higher leverage. Most traditional PM work lives at the parameter level; the systems-level work is building contracts and information flows.
+
+3. **When a new actor enters the system, value goes to the interface.** The shipping container was the interface for trade, the API for software, [MCP](../tools/agent-harness.md) for agents. When agents enter your product as a new actor, new value concentrates at the interface for how agents communicate with your product surface.
+
+**Three practices for embedding agents beyond bolt-on chat:**
+
+**Decompose the product.** Traditional products are built for human consumption (UX). Agents need an equivalent — call it AX (agent experience). Decomposition means exposing four primitives: structured context (so the agent "sees" what the user sees), typed actions (available operations in the workflow), preconditions and rules for human intervention, and coordination logic for choosing actions given context. Without this, AI features perform no better than generic ChatGPT/Claude, and customers balk at disruption without new value.
+
+**Define contracts.** A feature built on one product area works only on that area. A contract defines how a capability works at a system level — what each component means, the rules for interaction — so any team or agent can add that capability to their surface. The electrical outlet analogy: appliance makers don't negotiate with the power company because the outlet provides the contract. Contract thinking was optional for domain PMs; it's required when building agents, since agents need defined preconditions to operate in your product.
+
+**Design the correction loop.** Features depreciate; systems with loops compound. The highest-value loop captures the correction signal — the delta between what the agent did and whether the user corrected it (editing a field the agent updated, rewriting the last paragraph of a draft). This signal yields two benefits: eval data showing where the agent fails in production (no offline benchmark provides this), and improvement data as preference pairs or retrieved past corrections that prevent repeated mistakes. The correction signal is a byproduct of normal product use — no feedback form required — and makes the agent perform uniquely better inside your product over time versus starting cold in generic AI chat. See [Loop Engineering](loop-engineering.md) for the broader pattern.
+
+**Platform as the speed play.** Stewart Brand's pace layers explain why this isn't slower than shipping features: fast layers (furniture, room layouts) change freely because slow layers (the frame, foundation) provide stable affordances. In the agent era, features are cheap to build, so real speed comes from investing in the system layer. One contract lets you test many experience variants in a single sprint; without it, each variant re-implements the same plumbing. Netflix (per Elizabeth Stone on Lenny Rachitsky's podcast) is hiring people who abstract building blocks across [business domains](../landscape/ai-organization-design.md) — agents operating across multiple systems make common paved paths and solving problems once more important than letting local teams diverge.
 
 ## Delta Force Teams (Owner)
 
@@ -520,3 +543,4 @@ This connects directly to Brier's [Software Company, Not Software Factory](#soft
 - "You can't avoid the hard part" — Katelyn Lesse (tweet, Jul 2026) ([link](https://x.com/KatelynLesse/status/2048092458685501837)) — decision framework for bold vs. incremental paths, Stripe v2 Accounts and Anthropic Managed Agents case studies, leadership accountability for big swings
 - "How To Actually Design With AI" — Leon Lin (tweet, Jul 2026) — three-tier AI design workflow (design skills / inspiration board / component-by-component), taste as the gap AI cannot fill, reference-driven taste development
 - "The Most Human Technology Ever Made" — Anish A / a16z (Jul 2026) ([link](https://anisha16.substack.com/p/the-most-human-technology-ever-made)) — AI as paintbrush technology (creation over consumption), execution cost collapse, non-engineer builders (electrician, plumber), individuality at scale, bobo merger extended
+- "What systems thinking looks like for PM'ing AI products" — Christine Zhu (tweet, Jul 2026) ([link](https://x.com/christinezhuu)) — Meadows-derived systems truths for AI PM, product decomposition for AX (agent experience), contracts over features, correction loops as compounding moat, pace layers velocity argument

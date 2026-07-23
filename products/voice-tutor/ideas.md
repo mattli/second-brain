@@ -20,3 +20,7 @@ Both are candidates for dev-harness UI-capable runs — and UI verification via 
 
 - Grounded assessment v0: implement a basic version of the scoring — user explains aloud, score claim-by-claim against the reference doc. Smallest thing that produces a real coverage number. Detail: planning/2026-07-18-grounded-assessment-brainstorm.md
 - Verbal session end: a tool the voice agent exposes so saying "I'm done" / "end session" closes the session cleanly instead of requiring the browser UI.
+
+## 2026-07-23
+
+- Comprehension levels: user-selectable rubric depth (gist / working / exam-level or similar) instead of one fixed claim granularity — different extraction prompts per level, rubric cached per doc per level. Coverage stays comparable within a level. Reframes granularity from an engineering constant into a study-intent setting. (2026-07-23, origin: Sonnet 5 count-overshoot discussion)

@@ -10,6 +10,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Agent Proficiency](concepts/agent-proficiency.md) — Managing AI agents as core skill; corporate adoption; enterprise agent deployer role (Aaron Levie)
 - [Business Moats in AI](concepts/business-moats-in-ai.md) — Five durable moats; opinionated perspective moat; two paths for software; token price discrimination; "Big Rug" data risk
 - [Physical AI](concepts/physical-ai.md) — a16z's physical AI systems essay; five shared primitives; three frontier domains; mutual reinforcement flywheel
+- [Product Management Dynamics](concepts/product-management-dynamics.md) — Eric Berne's Transactional Analysis applied to PM meetings; ten named game patterns (objection loops, blame deflection, pseudo-compliance); ego states; antithesis counter-moves
 - [Knowledge Work Future](concepts/knowledge-work-future.md) — AI commoditizing knowledge; wisdom skills; Jevons Paradox; Ironies of Automation (Bainbridge); new AI-era job categories (Kingsbury); Anthropic observed exposure
 - [World Models](concepts/world-models.md) — Alternative AI paradigm to LLMs; spatial reasoning; LeCun's full position; open vs. closed models (Lambert); key players (AMI, World Labs, Google, NVIDIA)
 - [Model Quantization](concepts/model-quantization.md) — How LLM weight quantization works; 8-bit is nearly free, 4-bit is ~90% quality, 2-bit breaks

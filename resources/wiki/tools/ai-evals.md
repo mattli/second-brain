@@ -1,22 +1,20 @@
 ---
 created_at: 2026-05-28
-last_updated: 2026-05-28
+last_updated: 2026-07-23
 
 ---
 
 # AI Evals
 
-> TLDR: Effective AI evaluation starts with manually reviewing production traces — not with generic metrics dashboards. For agents specifically, the goal is usually floor-raising (eliminating failures that destroy trust) rather than benchmark-maxxing. Label ~100 traces by hand, categorize the failures, fix the obvious ones without an eval, then build targeted LLM-as-judge evals for the subjective problems that remain. Test the running agent path (tools, state, side effects), not isolated prompts. Keep eval suites small and grounded in real failures — prune cases that haven't failed in months.
+> TLDR: Effective AI evaluation starts with manually reviewing production traces — not with generic metrics dashboards. For agents specifically, the goal is usually floor-raising (eliminating failures that destroy trust) rather than benchmark-maxxing. Label ~100 traces by hand, categorize the failures, fix the obvious ones without an eval, then build targeted LLM-as-judge evals for the subjective problems that remain. Test the running agent path (tools, state, side effects), not isolated prompts. Keep eval suites small and grounded in real failures — prune cases that haven't failed in months. Containerized eval formats now let teams swap models, prompts, and agent versions against stable environments; coding agents can even automate the eval-authoring process itself.
 
-## Overview
+## Recent Updates
 
-Most teams approach evals backwards: they start with generic scores (helpfulness, toxicity, coherence) from vendor dashboards, then wonder why the numbers don't translate into product improvements. The practical approach inverts this — start with your actual data, discover the real failure modes through manual annotation, and only then build targeted evals for the problems that matter.
-
-This methodology, drawn from qualitative research techniques in the social sciences (open coding and axial coding), treats eval as an extension of product thinking rather than a purely engineering exercise.
-
-Success with AI products hinges on how fast you can iterate across three activities: evaluating quality, debugging issues, and changing system behavior (prompt engineering, fine-tuning, code). Most teams focus exclusively on changing behavior and plateau quickly. If you streamline evaluation, the other two activities become easy — the same way tests in traditional software engineering pay massive dividends despite requiring up-front investment.
+- **2026-07-23:** Added Viv/LangChain eval engineering skill coverage to [Containerized Evals](#containerized-evals-harbor), [Automated Eval Engineering](#automated-eval-engineering), and [Reward Hacking](#reward-hacking); removed stale Overview; folded three-activities framing into [Floor-Raising vs Benchmark-Maxxing](#floor-raising-vs-benchmark-maxxing)
 
 ## Floor-Raising vs Benchmark-Maxxing
+
+Success with AI products hinges on iterating fast across three activities: evaluating quality, debugging issues, and changing system behavior (prompts, fine-tuning, code). Most teams focus exclusively on changing behavior and plateau quickly — streamlining evaluation unlocks the other two.
 
 Before designing evals, choose the frame. **Benchmark-maxxing** pushes top-end capability — useful when augmenting experts who can catch mistakes. **Floor-raising** eliminates the failures that destroy user trust — the right frame for agents that replace human workflows.
 
@@ -73,6 +71,24 @@ Testing prompts in isolation makes no sense once the agent is entangled with cod
 A good offline eval takes an input, runs the real agent path, and asserts on the result: output, tool calls, files changed, structured data, or final state. Sentry's [vitest-evals](https://github.com/getsentry/vitest-evals) demonstrates this with `describeEval(...)`, an app-local harness, an explicit `run(...)`, normal `expect(...)` assertions, and tool-call checks. OpenAI calls the same idea "macro evals" in their agentic systems cookbook: drive the real agent loop on representative inputs and grade the full trajectory [[source]](https://howtoeval.com).
 
 The key principle: evaluate the agent, not an LLM call.
+
+## Containerized Evals (Harbor)
+
+The [Harbor](https://www.harborframework.com/docs/tasks) framework formalizes containerized evals as three components: an **instruction** (the task prompt given to the agent), an **environment** (a Dockerfile that installs tools, populates data, and sets up the filesystem), and a **verifier** that scores whether the agent completed the task correctly. Harbor runs the agent inside the environment and records its trajectory, artifacts, reward, and errors [[source]](https://x.com/vtrivedy10/status/2079976006644072796/).
+
+Containerized environments make the eval loop faster. The task and environment remain stable while the agent configuration changes — builders can swap models, tools, prompts, or complete agent versions and compare results directly. Multiple configurations can run in parallel. Reproducible environments are critical to signal quality: when an eval mirrors the relevant tools, data, permissions, state, and failure modes from production, builders get a stable testbed that is still representative of how the agent operates.
+
+## Reward Hacking
+
+When iterating on verifiers, watch for **reward hacking** — agents taking shortcuts that satisfy the verifier without completing the task. Common patterns: overciting irrelevant sources to receive full credit, claiming an action never taken, exploiting exposed answer material, or satisfying a proxy metric without actually solving the problem [[source]](https://x.com/vtrivedy10/status/2079976006644072796/).
+
+The fix is to inspect both sides of the result: the agent trajectory (messages, tool calls, actions) and the verifier trajectory (evidence, reasoning, final score). This dual inspection reveals whether the task or verifier design is actually measuring what you care about. The first verifier is rarely the final one — the task, environment, and verifier typically go through several revision cycles.
+
+## Automated Eval Engineering
+
+Coding agents can automate the eval-authoring process itself. LangChain's Eval Engineering Skill demonstrates this: the [skill](tools/claude-code-skill-frameworks.md) inspects how an agent is structured (prompts, models, tools, hooks), mines patterns from production traces (via tools like langsmith-cli), and proposes abilities to test. Crucially, the skill **interviews the user** rather than generating evals in one shot — users choose from proposed eval directions and specify which tools should run live versus be simulated (e.g., tool calls that incur costs or write to production) [[source]](https://x.com/vtrivedy10/status/2079976006644072796/).
+
+The resulting loop is: mine traces → identify a failure → build an eval → improve the agent → rerun. This aligns with the view that [continual learning is a continuous data-mining problem](https://www.langchain.com/blog/improving-agents-is-a-data-mining-problem) where production data feeds evals that improve agents over time.
 
 ## Building an LLM Judge
 
@@ -169,3 +185,4 @@ Generic scores (hallucination, coherence, etc.) have one legitimate use: as a *s
 - AI Evaluations Clearly Explained in 50 Minutes (Real Example) | Hamel Husain (Peter Yang, video) — foundational source; end-to-end walkthrough of the trace-review-to-LLM-judge pipeline using Nurture Boss (AI property management assistant) as a real-world case study
 - [Your AI Product Needs Evals](https://hamel.dev/blog/posts/evals/) | Hamel Husain — three-level eval framework (unit tests → human/model eval → A/B testing); Rechat/Lucy case study; assertion-based unit tests; synthetic test generation; custom trace-viewing tools; eval infrastructure reuse for fine-tuning and debugging
 - [How to evaluate AI agents](https://howtoeval.com) | howtoeval.com — floor-raising vs benchmark-maxxing frame; golden cases; code-aware offline evals (test the agent, not the LLM); asking your agent directly; eval suite pruning; production monitoring at scale; collapse of harnesses
+- [Towards Automating Eval Engineering](https://x.com/vtrivedy10/status/2079976006644072796/) | Viv (LangChain) — Eval Engineering Skill for coding agents; Harbor containerized eval format (instruction + Dockerfile + verifier); interview-driven eval design; reward hacking patterns; continual-learning-as-data-mining loop

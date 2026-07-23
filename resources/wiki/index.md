@@ -24,7 +24,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Agentic Engineering](tools/agentic-engineering.md) — Harness design, self-improving agents, multi-agent orchestration, Managed Agents, Great Convergence, agent categorization framework, decade of agents
 - [Loop Engineering](tools/loop-engineering.md) — Recurring systems that prompt agents instead of you: five-stage lineage (ReAct → Reflexion → Ralph → /goal → orchestration), four-level stack, open vs. closed loops, four-box test, autonomy ladder, five building blocks, verification, business loops
 - [AI-Native Product Development](tools/ai-native-product-development.md) — Docs-to-demos; AI-native company observations (Ann Miura-Ko); Delta Force teams (Owner); AI evals as PRD; Team OS
-- [AI Evals](tools/ai-evals.md) — Floor-raising vs benchmark-maxxing; trace review → LLM-as-judge pipeline; golden cases; code-aware offline evals; eval suite pruning; binary scoring; TPR/TNR over agreement; collapse of harnesses
+- [AI Evals](tools/ai-evals.md) — Floor-raising vs benchmark-maxxing; trace review → LLM-as-judge pipeline; golden cases; code-aware offline evals; containerized evals (Harbor); automated eval engineering; reward hacking; eval suite pruning; collapse of harnesses
 - [Voice AI Infrastructure](tools/voice-ai-infrastructure.md) — OpenAI's relay + transceiver WebRTC architecture; ICE ufrag routing; Global Relay geo-steering; Kubernetes-native voice AI at scale
 
 ## Models & Safety

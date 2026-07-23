@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-22
+last_updated: 2026-07-23
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-22
 
 ## Recent Updates
 
+- **2026-07-23:** Added Block's Buzz — agents as cryptographic team members, model-agnostic harnesses, peer-to-peer shared compute — to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
 - **2026-07-19:** Added free AI agent starter repo (LangChain + Groq/Gemini fallback) to [Tools Noted](#tools-noted)
 - **2026-07-19:** Added Machina's five-part agent composition template and engine-routing table to [Agent Composition Template](#agent-composition-template-machina), Raft to [Other Orchestration Tools](#other-orchestration-tools)
@@ -324,6 +325,8 @@ Gas City (successor to Steve Yegge's Gas Town) is an open-source orchestration t
 **Hermes Agent** (Nous Research) — Self-improving agent with closed learning loop: agent-curated memory, autonomous skill creation, skill self-improvement during use, FTS5 cross-session recall. Runs on 6 terminal backends (local, Docker, SSH, Daytona, Singularity, Modal). Lives on CLI, Telegram, Discord, Slack, WhatsApp.
 
 **Raft** — Shared workspace where humans and agents collaborate as teammates. Looks like Slack (channels, threads, tasks, DMs) but members include agents with persistent identity and memory. Agents claim tasks from channels, run in parallel, hand work to each other, and review each other's output in shared threads. Agents run locally via a lightweight process ("the Computer") using existing subscriptions (Claude Code, Codex, Gemini CLI, Cursor) — Raft never sits between agent and model. External agents (like [Hermes](#other-orchestration-tools)) join through a gateway process. 20,000+ builders; the Raft team itself runs 10 humans and 100+ named agents internally.
+
+**Buzz** ([Block](../landscape/ai-organization-design.md) / Jack Dorsey) — Agent-as-teammate workspace where every agent gets a cryptographic key pair (not an API token), joins channels like a new hire, reads history, and participates in threads, DMs, and voice huddles with the same mechanics as human members. Model-agnostic via a harness layer — agents run on Claude Code, Codex, or Goose, and switching models is a dropdown change with the agent's identity and memory preserved. Self-hosted on your own server (Nostr-based decentralized identity), so messages stay off vendor infrastructure. The "chief of staff" pattern — one agent that delegates research, writing, and fact-checking to specialized agents, spins up project channels, and coordinates handoffs in threads — demonstrates multi-agent orchestration emerging from the room metaphor rather than from code. Shared compute lets community members pool local hardware (Mac Studios, etc.) so agents run on peer-to-peer local models that scale automatically as more members contribute — no API costs, no token bills. Early-stage (July 2026): rough installer, no mobile client, but the core architecture treats agents as first-class organizational members rather than plugins.
 
 **MiroFish** — Swarm intelligence prediction engine. Creates multi-agent simulations with independent personalities and long-term memory to predict outcomes from seed information (news, policies, financial signals).
 
@@ -645,5 +648,6 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "you probably don't need an expensive sandbox" — Nathan Flurry (tweet, Jul 2026) — virtual OS thesis: WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes, AgentOS open-source project, hybrid sandbox mounting for edge cases
 - "A few patterns we frequently use with Fable 5" — ClaudeDevs (tweet, Jul 2026) ([advisor docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool), [cookbook](https://github.com/anthropics/claude-cookbooks/blob/main/managed_agents/CMA_plan_big_execute_small.ipynb)) — advisor pattern (92% of Fable score at 63% cost on SWE-bench Pro), orchestrator pattern (96% at 46% cost on BrowseComp), cached context sharing across Managed Agents sub-agents
 - "How To Run 15 AI Agents at Once (Without Losing Half the Work)" — Eric Siu (tweet thread, Jul 2026) ([link](https://x.com/ericosiu/status/2075640250626715833/?rw_tt_thread=True)) — compounding-vs-leaking framework for multi-agent output management, workspace-over-stream organization, cross-tool resolver pattern, skill reuse as compounding, scaffolding > models thesis
+- "This New App Gave Me an AI Team of Employees" — Creator Magic (video, Jul 2026) ([link](https://www.youtube.com/watch?v=g8dQBSKIGyc)) — Buzz (Block/Dorsey) walkthrough: cryptographic agent identity, model-agnostic harness switching, chief-of-staff delegation pattern, peer-to-peer shared compute
 - "How to build your first team of agents" — Machina (tweet thread, Jul 2026) — five-part agent composition template (name, soul, memory, goals, heartbeat), engine-routing table (Claude Code writes, Codex builds, Hermes monitors), cross-review self-improvement loop, one-pillar-at-a-time rollout, Raft shared workspace
 - "Something I have been thinking about: in the past, the best engineers..." — Boris Cherny (tweet, Jul 2026) — domain knowledge as infrastructure thesis: automation multiplies agent fleets, lint rules/CI steps as permanent class elimination, CLAUDE.md/skills/docs enabling zero-context contribution

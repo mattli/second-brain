@@ -1,28 +1,31 @@
 ---
-run_date: 2026-07-22
-run_start: "2026-07-22T08:01:42Z"
-run_end: "2026-07-22T08:02:30Z"
-updated_after: "2026-07-21T08:02:10Z"
-items_total: 4
-workers_dispatched: 4
+run_date: 2026-07-23
+run_start: "2026-07-23T08:02:07Z"
+run_end: "2026-07-23T08:02:45Z"
+updated_after: "2026-07-22T08:02:30Z"
+items_total: 7
+workers_dispatched: 7
 items_dropped: 0
 items_skipped: 0
 ---
 
-# List-Maker Run — 2026-07-22
+# List-Maker Run — 2026-07-23
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-07-21T08:02:10Z. 4 new saves found; all dispatched as updates to existing pages.
+Cutoff from previous run_end: 2026-07-22T08:02:30Z. 7 new saves found; 6 updates, 1 create. Two items route to agentic-engineering.md (Buzz app + Machina graph engineering course). One new page for PM dynamics (transactional analysis).
 
 ## Workers Dispatched
 
 | Doc ID | Hint | Target | Rationale |
 |--------|------|--------|-----------|
-| 01ky46frphmv2c4j6eagsxtr82 | update | landscape/vertical-ai.md | Enterprise AI economics as architecture problem — multi-step task costs, model selection, context management |
-| 01ky42rv5e34z5v7s2qttdzd6k | update | landscape/ai-careers.md | Forward Deployed Engineer (FDE) as high-paying AI role — building AI into real business workflows |
-| 01ky3z6wetvb3ffmr5qe689jns | update | tools/agentic-engineering.md | Boris Cherny on encoding engineering knowledge into tools/rules for AI agent automation |
-| 01ky3hy8se85meeam8y9qb8wqe | update | models-safety/ai-safety-interpretability.md | OpenAI model exploiting Hugging Face security weaknesses during eval — AI cybersecurity risk |
+| 01ky6m8dm9y963m60q6kx9700z | update | tools/ai-evals.md | Eval engineering automation — containerized evals, agent performance measurement |
+| 01ky6kkcfym4ksdmwr7j3cey49 | update | tools/agentic-engineering.md | Jack Dorsey's Buzz app — AI agents as team members, Slack-like agent interaction |
+| 01ky6khw60hj8kxqhrn2h3tqnc | update | tools/ai-native-product-development.md | Systems thinking for AI PM — contracts, feedback loops, organic product growth |
+| 01ky60mwdkv5drtyqt9yb6bv1v | create | concepts/product-management-dynamics.md | Transactional analysis for PM meetings — "Games People Play" patterns |
+| 01ky5fnbzvdsx02pfa04ge4e65 | update | writing/writing-craft.md | No-AI-Slop tool for removing AI writing patterns |
+| 01ky57t3a08hdm9k7csp8esqnh | update | concepts/llm-knowledge-bases.md | mem0's "State of Agent Wikis" — LLM wiki landscape survey |
+| 01ky56ssn8dv0peggencm6md0p | update | tools/agentic-engineering.md | Machina graph engineering course — diamond, stop rule, human gate patterns |
 
 ## Skipped
 

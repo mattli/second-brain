@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-07-21
+last_updated: 2026-07-24
 ---
 
 # Personal Tool Bookmarks
@@ -10,6 +10,7 @@ Tools and products I've bookmarked but haven't deeply evaluated. Lives in `perso
 
 ## Recent Updates
 
+- **2026-07-24:** Added ChatGPT Voice (GPT-Live voice interaction) bookmark to [Tools](#tools).
 - **2026-07-21:** Added LM Studio Bionic (local AI agent) bookmark to [Tools](#tools).
 - **2026-07-17:** Added Claude Artifact (AI adoption steps) bookmark to [Tools](#tools).
 
@@ -20,6 +21,7 @@ Tools and products I've bookmarked but haven't deeply evaluated. Lives in `perso
 - **x-bookmarks.com** — Tool for exporting X bookmarks; potentially useful for tweet/bookmark synthesis workflows. https://x-bookmarks.com
 - **Claude Artifact: Steps of AI Adoption** — Saved Claude artifact on AI adoption stages; content not preserved in bookmark. https://claude.ai
 - **LM Studio Bionic** — LM Studio's local-first AI agent for open models, built for creativity, work, and code. https://lmstudio.ai/bionic
+- **ChatGPT Voice** — OpenAI's GPT-Live voice mode for the ChatGPT desktop app; natural turn-taking, task delegation across Chat/Work/Codex, and screen context via appshots. https://learn.chatgpt.com/docs/voice
 
 ## Sources
 - Ghostty product page — terminal emulator bookmark
@@ -27,3 +29,4 @@ Tools and products I've bookmarked but haven't deeply evaluated. Lives in `perso
 - x-bookmarks.com product page — X bookmark export tool
 - Claude Artifact (claude.ai) — bare bookmark, AI adoption steps artifact
 - [LM Studio Bionic](https://lmstudio.ai/bionic) — lmstudio.ai — local AI agent product bookmark
+- [ChatGPT Voice | ChatGPT Learn](https://learn.chatgpt.com/docs/voice) — learn.chatgpt.com — GPT-Live voice interaction product bookmark

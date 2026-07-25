@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-23
+last_updated: 2026-07-25
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-23
 
 ## Recent Updates
 
+- **2026-07-25:** Added Dex's software factory failure thesis — lights-off factory experience, RL maintainability gap, benchmark blindness to code quality — to [Why Software Factories Fail](#why-software-factories-fail-dex)
 - **2026-07-23:** Added Machina's graph engineering principles — diamond pattern, stop rule, human gate, fake-edge audit — to [Graph Engineering](#graph-engineering-machina)
 - **2026-07-23:** Added Block's Buzz — agents as cryptographic team members, model-agnostic harnesses, peer-to-peer shared compute — to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
@@ -18,7 +19,6 @@ last_updated: 2026-07-23
 - **2026-07-18:** Added Osmani's outer-loop accountability framework — Quality/Verdict/Answerability triad, trust-verification gap, three hidden costs, back-pressure principle, four human loops — to [Owning the Outer Loop](#owning-the-outer-loop-osmani)
 - **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
 - **2026-07-12:** Added Eric Siu's compounding-vs-leaking framework and cross-tool resolver pattern to [Compounding vs. Leaking](#compounding-vs-leaking-eric-siu)
-- **2026-07-08:** Added Anthropic's advisor/orchestrator benchmark data (92%@63% cost, 96%@46% cost) to [Cost-Routing](#cost-routing-for-production-systems) and cached context sharing to [Managed Agents](#managed-agents-anthropic)
 
 
 ## The Delegation–Collaboration Split
@@ -316,6 +316,22 @@ Gas City (successor to Steve Yegge's Gas Town) is an open-source orchestration t
 **Verdict (Mike Taylor, Every):** "Learn from the ideas. Skip the toolkit for now." For teams already running 10+ parallel Claude Code sessions, Gas City is one informed opinion on orchestration at that scale.
 
 **OpenAI Symphony** — A more accessible alternative: a written ruleset that turns an existing Linear board into the dashboard agents work from. No behavior change required, closer to how software engineers already work.
+
+### Why Software Factories Fail (Dex)
+
+Dex (HumanLayer, author of "Advanced Context Engineering for Coding Agents") argues that the lights-off software factory does not work — and that the failure is structural, rooted in how coding models are trained, not in how teams configure their harnesses.
+
+**The practitioner experience.** HumanLayer went full lights-off in July 2025: background agents for all small/medium work, specs-and-tickets-only, no human code reading. By the third major incident in November — after repeated weeks-long debugging sessions through agent-generated spaghetti — they decided a from-scratch rewrite was easier than continuing to maintain the codebase. The pattern: models degrade codebase quality over time, producing [shotgun surgery](https://refactoring.guru/smells/shotgun-surgery) where changing one part breaks another. Agent-built codebases start struggling after roughly three to six months.
+
+**The RL training gap.** The structural explanation: coding agent RL optimizes for a one-dimensional reward — did the tests pass? Benchmarks like SWE-bench score agents on FAIL_TO_PASS (did you fix the bug?) and PASS_TO_PASS (did you avoid breaking anything else?). How the model reached a correct answer — whether through clean abstractions or try-catches wrapping everything — is irrelevant to the score. There is no penalty for eroding codebase maintainability. Tests give feedback in seconds, but the cost of bad architecture is measured in weeks, months, or years — the first time someone opens a file for a one-line change and discovers it requires edits in eleven places. RL needs a fast, reliable oracle, and maintainability has no fast oracle.
+
+**The critic paradox.** If a model could reliably distinguish good code from bad, it might have written the good version to begin with. More review agents and more tokens raise the floor — catching obvious mistakes — but don't move the ceiling, because the ceiling is whatever was taught during RL, and good design is the thing RL still can't reward. This directly extends the [evaluator isolation principle](#plannergeneratorevaluator-harness-anthropic-applied-ai): adversarial review catches bugs the generator missed, but neither the generator nor the reviewer was trained to optimize for long-term maintainability.
+
+**Correlation signal.** Faros AI's report found that since widespread AI coding tool adoption in early 2025, PR review quality has declined — more comments, longer comments, more PRs merged with no review at all — while incidents and bugs per developer are up [[source]](https://www.faros.ai/research/ai-acceleration-whiplash). Directional, not causal, but consistent with the thesis that removing human review without solving the maintainability gap accelerates codebase decay.
+
+**Frontier benchmark efforts.** Three efforts are beginning to score maintainability rather than stopping at pass/fail: [SWE-Marathon](https://www.swe-marathon.org/) (Abundant AI) assigns ~400-hour tasks with compound reward channels instead of single-bit scores. DeepSWE (Datacurve) uses tasks on repos never built in the real world, solving training-data contamination but not quality. [Frontier Code](https://cognition.com/blog/frontier-code) (Cognition) evaluates multi-PR tasks with mutation testing — penalizing models for writing tests that don't fail on the pre-patch code — and runs a judge model over diffs checking code-quality rules. None are reliable enough to bet a codebase on, but they are the first evals even attempting to measure the dimension that matters most.
+
+**Implications for factory design.** The thesis does not reject agentic coding — Dex's own prior work popularized [context engineering](claude-code-skill-frameworks.md) techniques. The claim is narrower: no amount of harness engineering or loopsmaxxing can solve what is fundamentally a model-training issue. The lights-off factory removes the one check — human review — that currently compensates for the RL gap. Teams should keep humans in the [outer loop](#owning-the-outer-loop-osmani) not because review is pleasant, but because it is the only mechanism that currently penalizes bad design. This aligns with Osmani's [back-pressure principle](#owning-the-outer-loop-osmani): grant agents just enough autonomy that you retain enough back pressure to stop them and check their work.
 
 ### Other Orchestration Tools
 
@@ -667,3 +683,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "How to build your first team of agents" — Machina (tweet thread, Jul 2026) — five-part agent composition template (name, soul, memory, goals, heartbeat), engine-routing table (Claude Code writes, Codex builds, Hermes monitors), cross-review self-improvement loop, one-pillar-at-a-time rollout, Raft shared workspace
 - "Something I have been thinking about: in the past, the best engineers..." — Boris Cherny (tweet, Jul 2026) — domain knowledge as infrastructure thesis: automation multiplies agent fleets, lint rules/CI steps as permanent class elimination, CLAUDE.md/skills/docs enabling zero-context contribution
 - "How to master graph engineering (Full Course)" — Machina (tweet thread, Jul 2026) — graph engineering for agent workflows: diamond pattern (fan-out/check/merge), stop rule (breadth not judgment), human gate (approval at irreversible boundary), fake-edge audit, four safety rules, three practical graph builds (research desk, SEO machine, GTM kit)
+- "Why Software Factories Fail" — Dex / HumanLayer (Jul 2026) ([link](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md)) — lights-off factory failure thesis: models degrade codebase quality over time, RL training has no penalty for bad design, benchmarks blind to maintainability, 3-6 month brownfield degradation timeline, Faros AI correlation data, frontier benchmark efforts (SWE-Marathon, DeepSWE, Frontier Code)

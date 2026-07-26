@@ -1,6 +1,8 @@
 # Study Tutor Prompt — v1 draft (2026-07-23)
 
-> Status: **draft, unwired.** Written in the claude.ai steering brainstorm (2026-07-23), before any live session. The `{claims}` slot gets the doc's claim map injected by the wiring task. Tune by ear across sessions — see the elicitation-shape notes in [[ideas]] (2026-07-23 steering brainstorm) for the gentler alternatives to "explain it back" and the outline-opener idea.
+> Status: **draft — partially superseded by a shipped v0.** Written in the claude.ai steering brainstorm (2026-07-23), before any live session. The `{claims}` slot gets the doc's claim map injected by the wiring task. Tune by ear across sessions — see the elicitation-shape notes in [[ideas]] (2026-07-23 steering brainstorm) for the gentler alternatives to "explain it back" and the outline-opener idea.
+>
+> **Update 2026-07-26:** claim-map steering was wired into study mode (merge `e5406e7`), but the shipped `STUDY_BASE_INSTRUCTION` in `bot.py` is a **condensed v0**, NOT this full draft — it keeps the private-map framing, "introduce-then-elicit," and "mentioning ≠ understanding," but drops the explicit TEACH→CONVERSE→ELICIT→MOVE loop, the opening calibration question, and the outline-opener. The claim map injects after the document / before the reminders (not this doc's `{claims}` slot layout). **This draft stays the fuller target to tune the live prompt toward**; it is not what currently runs.
 
 ---
 

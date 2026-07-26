@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-23
+last_updated: 2026-07-26
 ---
 
 # LLM Knowledge Bases
@@ -9,6 +9,7 @@ last_updated: 2026-07-23
 
 ## Recent Updates
 
+- **2026-07-26:** Added compile cost as fifth named limit to [The Scaling Wall](#the-scaling-wall); sharpened identity wall with corpus-knowledge vs user-memory two-axis framing.
 - **2026-07-23:** Added DeepWiki, AutoWiki, and OpenWiki to [Implementations](#implementations) from mem0's agent wiki landscape survey; added fidelity (compression risk) to [The Scaling Wall](#the-scaling-wall).
 - **2026-07-08:** Added [The Scaling Wall](#the-scaling-wall) section — retrieval ceiling, identity gap, and OWASP memory-poisoning risk; expanded GBrain and Claude Code entries with concrete scaling limits.
 - **2026-06-27:** Removed stale Overview; folded Karpathy attribution and "ideas as text" framing into [TLDR](#llm-knowledge-bases).
@@ -179,11 +180,13 @@ Every second brain implementation, once it grows past a toy vault, hits the same
 
 **First, retrieval.** The "just read the index" trick works until the index no longer fits in the context window. [Karpathy](../people/andrej-karpathy.md) drew the line at ~100 sources and pointed to hybrid BM25/vector search past it. Anthropic drew it at 200 lines and a single machine. GBrain and the Obsidian plugins arrive at the same answer from different directions: a vector index under the files. For every implementation that crossed this line, the files were never the retrieval system — the database underneath was. A folder of markdown is a good way to store knowledge and a bad way to find it.
 
-**Second, identity.** A second brain compiles knowledge about a corpus — what your documents say about a topic. That is different from remembering a user: preferences, past decisions, what an agent tried in a different app yesterday. A vault has no notion of identity. Claude Code's memory is bound to one repository on one machine because a pile of files has no way to know *whose* memory it is or to follow that person across sessions, machines, and apps. The moment you need memory scoped to a person rather than a document set, you need something the file-system pattern cannot provide: identity-tagged storage with cross-app retrieval.
+**Second, identity.** Two axes sit under the single word "memory." **Corpus knowledge** is what a wiki does: compile what a set of documents says about a topic. **User and experience memory** is the other axis: what a specific person prefers, what they decided last week, which approach their team already rejected, what an agent tried in a different app yesterday and how it turned out. A wiki is excellent at the first and does not attempt the second. A vault has no notion of identity. Claude Code's memory is bound to one repository on one machine because a pile of files has no way to know *whose* memory it is or to follow that person across sessions, machines, and apps. The moment you need memory scoped to a person rather than a document set, you need something the file-system pattern cannot provide: identity-tagged storage with cross-app retrieval.
 
 **Third, security.** Because a second brain trusts whatever is written into it, the files are an attack surface. In December 2025, OWASP named Memory and Context Poisoning as ASI06 in its Top 10 for Agentic Applications — a dedicated top-tier risk in which attacker-controlled content persists in memory and is trusted across sessions, long after a prompt injection would have reset. A vault the agent reads on every startup is exactly that surface. The risk scales with openness: the more sources an agent ingests, the larger the window for poisoned content to enter the memory layer.
 
 **Fourth, fidelity.** Compiling at ingest means an early summary can quietly lose a detail from the source, and every later answer inherits that loss. Retrieval against raw chunks does not have this failure mode — the original text is always available. The trade-off is re-derivation cost for compression risk. The more aggressively a wiki distills, the more it risks silently dropping nuance that matters for a future query no one anticipated at ingest time.
+
+**Fifth, compile cost.** You pay real tokens upfront to build pages you may never query, and to re-lint pages nothing changed about. The synthesis is front-loaded — useful when the corpus is stable and re-read often, wasteful when sources churn faster than they're consulted.
 
 None of this makes the pattern bad. For a personal wiki of a few hundred notes, or one repo's build quirks, files plus keyword search are genuinely enough. The wall is about scale, multiple agents, and multiple apps — not about note-taking.
 

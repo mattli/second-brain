@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-28
-last_updated: 2026-07-21
+last_updated: 2026-07-26
 
 ---
 
@@ -10,11 +10,11 @@ last_updated: 2026-07-21
 
 ## Recent Updates
 
+- **2026-07-26:** Added Machina's five-lane automation framework, one-agent-one-job principle, knowledge base architecture (with rulings note), and three memory levels to [Five-Lane Automation](#five-lane-automation) and [Operating Rules for AI Staff](#operating-rules-for-ai-staff)
 - **2026-07-21:** Added Rohit's three-layer production stack (build loop, defense layer, operations layer), the demo-to-production gap, and updated revenue proof points in [The Production Gap](#the-production-gap), [Three Layers of a Durable Solo Operation](#three-layers-of-a-durable-solo-operation), and [Implications for AI-Era Solo Operators](#implications-for-ai-era-solo-operators)
 - **2026-07-17:** Added Ronin's three-tier service ladder, skills-as-IP principle, 5x pricing rule, and proof-first acquisition flywheel to [Three-Tier Service Ladder](#three-tier-service-ladder), [Skills as IP](#skills-as-ip), [The 5x Pricing Rule](#the-5x-pricing-rule), and [Proof-First Acquisition](#proof-first-acquisition)
 - **2026-07-14:** Added McKeeve's three non-personal-brand distribution plays to [Distribution Without Personal Brand](#distribution-without-personal-brand) and compounding timeline to [Audience Ownership](#audience-ownership)
 - **2026-07-14:** Added Zephyr's "system builder" identity and AI arbitrage window to [Implications for AI-Era Solo Operators](#implications-for-ai-era-solo-operators)
-- **2026-06-28:** Created page with Pascal's High-Profit One-Person Empire framework covering [Money Trees](#money-trees), [Profit Levers](#profit-levers), and [Audience Ownership](#audience-ownership)
 
 ## The Anti-Scale Thesis
 
@@ -96,6 +96,27 @@ The principle is **build once, skillify, deliver forever.** By month six the ski
 
 This maps directly to the [agent harness](../tools/agent-harness.md) pattern: the model provides raw capability, but the harness (here, the skill) is what makes it operationally useful. Ronin's "thin harness / fat skills" approach — where the Claude Code session is the harness and the skills folder is the product catalog — is a solo-operator instantiation of the same architecture enterprises use for [agentic engineering](../tools/agentic-engineering.md).
 
+## Five-Lane Automation
+
+Machina operationalizes the solo business into five parallel lanes, each run by an AI worker on a schedule: **content** (research and draft posts), **projects** (weekly plans, daily standups, status tracking), **outreach** (prospect research and draft first-touches), **finance** (invoice drafting and weekly summaries), and **ads** (offer interpretation, test media plans, campaign builds). The pattern across all five is identical: context first, named deliverables, a cadence, and a gate on anything that touches money or the outside world.
+
+The architecture rests on a strict **one agent, one job** principle. A single giant assistant with one enormous prompt is the fragility pattern — the builds that hold up assign each specialist its own scope. A research agent only researches, a writer only writes, and a reviewer is never the author (an agent grading its own work approves it every time). Each specialist assembles from four parts: an identity file (who the agent is, its scope, what it must never do — durable, rarely edited), its slice of the shared knowledge base, its memory (what it has learned doing this job, bounded on purpose), and a schedule with a gate (when it wakes and which outputs wait for the operator's yes). Keeping identity separate from memory is critical — the identity file is stable so a passing fact can never rewrite who the agent is, while memory is where churn belongs. That separation is what stops an agent from drifting the first time it saves a bad note. This maps to the [agent harness](../tools/agent-harness.md) four-part assembly (model, harness, memory, tools) and reinforces the principle that the harness, not the model, is the source of reliability.
+
+**The knowledge base as business brain.** Every specialist reads from one shared source of truth — a folder of markdown files (an Obsidian vault is the operator favorite: text files on disk, linked, readable by humans and agents alike). Structure by what the business knows: the offer (pricing, scope, exclusions), the client (who buys, verticals, qualification criteria), the voice (writing style, forbidden words, best-work examples), the playbooks (project stages, checklists), and the rulings. The rulings note is the one nobody builds and everyone needs: every time the operator corrects an agent, the correction gets one line there, and every agent reads it before working. That turns a correction into a permanent standing rule instead of one that has to be repeated. This is the concrete mechanism behind the [loop engineering](../tools/loop-engineering.md) self-improving principle — each correction closes a loop that compounds over time.
+
+**Three levels of memory.** Memory is where new builders overspend. Level 1 is files — markdown the agent loads at startup (facts, procedures, preferences). Level 2 is a dedicated memory product (e.g., mem0) with retrieval by meaning, for when material genuinely outgrows what fits in context. Level 3 is a graph — entities and facts with time windows, for when "what changed when" is the real question. Most one-person businesses never leave Level 1. The working rule: cap always-loaded memory at a few hundred lines, load everything else on demand, and give entries a review date — sweep what didn't earn its place. Untended memory looks healthy from the outside while it fills with junk; one production store logged ten thousand entries in a month and about two hundred were worth keeping.
+
+**Scaling heuristic.** Add the next lane only when the last one produces without a prompt. Content passes when drafts stop needing rewrites; outreach passes when the confidence column stays honest without re-checking. The operator's job description shifts over time: the lanes do the producing, the operator does the deciding, and the approval queue becomes the workday — drafts in, decisions out, each decision writing a line in the rulings note that makes tomorrow's queue shorter.
+
+## Operating Rules for AI Staff
+
+The lanes are the easy half; the skill that decides whether this scales is management, because AI staff never push back and never flag their own doubt. Machina proposes four counterweight rules:
+
+1. **The brief carries the context.** Every brief names the deliverable and what done means. A lazy brief produces confident work in the wrong direction, and the operator reads every word of it.
+2. **Permissions by blast radius.** Routine internal work runs without asking; anything that sends or spends waits for explicit approval. The day the strictness annoys you is the day it saves you. This echoes the gate principle in [Three Layers of a Durable Solo Operation](#three-layers-of-a-durable-solo-operation) — front-office agents draft, they never send.
+3. **Scheduled review windows.** Two windows a day to clear the queue of drafts and approvals, because the lanes produce faster than the operator reads.
+4. **Hard spend cap on day one.** Every AI worker meters usage; set a monthly ceiling before the first brief, and put quote-before-execute in every context message. The bill should be boring.
+
 ## The 5x Pricing Rule
 
 Ronin proposes a single pricing heuristic: give every client a 5x return on what they pay. Save them $10K/month, charge $2K/month. The math must be undeniable enough that the client re-does it every month and re-decides to stay.
@@ -155,3 +176,4 @@ Zephyr sharpens the identity label: the winning skill isn't coding or prompting 
 - "How to build an audience when you hate building a 'personal brand'" — Louis McKeeve. Tweet thread on three non-personal-brand distribution strategies: creator partnerships, SEO/GEO pipelines, and niche media assets.
 - ["Start a 1-Person Business with Claude (FULL COURSE)"](https://x.com/deronin_/status/2076690611399176506) — Ronin. Full operational playbook: three-tier service ladder (websites → automations → AI systems), skills-as-IP principle, 5x pricing rule, dual client-acquisition machines (personal brand + cold email), and the proof-first compounding flywheel.
 - ["The Production AI Stack for Solo Builders"](https://x.com/rohit4verse/status/2078879981271404575/?rw_tt_thread=True) — Rohit. Three-layer production system (build loop, defense layer, operations layer), the demo-to-production gap, seven security doors, revenue proof points (Base44 $80M exit, Cal AI $30M ARR, Levels $1M/17 days), and the 30-day install schedule.
+- "How to build and scale a one-person business with AI" — Machina. Five-lane automation framework (content, projects, outreach, finance, ads), one-agent-one-job principle with four-part agent assembly, Obsidian vault knowledge base structure (with rulings note), three memory levels, and four operating rules for managing AI staff.

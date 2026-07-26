@@ -96,7 +96,7 @@ Meanwhile, the second derivative of influence on open models has shifted: the US
 
 ### Regulation and Sovereignty
 
-Recurring calls to ban certain types of open models are in practice impossible to implement: training strong near-frontier models is a relatively small cost compared to large-scale deployments, and if one jurisdiction bans open models above a compute threshold, another sovereign entity will eventually train and release them publicly — with less oversight. At the same time, as ever-stronger closed models are built, safety-shock reactions (similar to responses to [Claude Mythos](ai-safety-interpretability.md)) will periodically spur calls for burdensome regulation on open models.
+Recurring calls to ban certain types of open models are in practice impossible to implement: training strong near-frontier models is a relatively small cost compared to large-scale deployments, and if one jurisdiction bans open models above a compute threshold, another sovereign entity will eventually train and release them publicly — with less oversight. At the same time, as ever-stronger closed models are built, safety-shock reactions (similar to responses to [Claude Mythos](claude-mythos.md)) will periodically spur calls for burdensome regulation on open models.
 
 Counterbalancing this: sovereign entities and existing power structures increasingly realize that super-powerful AI tools concentrated in a few companies pose governance risks. Open models represent an alternative governance paradigm, and new funding structures for open models are expected to emerge as stakeholders recognize that dependencies on single for-profit companies for access to intelligence are unreliable.
 

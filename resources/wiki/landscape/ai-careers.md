@@ -131,7 +131,7 @@ This creates a new surface area for career positioning. The content that gets ci
 
 **Practical profile optimization:**
 - Write a keyword-rich headline combining role, skills, and value proposition (e.g., "Content Strategist | B2B SaaS, Thought Leadership, SEO | Building authority through high-impact content") rather than a bare job title
-- Be specific about experience and measurable impact — [large language models](../concepts/llm-foundations.md) in both LinkedIn search and AI answer engines match on concrete language, not vague descriptors like "results-driven professional"
+- Be specific about experience and measurable impact — large language models in both LinkedIn search and AI answer engines match on concrete language, not vague descriptors like "results-driven professional"
 - Post practical insights regularly — consistency matters more than any single post's reach
 
 **Recruiter reality check:** AI search is not yet recruiters' primary sourcing channel. LinkedIn's own hiring tools already support natural language queries with extensive filters, and the platform restricts unauthorized scraping of profile data. AI-powered sourcing tools (Fetcher, Juicebox, SeekOut) crawl multiple databases for niche candidates, but traditional AI search functions more as a recruiter copilot — surfacing industry terminology, related job titles, and background context rather than candidate lists directly.

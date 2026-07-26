@@ -3,6 +3,8 @@ created_at: 2026-07-01
 last_updated: 2026-07-01
 ---
 
+# Tech Crash Cycles
+
 > TLDR: Every major technology surge follows the same Carlota Perez pattern — revolution, bubble, crash, golden age — and AI is next. The crash is not a catastrophe to avoid but a necessary forcing function that finishes infrastructure buildout, sobers capital, and opens the only window where societies actually rewire institutions. The variable that determines whether the aftermath is a golden age or a disaster is preparation: spreading ownership of the productive layer (open models, cheap compute) rather than redistributing proceeds through taxation.
 
 ## Recent Updates

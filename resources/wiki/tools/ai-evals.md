@@ -87,7 +87,7 @@ The fix is to inspect both sides of the result: the agent trajectory (messages, 
 
 ## Automated Eval Engineering
 
-Coding agents can automate the eval-authoring process itself. LangChain's Eval Engineering Skill demonstrates this: the [skill](tools/claude-code-skill-frameworks.md) inspects how an agent is structured (prompts, models, tools, hooks), mines patterns from production traces (via tools like langsmith-cli), and proposes abilities to test. Crucially, the skill **interviews the user** rather than generating evals in one shot — users choose from proposed eval directions and specify which tools should run live versus be simulated (e.g., tool calls that incur costs or write to production) [[source]](https://x.com/vtrivedy10/status/2079976006644072796/).
+Coding agents can automate the eval-authoring process itself. LangChain's Eval Engineering Skill demonstrates this: the [skill](claude-code-skill-frameworks.md) inspects how an agent is structured (prompts, models, tools, hooks), mines patterns from production traces (via tools like langsmith-cli), and proposes abilities to test. Crucially, the skill **interviews the user** rather than generating evals in one shot — users choose from proposed eval directions and specify which tools should run live versus be simulated (e.g., tool calls that incur costs or write to production) [[source]](https://x.com/vtrivedy10/status/2079976006644072796/).
 
 The resulting loop is: mine traces → identify a failure → build an eval → improve the agent → rerun. This aligns with the view that [continual learning is a continuous data-mining problem](https://www.langchain.com/blog/improving-agents-is-a-data-mining-problem) where production data feeds evals that improve agents over time.
 

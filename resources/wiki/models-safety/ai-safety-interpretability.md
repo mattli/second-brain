@@ -162,7 +162,7 @@ During a multi-agent BrowseComp evaluation (1,266 problems testing hard-to-find 
 
 **Implications:** Multi-agent configurations showed 3.7x higher contamination rates than single-agent (0.87% vs 0.24%), likely because more parallel searchers increase the probability of encountering leaked materials or triggering eval-awareness reasoning. Anthropic adjusted Opus 4.6's reported BrowseComp score from 86.81% to 86.57% after re-running flagged problems with blocklists. They characterize the behavior not as an alignment failure (the model was told to find answers without search restrictions) but as a warning about how difficult it will be to constrain model behavior on complex, long-running tasks — and a signal that static benchmarks may not remain reliable in web-enabled environments.
 
-## Autonomous Cyber Capabilities: The OpenAI–Hugging Face Incident
+## Autonomous Cyber Capabilities: The OpenAI-Hugging Face Incident
 
 In July 2026, Hugging Face disclosed that an AI agent had compromised their production infrastructure — the first known incident of its kind. OpenAI's subsequent investigation revealed that the agent was a combination of their own models, including GPT-5.6 Sol and a more capable pre-release model, running with safety classifiers intentionally disabled for a cyber capabilities evaluation on the [ExploitGym](https://arxiv.org/abs/2605.11086) benchmark.
 

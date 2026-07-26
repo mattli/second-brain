@@ -92,28 +92,9 @@ Boris Cherny extends the [CLAUDE.md-as-routing-table](#practitioner-principles-s
 
 ## Context Engineering: The Unifying Layer (Karpathy–Cherny)
 
-Karpathy's Software 3.0 framework reframes the entire discipline: Software 1.0 is humans writing explicit code, Software 2.0 is humans training neural networks with data, and **Software 3.0 is humans programming models through context**. The context window is the new programming surface — you are giving context to an intelligent interpreter that can read, reason, call tools, and adapt. "Context engineering is the delicate art and science of filling the context window with just the right information for the next step."
+Karpathy's Software 3.0 framework reframes the entire discipline: Software 1.0 is humans writing explicit code, Software 2.0 is humans training neural networks with data, and **Software 3.0 is humans programming models through context**. The context window is the new programming surface, and it is the layer that unifies the practitioner patterns already on this page — the [SysLS principles](#practitioner-principles-sysls) are techniques for filling it well, [domain knowledge as infrastructure](#domain-knowledge-as-infrastructure-cherny) is persisting context across a team, and [loop engineering](loop-engineering.md) is automating the whole discipline on repeat. Everything reduces to four operations (Write, Select, Compress, Isolate); skipping them produces **context rot**, the mechanism behind the [consolidation cycle](#practitioner-principles-sysls) (rules and skills contradicting each other) and the [orchestration tax](#the-orchestration-tax-osmani) (cognitive overload from parallel agent output). Context engineering is the foundation that all three [engineering layers](#three-engineering-layers-environment--feedback--flow) depend on.
 
-The LLM is the CPU; the context window is RAM. Just as an OS decides what fits into RAM, context engineering decides what fits into the model's working memory. The difference between a good agent and a bad agent is not the model — it is what is in the context window when the model runs. The same model can score 0.637 or 0.488 on MMLU depending only on how the context is structured. Same weights, same question, different context, different result.
-
-**Four operations.** Everything in context engineering reduces to four operations:
-
-- **Write** — persist context outside the window. [CLAUDE.md](claude-code-skill-frameworks.md), skills, state files. Things the agent can read back later instead of holding in memory.
-- **Select** — retrieve only what is relevant right now. Not everything, not random chunks — the right five documents out of fifty thousand.
-- **Compress** — summarize old information to save tokens. When history grows too long, compact it. Fresh tool results always get priority over stale conversation.
-- **Isolate** — give subtasks their own clean context window. This is Cherny's "context firewall." Each sub-agent gets a fresh window; only structured output flows back.
-
-Skipping these operations produces **context rot** — as a conversation grows, irrelevant tokens pile up, signal-to-noise drops, and the model makes worse decisions. The window did not get smaller; it got cluttered. This is the mechanism behind the [consolidation cycle](#practitioner-principles-sysls) (rules and skills contradicting each other) and the [orchestration tax](#the-orchestration-tax-osmani) (cognitive overload from parallel agent output).
-
-**Context → Loops → Self-improvement.** Three paradigm shifts in four years, each building on the previous:
-
-1. **Prompt engineering** — writing one good instruction. You craft the sentence, hit enter, hope for the best.
-2. **Context engineering** — designing everything the model sees: which files, which history, which tool results, which rules. The prompt is one component; the context is the whole operating system.
-3. **[Loop engineering](loop-engineering.md)** — designing the system that does the context engineering for you, automatically, on repeat. Cherny: "I don't prompt Claude anymore. I have loops running that prompt Claude and figuring out what to do. My job is to write loops."
-
-Each layer does not replace the previous one — it builds on top. A sloppy prompt inside a perfect loop still produces sloppy work faster. But the leverage moved. Every cycle of a loop does the same four operations: **Write** (save state to disk after each run), **Select** (load only relevant state on the next cycle), **Compress** (summarize old runs, prioritize fresh results), **Isolate** (sub-agents handle subtasks in their own windows). If those four operations are bad, the loop makes them bad faster. If they are good, the loop makes them good forever. Context engineering is the foundation; the loop is the engine that runs it.
-
-This framework unifies the practitioner patterns already on this page: the [SysLS principles](#practitioner-principles-sysls) are techniques for doing Select and Isolate well; [domain knowledge as infrastructure](#domain-knowledge-as-infrastructure-cherny) is the Write operation scaled across a team; Cherny's [five building blocks](loop-engineering.md) operationalize all four operations inside a recurring loop; and the [harness](agent-harness.md) is the runtime that executes them.
+> **Full treatment** — the four Write/Select/Compress/Isolate operations, the LLM-as-CPU / context-as-RAM analogy, context rot, the prompt → context → loop timeline, and context engineering vs RAG — lives on the canonical [Context Engineering](../concepts/context-engineering.md) page.
 
 ## Three Engineering Layers: Environment → Feedback → Flow
 
@@ -213,53 +194,9 @@ The eval gap remains the widest hole in production agent work: 89% of teams runn
 
 ## Planner/Generator/Evaluator Harness (Anthropic Applied AI)
 
-Ash Prabaker and Andrew Wilson (Anthropic applied AI team) presented a three-role harness architecture for long-running agent builds — the system behind Anthropic's internal one-shot app demos that run 4–6 hours and produce fully functional applications from single-line prompts.
+> This pattern now lives in the loop-engineering article. For the full treatment — the three separated roles, GAN-inspired contract negotiation, evaluator trace-isolation, pivot behavior, the model-capability timeline, greenfield-vs-brownfield applicability, and harness co-evolution across model generations — see [Loop Engineering → The Planner-Generator-Evaluator Harness](loop-engineering.md#the-planner-generator-evaluator-harness).
 
-**The three roles, each in its own context window:**
-
-- **Planner** — Takes the user's one-line prompt and produces a deliberately high-level spec broken into sprints. It does *not* plan granular technical details. The reason: a single wrong technical decision in the plan cascades through every subsequent sprint, magnifying errors over multi-hour horizons. The planner sets hard outer lines; the other two agents figure out the details.
-- **Generator** — Builds the code. Works from the planner's spec but negotiates scope and acceptance criteria with the evaluator before writing a single line.
-- **Evaluator** — Not a code reviewer — an actual user of the app. Launches Playwright (or Claude for Chrome MCP), navigates live pages, clicks around, tries things, then scores against a rubric and writes critique. The evaluator catches bugs that pass CI because it interacts with the running application the way a human would.
-
-**The critic-gap exploit.** The entire pattern is inspired by GANs. The key insight: tuning a standalone critic to be harsh is tractable; tuning a builder to be self-critical is not. The same asymmetry that makes it easy for a person to critique a meal but hard to cook one applies to LLMs — they can identify quality gaps in output far more reliably than they can prevent those gaps during generation. The harness exploits this by splitting the roles into separate context windows with separate system prompts, channeling the model's sycophancy into two opposing objectives.
-
-**Contract negotiation before building.** Before each build phase, the generator proposes: "I'm going to build X feature, and you should verify it by testing Y." The evaluator pushes back: "Scope is too big, those tests are too weak, you've missed these edge cases." They iterate via files on disk until both agents agree on a contract — what "done" means, expressed as specific, testable assertions. The generator is then graded against this negotiated contract, not the original planner spec. In the retro game maker demo, the agents settled on 27 contract criteria. Granular criteria produce actionable critiques; vague criteria produce vague critiques that the generator shrugs off. This contract negotiation is framed as the key innovation over Ralph loops, which had a fixed plan.md with no one arguing back.
-
-**Grading subjective quality.** For front-end applications, the evaluator grades against a four-criteria rubric: design, originality, craft, and functionality — weighted toward design and originality (since Opus 4.6 already handles functionality well). The rubric is calibrated with few-shot examples on reference sites so the evaluator's taste converges on the builder's intended aesthetic. The claim: "Most people say you can't grade taste, but you can if you have a strong enough opinion on it and you just kind of write it down." The practical target: preventing purple gradients and generic AI-slop aesthetics.
-
-**Evaluator isolation — do NOT share traces.** The team explicitly tested giving the evaluator access to the generator's reasoning traces. It made things worse. When the evaluator sees *why* the generator made a decision, it gets talked into agreeing. The effective pattern: the evaluator judges output only, never sees the reasoning that produced it, and reports "this is an issue" without diagnosing the cause. The generator then reflects on its own work to figure out the fix. This independently confirms the [verifier sub-agent principle](loop-engineering.md#verification-is-the-essential-feedback) from Lance Martin's work — grading in an independent context window prevents the grader from being influenced by the generator's reasoning.
-
-**Pivot behavior.** Unlike single-pass generation or Ralph loops that keep patching the same approach, the PGE harness pivots. When the generator gets stuck — scoring low on one rubric criterion through multiple rounds — the evaluator tells it to throw everything away and restart from scratch. With Opus 4.6, this willingness to discard hours of work and try a fundamentally different approach emerged naturally under adversarial pressure. The same model, self-evaluating, would never restart — it's too attached to its own output. The adversarial split makes restart a tractable option.
-
-**Concrete results (retro game maker demo):** Same prompt, same model, solo loop vs. PGE harness. Solo: sprite editor works, play mode renders entities but arrow keys do nothing, space key does nothing — the agent didn't know how to test whether a game was playable. PGE (~$200, ~6 hours, 5–15 rounds): the agent named itself "Retro Forge," created a project dialogue, built a full 54-color palette, a sprite editor with game-scale preview, an AI level-design assistant (the planner decided "AI features" should exist, the generator/evaluator turned that into a working assistant), and a play mode with working physics, collision detection, arrow-key movement, and a live debug HUD — which exists because the evaluator needed it to test gameplay.
-
-**Harness co-evolution with models.** The same harness architecture required different configuration across model generations. What changed from Opus 4.5 to 4.6:
-
-- *Context resetting between sessions* — dropped entirely. Opus 4.5 had severe context anxiety; Opus 4.6 doesn't. Single continuous session with compaction replaced fresh context windows.
-- *Sprint decomposition* — previously critical to keep Opus 4.5 on track (force-fed one feature at a time). Opus 4.6 holds a 2-hour continuous build coherently without it.
-- *Evaluator cadence* — previously ran every sprint. Now runs at the end of a full generation pass, then hands back critique. Fewer interruptions, roughly half the cost.
-
-The lesson: the harness wasn't wrong for 4.5 — it was right for 4.5. The frontier moved. "It's really important to get a feel for what the spiky behaviors of any individual model are, and then try to adapt your harness to fill the gaps." This mirrors the [model-quality-changes-loop-behavior](loop-engineering.md#model-quality-changes-loop-behavior) finding — the same architecture produces qualitatively different behavior depending on the model inside it.
-
-**Model capability timeline for long-running agents** (minimal scaffold, 50% task completion):
-
-| Model | Release | Duration | Key capability |
-|---|---|---|---|
-| Sonnet 3.5 | Pre-Claude Code | — | First model to verify and iterate on its own output |
-| Sonnet 3.7 | Feb 2025 | ~1 hr | Claude Code research preview; SWE-Bench SOTA |
-| Opus 4 / Sonnet 4.4 | May 2025 | — | Better context management, task completion without reward hacking; Claude Code GA + SDK |
-| Sonnet 4.5 | — | ~30 hrs | Context-aware (tracks token consumption); checkpoints; Agent SDK rename |
-| Haiku 4.5 / Opus 4.5 | — | — | Economical sub-agents (Haiku); Opus excels at planning → model-routing pattern (Opus plans, Sonnet executes) |
-| Opus 4.6 / Sonnet 4.6 | — | ~12 hrs | "Very much an agentic model"; agent teams (sub-agents communicate peer-to-peer); server-side compaction; 1M context GA |
-
-The harness and models co-evolve: each model release ships alongside harness changes. Features that start in the harness get trained into the model, the harness drops that feature, and new gaps emerge at the new frontier. "The harness doesn't just disappear as the models get better. It's really evolving as the models change over time."
-
-**Practical takeaways from Q&A:**
-
-- *File system for shared state, not context windows.* Persistent artifacts (feature lists in JSON — models overwrite markdown but respect JSON), progress files, and timestamped learning logs. These breadcrumbs let another model (or human) pick up where the previous session left off.
-- *Traces are the primary debugging loop.* "By far and away the best approach is just reading the traces by hand." Not running more experiments — reading what the agent actually did, finding where its judgment diverged from yours, and tuning the prompt for that specific divergence. Same muscle as reading a stack trace.
-- *Agent empathy.* The Claude for Chrome team's technique: close your eyes, open them every 10 seconds to see a static page, close again, try to navigate. Putting yourself in the model's perceptual position reveals why it makes the choices it does. "There's this empathetic skill set which you need to develop."
-- *Brownfield applicability.* The PGE pattern is primarily greenfield. For brownfield, pair it with autonomous monitoring → issue generation → agent PR → human review. The rubric-based evaluator still applies but needs customization per project.
+In one line: three separated roles in three context windows — a planner that sets high-level sprints, a generator that builds, and an evaluator that actually *uses* the running app (via Playwright) and grades it against a negotiated contract — convert a model's easy-to-critique / hard-to-self-correct asymmetry into a working quality loop.
 
 ## Self-Improving Agents
 
@@ -371,7 +308,7 @@ Dex (HumanLayer, author of "Advanced Context Engineering for Coding Agents") arg
 
 **The RL training gap.** The structural explanation: coding agent RL optimizes for a one-dimensional reward — did the tests pass? Benchmarks like SWE-bench score agents on FAIL_TO_PASS (did you fix the bug?) and PASS_TO_PASS (did you avoid breaking anything else?). How the model reached a correct answer — whether through clean abstractions or try-catches wrapping everything — is irrelevant to the score. There is no penalty for eroding codebase maintainability. Tests give feedback in seconds, but the cost of bad architecture is measured in weeks, months, or years — the first time someone opens a file for a one-line change and discovers it requires edits in eleven places. RL needs a fast, reliable oracle, and maintainability has no fast oracle.
 
-**The critic paradox.** If a model could reliably distinguish good code from bad, it might have written the good version to begin with. More review agents and more tokens raise the floor — catching obvious mistakes — but don't move the ceiling, because the ceiling is whatever was taught during RL, and good design is the thing RL still can't reward. This directly extends the [evaluator isolation principle](#plannergeneratorevaluator-harness-anthropic-applied-ai): adversarial review catches bugs the generator missed, but neither the generator nor the reviewer was trained to optimize for long-term maintainability.
+**The critic paradox.** If a model could reliably distinguish good code from bad, it might have written the good version to begin with. More review agents and more tokens raise the floor — catching obvious mistakes — but don't move the ceiling, because the ceiling is whatever was taught during RL, and good design is the thing RL still can't reward. This directly extends the [evaluator isolation principle](loop-engineering.md#the-planner-generator-evaluator-harness): adversarial review catches bugs the generator missed, but neither the generator nor the reviewer was trained to optimize for long-term maintainability.
 
 **Correlation signal.** Faros AI's report found that since widespread AI coding tool adoption in early 2025, PR review quality has declined — more comments, longer comments, more PRs merged with no review at all — while incidents and bugs per developer are up [[source]](https://www.faros.ai/research/ai-acceleration-whiplash). Directional, not causal, but consistent with the thesis that removing human review without solving the maintainability gap accelerates codebase decay.
 
@@ -411,17 +348,9 @@ A practitioner template for standing up named agents as teammates rather than di
 
 ### Graph Engineering (Machina)
 
-Machina extends the [composition template](#agent-composition-template-machina) into a structural design language for agent workflows: the **graph** — a plan for AI work drawn out so you can see it. Every node is a job you'd hand to one assistant (research a competitor, write one draft, check one claim), and an edge between two nodes means the second job needs the first job's result before it can start.
+> Graph engineering has grown into its own dedicated topic. For the full treatment — node/edge vocabulary and contracts, the fake-edge test, the diamond pattern, verification on clean-context nodes, the human gate, the 8-step build methodology, conditional routing and controlled cycles, pipeline-vs-parallel topology, when *not* to use a graph, anchors, and cost reality — see [Graph Engineering](graph-engineering.md).
 
-**Fake edges — the first audit.** Most existing agent systems run as a straight line where every job waits for the one before it. That's the slowest possible arrangement, because one stuck job blocks everything behind it. The fix: for every "and then" in your system, ask whether the next job actually needs the previous job's output. "Summarize this file and then check my calendar" sounds sequential, but the calendar step never reads the summary — the arrow is fake and the waiting is wasted. Removing fake edges is free and usually eliminates more latency than any tool purchase.
-
-**The diamond — the one pattern that pays.** Work splits, several workers dig in parallel, checkers attack what they found, and everything merges into one answer. This is the same fan-out/check/merge shape behind Anthropic's [planner/generator/evaluator harness](#plannergeneratorevaluator-harness-anthropic-applied-ai) and the [adversarial triangulation](#practitioner-principles-sysls) pattern. The checking step is non-negotiable: models miss most of their own mistakes, so the checker must be a separate job whose only task is to kill weak findings. Give every checker a different question — one asks if the finding is correct, one asks if it's current, one asks if the source is real. This independently confirms the [evaluator isolation principle](#plannergeneratorevaluator-harness-anthropic-applied-ai) — the checker judges output only, never sees the reasoning that produced it.
-
-**The stop rule.** A graph buys breadth, not better judgment. When researchers hand a team of agents and a single agent the same budget, the team wins on work that splits into independent pieces and loses on work where each step needs the previous one. Before adding a single agent, ask: *where does my work split?* If every step needs the full picture, stay with one agent. The moment the work divides into jobs that never read each other's results, the graph starts paying. This is the structural version of the [orchestration tax](#the-orchestration-tax-osmani) — parallelism only helps when the work is genuinely parallelizable.
-
-**The human gate.** Every serious system routes to a human before anything irreversible — the send, the publish, the refund, the invoice. Put approval where a mistake would be expensive to undo, not on every step. A gate on everything makes you the bottleneck; a gate on nothing means nobody is watching. This aligns with Osmani's [outer-loop accountability framework](#owning-the-outer-loop-osmani): the human doesn't need to be in the agent's execution loop, but must own the verdict at the irreversible boundary. Judge the whole system on numbers that can't argue back — money landed, customers retained, tests passed — because a system that only grades its own reports is confidently wrong.
-
-**Four safety rules for graphs:** every [loop](loop-engineering.md) gets a maximum number of rounds, only one job writes to any one file, the routing lives in written steps while the AI fills the jobs, and there is always a cap on how many agents can spawn.
+In one line: a graph draws AI work as nodes (bounded jobs) and edges (real data dependencies) so independent work runs in parallel; the diamond (fan-out → reduce → synthesize) is the pattern that pays, a separate verifier on a clean context is non-negotiable, and a human gate belongs wherever a mistake is expensive to undo.
 
 ### The Orchestration Tax (Osmani)
 
@@ -463,50 +392,9 @@ Loop engineering is the practice of replacing yourself as the person who prompts
 
 ## Managed Agents (Anthropic)
 
-Anthropic's hosted agent infrastructure (April 2026). The key insight: harnesses "encode assumptions about what Claude can't do on its own" — and those assumptions go stale as models improve. Managed Agents is designed to outlast any particular harness implementation.
+> This topic grew into its own dedicated page — architecture (session/harness/sandbox decoupling), pets-vs-cattle shift, security boundary, performance results, and the OpenAI + AWS Bedrock Managed Agents variant. See [Managed Agents](managed-agents.md).
 
-**Core architecture:** Three decoupled components, each independently replaceable:
-- **Session** — Append-only log of everything that happened. Lives outside both harness and sandbox. Accessed via `getEvents()`, allows the harness to retrieve any slice of history, rewind, and replay.
-- **Harness (brain)** — The loop that calls Claude and routes tool calls. Stateless; can crash and be restarted with `wake(sessionId)`. Contains no credentials.
-- **Sandbox (hands)** — Execution environment where Claude runs code and edits files. One or many per session. Interface: `execute(name, input) → string`.
-
-**The pets-vs-cattle shift:** Original monolithic container was a "pet" (hand-tended, can't afford to lose). Decoupling made each component "cattle" — if the container dies, the harness catches it as a tool error; Claude retries; a new container provisions from a standard recipe. No more nursing stuck sessions.
-
-**Security boundary:** Credentials (GitHub tokens, OAuth) never reach the sandbox. Git tokens are baked into the repo clone during initialization; OAuth tokens live in a vault accessed via a credential proxy. The harness never sees credentials. This prevents prompt injection from escalating to credential theft.
-
-**Performance results:** Decoupling cut p50 time-to-first-token (TTFT) ~60% and p95 TTFT >90%. Sessions that don't need a sandbox skip provisioning entirely. Scaling to many brains = starting many stateless harnesses.
-
-**Many brains, many hands:** Multiple orchestrator agents can share hands (sandboxes) — and can pass hands to each other. The harness doesn't know whether the sandbox is a container, a phone, or a Pokémon emulator.
-
-The design philosophy mirrors Unix: virtualize components into general interfaces (like `read()` being agnostic to disk hardware) that outlast any specific implementation underneath. See the Anthropic engineering blog: "Scaling Managed Agents: Decoupling the brain from the hands."
-
-**Cached context across sub-agents:** Each sub-agent in [Managed Agents](#managed-agents-anthropic) keeps its own prompt cache, so repeat calls within the same sub-agent don't pay full price for the same context twice. This makes both the advisor and orchestrator cost-routing patterns above more economical at scale — the frontier model's cache persists across its sparse advisory calls, and each worker's cache persists across its dense execution steps.
-
-**In production — Spiral:** Every's writing tool Spiral is one of the first products using Managed Agents' multi-agent capabilities in production. When a user requests multiple drafts, a managed agent spins up multiple Opus-class subagents to write drafts in parallel, cutting response time by 20–30 seconds per draft. This demonstrates the "many brains, many hands" architecture working at product scale — orchestration as a feature, not infrastructure overhead.
-
-## Managed Agents (OpenAI + AWS)
-
-Bedrock Managed Agents, powered by OpenAI (April 2026): OpenAI's frontier models packaged inside an AWS-native agent runtime — identity, permissions, state, logging, governance, and deployment. Exclusive to AWS. The product emerged from a renegotiated Microsoft-OpenAI deal that made OpenAI's license non-exclusive, allowing them to serve on other cloud providers for the first time.
-
-**What it is:** Think "Codex in AWS." Codex works well locally because the entire environment is there — files, auth, data — all for free. Bedrock Managed Agents solves the enterprise version: agents that operate inside a customer's VPC with proper identity, security boundaries, and access to organizational data across services. Built on AWS AgentCore primitives (memory, safe execution, permissioning) but co-developed with OpenAI to integrate model and harness tightly rather than leaving customers to stitch them together.
-
-**Why the partnership makes strategic sense:**
-- AWS has the largest enterprise installed base, most of which won't migrate to use a model API elsewhere
-- OpenAI gets access to that base; AWS customers get OpenAI models natively in their existing security perimeter
-- Customer data never leaves the VPC — AWS owns the support relationship and operational responsibility
-- Runs on a mix of GPUs and Trainium (AWS custom silicon), with increasing Trainium share over time
-
-**Model-harness convergence (Altman):** "I no longer think of the harness and the model as entirely separable things." In the GPT-3 era, enormous system-prompt engineering was needed to extract utility; now models understand and perform well out of the box. The trend: things that start in the harness get absorbed into the model through training. Tool-calling began as an afterthought and is now deeply integrated into the training process. Altman expects pre-training and post-training to converge similarly — and the model-harness boundary to continue dissolving as intelligence improves.
-
-**The unsolved agent identity problem:** When an agent acts on behalf of an employee, should it use the employee's account? A separate account? There's no primitive for "Ben's agent logging in as Ben, noting it's an agent, not the real Ben." Altman: "We don't even have a primitive to think about that, but we may quickly need to." Fifty similar problems — access control, permissions, audit trails — will require mental models for software to evolve as agents join the workforce with increasing autonomy.
-
-**Local vs. cloud agents:** Local wins today on ease — your environment is already there. Cloud wins for enterprise — scale, multi-user sharing, security boundaries, organizational controls. The endpoint is both: a persistent local client plus cloud-based agents that survive laptop closures, scale out, and operate within governance constraints. AWS's VPC model gives risk-averse organizations (banks, healthcare, government) confidence to move faster: "If it operates inside the sandbox, I am excited to go fast."
-
-**Intelligence as utility with uncapped demand:** Altman frames OpenAI as an "intelligence factory" — delivering the best unit of intelligence at the lowest price. Unlike water or electricity, demand for intelligence appears uncapped at low enough prices. Pricing will evolve from per-token to per-result ("you don't care how many tokens the answer takes, you just want the piece of work done"). AWS comparison: cost per compute cycle has fallen orders of magnitude over 30 years, yet more compute is sold today than ever.
-
-**Future architecture — the middleware question:** Enterprise customers consistently ask for: (1) an agent runtime environment, (2) a management layer connecting data to agents with spending oversight, and (3) a workspace (like Codex) for employees. Thompson posits a "double agent layer" — one layer maintaining connections to data sources, another serving as the user interface. Altman agrees this describes today's architecture but cautions: "As models get really smart, I don't think we know exactly what the architecture of the future looks like." What starts as middleware may get absorbed into the model itself.
-
-**Platform strategy — neutral vs. integrated:** AWS's partner-first approach (best product wins, whether first-party or third-party) contrasts with Google Cloud's fully integrated model-to-chip stack. Garman: "We view our success is if the partners are successful and they're building on top of us or together with us." The infrastructure layer provides maximum flexibility to meet model companies in the middle — AWS brings the I(nfrastructure), OpenAI brings the S(oftware), and they co-build the P(latform).
+Anthropic decouples the model ("brain"), harness, and sandbox ("hands") into independently replaceable, stateless components so agents can scale and recover from crashes; OpenAI + AWS ship a parallel enterprise variant (Bedrock Managed Agents) packaging OpenAI's models inside an AWS-native agent runtime.
 
 ## The Great Convergence
 

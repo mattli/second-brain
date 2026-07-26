@@ -7,6 +7,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 ## Concepts & Patterns
 
 - [LLM Knowledge Bases](concepts/llm-knowledge-bases.md) — LLM-compiled personal wikis; Karpathy pattern; AI memory tools (two camps); Semantic Collapse; context engineering vs RAG
+- [Context Engineering](concepts/context-engineering.md) — Filling the window with the right context; Software 3.0; LLM-as-CPU/RAM; four operations (Write/Select/Compress/Isolate); context rot; context engineering vs RAG; prompt → context → loop
 - [Agent Proficiency](concepts/agent-proficiency.md) — Managing AI agents as core skill; corporate adoption; enterprise agent deployer role (Aaron Levie)
 - [Business Moats in AI](concepts/business-moats-in-ai.md) — Five durable moats; opinionated perspective moat; two paths for software; token price discrimination; "Big Rug" data risk
 - [Physical AI](concepts/physical-ai.md) — a16z's physical AI systems essay; five shared primitives; three frontier domains; mutual reinforcement flywheel
@@ -24,6 +25,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Graph Engineering](tools/graph-engineering.md) — Organizing AI work as nodes and edges for parallel execution; fake-edge test; diamond pattern (fan-out, reduce, synthesize); verification architecture; anchors; cost reality
 - [Agent Harness](tools/agent-harness.md) — Agent = Model + Harness; 12 components; memory; thin harness/fat skills; resolvers; testing pyramid; enterprise context synthesis; "Peggy" SMB case study
 - [Agentic Engineering](tools/agentic-engineering.md) — Context engineering (four operations), harness design, self-improving agents, multi-agent orchestration, Managed Agents, Great Convergence, agent categorization framework, decade of agents
+- [Managed Agents](tools/managed-agents.md) — Anthropic's session/harness/sandbox decoupling, pets-vs-cattle shift, security boundary; OpenAI + AWS Bedrock Managed Agents; model-harness convergence
 - [Loop Engineering](tools/loop-engineering.md) — Recurring systems that prompt agents instead of you: five-stage lineage (ReAct → AutoGPT → Ralph → /goal → orchestration), four-level stack, open vs. closed loops, four-box test, autonomy ladder, five building blocks, verification, business loops
 - [AI-Native Product Development](tools/ai-native-product-development.md) — Docs-to-demos; AI-native company observations (Ann Miura-Ko); Delta Force teams (Owner); AI evals as PRD; Team OS
 - [AI Evals](tools/ai-evals.md) — Floor-raising vs benchmark-maxxing; trace review → LLM-as-judge pipeline; golden cases; code-aware offline evals; containerized evals (Harbor); automated eval engineering; reward hacking; eval suite pruning; collapse of harnesses

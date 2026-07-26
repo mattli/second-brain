@@ -192,17 +192,9 @@ None of this makes the pattern bad. For a personal wiki of a few hundred notes, 
 
 ## Context Engineering vs RAG
 
-Nyk (Apr 2026) argues RAG was an engineering workaround for small context windows — you couldn't fit the whole document, so you chunked, embedded, searched, and injected. With Claude Opus 4.6 at 1M tokens (750K words, 3,000 pages) and Gemini 3 Pro at 2M, context capacity grew 500x in three years. The bottleneck moved from retrieval to curation. "70% of LLM errors come from bad context, not bad models."
+Nyk (Apr 2026) argues RAG was an engineering workaround for small context windows — you chunked, embedded, searched, and injected because you couldn't fit the whole document. With Claude Opus at 1M tokens and Gemini 3 Pro at 2M, capacity grew ~500x in three years and the bottleneck moved from retrieval to curation. For bounded document sets (under ~500K tokens) you can skip the RAG pipeline entirely and read files directly, the way Claude Code does; RAG still wins at scale beyond the window, cost at volume, freshness, and access control. This is the [LLM Wiki](#semantic-collapse-why-rag-breaks-at-scale) thesis from the retrieval side — compile and Select once rather than re-derive on every query.
 
-**When long context replaces RAG:** Bounded document sets under 500K tokens (~375K words) — skip the entire RAG pipeline. No chunking, no embeddings, no vector database. Claude Code already works this way: reads files directly, uses agentic search, manages context through compaction — not retrieval.
-
-**When RAG still wins:** Scale beyond the window (millions of documents), cost at volume (50-200x token reduction), freshness (incremental indexing in seconds), access control (permission filtering before retrieval).
-
-**The "lost in the middle" problem:** Models over-attend to beginning and end, under-attend to middle. At 1M tokens, there's a 15-17pp drop between 256K and 1M on Anthropic's MRCR v2 benchmark. 1 in 4 multi-needle retrievals fail at full window. Practical reliable performance: 500-700K range. Critical information should go at beginning or end.
-
-**The four pillars of context engineering:** (1) Knowledge retrieval — RAG, agentic search, direct reading, MCP; (2) Memory management — CLAUDE.md, auto-memory, compaction; (3) Context orchestration — document placement, priority ordering, token budgeting; (4) Quality monitoring — retrieval accuracy, hallucination rate, task completion.
-
-The honest answer for most teams: use both. Retrieve to narrow the corpus, then pass the relevant subset in full rather than chunking it further.
+> **Full treatment** of context engineering — the four Write/Select/Compress/Isolate operations, Software 3.0, context rot, the "lost in the middle" reliability curve, and the prompt → context → loop timeline — lives on the canonical [Context Engineering](context-engineering.md) page.
 
 ## Web-Native LLM Access: /llms.txt
 

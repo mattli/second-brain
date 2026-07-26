@@ -59,6 +59,8 @@ Two implementation details make fan-out robust. First, the parallel barrier wait
 
 Cost-conscious design: use cheap models on boring nodes and the strong model only where judgment matters. The skeleton (fan-out → reduce → verify → synthesize) is the same whether the job is a market scan, code review, or research report.
 
+The same fan-out → check → synthesize shape underlies Anthropic's [Planner/Generator/Evaluator harness](loop-engineering.md#the-planner-generator-evaluator-harness) — read it as a minimal diamond with a single generator node and one adversarial evaluator sitting on the checking edge.
+
 ## Applied Diamond Builds
 
 Three concrete business applications of the diamond pattern, each following the same skeleton: fan-out parallel researchers → verify/skeptic pass → synthesize into one deliverable → human gate before anything ships.

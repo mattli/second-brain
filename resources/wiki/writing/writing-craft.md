@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-07-23
+last_updated: 2026-07-26
 ---
 
 # Writing Craft
@@ -9,6 +9,7 @@ last_updated: 2026-07-23
 
 ## Recent Updates
 
+- **2026-07-26:** Added slop-detection tooling reference to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
 - **2026-07-23:** Added AI slop pattern taxonomy to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
 
 ## The Specificity Principle
@@ -69,6 +70,8 @@ LLM-generated text has identifiable stylistic tics that weaken writing even when
 - **Synonym cycling** — referring to the same entity as "the agent," then "the assistant," then "the tool" to avoid repetition, creating confusion about whether these are distinct concepts.
 
 The antidotes are the fundamentals: lead with the point, use active voice, untangle hard-to-follow sentences, prefer concrete numbers over abstractions.
+
+**Tooling:** Yang's taxonomy is packaged as an installable [Claude Code skill](https://github.com/petergyang/no-ai-slop) with two modes — edit a draft (rewrites with minimum effective changes, then self-checks against an eval rubric) and detect slop (returns every pattern found with the quoted line). The self-eval loop means the tool catches its own regressions, a pattern worth replicating in any automated editing workflow.
 
 ## Connections
 

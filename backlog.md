@@ -11,6 +11,7 @@
 
 ### Second Brain / Vault
 - [ ] Add wikilink rule to the shared CLAUDE.md repo — when creating or updating vault files, link to related existing docs with Obsidian wikilinks where relevant (planning docs, backlog items, notes that share a topic). Rule belongs in the shared file so it applies on both Mac Mini and MacBook Pro.
+- [ ] Investigate wiki reorganization workflow for spin-off articles — specifically, content currently nested inside broader wiki pages may warrant its own dedicated page (e.g. graph engineering likely lives inside [[tools/agentic-engineering]] or similar but could justify its own page the way [[tools/loop-engineering]] does). Define a trigger condition and process for splitting sub-topics out into first-class wiki pages.
 
 ### Agent Behavior
 - [ ] **Monthly backlog review** (2026-07-20, recurring). Once a month, scan every undated/trigger-less backlog item: give it a date, a trigger, or archive it. Prevents "someday" items (keychain, remote-control, Telegram latency, skill installs) from silently aging — the gated items move; the trigger-less ones are the forgetting risk. Candidate NanoClaw scheduled task; until then, a first-Monday habit.

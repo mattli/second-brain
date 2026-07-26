@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-22
+last_updated: 2026-07-26
 ---
 
 # Agentic Engineering
@@ -9,7 +9,7 @@ last_updated: 2026-07-22
 
 ## Recent Updates
 
-- **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
+- **2026-07-26:** Added Karpathy–Cherny context engineering framework — four operations (Write/Select/Compress/Isolate), Software 3.0, context rot, three-paradigm timeline — to [Context Engineering: The Unifying Layer](#context-engineering-the-unifying-layer-karpathycherny)
 - **2026-07-25:** Added Dex's software factory failure thesis — lights-off factory experience, RL maintainability gap, benchmark blindness to code quality — to [Why Software Factories Fail](#why-software-factories-fail-dex)
 - **2026-07-23:** Added Machina's graph engineering principles — diamond pattern, stop rule, human gate, fake-edge audit — to [Graph Engineering](#graph-engineering-machina)
 - **2026-07-23:** Added Block's Buzz — agents as cryptographic team members, model-agnostic harnesses, peer-to-peer shared compute — to [Other Orchestration Tools](#other-orchestration-tools)
@@ -19,7 +19,6 @@ last_updated: 2026-07-22
 - **2026-07-18:** Added Flurry's virtual-OS thesis — WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes — to [Agent Runtime: Virtual Operating Systems](#agent-runtime-virtual-operating-systems)
 - **2026-07-18:** Added Osmani's outer-loop accountability framework — Quality/Verdict/Answerability triad, trust-verification gap, three hidden costs, back-pressure principle, four human loops — to [Owning the Outer Loop](#owning-the-outer-loop-osmani)
 - **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
-- **2026-07-12:** Added Eric Siu's compounding-vs-leaking framework and cross-tool resolver pattern to [Compounding vs. Leaking](#compounding-vs-leaking-eric-siu)
 
 
 ## The Delegation–Collaboration Split
@@ -89,6 +88,31 @@ Boris Cherny extends the [CLAUDE.md-as-routing-table](#practitioner-principles-s
 - **Zero-context contribution.** The most important shift: automation makes it possible for others to contribute to a codebase without the ramp-up period. Engineers are contributing to unfamiliar codebases on day one because agents navigate for them; non-engineers are contributing as effectively as engineers. What blocks both is domain knowledge that lives in people's heads rather than in infrastructure. With agents, the range of encodable domain knowledge has expanded beyond what lint rules, types, and tests can express — it now includes code comments, skills, CLAUDE.md rules, and memories. If a PR gets rejected because it doesn't use the right framework, or a feature gets rejected because it doesn't follow architectural patterns, those are failures of automation.
 
 **The mandate:** every team should be writing the CLAUDE.md's, REVIEW.md's, skills, and docs that enable agents to work productively in their codebase with zero additional context from the prompter. This is a natural extension of what engineers have always done — automate and encode domain knowledge as infrastructure. As the model gets smarter and as the [harness](agent-harness.md) matures, the task becomes easier. The bottleneck is converting tacit domain knowledge to explicit infrastructure so that agents write better code, code review catches issues automatically, and the next person (or agent) working on the codebase can contribute without a ramp-up period.
+
+## Context Engineering: The Unifying Layer (Karpathy–Cherny)
+
+Karpathy's Software 3.0 framework reframes the entire discipline: Software 1.0 is humans writing explicit code, Software 2.0 is humans training neural networks with data, and **Software 3.0 is humans programming models through context**. The context window is the new programming surface — you are giving context to an intelligent interpreter that can read, reason, call tools, and adapt. "Context engineering is the delicate art and science of filling the context window with just the right information for the next step."
+
+The LLM is the CPU; the context window is RAM. Just as an OS decides what fits into RAM, context engineering decides what fits into the model's working memory. The difference between a good agent and a bad agent is not the model — it is what is in the context window when the model runs. The same model can score 0.637 or 0.488 on MMLU depending only on how the context is structured. Same weights, same question, different context, different result.
+
+**Four operations.** Everything in context engineering reduces to four operations:
+
+- **Write** — persist context outside the window. [CLAUDE.md](claude-code-skill-frameworks.md), skills, state files. Things the agent can read back later instead of holding in memory.
+- **Select** — retrieve only what is relevant right now. Not everything, not random chunks — the right five documents out of fifty thousand.
+- **Compress** — summarize old information to save tokens. When history grows too long, compact it. Fresh tool results always get priority over stale conversation.
+- **Isolate** — give subtasks their own clean context window. This is Cherny's "context firewall." Each sub-agent gets a fresh window; only structured output flows back.
+
+Skipping these operations produces **context rot** — as a conversation grows, irrelevant tokens pile up, signal-to-noise drops, and the model makes worse decisions. The window did not get smaller; it got cluttered. This is the mechanism behind the [consolidation cycle](#practitioner-principles-sysls) (rules and skills contradicting each other) and the [orchestration tax](#the-orchestration-tax-osmani) (cognitive overload from parallel agent output).
+
+**Context → Loops → Self-improvement.** Three paradigm shifts in four years, each building on the previous:
+
+1. **Prompt engineering** — writing one good instruction. You craft the sentence, hit enter, hope for the best.
+2. **Context engineering** — designing everything the model sees: which files, which history, which tool results, which rules. The prompt is one component; the context is the whole operating system.
+3. **[Loop engineering](loop-engineering.md)** — designing the system that does the context engineering for you, automatically, on repeat. Cherny: "I don't prompt Claude anymore. I have loops running that prompt Claude and figuring out what to do. My job is to write loops."
+
+Each layer does not replace the previous one — it builds on top. A sloppy prompt inside a perfect loop still produces sloppy work faster. But the leverage moved. Every cycle of a loop does the same four operations: **Write** (save state to disk after each run), **Select** (load only relevant state on the next cycle), **Compress** (summarize old runs, prioritize fresh results), **Isolate** (sub-agents handle subtasks in their own windows). If those four operations are bad, the loop makes them bad faster. If they are good, the loop makes them good forever. Context engineering is the foundation; the loop is the engine that runs it.
+
+This framework unifies the practitioner patterns already on this page: the [SysLS principles](#practitioner-principles-sysls) are techniques for doing Select and Isolate well; [domain knowledge as infrastructure](#domain-knowledge-as-infrastructure-cherny) is the Write operation scaled across a team; Cherny's [five building blocks](loop-engineering.md) operationalize all four operations inside a recurring loop; and the [harness](agent-harness.md) is the runtime that executes them.
 
 ## Discovering Unknowns (Thariq)
 
@@ -684,4 +708,5 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "How to build your first team of agents" — Machina (tweet thread, Jul 2026) — five-part agent composition template (name, soul, memory, goals, heartbeat), engine-routing table (Claude Code writes, Codex builds, Hermes monitors), cross-review self-improvement loop, one-pillar-at-a-time rollout, Raft shared workspace
 - "Something I have been thinking about: in the past, the best engineers..." — Boris Cherny (tweet, Jul 2026) — domain knowledge as infrastructure thesis: automation multiplies agent fleets, lint rules/CI steps as permanent class elimination, CLAUDE.md/skills/docs enabling zero-context contribution
 - "How to master graph engineering (Full Course)" — Machina (tweet thread, Jul 2026) — graph engineering for agent workflows: diamond pattern (fan-out/check/merge), stop rule (breadth not judgment), human gate (approval at irreversible boundary), fake-edge audit, four safety rules, three practical graph builds (research desk, SEO machine, GTM kit)
+- "Context Engineering: the Karpathy-Cherny method that replaced prompting" — vartekx (tweet thread, Jul 2026) ([link](https://x.com/vartekxx/status/2074864291568664646/?rw_tt_thread=True)) — Software 3.0 framework, four context operations (Write/Select/Compress/Isolate), context rot, three-paradigm timeline (prompt → context → loop), Cherny's context firewall as Isolate operation
 - "Why Software Factories Fail" — Dex / HumanLayer (Jul 2026) ([link](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md)) — lights-off factory failure thesis: models degrade codebase quality over time, RL training has no penalty for bad design, benchmarks blind to maintainability, 3-6 month brownfield degradation timeline, Faros AI correlation data, frontier benchmark efforts (SWE-Marathon, DeepSWE, Frontier Code)

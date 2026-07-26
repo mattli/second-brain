@@ -1,6 +1,6 @@
 ---
 created_at: 2026-06-22
-last_updated: 2026-07-19
+last_updated: 2026-07-26
 ---
 
 # Loop Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-19
 
 ## Recent Updates
 
+- **2026-07-26:** Added elune's popularization thread to [Sources](#sources) (comprehensive beginner overview; no novel concepts beyond existing coverage).
 - **2026-07-19:** Added rari's popularization thread to [Sources](#sources) (comprehensive beginner overview; no novel concepts beyond existing coverage).
 - **2026-07-19:** Added Cherny's compound engineering pattern (CLAUDE.md as team correction file) to [Memory](#compound-engineering), encoding rule to [The Durable Asset](#the-durable-asset-is-the-skill-not-the-loop), and plan-then-auto-accept to [Open vs. Closed Loops](#open-vs-closed-loops).
 - **2026-07-19:** Added Perez's loops-to-graphs topology framework and anchors concept to [The Four-Level Stack](#the-four-level-stack) and [What Loops Don't Solve](#what-loops-dont-solve).
@@ -18,7 +19,6 @@ last_updated: 2026-07-19
 - **2026-07-07:** Added Karpathy AutoResearch three-file architecture and Lutke results to [A Loop Is a Generator Wired to a Verifier](#a-loop-is-a-generator-wired-to-a-verifier); added Bilevel Autoresearch meta-loop evidence to [The Four-Level Stack](#the-four-level-stack).
 - **2026-07-07:** Added Claude Code team's four-primitive taxonomy to [The Four Primitives](#the-four-primitives) and proactive composition pattern; added token-management guidance to [Cost](#cost--the-loop-is-now-the-expensive-part).
 - **2026-07-05:** Added loop-prompt-as-final-condition framing and starter template to [The Build Order](#the-build-order--prove-harden-automate) from AI Edge's beginner guide.
-- **2026-06-30:** Added HuaShu's IEEE paper contributions: [The Engineering Stack](#the-engineering-stack) taxonomy, five-moves-to-six-parts mapping in [Five Building Blocks](#five-building-blocks), five structural anti-patterns in [Failure Modes](#failure-modes-and-anti-patterns), Stripe case study in [Loops in Production](#loops-in-production), reinforcing cost cycle in [What Loops Don't Solve](#what-loops-dont-solve), and local vs. cloud scheduling axis.
 
 
 ## The Five-Stage Lineage
@@ -356,3 +356,4 @@ The security tax scales with the [autonomy ladder](#the-autonomy-ladder) — a l
 - "From Loops to Graphs" — Carlos E. Perez (tweet/essay, Jul 2026) — loops-to-graphs topology framework: four single-loop failure modes (Goodhart's law, blindness upward, conflict, measurement decay) mapped to four topological fixes (pairing, hierarchy, arbitration, audit loops), anchors concept (ground-truth measurements, frozen rules, external "what is better" judgment), grounded vs. ungrounded as the durable axis, circular-graph failure mode (internally consistent, externally detached)
 - "Stop prompting, start looping: the Boris Cherny method" — @sunick (tweet thread, Jul 2026) ([link](https://x.com/sunaborern/status/1945139236681904131)) — Practitioner deep-dive on Cherny's full workflow: compound engineering via shared CLAUDE.md (corrections ship with fixes in same PR, ~2,500 tokens lean), encoding rule ("build the thing that will do it for you next time"), plan-then-auto-accept as bandwidth technique, specific tooling (/commit-push-pr with precomputed git state, Code Simplifier and Verify App sub-agents, PostToolUse format hook, /permissions over --dangerously-skip-permissions), tokenmaxxing philosophy (benchmark against engineer cost, not tool cost)
 - "Loop Engineering: The AI skill every builder needs in 2026" — rari / @0xwhrrari (tweet thread, Jul 2026) ([link](https://x.com/0xwhrrari/status/2065539680146182270/?rw_tt_thread=True)) — beginner-accessible popularization: five-stage cycle, six building blocks, open vs closed loops, single-agent vs fleet, token cost barrier, prompt engineer vs loop engineer skill-gap framing; synthesizes Cherny and others with no novel concepts beyond existing page coverage
+- "Loop Engineering: How to Build Agents That Improve Their Own Work" — elune / @elune0x (tweet thread, Jul 2026) ([link](https://x.com/elune0x/status/2079923329633313196/?rw_tt_thread=True)) — beginner-accessible popularization: five-stage cycle (discover/plan/execute/verify/iterate), six building blocks, open vs closed loops, single-agent vs fleet, token cost barrier, prompt engineer vs loop engineer skill-gap framing, concrete loop examples (coding/research/content/sales); synthesizes Cherny and others with no novel concepts beyond existing page coverage

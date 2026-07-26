@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-26:** Added [The Human Gate](#the-human-gate) (approval placement principle, Klarna case) and [Applied Diamond Builds](#applied-diamond-builds) (research desk, SEO machine, GTM kit) from Machina's graph engineering course
 - **2026-07-26:** Added engineering stack layering, napkin/collapse node tests, idempotency for replay, Cognition's read-many/write-one pattern, and Anthropic cost multipliers to [From Loops to Graphs](#from-loops-to-graphs), [Failure Modes](#failure-modes), [Verification](#verification-in-graphs), and [Cost Reality](#cost-reality)
 - **2026-07-26:** Added node/edge contracts, [Conditional Routing](#conditional-routing), [Controlled Cycles](#controlled-cycles), [Pipeline vs Parallel](#pipeline-vs-parallel), and [Self-Routing](#self-routing-dynamic-workflows) from Codez's 14-step roadmap
 - **2026-07-26:** Added Anthropic's build methodology (judge-first, rulebook, state on disk, independent reviewers) to [Building the Graph](#building-the-graph) and the meta-principle to [Fix the Process Not the Code](#fix-the-process-not-the-code)
@@ -58,6 +59,18 @@ Two implementation details make fan-out robust. First, the parallel barrier wait
 
 Cost-conscious design: use cheap models on boring nodes and the strong model only where judgment matters. The skeleton (fan-out → reduce → verify → synthesize) is the same whether the job is a market scan, code review, or research report.
 
+## Applied Diamond Builds
+
+Three concrete business applications of the diamond pattern, each following the same skeleton: fan-out parallel researchers → verify/skeptic pass → synthesize into one deliverable → human gate before anything ships.
+
+**Deep research desk.** A business question (pricing, market entry, offer comparison) fans out to five researchers working distinct angles in parallel. Each finding requires a source link and date. A skeptic node attacks every finding, trying to disprove it — only survivors reach the final report, ranked by confidence. The skeptic pass is the difference between research and rumor collection.
+
+**SEO content machine.** Three parallel researchers cover what top-ranking pages include, what real questions people ask, and what everyone misses. Their outputs merge into an outline, a writer drafts from the outline, and a fact-checker flags every claim without a source. The draft lands in a folder with flagged claims listed at the top — nothing publishes without human review.
+
+**Go-to-market kit.** Three researchers profile the buyer (in their own words), map their channels, and collect competitor positioning — all in parallel. Their work merges into a one-page positioning document, and the graph pauses for human approval of that positioning before proceeding. Then three writers draft landing copy, launch posts, and outreach messages in parallel from the approved positioning. A checker flags anything that drifts from the positioning doc. Every piece waits for individual approval.
+
+The pattern across all three: the graph's value comes from breadth (five angles, three research tracks), not from deeper single-thread reasoning. Each uses verification as a filter, not a rubber stamp. And the human gate sits exactly where a mistake would be expensive — before publish, before send, before launch.
+
 ## Verification in Graphs
 
 The part most implementations skip — and what separates a real graph from an expensive toy.
@@ -69,6 +82,16 @@ Critical requirement: the verifier needs a **clean context**. Give it the same c
 Cognition landed in the same place after a year of running Devin: several agents may read and weigh in, but only one agent is ever allowed to change anything. Reading is safe to parallelize because a bad opinion costs nothing until someone acts on it. Writing is where damage happens, so you keep it in one place where you can see it.
 
 Split verification three ways — is it correct? Is it current? Is the source real? Three different lenses catch what ten identical ones miss. Three named patterns: **adversarial verify** (spawn N independent skeptics prompted to refute each finding; keep only what a majority survives), **perspective-diverse verify** (give each verifier a distinct lens — correctness, security, reproducibility — because diversity catches failure modes that N identical checks never will), and **judge panel** (generate N attempts from different angles, score with parallel judges, synthesize from the winner while grafting the best of the runners-up).
+
+## The Human Gate
+
+You are the most important node in your own graph. The design question is not whether to include human approval, but where to place it.
+
+The rule: **put your approval where a mistake would be expensive to undo, not on every step.** A gate on everything makes you the bottleneck and defeats the graph's purpose of running wide without you. A gate on nothing means nobody is watching when the send, the publish, the refund, or the invoice fires. The irreversible actions — anything that touches a customer, spends money, or ships publicly — are the edges that should end at you.
+
+Even Klarna learned this in public: they went all-in on AI customer support, admitted the cost cutting went too far, and brought human service back as the premium tier. The approval isn't overhead — it's the last yes between a drafted pipeline and the world.
+
+Four safety rules keep graphs from becoming expensive accidents: every loop gets a maximum number of rounds, only one job writes to any one file, the routing lives in written steps while the AI fills the jobs, and there is always a cap on how many agents can spawn. Skip the last yes and the graph ships its first confident mistake straight to a customer.
 
 ## Building the Graph
 
@@ -189,3 +212,4 @@ This is not a free technique. It is a technique that makes a multi-year project 
 - [Graph Engineering: an Agent That Reviews Its Own Work. The Anthropic Method (Full Guide)](https://x.com/undefinedki/status/2080992300893675775/?rw_tt_thread=True) — Concrete 8-step build methodology (judge-first, rulebook, state on disk, independent reviewers, cost-based check placement, serialized expensive ops, model selection by role); "fix the process not the code" meta-principle; Bun and Krieger migration details
 - [Graph Engineering with Claude: 14-Step roadmap from 0 to graph architect](https://x.com/0xcodez/status/2079165300625330317/?rw_tt_thread=True) — Node/edge contracts, barrier mechanics, conditional routing, controlled cycles (loop-until-dry), pipeline vs parallel topology choice, self-routing dynamic workflows, worktree isolation for parallel writes
 - [Graph Engineering Clearly Explained](https://x.com/akshay_pachaar/status/2081089131808243999/?rw_tt_thread=True) — Engineering stack layering (prompt → context → harness → loop → graph), napkin/collapse node tests, state checkpointing and idempotency, Cognition's read-many/write-one pattern, Anthropic cost multipliers (4× single-agent, 15× multi-agent), 90.2% multi-agent research improvement
+- How to master graph engineering (Full Course) by Machina — Human gate principle (approval placement where mistakes are expensive to undo, Klarna case), four safety rules, three applied diamond builds (deep research desk, SEO content machine, go-to-market kit) with concrete prompts

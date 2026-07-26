@@ -21,6 +21,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 ## Tools & Frameworks
 
 - [Claude Code Skill Frameworks](tools/claude-code-skill-frameworks.md) — gstack, Superpowers, Compound Engineering; Dex personal OS; content-skill-graph; domain-specific libraries
+- [Graph Engineering](tools/graph-engineering.md) — Organizing AI work as nodes and edges for parallel execution; fake-edge test; diamond pattern (fan-out, reduce, synthesize); verification architecture; anchors; cost reality
 - [Agent Harness](tools/agent-harness.md) — Agent = Model + Harness; 12 components; memory; thin harness/fat skills; resolvers; testing pyramid; enterprise context synthesis; "Peggy" SMB case study
 - [Agentic Engineering](tools/agentic-engineering.md) — Harness design, self-improving agents, multi-agent orchestration, Managed Agents, Great Convergence, agent categorization framework, decade of agents
 - [Loop Engineering](tools/loop-engineering.md) — Recurring systems that prompt agents instead of you: five-stage lineage (ReAct → Reflexion → Ralph → /goal → orchestration), four-level stack, open vs. closed loops, four-box test, autonomy ladder, five building blocks, verification, business loops

@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-26:** Added three-layer taxonomy (harness/loop/graph = environment/feedback/flow) with nesting model and failure-diagnosis framework to [Three Engineering Layers](#three-engineering-layers-environment--feedback--flow)
 - **2026-07-26:** Added Karpathy–Cherny context engineering framework — four operations (Write/Select/Compress/Isolate), Software 3.0, context rot, three-paradigm timeline — to [Context Engineering: The Unifying Layer](#context-engineering-the-unifying-layer-karpathycherny)
 - **2026-07-25:** Added Dex's software factory failure thesis — lights-off factory experience, RL maintainability gap, benchmark blindness to code quality — to [Why Software Factories Fail](#why-software-factories-fail-dex)
 - **2026-07-23:** Added Machina's graph engineering principles — diamond pattern, stop rule, human gate, fake-edge audit — to [Graph Engineering](#graph-engineering-machina)
@@ -18,7 +19,7 @@ last_updated: 2026-07-26
 - **2026-07-19:** Added Machina's five-part agent composition template and engine-routing table to [Agent Composition Template](#agent-composition-template-machina), Raft to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-18:** Added Flurry's virtual-OS thesis — WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes — to [Agent Runtime: Virtual Operating Systems](#agent-runtime-virtual-operating-systems)
 - **2026-07-18:** Added Osmani's outer-loop accountability framework — Quality/Verdict/Answerability triad, trust-verification gap, three hidden costs, back-pressure principle, four human loops — to [Owning the Outer Loop](#owning-the-outer-loop-osmani)
-- **2026-07-17:** Added retrieval tax concept — tokens wasted on fetch-and-clean loops — and owned-index principle to [Designing for Agent Callers](#designing-for-agent-callers)
+
 
 
 ## The Delegation–Collaboration Split
@@ -113,6 +114,26 @@ Skipping these operations produces **context rot** — as a conversation grows, 
 Each layer does not replace the previous one — it builds on top. A sloppy prompt inside a perfect loop still produces sloppy work faster. But the leverage moved. Every cycle of a loop does the same four operations: **Write** (save state to disk after each run), **Select** (load only relevant state on the next cycle), **Compress** (summarize old runs, prioritize fresh results), **Isolate** (sub-agents handle subtasks in their own windows). If those four operations are bad, the loop makes them bad faster. If they are good, the loop makes them good forever. Context engineering is the foundation; the loop is the engine that runs it.
 
 This framework unifies the practitioner patterns already on this page: the [SysLS principles](#practitioner-principles-sysls) are techniques for doing Select and Isolate well; [domain knowledge as infrastructure](#domain-knowledge-as-infrastructure-cherny) is the Write operation scaled across a team; Cherny's [five building blocks](loop-engineering.md) operationalize all four operations inside a recurring loop; and the [harness](agent-harness.md) is the runtime that executes them.
+
+## Three Engineering Layers: Environment → Feedback → Flow
+
+The three disciplines that keep appearing across this page — [harness](agent-harness.md), [loop](loop-engineering.md), and [graph](graph-engineering.md) engineering — are often conflated because all three sit around the same model and all three can contain "loops." But they describe different engineering decisions, and the distinction matters once an agent leaves a demo notebook and starts touching production systems.
+
+**The clean mental model:**
+
+- **[Harness](agent-harness.md) engineering** (environment) — builds the machinery *around* the model: context injection, tool definitions, memory, sandboxes, permissions, observability. Remove the model from your architecture diagram; everything left is the harness.
+- **[Loop](loop-engineering.md) engineering** (feedback) — designs the repeated work-and-feedback cycle: what triggers another iteration, what evidence proves success, what feedback is returned on failure, and what stops the cycle. A prompt tells the model what to do *during* a call; a loop specifies what the system does *after* the call.
+- **[Graph](graph-engineering.md) engineering** (flow) — makes the workflow topology explicit: which component runs next, what branches on what condition, where work fans out in parallel, and where it must join before proceeding. The state traverses the graph; the topology enforces the control flow.
+
+**Nesting, not alternatives.** The three layers nest: the graph runs inside the harness; one or more loops live inside the graph; and the harness supplies the state, tools, and evaluators those loops need. A beautifully drawn graph is insufficient if the harness has lost its state. A well-equipped harness wastes money if its loops have no evidence or stopping rule. Carefully crafted loops are still hard to operate when branching, parallelism, and approvals are buried in ad-hoc code. The categories overlap because software layers overlap, but each gives the team a different lever to pull when the system fails [[source]](https://x.com/beamnxw/status/2081022966645535079/?rw_tt_thread=True).
+
+**Diagnose the failure, then choose the layer.** Rather than defaulting to graph complexity or adding more tools, match the engineering response to the failure type:
+
+- Agent lacks a capability, loses state, can't be audited, or acts differently across environments → **harness** problem.
+- Agent produces output but there's no evidence it's correct, no feedback on failure, or no stopping condition → **loop** problem.
+- The process has meaningful branches, parallel work, approvals, or recovery paths that are currently encoded as ad-hoc conditionals → **graph** problem.
+
+This diagnostic framing complements the [context engineering](#context-engineering-the-unifying-layer-karpathycherny) paradigm timeline (prompt → context → loop): context engineering is the foundation that all three layers depend on, while the three layers are the structural decisions about how to *apply* that context in a running system.
 
 ## Discovering Unknowns (Thariq)
 
@@ -710,3 +731,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "How to master graph engineering (Full Course)" — Machina (tweet thread, Jul 2026) — graph engineering for agent workflows: diamond pattern (fan-out/check/merge), stop rule (breadth not judgment), human gate (approval at irreversible boundary), fake-edge audit, four safety rules, three practical graph builds (research desk, SEO machine, GTM kit)
 - "Context Engineering: the Karpathy-Cherny method that replaced prompting" — vartekx (tweet thread, Jul 2026) ([link](https://x.com/vartekxx/status/2074864291568664646/?rw_tt_thread=True)) — Software 3.0 framework, four context operations (Write/Select/Compress/Isolate), context rot, three-paradigm timeline (prompt → context → loop), Cherny's context firewall as Isolate operation
 - "Why Software Factories Fail" — Dex / HumanLayer (Jul 2026) ([link](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md)) — lights-off factory failure thesis: models degrade codebase quality over time, RL training has no penalty for bad design, benchmarks blind to maintainability, 3-6 month brownfield degradation timeline, Faros AI correlation data, frontier benchmark efforts (SWE-Marathon, DeepSWE, Frontier Code)
+- "Agent Harness Engineering vs. Loop Engineering vs. Graph Engineering" — beamnxw (tweet thread, Jul 2026) ([link](https://x.com/beamnxw/status/2081022966645535079/?rw_tt_thread=True)) — three-layer taxonomy (environment/feedback/flow), nesting model (graph inside harness, loops inside graph), failure-diagnosis framework for choosing which layer to address, production checklist

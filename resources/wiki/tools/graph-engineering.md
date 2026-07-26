@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-26:** Added node/edge contracts, [Conditional Routing](#conditional-routing), [Controlled Cycles](#controlled-cycles), [Pipeline vs Parallel](#pipeline-vs-parallel), and [Self-Routing](#self-routing-dynamic-workflows) from Codez's 14-step roadmap
 - **2026-07-26:** Added Anthropic's build methodology (judge-first, rulebook, state on disk, independent reviewers) to [Building the Graph](#building-the-graph) and the meta-principle to [Fix the Process Not the Code](#fix-the-process-not-the-code)
 - **2026-07-26:** Created page with Kopadze's graph engineering explainer covering [The Diamond Pattern](#the-diamond-pattern), [Fake-Edge Test](#the-fake-edge-test), [Verification](#verification-in-graphs), [Failure Modes](#failure-modes), [When Not to Use](#when-not-to-use-a-graph), and [Anchors](#anchors)
 
@@ -19,6 +20,8 @@ Graph engineering emerged as a natural evolution from [loop engineering](loop-en
 Engineers quickly pointed out that this is a decades-old computer science concept (DAGs, dataflow programming) wearing a new name. That's the good news — a pattern that has run critical systems for thirty years is exactly what you want to trust with production work.
 
 The vocabulary is minimal: a **node** is one bounded task with a defined input and output. An **edge** is a real data dependency — one node needs what another produced, so it waits. If no data passes along the arrow, the edge is fake and the wait is wasted.
+
+Both sides carry **contracts**. A node contract means bounded input, bounded output, exactly one job — enforced with a schema so the next node can consume structured data without guessing. An edge contract names the data shape that crosses it, not just the order. Name the edge by its data and two things get easier: you can see instantly whether the edge is real, and you can swap the node on either end without breaking the graph, as long as the shape holds. A quiet win of this framing: a huge amount of what people burn model tokens on is really an edge operation (flatten, dedupe, filter) — and edges are code, not conversation. They cost zero tokens.
 
 ## Fix the Process, Not the Code
 
@@ -44,6 +47,8 @@ The dominant graph shape in production agent systems: **fan-out, reduce, synthes
 
 Claude's research feature runs exactly this: a lead plans angles, workers gather in parallel, findings get checked, and one report reaches the user. The coordination is code, not conversation — passing results between agents costs zero extra context.
 
+Two implementation details make fan-out robust. First, the parallel barrier waits for every worker before returning, so the next stage sees the complete set. Second, a worker that throws resolves to null instead of rejecting the whole batch — one flaky agent can't sink the run. Always filter out nulls before the merge step. The barrier rule: **use a barrier only when a stage genuinely needs every prior result together** — deduping across sources needs a barrier, but flattening a list is just an edge. If you wrote fan-out → transform → fan-out and that middle transform has no cross-item dependency, you should have used a pipeline and skipped the barrier entirely.
+
 Cost-conscious design: use cheap models on boring nodes and the strong model only where judgment matters. The skeleton (fan-out → reduce → verify → synthesize) is the same whether the job is a market scan, code review, or research report.
 
 ## Verification in Graphs
@@ -54,7 +59,7 @@ Models miss most of their own mistakes. A model grading its own work is too easy
 
 Critical requirement: the verifier needs a **clean context**. Give it the same conversation the worker had and it's not checking anything — it's nodding along to itself in a different font. A graph of agents sharing one context is just a single [loop](loop-engineering.md) in a costume.
 
-Split verification three ways — is it correct? Is it current? Is the source real? Three different lenses catch what ten identical ones miss.
+Split verification three ways — is it correct? Is it current? Is the source real? Three different lenses catch what ten identical ones miss. Three named patterns: **adversarial verify** (spawn N independent skeptics prompted to refute each finding; keep only what a majority survives), **perspective-diverse verify** (give each verifier a distinct lens — correctness, security, reproducibility — because diversity catches failure modes that N identical checks never will), and **judge panel** (generate N attempts from different angles, score with parallel judges, synthesize from the winner while grafting the best of the runners-up).
 
 ## Building the Graph
 
@@ -112,11 +117,33 @@ Fan out a thousand nodes, then feed all outputs into one final step — you blow
 
 ### False independence
 
-Two nodes look independent because their prompts never mention each other, but they both write to the same file or hit the same rate-limited API. That's a hidden edge. When Bun's team first fanned a big job across many agents, they shared one workspace and overwrote each other. Fix: give every worker its own isolated space and audit for shared resources, not just shared data.
+Two nodes look independent because their prompts never mention each other, but they both write to the same file or hit the same rate-limited API. That's a hidden edge. When Bun's team first fanned a big job across many agents, they shared one workspace and overwrote each other. Fix: give every worker its own isolated space — in practice, each agent runs in its own git worktree, does its work in a sandbox, and merges cleanly. Reach for worktree isolation only when nodes actually write in parallel; it's the seatbelt for the one topology that needs it, not a default tax on every run.
 
 ### Silent node failure
 
 In a chain, one failure stops everything — annoying but obvious. In a graph, one dead node among two hundred can slip into a report that looks complete. Fix: every merge step counts its inputs against the number expected and flags the gap instead of quietly running on half the data.
+
+## Conditional Routing
+
+Not every graph is fixed at design time. A **router node** inspects a result and decides which downstream path fires — classify the ticket, then branch to the right handler; check the diff size, then either do a quick review or spin up a full audit. Determinism becomes a feature here: the router's *decision* can be Claude-powered (a subagent classifies), but the *routing* is code the model wrote — so it runs the same way every time for the same classification. You get model judgment at the node and script reliability at the edge. No emergent "Claude decided to skip the audit" surprises, because the skip would have to be written into the graph.
+
+## Controlled Cycles
+
+Sometimes you don't know how big the job is until you're in it — unknown-size discovery, a bug sweep where finding one bug reveals three more. That needs a **cycle**: a controlled edge back to an earlier node. The danger is obvious — a cycle that doesn't converge is an infinite loop that spawns agents until your budget is gone.
+
+The pattern that converges is **loop-until-dry:** keep spawning finders until K consecutive rounds surface nothing new, then stop. The critical detail: dedupe against everything *seen*, not just against confirmed results. Otherwise rejected findings reappear every round, the loop never runs dry, and you've built a machine that pays to rediscover the same dead ends forever.
+
+## Pipeline vs Parallel
+
+The choice that trips everyone up. A `parallel()` barrier makes everything wait for the slowest node before the next stage starts. A `pipeline()` streams each item through all stages independently — item A can be in stage 3 while item B is still in stage 1. Fast items finish early instead of idling behind slow ones.
+
+**Default to pipeline.** Reach for a barrier only when a stage truly needs every prior result at once — a cross-set dedupe, an early-exit on the total, a prompt that compares against "the other findings." "It's cleaner code" and "the stages feel separate" are not reasons; barrier latency is real, measurable, wasted time. The shape of the graph isn't cosmetic — topology is the single biggest lever on wall-clock time.
+
+## Self-Routing (Dynamic Workflows)
+
+The final move: stop drawing the graph by hand for jobs you can't plan in advance. With dynamic workflows, you describe the objective and the model writes the orchestration script itself — decomposing the task, choosing the fan-out, spawning a coordinated fleet of subagents, and synthesizing the result. You get a graph tailored to *this* run instead of a fixed one you hoped would fit.
+
+When a run is good, save its script — version-controlled, re-runnable by name, a graph anyone who clones the repo can launch. This is where graph engineering meets [loop engineering](loop-engineering.md): the first run is exploratory (a loop), the saved workflow is the graph you reuse.
 
 ## When Not to Use a Graph
 
@@ -149,3 +176,4 @@ This is not a free technique. It is a technique that makes a multi-year project 
 
 - [Graph Engineering explained: what it is, when to use it and when not to](https://x.com/anatolikopadze/status/2080668775796314331/?rw_tt_thread=True) — Foundational explainer covering graph vocabulary, fake-edge test, diamond pattern, verification architecture, failure modes, when-not-to-use criteria, anchors, and cost reality
 - [Graph Engineering: an Agent That Reviews Its Own Work. The Anthropic Method (Full Guide)](https://x.com/undefinedki/status/2080992300893675775/?rw_tt_thread=True) — Concrete 8-step build methodology (judge-first, rulebook, state on disk, independent reviewers, cost-based check placement, serialized expensive ops, model selection by role); "fix the process not the code" meta-principle; Bun and Krieger migration details
+- [Graph Engineering with Claude: 14-Step roadmap from 0 to graph architect](https://x.com/0xcodez/status/2079165300625330317/?rw_tt_thread=True) — Node/edge contracts, barrier mechanics, conditional routing, controlled cycles (loop-until-dry), pipeline vs parallel topology choice, self-routing dynamic workflows, worktree isolation for parallel writes

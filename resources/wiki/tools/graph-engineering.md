@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-26:** Added Anthropic's build methodology (judge-first, rulebook, state on disk, independent reviewers) to [Building the Graph](#building-the-graph) and the meta-principle to [Fix the Process Not the Code](#fix-the-process-not-the-code)
 - **2026-07-26:** Created page with Kopadze's graph engineering explainer covering [The Diamond Pattern](#the-diamond-pattern), [Fake-Edge Test](#the-fake-edge-test), [Verification](#verification-in-graphs), [Failure Modes](#failure-modes), [When Not to Use](#when-not-to-use-a-graph), and [Anchors](#anchors)
 
 ## From Loops to Graphs
@@ -18,6 +19,12 @@ Graph engineering emerged as a natural evolution from [loop engineering](loop-en
 Engineers quickly pointed out that this is a decades-old computer science concept (DAGs, dataflow programming) wearing a new name. That's the good news — a pattern that has run critical systems for thirty years is exactly what you want to trust with production work.
 
 The vocabulary is minimal: a **node** is one bounded task with a defined input and output. An **edge** is a real data dependency — one node needs what another produced, so it waits. If no data passes along the arrow, the edge is fake and the wait is wasted.
+
+## Fix the Process, Not the Code
+
+Anthropic states the governing principle in a single line: **you do not fix the code, you fix the process that produced the code.** When a reviewer catches the same mistake in the third file, the wrong move is to fix three files. The right move is to add one sentence to the rules and regenerate the batch. Individual failures are the [loop's](loop-engineering.md) job. Your attention belongs on the patterns.
+
+The moment you hand-patch agent output, you are working inside the agent's job instead of building the thing that does it. Every mechanism in the build methodology below — judges, rulebooks, independent reviewers — exists to make this principle operational.
 
 ## The Fake-Edge Test
 
@@ -49,6 +56,54 @@ Critical requirement: the verifier needs a **clean context**. Give it the same c
 
 Split verification three ways — is it correct? Is it current? Is the source real? Three different lenses catch what ten identical ones miss.
 
+## Building the Graph
+
+A concrete methodology drawn from Anthropic's large-scale migrations. Everything lives in one folder; each step adds one file.
+
+### 1. Build the judge first
+
+An agent without an exit condition never finishes — it stops when it *feels* done, which is a mood, not a condition. Before writing a single instruction about the work itself, decide how a machine tells you the work is correct. For code, this wraps the test runner. For documents, it checks required sections and forbidden patterns. For data, it validates schema and row counts. When a check is too fuzzy for a script, the judge calls a model with the source material and a yes/no question and parses the answer.
+
+You have a judge when you can answer this without opening the output: *what command tells me this passed?*
+
+### 2. Validate the judge in both directions
+
+A judge that never fails is decoration. Run it against a known-good input (should pass) and a deliberately broken copy (should fail). If the broken copy passes, every green result after this point is meaningless. Do this before generating anything at scale.
+
+### 3. Write the rulebook — and grow it, never patch around it
+
+A `rulebook.md` is what every worker reads before touching anything. Build it by talking through ambiguities with the model — every time you think "well, in that case it should probably…" that's a rule. Two properties make it work: it grows (every reviewer catch that the rules didn't cover becomes a new sentence), and nothing bypasses it (the moment you hand-edit output to match what the rulebook should have said, you have two sources of truth and one of them is in your head).
+
+Jarred Sumner worked through each area of ambiguity with Claude, then ran eight subagents whose only job was reviewing for eight specific failure categories he expected from experience.
+
+### 4. Stress-test on three items, then delete the work
+
+Run three items two different ways — with and without the rulebook. Diff them. Every difference is a place where the rules are wrong, missing, or worse than the model's default. Fix the rulebook, not the files. Then delete everything produced. The goal was never the three files — it was the rules. Keeping pilot output is how the first three items follow one convention and everything else follows another.
+
+### 5. State on disk, not in the context window
+
+The change that makes long runs survivable. A queue script rebuilds the work queue from the filesystem every run — checking which output files exist to determine what's done. Nothing about progress lives in a conversation. The consequence: the process is resumable by construction. Kill it at 60%, restart, and it picks up at 60% because the disk remembers.
+
+### 6. Two independent reviewers with clean context
+
+One reviewer in the same context as the worker will agree with the worker — it has seen the reasoning and is primed to accept it. Run two fresh sessions per item, each seeing only the output and the rulebook, nothing else. No worker reasoning, no chat history.
+
+Force a rule citation on every finding. A citation turns a vague complaint into a queue item. A rule cited three times across different files is not three problems — it's one badly written rule. Disagreement between the two reviewers usually means the rulebook is ambiguous at that spot. That's an edit, not a coin flip.
+
+### 7. Place checks by cost
+
+Anything a script can verify should never be verified by a model — faster, cheaper, no opinions. Then place each check based on how long it takes. **Fast checks go inside the loop:** Mike Krieger ran the TypeScript compiler on every unit because it returns in seconds. **Slow checks go outside, in batches:** Jarred Sumner banned the Rust compiler from the loop because `cargo` takes minutes — he ran it once across the workspace, then dispatched fixer agents against the error list in parallel.
+
+Same problem, opposite decisions, both correct. The rule is not "check often" — it's match check frequency to check cost. Categorize errors (`uniq -c | sort -rn`) to see patterns rather than instances — Jarred hit thousands of Rust module errors from cyclic imports Zig had tolerated, fixed with one classification rule added to the loop.
+
+### 8. Serialize the expensive operation
+
+If one operation dominates cost or time, don't let every agent trigger it. Agents write requests to a directory; a single daemon owns the operation, batches requests, runs once, and feeds results back. Anthropic's version is a build daemon — the only process allowed to rebuild the binary. Ten agents each triggering a full rebuild means paying ten times for work that batches into one.
+
+### Model selection by role
+
+Don't run the largest model everywhere. Use cheap, fast models for workers doing the main transformation. Save the strong model for reviewers and anything that writes rules other agents will follow — a bad rule propagates into every downstream output, which is exactly where capability is worth paying for. Mike Krieger fanned out twelve subagents on Sonnet for the main migration, reserving the larger model for review.
+
 ## Failure Modes
 
 ### Context collapse
@@ -74,6 +129,8 @@ A graph buys breadth, not better judgment. Skip it when:
 
 The tell: if you can't find two jobs with no edge between them, there's no graph to build. It's a loop, and a loop is fine.
 
+**The middle path:** run a [loop](loop-engineering.md) first to learn the shape of the work, keeping notes on every correction you make. Those notes become your first rulebook. Then build the graph for the second run. The graph earns its setup cost when the same shape of work repeats hundreds of times and a machine can tell right from wrong.
+
 ## Anchors
 
 The deepest trap: build a full graph with paired checkers, audit nodes, and meta-nodes, and every node reads a report that came from the same system. Everything is consistent. Nothing is verified against reality.
@@ -84,10 +141,11 @@ Judge a graph on numbers that can't argue back and it stays grounded. Let it gra
 
 ## Cost Reality
 
-A graph costs more than a single-agent chat — substantially more. The coordination gets cheaper, but the fleet still burns tokens. The clearest public example: an engineer used this pattern to rewrite the Bun runtime (~535K lines translated into ~1M lines in eleven days) — roughly 50 workflows with up to 64 concurrent agents, costing ~$165,000 in usage, with a human designing and watching throughout [[source]](https://x.com/anatolikopadze/status/2080668775796314331/?rw_tt_thread=True).
+A graph costs more than a single-agent chat — substantially more. The coordination gets cheaper, but the fleet still burns tokens. The clearest public examples: Jarred Sumner ported Bun from Zig to Rust — a million lines of code in under two weeks with the entire existing test suite passing in CI before the merge landed, burning 5.9 billion uncached input tokens and 690 million output tokens (~$165,000 at API pricing) [[source]](https://x.com/anatolikopadze/status/2080668775796314331/?rw_tt_thread=True). Mike Krieger took a Python codebase to 165,000 lines of TypeScript over a weekend using hundreds of agents, eight phase gates, three adversarial review rounds, and a final check that diffed every command's output against the Python original.
 
-Start small, watch what a run costs, and go wider only once one has earned it.
+This is not a free technique. It is a technique that makes a multi-year project into a multi-week one. Start small, watch what a run costs, and go wider only once one has earned it.
 
 ## Sources
 
 - [Graph Engineering explained: what it is, when to use it and when not to](https://x.com/anatolikopadze/status/2080668775796314331/?rw_tt_thread=True) — Foundational explainer covering graph vocabulary, fake-edge test, diamond pattern, verification architecture, failure modes, when-not-to-use criteria, anchors, and cost reality
+- [Graph Engineering: an Agent That Reviews Its Own Work. The Anthropic Method (Full Guide)](https://x.com/undefinedki/status/2080992300893675775/?rw_tt_thread=True) — Concrete 8-step build methodology (judge-first, rulebook, state on disk, independent reviewers, cost-based check placement, serialized expensive ops, model selection by role); "fix the process not the code" meta-principle; Bun and Krieger migration details

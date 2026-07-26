@@ -1,6 +1,6 @@
 ---
 created_at: 2026-05-28
-last_updated: 2026-07-23
+last_updated: 2026-07-26
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-07-23
 
 ## Recent Updates
 
+- **2026-07-26:** Added [Shadow Testing](#shadow-testing) and [Red Teaming](#red-teaming) sections; added OSS tool references to [Eval Tooling Landscape](#eval-tooling-landscape)
 - **2026-07-23:** Added Viv/LangChain eval engineering skill coverage to [Containerized Evals](#containerized-evals-harbor), [Automated Eval Engineering](#automated-eval-engineering), and [Reward Hacking](#reward-hacking); removed stale Overview; folded three-activities framing into [Floor-Raising vs Benchmark-Maxxing](#floor-raising-vs-benchmark-maxxing)
 
 ## Floor-Raising vs Benchmark-Maxxing
@@ -180,9 +181,32 @@ The implication: end-to-end evaluation becomes even more important. If you canno
 
 Generic scores (hallucination, coherence, etc.) have one legitimate use: as a *sampling mechanism*. Sort your traces by a generic score, then manually review the highest-scoring ones to see if the score correlates with anything real. If it does, you've found a useful filter for prioritizing trace review. But never report generic scores directly to stakeholders.
 
+## Shadow Testing
+
+Shadow testing (also called shadow runs) lets a candidate agent version process real production traffic while its output is shown to nobody. The candidate runs side-by-side with the live agent; only the live agent's responses reach users. This de-risks deployments by revealing failures under real-world input distributions before any user sees the new version. Shadow runs sit between offline evals and full A/B tests — they use real traffic (unlike offline) but carry zero user-facing risk (unlike A/B). [Langfuse](https://langfuse.com/) supports tracing shadow runs, comparing candidate outputs against the live baseline, and monitoring eval results across both.
+
+## Red Teaming
+
+Red teaming attacks the system before an adversary does — probing for jailbreaks, prompt injection, data leaks, and tool abuse. Unlike other eval types that measure whether the agent does the right thing, red teaming measures whether the agent can be made to do the wrong thing. [Garak](https://github.com/NVIDIA/garak) scans LLM systems for vulnerabilities and unsafe behavior, automating adversarial probes that would otherwise require manual security expertise.
+
+## Eval Tooling Landscape
+
+A non-exhaustive map of OSS tools to eval categories covered on this page:
+
+- **Golden sets / regression suites:** [Promptfoo](https://www.promptfoo.dev/) — repeatable eval suites with CI integration; catch regressions across prompt, model, or toolset changes
+- **LLM-as-judge:** [OpenEvals](https://github.com/langchain-ai/openevals) — ready-made evaluator templates for LLM applications
+- **Multi-dimensional scoring:** [DeepEval](https://github.com/confident-ai/deepeval) — custom metrics with independent scoring per dimension (correctness, tone, safety, cost)
+- **Trajectory eval:** [AgentEvals](https://github.com/langchain-ai/agentevals) — grades agent actions, decisions, and tool calls across the full run trajectory
+- **Tool unit testing:** [MCP Inspector](https://github.com/modelcontextprotocol/inspector) — inspect and test MCP server tools and responses in isolation, no model in the loop
+- **A/B testing:** [GrowthBook](https://www.growthbook.io/) — feature flags, controlled experiments, and product analytics for splitting real traffic between agent versions
+- **Human review:** [Argilla](https://argilla.io/) — collect human feedback, review outputs, and build labeled datasets for judge calibration
+- **Shadow testing:** [Langfuse](https://langfuse.com/) — trace production and shadow runs, compare candidates, monitor eval results
+- **Red teaming:** [Garak](https://github.com/NVIDIA/garak) — automated adversarial scanning for LLM vulnerabilities
+
 ## Sources
 
 - AI Evaluations Clearly Explained in 50 Minutes (Real Example) | Hamel Husain (Peter Yang, video) — foundational source; end-to-end walkthrough of the trace-review-to-LLM-judge pipeline using Nurture Boss (AI property management assistant) as a real-world case study
 - [Your AI Product Needs Evals](https://hamel.dev/blog/posts/evals/) | Hamel Husain — three-level eval framework (unit tests → human/model eval → A/B testing); Rechat/Lucy case study; assertion-based unit tests; synthetic test generation; custom trace-viewing tools; eval infrastructure reuse for fine-tuning and debugging
 - [How to evaluate AI agents](https://howtoeval.com) | howtoeval.com — floor-raising vs benchmark-maxxing frame; golden cases; code-aware offline evals (test the agent, not the LLM); asking your agent directly; eval suite pruning; production monitoring at scale; collapse of harnesses
 - [Towards Automating Eval Engineering](https://x.com/vtrivedy10/status/2079976006644072796/) | Viv (LangChain) — Eval Engineering Skill for coding agents; Harbor containerized eval format (instruction + Dockerfile + verifier); interview-driven eval design; reward hacking patterns; continual-learning-as-data-mining loop
+- [10 agent evals every AI engineer should know](https://x.com/elune0x/status/2079923329633313196) | elune — beginner-level overview of 10 eval categories with OSS tool recommendations; shadow testing and red teaming concepts; specific tooling landscape

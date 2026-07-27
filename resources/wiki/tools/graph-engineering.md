@@ -9,6 +9,7 @@ last_updated: 2026-07-27
 
 ## Recent Updates
 
+- **2026-07-27:** Added [The Auditability Argument](#the-auditability-argument) (three commitments: immutable plan, separated layers, strict escalation) and extended [When Not to Use a Graph](#when-not-to-use-a-graph) with graph-vs-loop decision framework from CyrilXBT's graph engineering course
 - **2026-07-27:** Added [Historical Lineage](#historical-lineage), [Amdahl's Law ceiling](#amdahls-law-the-speedup-ceiling), self-recognition bias stats to [Verification](#verification-in-graphs), and [Six Ready-Made Recipes](#six-ready-made-recipes) from Argona's graph engineering course
 - **2026-07-26:** Added [The Human Gate](#the-human-gate) (approval placement principle, Klarna case) and [Applied Diamond Builds](#applied-diamond-builds) (research desk, SEO machine, GTM kit) from Machina's graph engineering course
 - **2026-07-26:** Added engineering stack layering, napkin/collapse node tests, idempotency for replay, Cognition's read-many/write-one pattern, and Anthropic cost multipliers to [From Loops to Graphs](#from-loops-to-graphs), [Failure Modes](#failure-modes), [Verification](#verification-in-graphs), and [Cost Reality](#cost-reality)
@@ -41,6 +42,32 @@ State hygiene scales with the graph. Give the shared state a typed schema. Decid
 Anthropic states the governing principle in a single line: **you do not fix the code, you fix the process that produced the code.** When a reviewer catches the same mistake in the third file, the wrong move is to fix three files. The right move is to add one sentence to the rules and regenerate the batch. Individual failures are the [loop's](loop-engineering.md) job. Your attention belongs on the patterns.
 
 The moment you hand-patch agent output, you are working inside the agent's job instead of building the thing that does it. Every mechanism in the build methodology below — judges, rulebooks, independent reviewers — exists to make this principle operational.
+
+## The Auditability Argument
+
+Most of graph engineering's practical value — parallelism, cost savings, verification — is covered elsewhere on this page. But there is a deeper, structural argument for graphs that goes beyond efficiency: **auditability**.
+
+A [loop](loop-engineering.md) hides one critical decision inside a black box: *what runs next*. Every time a loop agent decides whether to retry, escalate, or move on, that decision happens inside the model's own reasoning — invisible to you, unauditable after the fact, impossible to inspect without re-reading raw output and hoping the model explained itself honestly. A graph makes that same decision explicit, written down, inspectable before the run even starts. For low-stakes, cheap tasks, the opacity costs nothing. For long-horizon, expensive, or regulated work, it becomes the actual point of failure worth engineering around.
+
+An April 2026 arXiv paper formalized this argument around three commitments that every auditable graph rests on. The paper's own author includes a fairness disclaimer: this is an unimplemented design, and whether it delivers its promised benefits in practice remains an open empirical question. Understanding a rigorously argued proposal that hasn't yet been proven at scale is more useful than pretending it's settled.
+
+### Three Commitments
+
+**Commitment 1: Immutable Plan.** The execution plan cannot shift mid-run. Once generated and locked, it exists as one fixed version for the duration of the run. An agent that can freely revise its own plan mid-run is exactly the agent whose behavior becomes impossible to audit, because the plan you'd review afterward isn't the plan that was actually followed. Locking the plan trades flexibility for inspectability — a deliberate bet that for consequential tasks, predictable and auditable beats maximally adaptive.
+
+**Commitment 2: Separated Layers.** Planning, execution, and recovery live in three independent layers. The planning layer produces the immutable plan and does nothing else. The execution layer runs steps and reports outcomes (pass/fail with evidence), never deciding what happens on failure. The recovery layer receives failure reports and applies a defined protocol, never executing new work directly. This mirrors the same principle behind separating a Builder from a Judge in [verification](#verification-in-graphs) — the role that produces work should not be the role that evaluates it.
+
+**Commitment 3: Strict Escalation.** Recovery follows a fixed protocol instead of retrying indefinitely. The protocol defines, in advance, how many recovery attempts are permitted, what counts as success or failure for each, and exactly what happens when the limit is reached — handing control to a human, not attempting one more creative variation. The paper's analysis across 70 real-world systems found that a large share of loop implementations had no formal bounds on recovery attempts at all.
+
+### The Five-Move Turn
+
+Each turn through a commitment-based graph follows five named, inspectable states: **Plan** (decompose the task into a defined sequence), **Execute** (do the work for the current step), **Recover** (follow a defined protocol when execution fails), **Escalate** (hand control to a human at the defined limit), **Repeat** (move to the next step). Every one is a named state with defined transitions, rather than a decision happening silently inside a single model call.
+
+### Testing the Three Commitments
+
+Each commitment has its own way of quietly failing if implemented sloppily. To test immutable plan: construct a mid-run scenario where the "obviously correct" next step would deviate from the locked plan — confirm the system escalates rather than silently adapting. To test separated layers: check whether the execution layer's failure reports contain any decision about what should happen next ("this probably needs a different approach") — if so, the separation is cosmetic. To test strict escalation: feed the system a failure that neither defined recovery attempt can fix and confirm it escalates cleanly at the defined limit rather than attempting an undefined third approach.
+
+Track one metric over real usage: the rate at which runs reach the Escalated state, broken down by which specific recovery step failed. A graph escalating constantly at the same step tells you that step's protocol is miscalibrated, not that the task is uniformly hard.
 
 ## The Fake-Edge Test
 
@@ -197,6 +224,12 @@ The tell: if you can't find two jobs with no edge between them, there's no graph
 
 **The middle path:** run a [loop](loop-engineering.md) first to learn the shape of the work, keeping notes on every correction you make. Those notes become your first rulebook. Then build the graph for the second run. The graph earns its setup cost when the same shape of work repeats hundreds of times and a machine can tell right from wrong.
 
+### The Auditability–Adaptiveness Tradeoff
+
+The two patterns are not mutually exclusive, and choosing between them is a genuine tradeoff, not a maturity ladder. Reach for a loop when the task is genuinely exploratory — when you cannot predict the shape of failure in advance and the model's ability to improvise is exactly the capability you're relying on. Research, open-ended debugging where the root cause is unknown at the start, and creative work where rigid structure would hurt the output all favor a loop's adaptiveness. Reach for a graph when failure modes are enumerable in advance, when unbounded retry cycles would be expensive, and when a reviewer — compliance, security, or your future self debugging a production incident — needs to inspect what the system was capable of doing without re-reading a full transcript. Migrations, financial transactions, regulated data, and long-running unattended work all favor a graph's structure.
+
+A common pragmatic design uses a graph at the outer level for overall task structure and stop conditions, while allowing a [loop](loop-engineering.md) to run inside a single Execute state for the genuinely exploratory sub-task of figuring out how to implement one bounded step. Auditability at the level where it matters most, adaptiveness at the level where improvisation is actually valuable.
+
 ## Amdahl's Law: The Speedup Ceiling
 
 You can know the real speedup before deploying a single agent. **Amdahl's law** gives the ceiling: if a fraction *p* of the work is parallelizable and the rest is serial (the final merge, the verify, every real edge), then *N* agents buy you at most 1 / ((1 − p) + p/N) speedup. At 95% parallel, sixteen agents buy roughly 9× — not 16×. The merge-and-verify tail eats the difference. Push further and the ceiling holds: even 256 agents at 95% parallel only reach ~18.6×.
@@ -238,3 +271,4 @@ This is not a free technique. It is a technique that makes a multi-year project 
 - [Graph Engineering Clearly Explained](https://x.com/akshay_pachaar/status/2081089131808243999/?rw_tt_thread=True) — Engineering stack layering (prompt → context → harness → loop → graph), napkin/collapse node tests, state checkpointing and idempotency, Cognition's read-many/write-one pattern, Anthropic cost multipliers (4× single-agent, 15× multi-agent), 90.2% multi-agent research improvement
 - [Graph Engineering: the layer between prompts and product that nobody teaches (full course)](https://x.com/argona0x/status/2080626046903157126/?rw_tt_thread=True) — Historical lineage (Navy 1957 → Airflow 2014), Amdahl's law speedup ceiling, self-recognition bias stats (Panickssery/Zheng), six ready-made graph recipes, Claude Code workflow mechanics (16 concurrent / 1000 per run caps)
 - How to master graph engineering (Full Course) by Machina — Human gate principle (approval placement where mistakes are expensive to undo, Klarna case), four safety rules, three applied diamond builds (deep research desk, SEO content machine, go-to-market kit) with concrete prompts
+- How to master graph engineering (Full Course) by CyrilXBT — Auditability argument (loops hide "what runs next" decision); three commitments (immutable plan, separated layers, strict escalation); five-move turn structure; testing the commitments; graph-vs-loop decision framework as genuine tradeoff; April 2026 arXiv paper analysis of 70 real-world systems

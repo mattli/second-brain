@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 # LLM Knowledge Bases
@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-27:** Added cybernetics feedback loop and commonplace book lineage to [Why It Works](#why-it-works) from Dan Koe's project-based learning thesis.
 - **2026-07-26:** Added compile cost as fifth named limit to [The Scaling Wall](#the-scaling-wall); sharpened identity wall with corpus-knowledge vs user-memory two-axis framing.
 - **2026-07-23:** Added DeepWiki, AutoWiki, and OpenWiki to [Implementations](#implementations) from mem0's agent wiki landscape survey; added fidelity (compression risk) to [The Scaling Wall](#the-scaling-wall).
 - **2026-07-08:** Added [The Scaling Wall](#the-scaling-wall) section — retrieval ceiling, identity gap, and OWASP memory-poisoning risk; expanded GBrain and Claude Code entries with concrete scaling limits.
@@ -40,6 +41,8 @@ Three layers:
 ## Why It Works
 
 The tedious part of maintaining a knowledge base is the bookkeeping — updating cross-references, keeping summaries current, noting contradictions, maintaining consistency across dozens of pages. Humans abandon wikis because maintenance burden grows faster than value. LLMs don't get bored and can touch 15 files in one pass. The human's job: curate sources, direct analysis, ask good questions, think about what it all means.
+
+The deeper reason is cybernetic. Learning is a feedback loop: a goal creates an error signal, the error signal creates a filter, the filter creates relevance, and relevance creates retention. Without a project pulling specific knowledge, most captured material is noise — "mental masturbation," as Dan Koe puts it. The historical commonplace book worked for exactly this reason: Marcus Aurelius' *Meditations*, da Vinci's notebooks, and Montaigne's essays were all fuel for active creation, not archives maintained for their own sake. The digital second brain fails when it becomes a hoard; it succeeds when it serves a concrete output — writing, building, shipping. An LLM-compiled wiki inherits this principle structurally: the compile step forces synthesis (not just storage), and the query step ties knowledge to whatever the user is currently building.
 
 Related in spirit to Vannevar Bush's Memex (1945) — a personal, curated knowledge store with associative trails between documents. Bush's vision was closer to this than to what the web became. The part he couldn't solve was who does the maintenance.
 
@@ -236,3 +239,4 @@ The standard coexists with `robots.txt` (access policy) and `sitemap.xml` (exhau
 - "Obsidian + Kimi K2.6 turned my 7,000 notes into a $15,000/month research system" — Noisy (@noisyb0y1, tweet thread, Jun 2026) ([link](https://x.com/noisyb0y1/status/2066856811404087519)): Practical walkthrough of connecting Obsidian vault to Kimi K2.6 via Smart Connections plugin and MCP server; Document to Skill feature for style transfer.
 - "Second Brain and the Wall it Hits" — Mem0 / In Context #16 (tweet thread, Jul 2026): Survey of five second-brain implementations (Karpathy, Claude Code, GBrain, Obsidian plugins); the scaling wall (retrieval ceiling → identity gap); OWASP ASI06 memory poisoning risk; concrete scaling numbers from Anthropic and GBrain.
 - "The State of Agent Wikis" — Mem0 / In Context #17 (tweet thread, Jul 2026): Agent wiki landscape survey; DeepWiki, AutoWiki, OpenWiki, GBrain technique matrix; four-team convergence on markdown-in-git architecture; compile-at-ingest vs query-time RAG; wiki-is-not-memory distinction; fidelity and staleness as named limits.
+- "How to remember everything you read (stop trying)" — Dan Koe (X article, Jul 2026) ([link](https://x.com/thedankoe/status/2090178660498190810)): Cybernetics feedback loop applied to learning (goal → error signal → filter → retention); commonplace book lineage (Aurelius, da Vinci, Montaigne); project-based learning over memorization; second brain as fuel for creation, not storage.

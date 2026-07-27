@@ -1,6 +1,6 @@
 ---
 created_at: 2026-07-26
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 # Graph Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-27:** Added [Historical Lineage](#historical-lineage), [Amdahl's Law ceiling](#amdahls-law-the-speedup-ceiling), self-recognition bias stats to [Verification](#verification-in-graphs), and [Six Ready-Made Recipes](#six-ready-made-recipes) from Argona's graph engineering course
 - **2026-07-26:** Added [The Human Gate](#the-human-gate) (approval placement principle, Klarna case) and [Applied Diamond Builds](#applied-diamond-builds) (research desk, SEO machine, GTM kit) from Machina's graph engineering course
 - **2026-07-26:** Added engineering stack layering, napkin/collapse node tests, idempotency for replay, Cognition's read-many/write-one pattern, and Anthropic cost multipliers to [From Loops to Graphs](#from-loops-to-graphs), [Failure Modes](#failure-modes), [Verification](#verification-in-graphs), and [Cost Reality](#cost-reality)
 - **2026-07-26:** Added node/edge contracts, [Conditional Routing](#conditional-routing), [Controlled Cycles](#controlled-cycles), [Pipeline vs Parallel](#pipeline-vs-parallel), and [Self-Routing](#self-routing-dynamic-workflows) from Codez's 14-step roadmap
@@ -18,6 +19,10 @@ last_updated: 2026-07-26
 ## From Loops to Graphs
 
 Graph engineering emerged as a natural evolution from [loop engineering](loop-engineering.md). A loop is one agent improving one thing on repeat — try, check, adjust, repeat. A graph is a network of loops where cycles watch and correct each other instead of a single agent chasing a single metric.
+
+### Historical Lineage
+
+The lineage is concrete and traceable: the US Navy laid out the same critical-path chart to schedule the Polaris missile in 1957, `make -j` built code in parallel by 1976, MapReduce carried it into the data center in 2004, and Airflow wired it into daily pipelines by 2014 — the same directed graph of dependencies every single time, arrows that only ever flow forward. Fifty-year-old machinery that has only just reached the agents.
 
 Engineers quickly pointed out that this is a decades-old computer science concept (DAGs, dataflow programming) wearing a new name. LangGraph shipped this exact model — nodes and edges over shared state — in January 2024; Microsoft's AutoGen has GraphFlow; Google built ADK 2.0's workflow runtime on the same idea. The name is new, the practice isn't. That's the good news — a pattern that has run critical systems for thirty years is exactly what you want to trust with production work.
 
@@ -77,7 +82,7 @@ The pattern across all three: the graph's value comes from breadth (five angles,
 
 The part most implementations skip — and what separates a real graph from an expensive toy.
 
-Models miss most of their own mistakes. A model grading its own work is too easy on itself. The rule: **never let the agent that did the work check the work.** Place a separate verifier node on the edge. Its only job is to try to kill the finding before it moves on.
+Models miss most of their own mistakes. A model grading its own work is too easy on itself — and the bias is measured. GPT-4 recognizes its own writing 73.5% of the time, and that self-recognition causally drives it to prefer the very text it wrote (Panickssery, NeurIPS 2024). Grade a lineup of answers and a model scores its own higher: GPT-4 by 10%, Claude by 25% (Zheng, NeurIPS 2023). The model knows its own writing most of the time, and once it knows, it grades it kinder. The rule: **never let the agent that did the work check the work.** Place a separate verifier node on the edge. Its only job is to try to kill the finding before it moves on.
 
 Critical requirement: the verifier needs a **clean context**. Give it the same conversation the worker had and it's not checking anything — it's nodding along to itself in a different font. A graph of agents sharing one context is just a single [loop](loop-engineering.md) in a costume.
 
@@ -192,6 +197,23 @@ The tell: if you can't find two jobs with no edge between them, there's no graph
 
 **The middle path:** run a [loop](loop-engineering.md) first to learn the shape of the work, keeping notes on every correction you make. Those notes become your first rulebook. Then build the graph for the second run. The graph earns its setup cost when the same shape of work repeats hundreds of times and a machine can tell right from wrong.
 
+## Amdahl's Law: The Speedup Ceiling
+
+You can know the real speedup before deploying a single agent. **Amdahl's law** gives the ceiling: if a fraction *p* of the work is parallelizable and the rest is serial (the final merge, the verify, every real edge), then *N* agents buy you at most 1 / ((1 − p) + p/N) speedup. At 95% parallel, sixteen agents buy roughly 9× — not 16×. The merge-and-verify tail eats the difference. Push further and the ceiling holds: even 256 agents at 95% parallel only reach ~18.6×.
+
+The critical path from the fake-edge test is the floor (the fastest the work can ever finish). The serial fraction is the cap. And the "and then" test from the fake-edge step is exactly how you estimate *p*: count the independent nodes, and you have your number before a single agent runs.
+
+## Six Ready-Made Recipes
+
+The method is one — find the real edges, fan out, verify on fresh context, isolate the workers. Six concrete jobs that reuse the same skeleton with a different task line:
+
+1. **Security sweep.** One agent per file hunts a missing auth check; an independent verifier confirms every hit before it reaches the report.
+2. **Cited research.** The question splits into angles, search runs in parallel, and agents refute each other before a word gets written. (Claude Code ships this as `/deep-research` already.)
+3. **Module port.** File by file, the test suite is the gate, and every failure loops back into the queue.
+4. **Adversarial diff-review.** Route by size — a small diff gets one pass, a large diff gets the full parallel audit.
+5. **Scheduled ecosystem scan.** Save the workflow once, run it by name on a timer.
+6. **Unknown-size discovery.** Finders run in parallel, each result is checked against everything already seen, and the loop runs until two rounds come back empty. (This is the [loop-until-dry](#controlled-cycles) pattern aimed at an open-ended search.)
+
 ## Anchors
 
 The deepest trap: build a full graph with paired checkers, audit nodes, and meta-nodes, and every node reads a report that came from the same system. Everything is consistent. Nothing is verified against reality.
@@ -214,4 +236,5 @@ This is not a free technique. It is a technique that makes a multi-year project 
 - [Graph Engineering: an Agent That Reviews Its Own Work. The Anthropic Method (Full Guide)](https://x.com/undefinedki/status/2080992300893675775/?rw_tt_thread=True) — Concrete 8-step build methodology (judge-first, rulebook, state on disk, independent reviewers, cost-based check placement, serialized expensive ops, model selection by role); "fix the process not the code" meta-principle; Bun and Krieger migration details
 - [Graph Engineering with Claude: 14-Step roadmap from 0 to graph architect](https://x.com/0xcodez/status/2079165300625330317/?rw_tt_thread=True) — Node/edge contracts, barrier mechanics, conditional routing, controlled cycles (loop-until-dry), pipeline vs parallel topology choice, self-routing dynamic workflows, worktree isolation for parallel writes
 - [Graph Engineering Clearly Explained](https://x.com/akshay_pachaar/status/2081089131808243999/?rw_tt_thread=True) — Engineering stack layering (prompt → context → harness → loop → graph), napkin/collapse node tests, state checkpointing and idempotency, Cognition's read-many/write-one pattern, Anthropic cost multipliers (4× single-agent, 15× multi-agent), 90.2% multi-agent research improvement
+- [Graph Engineering: the layer between prompts and product that nobody teaches (full course)](https://x.com/argona0x/status/2080626046903157126/?rw_tt_thread=True) — Historical lineage (Navy 1957 → Airflow 2014), Amdahl's law speedup ceiling, self-recognition bias stats (Panickssery/Zheng), six ready-made graph recipes, Claude Code workflow mechanics (16 concurrent / 1000 per run caps)
 - How to master graph engineering (Full Course) by Machina — Human gate principle (approval placement where mistakes are expensive to undo, Klarna case), four safety rules, three applied diamond builds (deep research desk, SEO content machine, go-to-market kit) with concrete prompts

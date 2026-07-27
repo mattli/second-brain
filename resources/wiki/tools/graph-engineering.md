@@ -9,6 +9,7 @@ last_updated: 2026-07-27
 
 ## Recent Updates
 
+- **2026-07-27:** Added Jey's 6-step practitioner summary to [Sources](#sources)
 - **2026-07-27:** Added [The Auditability Argument](#the-auditability-argument) (three commitments: immutable plan, separated layers, strict escalation) and extended [When Not to Use a Graph](#when-not-to-use-a-graph) with graph-vs-loop decision framework from CyrilXBT's graph engineering course
 - **2026-07-27:** Added [Historical Lineage](#historical-lineage), [Amdahl's Law ceiling](#amdahls-law-the-speedup-ceiling), self-recognition bias stats to [Verification](#verification-in-graphs), and [Six Ready-Made Recipes](#six-ready-made-recipes) from Argona's graph engineering course
 - **2026-07-26:** Added [The Human Gate](#the-human-gate) (approval placement principle, Klarna case) and [Applied Diamond Builds](#applied-diamond-builds) (research desk, SEO machine, GTM kit) from Machina's graph engineering course
@@ -272,3 +273,4 @@ This is not a free technique. It is a technique that makes a multi-year project 
 - [Graph Engineering: the layer between prompts and product that nobody teaches (full course)](https://x.com/argona0x/status/2080626046903157126/?rw_tt_thread=True) — Historical lineage (Navy 1957 → Airflow 2014), Amdahl's law speedup ceiling, self-recognition bias stats (Panickssery/Zheng), six ready-made graph recipes, Claude Code workflow mechanics (16 concurrent / 1000 per run caps)
 - How to master graph engineering (Full Course) by Machina — Human gate principle (approval placement where mistakes are expensive to undo, Klarna case), four safety rules, three applied diamond builds (deep research desk, SEO content machine, go-to-market kit) with concrete prompts
 - How to master graph engineering (Full Course) by CyrilXBT — Auditability argument (loops hide "what runs next" decision); three commitments (immutable plan, separated layers, strict escalation); five-move turn structure; testing the commitments; graph-vs-loop decision framework as genuine tradeoff; April 2026 arXiv paper analysis of 70 real-world systems
+- [Graph Engineering: The 6 steps to run agents as a team](https://x.com/0xJeyx) by Jey — Practitioner-oriented 6-step summary (one loop first, draw before building, spawn from one prompt, independent reviewers, one external check, grow only when work demands); concise restatement of core principles already covered in depth above

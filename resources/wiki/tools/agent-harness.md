@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-07-14
+last_updated: 2026-07-28
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-07-14
 
 ## Recent Updates
 
+- **2026-07-28:** Added David Pan's company-level build-vs-buy framework to [Choosing a Harness](#choosing-a-harness)
 - **2026-07-14:** Added Alex Ker's harness taxonomy and eight-property diagnostic to [Choosing a Harness](#choosing-a-harness)
 - **2026-07-12:** Added Walking Labs harness engineering course to [Sources](#sources)
 
@@ -57,6 +58,10 @@ Alex Ker's decision framework starts from the role of the user:
 8. **Hackability spectrum** — the opinionated-vs-composable tradeoff. More opinions → less friction, easier enterprise adoption. More composability → higher ceiling, more pitfall surface. The sweet spot: shallow failure troughs, uncapped productivity ceiling.
 
 The gaps in this diagnostic tell you whether vanilla is sufficient or you need to build. Concrete recommendations age poorly as harnesses ship weekly; the diagnostic questions are timeless.
+
+**Company-level build-vs-buy** (David Pan, Cursor): Ker's framework addresses individual harness selection; Pan argues the same logic applies at org scale for coding agent *infrastructure* — the VM orchestration, environment management, and reliability layer underneath the harness. His case for buying rests on three observations: (1) *The differentiated part is portable.* The context layer — rules, skills, MCP configs, verification workflows — is what makes an agent system feel like yours, and none of it ties you to a vendor. Stripe proved this by standardizing on Cursor's rule format so one set of rules guides their internal minions, Cursor, and [Claude Code](claude-code-skill-frameworks.md) alike. (2) *The build is bigger than it looks.* Getting an agent running in a VM is a weekend; reaching four-nines reliability and sub-10-second environment startups is a multi-quarter infrastructure project. Then come the non-differentiating layers: multi-surface integration (IDE, CLI, web, mobile, Jira), governance (user management, token analytics, budget controls, audit trails), and incident accountability. (3) *The state of the art won't sit still.* Fine-tuned code models got lapped by the next frontier release, RAG stacks lost to long context and agentic search, custom integrations became MCP configs overnight. A scaled vendor absorbs that churn across thousands of customers; an internal devex team bears it as a tax on an already-full roadmap.
+
+Three conditions tip the scales toward building: your product *is* agent infrastructure (Sierra sells AI agents — dogfooding a coding agent system is in their DNA); you already own the hard parts (Stripe ran their minions on devboxes they'd spent a decade perfecting, so wrapping an agent around them was less work than bending them to fit an off-the-shelf product); or you'll fund it like a product indefinitely — a staffed team with a roadmap, on-call, and a budget that survives reorgs. Even then, Pan recommends starting from existing building blocks (e.g., a model-agnostic agent SDK) so the team's effort goes into the parts unique to them.
 
 ## Three Levels of Engineering
 
@@ -465,3 +470,4 @@ See also: [Agentic Engineering](agentic-engineering.md), [Claude Code Skill Fram
 - "Deriving Agent Harnesses from First Principles" — Viv (Vivek Trivedy), LangChain (tweet thread, Jun 2026) ([link](https://x.com/Vtrivedy10)) — systematic derivation of harness components from model limitations; filesystem as foundational primitive; context rot mitigations (compaction, tool call offloading, progressive disclosure); apply_patch overfitting as coevolution example; Terminal Bench 2.0 harness variance data
 - "Learn Harness Engineering" — Walking Labs (course, 2026) ([link](https://walkinglabs.github.io/learn-harness-engineering/)) — structured course teaching harness engineering: constraining agent behavior with rules/boundaries, maintaining context across sessions, preventing premature victory declaration, verification via full-pipeline tests, and runtime observability/debugging
 - "The architect's guide to harness engineering" — Alex Ker (tweet thread, Jul 2026) ([link](https://x.com/thealexker)) — buy/customize/build decision framework, three-tier harness taxonomy (frameworks, extensible, turnkey), eight diagnostic properties for harness-task fit, cache-aware model routing
+- "Stripe and Sierra built their own coding agent systems. You probably don't need to." — David Pan, Cursor (tweet thread, Jul 2026) — company-level build-vs-buy framework for coding agent infrastructure: context-layer portability, hidden build costs (reliability, governance, accountability), state-of-art churn as tax, three conditions favoring build

@@ -2,6 +2,7 @@
 created_at: 2026-04-05
 last_updated: 2026-07-28
 
+
 ---
 
 # AI Startup Distribution
@@ -10,6 +11,7 @@ last_updated: 2026-07-28
 
 ## Recent Updates
 
+- **2026-07-28:** Added a16z's Lighthouse vs Landgrab enterprise GTM framework to [Lighthouse vs. Landgrab: Choosing Your Enterprise Sales Motion](#lighthouse-vs-landgrab-choosing-your-enterprise-sales-motion) — buyer exposure / social proof diagnostic, case studies (Harvey, Hebbia, Stuut, Decagon), pitfalls, and sequencing.
 - **2026-07-28:** Expanded [AI Marketing Agents](#ai-marketing-agents-autonomous-go-to-market) with Cody Schneider's Facebook ads agent workflow — Andromeda targeting, creative generation pipeline, ad optimization loop, entropy fixes, WordPress plugin opportunity, and "agent jockey" role.
 - **2026-07-21:** Expanded [X (Twitter) as Launch Channel](#x-twitter-as-launch-channel) with Fama/Okara's full viral launch playbook — preparation sequence, influencer recruitment process, hook writing, and iterative launch compounding.
 - **2026-06-24:** Added Josh Elman's consumer platform-wave thesis to [The Consumer AI Opportunity Window](#the-consumer-ai-opportunity-window); removed stale Overview; folded framing into TLDR.
@@ -53,6 +55,28 @@ Greg Isenberg's framework for post-vibe-coding distribution:
 7. **Voice memo → content pipeline** — 30-minute voice memo into Claude → five tweet threads, three LinkedIn posts, one newsletter. Weekly.
 
 For founders seeking capital alongside customers, private market access is democratizing — see [Venture Capital Access](venture-capital-access.md) for USVC and the shift toward retail access to frontier AI company stakes.
+
+## Lighthouse vs. Landgrab: Choosing Your Enterprise Sales Motion
+
+Enterprise AI companies face a binary GTM choice that most founders get wrong by defaulting to whichever feels more prestigious. The choice isn't about product quality — it's about what the buyer needs to hear before signing [[source]](https://www.a16z.news/p/lighthouse-or-landgrab-how-to-pick).
+
+**Lighthouse** is for category creation — when the buyer has no mental model for what you're selling, no incumbent to compare against, and real career risk if the bet goes wrong. You win a few marquee customers whose adoption signals the category is real. [Harvey](vertical-ai.md) broke into AI legal work this way: law firms wouldn't touch it until Allen & Overy signed in late 2022 and Paul Weiss followed in early 2023 — then the market moved. Hebbia ran the same play in financial services, landing KKR and BlackRock before expanding to 40%+ of the largest asset managers by AUM. Lighthouse selling is founder-led, high-touch, and slow (3–6 month cycles, six- to seven-figure ACVs). The team that closes the deal often delivers the product.
+
+**Landgrab** is for known problems where the buyer already understands the category and a mistake won't end their career. The pitch is "I replace Y at lower cost" — math closes the deal, not logos. Speed is existential because you're racing incumbents adding AI to existing products (Rampell's "get distribution before the incumbent gets innovation"). Stuut (accounts receivable automation) went wide in the lower middle market — manufacturers and distributors in Michigan, Ohio, Texas — deploying in under a week against 6–18 months for traditional rollouts, with customers seeing 40% more cash flow and 70% fewer manual tasks [[source]](https://www.a16z.news/p/lighthouse-or-landgrab-how-to-pick). Decagon scaled from 0 to 8 figures ARR in 18 months by selling customer support automation on rapid deployment and immediate ROI, signing 100+ new enterprise customers in 2025 alone.
+
+**Two diagnostic questions** determine which game you're in:
+
+1. **How exposed is the buyer who signs?** Exposure climbs with three things: regulatory liability (vendor mistake = buyer's compliance problem), system-of-record replacement vs. additive tool, and whether output faces the outside world. In law and finance all three run hot — one fabricated figure can misprice a position. For an AR controller, the worst case is a misstated invoice that gets corrected.
+
+2. **Does social proof travel?** In concentrated, status-driven markets (finance, law), firms watch each other obsessively and whoever went first has done the risk assessment for everyone behind them. In fragmented markets, the controller in Des Moines never hears which brand uses your product — each sale starts from zero.
+
+High exposure + proof travels = lighthouse. Low exposure + proof doesn't travel = landgrab. The other two corners: proof travels but isn't required → product spreads itself bottom-up (dev tools pattern); buyer needs proof but logos don't reach them → hard market.
+
+**Common pitfalls.** Lighthouse founders become hostage to marquee logos — fighting over the same 500 accounts while buyers extract concessions. Worst case: a prestigious logo that teaches nothing replicable and underpays. Pilot purgatory (six-month POCs that never convert) and over-rotating on one customer's requests until the product fits nobody else are the other killers. Landgrab founders die of indigestion — selling at volume without qualification discipline creates hundreds of underwater accounts. Scaling coverage before the product is ready creates detractors at scale.
+
+**Sequencing matters.** The best companies move from lighthouse to landgrab deliberately: get a bellwether in one vertical, dominate that vertical, then find adjacent verticals. Affirm's breakthrough was Casper — one mattress company led to every mattress company, then exercise equipment, then anything big-ticket and financed over time. The signal you've earned the transition: buyers approach with allocated budgets asking for a demo, not asking who went first.
+
+When the two diagnostic questions point in opposite directions, exposure wins every time — a buyer can see the math and still refuse to move until someone credible goes first.
 
 ## Organic UGC as Distribution Moat
 
@@ -336,4 +360,5 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "ok this startup is cool but…" — Andrew Chen (tweet, Apr 2026) — founders building despite big-company threats
 - "how to cold DM anyone: complete basics" — Founders Inc (tweet thread, May 2026) — cold DM basics, 181w
 - "How to do a viral launch on X" — Fama (tweet thread, Jul 2026) — Full viral launch playbook: preparation sequence, product readiness rule (30s/60s), press release as source of truth, supporter coordination, influencer recruitment DIY process, hook writing, iterative launch compounding (Okara case study: 14M views, 3M visitors)
+- "Lighthouse or Landgrab? How to Pick Your AI Sales Strategy" — Joe Schmidt IV, Julian Marx (a16z, Jul 2026) ([link](https://www.a16z.news/p/lighthouse-or-landgrab-how-to-pick)) — Two enterprise GTM playbooks: lighthouse (category creation, social proof) vs landgrab (known problem, ROI math); buyer-exposure and social-proof-travel diagnostic; case studies (Harvey, Hebbia, Stuut, Decagon); pitfalls; sequencing from lighthouse to landgrab
 - "The World-Building Doors Are Open, Again." — Josh Elman (Substack, 2026) ([link](https://www.joshelman.com/p/the-world-building-doors-are-open)) — Consumer platform-wave thesis: AI + Gen Alpha reopening world-building doors; toys-to-platforms pattern; harnesses/loops/context over models

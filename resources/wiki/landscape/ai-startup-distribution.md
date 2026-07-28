@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-21
+last_updated: 2026-07-28
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-07-21
 
 ## Recent Updates
 
+- **2026-07-28:** Expanded [AI Marketing Agents](#ai-marketing-agents-autonomous-go-to-market) with Cody Schneider's Facebook ads agent workflow — Andromeda targeting, creative generation pipeline, ad optimization loop, entropy fixes, WordPress plugin opportunity, and "agent jockey" role.
 - **2026-07-21:** Expanded [X (Twitter) as Launch Channel](#x-twitter-as-launch-channel) with Fama/Okara's full viral launch playbook — preparation sequence, influencer recruitment process, hook writing, and iterative launch compounding.
 - **2026-06-24:** Added Josh Elman's consumer platform-wave thesis to [The Consumer AI Opportunity Window](#the-consumer-ai-opportunity-window); removed stale Overview; folded framing into TLDR.
 
@@ -212,6 +213,30 @@ Cody Schneider (co-founder, Graphed) demonstrates the emerging pattern of **pers
 
 **Broader applications:** Facebook/Google ad management (auto-kill high-CPM ads), social media research/scheduling/analytics, cold outbound (find accounts → extract emails via Apollo API → validate → add to Instantly → manage responses).
 
+### Facebook Ads Agent (Full Build)
+
+Schneider's second appearance on the Startup Ideas Podcast (Jul 2026) laid out the complete build for an autonomous Facebook ads agent — the "broader applications" bullet above, fully realized.
+
+**Why Facebook is now the best B2B ad channel.** Andromeda, Facebook's new ad algorithm, killed interest-based targeting. The AI reads your creative (image, text, video, script) and your landing page, then decides who sees the ad. This means hyper-specific ads work: Schneider runs ads targeting problems maybe ten people in the US have that week, and Facebook finds them.
+
+**The five-step build:**
+
+1. *Research the pain* — Use Perplexity to scrape Reddit for real complaints and outcomes from your target customer. Rank-stack by frequency, pull the top three. Ads are about those pains, not your features.
+2. *Generate creative* — Statics via Google Nano Banana (fed competitor ad examples). Video via HeyGen or Seedance. Kai AI holds image and video models in one place. Run a vision model over outputs to check brand style guides.
+3. *Publish via Facebook Marketing API* — Use the API for writes only (publish, pause, promote). Accounts get banned when people pull hundreds of millions of rows via the API, which violates TOS.
+4. *Build the data layer* — Airbyte (pipeline) + ClickHouse (warehouse), both open source. Pipe in Facebook Ads, Google Analytics, product analytics, HubSpot, Stripe. This ties a specific ad to actual revenue.
+5. *Host the agent* — Heroku, Railway, any cloud. An agent is code: a live data stream, a decision loop with an LLM inside it, and one outcome to optimize for.
+
+**The optimization loop:** Two ad sets per day, five ads per set. Run two to three days for initial signal. Kill worst performers. Winners enter a pool competing against each other for budget. Every ad ever made goes into a database (the JSON prompts, the scripts) — the agent studies that record and improves what it creates next. Data warehouse → agent → Facebook Ads → data warehouse.
+
+**The entropy problem.** Agents get stuck thinking the same way. Two fixes: (1) pull competitor ads from Facebook's Ads Library and feed them in as new creative DNA, (2) mine YouTube and podcast transcripts in your category for fresh angles. Viralo does a version of this for TikTok trends via API.
+
+**What this replaces:** Agency retainers costing tens of thousands per month; 100 ads used to take two weeks. Now: an hour and a half, and you own the system. Greg Isenberg's warning: most people run a few ads, watch them fail, and quit. The move is to change the positioning 10–20 times on the same ad. The winner is usually the one you'd have bet against.
+
+**The WordPress plugin opportunity.** 43% of the internet runs on WordPress. Almost nobody is building AI-first WordPress tools. The play: find plugins with proven demand and no AI layer, then build the AI-first version. Yoast SEO → an agent that writes meta, restructures content, and adds internal links itself. WPForms → a conversational agent that qualifies leads. WooCommerce → an AI storekeeper writing product descriptions and abandoned cart flows.
+
+**The "agent jockey" role.** Schneider's term for what marketers are becoming — not prompt engineers, not traditional marketers, but people who run and tune agents. Domain knowledge written into code. He calls himself non-technical and built it anyway: hand Claude Code a transcript of the process, ask it to walk you through the build, and go.
+
 ## Digital Product Creation (The Creator-to-Product Pipeline)
 
 Matt Gray (Founder OS) outlines a 4-phase system for experts/creators to launch digital products:
@@ -301,6 +326,7 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "How I spent 30 minutes a day on Reddit to get my first 100 customers" — Tim Jayas (tweet thread, Apr 2026)
 - "The Cold Outreach Bible" — Adrianna Lakatos (tweet thread, Apr 2026) ([link](https://x.com/adriannalakatos))
 - "AI agents for marketing are here..." — Cody Schneider (tweet/video, Apr 2026) ([link](https://x.com/codyschneidertx))
+- "Build Marketing Agents" — The Startup Ideas Podcast / Cody Schneider (tweet thread, Jul 2026) — Facebook ads agent full build: Andromeda targeting, creative generation pipeline (Nano Banana, HeyGen, Seedance), Airbyte+ClickHouse data layer, ad optimization loop, entropy fixes, WordPress plugin AI opportunity, "agent jockey" role
 - "Steal My Digital Product System" — Matt Gray (tweet thread, Apr 2026) ([link](https://x.com/mattgray1))
 - "Marketing is dead. Long live The Distribution Engineer." — GRITCULT (tweet thread, Apr 2026) ([link](https://x.com/gaborcselle))
 - "Most companies are laying off marketers. Smart ones are replacing the org chart entirely." — ericosiu (tweet, Apr 2026) ([link](https://x.com/ericosiu)) — Full 2x2 marketer classification and 100x marketer framework

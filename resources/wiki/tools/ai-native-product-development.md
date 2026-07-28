@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-23
+last_updated: 2026-07-28
 ---
 
 # AI-Native Product Development
@@ -9,12 +9,12 @@ last_updated: 2026-07-23
 
 ## Recent Updates
 
+- **2026-07-28:** Added Dianne Penn's product-research integration model — feedback decomposition, building for 2028, verification over authorship, PM role endurance — to [Product Leadership Inside the Research Lab](#product-leadership-inside-the-research-lab-dianne-penn)
 - **2026-07-23:** Added Christine Zhu's systems thinking framework — Meadows-derived truths, product decomposition for AX, contracts over features, correction loops — to [Systems Thinking for AI Products](#systems-thinking-for-ai-products)
 - **2026-07-14:** Added Anish A's "paintbrush thesis" — AI as creation-over-consumption technology, execution cost collapse enabling individuality at scale — to [The Paintbrush Thesis](#the-paintbrush-thesis-creation-over-consumption)
 - **2026-07-13:** Added Leon Lin's three-tier AI design workflow (skills → inspiration board → component-by-component) to [The AI-Generated Sameness Problem](#the-ai-generated-sameness-problem)
 - **2026-07-07:** Added Lesse's "attack the hard part" decision framework and Stripe/Anthropic case studies to [Attacking the Hard Part](#attacking-the-hard-part)
 - **2026-07-01:** Added Gothelf's behavior-based OKR framework for AI features to [Measuring AI Products Through Human Behavior](#measuring-ai-products-through-human-behavior)
-- **2026-06-24:** Added Dewey's reflective thought framework for hypothesis-driven PM to [Hypothesis-Driven PM](#hypothesis-driven-pm-dewey); removed stale Overview (folded framing into TLDR)
 
 ## Anthropic's PDLC ("Docs to Demos")
 
@@ -53,6 +53,24 @@ Mike Krieger (Anthropic, head of Labs, co-founder of Instagram) describes the ne
 **Non-technical builders.** The most transformative shift: people outside engineering building real tools. A recruiter described it as "the first time in my life where the thing in my head and the thing in the world are right next to each other." A go-to-market team member has been iterating on a deeply integrated workflow tool for months, now deploying it across the entire GTM organization. The ceiling of complexity that non-technical builders can reach and sustain has risen dramatically with each model generation.
 
 **Software engineering is different, not over.** What's changed: the act of writing code, the PM/eng split, the cycle time from idea to prototype. What hasn't: ownership, incident response, understanding production behavior, the craft of deciding what to build and whether it's good. Engineers still dream about elegant solutions — that feeling of loss is real — but they also ship "insane amounts of work." Both feelings coexist.
+
+## Product Leadership Inside the Research Lab (Dianne Penn)
+
+Dianne Penn (Anthropic, head of product for research and labs, Jul 2026) gives the product leadership complement to Krieger's engineering perspective. Where Krieger describes delegation and verification patterns, Penn describes what it means to do product work when your product *is* the model — translating user feedback into research direction, planning against future model capabilities, and why the PM role becomes more essential, not less, as AI matures.
+
+**Feedback decomposition as core PM skill.** When a user reports "Claude hallucinated," that feedback is too vague for a researcher to act on. Penn's team decomposes the trajectory: did Claude fail to call the right tool, or did it call the right tool but extract the wrong facts? The first is a tool-use training problem; the second is a retrieval or grounding problem. Each routes to a different research team with different intervention methods. The PM's job is bridging the gap between what users experience (vague frustration) and what researchers need (actionable, grounded problem definitions). This decomposition work — understanding why a user gave specific feedback at a consented, trajectory level — is a significant portion of the team's time.
+
+**Model-product co-evolution.** Penn describes the Opus 4.5 moment as proof that model capability and product experience are multiplicative, not additive. "Opus 4.5 wouldn't have had that moment without a product like Claude Code, and Claude Code wouldn't have had that type of adoption accelerated without Opus 4.5." The implication for product teams: a model release isn't just a capability bump — it's a product moment that needs a vehicle. The PM's job includes identifying what *product surface* will unlock the model's new capability for users, not just shipping the model and hoping adoption follows.
+
+**Building for 2028.** Penn asks her team a forcing question: "Let's say Claude 8 comes around. What changes in what users do? What does that mean for how you're building today?" This inverts the normal PM planning horizon. Instead of building for current model capabilities, the team plans backward from anticipated future capabilities — investing in product surfaces and user patterns that will become dramatically more powerful as models improve. Gary Tan's framing captures the corollary for users: spending $100,000 a year in tokens today means "living the way somebody in 2028 is going to live," because token costs will drop while the workflows compound.
+
+**Emergent capabilities and product overhang.** Models develop capabilities before anyone — including the team that trained them — knows about them. Penn describes "product overhang and user overhang" on current models: latent capability that existing product surfaces haven't yet exposed. Discovery is part of Anthropic's DNA — teams actively probe research models to find what new behaviors emerged from training, then design product experiences around those discoveries. The eval infrastructure doubles as a capability discovery tool, not just a quality gate.
+
+**Verification over authorship.** Penn reframes the "will AI replace writing?" question: the lens should be who's *verifying*, not who's *writing*. For standardized outputs like monthly business reviews, she wants full delegation to Claude — the asymmetric value is in the thinking and judgment, not the prose. For work where personal judgment matters (crucial conversations, strategic decisions), she forms her own point of view first, then uses Claude as a sparring partner. The decision of what to delegate versus what to own becomes a product-prioritization exercise applied to your own cognitive work.
+
+**AI as thinking partner, not just doer.** Penn uses Claude for management coaching — a custom skill built on *Crucial Conversations* principles that helps her prepare for difficult conversations and calibrate her communication in context-switching-heavy days. The deeper point connects to [AI Safety & Interpretability](../models-safety/ai-safety-interpretability.md): alignment research makes Claude a *better* thinking partner because a model that knows when to push back produces better outcomes than one that just agrees. "A thinking partner doesn't just agree with you. It should add to you, and you should come away having better ideas because you worked with Claude."
+
+**The PM role endures — and grows.** Penn directly addresses the "do we still need PMs?" question that the [Miura-Ko observations](#ai-native-companies-in-practice-ann-miura-ko) raised. Her answer: user-centric people who go deep into understanding what users are trying to accomplish, bubble that up in an actionable manner, and do the relentless work to close the loop — "that to me is a core of a product person. I actually think we need more of that." The technology layer is growing, and making that technology impactful requires going deeper, being more curious, and being more hands-on. When models are capable enough to build anything, the hard-earned [judgment](../concepts/knowledge-work-future.md) of what to build and how to ground it in user reality is the skill that compounds.
 
 ## Community Adoption
 
@@ -543,4 +561,5 @@ This connects directly to Brier's [Software Company, Not Software Factory](#soft
 - "You can't avoid the hard part" — Katelyn Lesse (tweet, Jul 2026) ([link](https://x.com/KatelynLesse/status/2048092458685501837)) — decision framework for bold vs. incremental paths, Stripe v2 Accounts and Anthropic Managed Agents case studies, leadership accountability for big swings
 - "How To Actually Design With AI" — Leon Lin (tweet, Jul 2026) — three-tier AI design workflow (design skills / inspiration board / component-by-component), taste as the gap AI cannot fill, reference-driven taste development
 - "The Most Human Technology Ever Made" — Anish A / a16z (Jul 2026) ([link](https://anisha16.substack.com/p/the-most-human-technology-ever-made)) — AI as paintbrush technology (creation over consumption), execution cost collapse, non-engineer builders (electrician, plumber), individuality at scale, bobo merger extended
+- "Why the best product leaders are building for 2028" — Dianne Penn / Lenny's Podcast (video, Jul 2026) — product-research integration at Anthropic, feedback decomposition as PM skill, model-product co-evolution (Opus 4.5 × Claude Code), building for future model capabilities, verification over authorship, AI as thinking partner via alignment, PM role endurance argument
 - "What systems thinking looks like for PM'ing AI products" — Christine Zhu (tweet, Jul 2026) ([link](https://x.com/christinezhuu)) — Meadows-derived systems truths for AI PM, product decomposition for AX (agent experience), contracts over features, correction loops as compounding moat, pace layers velocity argument

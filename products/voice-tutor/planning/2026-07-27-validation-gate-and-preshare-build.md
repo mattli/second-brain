@@ -44,6 +44,11 @@
 
 ---
 
+> **Spec (2026-07-28):** sections 3 + 4 are transcribed and made buildable in
+> [[2026-07-28-identity-and-isolation-spec]] (surface inventory, `session-log.jsonl`
+> `user_id` schema + backfill, profile/memory migration, cookie + voice-session
+> identity plumbing). Pre-plan, awaiting review.
+
 ## 3. Identity: link + cookie, not accounts
 
 **Unbundle "account":** identity (which rows/files are whose), access control (strangers out), authentication (passwords/resets/email). For 3 recruited testers: need the first, sort of the second, not the third. Building login for 3 friendly testers is infrastructure ahead of evidence — real auth's trigger is a tester Matt *didn't* personally recruit, or genuinely sensitive content.

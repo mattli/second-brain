@@ -105,4 +105,4 @@
 - Self-serve upload as a hard gate requirement — leaning yes, unconfirmed.
 - Sequencing within the week: identity+isolation first (unblocks everything) vs. coverage bar first (testable solo immediately)?
 - Does the coverage bar's ended-view placement need any claim-coverage signal that doesn't exist yet, or does the recap's "what we covered" section suffice for v0? (If the latter, the bar may be cheaper than assumed; if it needs per-claim state, it brushes against the deferred mark_claim machinery — check before speccing.)
-- Where do tester-facing docs live (a one-page "how to use this" for the 3 recruits)?
+- Where do tester-facing docs live (a one-page "how to use this" for the 3 recruits)? **The one-pager must disclose that sessions are recorded, transcribed, and analyzed** (decided 2026-07-28 alongside [[2026-07-28-identity-and-isolation-spec]]).

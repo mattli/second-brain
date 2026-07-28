@@ -1,7 +1,8 @@
 ---
 title: Per-User Identity + Isolation — Build Spec
 date: 2026-07-28
-status: spec (pre-plan) — awaiting Matt's review before planning
+status: spec APPROVED 2026-07-28 (with additions §5.4 reversal + §8.0 hash pin; §9 resolved) — plan written
+plan: "[[2026-07-28-identity-and-isolation-plan]]"
 owns_decisions_from: "[[2026-07-27-validation-gate-and-preshare-build]] §3 (identity), §4 (isolation)"
 scope: pre-share build items #1 (identity threading) + #2 (isolation)
 ---
@@ -279,6 +280,26 @@ HttpOnly cookie anyway). Identity is **stamped server-side**:
 
 ### 5.4 Artifacts / transcripts / analyses
 
+**This is a deliberate reversal of yesterday's (2026-07-27) flat-folder decision
+for `session-analyses/`.** That change moved to date-first flat filenames
+(`session-analysis-<YYYY-MM-DD-HHMMSS>-<shortid>.md`) with no subdirs. Per-user
+isolation now supersedes it: analyses (and artifacts/transcripts) move under a
+`<user_id>/` subdir. The plan must treat this as an intentional about-face, not a
+drift:
+- **(a) Update `session-analyses/README.md`** to document the `<user_id>/`
+  subdir layout **in the same change** (don't leave the README describing the
+  flat scheme).
+- **(b) Migrate the existing ~20 files** into `session-analyses/matt/`
+  (archive-first, idempotent).
+- **(c) Preserve `session_naming.py`'s writer/reader/`SHORTID_LEN` unity through
+  the signature change.** That module was fixed *yesterday* for exactly the
+  writer-reader-drift failure (the date-first rename that silently 404'd every
+  UUID session's analysis). The `user_id` parameter must be added to **both**
+  `session_analysis_filename` (writer) and `find_analysis_path` (reader)
+  together, `SHORTID_LEN` stays shared, and the **round-trip test** (write under
+  the builder's path → the finder locates it, now within `<user_id>/`) is
+  re-pinned. Treat this module with corresponding care.
+
 These are keyed by `session_id` (UUID). Two options were considered; the spec
 chooses **path-namespacing by user** for consistency with docs/profile, so the
 filesystem itself encodes ownership and directory listings can't cross users:
@@ -313,7 +334,9 @@ per-user split, and per-user cost accounting is out of scope. **Decision:
 withhold it.** `GET /view/cost-log` becomes **Matt-only** (`user_id == "matt"`
 → render; else `404`). Per-session cost shown in a user's *own* telemetry is
 fine (it's their session). This closes the "…and Matt's costs" leak the gate §4
-flagged, without building per-user cost logs. *(Flagged for review — see §8.)*
+flagged, without building per-user cost logs. **Also hide the `/view/cost-log`
+UI link for non-Matt users** — don't render a link that only 404s. *(Resolved —
+see §9.)*
 
 ---
 
@@ -362,9 +385,11 @@ point. `app.get_latest_session` and `_lookup_session_doc` likewise gain
 
 **Token registry:** `~/.voice-tutor/tokens.json`, a hand-maintained map
 `{ "<token>": "<user_id>" }`. Matt mints a tester by adding a line; revokes by
-removing one. (Not a secret file in the CLAUDE.md sense — it's access-control
-config, safe for Claude to create/read; but it lives in `~/.voice-tutor/`,
-already gitignored home state.)
+removing one. **Stays in `~/.voice-tutor/` — NEVER the vault:** the vault
+auto-pushes to GitHub, and tokens are credentials. `tokens.json` must never be
+committed anywhere. (It's not a `.env*.local` secret in the CLAUDE.md sense, so
+Claude may create/read it — but it *is* an access-control credential file, kept
+in gitignored home state only.)
 
 **Cookie:**
 - **Name:** `vt_uid`.
@@ -442,6 +467,31 @@ routes): read `vt_uid` → registry lookup → `user_id`; if missing/unknown →
 
 ## 8. Test shape (gate §4: mirror-image cross-user)
 
+### 8.0 Prompt-hash continuity pin (required regression)
+
+Identity threading changes `build_system_instruction` (it gains `user_id`) and
+touches `bot.py`'s prompt assembly. It **must not alter `static_prompt_hash`
+output in either flag state** — every historical `session-log.jsonl` row carries
+a `prompt_hash`, and a silent change would break attribution continuity with all
+of them.
+
+- **Capture both hash literals from the current checkout BEFORE any change**,
+  same method as the existing `PRE_CHANGE_STUDY_HASH` (a pinned literal, not a
+  recomputation): `static_prompt_hash(study=True)` with `SESSION_OPENING` **off**
+  and with it **on**, plus `static_prompt_hash(study=False)`. The flag-off study
+  literal is already pinned (`4b937a12…` in `test_study_opening.py`); the
+  **flag-on study** and **regular-mode** literals must be captured and pinned as
+  literals too.
+- **Regression test:** assert all three still equal their pre-change literals
+  after identity threading. This is stronger than the existing recompute-from-
+  constants check for flag-on — it catches an accidental content change that a
+  recomputation would silently absorb.
+- `build_system_instruction` gaining `user_id` must not change static prompt
+  *content* — `user_id` selects *which* profile/memory to load (dynamic,
+  already excluded from the hash), never the static scaffolding.
+
+### 8.1 Mirror-image cross-user tests
+
 Reuse the established `conftest.py` monkeypatch-the-module-constant pattern
 (`docs_dir`, `cost_log_tmp`, `session_state_tmp`, `study_history_tmp`), extended
 so fixtures seed **two users** (A and B) into the tmp namespaces. For each
@@ -469,18 +519,24 @@ user_id | None`) tested hermetically against a seeded registry dict.
 
 ---
 
-## 9. Open questions for review
+## 9. Resolved decisions (Matt, 2026-07-28)
 
-1. **cost-log view (§5.5):** Matt-only withhold — accept, or fully hide the
-   `/view/cost-log` link for non-Matt (no route at all)?
-2. **Artifact/transcript layout (§5.4):** path-namespace by user (chosen), vs
-   flat files + ledger ownership check? Chosen for filesystem-encoded ownership;
-   confirm the migration cost of moving existing flat files into `matt/` is
-   acceptable.
-3. **`user_id` charset:** proposed `[a-z0-9_-]`, sanitized via `Path(...).name`
-   + reject others. Confirm testers get slug-y ids (`sarah`, `dev`) vs opaque.
-4. **Token registry location:** `~/.voice-tutor/tokens.json` — or would you
-   rather it live in the vault so minting is a vault edit?
-5. **Regular `/chat/` mode (§7.6):** thread `user_id="matt"` and move on
-   (chosen), or leave regular mode entirely untouched and only namespace study
-   mode? (Chosen keeps one code path.)
+All five §9 open questions are resolved; recorded here as binding for the plan.
+
+1. **cost-log view (§5.5):** Matt-only withhold **and hide the UI link** for
+   non-Matt users (no dangling link that only 404s). ✅
+2. **Artifact/transcript/analysis layout (§5.4):** **path-namespacing by user
+   confirmed**; migration cost of moving existing flat files into `matt/`
+   accepted. (This is the deliberate reversal of the 2026-07-27 flat-folder
+   decision — §5.4.) ✅
+3. **`user_id` charset:** slug ids **`[a-z0-9_-]`, human-readable** (`sarah`,
+   `dev`). The **token is the secret; the id is a filename.** Ids are not
+   sensitive — they're chosen to be readable on disk. ✅
+4. **Token registry location:** stays at **`~/.voice-tutor/tokens.json` — NEVER
+   the vault.** The vault pushes to GitHub and tokens are credentials (§6.2). ✅
+5. **Regular `/chat/` mode (§7.6):** **thread `user_id="matt"`, one code path.**
+   ✅
+
+Downstream tester-doc note (recorded on the gate doc's tester-docs open
+question): the tester one-pager **must disclose that sessions are recorded,
+transcribed, and analyzed.**

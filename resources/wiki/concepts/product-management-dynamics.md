@@ -1,14 +1,15 @@
 ---
 created_at: 2026-07-23
-last_updated: 2026-07-23
+last_updated: 2026-07-28
 ---
 
 # Product Management Dynamics
 
-> TLDR: Eric Berne's Transactional Analysis — originally a psychotherapy framework — maps cleanly onto recurring dysfunctions in product management meetings. Ten named "games" (predictable transaction sequences with hidden payoffs) explain why roadmap reviews stall, blame gets deflected, and nitpicks kill proposals. Each game has an antithesis: refuse the assigned role, respond from Adult ego state, and the game collapses.
+> TLDR: Two complementary lenses for seeing past surface patterns in product work. Berne's Transactional Analysis names ten recurring "games" in PM meetings — predictable transaction sequences with hidden payoffs — and prescribes an antithesis for each: refuse the assigned role and respond from Adult ego state. Shreyas Doshi's Antithesis Principle adds a meta-cognitive layer: every observation about human nature yields an obvious outward tactic (use it to influence others) and a non-obvious inward warning (eliminate that same default in yourself).
 
 ## Recent Updates
 
+- **2026-07-28:** Added Shreyas Doshi's Antithesis Principle — outward tactic vs. inward warning — to [The Antithesis Principle](#the-antithesis-principle)
 - **2026-07-23:** Created page with Berne's Transactional Analysis framework, ten PM game patterns, and counter-moves from [Ego States & Transactions](#ego-states--transactions) through [When Not to Play Analyst](#when-not-to-play-analyst)
 
 ## Ego States & Transactions
@@ -93,6 +94,25 @@ Berne was explicit that this tool cuts badly when misapplied:
 - **Some people rely on certain patterns for stability.** The goal is to protect your time and ensure honest work, not to dismantle someone's coping mechanisms.
 - **Labels don't diagnose.** A conversation can appear to be a straightforward Adult exchange and still involve hidden dynamics — or be completely genuine. Look for the behavioral shift and the predictable outcome before concluding a game is running.
 
+## The Antithesis Principle
+
+Shreyas Doshi identifies a pattern he calls the Antithesis Principle: any truth about human nature can be pointed two ways — outward and inward. Pointed outward, it gives you a tactic (how people work, so you can be effective with them). Pointed inward, it is a warning: the default you must eliminate in yourself.
+
+Everyone who is smart finds the outward tactic. Only the wise see the inward antithesis.
+
+**Examples in product work:**
+
+- **Entertainment and learning.** Outward: make your content engaging so people learn from it. Inward: train yourself to learn from non-entertaining sources — boring books with unsexy titles, dense specs, dry research — so you access knowledge that charisma-dependent learners skip.
+- **Charisma and influence.** Outward: develop charisma to grow your influence as a leader. Inward: work to not be swayed by other people's charisma. Most smart people believe they aren't susceptible; most are wrong. Smart is not the same as wise.
+- **First impressions.** Outward: consciously create a good first impression. Inward: stop being the person who forms a fixed impression of someone in seven seconds.
+- **Manager quality.** Outward: be a competent manager so you help people do great work. Inward: become the kind of person who does great work even under an average or absentee manager — don't let your output depend on your boss's quality.
+- **Analogies.** Outward: explain decisions with evocative analogies (people understand better). Inward: never *reason* by analogy to arrive at decisions. In practice, even people who violently agree with this principle get persuaded in meetings by a clever analogy used as justification.
+
+The deeper pattern: people love consistency, so the apparent contradiction between the outward and inward conclusions is uncomfortable. And people don't question their default programming — when everyone around them shares the same defaults, that feels like validation. The Antithesis Principle asks you to hold both conclusions simultaneously and act on each in its proper direction.
+
+This connects to [Berne's antithesis concept](#games-and-their-structure) at the structural level: both frameworks are about refusing the default role. Berne's antithesis refuses the role a game assigns you in a social transaction. Doshi's Antithesis Principle refuses the role your own cognitive defaults assign you when processing an observation about the world.
+
 ## Sources
 
 - Games People Play for Product Managers — George from prodmgmt.world — Full application of Berne's Transactional Analysis to PM meetings; ten named game patterns with workplace examples and counter-moves
+- [The Antithesis Principle](https://twitter.com/shreyas/status/1917023075536933038) — Shreyas Doshi — For every obvious outward tactic derived from human nature, there is a non-obvious inward antithesis; five worked examples spanning learning, charisma, first impressions, management, and analogies

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-15
+last_updated: 2026-07-29
 ---
 
 # Claude Code Skill Frameworks
@@ -9,6 +9,7 @@ last_updated: 2026-07-15
 
 ## Recent Updates
 
+- **2026-07-29:** Added Machina's AI Video Studio pipeline to [Domain-Specific Skill Libraries](#ai-video-studio-machina) — six-stage production system demonstrating subagent fleets, [loop engineering](loop-engineering.md), and CLI-driven orchestration.
 - **2026-07-15:** Added [The .claude/ Folder Anatomy](#the-claude-folder-anatomy) section — full structural reference for project and global configuration directories, path-scoped rules, and the commands/skills/agents distinction.
 - **2026-06-27:** Added [Claude Code as Agent Platform](#claude-code-as-agent-platform) section with OpenClaw comparison and Claudie case study; removed stale Overview; folded framing into TLDR.
 
@@ -240,6 +241,25 @@ GBrain benchmarks at 97.6% recall on LongMemEval, beating MemPalace with no LLM 
 
 See [Agent Harness](agent-harness.md) for the full resolver pattern and how GBrain implements it.
 
+### AI Video Studio (Machina)
+
+A six-stage AI film production pipeline built entirely on Claude Code — skills for model routing, subagents for parallel generation, bash for video assembly, and engineered [loops](loop-engineering.md) for everything that repeats. Demonstrates Claude Code as a creative production platform, not just a coding tool.
+
+**Architecture:** CLAUDE.md holds routing rules (which model per job type, resolution ladder, concurrency cap). Every subagent inherits these rules. Generations submit through bash via the Higgsfield CLI, get polled with `higgsfield generate get`, and log to one file per run. The entire pipeline runs from a terminal with no GUI.
+
+**The six stages:**
+
+1. **Style contract extraction** — feed reference cinema stills to a vision model, extract precise visual parameters (lens, lighting, palette, grain, contrast, blocking), lock into a single paragraph pasted verbatim into every downstream prompt. Replaces vague terms like "cinematic" with measured reinforcement pairs: "motivated warm lighting, 35mm grain, shallow depth of field, lifted blacks."
+2. **Frame generation at volume** — still frames before motion, always. Frames cost a fraction of video clips and take seconds instead of minutes, so all exploration happens at the cheap layer. Multiple diffusion models run the same brief side-by-side; winners get refined. Character reference sheets (front, three-quarter, profile — cropped separately, not grids) lock identity across the production.
+3. **Agent-written shot scripts** — a script-writing model takes the beat sheet and style contract and writes every shot prompt in a locked template (scene context, references, blocking, camera, lighting, audio, style locks). Prompt discipline: one verb per shot, subject and camera movement in separate sentences, positive constraints only ("stable picture" not "no blur"), and word counts calibrated to generation mode (120–280 words for text-to-video, under 80 for image-to-video).
+4. **Motion with grammar** — each keyframe animates as an isolated 3–5 second clip. The anti-frozen-figure grammar requires every prompt to specify three things: a named camera move, an in-scene event, and explicit "no frozen figures." Chain shots connect continuity by using the last frame of shot N as the reference frame of shot N+1.
+5. **Subagent fleet** — one orchestrator session owns the shot list and spawns subagents by shot family (creatures, water, interiors, action). Each subagent writes prompts, submits generations, polls jobs, and reports winners. The fleet respects concurrency caps — an agent that throttles finishes overnight; a naive loop dies on rate limits in an hour. Iteration discipline: 3–4 candidates per shot, change one variable per pass.
+6. **Montage as code** — music scored against the cut's emotional arc in movements (build, peak, quiet, resolve). The edit is a text file: one line per clip with duration and audio flag. ffmpeg reads the file and renders the film. Per-clip audio gets muted where it collides with the score, kept where it adds realism. Upscale once at the end on the finished cut, never on individual clips.
+
+**Loop engineering in practice:** the system nests loops three deep — a shot loop (generate → watch → change one variable → regenerate until the shot earns its place), a fleet loop (walk the shot list, submit wherever a slot opens, collect winners), and a session loop (log every generation so the next production starts from everything this one learned). See [Loop Engineering](loop-engineering.md).
+
+**Key design principle:** the human owns taste (which frames feel right, which shots survive, what the film wants to be); the agent owns throughput (writing prompts, submitting generations, polling jobs, retrying failures, assembling cuts). No watchable agent-made film ships without human direction — cheap generation moved the entire job into taste.
+
 ### Skills Ecosystem Note
 
 The `npx skills` CLI (Vercel Labs) and SkillKit enable installing skills across agents. The Minimalist Entrepreneur skills (`slavingia/skills`) and Base44 Superagent (130+ built-in skills) suggest an emerging marketplace pattern where skills are shared as open-source markdown files.
@@ -398,4 +418,5 @@ Claude already self-verifies against deterministic signals — type errors, lint
 - "Feedback loops: Help Claude Code complete ambitious tasks with less babysitting" — Delba (tweet, Jun 2026). Encoding manual verification processes as skills, two-layer verification model (in-loop + pre-merge review), and composing skills into end-to-end workflows.
 - "Claude Code Is the OpenClaw Alternative You Already Have" — Nityesh Agarwal / Every (article, Jun 2026) ([link](https://every.to/source-code/claude-code-is-the-openclaw-alternative-you-already-have)). Claude Code as full agent platform vs OpenClaw: five shared capabilities, session architecture advantages, Claudie production case study.
 - "Anatomy of the .claude/ folder" — Akshay Pachaar (tweet, Jul 2026). Complete guide to the .claude/ folder structure: two directories (project vs global), CLAUDE.md best practices and 200-line limit, rules/ with path-scoped frontmatter, commands vs skills vs agents distinction, settings.json permissions, and progressive setup advice.
+- "How to build an AI video studio in Claude Code" — Machina (tweet thread, Jul 2026). Six-stage production pipeline: style contract extraction, frame generation at volume, agent-written shot scripts, motion grammar, subagent fleet orchestration, and montage-as-code with ffmpeg. Demonstrates loop engineering and Claude Code as creative production platform.
 - [Welcome to the Printing Press](https://printingpress.dev) — landing page for Printing Press CLI factory

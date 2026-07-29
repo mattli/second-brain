@@ -4,7 +4,7 @@
   "title": "upload hardening backend",
   "startedAt": "2026-07-29T02:46:35.677Z",
   "runDir": "runs/voice-tutor/2026-07-29-upload-hardening-backend",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/Development/voice-tutor",
   "sprints": [
     {
@@ -27,10 +27,11 @@
   "contractVersion": 5,
   "scores": [
     96,
+    96,
     96
   ],
   "iterations": 0,
-  "budgetSpentUsd": 14.221178849999998,
+  "budgetSpentUsd": 18.637423399999996,
   "haltReason": null,
-  "contractFreezeReason": "round-cap"
+  "contractFreezeReason": "agreement"
 }

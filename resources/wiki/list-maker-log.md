@@ -1,35 +1,36 @@
 ---
-run_date: 2026-07-28
-run_start: "2026-07-28T08:01:47Z"
-run_end: "2026-07-28T08:02:30Z"
-updated_after: "2026-07-27T01:03:00Z"
-items_total: 6
-workers_dispatched: 5
+run_date: 2026-07-29
+run_start: "2026-07-29T01:01:47Z"
+run_end: "2026-07-29T01:02:20Z"
+updated_after: "2026-07-28T08:02:30Z"
+items_total: 7
+workers_dispatched: 7
 items_dropped: 0
-items_skipped: 1
+items_skipped: 0
 ---
 
-# List-Maker Run — 2026-07-28
+# List-Maker Run — 2026-07-29
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-07-27T01:03:00Z. 6 saves found. 1 skipped (tweet duplicate of article in same batch). 5 dispatched: 1 agent-harness update (build vs buy), 2 ai-startup-distribution updates (marketing agents + sales strategy), 1 ai-native-product-development update (Anthropic PM video), 1 product-management-dynamics update (Antithesis Principle).
+Cutoff from previous run_end: 2026-07-28T08:02:30Z. 7 saves found, all dispatched. Two Opus 5 prompting items (official docs + masterclass tweet) routed to same target page (agentic-engineering.md) — workers will serialize and integrate sequentially.
 
 ## Workers Dispatched
 
 | Doc ID | Hint | Target | Rationale |
 |--------|------|--------|-----------|
-| 01kykbeshm5qsfk71xkf6w415f | update | tools/agent-harness.md | Stripe/Sierra build-vs-buy for coding agent systems — agent infrastructure decision framework |
-| 01kyk8czxw9czs4qk3ked2a8kv | update | landscape/ai-startup-distribution.md | Cody Schneider on AI marketing agents — Facebook ads, data-driven lead gen, WordPress plugins |
-| 01kyk0cd24gdtr4vszbkc3v60r | update | tools/ai-native-product-development.md | Dianne Penn (Anthropic) on Lenny's Podcast — product leadership for 2028, building with research teams |
-| 01kyjwn29w7dgmm6yeskse7ayj | update | landscape/ai-startup-distribution.md | a16z Lighthouse vs Landgrab AI sales strategy — marquee-client proof vs fast ROI land-grab |
-| 01kyj7b5pnmqp0t2jajfq07d1w | update | concepts/product-management-dynamics.md | Shreyas Doshi's Antithesis Principle — deeper opposite truths as PM thinking framework |
+| 01kymtaem0xa9qk5wxdrm8ce45 | update | concepts/physical-ai.md | Physical AI moat is engineering systems not models — extends existing primitives/domains framework |
+| 01kymrb7jknksxn0ecztmnpp9f | update | landscape/ai-startup-distribution.md | Distribution 101 on audience-building and selling via content/algorithms — fits distribution strategies page |
+| 01kympxdbhsrwhg1z4atwtx0xh | update | landscape/ai-organization-design.md | Company OS as typed state with gates and agents — extends "company as intelligence" model |
+| 01kympvnx0dahs4yqmp7kmcr1q | update | tools/agentic-engineering.md | Official Anthropic Opus 5 prompting guide — goal-oriented prompting, thinking control |
+| 01kympv67tz5eenc7nfckf9zkh | update | tools/agentic-engineering.md | Opus 5 prompting masterclass — simplified prompting, thinking effort vs response length |
+| 01kymptv1d57ng2k1ec327pwm3 | update | writing/writing-craft.md | Dickie Bush brain-dump-to-content workflow — extends existing Atomic Essays coverage |
+| 01kympt7wmp20e2n9qgass78qp | update | tools/claude-code-skill-frameworks.md | AI video studio in Claude Code — concrete multi-tool skill example |
 
 ## Skipped
 
 | ID | Title | Reason |
 |----|-------|--------|
-| 01kyk9h52jqf61s3v1xjjqrbs5 | Lighthouse or Landgrab? | duplicate_in_run (tweet version; article 01kyjwn29w7dgmm6yeskse7ayj dispatched) |
 
 ## Dropped (pre-filter)
 

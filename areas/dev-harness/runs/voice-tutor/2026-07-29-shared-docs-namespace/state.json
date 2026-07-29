@@ -4,7 +4,7 @@
   "title": "shared docs namespace",
   "startedAt": "2026-07-29T00:51:26.748Z",
   "runDir": "runs/voice-tutor/2026-07-29-shared-docs-namespace",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/Development/voice-tutor",
   "sprints": [
     {
@@ -23,11 +23,15 @@
       "description": "Prove — via tests only, no production code changes expected — that ALL per-user state about a shared document stays per-user, keyed on user_id + document_id as it already is. Covers previous_session_recap, list_study_sessions, artifacts, transcripts, analyses, and memory. Tests (extend tests/test_study_history.py mirror pattern, using conftest's study_history_tmp monkeypatch): seed sessions/recaps for users A and B on the SAME shared doc id; assert previous_session_recap(A, D, ...) returns only A's, previous_session_recap(B, D, ...) only B's, and a user with no sessions on D gets None; assert two users studying the same shared doc never see each other's 'where you left off' / recaps. If any per-user helper turns out to leak across users for a shared doc, fix minimally in that module; otherwise ship the tests as the contract. Finally run the FULL suite green including the complete mirror-image isolation suite and the pinned static_prompt_hash literals; bot.py prompt content must remain untouched."
     }
   ],
-  "currentSprint": 0,
-  "contractVersion": 4,
-  "scores": [],
+  "currentSprint": 2,
+  "contractVersion": 3,
+  "scores": [
+    96,
+    96,
+    96
+  ],
   "iterations": 0,
-  "budgetSpentUsd": 0,
+  "budgetSpentUsd": 10.615172399999999,
   "haltReason": null,
   "contractFreezeReason": "agreement"
 }

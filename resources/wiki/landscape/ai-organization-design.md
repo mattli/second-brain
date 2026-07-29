@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-21
+last_updated: 2026-07-29
 ---
 
 
@@ -11,6 +11,7 @@ last_updated: 2026-07-21
 
 ## Recent Updates
 
+- **2026-07-29:** Added Meridian Company OS implementation pattern — three axioms, nine elements, gate principle, five runtime walls — to [Company OS: The Implementation Pattern](#company-os-the-implementation-pattern)
 - **2026-07-21:** Added NFX mission pod framework — 0→1 vs 1→2 bottleneck shift, five cardinal rules, five traps, junior apprenticeship model — to [Mission Pods](#mission-pods-the-nfx-structure)
 - **2026-07-17:** Added Sierra's Pinecone case study — "wisdom of the workforce," one-agent routing, build primitives not workflows — to [Sierra's Pinecone](#sierras-pinecone-wisdom-of-the-workforce)
 - **2026-07-18:** Added Replit's self-driving company case study — 2.9x per-engineer output, cross-company agent adoption, continual learning system — to [Replit's Self-Driving Company](#replits-self-driving-company)
@@ -169,6 +170,30 @@ Gigi Levy-Weiss (NFX, Jul 2026) codifies the organizational unit emerging from t
 4. **Not hiring juniors.** AI absorbs the work that trained juniors for fifty years, and the lazy answer is to stop hiring them. This eats your seed corn. The alternative is a new apprenticeship model: juniors who orchestrate agents, operate inside tight eval loops, and take ownership of outcomes from day one. "Today's juniors must rise to the challenge of execution and self-directed ownership faster than any generation in history."
 5. **Mistaking underbuilt for lean.** Small teams still need accountability, direction, and evaluation systems. If the team is automating and iterating and there's still work not getting done, hire. "AI-first is not AI-only" — companies that cut human support entirely watched quality collapse and had to restore it. Cost-cutting is the wrong function; growth is the right one.
 
+## Company OS: The Implementation Pattern
+
+A builder's guide (Avid, Jul 2026) takes the "company as intelligence" thesis and derives the concrete implementation: a **company OS** — not a chat UI or dashboard, but a system that answers six questions at all times: who owns what, which goals matter, what is blocked, how fast money is burning, what is waiting on your yes, and what happened while you were gone. Answer all six and you have a company OS. Answer fewer and you have a demo. [[source]](https://github.com/codejunkie99/meridian-company-os)
+
+**Three axioms** underpin every design decision:
+
+1. **A company is state.** Not vibes, not chat history. One typed tree of facts, and every screen is a window onto it, never a source. This is Block's [world model](#blocks-model) made structural — state changes in one reducer or it does not change.
+2. **Power flows through gates.** Anything that spends, hires, ships, or fires queues for an explicit yes. Autonomy is a budget, not a right. A gate enforced only in the UI is a suggestion; the law must live in the state reducer.
+3. **What is not written down did not happen.** Every heartbeat, decision, and dollar lands in an append-only log. The log is the company's memory of itself. This operationalizes the [organizational legibility](#organizational-legibility) principle as an engineering constraint.
+
+**Nine elements** every company OS must have, regardless of stack:
+
+1. **Vocabulary** — Seven typed nouns (actor, goal, task, approval, spend unit, event, container) with exactly one definition each. Two nouns that overlap is a mess you will ship.
+2. **World** — A deterministic seed so the console boots into a company mid-operation, never empty. Every status in the model appears in the seed at least once.
+3. **Source of truth** — One store, one reducer. Views read and dispatch; views never mutate. This is the structural cure for the failure mode of multi-agent dashboards: five components each holding a copy of the truth, drifting.
+4. **Heartbeat** — The company ticks on its own clock. A bounded state transition on a timer proves agents spend and progress continuously, not just when you click. A console that only changes on click trains you on a lie.
+5. **Memory** — Domain state (who works here, what was spent, what was decided) persists across reloads. Session state (which screen, open modals) never does. The line between demo and system is a reload.
+6. **Operator surface** — Answers three questions top to bottom: what is happening (north-star number + live feed), does it need me (risk radar + pending decisions), what do I do (every decision one click deep).
+7. **Gate** — The five verbs that can hurt you (spend, hire, override, publish, terminate) each show the ask, the rationale, and the machine's own policy checks argued in the open. When a policy check fails, approving must feel like overriding — defaults are where governance goes to die. This is [evals-as-OKRs](#the-token-workforce) applied to real-time decision flow.
+8. **Command line** — Deterministic-first, model-as-fallback. Commands with fixed grammar ("create task X, assign to Y, P1") parse locally and dispatch the real store action at zero cost and zero latency. Only non-command sentences fall through to the model. An OS that does things silently is indistinguishable from one that does nothing.
+9. **Real runtime** — The bridge to actual agents, and the most dangerous file in the system. Five walls: concurrency of one (a stuck run can't become a stampede), capped input (no one pastes a book into your budget), kill timer (no hang holds the lock forever), isolated workdir (the agent can't read your repo), zero credential leakage. If the runtime dies, the console degrades to simulation — never crashes.
+
+**The tiering principle** for building with AI: use a cheap worker-tier model for eight of nine elements; escalate to a frontier model only for the one build where correctness is the whole point (the state reducer, where mutation bugs are invisible until they aren't). Fix the prompt, never the file — if the generated code fails the check, rewrite the prompt and regenerate.
+
 ## Broader Implications
 
 Marc Andreessen's synthesis on AI + domains: "Domains with lots of edge cases = difficult for error-prone people. Such domains = where AI agents will do best."
@@ -284,3 +309,4 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "Pinecone: Harnessing the wisdom of the workforce" — Allen Chen / Sierra (blog, Jul 2026) ([link](https://sierra.ai/blog/ai-pilling-our-company-lessons-learned)) — One-agent routing; skills as organizational learning; build primitives not workflows; centralized improvement; 96% engineering adoption; 70% PRs through Pinecone
 - "You Just Hired a Million Bad Employees" — George Sivulka / a16z (article, Jul 2026) ([link](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)) — Seven parallels between token and human workforces; 100X tokens; evals as OKRs; context hoarding; AI transformation companies
 - "How The Fastest AI-First Companies Really Work" — Gigi Levy-Weiss / NFX (article, Jul 2026) ([link](https://www.nfx.com/post/how-the-fastest-ai-first-companies-really-work)) — Mission pod framework; 0→1 vs 1→2 bottleneck shift; five cardinal rules; five traps; junior apprenticeship model; revenue per million tokens metric
+- "How to Build a Company OS using Kimi K3 (Builder's Guide)" — Avid (tweet/thread, Jul 2026) ([link](https://github.com/codejunkie99/meridian-company-os)) — Three axioms (company is state, power flows through gates, what's not written didn't happen); nine-element company OS architecture; gate principle; five runtime walls; tiering principle for AI-assisted builds

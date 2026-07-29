@@ -23,11 +23,14 @@
       "description": "Prove and lock in that the auto-warm trigger respects the existing cache/idempotency logic rather than routing around it: an already-warmed doc with a valid, fresh sidecar for its current source_hash is NOT re-extracted when upload completes or when the warm trigger fires. The guard is the existing cache logic in claims.py; this sprint ensures the trigger passes through it. Also confirm the picker-click prepare path remains intact as the retry/fallback warm path and as the way manually-placed _shared docs get warmed. TDD, extraction monkeypatched/spied: assert that an upload/warm trigger against a doc with a fresh sidecar by source_hash causes zero calls into the extraction function; assert the prepare path still warms an unwarmed _shared doc as before. No route signature changes beyond what surfacing rejection requires; _shared sidecar rules unchanged; full suite green, hash literals green, all mirror-image isolation tests untouched and green."
     }
   ],
-  "currentSprint": 0,
-  "contractVersion": 4,
-  "scores": [],
+  "currentSprint": 2,
+  "contractVersion": 5,
+  "scores": [
+    96,
+    96
+  ],
   "iterations": 0,
-  "budgetSpentUsd": 0,
+  "budgetSpentUsd": 14.221178849999998,
   "haltReason": null,
-  "contractFreezeReason": "agreement"
+  "contractFreezeReason": "round-cap"
 }

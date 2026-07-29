@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-26
+last_updated: 2026-07-29
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-29:** Added Anthropic's Opus 5 prompting patterns — effort-as-cost-lever, narration tuning, over-verification removal, subagent caps, thinking-disabled artifacts — to [Prompting Frontier Models for Agentic Work](#prompting-frontier-models-for-agentic-work-anthropic)
 - **2026-07-26:** Added Buzz voice huddles and per-agent persistent memory details to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-26:** Added three-layer taxonomy (harness/loop/graph = environment/feedback/flow) with nesting model and failure-diagnosis framework to [Three Engineering Layers](#three-engineering-layers-environment--feedback--flow)
 - **2026-07-26:** Added Karpathy–Cherny context engineering framework — four operations (Write/Select/Compress/Isolate), Software 3.0, context rot, three-paradigm timeline — to [Context Engineering: The Unifying Layer](#context-engineering-the-unifying-layer-karpathycherny)
@@ -18,7 +19,6 @@ last_updated: 2026-07-26
 - **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
 - **2026-07-19:** Added free AI agent starter repo (LangChain + Groq/Gemini fallback) to [Tools Noted](#tools-noted)
 - **2026-07-19:** Added Machina's five-part agent composition template and engine-routing table to [Agent Composition Template](#agent-composition-template-machina), Raft to [Other Orchestration Tools](#other-orchestration-tools)
-- **2026-07-18:** Added Flurry's virtual-OS thesis — WASM-based agent runtimes as 47x cheaper alternative to Linux VM sandboxes — to [Agent Runtime: Virtual Operating Systems](#agent-runtime-virtual-operating-systems)
 
 
 
@@ -485,6 +485,26 @@ Amanda Askell, Anthropic's in-house philosopher specializing in Claude's psychol
 
 **The meta-insight:** Your prompts are the working environment you're creating for the model. Tone, trust, permission to take a position, the absence of threats — the model picks up on all of it. This connects directly to the [harness design](agent-harness.md) principle of shaping the agent's action space to its actual capabilities.
 
+## Prompting Frontier Models for Agentic Work (Anthropic)
+
+Anthropic's official Opus 5 prompting guide codifies patterns for tuning frontier model behavior in agentic systems — the practical complement to the [harness design](#harness-design-seeing-like-an-agent) and [practitioner principles](#practitioner-principles-sysls) above. The core theme: Opus 5 performs well out of the box on existing prompts, but its defaults run hotter than prior models across several dimensions that matter for production agents.
+
+**Effort as the primary cost lever.** The [effort parameter](../models-safety/frontier-models.md) controls how much the model thinks, not how much it says — lowering effort reduces thinking tokens without reliably shortening visible output. `low` and `medium` effort produce strong quality at a fraction of the cost; `xhigh` is reserved for demanding coding and agentic work. For most tasks, thinking enabled at `low` effort performs better than thinking disabled at similar cost. Teams carrying effort defaults from prior models should re-run effort sweeps on their own [evals](ai-evals.md).
+
+**Prompt for length, not effort.** Since the effort parameter doesn't control response length, verbosity must be addressed separately with explicit instructions. A short conciseness directive works: "Keep responses focused, brief, and concise. Spend most of the response on the main answer." In long system prompts, pair this with a reminder near the end. The same applies to written deliverables (reports, Markdown documents) — add explicit length calibration: "Cover the substance, but do not pad with filler sections, redundant summaries, or boilerplate."
+
+**Narration tuning.** Opus 5 narrates readily during agentic work — announcing what it's about to do, with per-message output often longer than prior models. To tune narration down, describe the cadence and shape you want rather than listing what not to do: "Before your first tool call, say in one sentence what you're about to do. While working, give a brief update only when you find something important or change direction. When you finish, lead with the outcome." Positive examples of the desired communication style are more effective than prohibitions.
+
+**Remove legacy verification instructions.** Opus 5 verifies its own work without being told to. If your prompt or [harness](agent-harness.md) contains explicit verification steps ("include a final verification step," "use a subagent to verify"), remove them — they cause over-verification, wasting tokens with no quality gain. The same applies to harness scaffolding that adds separate verification stages. This directly qualifies the [verification-as-essential-feedback](loop-engineering.md) principle: verification loops remain critical at the *system* level, but model-level self-check instructions are now counterproductive.
+
+**Cap subagent delegation.** Opus 5 delegates to subagents more readily than prior models. Delegation pays off on genuinely independent, sizeable tracks of work but multiplies cost on small tasks. Give explicit guidance: "Delegate only for large tasks that are genuinely independent and parallelizable. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work." This extends the [cost-routing pattern](#cost-routing-for-production-systems) — the orchestrator should be selective about when to fan out, not just which model tier to use.
+
+**Self-correction narration.** The model narrates corrections to earlier statements more than prior models, which can be undesirable in user-facing products. To limit correction noise: "Only correct an earlier statement when the error would change the user's code, conclusions, or decisions. State corrections plainly and briefly, then continue." This connects to the [criticism spirals](#claude-psychology-and-criticism-spirals-amanda-askell) insight — correction narration and anxiety loops are both expressions of the model over-processing its own prior output.
+
+**Thinking-disabled artifacts.** With thinking disabled, two artifacts can appear: tool calls written as text instead of structured `tool_use` blocks (the call never runs and the leaked text pollutes conversation history), and internal XML tags surfacing in visible output. The primary mitigation is to keep thinking enabled and control cost with lower effort levels instead. For integrations that must disable thinking, a combined instruction mitigates both: "When you use a tool, you may say a brief sentence first. If no tool can express what the user asked for, say so instead of guessing. Do not include internal or system XML tags in your response."
+
+**Scope creep control.** Opus 5 can expand task scope, adding steps that weren't requested. For narrow tasks, constrain explicitly: "Deliver what was asked, at the scope intended. If the request seems mistaken, say so in a sentence and continue with the task as asked rather than quietly narrowing, widening, or transforming it." This is the prompt-level expression of the [task contract](#practitioner-principles-sysls) and [back-pressure](#owning-the-outer-loop-osmani) principles — scope constraints belong in the system prompt, not just in external contracts.
+
 ## Agent Categorization Framework (Farooq & Rajwani)
 
 Hamza Farooq and Jaya Rajwani (via Lenny's Newsletter, Apr 2026) propose a three-tier hierarchy for categorizing agent initiatives — the missing step before prioritization. The core insight: teams fail at prioritization because they treat "agent" as a single category, when it actually spans fundamentally different architectures. Correct categorization determines architecture, team composition, timeline, cost, and success metrics — and attempting to compare initiatives across categories on a single impact-vs.-effort matrix is "essentially guesswork."
@@ -620,3 +640,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Context Engineering: the Karpathy-Cherny method that replaced prompting" — vartekx (tweet thread, Jul 2026) ([link](https://x.com/vartekxx/status/2074864291568664646/?rw_tt_thread=True)) — Software 3.0 framework, four context operations (Write/Select/Compress/Isolate), context rot, three-paradigm timeline (prompt → context → loop), Cherny's context firewall as Isolate operation
 - "Why Software Factories Fail" — Dex / HumanLayer (Jul 2026) ([link](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md)) — lights-off factory failure thesis: models degrade codebase quality over time, RL training has no penalty for bad design, benchmarks blind to maintainability, 3-6 month brownfield degradation timeline, Faros AI correlation data, frontier benchmark efforts (SWE-Marathon, DeepSWE, Frontier Code)
 - "Agent Harness Engineering vs. Loop Engineering vs. Graph Engineering" — beamnxw (tweet thread, Jul 2026) ([link](https://x.com/beamnxw/status/2081022966645535079/?rw_tt_thread=True)) — three-layer taxonomy (environment/feedback/flow), nesting model (graph inside harness, loops inside graph), failure-diagnosis framework for choosing which layer to address, production checklist
+- "Prompting Claude Opus 5" — Claude Platform Docs (Jul 2026) ([link](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)) — effort parameter as cost/latency lever, narration tuning, over-verification removal, subagent delegation caps, scope creep control, thinking-disabled artifact mitigations

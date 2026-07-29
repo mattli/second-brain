@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-28
+last_updated: 2026-07-29
 
 
 ---
@@ -11,10 +11,10 @@ last_updated: 2026-07-28
 
 ## Recent Updates
 
+- **2026-07-29:** Added EP's "Distribution 101" — new sections on [X Audience-Building](#x-audience-building-as-ongoing-distribution), [YouTube as Distribution Channel](#youtube-as-distribution-channel), and [Short-Form Video Distribution](#short-form-video-distribution-tiktok--reels); three organic content channels covering niche selection, algorithm mechanics, and content-to-sales conversion.
 - **2026-07-28:** Added a16z's Lighthouse vs Landgrab enterprise GTM framework to [Lighthouse vs. Landgrab: Choosing Your Enterprise Sales Motion](#lighthouse-vs-landgrab-choosing-your-enterprise-sales-motion) — buyer exposure / social proof diagnostic, case studies (Harvey, Hebbia, Stuut, Decagon), pitfalls, and sequencing.
 - **2026-07-28:** Expanded [AI Marketing Agents](#ai-marketing-agents-autonomous-go-to-market) with Cody Schneider's Facebook ads agent workflow — Andromeda targeting, creative generation pipeline, ad optimization loop, entropy fixes, WordPress plugin opportunity, and "agent jockey" role.
 - **2026-07-21:** Expanded [X (Twitter) as Launch Channel](#x-twitter-as-launch-channel) with Fama/Okara's full viral launch playbook — preparation sequence, influencer recruitment process, hook writing, and iterative launch compounding.
-- **2026-06-24:** Added Josh Elman's consumer platform-wave thesis to [The Consumer AI Opportunity Window](#the-consumer-ai-opportunity-window); removed stale Overview; folded framing into TLDR.
 
 The speed-to-scale data makes the shift concrete: Lovable crossed $100M ARR in eight months, Cursor in twelve, and bolt.new went from $4M to $40M ARR in its first five months [[source]](https://x.com/alexjvacca/status/2047408037078536482). A decade ago those milestones took years. The cost of building collapsed, but the cost of acquiring customers went the other direction — median B2B SaaS CAC payback now sits around 20 months (vs. the long-standing 12-month benchmark), and the median company spends $2.00 of sales and marketing to acquire $1 of new ARR [[source]](https://x.com/alexjvacca/status/2047408037078536482). Treat distribution as an afterthought and you pay that tax every quarter for the life of the company.
 
@@ -170,6 +170,42 @@ Fama's team generated over 100M organic views across multiple launches with no a
 **Launch day is 90% behind you if preparation is done.** The moment the tweet is live, ping the full supporter list with the direct link. Over the next few hours: repost every quote tweet, ship the newsletter, watch what lands. If you have an email list, use it — email has no algorithm between you and the audience. Keep the email short: what you launched, why it matters, one link, ask subscribers to engage with the launch tweet in the next hour.
 
 **Afterward and the iterative launch principle.** Virality decays in 48 hours. Follow up with everyone who engaged. Decide before launch what a visitor should become — customer, lead, or signup. "A launch that produces 100,000 visitors and no revenue is a fireworks show." The biggest misconception: that you get one launch. Every feature, milestone, and integration is a launch. Cursor launched 8 times. Airbnb launched 3 times. The audience compounds — companies that win at distribution aren't the ones that launch well once, they're the ones that launch constantly.
+
+## X Audience-Building as Ongoing Distribution
+
+The [X launch playbook](#x-twitter-as-launch-channel) covers single-event virality. EP's "Distribution 101" covers the complementary long game: building a niche audience on X that functions as a persistent distribution channel for everything you sell.
+
+**The 1:1 niche-product rule.** The niche you build audience in must map directly to the product you're selling — no exceptions. 10,000 followers in the wrong niche are worthless; 1,000 followers who are pre-qualified buyers generate serious revenue. Choosing a niche means choosing a problem you know how to solve, and ideally one in a high-value bucket (business, marketing, AI, tech, crypto) where pain points command premium pricing. Entertainment and pop-culture niches build massive followings that struggle to monetize because the audience came to be entertained, not to solve problems.
+
+**The algorithm's actual priorities.** Five signals matter most: (1) *engagement velocity* — how much engagement in the first 30 minutes determines whether the algorithm pushes harder; (2) *dwell time* — how long a user stays on your tweet (prompts and media outperform plain text because they hold attention); (3) *author reputation* — a credit score built from consistent good metrics that earns future posts more initial reach; (4) *big-account engagement* — when a large account engages, your tweet gets shown to their audience, and if that audience engages too the algorithm reads niche fit and expands further; (5) *the relationship graph* — the algorithm maps user connections by interaction patterns (likes, replies, profile clicks, DMs), tests new tweets on your immediate graph first, then expands outward until engagement drops off. Engagement groups and follow-for-follow poison the graph by diluting signal.
+
+**0 → 1k: the outside push.** New accounts are penalized — the algorithm doesn't trust them and shows tweets to ~50 people. EP's system: get a bigger account in your niche to engage with your content from day one. "Big" means average impressions, not followers — someone with 20k followers averaging 15k impressions per tweet is more valuable than someone with 100k followers averaging 2k. One approach: find a big account with a product, offer to become an affiliate, and ask them to push your early content in return.
+
+**Content rules that compound.** Every tweet must pass the value test: "would I find this valuable if I saw it in my feed?" Write simply (assume 80 IQ), diversify formats to avoid audience saturation, and never "document your journey" — nobody cares about your process until you've succeeded. Share what you're learning as if you're teaching it. The fear of posting too much is misplaced: the algorithm doesn't punish volume, it rewards engagement. Post as much value as you can produce.
+
+## YouTube as Distribution Channel
+
+YouTube is the most underused distribution channel for product founders. Unlike X's ephemeral timeline, YouTube videos are persistent search assets — a video targeting a high-intent keyword can generate qualified leads for years.
+
+**Search intent hierarchy.** Most founders chase broad keywords ("AI" — 7M+ monthly searches) that attract zero-intent traffic. High-intent keywords follow recognizable patterns: "best [solution]," "[solution] for [use case]," "[solution] review," "[A] vs [B]," "alternatives to [solution]," "how to [achieve outcome]." These have lower volume but dramatically higher conversion. "AI tool for email marketing" (1.45K monthly searches) converts at orders of magnitude above "AI" because everyone searching it is actively looking for what you sell.
+
+**How ranking actually works.** The SEO cargo cult (optimize descriptions, stuff tags) is largely wrong. YouTube's algorithm watches the video, transcribes everything said, and identifies visuals. What actually determines rank: put the keyword in title and description once, then deliver on the search intent. The ranking formula is roughly: *channel authority × (keyword-specific CTR + keyword-specific AVD)*. Metrics are tracked per keyword per traffic source — a video can rank well for one keyword and poorly for another simultaneously. Established channels with high authority can publish mediocre metrics and still outrank new channels with better engagement.
+
+**The testing waves.** YouTube doesn't blast videos out randomly. It shows each upload to a seed audience (subscribers, prior viewers, similar-content watchers) whose size depends on channel authority. If the seed responds well, distribution expands in waves — first to viewers of similar creators, then broader demographics, then outside your niche entirely. Most educational videos never reach wave 3, but the ones that do see explosive view counts.
+
+**Every video as hidden VSL.** The key mental model: don't make educational content and bolt a CTA on the end. The entire video should solve the same problem (or a sub-problem) your product solves, so the pitch is inseparable from the education. "How to do cold outreach for SMMA" teaches outreach step by step while naturally positioning the SMMA course as the complete solution. Don't gatekeep — give enough value that someone could implement without buying. They buy because you proved competence, and they see your product as the shortcut.
+
+**Production workflow.** Work backwards from packaging, not content. Stage 1: ideate title and thumbnail before producing anything — test the mockup at thumbnailpreview.com and ask "would I click this in search results?" Low CTR disqualifies the video before retention even matters. Stage 2: script (AI first pass from bullet-point expertise, then humanize). Stage 3: record (faceless with screen recordings works and scales; faced builds trust faster). Stage 4: edit (every edit should visualize concepts, maintain attention, or make the offer appealing).
+
+## Short-Form Video Distribution (TikTok / Reels)
+
+Short-form complements [organic UGC](#organic-ugc-as-distribution-moat) as a distribution channel. Where the UGC section covers the format-first product development strategy, this section covers the tactical mechanics of making content work on TikTok and Instagram Reels.
+
+**Platform divergences that matter.** TikTok tests every video independently regardless of follower count; Instagram weighs follower count heavily. TikTok's top signal is shares (one share ≈ 10+ likes) and rewatch rate (20%+ triggers massive push); Instagram's top signal is saves. Sweet-spot lengths differ: 60–90 seconds for Reels, barbell-shaped on TikTok (either 5–9 seconds or 60+, avoiding the 15–45 second dead zone). TikTok captions are searchable — they're an SEO surface, so front-load keywords.
+
+**The four pillars of viral short-form.** (1) *Hook* (first 3 seconds) — curiosity gap, shocking statement, relatable pain, or results-based opener, reinforced with bold text overlay (5–7 words max) and trending audio starting immediately. Test three hooks on the same video; the hook alone can be the difference between 1K and 1M views. (2) *Retention* — 70%+ completion gets massive reach. Cut every 2–3 seconds (every 2 on TikTok); visual monotony kills retention. Use open loops ("the best part is coming...") and make endings flow back to beginnings for natural rewatching. (3) *Reward* — deliver on the hook's promise within 5–15 seconds. Stack value types: teach + entertain + validate outperforms doing only one. (4) *Engineered engagement* — comment bait (end with "which one are you: A or B?"), share bait ("send this to someone who needs it"), save bait (checklists, templates, step-by-step content), and on TikTok, watch-again bait (hide details that reward rewatching).
+
+**Posting cadence.** Instagram phase 1 (0–1K followers): 2x/day with a 4-hour gap. Phase 2 (1K+): up to 15 trial reels/day — trial reels test on non-followers first, publish only winners. TikTok phase 1: 1x/day at the same time until one video breaks 1K views. Phase 2: 2x/day with 4-hour gaps. On TikTok, initial distribution is decided in the first 10–30 minutes based on completion rates, rewatches, engagement velocity, and shares.
 
 ## AI-Powered LinkedIn Outreach (Claude MCP + GojiberryAI)
 
@@ -356,6 +392,7 @@ Troy (ssbmomelette, r/startups, Apr 2026) — serial founder (9 startups, $1B+ t
 - "Most companies are laying off marketers. Smart ones are replacing the org chart entirely." — ericosiu (tweet, Apr 2026) ([link](https://x.com/ericosiu)) — Full 2x2 marketer classification and 100x marketer framework
 - "I'm a Serial Founder. Here's how I come up with Business Ideas." — ssbmomelette / Troy (Reddit r/startups, Apr 2026)
 - "How I Consistently Book 2–5 Meetings Per Day with Claude MCP and LinkedIn" — Romàn (tweet, Apr 2026) ([link](https://x.com))
+- "distribution 101: how to sell your products" — EP (tweet thread, Jul 2026) — Three organic content distribution channels (X audience-building, YouTube, short-form): niche-product 1:1 rule, algorithm mechanics, outside push strategy, YouTube search intent and hidden VSL principle, four-pillar viral short-form formula
 - "How to Win Distribution When Anyone Can Build the Product" — Alex Vacca (tweet, May 2026) ([link](https://x.com/alexjvacca/status/2047408037078536482)) — Speed-to-scale data, CAC economics shift, AI rewiring buyer discovery (Forrester 94% stat, outbound decay), signal-timed outreach, GTM-as-MVP framework, compounding distribution loops
 - "ok this startup is cool but…" — Andrew Chen (tweet, Apr 2026) — founders building despite big-company threats
 - "how to cold DM anyone: complete basics" — Founders Inc (tweet thread, May 2026) — cold DM basics, 181w

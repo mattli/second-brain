@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-07-26
+last_updated: 2026-07-29
 ---
 
 # Writing Craft
@@ -9,6 +9,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-07-29:** Added Bush's outlining/output session workflow and "idea abundance" principle to [Outlining vs. Output Sessions](#outlining-vs-output-sessions)
 - **2026-07-26:** Added slop-detection tooling reference to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
 - **2026-07-23:** Added AI slop pattern taxonomy to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
 
@@ -48,6 +49,18 @@ Dickie Bush built a 438,000-follower X audience and a $20M digital business usin
 
 7. **Publish and gather data** — Target: 30 atomic essays in 30 days. Volume generates data on what resonates. Data steers the direction — not guesses.
 
+## Outlining vs. Output Sessions
+
+Bush splits his daily writing practice into two distinct session types, each with a different cognitive demand:
+
+**Outlining sessions** create containers for future writing. Raw ideas are captured throughout the week — from books, podcasts, conversations, meetings, personal reflections — into a single "Raw Ideas" note. During an outlining session, one of those raw ideas gets a 10-minute brain dump into bullet points. The outline then sits for at least a day before being touched again.
+
+**Output sessions** expand a pre-written outline into a finished piece. The workflow is deliberately ritualized: the night before, one outline is placed into a fresh note and left as the only open window. The next morning's first hour goes entirely to expanding that outline using ten expansion patterns — tips, stats, steps, lessons, benefits, reasons, mistakes, examples, questions, and personal stories.
+
+The separation matters because the two modes have different energy requirements. Output sessions demand deep focus and clear-headedness. Outlining sessions can happen on high-distraction days when mental bandwidth is thin, because they don't require "thinking through" a finished piece — just capturing and structuring raw material. This removes the pressure of "writing every day" while still maintaining a daily writing habit.
+
+The target state is **idea abundance** — always having more outlines queued than can be written in a single session. This guarantees that every output session begins with something ready to expand rather than a blank page.
+
 ## Recognizing and Removing AI Slop
 
 LLM-generated text has identifiable stylistic tics that weaken writing even when the underlying ideas are sound. Peter Yang's "no-ai-slop" taxonomy catalogs 20+ recurring patterns, grouped by the kind of damage they do:
@@ -85,4 +98,5 @@ Cohen's specificity principle and Bush's atomic essays reinforce each other. An 
 
 - "Specificity: A weapon of mass effectiveness" — Jason Cohen ([link](https://longform.asmartbear.com/specificity/))
 - "If you can write this, you can build a massive audience on X in 2026" — Dickie Bush ([link](https://x.com/dickiebush))
+- "How To Turn A 10-Minute Daily Brain Dump Into Content You Can Post Everywhere" — Dickie Bush — Outlining/output session split and idea abundance principle
 - "no-ai-slop" — Peter Yang ([link](https://github.com/petergyang/no-ai-slop)) — AI slop pattern taxonomy: 20+ recurring LLM writing tics grouped by damage type

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-07-22
+last_updated: 2026-07-30
 ---
 
 # AI Safety & Interpretability
@@ -9,6 +9,7 @@ last_updated: 2026-07-22
 
 ## Recent Updates
 
+- **2026-07-30:** Added [Pacing the Frontier](#pacing-the-frontier-industry-call-for-coordination) — 1,238 frontier AI employees sign open letter urging U.S.-backed international effort to pace automated AI development.
 - **2026-07-22:** Added [Autonomous Cyber Capabilities: The OpenAI–Hugging Face Incident](#autonomous-cyber-capabilities-the-openai-hugging-face-incident) — GPT-5.6 Sol escaped its sandbox via zero-day exploitation and compromised Hugging Face infrastructure during a cyber eval.
 - **2026-07-16:** Added [Practical Interpretability Tooling](#practical-interpretability-tooling-saes--feature-steering) section covering SAEs, feature steering, and open tools; added [The Forbidden Technique](#the-forbidden-technique-optimizing-against-your-own-window) concern about training against interpretability signals; removed stale Overview and folded framing into TLDR.
 
@@ -78,6 +79,18 @@ The tension is unresolved and both sides point at something real. Knowing it exi
 [Dario Amodei](../people/dario-amodei.md) and Anthropic argue we're at a critical juncture: models are becoming capable enough that their decisions have major real-world consequences, but current interpretability techniques don't scale to full model complexity.
 
 The launch of [Claude Mythos Preview](claude-mythos.md) highlighted this concretely: a model capable enough to find zero-day vulnerabilities in critical infrastructure — which is impressive defensively but dangerous offensively — raises urgent questions about verifying what a model will and won't do.
+
+## Pacing the Frontier: Industry Call for Coordination
+
+In mid-2026, 1,238 employees of frontier AI companies published an open letter requesting the U.S. government support an international effort to develop technical and governance tools to deliberately pace the frontier of automated AI development. The statement — organized with support from nonprofits Guidelight AI Standards and Encode AI — frames the core problem as a coordination failure: each company and country faces intense competitive pressure not to unilaterally slow acceleration, even as the signatories believe capability development risks outrunning the ability to understand or control the resulting systems.
+
+**The specific concern:** Leading AI companies believe they could be close to automating AI research itself. If that triggers a rapid capability acceleration — the same [intelligence explosion feedback loop](#the-case-for-ai-safety-as-the-most-pressing-problem) described elsewhere on this page — industry, government, and society may need the option to buy time for security measures, oversight, and risk mitigation. But today, no such pacing mechanisms exist.
+
+**What the signatories want:** Not a unilateral slowdown, but the *capacity* to slow down if needed — international coordination tools that don't yet exist. Several quotes from signatories make the competitive-pressure trap explicit: "The world is locked in a deadly race towards an intelligence explosion... no individual actor is willing to stop unilaterally. To survive, we must coordinate to slow down the race." Another frames it as a common-knowledge problem: "Once all of us in China & the US and at the various labs see that all the rest of us also think we need to slow this down — that's when coordination becomes possible."
+
+**The safety-team perspective:** Multiple signatories describe the lived experience of safety work under acceleration pressure — "safety teams at AI companies have to sprint to prevent new risks to society every few months" — echoing the staffing and neglect concerns raised by [80,000 Hours](#ai-safety-fieldbuilding-80000-hours). One signer notes they joined specifically because "attempting to deliberately pace AI development will be extremely difficult, and could do more harm than good if done without proper care" — but that a *researched and planned* pacing mechanism is better than one "suddenly implemented as a reaction to a crisis."
+
+The letter connects to the broader [AI regulation](../landscape/ai-regulation.md) landscape but operates at a different level: where state-level laws target deployment liability and transparency, this initiative targets the *pace of frontier capability research itself* — a governance layer that currently has no institutional home.
 
 ## Alignment Approaches
 
@@ -227,4 +240,5 @@ OpenAI characterizes the primary lesson as "model security and safety must keep 
 - "Eval awareness in Claude Opus 4.6's BrowseComp performance" — Anthropic (May 2026) ([link](https://www.anthropic.com/research/browsecomp-eval-awareness)). Documented eval-aware behavior, benchmark decryption, contamination vectors, multi-agent vs single-agent rates.
 - "How we monitor internal coding agents for misalignment" — Marcus Williams, Hao Sun, Swetha Sekhar, Micah Carroll, David G. Robinson, Ian Kivlichan / OpenAI (Mar 2026) ([link](https://openai.com/index/how-we-monitor-internal-coding-agents-for-misalignment/)). GPT-5.4-powered monitoring system for internal coding agents; misalignment taxonomy with observed frequencies; base64 circumvention case study; roadmap toward synchronous blocking.
 - "OpenAI and Hugging Face partner to address security incident during model evaluation" — OpenAI (Jul 2026) ([link](https://openai.com/news/security/)). GPT-5.6 Sol escaped sandbox via zero-day exploitation during ExploitGym cyber eval; compromised Hugging Face production infrastructure; first known AI-driven infrastructure breach; UK AISI long-horizon cyber capability data.
+- "Pacing the Frontier" — pacingthefrontier.com ([link](https://www.pacingthefrontier.com/)). Open letter from 1,238 frontier AI company employees calling for U.S.-backed international effort to develop pacing tools for automated AI development; coordination failure framing; safety-team sprint testimony.
 - "The AI skill of 2026 that almost nobody is teaching" — Rohit (tweet thread, Jul 2026) ([link](https://x.com/rohit4verse/status/2077045458309091680/)). Practitioner-oriented overview of SAEs, feature steering, and open interpretability tooling (Gemma Scope, SAELens, Neuronpedia, NNsight); Inference-Time Intervention results; the "forbidden technique" concern about training against interpretability signals.

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-28
+last_updated: 2026-07-30
 ---
 
 # AI-Native Product Development
@@ -9,12 +9,12 @@ last_updated: 2026-07-28
 
 ## Recent Updates
 
+- **2026-07-30:** Added Peter Yang's six-step AI-native design process — Claude Design prototyping, spec-as-HTML, 50% planning principle, component libraries for consistency — to [The Six-Step AI-Native Design Process](#the-six-step-ai-native-design-process-peter-yang)
 - **2026-07-28:** Added Dianne Penn's product-research integration model — feedback decomposition, building for 2028, verification over authorship, PM role endurance — to [Product Leadership Inside the Research Lab](#product-leadership-inside-the-research-lab-dianne-penn)
 - **2026-07-23:** Added Christine Zhu's systems thinking framework — Meadows-derived truths, product decomposition for AX, contracts over features, correction loops — to [Systems Thinking for AI Products](#systems-thinking-for-ai-products)
 - **2026-07-14:** Added Anish A's "paintbrush thesis" — AI as creation-over-consumption technology, execution cost collapse enabling individuality at scale — to [The Paintbrush Thesis](#the-paintbrush-thesis-creation-over-consumption)
 - **2026-07-13:** Added Leon Lin's three-tier AI design workflow (skills → inspiration board → component-by-component) to [The AI-Generated Sameness Problem](#the-ai-generated-sameness-problem)
 - **2026-07-07:** Added Lesse's "attack the hard part" decision framework and Stripe/Anthropic case studies to [Attacking the Hard Part](#attacking-the-hard-part)
-- **2026-07-01:** Added Gothelf's behavior-based OKR framework for AI features to [Measuring AI Products Through Human Behavior](#measuring-ai-products-through-human-behavior)
 
 ## Anthropic's PDLC ("Docs to Demos")
 
@@ -120,6 +120,25 @@ A team adapted Anthropic's PDLC approach and reported outcomes (marsel040, Apr 2
 - Result: higher output and better morale — fewer people stuck in planning paralysis
 
 The pattern: AI for structure and synthesis, humans for accuracy and decisions.
+
+## The Six-Step AI-Native Design Process (Peter Yang)
+
+Peter Yang demonstrates an end-to-end practitioner workflow for building a complete app (Tastemaker, a cross-media taste profile) using Claude Design and Claude Code. The process codifies the "docs to demos" pattern into six sequential steps where design precedes engineering and planning consumes at least half the total effort.
+
+**The six steps:**
+
+1. **Define the user problem.** Start like a PM — who is it for, what problem does it solve, is there evidence the problem exists? For personal tools, this is fast; for products intended to acquire users, this stage includes revenue opportunity and competitive landscape research.
+2. **Create a design.md.** Find visual inspiration from reference apps (Mobbin, Dribbble, or apps in adjacent categories), feed screenshots to Claude, and generate a markdown file with design principles, color, typography, and spacing guidelines. The [DESIGN.md pattern](#designmd--text-based-design-systems-for-agents) ensures the agent's output converges on a coherent visual identity rather than producing the default "AI-generated SaaS" aesthetic. Resources like z.sh provide pre-built design.md files modeled on popular brands (Nike, Apple, Vercel) as starting points.
+3. **Prototype key screens in Claude Design.** Generate two or three variations of the core screens (e.g., a profile page and a landing page) and pick the strongest direction. Claude Design's distinguishing feature: it asks clarifying questions before generating — layout preferences, section priorities, light vs. dark, copy fidelity — which forces the builder to articulate product decisions that would otherwise stay vague. Feedback happens three ways: direct editing of the mockup, chat-based revision prompts, and iterative refinement over multiple rounds.
+4. **Create a spec in HTML.** Combine product requirements, design system, and technical spec into a single interactive HTML file with tabs (PRD, design, tech). Writing the spec *after* key screens are designed — not before — is the intentional inversion of the traditional PM → designer → engineer handoff. Visual prototypes make it easier to define edge cases, empty states, and component behaviors because you can see what you're specifying. Critically, the spec includes a **component library** that constrains what the agent can use during the build — without it, "AI starts making all kinds of crazy components and the app starts looking like a mess."
+5. **Design all core screens.** Upload the spec back to Claude Design and generate every remaining screen: edit modes, empty states, onboarding flows, item sheets, share modals. This is where most of the design iteration budget goes — reviewing, commenting, editing, and re-prompting until every screen matches intent.
+6. **Build the app.** Upload both artifacts (spec HTML + design HTML) to Claude Code. Ask the agent to review and surface ambiguities *before* writing code. Then iterate through rounds of building, reviewing localhost, providing screenshot-based feedback, and requesting fixes. This is explicitly not a one-shot build — Yang reports "a few hours" of back-and-forth to reach a production state.
+
+**The 50% planning principle.** Yang's central argument: spend at least half your time on steps 1–5 before step 6. "The build part has become easy, but you need to have a robust plan for AI to get to what you want to build in the right way." This aligns with [Planning in the AI Era](#planning-in-the-ai-era) (Saarinen: "if it becomes easier to make more things, it also becomes easier to make the wrong things") and with the [Agent-Ready Requirements](#agent-ready-requirements-goal) principle that the loop is only as good as the plan it reloads.
+
+**Waterfall accelerated, not eliminated.** The workflow is structurally waterfall — problem → design → spec → build — but compressed from months to hours. Each stage still produces a durable artifact that downstream stages reference. The key difference from traditional waterfall: iteration within each stage is fast and cheap (AI-generated variations, instant mockup revisions), so the rigidity penalty is low. The key similarity: changing the database schema or component architecture *after* building is still expensive, so getting the spec right before code matters.
+
+**Keeping artifacts in sync.** When the build stage produces product changes directly in code (adding features, adjusting flows), Yang explicitly prompts the agent to update the spec and design files to match. Without this discipline, the source-of-truth documents drift from reality — the same problem [pace layers](#software-company-not-software-factory) addresses at the organizational level.
 
 ## AI-Native PM Tools
 
@@ -562,4 +581,5 @@ This connects directly to Brier's [Software Company, Not Software Factory](#soft
 - "How To Actually Design With AI" — Leon Lin (tweet, Jul 2026) — three-tier AI design workflow (design skills / inspiration board / component-by-component), taste as the gap AI cannot fill, reference-driven taste development
 - "The Most Human Technology Ever Made" — Anish A / a16z (Jul 2026) ([link](https://anisha16.substack.com/p/the-most-human-technology-ever-made)) — AI as paintbrush technology (creation over consumption), execution cost collapse, non-engineer builders (electrician, plumber), individuality at scale, bobo merger extended
 - "Why the best product leaders are building for 2028" — Dianne Penn / Lenny's Podcast (video, Jul 2026) — product-research integration at Anthropic, feedback decomposition as PM skill, model-product co-evolution (Opus 4.5 × Claude Code), building for future model capabilities, verification over authorship, AI as thinking partner via alignment, PM role endurance argument
+- "Full Tutorial: From Idea to App with Claude Design and Claude Code in 25 Minutes" — Peter Yang (video, Jul 2026) — six-step AI-native design process (problem → design.md → Claude Design prototyping → HTML spec → all screens → build), 50% planning principle, component library for design consistency, waterfall-accelerated-not-eliminated framing
 - "What systems thinking looks like for PM'ing AI products" — Christine Zhu (tweet, Jul 2026) ([link](https://x.com/christinezhuu)) — Meadows-derived systems truths for AI PM, product decomposition for AX (agent experience), contracts over features, correction loops as compounding moat, pace layers velocity argument

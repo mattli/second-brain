@@ -28,3 +28,11 @@ Absolute per-edition snapshots were never recorded; only the net is known.
 Both bars were missed by a wide margin: +3 followers (need 15), 0 mechanism replies (need 5). The briefing is validated as neither a publication product (content-signal) nor a pipeline-as-a-service (mechanism-signal).
 
 Per the pre-committed gate, **Neither → rewrite positioning once, run 3 more editions.** If that second 3-edition run also clears neither bar, the standing rule is: briefing stays personal, no further product investment.
+
+## Close-out — 2026-07-30: experiment CLOSED, second run declined
+
+The pre-committed "rewrite positioning once, run 3 more" step was evaluated fresh and **declined**. Reason: the gate turned out to be testing briefing + distribution jointly, and distribution was near zero the whole window (~1,900 views across 3 editions, deepest engagement = detail-expands, every comment believed bot). A positioning rewrite changes the wrapper on posts that weren't reaching people who could reply — it can't isolate the content variable. A real content test would require building an X presence first (weeks of social effort), which is a different project than this gate anticipated, and not one worth starting during the Voice Tutor tester push.
+
+**Result: untestable at current distribution — not "content failed."**
+
+Disposition: the briefing stays a personal artifact (pipeline keeps running for Matt's own use; editions posted only if he feels like it, no scoreboard). No further product investment. If an X presence gets built later for other reasons (e.g. build-in-public posts about Voice Tutor / dev-harness), re-testing the briefing is a fresh decision, not a reopening of this gate.

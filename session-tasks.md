@@ -1,5 +1,14 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
+### ▶ Next-session opening list (Thu 2026-07-30) — everything serves the FIXED POINT: **Fri 2026-07-31, 10:30am, John**
+Ordered:
+1. **Load the launchd plist and confirm Voice Tutor survives a restart.** Review + load `deploy/com.voice-tutor.server.plist` (per its header instructions), then prove auto-restart: reboot or `launchctl kickstart -k gui/$(id -u)/com.voice-tutor.server` and confirm the site comes back on its own. Auto-restart must be proven BEFORE John's link is live (a dead link on his first click kills the signal).
+2. **Send John the tokenized link** — `https://matts-mac-mini.taild1f9b7.ts.net/study/?u=<john-token>`. **MUST include the recording/transcription disclosure** (the session records audio and transcribes it — the tester has to be told up front). Don't send without it.
+3. **Anchor spot-check on the demo doc** — read the 15 unresolved-of-71 claims on Graph Engineering; confirm they're real, not hallucinated (backlog item).
+4. **Stale hostname pointer sweep** — run the `grep taild1f9b7 … | grep -v :8443` sweep (backlog item), fix any hit.
+
+Then, not blocking Friday: second tester message; coverage-bar design conversation; briefing verdict decision.
+
 ### July 29, 2026
 - **Voice Tutor is now INTERNET-FACING (Tailscale Funnel on :443) — public URL, token-only auth.** (State change made in Matt's shell after the session's live-verification work below.) Funnel is enabled so `https://matts-mac-mini.taild1f9b7.ts.net/` is reachable from the **open internet**; the invite token (`/study/?u=<token>`) is now the ONLY gate in front of it — the per-user isolation model and the two cross-user traversal fixes shipped today are load-bearing against the public, not just tailnet peers. The dev-harness dashboard was moved OFF :443 to **:8443** first, so it stays tailnet-only at `https://matts-mac-mini.taild1f9b7.ts.net:8443/dashboard`. **Verified from a device with Tailscale disabled:** the tokenized link loads and serves the Graph Engineering demo doc. **Operational gap:** Voice Tutor has no auto-restart / process supervision (unlike the Dockerized dashboard), so a crash leaves it down until noticed — logged as a post-Friday backlog item.
 - **Post-fix operational + first-run verification (same session, after the two security fixes below).** All diagnostic/read-only except placing the demo doc and minting a test token.

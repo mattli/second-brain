@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-29
+last_updated: 2026-07-30
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-29
 
 ## Recent Updates
 
+- **2026-07-30:** Added agent factory architecture — two-neck certification model, five-station production line, sealed eval suites, permission broker, autonomy tiers (C0–C3), mid-run routing, self-staffing meta-agents — to [Agent Factory Architecture](#agent-factory-architecture-avid)
 - **2026-07-29:** Added goal-oriented prompting, checkpoint control, 80%-system-prompt-removal evidence, hallucination trade-off, and four-part prompt structure from Rahul's Opus 5 masterclass to [Prompting Frontier Models for Agentic Work](#prompting-frontier-models-for-agentic-work-anthropic)
 - **2026-07-29:** Added Anthropic's Opus 5 prompting patterns — effort-as-cost-lever, narration tuning, over-verification removal, subagent caps, thinking-disabled artifacts — to [Prompting Frontier Models for Agentic Work](#prompting-frontier-models-for-agentic-work-anthropic)
 - **2026-07-26:** Added Buzz voice huddles and per-agent persistent memory details to [Other Orchestration Tools](#other-orchestration-tools)
@@ -18,7 +19,6 @@ last_updated: 2026-07-29
 - **2026-07-23:** Added Machina's graph engineering principles — diamond pattern, stop rule, human gate, fake-edge audit — to [Graph Engineering](#graph-engineering-machina)
 - **2026-07-23:** Added Block's Buzz — agents as cryptographic team members, model-agnostic harnesses, peer-to-peer shared compute — to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
-- **2026-07-19:** Added free AI agent starter repo (LangChain + Groq/Gemini fallback) to [Tools Noted](#tools-noted)
 
 
 
@@ -315,6 +315,30 @@ Dex (HumanLayer, author of "Advanced Context Engineering for Coding Agents") arg
 **Frontier benchmark efforts.** Three efforts are beginning to score maintainability rather than stopping at pass/fail: [SWE-Marathon](https://www.swe-marathon.org/) (Abundant AI) assigns ~400-hour tasks with compound reward channels instead of single-bit scores. DeepSWE (Datacurve) uses tasks on repos never built in the real world, solving training-data contamination but not quality. [Frontier Code](https://cognition.com/blog/frontier-code) (Cognition) evaluates multi-PR tasks with mutation testing — penalizing models for writing tests that don't fail on the pre-patch code — and runs a judge model over diffs checking code-quality rules. None are reliable enough to bet a codebase on, but they are the first evals even attempting to measure the dimension that matters most.
 
 **Implications for factory design.** The thesis does not reject agentic coding — Dex's own prior work popularized [context engineering](claude-code-skill-frameworks.md) techniques. The claim is narrower: no amount of harness engineering or loopsmaxxing can solve what is fundamentally a model-training issue. The lights-off factory removes the one check — human review — that currently compensates for the RL gap. Teams should keep humans in the [outer loop](#owning-the-outer-loop-osmani) not because review is pleasant, but because it is the only mechanism that currently penalizes bad design. This aligns with Osmani's [back-pressure principle](#owning-the-outer-loop-osmani): grant agents just enough autonomy that you retain enough back pressure to stop them and check their work.
+
+### Agent Factory Architecture (Avid)
+
+Avid's "agent factory" blueprint addresses the structural problem that [lights-off factories fail on](#why-software-factories-fail-dex): not the building of agents, but the *certification and continuous verification* of agents at scale. The core claim: hand-built agents cap at the number you can personally watch, and better models don't move that cap — only automated quality gates do.
+
+**The two necks.** Every factory has a first bottleneck — human review — that jams as throughput rises. An agent factory has a second: unlike software, which is verified once at build time, an agent must be verified on every run because its output is non-deterministic. The first neck (certifying the agent) stays human and happens once. The second neck (gating every output) must be automated, because an agent that needs you to read every reply is a slower you.
+
+**Five stations.** The production line runs spec → stamp → prove → certify → operate:
+
+1. **Job card (spec)** — An agent bill of materials: identity, granted tools, cost tier, and permission envelope. A grants list that nothing reads is decoration — station 5 is where it becomes a control.
+2. **Assembly (stamp)** — Copies a master agent into variants. The part most people skip: when you fix the master, the fix propagates to all variants *and revokes their certificates*. A fix that propagates without revoking is worse than no propagation, because the certificate is now lying.
+3. **Proving ground (prove)** — A test suite written *before* the agent is good, from real cases, labelled by hand. Half the cases are sealed — the builder never sees them. An agent tuned against a visible suite is optimizing the suite, not proving competence. The suite scores both deterministic outputs (exact-match labels) and prose quality (rubric-graded on a 0–4 scale). An agent that passes its suite while reaching for tools it doesn't have is not passing — tool denials count.
+4. **Certification (certify)** — The law in code: *no evals, no production.* A digest check ensures tuning after the sealed run costs a re-certification. The decision model grades; it never signs. The certificate is a human reading a record and typing yes. A vendor offering to automate that box is selling you the one thing you should not buy.
+5. **Broker (operate)** — Every tool call passes through a broker that reads the job card. Policy is enforced *outside* the model — an agent can't prompt its way past a grant it was never given. Then an output gate scores whether well-formed, fully-permitted output is *right*, the one thing local policy can't tell you.
+
+**Autonomy tiers.** Four tiers, all earned: C0 (observe — runs on live work, ships nothing, compare against actual outcomes), C1 (drafts only), C2 (stages for one-click human approval), C3 (acts alone inside the permission envelope). Promotion requires both proving-ground and production evidence. Autonomy is evidence you produced, not confidence you feel. This extends the [back-pressure principle](#owning-the-outer-loop-osmani) into a formal ladder.
+
+**Mid-run routing.** Both quality necks sit at the end of a run. A proxy router sits *inside* runs — the only place you can stop paying for work that was never going to be worth gating. Five local detectors run before any model call: same action returning the same observation three times, one error class repeating, two actions alternating in the last eight turns, write-fail cycles, and no successful execution for N steps. When detectors fire, two fast decision calls determine whether to continue, switch models, restart with clean context, or escalate to a human. The restart option is worth stealing even in isolation — it rebuilds the request keeping the user task and tool outputs while dropping the model's own reasoning, because polluted context is how one bad turn becomes ten.
+
+**Self-staffing.** The final move: the factory hires from its own catalog. A meta-agent — itself certified through the same five stations — reads flagged production runs and writes eval cases that would have caught the failures. It writes to a *proposals* file and cannot write to the live suite; promoting a proposal to a real eval is a human edit. An agent that extends the suite it is judged against grades its own homework. This is [self-improving agents](#self-improving-agents) applied specifically to the evaluation layer: generation is autonomous, certification is not.
+
+**Six tests that separate a factory from a folder of prompts:** (1) the product is an agent with identity, tools, and a price; (2) the certificate constrains runtime, enforced outside the model; (3) master fixes propagate and kill certificates; (4) the line is worked by agents the line produced; (5) production failures become the next suite; (6) bad product can be recalled.
+
+The architecture is a direct counterpoint to the [Dex thesis](#why-software-factories-fail-dex): the lights-off factory fails because human review is the only mechanism penalizing bad design. The agent factory doesn't remove human review — it moves it to certification (once, thoroughly) and automates the per-run output check that would otherwise cap your fleet at the number you can personally read.
 
 ### Other Orchestration Tools
 
@@ -652,3 +676,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Why Software Factories Fail" — Dex / HumanLayer (Jul 2026) ([link](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md)) — lights-off factory failure thesis: models degrade codebase quality over time, RL training has no penalty for bad design, benchmarks blind to maintainability, 3-6 month brownfield degradation timeline, Faros AI correlation data, frontier benchmark efforts (SWE-Marathon, DeepSWE, Frontier Code)
 - "Agent Harness Engineering vs. Loop Engineering vs. Graph Engineering" — beamnxw (tweet thread, Jul 2026) ([link](https://x.com/beamnxw/status/2081022966645535079/?rw_tt_thread=True)) — three-layer taxonomy (environment/feedback/flow), nesting model (graph inside harness, loops inside graph), failure-diagnosis framework for choosing which layer to address, production checklist
 - "Prompting Claude Opus 5" — Claude Platform Docs (Jul 2026) ([link](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)) — effort parameter as cost/latency lever, narration tuning, over-verification removal, subagent delegation caps, scope creep control, thinking-disabled artifact mitigations
+- "How to Build Your First Agent Factory (Builder's Guide)" — Avid (tweet thread, Jul 2026) ([link](https://x.com/Av1dlive/status/2082505465569910850/)) — five-station agent production line (spec/stamp/prove/certify/operate), two-neck certification model, sealed eval suites, permission broker enforcing grants outside the model, four autonomy tiers (C0–C3), mid-run proxy router with five local detectors, self-staffing meta-agents that write eval proposals

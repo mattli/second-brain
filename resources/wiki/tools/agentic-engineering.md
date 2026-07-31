@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-30
+last_updated: 2026-07-31
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-30
 
 ## Recent Updates
 
+- **2026-07-31:** Added four-loop stacking hierarchy, evidence-over-confidence principle, and five anti-patterns to [Three Engineering Layers](#three-engineering-layers-environment--feedback--flow)
 - **2026-07-30:** Added agent factory architecture — two-neck certification model, five-station production line, sealed eval suites, permission broker, autonomy tiers (C0–C3), mid-run routing, self-staffing meta-agents — to [Agent Factory Architecture](#agent-factory-architecture-avid)
 - **2026-07-29:** Added goal-oriented prompting, checkpoint control, 80%-system-prompt-removal evidence, hallucination trade-off, and four-part prompt structure from Rahul's Opus 5 masterclass to [Prompting Frontier Models for Agentic Work](#prompting-frontier-models-for-agentic-work-anthropic)
 - **2026-07-29:** Added Anthropic's Opus 5 prompting patterns — effort-as-cost-lever, narration tuning, over-verification removal, subagent caps, thinking-disabled artifacts — to [Prompting Frontier Models for Agentic Work](#prompting-frontier-models-for-agentic-work-anthropic)
@@ -18,7 +19,6 @@ last_updated: 2026-07-30
 - **2026-07-25:** Added Dex's software factory failure thesis — lights-off factory experience, RL maintainability gap, benchmark blindness to code quality — to [Why Software Factories Fail](#why-software-factories-fail-dex)
 - **2026-07-23:** Added Machina's graph engineering principles — diamond pattern, stop rule, human gate, fake-edge audit — to [Graph Engineering](#graph-engineering-machina)
 - **2026-07-23:** Added Block's Buzz — agents as cryptographic team members, model-agnostic harnesses, peer-to-peer shared compute — to [Other Orchestration Tools](#other-orchestration-tools)
-- **2026-07-22:** Added Cherny's domain-knowledge-as-infrastructure thesis — automation multiplies agent fleets, CLAUDE.md/skills/docs as zero-context onboarding — to [Domain Knowledge as Infrastructure](#domain-knowledge-as-infrastructure-cherny)
 
 
 
@@ -107,6 +107,12 @@ The three disciplines that keep appearing across this page — [harness](agent-h
 - **[Graph](graph-engineering.md) engineering** (flow) — makes the workflow topology explicit: which component runs next, what branches on what condition, where work fans out in parallel, and where it must join before proceeding. The state traverses the graph; the topology enforces the control flow.
 
 **Nesting, not alternatives.** The three layers nest: the graph runs inside the harness; one or more loops live inside the graph; and the harness supplies the state, tools, and evaluators those loops need. A beautifully drawn graph is insufficient if the harness has lost its state. A well-equipped harness wastes money if its loops have no evidence or stopping rule. Carefully crafted loops are still hard to operate when branching, parallelism, and approvals are buried in ad-hoc code. The categories overlap because software layers overlap, but each gives the team a different lever to pull when the system fails [[source]](https://x.com/beamnxw/status/2081022966645535079/?rw_tt_thread=True).
+
+**Loops stack.** The agent loop performs the work; the verification loop checks it; an event loop wakes the system when new work arrives; an improvement loop studies production traces and changes the [harness](agent-harness.md) itself. Each layer sits around the one below it. A prompt defines what should happen *during* one model call; a loop defines what the system does *after* that call — which is why loop engineering is larger than prompt engineering [[source]](https://x.com/0xwhrrari/status/2082096897964306572/?rw_tt_thread=True).
+
+**Loop on evidence, not confidence.** "The agent says it is finished" is not proof; "the tests pass, the sources resolve, and the reviewer approved the diff" is proof. The check may be deterministic (tests pass, schema validates, files compile) or require a reviewer (argument is complete, tone matches the audience, evidence supports the conclusion). The rule is the same: do not loop on self-reported confidence — loop on externally verifiable evidence [[source]](https://x.com/0xwhrrari/status/2082096897964306572/?rw_tt_thread=True).
+
+**Five expensive mistakes.** (1) *Building the graph too early* — do not formalize forty nodes from an imagined process before watching a strong agent perform the work; trace first, formalize second. (2) *Letting the maker grade itself* — self-review shares the original attempt's blind spots; prefer deterministic checks and isolated reviewer contexts. (3) *Defining the loop as "keep trying"* — an unbounded retry is a cost leak, not reliability; every cycle needs fresh evidence, a maximum attempt count, and a named escalation path. (4) *Turning the harness into a warehouse* — more tools increase selection errors, noisy context increases confusion, broad permissions increase risk; give the agent the smallest environment that can complete the job. (5) *Blaming the model for orchestration failures* — a stronger model cannot reliably repair stale state, broken APIs, or missing exit conditions; do not upgrade the model before proving the model is the problem [[source]](https://x.com/0xwhrrari/status/2082096897964306572/?rw_tt_thread=True).
 
 **Diagnose the failure, then choose the layer.** Rather than defaulting to graph complexity or adding more tools, match the engineering response to the failure type:
 
@@ -677,3 +683,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "Agent Harness Engineering vs. Loop Engineering vs. Graph Engineering" — beamnxw (tweet thread, Jul 2026) ([link](https://x.com/beamnxw/status/2081022966645535079/?rw_tt_thread=True)) — three-layer taxonomy (environment/feedback/flow), nesting model (graph inside harness, loops inside graph), failure-diagnosis framework for choosing which layer to address, production checklist
 - "Prompting Claude Opus 5" — Claude Platform Docs (Jul 2026) ([link](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5)) — effort parameter as cost/latency lever, narration tuning, over-verification removal, subagent delegation caps, scope creep control, thinking-disabled artifact mitigations
 - "How to Build Your First Agent Factory (Builder's Guide)" — Avid (tweet thread, Jul 2026) ([link](https://x.com/Av1dlive/status/2082505465569910850/)) — five-station agent production line (spec/stamp/prove/certify/operate), two-neck certification model, sealed eval suites, permission broker enforcing grants outside the model, four autonomy tiers (C0–C3), mid-run proxy router with five local detectors, self-staffing meta-agents that write eval proposals
+- "LOOP vs GRAPH vs HARNESS ENGINEERING" — rari / @0xwhrrari (tweet thread, Jul 2026) ([link](https://x.com/0xwhrrari/status/2082096897964306572/?rw_tt_thread=True)) — three engineering layers with detailed component lists, four-loop stacking hierarchy (agent/verification/event/improvement), seven-part loop anatomy, evidence-over-confidence principle, five anti-patterns, production checklist

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-29
+last_updated: 2026-07-31
 ---
 
 # Claude Code Skill Frameworks
@@ -9,6 +9,7 @@ last_updated: 2026-07-29
 
 ## Recent Updates
 
+- **2026-07-31:** Added Boris Cherny's prompt ablation discipline to [Prompt Ablation](#prompt-ablation-the-delete-and-rebuild-discipline); expanded [Dynamic Workflows](#dynamic-workflows-self-authored-harnesses) with Bun Zig→Rust rewrite details; added self-maintaining codebase examples to [Routines](#routines-first-party-proactive-automation).
 - **2026-07-29:** Added Machina's AI Video Studio pipeline to [Domain-Specific Skill Libraries](#ai-video-studio-machina) — six-stage production system demonstrating subagent fleets, [loop engineering](loop-engineering.md), and CLI-driven orchestration.
 - **2026-07-15:** Added [The .claude/ Folder Anatomy](#the-claude-folder-anatomy) section — full structural reference for project and global configuration directories, path-scoped rules, and the commands/skills/agents distinction.
 - **2026-06-27:** Added [Claude Code as Agent Platform](#claude-code-as-agent-platform) section with OpenClaw comparison and Claudie case study; removed stale Overview; folded framing into TLDR.
@@ -90,6 +91,20 @@ Garry Tan's architectural principle (from the same author as gstack): *push inte
 Skill files work like method calls: same procedure + different arguments = different capabilities. The skill encodes *how*; the invocation supplies the world. This is why gstack's six slash commands can power radically different workflows — the same /review skill yields different outputs depending on what code it encounters.
 
 See [Agent Harness](agent-harness.md) for the full principle and why "fat harness with thin skills" is the anti-pattern.
+
+## Prompt Ablation: The Delete-and-Rebuild Discipline
+
+Every new model generation at Anthropic triggers a full ablation of Claude Code's system prompt — deleting the entire prompt, then bringing it back line by line to measure the impact of each instruction. Boris Cherny (Claude Code creator) reports cutting 80% of the system prompt with Opus 5 because the model already knew what previous prompts were correcting for. [[source]](https://www.youtube.com/watch?v=Eqh2iwSl570)
+
+**The process:** delete the entire system prompt. Use the product. Only add an instruction back when you observe the model *repeatedly* stumble on the same thing — not when you *predict* it might stumble. Each instruction loads into context on every invocation, so it must earn its keep. The same ablation applies to tools: the team regularly unships tools and deletes harness code. Most of what remains in the Claude Code harness today is safety, permissions, static analysis, and UI. [[source]](https://www.youtube.com/watch?v=Eqh2iwSl570)
+
+**Simple mode** (`CLAUDE_CODE_SIMPLE=1`) strips all system prompts including tool-level prompts. The team uses it as an ablation baseline — and finds the model is slightly *more* intelligent without the prompts. The prompts exist for product behavior (formatting, workflow conventions), not for raw capability. Users can also override the system prompt entirely with `--system-prompt`. [[source]](https://www.youtube.com/watch?v=Eqh2iwSl570)
+
+**The user-facing corollary:** every six months (or with each major model release), delete your CLAUDE.md, skills, and hooks. See what the model does without them. Modern models may not need instructions that were essential for previous generations. The skill that mattered a year ago — prompt engineering — is shifting toward *model elicitation*: figuring out what the model can already do and removing the product layers that prevent it from doing it.
+
+**Product overhang** is Cherny's term for the gap between what a model *can* do today and what products *let* it do. Claude Code's origin was recognizing product overhang in Sonnet 3.5: the model could write entire files and features, but every coding product was constraining it to single-line autocomplete and read-only chat. The fix was stripping scaffolding rather than adding it — giving the model a minimal [harness](agent-harness.md) and letting it operate at its actual capability level. The inverse — product getting in the way — is called *hobbling*. Both are symptoms of treating the model like a deterministic system instead of an empirical one. [[source]](https://www.youtube.com/watch?v=Eqh2iwSl570)
+
+This directly reinforces the thin-harness/fat-skills principle: the harness should get *thinner* over time as models internalize behaviors that previously required explicit instruction.
 
 ## The .claude/ Folder Anatomy
 
@@ -304,6 +319,8 @@ Sessions run on Anthropic's managed infrastructure — no dependency on a local 
 - *Weekly docs sync* — every Monday at 10am, reviews all changes merged to main against the documentation repo, creates PRs for any gaps.
 - *Issue-triggered investigation* — fires on every new GitHub issue in the docs repo, investigates whether it's a documentation gap, and opens a PR if so.
 
+**Self-maintaining codebases.** Anthropic's Claude Code team runs 20–30 routines daily across the CLI, iOS, Android, and desktop apps. Each routine is a single-sentence prompt. Examples: *clean up dead code* (finds dead code via static and dynamic analysis, opens a PR daily), *ship completed experiments* (detects experiments at 100% rollout, removes the flag and ships), *write tests for uncovered code*, *delete useless tests* (removes low-value tests added by older models or people), and *abstraction police* (finds near-duplicate abstractions across codebases and unifies them). Combined, these routines do the work of dozens of maintenance engineers. [[source]](https://www.youtube.com/watch?v=Eqh2iwSl570)
+
 **Suggested patterns:** deploy verifier (webhook trigger after CD pipeline → run investigation with monitoring tool access → go/no-go decision on rollback), on-call investigator, PM backlog triage (weekly job reading GitHub issues and Slack channels → prioritize and open PRs for top items).
 
 The `/schedule` command inside Claude Code creates a routine interactively — Claude asks clarifying questions about timing, notification preferences, and then generates the routine configuration.
@@ -333,7 +350,7 @@ A workflow structurally prevents these by giving each subagent its own context w
 
 **Use cases beyond coding.** Workflows are sometimes more useful for non-technical work: sorting support tickets by severity via tournament (comparative judgment beats absolute scoring), mining session history for recurring corrections to distill into CLAUDE.md rules, triaging bug backlogs at scale with quarantine patterns (agents reading untrusted content are barred from high-privilege actions), root-cause investigation with structurally independent hypothesis generation, and taste-based exploration (design or naming) with rubric-driven review agents.
 
-**Migrations and refactors** are a signature use case — Bun's rewrite from Zig to Rust used workflows to break the migration into per-callsite/per-module subagents running in worktrees, with adversarial review agents merging results.
+**Migrations and refactors** are a signature use case. Bun's rewrite from Zig to Rust — over 100,000 lines of a JavaScript runtime — ran as a single dynamic workflow for 11 days with human steering. The approach: define the test suite (Bun's own tests plus Node.js's test suite) as the verification oracle, then let the workflow break the migration into per-callsite/per-module subagents running in worktrees, with adversarial review agents merging results. Previous model generations couldn't do this even with steering; Fable was the first model capable of it. The rewritten runtime is now in production. [[source]](https://www.youtube.com/watch?v=Eqh2iwSl570)
 
 **Pattern composition.** The six patterns rarely appear alone. Real workflows compose 2–4: migrations use fan-out (one agent per callsite in a worktree) → adversarial verification (separate agent reviews each fix) → loop until done. Deep research uses fan-out (parallel searches) → adversarial verification (each claim checked independently) → synthesize (one cited report). Root-cause investigation generates theories from disjoint evidence via fan-out → runs a panel of verifiers and refuters per theory → loops until one survives. Sorting 1,000+ items uses tournament with pairwise comparison, never absolute scoring. The selection heuristic: identify which failure mode your task suffers from, then pick the pattern that structurally prevents it — drift → fan-out, self-preference → adversarial verification, open-ended → loop until done, hard-to-score → tournament.
 
@@ -419,4 +436,5 @@ Claude already self-verifies against deterministic signals — type errors, lint
 - "Claude Code Is the OpenClaw Alternative You Already Have" — Nityesh Agarwal / Every (article, Jun 2026) ([link](https://every.to/source-code/claude-code-is-the-openclaw-alternative-you-already-have)). Claude Code as full agent platform vs OpenClaw: five shared capabilities, session architecture advantages, Claudie production case study.
 - "Anatomy of the .claude/ folder" — Akshay Pachaar (tweet, Jul 2026). Complete guide to the .claude/ folder structure: two directories (project vs global), CLAUDE.md best practices and 200-line limit, rules/ with path-scoped frontmatter, commands vs skills vs agents distinction, settings.json permissions, and progressive setup advice.
 - "How to build an AI video studio in Claude Code" — Machina (tweet thread, Jul 2026). Six-stage production pipeline: style contract extraction, frame generation at volume, agent-written shot scripts, motion grammar, subagent fleet orchestration, and montage-as-code with ffmpeg. Demonstrates loop engineering and Claude Code as creative production platform.
+- "Boris Cherny: We Cut 80% of Claude Code's Prompt" — Y Combinator (video, Jul 2026). Boris Cherny (Claude Code creator) on prompt ablation methodology (delete 80%, bring back line by line), simple mode ablation, product overhang/unhobbling, Bun Zig→Rust rewrite (11 days, 100K+ lines via dynamic workflow), self-maintaining codebase routines (abstraction police, dead code, experiment shipping), and empirical mindset over prompt engineering.
 - [Welcome to the Printing Press](https://printingpress.dev) — landing page for Printing Press CLI factory

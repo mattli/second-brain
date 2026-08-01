@@ -1,14 +1,15 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-07-29
+last_updated: 2026-08-01
 ---
 
 # Writing Craft
 
-> TLDR: Specificity is the single most powerful lever in writing — for clarity, persuasion, humor, and audience growth. Atomic essays (250-word single-idea pieces) are a practical format for building a writing habit and testing ideas at scale. Recognizing AI slop patterns — binary contrasts, throat-clearing openers, importance puffery, weasel attribution — is a necessary editing skill now that LLM-generated prose is everywhere.
+> TLDR: Specificity is the single most powerful lever in writing — for clarity, persuasion, humor, and audience growth. A sustainable writing practice requires defended time blocks (Sacred Hours), a pipeline of raw material (story-mining frameworks like Homework For Life), and a distinct voice (the Tequila Test). Atomic essays and outlining/output session splits provide the format and workflow. Recognizing AI slop patterns is a necessary editing skill now that LLM-generated prose is everywhere.
 
 ## Recent Updates
 
+- **2026-08-01:** Added Sacred Hours routine, three story-mining frameworks (Dicks via Bush), and the Tequila Test to [Sacred Hours](#sacred-hours), [Story Mining](#story-mining-three-frameworks-from-storyworthy), and [The Tequila Test](#the-tequila-test)
 - **2026-07-29:** Added Bush's outlining/output session workflow and "idea abundance" principle to [Outlining vs. Output Sessions](#outlining-vs-output-sessions)
 - **2026-07-26:** Added slop-detection tooling reference to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
 - **2026-07-23:** Added AI slop pattern taxonomy to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
@@ -61,6 +62,30 @@ The separation matters because the two modes have different energy requirements.
 
 The target state is **idea abundance** — always having more outlines queued than can be written in a single session. This guarantees that every output session begins with something ready to expand rather than a blank page.
 
+## Sacred Hours
+
+Bush's prerequisite for a sustainable writing practice is blocking off **Sacred Hours** — planned, calendar-defended chunks of at least two hours with zero distractions. The concept sits at the intersection of two questions: *When am I most productive?* and *When can I be least responsive?* The overlap is where writing happens.
+
+Sacred Hours are not found — they're constructed. They must be planned in advance, blocked on a calendar, and defended against intrusions. The compounding payoff comes from consistency: completing these blocks day after day turns writing from an occasional act into a default behavior. This complements the [outlining vs. output session](#outlining-vs-output-sessions) split — Sacred Hours are the container; outlining and output sessions are what goes inside them.
+
+## Story Mining: Three Frameworks from "Storyworthy"
+
+Bush draws on Matthew Dicks' book *Storyworthy* for three frameworks that generate raw material for writing. All three attack the same problem: writers believe they have nothing to say, when in fact they have untapped stories every day.
+
+**Homework For Life** — A daily five-minute exercise. Two columns: date and story. Each day, answer: "If I had to tell a five-minute story about something that happened today, what would it be?" Write one sentence. The practice trains pattern recognition for storyworthy moments and, over time, assembles a library of raw material.
+
+**Crash and Burn** — A five-minute freewriting exercise Dicks calls "dreaming from the end of your pen." Three rules: (1) don't get attached to any single idea, (2) don't judge what appears, (3) never let the pen stop moving. If stuck, list random items — fruits, colors, people — until a memory triggers. Follow with ten minutes reviewing the output for storyworthy threads. The constraint of continuous motion bypasses the inner critic and surfaces ideas the writer didn't know they had.
+
+**First, Last, Best, Worst** — A grid exercise for filling gaps in memory. Columns: Prompt, First, Last, Best, Worst. Rows: any life category (pet, job, skill, gift, travel, trouble, advice). For each cell, recall the specific moment. The combinatorial structure generates dozens of story seeds from a single sitting.
+
+All three feed into Bush's [idea abundance](#outlining-vs-output-sessions) principle — they are upstream of outlining sessions, ensuring there is always more raw material than can be processed.
+
+## The Tequila Test
+
+Bush's heuristic for **differentiation** in online writing: the Tequila Test. The premise is that voice and personality — the qualities that make readers choose *your* writing over someone else's on the same topic — come through when you write the way you'd talk over drinks. If your writing wouldn't sound out of place coming from you at a bar, it passes the test.
+
+This complements the [specificity principle](#the-specificity-principle): specificity makes writing *clear*; the Tequila Test makes it *yours*. Both strip away the generic — one at the word level, the other at the voice level.
+
 ## Recognizing and Removing AI Slop
 
 LLM-generated text has identifiable stylistic tics that weaken writing even when the underlying ideas are sound. Peter Yang's "no-ai-slop" taxonomy catalogs 20+ recurring patterns, grouped by the kind of damage they do:
@@ -99,4 +124,5 @@ Cohen's specificity principle and Bush's atomic essays reinforce each other. An 
 - "Specificity: A weapon of mass effectiveness" — Jason Cohen ([link](https://longform.asmartbear.com/specificity/))
 - "If you can write this, you can build a massive audience on X in 2026" — Dickie Bush ([link](https://x.com/dickiebush))
 - "How To Turn A 10-Minute Daily Brain Dump Into Content You Can Post Everywhere" — Dickie Bush — Outlining/output session split and idea abundance principle
+- "7 Simple Frameworks To Become A Prolific Digital Writer" — Dickie Bush ([link](https://twitter.com/dickiebush)) — Sacred Hours routine, three story-mining frameworks (Dicks' *Storyworthy*), Tequila Test differentiation heuristic
 - "no-ai-slop" — Peter Yang ([link](https://github.com/petergyang/no-ai-slop)) — AI slop pattern taxonomy: 20+ recurring LLM writing tics grouped by damage type

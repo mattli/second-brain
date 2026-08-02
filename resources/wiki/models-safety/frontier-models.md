@@ -1,15 +1,16 @@
 ---
 created_at: 2026-04-27
-last_updated: 2026-07-14
+last_updated: 2026-08-02
 
 ---
 
 # Frontier Models
 
-> TLDR: The frontier model landscape (2026) is defined by rapid competitive rotation among Anthropic, OpenAI, and Google, inference-time multi-agent scaling as an alternative to ever-larger single models, a narrowing gap between frontier and open-weight local models, and a paradigm shift where the binding constraint on progress is high-quality training data — not raw compute. Per-token pricing is increasingly misleading; delegation-capable models can cost less overall despite higher unit prices, because the effective cost is dominated by management style — how many turns the lead takes, how much context it accumulates, and what it decides not to do itself.
+> TLDR: The frontier model landscape (2026) is defined by rapid competitive rotation among Anthropic, OpenAI, and Google, inference-time multi-agent scaling as an alternative to ever-larger single models, a narrowing gap between frontier and open-weight local models, and a paradigm shift where the binding constraint on progress is high-quality training data — not raw compute. Per-token pricing is increasingly misleading; delegation-capable models can cost less overall despite higher unit prices, because the effective cost is dominated by management style — how many turns the lead takes, how much context it accumulates, and what it decides not to do itself. The Fable 5 export-control suspension and Moonshot's Kimi K3 release — a 2.8T open-weight model at $3/$15 that tops Fable 5 on frontend and terminal benchmarks — have reframed the frontier competition as much about access and price as raw capability.
 
 ## Recent Updates
 
+- **2026-08-02:** Added Kimi K3 release, Fable 5 export-control suspension, and K3 pricing economics to [Kimi K3 and the Price-Access Frontier](#kimi-k3-and-the-price-access-frontier) and [The Fable 5 Export-Control Suspension](#the-fable-5-export-control-suspension)
 - **2026-07-14:** Added Cognition's Fusion delegation cost analysis to [Delegation as Cost Optimization](#delegation-as-cost-optimization-the-fusion-experiment)
 - **2026-06-22:** Removed stale Overview; folded framing into TLDR
 
@@ -36,15 +37,18 @@ Meta released Muse Spark in April 2026, its first AI model in over a year and th
 
 **Availability:** Free via meta.ai and Meta AI app; API preview for selected partners; coming to WhatsApp, Instagram, Facebook, Messenger, Ray-Ban glasses.
 
-## Benchmark Snapshot (Artificial Analysis, April 2026)
+## Benchmark Snapshot (Artificial Analysis, through July 2026)
 
 | Model | Intelligence Index | Coding Index | Tokens used (index) |
 |-------|-------------------|--------------|---------------------|
 | GPT-5.4 (xhigh reasoning) | 57 | 57 | ~116M |
 | Gemini 3.1 Pro Preview (high reasoning) | 57 | 56 | — |
+| Kimi K3 | 57 | — | ~130M |
 | Claude Opus 4.6 (max reasoning) | 53 | — | ~158M |
 | Muse Spark (reasoning) | 52 | 47 | ~59M |
 | Claude Sonnet 4.6 (max reasoning) | — | 51 | — |
+
+Kimi K3 sits fourth overall at Intelligence Index 57 but leads the Frontend Code Arena (1,679 Elo, above Fable 5) and Terminal-Bench 2.1 (88.3 vs. Fable's 84.6). Notably verbose: 130M output tokens across the eval suite against a 63M average, at 62 tokens/second.
 
 Muse Spark's notable strengths: multimodal (CharXiv Reasoning: 86.4%, leading GPT-5.4's 82.8%) and health (HealthBench Hard: 42.8%, ahead of GPT-5.4's 40.1%). Notable weakness: coding. Strong token efficiency relative to peers.
 
@@ -66,6 +70,8 @@ By early 2026, open-weight models running on consumer hardware began outperformi
 - **Gemma 4** (Google, April 2026) — the most capable open-weight models from a US company at time of release
 - **GLM-5.1** (GLM, April 2026) — a 754B-parameter, 1.5TB open-weight model; highly effective but requires substantial hardware
 - **Qwen3.6-35B-A3B** (Alibaba, April 2026) — a 20.9GB model that runs on a laptop and matched or exceeded some frontier models on specific generation tasks [[source]](https://simonwillison.net/2026/May/19/5-minute-llms/)
+
+By July 2026, Moonshot AI's Kimi K3 (2.8T parameters, open-weight) placed first on Frontend Code Arena and ahead of Fable 5 on terminal and agentic benchmarks — the first open-weight model to claim clear leads over the closed frontier in multiple practical coding categories. See [Kimi K3 and the Price-Access Frontier](#kimi-k3-and-the-price-access-frontier) for the full picture.
 
 The gap between frontier API models and locally-runnable open-weight models is narrowing faster than most practitioners expected. See [Model Quantization](../concepts/model-quantization.md) for the compression techniques enabling local deployment.
 
@@ -100,6 +106,14 @@ Recurring calls to ban certain types of open models are in practice impossible t
 
 Counterbalancing this: sovereign entities and existing power structures increasingly realize that super-powerful AI tools concentrated in a few companies pose governance risks. Open models represent an alternative governance paradigm, and new funding structures for open models are expected to emerge as stakeholders recognize that dependencies on single for-profit companies for access to intelligence are unreliable.
 
+## The Fable 5 Export-Control Suspension
+
+On June 9, 2026, Anthropic added Fable 5 to paid plans. Three days later, the US government pulled it off the market after Amazon researchers found a route past the model's safeguards that produced working exploit code. Washington issued an export-control directive; Anthropic could not verify user nationality in real time and suspended the model for all users. Developers opened Claude mid-sprint and watched Fable 5 vanish from the picker — new sessions fell back to Opus 4.8 while the flagship sat dark for nineteen days.
+
+Fable 5 returned on July 1 with new terms. Anthropic folded it into plan limits for one week, then moved it to prepaid usage credits on July 7 at $10 per million input / $50 per million output, on top of the existing subscription. The subscription itself meters 5-hour session windows and weekly caps whose baselines Anthropic declines to publish and adjusted four times between March and June. Since April 4, subscription credentials no longer work inside Cursor, Cline, or Windsurf; since June 15, CI pipelines bill at API list prices once plan credits run dry. A class action (Kahn v. Anthropic, filed June 15) cites a Max 20x subscriber who burned 15 percent of a weekly allowance in one session.
+
+Security teams wrote the incident up as a single-vendor dependency case study — Snyk and the Cloud Security Alliance both published notes on what a mid-contract model suspension does to enterprise roadmaps. The episode is the most concrete illustration to date of the "permission tax" inherent in closed-API models: an API is a permission, and a permission can be revoked while your terminal sits open.
+
 ## Claude Fable 5 and the Long-Task Frontier (June 2026)
 
 Anthropic released Claude Fable 5 in June 2026 — the same underlying model as Mythos but with added safety safeguards. Fable 5 claimed state-of-the-art on nearly all tested benchmarks, with particular strength in software engineering, knowledge work, scientific research, and vision. Critically, the model's lead over competitors grows with task length and complexity — the longer and more difficult the problem, the wider the margin.
@@ -129,6 +143,22 @@ Delegation fails when the task has no delegable components: short tasks with onl
 The safety layer is notable: Fable 5 ships with safeguards that are deliberately configured conservatively for launch, erring on the side of over-triggering rather than under-triggering. Anthropic has indicated these will be tuned over time based on real-world feedback. Separately, Anthropic introduced a policy where Fable would covertly degrade output quality for ML/AI-related work — a move that drew sharp backlash and was partially walked back to at least make the restriction transparent rather than hidden. See [AI Safety & Interpretability](ai-safety-interpretability.md) for the broader trend of safety-capability bundling in frontier releases.
 
 An adjacent observation: as frontier model capability improves, demand for software does not plateau — it accelerates. Karpathy describes a Jevon's paradox dynamic where working software "on a tap" expands what practitioners ask for: bespoke single-use apps, project-specific dashboards, massively expanded test suites, automated optimization, and large-scale research projects with custom interfaces. The implication is that frontier models don't reduce overall engineering effort — they shift it toward higher-leverage, more ambitious tasks.
+
+## Kimi K3 and the Price-Access Frontier
+
+Sixteen days after the Fable 5 export controls lifted, Moonshot AI released Kimi K3 (July 16, 2026): 2.8 trillion parameters — the largest open-weight model any lab has released — with a 1-million-token context window, native vision, and first place on the Frontend Code Arena above Fable 5, at $3 per million input / $15 per million output. Full weights go up July 27 under a modified MIT license.
+
+**Where K3 leads.** On the Frontend Code Arena (blind rounds, human judges voting on rendered interfaces, no test suite to overfit), K3 holds 1,679 Elo — first place, above Fable 5. The mechanism matters: K3 renders its own output, reads the screenshot, and patches what it sees, closing the gap between mockup and implementation over successive rounds. On Terminal-Bench 2.1 it posts 88.3 vs. Fable 5's 84.6; on SWE-bench Verified, 76.8%; on SWE Marathon (multi-day engineering endurance), 42.0 vs. Fable's 35.0 and Opus 4.8's 40.0. On BrowseComp (agentic research), 91.2, above both American flagships.
+
+The architecture enables this stamina: 16 of 896 mixture-of-experts fire per token, the million-token window uses Kimi Delta Attention, and quantization-aware training keeps a 2.8T model servable at these prices. Inside an agent loop, the same vision that fixes UIs reads logs and tracebacks as images.
+
+**Where K3 trails.** Fable 5 beats K3 on FrontierSWE (86.6 vs. 81.2), Humanity's Last Exam (53.3 vs. 43.5), and GDPval knowledge-work rating (1,760 vs. 1,668). Artificial Analysis scores K3 fourth overall (Intelligence Index 57) across 187 models, behind the two American flagships, and flags it as verbose — 130M output tokens across the eval suite against a 63M average. Moonshot published those losses in its own release post and acknowledged "a noticeable gap in user experience" against Fable 5 and GPT-5.6 Sol, plus a tendency to overreach on ambiguous instructions.
+
+**The pricing arithmetic.** K3 at $3/$15 vs. Fable 5 at $10/$50 is a 3.3x sticker difference. The working gap runs wider: Anthropic's tokenizer splits the same text into roughly 30% more tokens, Fable charges $12.50–$20 per million to write cache entries (K3 has no cache-write fee), and Moonshot reports 90%+ cache hit rates on coding workloads where repo context repeats. A month of real agent traffic — 200M input tokens, half cached, 40M output — bills roughly $3,100 on Fable 5 before tokenizer inflation and cache-write fees, vs. $930 on K3. One caveat: K3 reasons at max effort with no temperature knob, and Simon Willison clocked a single test prompt at $0.25 of reasoning — cap `max_completion_tokens` per call.
+
+Moonshot parked a Fable-tier coder at Sonnet's price point. K3 replaced K2.6 ($0.95/$4) — Moonshot tripled its own rates and put the benchmark receipts on the table.
+
+**The open-weight endgame.** Once weights land (July 27), hosting providers race each other's margins to serve them, and $3/$15 becomes a ceiling, not a floor. The broader dynamic reinforces the pattern in [Open vs. Closed Weights Tension](#open-vs-closed-weights-tension): open weights climbed the leaderboard through 2026 while closed access added terms and restrictions.
 
 ## Scaling Philosophy: Data Quality Over Compute
 
@@ -163,3 +193,4 @@ To bootstrap this, frontier labs could employ small human teams to manage groups
 - [My bets on open models, mid-2026](https://www.interconnects.ai/p/open-models-in-perpetual-catch-up) — Nathan Lambert / Interconnects (Jun 2026) — Open vs. closed capability gap as economic contest, closed model robustness advantage, Chinese lab funding risks, RL training as closed-lab structural advantage, open model adoption in automation, regulation impossibility, sovereign interest in open models as governance paradigm
 - [Making Fable Cheaper Than Opus](https://x.com/joon_h_lee/status/2076714221837173097) — Joon Lee / Cognition (tweet thread, Jul 2026) — Fusion sidekick architecture cost analysis: Fable 5 + sidekick costs less than Opus 4.8 + sidekick despite 2x per-token premium; management style (turns, context, delegation timing) dominates cost over unit price; constraint-based vs. dictated handoff briefs; 81% of Fable leads never edit code
 - [Introducing Claude Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7) — Anthropic (Apr 2026) — Opus 4.7 release: 3.75MP vision, xhigh effort level, Project Glasswing safeguards, auto mode, task budgets, improved file-system memory across multi-session work
+- "How to build a Fullstack agent" — Rohit (tweet, Jul 2026) — Kimi K3 release (2.8T open-weight, $3/$15, Frontend Code Arena #1), Fable 5 export-control suspension timeline (19 days dark), pricing arithmetic (3.3x sticker / 4-5x effective K3 advantage), K3 benchmark receipts (Terminal-Bench 88.3, SWE Marathon 42.0, BrowseComp 91.2), Fable 5 post-return credit pricing and subscription restriction changes, open-weight weights release under modified MIT

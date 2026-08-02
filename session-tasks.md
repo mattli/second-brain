@@ -22,6 +22,19 @@ Ops state as of end of 08-02: `tokens.json` is **600** (was world-readable), its
   - **Dev worktree unstuck + brought current.** It was parked on `task-1-turn-count-floor` with an untracked `dev.sh` that was *also* committed on `local-dev` — a checkout would have failed on "untracked working tree file would be overwritten." Diffed first (byte-identical), removed the stray, checked out `local-dev`. Then rebased: `local-dev` was **4 commits behind main** (`c7599bb`, `dd65e03`, `eaf1684`, `bb0f8e3`) and so was serving pre-fix code — it would still have said "Matt" to Jorge and still used the 120s gate. `git rebase main local-dev` replayed the single `dev.sh` commit cleanly (`12ff7fa` → `77afa0c`; **file blob byte-identical**, only ancestry changed — harmless because the branch is intentionally unpushed). Worktree clean, `dev.sh` tracked + 755, main and the live server untouched.
 - **Standing hygiene note for the dev lane:** `local-dev` will drift behind `main` again after every merge. It's a worktree, not a mirror — rebase it before trusting a local test, or you're testing yesterday's code against today's production.
 
+### August 2, 2026 (infra / dotfiles)
+- **Dotfiles SessionEnd push hook was silently broken for 10 days.** The 2026-07-23
+  "fix" wrapped the push in the `timeout` shell binary, which macOS lacks — the push
+  died "command not found" and `2>/dev/null || true` swallowed it, so origin froze
+  (8 commits stuck). Fixed: removed `timeout`, narrowed suppression to `|| true`
+  (stderr now visible). Verified a real push reaches origin; `main` 0 ahead.
+- **Local-only history for `~/.claude`.** `git init`, no remote ever, tracks only
+  `CLAUDE.md` + `settings.json` (churn ignored) — history/undo for machine-local
+  config, deliberately NOT synced to the MacBook.
+- **Backlog convention sharpened** in `CLAUDE.shared.md` — soft "1–3 sentences" →
+  hard test (no commit hash / file:line / code block / dated finding; else it goes
+  in a linked dated doc).
+
 ### July 31 – August 1, 2026
 - **John's "missing vault log" was a threshold, not a bug.** Session analysis + summary are gated at **120s duration** (`MIN_ANALYSIS/SUMMARY_DURATION_SEC`); John's one real session was 103s/3 turns — 17s short, so no vault analysis + no `memory.md` section. His 4 earlier connects (10:28–12:06 Thu, before the 13:50 WebRTC fix `885619a`) produced zero turns/transcript — the connectivity bug, nothing to analyze. The in-app **recap is NOT gated** (fires for every study session), so John *did* get his recap; only the vault-side analysis/memory were skipped.
 - **Backfilled John's one real session** (a3cca4a3, 103s/3 turns) by invoking the existing `bot.py` analysis+summary path directly (no code change, separate process, live server + `.env` untouched): wrote the vault `session-analyses/john/` analysis and appended a `memory.md` section (~half a cent of Haiku, not logged to session-log.jsonl). His session: opened on the Danish healthcare-chatbot trust study, his only input was *"Can you give me a different overview?"*, then he disconnected — stalled, not a natural stop. (Cost: half a dozen morning connectivity failures, one 103s real exchange after the fix.)

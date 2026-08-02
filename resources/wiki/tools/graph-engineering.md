@@ -1,6 +1,6 @@
 ---
 created_at: 2026-07-26
-last_updated: 2026-07-27
+last_updated: 2026-08-02
 ---
 
 # Graph Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-07-27
 
 ## Recent Updates
 
+- **2026-08-02:** Added Claude Code workflow declaration syntax (`depends_on`) to [Six Ready-Made Recipes](#six-ready-made-recipes) and Mahax source
 - **2026-07-27:** Added Jey's 6-step practitioner summary to [Sources](#sources)
 - **2026-07-27:** Added [The Auditability Argument](#the-auditability-argument) (three commitments: immutable plan, separated layers, strict escalation) and extended [When Not to Use a Graph](#when-not-to-use-a-graph) with graph-vs-loop decision framework from CyrilXBT's graph engineering course
 - **2026-07-27:** Added [Historical Lineage](#historical-lineage), [Amdahl's Law ceiling](#amdahls-law-the-speedup-ceiling), self-recognition bias stats to [Verification](#verification-in-graphs), and [Six Ready-Made Recipes](#six-ready-made-recipes) from Argona's graph engineering course
@@ -248,6 +249,10 @@ The method is one — find the real edges, fan out, verify on fresh context, iso
 5. **Scheduled ecosystem scan.** Save the workflow once, run it by name on a timer.
 6. **Unknown-size discovery.** Finders run in parallel, each result is checked against everything already seen, and the loop runs until two rounds come back empty. (This is the [loop-until-dry](#controlled-cycles) pattern aimed at an open-ended search.)
 
+### Declaring the Graph in a Prompt
+
+Claude Code's `workflow` keyword changes how instructions are parsed: instead of treating steps as a sequence, Claude reads `depends_on` declarations and runs nodes with no dependencies in parallel automatically. A node with no `depends_on` starts immediately; a node listing dependencies waits until all complete. The `depends_on` line is the only structural primitive — no dependencies means parallel, a dependency means wait. This turns a natural-language prompt into an executable graph without writing orchestration code. Persist graph defaults (output format, checker behavior, error handling) in a project's `CLAUDE.md` so every workflow inherits them without rebuilding context each session.
+
 ## Anchors
 
 The deepest trap: build a full graph with paired checkers, audit nodes, and meta-nodes, and every node reads a report that came from the same system. Everything is consistent. Nothing is verified against reality.
@@ -274,3 +279,4 @@ This is not a free technique. It is a technique that makes a multi-year project 
 - How to master graph engineering (Full Course) by Machina — Human gate principle (approval placement where mistakes are expensive to undo, Klarna case), four safety rules, three applied diamond builds (deep research desk, SEO content machine, go-to-market kit) with concrete prompts
 - How to master graph engineering (Full Course) by CyrilXBT — Auditability argument (loops hide "what runs next" decision); three commitments (immutable plan, separated layers, strict escalation); five-move turn structure; testing the commitments; graph-vs-loop decision framework as genuine tradeoff; April 2026 arXiv paper analysis of 70 real-world systems
 - [Graph Engineering: The 6 steps to run agents as a team](https://x.com/0xJeyx) by Jey — Practitioner-oriented 6-step summary (one loop first, draw before building, spawn from one prompt, independent reviewers, one external check, grow only when work demands); concise restatement of core principles already covered in depth above
+- [Graph Engineering with Claude. What It Is and How to Actually Use It](https://x.com/mahaximus_/status/2082442856417956173/?rw_tt_thread=True) by Mahax — Beginner-friendly walkthrough of core concepts (fake-edge test, diamond, checker nodes, static vs dynamic); contributed Claude Code `workflow` keyword with `depends_on` syntax for declaring graph structure in prompts, and `CLAUDE.md` persistence tip for project-level graph defaults

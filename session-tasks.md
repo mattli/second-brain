@@ -1,11 +1,15 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
-### ▶ Next-session opening list (Sat 2026-08-01) — post-John, second tester (Jorge) provisioned
-Two committed-scope Voice Tutor dev tasks are parked (decided + scoped this session, NOT built — also in the harness Task list):
-1. **Turn-count floor for session analysis + summary.** Replace the 120s duration gate with `VOICE_TUTOR_MIN_ANALYSIS_TURNS=2` (env-tunable, live-revertible). Three-file change (grep readers, not just writer): `bot.py` gates at ~862/871 → `len(turns) >= floor`, extracted to a pure Pipecat-free helper; `app.py` `/telemetry` ships a server-computed `expects_summary` boolean instead of `min_summary_sec` (usage.json carries no turn count); `static/study.html` poll done-condition (~1226-1229) reads the boolean. TDD the boundary cases (3-turn/103s → analyzed; 1-turn opener-only → skipped); fresh review before merge. Motivation: John's one real session (103s/3 turns) fell 17s under the 120s gate and left no vault analysis.
-2. **De-hardcode "Matt"** from prompts. 6 sites in `bot.py`: live tutor `BASE_INSTRUCTION` 408/411/419, `SUMMARY_PROMPT` 451, `ANALYSIS_PROMPT` 252/259/266, memory header 628. Thread the real per-user name from the identity work (`identity.py`/`migrate_identity.py`). Every non-Matt tester (John, Jorge) is currently addressed *and* analyzed as "Matt."
+### ▶ Next-session opening list (Sun 2026-08-02) — both parked dev tasks SHIPPED and live; waiting on tester signal
+Both Voice Tutor tasks that were parked on 08-01 are **built, merged, pushed, and live** (server restarted 08-02 11:29, verified serving the new code): the **user-turn gate** (`bb0f8e3`) and **de-hardcode "Matt"** (`eaf1684`). Nothing is mid-flight; the repo is clean and in sync with origin.
 
-Still open from before (not blocking): anchor spot-check ~10-min read on the demo doc (`products/voice-tutor/validation/2026-07-30-graph-engineering-anchor-spotcheck.md`); graceful-shutdown fix (paired with supervision); coverage-bar design conversation.
+Next up, in rough priority:
+1. **Watch for Jorge's first session** (link sent 08-01; he's the second recruited tester). His session will be the first to exercise both fixes end-to-end — he should be addressed as "Jorge," and a short-but-real session should now produce a vault analysis. Check `session-analyses/jorge/` + `memory.md` after.
+2. **Anchor spot-check** — the ~10-min read on the demo doc's 15 unresolved anchors (`products/voice-tutor/validation/2026-07-30-graph-engineering-anchor-spotcheck.md`). Still Matt's to do; every tester who doesn't upload sees this doc.
+3. **Graceful shutdown** (paired with supervision) — a hard stop still loses a live session's whole artifact set; now the highest-value reliability gap.
+4. **Coverage-bar design conversation** — pairs with the "end the session by voice" spoken close-out (both read the same claim-map coverage).
+
+New backlog items spun out 08-02 (all scoped, none started): failed-summary poll-cap hardening; regular-mode (`/chat/`) access gate; plus findings folded into the recap-survival and end-by-voice items.
 
 ### July 31 – August 1, 2026
 - **John's "missing vault log" was a threshold, not a bug.** Session analysis + summary are gated at **120s duration** (`MIN_ANALYSIS/SUMMARY_DURATION_SEC`); John's one real session was 103s/3 turns — 17s short, so no vault analysis + no `memory.md` section. His 4 earlier connects (10:28–12:06 Thu, before the 13:50 WebRTC fix `885619a`) produced zero turns/transcript — the connectivity bug, nothing to analyze. The in-app **recap is NOT gated** (fires for every study session), so John *did* get his recap; only the vault-side analysis/memory were skipped.

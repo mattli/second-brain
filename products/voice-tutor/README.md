@@ -78,11 +78,60 @@ Pricing context worth keeping here:
 - **Data**: `~/.voice-tutor/` (profile.md, transcripts/)
 - **Wiki source**: `~/second-brain/resources/wiki/`
 
+## Development lanes — two folders, one repo
+
+> Written 2026-08-02 after the dev lane drifted 4 commits behind `main` unnoticed. Read this before using the dev lane.
+
+**The mental model: two folders, one repo.**
+
+| Folder | Branch | Port | What it is |
+|---|---|---|---|
+| `~/development/voice-tutor` | `main` | `:7860` | The live public app, launchd-supervised |
+| `~/development/voice-tutor-dev` | `local-dev` | `:7861` | Scratch lane, localhost-only, `--reload` |
+
+### Branch vs. worktree — the two words that cause confusion
+
+- A **branch** is a pointer to a commit. `local-dev` is a branch, exactly like `main` is a branch. Nothing about it is unusual *as a branch*.
+- A **worktree** is a directory on disk — a second checked-out copy of the same repo, so two branches can be open at once without swapping back and forth in one folder.
+
+So the worktree is *where*, the branch is *what*: `~/development/voice-tutor-dev` is a worktree with `local-dev` checked out in it. The main folder is also a worktree — it just has `main` checked out and never needed thinking about that way. Git enforces **one branch per worktree**, which is why a stray untracked file in the dev worktree can block a checkout.
+
+### What makes `local-dev` unusual is workflow, not git
+
+A normal feature branch is temporary: cut it off `main`, build, review, merge, done. `local-dev` is **permanent and never merges back**. It carries exactly one commit of its own — `dev.sh`, the runner that serves `127.0.0.1:7861` with `--reload` — and that script should never exist in production. Traffic goes one way: `local-dev` pulls *from* `main`, pushes nothing back, and stays **unpushed** to origin.
+
+Real work still goes the normal way: task branch off `main` → build → independent review → merge to `main`.
+
+### Managing it going forward
+
+1. **Rebase at the start of every dev session**, not on a schedule:
+   ```
+   cd ~/development/voice-tutor-dev && git rebase main local-dev
+   ```
+   It will be behind again after every merge to `main`. That's normal, not a failure — branches don't move on their own.
+2. **Never push it.**
+3. **If the history ever gets tangled, re-cut it** from `main` and re-add `dev.sh` rather than untangling. It's one file.
+
+### What rebasing does (and why the hash changes)
+
+Rebase = *replant my commits on a newer base*. Git lifts the `dev.sh` commit off its old parent, moves the branch to the tip of `main`, and replays it there. A commit's identity includes its parent, so replaying onto a new parent **mints a new hash** — same file content, new lineage. On 2026-08-02 `12ff7fa` became `77afa0c` with a byte-identical blob. Harmless precisely because `local-dev` is never pushed, so no one else holds the old hash.
+
+**Conflicts are possible in general** — they happen when the replayed change touches the same lines something on `main` changed. The 8/2 rebase was safe only because `dev.sh` exists nowhere else. The habit that keeps it that way: **keep `local-dev` carrying only `dev.sh`**. Experiments in the lane stay uncommitted, or graduate to a proper task branch off `main`. A one-commit branch stays conflict-free forever. If a conflict does appear, `git rebase --abort` restores everything exactly as it was — a conflict is a question, not damage.
+
+### The caveat that actually bites: code is isolated, data is not
+
+The dev worktree shares `~/.voice-tutor/` and `~/second-brain/` with production — same documents, same `tokens.json`, same `session-log.jsonl`, same vault. A session run at `:7861` writes a **real** ledger row, vault analysis, recap, and cost. That noise lands in the same ledger the validation gate reads. "Dev" means the code is safe, not that the data is sandboxed. If it becomes a problem, point `dev.sh` at a separate `VOICE_TUTOR_HOME` — not worth building until it annoys.
+
+### Production is launchd-supervised
+
+`main` at `:7860` runs under `com.voice-tutor.server` (KeepAlive + RunAtLoad). Restart with `launchctl kickstart -k gui/$(id -u)/com.voice-tutor.server`, and **only when confirmed idle** — check UDP sockets, not just the HTTP log; a quiet log killed a live session on 2026-07-30. `start.sh` is guarded so a by-hand run can't hard-kill the supervised server.
+
 ## Access
 
-- Local: `http://localhost:7860/chat/` (open chat) or `http://localhost:7860/study/` (doc-grounded)
-- Phone: `https://matts-mac-mini.taild1f9b7.ts.net/chat/` (or `/study/`)
-- Start: `./start.sh` from repo root
+- Public (live, token-gated): `https://matts-mac-mini.taild1f9b7.ts.net/study/?u=<token>` — internet-facing via Tailscale Funnel
+- Local (live): `http://localhost:7860/chat/` (open chat) or `http://localhost:7860/study/` (doc-grounded)
+- Dev lane: `http://127.0.0.1:7861/` via `./dev.sh` from the `voice-tutor-dev` worktree (localhost-only)
+- Start: production is launchd-supervised (see above); `./start.sh` from repo root only when the agent isn't loaded
 
 ## API keys
 

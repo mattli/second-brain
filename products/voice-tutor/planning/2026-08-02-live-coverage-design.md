@@ -35,6 +35,7 @@ A parallel async loop per study session, alongside the Pipecat pipeline but invi
 
 - **Every "covered" verdict must cite the transcript turn(s)** that constitute the explanation. Cite **all** touching turns, not just one — depth (mention vs. worked topic) becomes derivable for free. No citable turn → not covered. Same principle as claim anchors: no provable span, no claim.
 - Known risk: the judge reads the tutor's own words and will drift generous. Mitigation is a strict prompt + hand-calibration — read a few sessions' verdicts against Matt's own judgment before trusting the number.
+- **Hand-calibration labels are a persistent eval set, not a throwaway check.** When Matt marks his own covered/not-covered verdicts for a session, save them (e.g. `<session_id>.coverage.labels.json` beside the sidecar). Every judge-prompt change then re-runs against the same labeled transcripts and diffs — a regression suite for judgment, comparable across runs via the sidecar's judge-prompt versioning. Full eval infrastructure (scored harness, eval-on-every-change) is deliberately deferred until prompt churn makes manual re-checking hurt — instrument the gate before scaling the loop.
 
 ### Storage
 

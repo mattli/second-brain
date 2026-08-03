@@ -49,6 +49,9 @@ Per-session coverage sidecar (shape TBD in the build pass, roughly):
 
 - Percentage = covered/total, derived at read time, never stored as the primary record.
 - **Cross-session coverage = union of covered claims across all sessions on the doc** (merge over sidecars). This is what makes the number mean "how much of this document have I been through," and it feeds the returning-session opener ("last time you covered X — pick up at Y?").
+- **The live bar starts at the accumulated number, not zero** (decided 2026-08-02). On a returning session, the bar opens at the doc's union coverage and climbs from there — it means "your progress through this document," not "today's work." This is the unfinished-business pull; a bar that resets to 0% each session throws away the return mechanism.
+- **The judge sees only the current session's transcript** — it is never told which claims prior sessions covered. Union happens after, at read time. Keeps every session independently re-judgeable, and keeps the judge's job simple. (Telling the judge about prior coverage would let it detect *re-coverage* — the raw material for the deferred repetition-confidence idea — so that's the v2 door, consciously not opened in v1.)
+- **Union-by-claim-id depends on the claim map staying frozen per doc.** The existing cache guarantees this today, but note the collision with the open doc-freshness backlog item: re-extracting a doc's claims orphans every prior sidecar (old ids point at a dead map). If re-extraction ever ships, it needs a migration story for existing coverage — don't re-extract casually on a doc with session history.
 - Re-running the judge with a new threshold/prompt over stored transcripts re-derives everything without new sessions.
 
 ### Topics rollup
@@ -77,3 +80,14 @@ The 7/23 notes deferred a live mid-session strict judge pending "evidence that s
 - Whether the live bar needs claim-level display (covered/uncovered list) in v1 or just the number + topics.
 - Judge prompt: what "explained with comprehensiveness" means operationally — calibrate by hand against 2–3 real sessions before trusting.
 - UI treatment on `static/study.html` (design pass with the coverage bar item from the validation-gate plan).
+
+## First experiment (before any build)
+
+Run the judge by hand over Matt's existing Graph Engineering sessions — a real multi-session pair on the frozen 71-claim demo map:
+
+1. **Inventory first (step zero).** From `session-log.jsonl`, list every session on doc `ac4b826f` under user `matt` — the true session count behind the tutor's ~40% is unknown from memory (candidates: 7/26, 7/27, 7/30 per the analyses folder). For each row, confirm a transcript exists on disk; **flag any row with no transcript** (pre-fix failure or hard stop) — those sessions contributed to the tutor's estimate but can't contribute to the judge's union, so the union may honestly come in under ~40% if any exist. Report the roster before judging anything.
+2. Judge each session with a transcript independently (Haiku; verdicts must cite turns). Merge the sidecars — the union works identically for two sessions or four; more sessions is a stronger test of the merge, not a complication.
+3. Compare: the union vs. the tutor's in-context ~40% estimate, and Matt's memory-first audit of the verdicts (agreements pass, disagreements arbitrated by the transcript). Save the corrected set as the first labels file.
+4. Free strictness test: the 7/30 session discussed conditional routing mostly from general LLM knowledge, not the document — an honest judge marks almost nothing covered there; a generous one credits the topic. Watch this case specifically.
+
+This validates the judge AND the cross-session merge in one pass, on real data, before any pipeline code exists.

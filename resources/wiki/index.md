@@ -17,6 +17,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Model Quantization](concepts/model-quantization.md) — How LLM weight quantization works; 8-bit is nearly free, 4-bit is ~90% quality, 2-bit breaks
 - [Synthetic Personas](concepts/synthetic-personas.md) — Using evolutionary optimization to generate diverse LLM personas; Persona Generators (Google); coverage of attitudinal range; PM bottleneck applications
 - [Psychology & Trauma](concepts/psychology-trauma.md) — Gabor Maté frames on narcissism, addiction, mind-body unity, authenticity vs. attachment, and political psychology as adaptations to childhood wounds
+- [Psychology of Death](concepts/psychology-of-death.md) — Jung's death-as-goal framework; consciousness bends spacetime; the midlife parabola; death as projection of psychological complexes
 - [AI, Society & Epistemic Collapse](concepts/ai-society-epistemic-collapse.md) — Kingsbury on epistemic corrosion (info ecology, hyperscale propaganda, end of evidence); Diamandis on five speciation forks; AI's slower societal effects beyond labor/safety
 
 ## Tools & Frameworks

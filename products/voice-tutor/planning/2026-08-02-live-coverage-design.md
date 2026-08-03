@@ -58,6 +58,14 @@ Per-session coverage sidecar (shape TBD in the build pass, roughly):
 
 If claims carry a cluster/topic field at extraction (the session-opening outline idea from 7/23 already wants this), the same verdicts roll up into "topics covered" with zero extra judging. Extraction change, not a judge change.
 
+**Display decision (2026-08-03): claims are never user-facing.** Claim text is verification-grade — dense, precise, written for anchors and judges — and 63 of them on screen is unreadable. The user-facing layer is **topics**: a handful of human-sized labels (the doc's own section headers are roughly the topic list already). Three layers, each ignorant of the next:
+
+- **Claims** — measurement substrate, judge-facing only.
+- **Topics** — the display and navigation surface. The v1 UI shape is an **interactive table of contents**: topics listed, coverage shown per topic ("Verification: 4/6"), and — later — tappable to steer the conversation there (the 7/27 "map is the menu" control-surface idea, landing as topics-as-menu, not claims-as-menu).
+- **Coverage** — computed on claims, displayed on topics.
+
+The mapping is one extraction-time field (claim → topic). Tap-to-steer stays v2; the TOC display itself is v1 UI scope.
+
 ### Cost
 
 Haiku, claim ids + short claim text (not full anchors), ~8–10 passes in a 20-min session → pennies. Watch, don't fear. Ledger rows with their own `kind` so it's attributable.
@@ -82,6 +90,16 @@ The 7/23 notes deferred a live mid-session strict judge pending "evidence that s
 - UI treatment on `static/study.html` (design pass with the coverage bar item from the validation-gate plan).
 
 ## First experiment (before any build)
+
+**Status: RUN 2026-08-03. The design survived.** Full artifacts in [validation/coverage-experiment/](../validation/coverage-experiment/). Headline results:
+
+- **Judge strictness confirmed** — on the known-answer trap session (12f3a30d, discussed routing from general knowledge, not the doc), the judge credited exactly 1 of 71 claims. It also cleanly split a substantive recap (11 covered) from a vague one (0).
+- **Coverage vs. the tutor's own estimate:** post-audit union 16/63 ≈ 25%, against the tutor's spoken "~40%" recap claim — the tutor over-reports its own teaching. This is the case for the judge existing.
+- **One judge failure mode found (the c30 case):** the judge credits *fluent wrongness* — the tutor taught a plausible adjacent triad (the doc's sub-example lenses) as the headline three-way split, and the judge matched shape+keywords over content. **Any judge-prompt v2 must mark c30 NOT covered** — it is the standing regression case. The claim itself was arbitrated faithful (exact anchor; the doc contains both triads in one paragraph, in different roles).
+- **Labels:** 17 human-audited verdicts (16 familiarity-based agreements + c30 transcript-and-source-verified rejection) form the first eval set. Confidence level is recorded per row; labels are a tripwire hardened on disagreement, not ground truth.
+- Two Graph Engineering docs exist (matt 63-claim map, _shared 71-claim superset); each roster was judged against its own map. 4 of 8 matt sessions had no recorded transcript (created, never conducted).
+
+Original protocol (kept for reference):
 
 Run the judge by hand over Matt's existing Graph Engineering sessions — a real multi-session pair on the frozen 71-claim demo map:
 

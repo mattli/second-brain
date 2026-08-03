@@ -60,14 +60,30 @@ Each `<session>.coverage.json` records which map it was judged against (`doc_key
   `judge_prompt_hash`, doc judged against.
 - `union.json` — union of covered claims across the 4 PRIMARY sessions, % over 63.
 - `audit-sheet.md` — one row per PRIMARY-union claim for Matt to check (agree/disagree).
+- `labels.json` — ground-truth human labels (judge_verdict vs. matt_verdict + confidence) for the 17 union claims; c30 flagged as the judge-prompt-v2 regression case.
 - `_run-cost.json` — token totals + Haiku cost for the run.
 
 ## Results (2026-08-03 run)
 
 - **Strictness test (`12f3a30d`, shared doc):** 1 of 71 claims covered — honest, not
   generous (see the final report).
-- **PRIMARY union:** 17 of 63 claims = **27%** (vs. the tutor's ~40% recap estimate).
+- **PRIMARY union (judge, pre-audit):** 17 of 63 claims = **27%** (vs. the tutor's ~40% recap estimate).
 - Per-session covered: `f6148c26` 10, `7beee170` 12, `d33800bf` 0, `bb979045` 11.
 - Haiku cost: **$0.068** (30,007 in / 7,601 out).
 
-**No labels file yet** — that happens after Matt's audit of `audit-sheet.md`.
+## Post-audit (2026-08-03)
+
+Matt audited the 17-claim PRIMARY union against `audit-sheet.md`: **16 of 17 upheld.**
+The lone rejection is **c30** — the judge credited a shape + keyword match. The tutor
+(`7beee170#28`) named the *perspective-diverse-verify* example lenses (correctness /
+security / reproducibility) as if they were the doc's headline three-way split, which
+is actually **correctness / currency / source-authenticity** (source line 86); it never
+named currency or source-authenticity. Claim c30 is itself a **faithful** extraction
+(claims.json anchor resolution `exact`), so this is a **judge** error, not a bad claim —
+which makes c30 the **mandatory regression case for any judge-prompt v2** (v2 must mark
+it NOT covered).
+
+- **PRIMARY union (post-audit):** **16 of 63 claims ≈ 25%** — still well under the tutor's
+  ~40% recap estimate.
+- Ground-truth labels: [`labels.json`](labels.json) — per-claim judge vs. Matt verdict +
+  confidence (`familiarity` for the 16 upheld on recognition; `verified` for c30).

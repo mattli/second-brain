@@ -1,0 +1,352 @@
+{
+  "session_id": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+  "user": "matt",
+  "doc_key": "matt",
+  "doc_claims_count": 63,
+  "transcript_turns": 3,
+  "judged_at": "2026-08-03T17:21:38.991338+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "judge_prompt_hash": "632b73a34b1a22b1",
+  "covered_count": 11,
+  "missing_claim_ids": [],
+  "extra_claim_ids": [],
+  "verdicts": [
+    {
+      "claim_id": "c1",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c2",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c3",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c4",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c5",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c6",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c7",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c8",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c9",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c10",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c11",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c12",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c13",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c14",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c15",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c16",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c17",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c18",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c19",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c20",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c21",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c22",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c23",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c24",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c25",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c26",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c27",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c28",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c29",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c30",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c31",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c32",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c33",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c34",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c35",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c36",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c37",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c38",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c39",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c40",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c41",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c42",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c43",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c44",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c45",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c46",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c47",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c48",
+      "covered": true,
+      "turns": [
+        2
+      ]
+    },
+    {
+      "claim_id": "c49",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c50",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c51",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c52",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c53",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c54",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c55",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c56",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c57",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c58",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c59",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c60",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c61",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c62",
+      "covered": false,
+      "turns": []
+    },
+    {
+      "claim_id": "c63",
+      "covered": false,
+      "turns": []
+    }
+  ]
+}

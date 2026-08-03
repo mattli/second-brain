@@ -1,0 +1,297 @@
+{
+  "doc": "matt/2aa66acc-1c4b-4d7d-83fe-b361fbe38523",
+  "claim_map_claims": 63,
+  "primary_sessions_judged": [
+    "f6148c26-af09-491d-b644-1522db9f42c5",
+    "7beee170-47d1-418d-b35d-5cc56babaccc",
+    "d33800bf-9322-4c97-9153-c9f356c42b24",
+    "bb979045-72f5-4f84-8d8c-ae4bf137e711"
+  ],
+  "per_session_covered_counts": {
+    "f6148c26-af09-491d-b644-1522db9f42c5": 10,
+    "7beee170-47d1-418d-b35d-5cc56babaccc": 12,
+    "d33800bf-9322-4c97-9153-c9f356c42b24": 0,
+    "bb979045-72f5-4f84-8d8c-ae4bf137e711": 11
+  },
+  "union_covered_claim_ids": [
+    "c1",
+    "c2",
+    "c3",
+    "c5",
+    "c6",
+    "c8",
+    "c9",
+    "c15",
+    "c17",
+    "c21",
+    "c27",
+    "c28",
+    "c30",
+    "c31",
+    "c46",
+    "c47",
+    "c48"
+  ],
+  "union_covered_count": 17,
+  "union_coverage_pct_over_63": 27.0,
+  "covered_by": {
+    "c1": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          5,
+          11,
+          17
+        ]
+      }
+    ],
+    "c2": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          27,
+          89,
+          91
+        ]
+      },
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          3
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c3": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          20,
+          52,
+          55,
+          61,
+          65
+        ]
+      },
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          3,
+          8
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c5": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          8,
+          11
+        ]
+      }
+    ],
+    "c6": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          30
+        ]
+      }
+    ],
+    "c8": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          8
+        ]
+      }
+    ],
+    "c9": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          5,
+          70,
+          74,
+          81
+        ]
+      },
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          3
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c15": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          27,
+          89
+        ]
+      },
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          3
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c17": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          20,
+          61
+        ]
+      }
+    ],
+    "c21": [
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          20,
+          25
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c27": [
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c28": [
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          10,
+          12
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c30": [
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          28
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c31": [
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          40
+        ]
+      }
+    ],
+    "c46": [
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          42,
+          46,
+          51,
+          53
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c47": [
+      {
+        "session": "f6148c26-af09-491d-b644-1522db9f42c5",
+        "turns": [
+          35,
+          37,
+          40
+        ]
+      },
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          42,
+          77,
+          79
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ],
+    "c48": [
+      {
+        "session": "7beee170-47d1-418d-b35d-5cc56babaccc",
+        "turns": [
+          81
+        ]
+      },
+      {
+        "session": "bb979045-72f5-4f84-8d8c-ae4bf137e711",
+        "turns": [
+          2
+        ]
+      }
+    ]
+  }
+}

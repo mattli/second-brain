@@ -38,6 +38,19 @@ Met at the same meetup. Closer to the ICP than John — plausibly has a pile of 
 | Returned? | — |
 
 - Token was exposed in a chat log on send; rotated same day, corrected link to follow.
+- Matt replied to Jorge Fri 7/31; deliberately giving him space — no nudge planned for now.
+
+## Channels
+
+### Reddit — r/PKMS (cold)
+
+- **Mon 2026-08-03, ~11am — posted.** Title: "How do you actually make use of your knowledge base?" Problem-first discovery post, no product link, no pitch — Matt's own arc (Readwise → Karpathy-style LLM wiki → "one thing to hoard information, another to actually learn from it and apply it"). Speech-to-speech Q&A mentioned once, unlabeled, as a tripwire for interested readers.
+- **Purpose:** discovery + standing for later DMs; testers are a byproduct. Watch for anyone describing the learn/apply gap in their own words — those are DM candidates.
+- **Plan:** engage genuinely for ~48h, then decide whether a rewritten version goes to r/ObsidianMD or r/Zettelkasten. No same-day cross-posting.
+
+### Meetup — 2026-08-11 (warm)
+
+- Next warm channel; produced John and Jorge last time. Goal: links out within a day or two of the event, ideally onto the coverage-bar build if it ships in time.
 - Next input to the validation gate most likely comes from here.
 
 ## Leads (not yet testers)

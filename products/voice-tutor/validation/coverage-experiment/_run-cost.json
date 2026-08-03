@@ -1,0 +1,7 @@
+{
+  "total_input_tokens": 30007,
+  "total_output_tokens": 7601,
+  "haiku_input_per_mtok_usd": 1.0,
+  "haiku_output_per_mtok_usd": 5.0,
+  "total_cost_usd": 0.068
+}

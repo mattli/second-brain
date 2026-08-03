@@ -28,11 +28,16 @@
       "description": "Copy the frozen fixtures into module test fixtures from the resolved absolute paths: the four PRIMARY transcripts (f6148c26, 7beee170, d33800bf, bb979045) + the strictness session (12f3a30d) from /Users/mattli/.voice-tutor/transcripts/matt/, the 63-claim matt doc sidecar (/Users/mattli/.voice-tutor/documents/matt/2aa66acc-....claims.json) and the 71-claim shared doc sidecar (/Users/mattli/.voice-tutor/documents/_shared/ac4b826f-....claims.json), and labels.json (READ ONLY). Add a SEPARATE bounded credentialed-smoke script (NOT part of tests/test_coverage_judge.py, NOT run per hermetic test) that makes real Haiku calls — obtaining ANTHROPIC_API_KEY from the process env or the app .env at ABSOLUTE path /Users/mattli/development/voice-tutor/.env (never worktree-relative; never echo/log/commit the key). Acceptance bar (~5 Haiku calls, ~$0.07, run ONCE): the 16 upheld claims (c1,c2,c3,c5,c6,c8,c9,c15,c17,c21,c27,c28,c31,c46,c47,c48) covered in the union of the four primary sessions; c30 NOT covered (mandatory regression); strictness session 12f3a30d vs the 71-claim map yields ≤2 covered. If v2 flips any of the 16 upheld labels to not-covered, that is a FAILURE — iterate the v2 prompt (re-hashing, updating recorded hash) until all 17 labels agree, without trading recall for the c30 fix. If one specific label repeatedly disagrees on principled grounds, STOP and surface it in the run report rather than tuning to force agreement; never modify labels.json. Deliver the smoke script + a run report capturing the 17/17 result and cost."
     }
   ],
-  "currentSprint": 0,
-  "contractVersion": 0,
-  "scores": [],
+  "currentSprint": 2,
+  "contractVersion": 3,
+  "scores": [
+    82,
+    84,
+    90,
+    96
+  ],
   "iterations": 0,
-  "budgetSpentUsd": 0,
+  "budgetSpentUsd": 16.414870649999997,
   "haltReason": null,
-  "contractFreezeReason": null
+  "contractFreezeReason": "agreement"
 }

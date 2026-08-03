@@ -33,11 +33,13 @@
       "description": "Copy the frozen fixtures into the module's test fixtures (new files) from the resolved absolute paths: the five transcripts (f6148c26, 7beee170, d33800bf, bb979045 as PRIMARY union set; 12f3a30d as strictness test), the 63-claim matt doc .claims.json and 71-claim shared doc .claims.json, plus labels.json (READ ONLY) and judge-prompt-v1.md. Build a SEPARATE, bounded credentialed-smoke runner (NOT part of the hermetic verifier command, run ONCE, ~5 Haiku calls / ~$0.07) that obtains ANTHROPIC_API_KEY from the process environment or the app .env by ABSOLUTE path /Users/mattli/development/voice-tutor/.env (never worktree-relative, never echoed/logged/committed). Acceptance bar: the 16 upheld claims (c1,c2,c3,c5,c6,c8,c9,c15,c17,c21,c27,c28,c31,c46,c47,c48) covered in the union of the four primary sessions; c30 NOT covered (mandatory v1-regression case); strictness session 12f3a30d vs the 71-claim map yields <=2 covered. Iterate the v2 prompt until all 17 labels agree WITHOUT flipping any of the 16 upheld to not-covered. If one label repeatedly disagrees and the disagreement looks principled, STOP and surface it in the run report rather than tuning to force agreement — do NOT modify labels.json. Deliver the smoke result as acceptance evidence."
     }
   ],
-  "currentSprint": 0,
-  "contractVersion": 0,
-  "scores": [],
+  "currentSprint": 1,
+  "contractVersion": 5,
+  "scores": [
+    97
+  ],
   "iterations": 0,
-  "budgetSpentUsd": 0,
+  "budgetSpentUsd": 6.537425549999998,
   "haltReason": null,
-  "contractFreezeReason": null
+  "contractFreezeReason": "round-cap"
 }

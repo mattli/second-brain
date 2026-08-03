@@ -131,7 +131,11 @@ just see different windows. All numbers verified against the live API 2026-07-21
 **Open item for the fold-into-reconcile_costs work:** the `reconcile_costs.py`
 run reported 287.65 min for the full range; the live breakdown endpoint returns
 256.8 min for 04-15→07-18 with the same `hours`-summation. The ~31-min gap is
-likely a different date range in that run — verify when merging the tools.
+likely a **date-range mismatch**: `reconcile_costs.py` converts the local ledger
+range to a *padded* UTC window (`2026-04-14T23:37Z → 2026-07-19T23:51Z`, i.e.
+dates 04-14→07-19 — one extra day at each end vs the 04-15→07-18 query), and that
+padding is the likely cause. Verify when merging the tools by re-querying
+`/usage/breakdown` with that exact padded window.
 
 ## Status
 Tool validated live + offline (75 tests). Branch `run-mru5b2o4` ready for

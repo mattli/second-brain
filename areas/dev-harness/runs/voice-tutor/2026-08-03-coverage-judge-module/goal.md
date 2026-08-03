@@ -59,3 +59,31 @@ Run the real judge (real Haiku call, key from the repo `.env` — never echo it)
 ## Success looks like
 
 `coverage_judge.py` + tests merged on a branch, hermetic suite green, credentialed smoke green with 17/17 label agreement (16 covered + c30 not-covered) and strictness ≤ 2 on the trap session, v2 prompt versioned and hashed, CLI runnable end to end. Ready for a CC session to wire into the app.
+
+---
+
+## Launch 2 amendments (2026-08-03)
+
+*Additive amendments for the second launch, after Launch 1 (run `msdql2bo`) paused on the per-sprint wall clock partway through Stage 1. The record above is unchanged; these amendments override it where they conflict.*
+
+### The v1 prompt is INPUT, not a deliverable — verify, never reproduce
+`judge-prompt-v1.md` is a fixed input to VERIFY, not something to author or reconstruct.
+- Copy `judge-prompt-v1.md` from the eval-set folder into the module's test fixtures **verbatim** (byte-for-byte).
+- The hash `632b73a34b1a22b1` is **provenance to verify on the copied file**: hash the copied bytes with the module's hash function and assert it equals `632b73a34b1a22b1`. It is NOT a target to reproduce by authoring or tuning a prompt.
+- **If that verification fails, STOP and report it** — do not reconstruct, paraphrase, or tune anything to force the hash. A mismatch means the copy or the hash function is wrong; that is a finding, not something to engineer around.
+
+### The v2 prompt is the authored deliverable — new hash, no reproduction target
+- v2 is authored (per the v2 content-match requirement above), hashed with the **same** hash function, and its **new** hash is recorded in every verdict's `judge_prompt_hash`.
+- There is **no** byte-reproduction target for v2. Do not attempt to hit any particular v2 hash.
+
+### The parsing core already exists — build on it, do NOT rebuild
+This run is **seeded from the Stage 0 result of Launch 1** (voice-tutor commit `f34b470`, "sprint 0 — core data contract + parsing defenses", scored 97). The repo the run starts in ALREADY CONTAINS, and its hermetic tests already pass (39 green):
+- `coverage_judge.py` — claim-list loading, indexed-transcript loading/validation, markdown-fence stripping, strict verdict parsing, and the typed parse/validation error hierarchy.
+- `tests/test_coverage_judge.py` — the passing hermetic tests for the above.
+
+Therefore:
+- **Do NOT re-plan or rebuild Stage 0.** Verify the parsing core is present and its tests pass, then plan and build **Stage 1 onward only** (v2 prompt authored + hashed; single-invocation judge + verdict assembly; `union_coverage` + CLI; credentialed smoke with 17/17 label agreement), building ON the existing core rather than re-deriving it.
+- New Stage 1+ code and tests EXTEND the existing files (same `coverage_judge.py`, same `tests/test_coverage_judge.py`); do not duplicate the Stage 0 surface.
+
+### Wall clock
+Per-sprint wall clock raised to **45 minutes** for this launch (Stage 1 hit the 30-minute cap on a single generation attempt last time; the credentialed-smoke stage may legitimately need multiple iterations).

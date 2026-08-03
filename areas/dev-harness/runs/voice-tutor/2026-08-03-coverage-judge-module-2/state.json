@@ -4,7 +4,7 @@
   "title": "coverage judge module",
   "startedAt": "2026-08-03T21:23:48.613Z",
   "runDir": "runs/voice-tutor/2026-08-03-coverage-judge-module-2",
-  "status": "running",
+  "status": "halted",
   "projectPath": "/Users/mattli/development/voice-tutor",
   "sprints": [
     {
@@ -36,10 +36,11 @@
   "currentSprint": 1,
   "contractVersion": 5,
   "scores": [
-    97
+    97,
+    45
   ],
   "iterations": 0,
-  "budgetSpentUsd": 6.537425549999998,
-  "haltReason": null,
+  "budgetSpentUsd": 12.743435299999998,
+  "haltReason": "wall-clock",
   "contractFreezeReason": "round-cap"
 }

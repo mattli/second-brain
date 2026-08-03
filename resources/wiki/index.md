@@ -54,7 +54,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 
 ## People
 
-- [Andrej Karpathy](people/andrej-karpathy.md) — AI researcher; LLM wikis; autoresearch; two-tier perception gap; "decade of agents"; "ghosts not animals"
+- [Andrej Karpathy](people/andrej-karpathy.md) — AI researcher; LLM wikis; autoresearch; two-tier perception gap; "decade of agents"; "ghosts not animals"; frontier creative capability & verification gaps
 - [DHH](people/dhh.md) — Ruby on Rails creator; 180-turn on AI tools; taste/craft as differentiator; speed concerns; competence preservation; VR parallel
 - [Peter Steinberger](people/peter-steinberger.md) — OpenClaw creator, prolific AI tool builder; SOUL.md/MEMORY.md/DREAMS.md agent identity
 - [Dario Amodei](people/dario-amodei.md) — Anthropic CEO; "Machines of Loving Grace" and "Adolescence of Technology" essays; safety-first AI scaling

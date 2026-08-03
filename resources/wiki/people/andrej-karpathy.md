@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-22
+last_updated: 2026-08-03
 ---
 
 # Andrej Karpathy
 
-> TLDR: AI researcher and educator whose recent focus has shifted from model internals to knowledge management — advocating for LLM-compiled personal wikis, file-over-app data ownership, and agent proficiency as core skills.
+> TLDR: Former Tesla AI director, OpenAI founding member, and deep learning educator (cs231n, "Neural Networks: Zero to Hero"). Recent focus has shifted from model internals to knowledge management and agent workflows — advocating for LLM-compiled personal wikis, file-over-app data ownership, agent proficiency as core skills, and exploring the creative frontier where LLMs build things no human would bother to.
 
-## Overview
+## Recent Updates
 
-Former Tesla AI director and OpenAI founding member. Created some of the most influential deep learning educational content (cs231n, the "Neural Networks: Zero to Hero" series). Known for going deep on fundamentals and sharing practical, opinionated takes.
+- **2026-08-03:** Added Karpathy's Opus 5 Lord of the Rings experiment to [Frontier Creative Capability](#frontier-creative-capability--verification-gaps); removed stale Overview, folded framing into TLDR.
 
 ## Recent Thinking (2026)
 
@@ -58,6 +58,14 @@ On memorization vs. abstraction: LLMs can "regurgitate word-for-word what is the
 
 On the coding stack: autocomplete is high-bandwidth ("you point to the code where you want it, you type out the first few pieces, and the model will complete it") while typing instructions in English is "too much typing." Different modes work for different parts of the coding workflow. See [Agentic Engineering](../tools/agentic-engineering.md).
 
+### Frontier Creative Capability & Verification Gaps
+
+In August 2026, Karpathy tested Opus 5 by giving it the opening paragraph of The Lord of the Rings, a 1M token budget (~$10), and asking for a three.js render. The model spent ~2 hours writing 5,500 lines of procedural code that animated the scene — placing and orchestrating polygon assets in 3D coordinates. The result was "kind of janky but fun," yet the fact that it produced anything coherent at all was "mindboggling."
+
+The broader point: LLMs unlock a category of creation where the bottleneck was never technical skill but human patience. "No one in their right mind would ever spend the time to write something this custom," but LLMs have "all the stamina and patience in the world." This shifts the calculus from "impossible" to "~free" — and Karpathy sees it pointing toward hyper-custom, ephemeral game worlds generated on demand ("an ephemeral GTA of X").
+
+But this domain also exposes a key LLM weakness: **verification in dynamic environments**. The model couldn't efficiently audit its own 3D output because it lacks native video perception and gameplay ability. It had to take screenshots slowly and painstakingly, introducing visual jank it couldn't catch. This echoes the verification theme from [Loop Engineering](../tools/loop-engineering.md) and [AI Evals](../tools/ai-evals.md) — raw generation capability outpacing the ability to close the feedback loop, especially in domains without simple text-based success signals.
+
 ## Sources
 
 - "LLM Knowledge Bases" — Andrej Karpathy (tweet, Apr 2, 2026) ([link](https://x.com/karpathy/status/2039805659525644595/?s=12&rw_tt_thread=True))
@@ -70,3 +78,4 @@ On the coding stack: autocomplete is high-bandwidth ("you point to the code wher
 - "We're summoning ghosts, not building animals" — Andrej Karpathy / Dwarkesh Patel (video, Apr 2026) ([link](https://www.youtube.com/watch?v=lXUZvyajciY&list=PLd7-bHaQwnthaNDpZ32TtYONGVk95-fhF&index=12))
 - "The gap between casual ChatGPT users and professional agentic users..." — Andrej Karpathy (tweet, Apr 2026)
 - "Andrej Karpathy on the shift to agentic engineering" — Ben Lang (tweet, May 2026) — pointer tweet on Karpathy's agentic engineering perspective
+- "We're starting to leave the territory where you'd test an LLM by..." — Andrej Karpathy (tweet, Aug 2026) — Opus 5 Lord of the Rings three.js experiment; frontier creative capability and verification gaps

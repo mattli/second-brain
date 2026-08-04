@@ -90,4 +90,6 @@ A finding is NOT valuable if it's generic "I want to study better," "AI is chang
 
 ## Next Action
 
-Run the product-validation skill against this doc. Output: a findings doc with a DM-candidates section at the top — username, their words, why they qualify — excluding everyone named in the April 2026-04-26 findings (already contacted). Matt decides who and how many get DMs; the run sends none.
+**Run 2026-08-03 complete → [[product-validation-findings-2026-08-03]].** Verdict: DMs go to the deadline segment; the overwhelmed-saver arm reproduced the r/PKMS result in r/Readwise (problem conceded, treated as an attitude to adjust). Two findings that cut against the current pitch are recorded there: the NotebookLM passive-audio complaint did not appear, and shipping competitors exist in the explain-aloud wedge (okti, Novis).
+
+Original brief: run the product-validation skill against this doc. Output: a findings doc with a DM-candidates section at the top — username, their words, why they qualify — excluding everyone named in the April 2026-04-26 findings (already contacted). Matt decides who and how many get DMs; the run sends none.

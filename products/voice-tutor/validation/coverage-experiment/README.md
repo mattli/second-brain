@@ -49,7 +49,9 @@ Each `<session>.coverage.json` records which map it was judged against (`doc_key
 - **Instruction (strict):** for each claim, did the **tutor** explain the claim's
   actual assertion comprehensively — not a passing mention, not topic adjacency? Every
   `covered: true` must cite **all** constituent assistant turn indices; no citable
-  turn ⇒ not covered. Full text in `judge-prompt-v1.md` (hash `632b73a34b1a22b1`,
+  turn ⇒ not covered. Full text in `judge-prompt-v1.md` (hash `632b73a34b1a22b1` —
+  provenance for the 8/2 hand-run, not reproducible from the published file, which
+  hashes to `038fe74e279842e6`; see that file's header —
   recorded on every `.coverage.json` as `judge_prompt_hash`).
 - **Session date = `prompt.txt` mtime** (the session's start artifact).
 

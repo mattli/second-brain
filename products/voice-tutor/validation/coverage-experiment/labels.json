@@ -4,6 +4,7 @@
   "doc_key": "matt/2aa66acc-1c4b-4d7d-83fe-b361fbe38523",
   "claim_map_claims": 63,
   "judge_prompt_hash": "632b73a34b1a22b1",
+  "judge_prompt_hash_note": "632b73a34b1a22b1 was computed during the 2026-08-02 hand-run over the live Python prompt strings; those bytes are not recoverable from the transcribed judge-prompt-v1.md, so it cannot be reproduced by hashing that file. The verifiable sha256[:16] of judge-prompt-v1.md as published is 038fe74e279842e6. Verified 2026-08-03 (dev-harness run msdsrc8x).",
   "scope": "PRIMARY union — the 17 claims the judge marked covered by >=1 of the 4 judged primary sessions (f6148c26, 7beee170, d33800bf, bb979045).",
   "method_note": "Human audit of the judge's PRIMARY-union verdicts against audit-sheet.md. matt_verdict is the ground-truth label; judge_verdict is judge-prompt-v1's call. confidence records how the human verdict was reached: 'familiarity' = single-pass recognition by someone who knows the source doc; 'verified' = checked against the session transcript AND the source document. 16 rows were upheld on a familiarity pass; c30 was rejected after transcript- and source-verification (see its note). Post-audit the covered union drops from 17 to 16 (c30 removed entirely — both of its citations fail).",
   "labels": [

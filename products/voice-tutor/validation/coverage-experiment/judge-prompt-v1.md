@@ -2,6 +2,13 @@
 
 - **Model:** `claude-haiku-4-5-20251001` (temperature 0)
 - **Prompt hash (sha256[:16] of system + user template):** `632b73a34b1a22b1`
+  — computed during the 2026-08-02 hand-run over the LIVE PYTHON PROMPT STRINGS as
+  assembled in code. Those bytes are not recoverable from this transcribed file, so
+  this value cannot be reproduced by hashing this document (verified 2026-08-03: 648
+  principled renderings tried, none match). Provenance for that run — not a checksum
+  of this file.
+- **Verifiable hash of THIS file:** `038fe74e279842e6` (sha256[:16] of its 2409 bytes
+  as published). Use this to check the file's integrity.
 - One call per session. `{claims_block}` = that session's doc claim list
   (id + claim text, anchors omitted). `{transcript_block}` = the full indexed
   transcript, one line per turn as `[index] ROLE: content`.

@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 
 
 ---
@@ -11,6 +11,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-08-04:** Added Osmani's taste-vs-judgment asymmetry (taste is borrowable, judgment is not) to [Discernment](#discernment)
 - **2026-07-26:** Added productivity evidence (2.0% vs 1.6% pre-pandemic), "immaculate disinflation" confound for young-worker data, and RSI/singularity forward-look to [Augmentation vs. Substitution](#augmentation-vs-substitution)
 - **2026-07-24:** Added McCrory's skill-biased labor-augmenting framework and weak-links growth constraint to [Augmentation vs. Substitution](#augmentation-vs-substitution); added Anthropic Economic Index evidence (Economic Primitives, Learning Curves, Cadences, Claude Code expertise) and software production weak-links data
 - **2026-07-15:** Added Stanford Canaries Dashboard ADP data (3.8%/yr early-career contraction in exposed jobs, automation-ratio correlation) to [Augmentation vs. Substitution](#augmentation-vs-substitution) and [AI's Early Labor Market Impact](#ais-early-labor-market-impact-2026-data); added Takeoff Tracker findings to [Academic Research](#academic-research-on-net-employment-effects)
@@ -46,6 +47,8 @@ The ability to see clearly and zero in on what matters — especially when drown
 The deeper principle: self-perception enables world perception. If you can't see yourself clearly (blind spots, limiting beliefs, false assumptions), you can't assess external situations accurately. Discernment is as much inner work as analytical skill.
 
 **Taste as a trainable muscle.** Problem selection — knowing *what* to work on — is the highest-leverage form of discernment and the one least taught. Hamming had a habit at Bell Labs of asking colleagues what the important problems in their field were, then asking why they weren't working on them. People changed tables. The question stings because most people absorb problems (from advisors, from whatever a big lab announced, from what's trending) rather than choosing them — holding conclusions without the reasoning behind them. Schulman splits research into two modes: hunting the literature for things to improve, or choosing an outcome you genuinely want and reasoning backward to the experiments. The second mode manufactures originality because a goal you actually care about drags you into territory no survey paper covers [[source]](https://x.com/VivsThoughts). Taste itself responds to a simple training protocol: predict the result of every experiment before running it, cover a paper's results and guess the numbers from the method, mark which releases will matter in two years and check your hit rate later. A forecast plus a correction, repeated hundreds of times, is how every good model gets trained — including the one in your head.
+
+**Taste vs. judgment — the asymmetry AI can't close.** Osmani draws a sharp line between the two: taste is recognizing quality in the absence of all evidence; judgment is committing to that recognition in the presence of risk. Taste can be borrowed, copied, derived from others, even learned from agents — it's pattern recognition built through exposure to variety (narrow consumption won't build it; you need friction and the unexpected). But judgment cannot be transferred, because judgment is insisting on your name attached to the consequences. Agents can rank options and assess quality, but when the choice has to be made and someone must be answerable, we still reach for humans. The interesting question isn't whether AI can develop taste — assume it can. The question is what's left when it does. Judgment remains because it isn't a capability; it's a liability. Apple's 2012 Maps launch illustrates the pair: the taste was there (crisp vector rendering, elegant typography), but the product shipped with bridges melting into rivers and towns misplaced by 70 km. Tim Cook published a first-person apology on apple.com — the signature cost something the design polish didn't. Taste compounds through exposure; judgment compounds through consequences.
 
 ### Connection
 Deep relational presence — attuning to others, creating psychological safety, vulnerability without performance. Human connection requires mutual embodied presence that AI cannot replicate: nervous systems coregulating, micro-expressions, pulse changes.
@@ -283,3 +286,4 @@ Also relevant: [AI Careers](../landscape/ai-careers.md) (where this connects to 
 - "As engineering, product, design, DS, etc. melt into a new kind of role" — Boris Cherny (tweet, Jun 2026) — five phase-based product archetypes (Prototyper, Builder, Sweeper, Grower, Maintainer) replacing domain-specific roles; team composition by product stage
 - "Why hasn't AI increased unemployment?" — Peter McCrory (Anthropic, Jul 2026) ([link](https://x.com/pete_mccro/status/1947076001978175612)) — Skill-biased labor-augmenting framework; weak-links growth constraint (Aghion, Jones & Jones); Economic Index evidence (Economic Primitives, Learning Curves, Cadences, Claude Code expertise); 10-20x code → 30% releases weak-links evidence; worker expectations vs. job loss expectations gap
 - "Claude Code turned every engineer into three. Now companies need more product thinkers" — Ishan Gupta (VentureBeat, Jun 2026) ([link](https://venturebeat.com/ai/claude-code-turned-every-engineer-into-three-now-companies-need-more-product-thinkers/)) — Anthropic 3x engineering productivity and PM hiring response; PM ratio strain (1:8 → effective 1:20); LinkedIn Product Builder program; review as the new writing (84% AI adoption, 46% distrust); first principles as leverage skill
+- "Taste, Judgment and AI" — Addy Osmani (tweet, Aug 2026) — taste-vs-judgment asymmetry: taste is borrowable/learnable from AI, judgment is not because it's a liability (name attached to consequences), not a capability; Apple Maps case study; taste built through variety of exposure

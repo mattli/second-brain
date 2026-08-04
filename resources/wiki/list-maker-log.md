@@ -1,26 +1,28 @@
 ---
-run_date: 2026-08-03
-run_start: "2026-08-03T08:01:00Z"
-run_end: "2026-08-03T08:01:30Z"
-updated_after: "2026-08-02T08:01:00Z"
-items_total: 2
-workers_dispatched: 2
-items_dropped: 0
+run_date: 2026-08-04
+run_start: "2026-08-04T08:02:00Z"
+run_end: "2026-08-04T08:02:45Z"
+updated_after: "2026-08-03T08:01:30Z"
+items_total: 5
+workers_dispatched: 4
+items_dropped: 1
 items_skipped: 0
 ---
 
-# List-Maker Run — 2026-08-03
+# List-Maker Run — 2026-08-04
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-08-02T08:01:00Z. 2 saves found — one Karpathy tweet, one Popova article. Both updating existing pages. Light day.
+Cutoff from previous run_end: 2026-08-03T08:01:30Z. 5 saves found — 1 changelog dropped, 4 dispatched. Two videos (MIT talk, Spotify podcast), one tweet thread (solo AI stack), one tweet (taste/judgment). All updating existing pages.
 
 ## Workers Dispatched
 
 | Doc ID | Hint | Target | Rationale |
 |--------|------|--------|-----------|
-| 01kz29bf1ykmqx50vjj5d54w7w | update | people/andrej-karpathy.md | Karpathy tweet on LLMs creating complex 3D visualizations, frontier creative capabilities, and verification gaps in dynamic environments |
-| 01kz1n344452rpqn30trsd3ahd | update | concepts/psychology-trauma.md | Carl Jung on death, immortality, and middle age rebirth (Maria Popova). Extends psychology page with Jungian perspective |
+| 01kz5348zn4re5x84qyg0zjjfd | update | concepts/knowledge-work-future.md | Addy Osmani on taste and judgment as human-irreplaceable skills in AI — extends existing "wisdom skills" thread |
+| 01kz43dzgdzbrggnxyp49pvrhs | update | writing/writing-craft.md | Patrick Winston's "How to Speak" MIT lecture — extends communication/craft dimension |
+| 01kz42kdkpszqp4gr1cx6jpwys | update | tools/agentic-engineering.md | Spotify fleet management and agent-based code maintenance across 20M+ lines — enterprise case study |
+| 01ky0ry6yhsgqzykqnzyjj0dya | update | landscape/solo-business.md | Production AI stack for solo builders — security, ops, agent-driven development at scale of one |
 
 ## Skipped
 
@@ -31,6 +33,7 @@ Cutoff from previous run_end: 2026-08-02T08:01:00Z. 2 saves found — one Karpat
 
 | ID | Title | Pattern |
 |----|-------|---------|
+| 01kz4h2dyhmg8tmgmvfpj85ykn | July 31, 2026 | Readwise & Reader Changelog |
 
 ## Carry-Over (deferred to next run)
 

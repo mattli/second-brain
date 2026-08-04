@@ -53,6 +53,25 @@ The meetup answer if either app comes up: *"Card apps turn your document into a 
 
 The dialogue-vs-testing framing, for when depth is wanted: card apps are the *testing* paradigm (atomize, schedule, drill — great for nomenclature and discrete recall). Voice Tutor is the *dialogue* paradigm (comprehension through conversation — Socrates, Feynman, generation effect: you learn what you're made to articulate, not what you're shown again). The less legible category is the open one.
 
+## Interface, not source (added 2026-08-04)
+
+**Voice Tutor is not about where the document comes from. It is an interface to a document.** Wiki page, uploaded PDF, pasted paper, someone else's notes — irrelevant upstream. The product is the *mode of contact*: instead of eyes-across-text (reading) or fragments-on-a-schedule (cards), a Socratic conversation through the material with a map of what's been covered. This is the sentence that unifies the hierarchy above: the document is the unit *(any document — source-agnostic)*; stakes qualify the buyer *(stakes are what make the reading interface insufficient)*; the wiki is the story *(where Matt's documents happen to come from)*; no decks, just conversation *(the interface claim, stated as refusal)*.
+
+How it was found: the r/PKMS thread fixated entirely on the supply chain (curate less, tag better, put down the LLM) and never touched the interface question the post actually asked. Their misread forced the clarity. **Framing lesson for all future pitches and posts: lead with the interface, footnote the source** — the wiki is credibility, not headline.
+
+## Pull vs. push (added 2026-08-04 — from the thread's strongest challenge)
+
+The pull thesis (a knowledge base is only used when a live question reaches into it; processing-in-advance doesn't survive contact with real life) is **correct for reference knowledge and fails exactly where performance is live**: exams, interviews, conversations where you're supposed to be the person who knows, judgment at speed — moments when the retrieval window is closed. **Pull covers everything you can look up; Voice Tutor is for what you'll need when you can't.**
+
+- Synthesis: pull for reference knowledge, push for performance knowledge — two tools for two kinds of material, not competing philosophies. The PKM crowd's pull-satisfaction and Matt's absorption gap coexist because they hold mostly reference material; Matt was holding performance material.
+- The qualifying question that falls out, usable by any user about any document in ten seconds: **"Will I need this with the book shut?"** If yes, it's Voice Tutor material. It's stakes-qualify-the-buyer restated as a mechanism.
+- Sessions are pull-*initiated* (the user's intent chooses the moment — no review queue, no guilt schedule), push-*purposed* (stocking the head for a future closed-window moment).
+- Honest edge: fast retrieval fakes some performance moments, and ubiquitous AI assistants expand pull's territory each year — but the highest-stakes moments (exams, interviews, credibility in a room) stay closed-window, and those are the segment.
+
+## Channel doctrine (settled 2026-08-04)
+
+Warm rooms first (meetup, faces — the only channel that has ever produced testers). Targeted DMs second (specific humans, specific stated pain, no audience — the three toxicity mechanics of broadcast posting are structurally absent). **Cold broadcast posting: retired** — not banned forever, priced correctly: the r/PKMS post cost a full emotional day for moderate signal, twice-consistent with the briefing experiment. Round two exists only as a triggered backlog item: a *show*-post (coverage bar live, demo clip) in study/builder spaces, after the meetup tests the framing — chosen rested, showing not proving.
+
 ## What this retires
 
 - "Get through your reading pile / saves" as a value prop — throughput was never the mechanism.

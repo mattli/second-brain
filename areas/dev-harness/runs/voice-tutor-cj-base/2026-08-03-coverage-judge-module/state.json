@@ -4,7 +4,7 @@
   "title": "coverage judge module",
   "startedAt": "2026-08-03T22:24:40.642Z",
   "runDir": "runs/voice-tutor-cj-base/2026-08-03-coverage-judge-module",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/development/voice-tutor-cj-base",
   "sprints": [
     {
@@ -35,7 +35,8 @@
     84,
     90,
     96,
-    97
+    97,
+    94
   ],
   "iterations": 0,
   "budgetSpentUsd": 19.815608499999996,

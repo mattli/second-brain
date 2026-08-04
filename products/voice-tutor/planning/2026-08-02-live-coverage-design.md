@@ -1,12 +1,15 @@
 ---
 created_at: 2026-08-02
-status: design-draft
+last_updated: 2026-08-04
+status: phase-1-built
 type: design-spec
 ---
 
 # Live Coverage — Async Judge, Evidence Store, UI Surfaces
 
 > Design conversation 2026-08-02 (Claude.ai session). Decisions below are Matt's; open questions marked. Supersedes nothing — this is the first coverage design doc. Related: the [[2026-07-27-control-surface-brainstorm]] ("numbers on the screen, narrative in the voice") and the 7/23 steering brainstorm in [ideas.md](../ideas.md) (mark_claim, two-tier coverage, secondary judge).
+
+> **Build status (2026-08-04).** Phase 1 — teardown judging + the evidence store + the union read path — is built on branch `feat/coverage-teardown-judge`, per [[2026-08-04-wiring-brief-coverage-judge]]. Phase 2 (the live in-session loop) is the immediate next step in the same work stream, not a future project: it is the demo-visible artifact and is wanted by the 2026-08-11 meetup. Its implementation plan is the last section of this doc.
 
 ## What this is
 
@@ -39,7 +42,8 @@ A parallel async loop per study session, alongside the Pipecat pipeline but invi
 
 ### Storage
 
-Per-session coverage sidecar (shape TBD in the build pass, roughly):
+Per-session coverage sidecar (sketched here 2026-08-02; **built 2026-08-04** — the
+exact shape and location are in Open questions below):
 
 ```
 <session_id>.coverage.json
@@ -70,6 +74,8 @@ The mapping is one extraction-time field (claim → topic). Tap-to-steer stays v
 
 Haiku, claim ids + short claim text (not full anchors), ~8–10 passes in a 20-min session → pennies. Watch, don't fear. Ledger rows with their own `kind` so it's attributable.
 
+**Measured 2026-08-04** (phase 1, real 100–160-turn sessions on the 63-claim map): one judge pass is ~9.4K input / ~7.4K output tokens ≈ **$0.04**, so teardown judging adds ~$0.04 per session — but the phase-2 live loop at 8–10 passes lands nearer **$0.30 per session**, an order of magnitude above "pennies". Ledger rows are written with `kind: "coverage"`, on failure as well as success. See the phase-2 plan for the cadence lever.
+
 ## Consumers (build order TBD)
 
 1. **Live in-session bar** — percentage + topics, polling session state. The demo-visible differentiation artifact.
@@ -83,8 +89,8 @@ The 7/23 notes deferred a live mid-session strict judge pending "evidence that s
 
 ## Open questions
 
-- Judge cadence: every N user turns vs. fixed interval; what N.
-- Sidecar exact schema + where it lives (`~/.voice-tutor/artifacts/`? alongside transcripts?).
+- ~~Judge cadence: every N user turns vs. fixed interval; what N.~~ **Decided 2026-08-04** — both, whichever fires first, with a floor (see the phase-2 plan below).
+- ~~Sidecar exact schema + where it lives.~~ **Decided 2026-08-04, built** — `~/.voice-tutor/transcripts/<user_id>/<session_id>.coverage.json`, beside the transcript it was judged from and sharing its filename stem. Envelope: `{schema_version, session_id, user_id, document_id, source_hash, doc_id, claims_total, transcript_turns, judged_at, model, judge_prompt_hash, citation_repairs, covered_count, verdicts[]}`. No percentage is stored — it is derived by the read path, per the "store evidence, derive judgments" decision. Union filters on `document_id` **and** `source_hash`, so a re-extracted claim map cannot silently merge into the old one (the freshness landmine above); ignored sidecars are counted and reported as `stale_sessions` rather than vanishing.
 - Whether the live bar needs claim-level display (covered/uncovered list) in v1 or just the number + topics.
 - Judge prompt: what "explained with comprehensiveness" means operationally — calibrate by hand against 2–3 real sessions before trusting.
 - UI treatment on `static/study.html` (design pass with the coverage bar item from the validation-gate plan).
@@ -109,3 +115,166 @@ Run the judge by hand over Matt's existing Graph Engineering sessions — a real
 4. Free strictness test: the 7/30 session discussed conditional routing mostly from general LLM knowledge, not the document — an honest judge marks almost nothing covered there; a generous one credits the topic. Watch this case specifically.
 
 This validates the judge AND the cross-session merge in one pass, on real data, before any pipeline code exists.
+
+---
+
+## Phase 2 — the live in-session loop (implementation plan, 2026-08-04)
+
+Written at the end of the phase-1 wiring session so the next session builds from a
+spec rather than a summary. Phase 1 (built) is the same judge called ONCE at
+teardown; phase 2 is that call put on a timer while the session runs, plus a way
+for the browser to read the result. **The marginal build is the loop + polling —
+not a new judging system.**
+
+Everything below assumes the phase-1 pieces already on `feat/coverage-teardown-judge`:
+`coverage_store.judge_session` (one judge invocation → `(sidecar|None, cost_row)`,
+never raises), `coverage_store.union_for_document` (the read path), and
+`bot.run_coverage_judge` (the teardown caller).
+
+### Where the task starts
+
+In `bot()`, immediately after `task = PipelineTask(...)` and BEFORE
+`runner.run(task)` — the same scope that already closes over `turns`,
+`study_meta`, `study_claims`, and `user_id`. Start it only when ALL of: study
+mode, the flag is on, and `study_claims` is non-empty (no claim map → nothing to
+judge, exactly as steering degrades).
+
+```
+live_task = None
+if study_meta and COVERAGE_LIVE and study_claims:
+    live_task = asyncio.create_task(live_coverage_loop())
+```
+
+Guard it behind its own flag (`VOICE_TUTOR_COVERAGE_LIVE`, default ON once
+proven, full disable spelling set) so the loop can be killed without touching
+teardown judging — the two must be independently revertible.
+
+### Cadence
+
+Wake on **whichever fires first**: `LIVE_COVERAGE_MIN_NEW_TURNS` new USER turns
+(start at 6) or `LIVE_COVERAGE_INTERVAL_SEC` elapsed (start at 60), with a hard
+floor of `LIVE_COVERAGE_MIN_INTERVAL_SEC` (start at 45) between calls so a fast
+talker cannot trigger back-to-back judging. Skip the pass entirely when no NEW
+user turn has landed since the last one — re-judging an unchanged transcript
+spends money to produce the identical answer. Both knobs are env-tunable; the
+design's stated tolerance is ~a minute of lag ("a glanceable bar, not a
+scoreboard").
+
+Cost sanity: a 20-minute session at this cadence is ~8–10 Haiku passes. Measured
+on real 100–160 turn sessions (2026-08-04), one pass on a 63-claim map is ~9.4K
+input / ~7.4K output tokens ≈ $0.04 — so a full session's live loop is roughly
+$0.30. **This is the number to watch first**; if it bites, the lever is cadence
+(fewer passes), not a cheaper judge.
+
+### The loop body
+
+```
+while True:
+    await asyncio.sleep(tick)
+    if not enough_new_user_turns_or_time(): continue
+    snapshot = list(turns)                      # append-only: a copy is safe
+    sidecar, cost = await asyncio.to_thread(coverage_store.judge_session, ...)
+    if sidecar is not None:
+        live_coverage.publish(user_id, session_id, sidecar)
+```
+
+Three properties this must keep:
+
+- **`asyncio.to_thread`, always.** The judge is a blocking 10–40s call; on the
+  event loop it would stall every other live session. Same reason teardown
+  judging threads it.
+- **Snapshot, never mutate.** `turns` is appended to by the aggregator event
+  handlers; the loop only ever copies it. It holds no reference to `task`,
+  the transport, or any frame — the pipeline cannot be reached from here, which
+  is what makes "the judge never blocks the voice path" structural rather than
+  careful.
+- **A failed pass is a skipped pass.** `judge_session` already returns
+  `(None, cost_row)` instead of raising. Log, keep the last good number on
+  screen, and try again next tick. Never surface a failure as a blank bar — a
+  blank bar reads to a tester as "the product is broken" (the same
+  demoralization risk as the false-negative probe item).
+
+The loop writes **no sidecar**. Per the design, the teardown pass is the strict
+record; live passes are in-memory only. This also keeps the union read path free
+of half-session records.
+
+### The in-memory slot
+
+A tiny module (`live_coverage.py`, Pipecat-free, so it is importable by both
+`bot.py` and `app.py` and unit-testable):
+
+```
+_slots: dict[tuple[str, str], dict] = {}    # (user_id, session_id) -> snapshot
+publish(user_id, session_id, sidecar)       # store covered_ids + judged_at + counts
+read(user_id, session_id) -> dict | None
+drop(user_id, session_id)                   # called at disconnect
+```
+
+Keyed by **(user_id, session_id)**, never session_id alone — the key is also the
+authorization boundary, so one user can never read another's live number. Store
+the derived snapshot (`covered_ids`, `claims_total`, `judged_at`, `pass_count`),
+not the full verdict list: claims are never user-facing, and the endpoint should
+not be able to leak claim text even by accident.
+
+Bound it: drop entries at disconnect, and cap total slots so a crash-looping
+client cannot grow the dict without limit. Single process today, so a plain dict
+is right — if the server ever forks, this becomes the first thing to move.
+
+### The app.py exposure
+
+`GET /api/sessions/{session_id}/coverage`, authenticated exactly like the
+existing per-user routes (resolve the cookie → `user_id`, then read the slot with
+BOTH ids; never trust the path id alone). `Path(session_id).name` at the route
+boundary, as the other routes already do.
+
+Response — the number the bar draws, already unioned:
+
+```
+{"percentage": 41.3, "covered_claims": 26, "claims_total": 63,
+ "live": true, "judged_at": "...", "topics": [...]}
+```
+
+**The live bar starts at the accumulated cross-session number, not zero** (the
+decision above). So the endpoint returns the union of (a) the doc's stored
+union from `coverage_store.union_for_document(user_id, document_id, source_hash)`
+and (b) the current session's live covered set — merged by claim id, which is
+exactly what `coverage_judge.union_coverage` already does. Before the first live
+pass lands, that is simply the stored union, so the bar opens at the right place
+with no special case. `"live": false` while no in-session pass has run yet, so
+the UI can distinguish "your prior progress" from "updated just now".
+
+Poll every ~15s from `static/study.html`. Guard the poll against wrong-shaped
+responses and KEEP THE LAST GOOD RENDER on failure — the mount-aware/poll lesson
+from the dev-harness dashboard applies verbatim: a 200 with foreign JSON must not
+blank the bar.
+
+### Cancellation at disconnect
+
+In `on_client_disconnected`, BEFORE `save_transcript()`:
+
+```
+if live_task is not None:
+    live_task.cancel()
+    with contextlib.suppress(asyncio.CancelledError):
+        await live_task
+```
+
+Cancel first, then run the teardown pass — otherwise a live pass and the strict
+pass judge concurrently, doubling spend for a number that is about to be
+overwritten. Await the cancellation so the worker thread is not still running
+when the process starts tearing down. `live_coverage.drop(...)` goes after the
+teardown sidecar is written, so a UI polling during teardown keeps reading the
+last live number instead of falling back to a stale union.
+
+Inherited risk, unchanged: `on_client_disconnected` only fires on CLIENT
+disconnect, and a hard process stop still loses the teardown artifacts. The live
+loop does not make that worse (it writes nothing), and phase 1 already moved
+coverage as early in teardown as it can be correct.
+
+### Definition of done for phase 2
+
+The bar on `static/study.html` opens at the document's accumulated coverage,
+climbs during a real session without any audible or measurable effect on the
+conversation, survives a failed judge pass without blanking, and stops cleanly at
+disconnect with the teardown sidecar as the final record. Cost per session
+measured and recorded in [cost-log.md](../validation/cost-log.md).

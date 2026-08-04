@@ -1,14 +1,15 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-08-01
+last_updated: 2026-08-04
 ---
 
 # Writing Craft
 
-> TLDR: Specificity is the single most powerful lever in writing — for clarity, persuasion, humor, and audience growth. A sustainable writing practice requires defended time blocks (Sacred Hours), a pipeline of raw material (story-mining frameworks like Homework For Life), and a distinct voice (the Tequila Test). Atomic essays and outlining/output session splits provide the format and workflow. Recognizing AI slop patterns is a necessary editing skill now that LLM-generated prose is everywhere.
+> TLDR: Specificity is the single most powerful lever in writing — for clarity, persuasion, humor, and audience growth. A sustainable writing practice requires defended time blocks (Sacred Hours), a pipeline of raw material (story-mining frameworks like Homework For Life), and a distinct voice (the Tequila Test). Atomic essays and outlining/output session splits provide the format and workflow. Recognizing AI slop patterns is a necessary editing skill now that LLM-generated prose is everywhere. Presentation shares deep structure with writing: open with an empowerment promise, cycle key ideas for retention, build fences to distinguish your concept, and package work with Winston's Star (symbol, slogan, surprise, salient idea, story).
 
 ## Recent Updates
 
+- **2026-08-04:** Added Winston's communication heuristics — empowerment promise, cycling, fence-building, and the Star memorability framework — to [Presentation as Communication Craft](#presentation-as-communication-craft)
 - **2026-08-01:** Added Sacred Hours routine, three story-mining frameworks (Dicks via Bush), and the Tequila Test to [Sacred Hours](#sacred-hours), [Story Mining](#story-mining-three-frameworks-from-storyworthy), and [The Tequila Test](#the-tequila-test)
 - **2026-07-29:** Added Bush's outlining/output session workflow and "idea abundance" principle to [Outlining vs. Output Sessions](#outlining-vs-output-sessions)
 - **2026-07-26:** Added slop-detection tooling reference to [Recognizing and Removing AI Slop](#recognizing-and-removing-ai-slop)
@@ -111,6 +112,22 @@ The antidotes are the fundamentals: lead with the point, use active voice, untan
 
 **Tooling:** Yang's taxonomy is packaged as an installable [Claude Code skill](https://github.com/petergyang/no-ai-slop) with two modes — edit a draft (rewrites with minimum effective changes, then self-checks against an eval rubric) and detect slop (returns every pattern found with the quoted line). The self-eval loop means the tool catches its own regressions, a pattern worth replicating in any automated editing workflow.
 
+## Presentation as Communication Craft
+
+Patrick Winston's MIT "How to Speak" lecture distills decades of presentation coaching into a set of heuristics that apply beyond the podium — several map directly onto writing structure.
+
+**The Knowledge–Practice–Talent formula.** Communication quality is determined by knowledge of technique, practice applying it, and innate talent — in that order, with talent contributing the least. Winston illustrates this with a skiing anecdote: an Olympic gymnast was a worse skier than he was because he had the K and P; she only had T. The implication for writers: studying craft and producing volume matter far more than waiting for inspiration.
+
+**Empowerment promise.** Never open with a joke — open with a promise of what the audience will know at the end that they don't know now. This is the presentation equivalent of a strong lede: it gives the reader a reason to stay. Bush's [atomic essay](#atomic-essays-a-content-format-for-audience-building) headline test ("what outcome does it promise?") is the same principle in a written format.
+
+**Cycling.** Revisit your key idea three times because at any given moment roughly 20% of your audience is fogged out. In writing, this translates to restating a core thesis at different levels of abstraction — once as a claim, once through an example, once as an implication — without feeling repetitive.
+
+**Fence-building.** Explicitly distinguish your idea from the nearest similar idea. Winston's example: "My algorithm might seem similar to Jones's, except his is exponential and mine is linear." In writing, a single sentence of contrast ("This is not X; it's Y because...") prevents readers from mentally filing your argument under the wrong category. This is distinct from the [AI slop](#recognizing-and-removing-ai-slop) "binary contrast" pattern — fence-building is earned differentiation backed by a real distinction, not a manufactured rhetorical reveal.
+
+**Winston's Star — five S's for memorability.** For an idea to stick, it needs: a **Symbol** (a visual anchor — Winston's own PhD work on arch learning became famous partly because "the arch" was a recognizable image), a **Slogan** (a handle phrase — "one-shot learning"), a **Surprise** (a counterintuitive result — you don't need a million examples), a **Salient idea** (one concept that sticks out above the rest — the "near miss"), and a **Story** (the narrative of how it works and why it matters). Writers packaging a concept for an audience can audit against these five: does the piece have a visual, a phrase, a surprise, a lead idea, and a narrative arc?
+
+**Contributions, not conclusions.** End with what you did, not what you observed. Winston insists the final slide should say "Contributions" — a mirror of the opening promise. For written pieces, this means closing with the specific takeaway the reader can act on, not a summary of what was discussed.
+
 ## Connections
 
 Writing craft is a foundational skill for [distribution](../landscape/ai-startup-distribution.md) — cold outreach, content marketing, and audience building all depend on clear, specific writing. The [cold outreach playbook](../landscape/ai-startup-distribution.md) emphasizes the same specificity principle: subject lines that feel written for exactly one person, openers that show you paid attention, asks that are too easy to say yes to.
@@ -126,3 +143,4 @@ Cohen's specificity principle and Bush's atomic essays reinforce each other. An 
 - "How To Turn A 10-Minute Daily Brain Dump Into Content You Can Post Everywhere" — Dickie Bush — Outlining/output session split and idea abundance principle
 - "7 Simple Frameworks To Become A Prolific Digital Writer" — Dickie Bush ([link](https://twitter.com/dickiebush)) — Sacred Hours routine, three story-mining frameworks (Dicks' *Storyworthy*), Tequila Test differentiation heuristic
 - "no-ai-slop" — Peter Yang ([link](https://github.com/petergyang/no-ai-slop)) — AI slop pattern taxonomy: 20+ recurring LLM writing tics grouped by damage type
+- "How to Speak" — Patrick Winston, MIT OpenCourseWare ([link](https://www.youtube.com/watch?v=Unzc731iCUY)) — Communication heuristics: empowerment promise, cycling, fence-building, Winston's Star memorability framework, contributions-not-conclusions

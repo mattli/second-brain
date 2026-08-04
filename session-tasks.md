@@ -1,5 +1,16 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
+### ▶ Next-session opening list (Tue 2026-08-04) — coverage judge is built and pushed; next is WIRING
+The coverage judge is done, twice-reviewed, and waiting on `feat/coverage-judge` (voice-tutor, pushed, **not merged**). Nothing is mid-flight; both repos clean and in sync.
+
+Next up, in rough priority:
+1. **Wiring session — the judge into the live pipeline.** This is the session that also makes the merge call. Design is in [live-coverage-design](products/voice-tutor/planning/2026-08-02-live-coverage-design.md). Note the judge is deliberately un-wired: `bot.py` and the server were never touched.
+2. **False-negative probe for the answer key** — the eval can only catch the judge getting *looser*, never stricter. ~10 min of Matt's judgment on 5–8 claims; CC assembles the sheet. Do this before trusting any future prompt change.
+3. **Anchor spot-check** — still Matt's ~10-min read on the demo doc's 15 unresolved anchors. Every tester who doesn't upload sees that doc.
+4. **Watch for tester signal** (Jorge's first session still unseen as of 08-02).
+
+Carried forward, both tracked in the backlog: coverage-judge **failure paths degrade too hard** (triggered by wiring), and the harness's **seed-from-ref gap** (it can only branch from the target's checked-out branch, which is why reusing Stage 0 needed a hand-staged worktree).
+
 ### ▶ Next-session opening list (Sun 2026-08-02) — both parked dev tasks SHIPPED and live; waiting on tester signal
 Both Voice Tutor tasks that were parked on 08-01 are **built, merged, pushed, and live** (server restarted 08-02 11:29, verified serving the new code): the **user-turn gate** (`bb0f8e3`) and **de-hardcode "Matt"** (`eaf1684`). Nothing is mid-flight; the repo is clean and in sync with origin.
 
@@ -12,6 +23,15 @@ Next up, in rough priority:
 New backlog items spun out 08-02 (all scoped, none started): failed-summary poll-cap hardening; regular-mode (`/chat/`) access gate; plus findings folded into the recap-survival and end-by-voice items.
 
 Ops state as of end of 08-02: `tokens.json` is **600** (was world-readable), its `.bak` archived; the dev worktree is on **`local-dev`, clean, rebased current with main** and ready to run `./dev.sh` (127.0.0.1:7861). Nothing mid-flight; `main` clean at origin.
+
+### August 3–4, 2026 (evening → overnight) — coverage judge built, reviewed twice, migrated
+- **The judge module exists and is proven.** `feat/coverage-judge` is pushed to origin in voice-tutor (`d5a8aa7`, one squashed commit off `main`). **Not merged** — that call travels with the wiring session. Module suite 131 green, full repo suite 534 green. Run records + the smoke report live in `areas/dev-harness/runs/voice-tutor/2026-08-03-coverage-judge-module/`.
+- **Two harness runs.** `msdql2bo` (first launch) **paused on the per-sprint wall clock** after 1 of 5 stages — Stage 1 got a single scored attempt (45) and ran out of clock. Relaunched as **`msdsrc8x`** with three changes: the v1 prompt reframed as **input to verify, not a deliverable to reproduce**; the wall clock raised to 45 min/sprint; and the run **seeded from the passing Stage 0** so the parsing core was reused, not rebuilt. It **passed all 4 stages** (90/96/97/94, $19.82) and hit the acceptance bar: **17/17 label agreement, c30 not-covered, strictness trap 1 (≤2)**.
+- **The v1 hash is not reproducible — surfaced, not engineered around.** The run tried 648 principled renderings of the published `judge-prompt-v1.md` and none reproduce `632b73a34b1a22b1`; that hash was computed over the **live Python prompt strings** of the 8/2 hand-run, which aren't recoverable from the transcribed file. Per the goal's stop-and-report clause it wrote this up rather than tuning to force agreement. Eval-set records now **annotated** (original hash kept as provenance + the file's real hash `038fe74e279842e6`); the five `.coverage.json` run records were left untouched.
+- **Two independent review passes, five reviewers then three.** First pass verified the 17/17 was **honest** (no stub, no cached results, `labels.json` never even opened by the smoke; arithmetic reproduced independently) but found **three silent-wrongness defects** and judged the v2 prompt **partly overfit**. Second pass, on my own fixes, confirmed both focus areas correct and caught a **test gap in my patch**: a deliberate break that would have rejected 100% of real responses left the suite green.
+- **The decisive experiment — the c30 fix is principled, not overfit.** Stripped the three c30-shaped rules from the prompt (its structural fingerprint, the rule existing only for its second enumeration, the clause aimed at the fixtures' recap turns) and re-ran the credentialed smoke **once, without iterating**. Still **17/17**, and demonstrably a *fresh* judgement — per-session verdicts moved (10→11, 1→0, 4→3) while the union stayed identical. Prompt shrank 6624→5186 chars.
+- **Dashboard fixes (dev-harness `main`, merged + pushed).** Two real bugs: a negotiating sprint displayed as **"Generate"**, and — deeper — because each phase logs only at *completion*, the label **lagged a full phase** the whole way through (Negotiate while generating, Generate while evaluating). Matt spotted the second one from the live dashboard before I did. Also added the **gentle pulse** on the active phase (design picked from an Artifact prototype), and swept the stale `:443` dashboard URL — root cause was a **tmux server caching the pre-move env var**, not the harness or `~/.zshrc`, both of which were already correct.
+- **Ops note:** the dashboard was restarted twice mid-session, both times verified safe first — it holds nothing in memory and never signals the run; the run process was proven untouched (same pid, same state) across both restarts and the merges.
 
 ### August 3, 2026
 - **Claim-coverage experiment — human audit + ground-truth labels written.** The offline experiment (one Haiku judge call per session, judged against each doc's claim map; `products/voice-tutor/validation/coverage-experiment/`) had produced a 17-claim PRIMARY union. Audited those 17 against the source doc + transcripts: **16 upheld, 1 rejected (c30)** → post-audit coverage **16/63 ≈ 25%**, well under the tutor's ~40% recap self-estimate (inflated ~1.6×).

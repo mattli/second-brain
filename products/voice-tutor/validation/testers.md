@@ -46,7 +46,15 @@ Met at the same meetup. Closer to the ICP than John — plausibly has a pile of 
 
 - **Mon 2026-08-03, ~11am — posted.** Title: "How do you actually make use of your knowledge base?" Problem-first discovery post, no product link, no pitch — Matt's own arc (Readwise → Karpathy-style LLM wiki → "one thing to hoard information, another to actually learn from it and apply it"). Speech-to-speech Q&A mentioned once, unlabeled, as a tripwire for interested readers.
 - **Purpose:** discovery + standing for later DMs; testers are a byproduct. Watch for anyone describing the learn/apply gap in their own words — those are DM candidates.
-- **Plan:** engage genuinely for ~48h, then decide whether a rewritten version goes to r/ObsidianMD or r/Zettelkasten. No same-day cross-posting.
+- **Results (read same day, ~7h in — 2.7K views, 12 comments, 0 net score):**
+  - **The problem was conceded by everyone; the method was attacked by everyone.** Not one commenter disputed that capture-without-retention is real. Every pushback targeted the pipeline: curate harder upstream, save less, tag better. When a room rejects the solution but concedes the problem, the problem is validating.
+  - **Zero pain signals, zero "me too," zero DMs, no bite on the speech-to-speech tripwire.** PKM hobbyists experience the gap as mild guilt solved by more system — not as pain that drives workarounds. Contrast the April student findings (people jury-rigging ChatGPT voice calls for Feynman technique): **deadline people build workarounds; workaround-builders are buyers.** The likely lesson is wrong *segment*, not just wrong subreddit — system-lovers vs. outcome-needers.
+  - **The objection map** (in their own words, useful for positioning and the meetup): (1) "curate upstream, volume is the wrong focus” — 1–2 quality pieces/day (trivetgods); (2) "without ground truth there's no conversation" — the epistemology objection to LLM-synthesized wikis (micseydel); (3) "tag/group it and apply learning techniques" — the more-system answer (YouWillConcur, Early_Key_823).
+  - **One lead to chase:** Justin Sung's learning techniques (named by a commenter) — learning-science practitioner, squarely Voice Tutor's intellectual territory.
+  - **Channel cost, now measured:** one cold post ≈ one full emotional day for moderate signal. Anonymous scored channels charge Matt a real personal tax; warm channels (meetup produced John + Jorge, book, event invite) outperform on both signal and cost. **Meetup 8/11 confirmed as the primary channel.**
+  - **r/Zettelkasten reconsidered and skipped:** closer to the retention problem philosophically, but its core dogma is manual processing-as-learning — an LLM-written wiki automates away their sacred step. Would get a smarter version of the same objection.
+  - **Next cold move, if any: student/deadline spaces, not PKM spaces** — pending the meetup's evidence on which framing (vault-substrate vs. deadline-pain) lands. No cross-posting this week.
+- **Remaining thread obligation:** two optional warm thank-yous (YouWillConcur, Early_Key_823). Everything else is closed — no further replies.
 
 ### Meetup — 2026-08-11 (warm)
 

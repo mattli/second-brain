@@ -161,11 +161,100 @@ spends money to produce the identical answer. Both knobs are env-tunable; the
 design's stated tolerance is ~a minute of lag ("a glanceable bar, not a
 scoreboard").
 
-Cost sanity: a 20-minute session at this cadence is ~8–10 Haiku passes. Measured
-on real 100–160 turn sessions (2026-08-04), one pass on a 63-claim map is ~9.4K
-input / ~7.4K output tokens ≈ $0.04 — so a full session's live loop is roughly
-$0.30. **This is the number to watch first**; if it bites, the lever is cadence
-(fewer passes), not a cheaper judge.
+Cost sanity: a 20-minute session at this cadence is ~8–10 Haiku passes. See the
+re-estimate under the incremental design below — the full-re-judge figure this
+section originally carried (~$0.30/session) no longer applies.
+
+### Incremental judging with external state (amended 2026-08-04)
+
+**This supersedes the stateless full-transcript re-judge for LIVE passes only.**
+The teardown pass is unchanged.
+
+The covered-claim-id set already exists in code — it is the union. Make it the
+state, and stop asking the model to re-derive it:
+
+- **The set is authoritative and lives in code.** The model never re-derives it
+  and is never asked to reproduce it.
+- **Each live pass sends only the delta**: the turns added since the last pass
+  plus a small **overlap window**, and only the claims **not yet in the covered
+  set**.
+- **The model answers the small question** — "which of these remaining claims do
+  these new turns cover?" — and the code adds any newly-covered ids to the set.
+- **The set grows monotonically**, which is the same invariant the storage layer
+  already enforces via the append-only `write_sidecar` guard. A live pass can
+  add to the bar; it can never subtract from it.
+
+**Overlap window: 4 turns (2 user + 2 assistant), and this number is load-bearing
+— document it at the call site.** Explanations span turn boundaries, so a pass
+that sees only its own new turns will cut explanations in half.
+
+**Measured caveat that bounds what the overlap can buy.** In the first real
+wired session (2026-08-04, session `6e9d58c5`), the single covered claim c49 cited
+turns **[4, 6, 8, 14, 16]** — one claim's explanation was distributed across
+twelve turns, i.e. the whole session. No practical overlap window captures that.
+So live passes will **systematically under-credit distributed explanations**, and
+the bar will visibly jump at teardown when the full-transcript pass sees the
+whole thing at once.
+
+Under-crediting is the **safe** direction here, and it is what makes the design
+hold together: the live set only grows, the teardown record only corrects
+upward, and a user never watches their progress bar retreat. Design the UI copy
+for a number that can jump up at the end ("final" vs "so far"), not for one that
+is exact mid-session.
+
+**Response contract differs from teardown — do not reuse the parser as-is.** The
+teardown pass enforces completeness: every claim id appears exactly once
+(`coverage_judge.parse_verdicts`, the truncation defense). An incremental pass
+must instead return **only the newly-covered claims** — typically zero to three —
+because that is where the cost saving actually lives (see below). That is a
+*laxer* contract and needs its own validation path: still verify every returned
+id is in the uncovered set, still verify every citation exists in the turns
+actually sent, but do **not** require one verdict per claim. Keep the strict
+completeness check on the teardown path where the record is made.
+
+#### The tradeoff, stated plainly
+
+Live passes **give up stateless re-judging** — a deliberate v1 property (see
+"The judge loop" above: "no judge memory, no drift, no unrecoverable misses") —
+in exchange for near-flat per-pass cost. The consequences, accepted:
+
+- A live pass that **wrongly credits** a claim stays wrong on the bar until
+  teardown. There is no live mechanism to remove it, by construction.
+- Errors **accumulate within a session** rather than being re-derived away each
+  pass.
+- Both are acceptable because **rigor lives in the teardown record**: the sidecar
+  — the thing every downstream consumer reads, and the thing the eval labels are
+  assigned against — is still a from-scratch, full-transcript, completeness-
+  checked judgment. The live number is a glanceable indicator, never the record.
+
+#### Cost re-estimate
+
+Measured on three real wired sessions (2026-08-04, 63-claim map, Haiku at
+$1.00/MTok input and $5.00/MTok output): ~5.1–6.1K input and ~5.2–6.4K output per
+full pass, **$0.032–$0.037**. Note the shape: **output is ~83% of the cost**.
+That is the whole reason this redesign pays — not the shorter transcript.
+
+| | Full re-judge (superseded) | Incremental (this design) |
+|---|---|---|
+| Input/pass | ~5.5K, grows with transcript | ~5.0K, **flat** |
+| Output/pass | ~5.6K (a verdict per claim) | **~0.3K** (only newly-covered) |
+| Cost/pass | ~$0.034 | **~$0.0065** |
+| 9 live passes | ~$0.31 | **~$0.06** |
+| + teardown pass | $0.034 | $0.034 |
+| **Per session** | **~$0.35** | **~$0.09** |
+
+Assumptions, so this can be checked rather than trusted: 9 live passes at the
+cadence above; the uncovered claim list averaging ~55 of 63 claims (~1.5K tokens)
+and being resent each pass; ~16 turns of new+overlap content per pass (~2.2K) at
+the ~140 tokens/turn measured in these sessions; a ~1.2K system prompt; and
+0–3 newly-covered claims per pass with citations and a brief reason (~300 output
+tokens). **~4× cheaper, and per-pass cost stops growing with session length** —
+the second property matters more than the first for long sessions.
+
+Where the remaining cost sits: input is now dominant (~$0.005 of the ~$0.0065),
+and most of it is **resending the uncovered claim list every pass**. The next
+lever, if needed, is prompt-caching that block or sending ids plus shortened
+claim text — not cadence. Not counted above; measure before claiming it.
 
 ### The loop body
 
@@ -173,11 +262,19 @@ $0.30. **This is the number to watch first**; if it bites, the lever is cadence
 while True:
     await asyncio.sleep(tick)
     if not enough_new_user_turns_or_time(): continue
-    snapshot = list(turns)                      # append-only: a copy is safe
-    sidecar, cost = await asyncio.to_thread(coverage_store.judge_session, ...)
-    if sidecar is not None:
-        live_coverage.publish(user_id, session_id, sidecar)
+    snapshot = list(turns)                       # append-only: a copy is safe
+    delta    = snapshot[last_judged_index - OVERLAP_TURNS:]
+    remaining = [c for c in claims if c.id not in covered]   # state lives HERE
+    if not remaining: break                      # everything covered; stop paying
+    newly, cost = await asyncio.to_thread(judge_delta, remaining, delta, ...)
+    covered |= {v.claim_id for v in newly}       # monotonic; never removes
+    last_judged_index = len(snapshot)
+    live_coverage.publish(user_id, session_id, covered)
 ```
+
+Note `if not remaining: break` — once every claim is covered there is nothing
+left to ask, and the loop should stop spending rather than keep confirming a
+finished document.
 
 Three properties this must keep:
 

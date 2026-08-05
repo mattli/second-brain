@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-29
+last_updated: 2026-08-05
 ---
 
 
@@ -11,6 +11,7 @@ last_updated: 2026-07-29
 
 ## Recent Updates
 
+- **2026-08-05:** Added Slootman/Tandon speed-as-discipline thesis — speed vs rigor false dichotomy, sprint precedents, six urgency principles — to [Small Teams + Agents](#small-teams--agents)
 - **2026-07-29:** Added Meridian Company OS implementation pattern — three axioms, nine elements, gate principle, five runtime walls — to [Company OS: The Implementation Pattern](#company-os-the-implementation-pattern)
 - **2026-07-21:** Added NFX mission pod framework — 0→1 vs 1→2 bottleneck shift, five cardinal rules, five traps, junior apprenticeship model — to [Mission Pods](#mission-pods-the-nfx-structure)
 - **2026-07-17:** Added Sierra's Pinecone case study — "wisdom of the workforce," one-agent routing, build primitives not workflows — to [Sierra's Pinecone](#sierras-pinecone-wisdom-of-the-workforce)
@@ -147,6 +148,8 @@ The counter-view (from the same conversation): getting to 100% automation of any
 [DHH](../people/dhh.md) reinforces this from practice: at 37signals, "you actually go slower if you pour a bunch of people into a direction that is uncertain." AI lets tiny teams prototype faster, expanding what's feasible without expanding headcount.
 
 Miessler sharpens the competitive angle: the primary danger to large unwieldy companies is that a smaller company can now function with the strength of a much larger one — and it's far easier for a small company to maintain the strategic clarity that AI requires. Most large companies survive not because they're well-run but because their competition is equally chaotic. AI breaks that equilibrium. [[source]](https://danielmiessler.com/p/most-companies-arent-anywhere-near-ready-for-ai)
+
+The speed thesis predates AI but becomes sharper with it. Tanay Tandon (Commure, shared by Alfred Lin at Sequoia) distills Frank Slootman's operating philosophy: speed and rigor are not a trade-off — "this is a false dichotomy meant to pigeon-hole you into mediocrity." Real work is done in intense, focused sprints with limited meetings and deep concentration. The precedents are pre-AI — Bret Taylor rebuilding Google Maps from scratch in a 48-hour coding binge, the iPod conceived-to-shipped in seven months, the Empire State Building built in 410 days — but the pattern maps directly onto AI-native teams: when agents remove coordination overhead, the constraint shifts to raw execution intensity. Slootman's six principles for sustaining that intensity: (1) drive 5x speed improvements, not 20% — urgency must be palpable; (2) raise standards until mediocrity is unacceptable; (3) optimize for output, not for whether reports feel "attended to"; (4) treat the company as a mission, not a social contract; (5) cater to the people getting things done; (6) hire for drive — "intensity does not come with normal functioning people." Under Slootman, Snowflake went from $1B to $80B market cap while Glassdoor ratings moved from 3.3 to 3.4 — the organizational cost of intensity is not what most people assume. The NFX mission pod framework refines this further: the right metric is not raw speed but *learning speed* — how fast from prototype to shipped, from V1 to V2.
 
 ## Mission Pods: The NFX Structure
 
@@ -308,5 +311,6 @@ Ayman Al-Abdullah (Apr 2026, ex-CEO AppSumo) argues that Paul Graham's "Founder 
 - "The Self-Driving Company" — Amjad Masad / Replit (tweet, Jul 2026) — 2.9x per-engineer output; cross-company agent adoption (data, sales, support, marketing); loop engineering at scale; continual learning system; build-vs-buy inversion; "promoted, not automated" framing
 - "Pinecone: Harnessing the wisdom of the workforce" — Allen Chen / Sierra (blog, Jul 2026) ([link](https://sierra.ai/blog/ai-pilling-our-company-lessons-learned)) — One-agent routing; skills as organizational learning; build primitives not workflows; centralized improvement; 96% engineering adoption; 70% PRs through Pinecone
 - "You Just Hired a Million Bad Employees" — George Sivulka / a16z (article, Jul 2026) ([link](https://www.a16z.news/p/the-next-ai-goldrush-tokens-loops)) — Seven parallels between token and human workforces; 100X tokens; evals as OKRs; context hoarding; AI transformation companies
+- "Speed Above All Else" — Alfred Lin / Sequoia, Tanay Tandon / Commure (tweet, Aug 2026)  — Slootman speed-as-discipline thesis; speed vs rigor false dichotomy; intense sprint precedents (Google Maps, iPod, Empire State Building); six urgency principles; Snowflake $1B→$80B under intensity culture
 - "How The Fastest AI-First Companies Really Work" — Gigi Levy-Weiss / NFX (article, Jul 2026) ([link](https://www.nfx.com/post/how-the-fastest-ai-first-companies-really-work)) — Mission pod framework; 0→1 vs 1→2 bottleneck shift; five cardinal rules; five traps; junior apprenticeship model; revenue per million tokens metric
 - "How to Build a Company OS using Kimi K3 (Builder's Guide)" — Avid (tweet/thread, Jul 2026) ([link](https://github.com/codejunkie99/meridian-company-os)) — Three axioms (company is state, power flows through gates, what's not written didn't happen); nine-element company OS architecture; gate principle; five runtime walls; tiering principle for AI-assisted builds

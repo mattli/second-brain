@@ -86,3 +86,46 @@ two corrupt the cost record that the reconciliation work depends on. A tester se
 blank coverage bar reads it as the product being broken, not as a judge retry having
 failed — which is the same demoralization risk that motivated the false-negative probe
 item.
+
+---
+
+## Added 2026-08-04 — the judge is not reproducible at temperature 0
+
+Found while wiring the judge into the live pipeline ([[2026-08-04-wiring-brief-coverage-judge]]),
+not by looking for it: the same session was judged twice, hours apart, with an
+**unchanged transcript, the same claim map, the same v2 prompt, the same model,
+and temperature 0** — and the two runs disagreed.
+
+Session `7beee170` (100 turns, the 63-claim `2aa66acc` map):
+
+| Run | Covered | Difference |
+|---|---|---|
+| Verification pass (morning) | 11 claims | included **c31** |
+| Backfill (afternoon) | 10 claims | **c31 absent** |
+
+Temperature 0 is not a determinism guarantee — it biases sampling, it does not
+make inference bit-reproducible. So a one-claim wobble (~1.6 percentage points on
+a 63-claim map) is the *expected* behaviour, not an anomaly.
+
+The union happened to land on 16 claims both times, which is how close this came
+to going unnoticed: the composition differed (c31 out, c49 in from a new session)
+while the headline number did not move. **A stable total is not evidence of a
+stable verdict set** — compare id sets, not counts.
+
+### What follows from it
+
+1. **A single-run label disagreement is not evidence.** The eval set's value
+   depends on a disagreement meaning something. One run flipping c31 proves
+   nothing about the prompt; it may be the same prompt sampling differently.
+2. **Verify prompt changes by MAJORITY OF 3.** Judge each eval session three
+   times and take the per-claim majority before diffing against `labels.json`.
+   A claim that flips run-to-run is itself a signal — that claim is borderline
+   for the judge, which is worth knowing independently of the label.
+3. **Do not chase small deltas.** Anything inside ±1–2 claims per session is
+   inside the noise floor. Only movements larger than that are prompt effects.
+4. **Coverage was made append-only in response** — a stored sidecar is never
+   silently re-judged, so the accumulated bar cannot retreat because of sampling
+   variance. See the append-only rule in [[2026-08-02-live-coverage-design]].
+
+Not a defect to fix — an inherent property to design around. The mitigations
+above are the whole response.

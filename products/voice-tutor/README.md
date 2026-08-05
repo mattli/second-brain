@@ -128,6 +128,8 @@ The dev worktree shares `~/.voice-tutor/` and `~/second-brain/` with production 
 
 ## Access
 
+> **Ports, binds, and addresses** — what's public vs. tailnet-only, why there are "behind the scenes" ports, and the gotchas (`localhost` means the browser's machine; tear down temporary binds; check UDP before restarting production): [areas/networking-map.md](../../areas/networking-map.md). It's filed under `areas/` because it also covers the dev-harness dashboard and is machine-level rather than product-level.
+
 - Public (live, token-gated): `https://matts-mac-mini.taild1f9b7.ts.net/study/?u=<token>` — internet-facing via Tailscale Funnel
 - Local (live): `http://localhost:7860/chat/` (open chat) or `http://localhost:7860/study/` (doc-grounded)
 - Dev lane: `http://127.0.0.1:7861/` via `./dev.sh` from the `voice-tutor-dev` worktree (localhost-only)

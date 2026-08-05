@@ -108,6 +108,41 @@ writer, the backfill, and a reader nothing user-facing exercises.
 rows as an unknown kind and never recomputes their `cost_usd`. Adding an audit branch
 is a separate call from the reconciliation fix.
 
+## Second review — the two blocking fixes themselves (2026-08-04)
+
+A focused fresh-context review of *only* the two fixes, asking one question: can
+either fix itself produce a wrong number — a miscounted bucket, or a false-positive
+mass-downgrade that discards a good session? Verdict: **neither does.** Fix A sums,
+prices and range-joins coverage rows correctly (verified against the real 93-row
+ledger: 3 coverage rows, zero orphans, all counted). Fix B did not fire on any
+legitimate verdict set the reviewer could construct — honest zero-coverage sessions,
+single miscitations, empty claim sets, empty transcripts, and the
+`VerdictTruncatedError` path all pass through untouched. Four residuals, none
+blocking, recorded here rather than fixed post-review:
+
+- **Orphan coverage rows are dropped from bounded reconciliation runs.** A coverage
+  row whose session row never landed (teardown raised after the judge task completed
+  — a path this commit's own `try/finally` makes reachable) resolves to no timestamp
+  and is excluded from any dated range. Same design pre-exists for artifact rows;
+  this commit is what makes it reachable for coverage. Confirmed by probe on the
+  reconcile side; the bot-side orphan path is reasoned from code, not executed.
+- **`backfill_coverage.py` writes no ledger row at all**, so a backfill run's Haiku
+  spend is invisible to `reconcile_costs` — the same gap finding 1 closed for the
+  live path, still open for the backfill path. Worth closing before any large
+  backfill run.
+- **The mass-downgrade rule's "nothing survives" clause misses the near-zero case.**
+  If one covered claim happens to cite an index that exists while the rest are
+  wholesale bad, the set is accepted and a near-false zero (e.g. 1 of 10) is
+  persisted forever. Same family as the single-covered-claim residual already
+  recorded above — one lucky citation short of the trigger.
+- **The refusal retries a likely-identical failure**, doubling judge spend on a
+  refused run (`calls: 2` in the ledger row, correctly recorded). This contradicts
+  the module's own reasoning for `VerdictTruncatedError` three lines above ("retrying
+  only doubles the bill for the same failure"). Temperature 0 is not a hard
+  determinism guarantee, so the retry is not provably useless — just usually. Also
+  cosmetic: the error text says "the citations are in a different index space" even
+  when the model cited nothing at all.
+
 ## Observations and known-unknowns
 
 **4. Teardown holds the pipeline open for the life of the judge (~50s).**

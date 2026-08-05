@@ -1,5 +1,27 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
+### ▶ Next-session opening list (Wed 2026-08-05) — coverage judging is LIVE; next is the bar
+Phase 1 of live coverage is **merged, pushed, and running on production**. `main` is at `7425536`, clean and in sync; suite 585 green; production restarted 11:37 (pid 63191) after a verified-idle check, serving the merged code with the coverage flag confirmed ON. Nothing is mid-flight.
+
+Next up, in rough priority:
+1. **Wire the read path to a bar.** The union reader is built and tested but connected to nothing — no route, no UI. This is the demo-visible artifact wanted for 8/11. Two things must ride with it: `union_for_document` raises instead of degrading on a malformed sidecar (a blank panel the moment it backs a route), and `backfill_coverage.py` writes no ledger row, so a backfill's spend is invisible to reconciliation. Both in [coverage-teardown-judge-review](products/voice-tutor/validation/2026-08-04-coverage-teardown-judge-review.md).
+2. **Watch the first live-judged session.** Nothing has exercised the teardown judge on production yet — the Aug 4 sidecar came from the dev lane, not prod. First real session tells us the judge's latency, whether the recap still lands inside the 60s poll, and whether a `kind:"coverage"` ledger row appears.
+3. **False-negative probe for the answer key** — unchanged, still ~10 min of Matt's judgment; do before trusting any future prompt change.
+4. **Anchor spot-check** — still Matt's ~10-min read on the demo doc's 15 unresolved anchors.
+
+Open question the review left deliberately unsettled: does Deepgram bill for an idle open live-stream connection? Teardown now holds the pipeline ~50s past the conversation while the judge runs. If it bills, the ordering deserves revisiting.
+
+### August 5, 2026 — coverage judging reviewed, fixed, merged, and live
+- **Cold independent review of `feat/coverage-teardown-judge`** (6 commits, ~1,700 lines) against its four hard constraints. Three held outright; the failure contract held on the write path but **not** the read path. Seven findings, two blocking. Full record: [coverage-teardown-judge-review](products/voice-tutor/validation/2026-08-04-coverage-teardown-judge-review.md).
+- **Blocking fix 1 — coverage spend was invisible to `reconcile_costs`.** The new `kind:"coverage"` ledger row was an unrecognized kind, and unrecognized kinds contribute nothing, so every judged session's Haiku spend would have sat in the ledger while reconciliation reported the provider ahead of us — a phantom logging error of exactly the shape that tool exists to distinguish from real drift. This is the "new writer, unupdated reader" pattern again, one row-kind later.
+- **Blocking fix 2 — a wholesale citation failure wrote a permanent false zero.** When the model cites in a different index space than the transcript, per-claim repair downgrades every covered verdict and produces a well-formed "0 of 63 covered" sidecar, which append-only then makes permanent. Now refused and retried, degrading to no data rather than wrong data. Threshold is deliberately **two** downgrades, not one: a single miscitation is exactly what per-claim repair exists to contain, and a threshold of one broke four of the branch's own tests.
+- **Second, scoped review of the two fixes themselves** — one question only, can either fix produce a wrong number. Came back clean: Fix A verified against the real 93-row ledger, Fix B never fired on any legitimate verdict set. Four residuals, none blocking, all recorded.
+- **Merged `7425536` to `main` and pushed.** Suite 585 green (was 574; +11 tests).
+- **Production restarted, deliberately and verifiably.** Idle proven on three independent signals — **zero UDP sockets** on the prod process (WebRTC media is UDP, so a live session would hold them), no established connections to Deepgram/Cartesia/Anthropic, last transcript write 17½ hours earlier. Old pid 74594 (up since Aug 2) → new pid 63191. Serving the merged code; `/study/` returns 200.
+- **Flag verified, not assumed.** `VOICE_TUTOR_COVERAGE_JUDGE` is unset in the launched environment, which means ON — and the probe itself was checked first: `ps eww` returns 23 variables for that pid, so the flag's absence is a real absence rather than an empty read. `XPC_SERVICE_NAME=com.voice-tutor.server` also confirms it's the launchd instance that `start.sh`'s guard passes through.
+- **Two method corrections worth keeping.** `lsof -p PID -i` **ORs** its selectors rather than ANDing them — the first idle check dumped every process's sockets and would have shown "UDP activity" unrelated to Voice Tutor; `-a` fixes it. And the branch's new traversal regression test **passed vacuously** (pathlib only traverses `..` through a directory that exists, and the test never created the other user's); fixed and confirmed by removing the guard to watch it fail.
+- **Housekeeping:** the uncommitted review brief was archived to the repo's gitignored `_archive/` rather than deleted; the dev server on `:7861` and its `:8444` tailnet bind are both torn down.
+
 ### ▶ Next-session opening list (Tue 2026-08-04) — coverage judge is built and pushed; next is WIRING
 The coverage judge is done, twice-reviewed, and waiting on `feat/coverage-judge` (voice-tutor, pushed, **not merged**). Nothing is mid-flight; both repos clean and in sync.
 

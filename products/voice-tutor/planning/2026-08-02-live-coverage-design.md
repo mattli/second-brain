@@ -1,7 +1,7 @@
 ---
 created_at: 2026-08-02
-last_updated: 2026-08-04
-status: phase-1-built
+last_updated: 2026-08-05
+status: phase-1-shipped
 type: design-spec
 ---
 
@@ -10,6 +10,8 @@ type: design-spec
 > Design conversation 2026-08-02 (Claude.ai session). Decisions below are Matt's; open questions marked. Supersedes nothing — this is the first coverage design doc. Related: the [[2026-07-27-control-surface-brainstorm]] ("numbers on the screen, narrative in the voice") and the 7/23 steering brainstorm in [ideas.md](../ideas.md) (mark_claim, two-tier coverage, secondary judge).
 
 > **Build status (2026-08-04).** Phase 1 — teardown judging + the evidence store + the union read path — is built on branch `feat/coverage-teardown-judge`, per [[2026-08-04-wiring-brief-coverage-judge]]. Phase 2 (the live in-session loop) is the immediate next step in the same work stream, not a future project: it is the demo-visible artifact and is wanted by the 2026-08-11 meetup. Its implementation plan is the last section of this doc.
+
+> **Shipped 2026-08-05.** Phase 1 merged to `main` (`7425536`) and live on production after a verified-idle restart. Independently reviewed cold before the merge, then a second scoped review of the fixes themselves; findings, residuals, and the open read-path work are in [[2026-08-04-coverage-teardown-judge-review]]. **The union read path is written and tested but wired to nothing user-facing** — no route, no bar — so decision 3 (live display) is entirely Phase 2. Two things to carry into that work: `union_for_document` raises rather than degrading on a malformed sidecar, which becomes a blank panel the moment it backs a route; and `backfill_coverage.py` writes no ledger row, so a backfill run's spend is invisible to reconciliation.
 
 ## What this is
 

@@ -9,6 +9,7 @@ last_updated: 2026-08-06
 
 ## Recent Updates
 
+- **2026-08-06:** Added reasoning effort levels, voice-as-orchestration-layer framing, and developer design principles to [GPT-Live: Full-Duplex Voice](#gpt-live-full-duplex-voice) from RisingStack analysis
 - **2026-08-06:** Added GPT-Live full-duplex architecture and delegation model to [GPT-Live: Full-Duplex Voice](#gpt-live-full-duplex-voice); folded Overview framing into TLDR and [WebRTC Foundations](#webrtc-foundations); added [Voice Architecture Evolution](#voice-architecture-evolution)
 
 ## WebRTC Foundations
@@ -86,6 +87,8 @@ Instead of processing a sequence of separate messages, GPT-Live continuously pro
 
 GPT-Live decouples continuous interaction from deep reasoning. When a question requires web search, extended reasoning, or agentic capabilities, GPT-Live delegates to a frontier model (GPT-5.5 at launch) running in the background. The voice model keeps the conversation going while the delegated task completes, then brings the result back into the conversation. This separation means GPT-Live can continuously benefit from the latest [frontier models](../models-safety/frontier-models.md) without retraining the voice model itself.
 
+Delegation maps to three reasoning effort levels: **Instant** (GPT-5.5 Instant — fast responses for simple lookups), **Medium**, and **High** (GPT-5.5 Thinking with medium or high reasoning effort for multi-step analysis). The split matters because in text chat, users tolerate waiting for a reasoning model, but in voice a long silence feels broken. Delegation lets the voice layer fill the gap — asking follow-up questions, confirming constraints, or simply acknowledging that deeper work is running — while the background model takes whatever time the problem requires [[source]](https://blog.risingstack.com/chatgpt-live-voice-ai-architecture/).
+
 ### Two Model Tiers
 
 GPT-Live ships in two variants: **GPT-Live-1** (for Plus, Go, and Pro users) and **GPT-Live-1 mini** (for Free users). In evaluations, GPT-Live-1 is strongly preferred over Advanced Voice Mode across overall preference, turn-taking, interruptions, conversational flow, and naturalness in matched 5–10 minute conversations. It also substantially outperforms on GPQA (expert-level scientific reasoning) and BrowseComp (agentic web search).
@@ -94,8 +97,23 @@ GPT-Live ships in two variants: **GPT-Live-1** (for Plus, Go, and Pro users) and
 
 GPT-Live adds real-time safeguards that can act while the model is speaking — steering toward safer responses, surfacing safety messaging, or ending voice conversations in higher-risk cases. Audio output includes SynthID watermarking for provenance verification, with both a public verification tool and API access for developers [[source]](https://openai.com/index/introducing-gpt-live/). Age-appropriate behavior is trained directly into the model for teen users, with parental controls and linked-parent notifications for high-risk situations.
 
+### Voice as Orchestration Layer
+
+The deeper implication of GPT-Live's architecture is that voice becomes a coordination surface rather than a speech-enabled chatbot. The voice model manages the conversation while other models, tools, and services perform specialized work behind the scenes — a pattern that mirrors distributed-system design where a responsive front-end accepts requests and delegates slower work to backend components.
+
+This extends to output format. Voice is the control layer, but the system can choose the most suitable response format: speech for short explanations, text for exact wording, visual cards for structured data (weather, stocks, sports), maps for locations, or files for finished artifacts. Forcing every answer into spoken form would reproduce the limitations of old telephone menus where users listened through long lists that would be easier to scan visually.
+
+Five design principles emerge for building on this pattern:
+
+- **Separate interaction from execution** — the component talking to the user does not need to perform every task itself. A fast interaction model handles turn-taking and acknowledgement; other models or services handle search, reasoning, and tool use.
+- **Treat interruption as data** — an interruption may signal a correction, a changed mind, a new constraint, or simply that the user already understands. Systems should preserve and interpret interruptions rather than just stopping output.
+- **Design for asynchronous work** — the interface should remain useful while background tasks run, allowing clarifying questions, progress updates, or work on a parallel sub-task.
+- **Make state visible** — when multiple models and tools work behind the scenes, users need to know whether the system is listening, searching, delegating, or waiting. Natural conversation should not completely hide system state.
+- **Choose output modality per answer** — not every response belongs in audio; structured results are often better displayed visually.
+
 ## Sources
 
+- [ChatGPT Live and the New Architecture of Voice AI](https://blog.risingstack.com/chatgpt-live-voice-ai-architecture/) — RisingStack Engineering — Reasoning effort levels (Instant/Medium/High), voice-as-orchestration-layer framing, developer design principles for full-duplex voice systems, multimodal output selection
 - [Introducing GPT-Live](https://openai.com/index/introducing-gpt-live/) — GPT-Live full-duplex architecture, delegation to frontier models, voice architecture evolution (cascaded → turn-based → full-duplex), evaluation results, SynthID audio watermarking, voice safety design
 - [How OpenAI delivers low-latency voice AI at scale](https://openai.com/index/how-openai-delivers-low-latency-voice-ai-at-scale/) — Full architecture walkthrough of the relay + transceiver split, ICE ufrag routing, Global Relay, and Go implementation details
 - [Andon FM](https://andon.fm) — AI agents running autonomous radio stations 24/7

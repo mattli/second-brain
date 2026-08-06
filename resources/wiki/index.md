@@ -30,7 +30,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 - [Loop Engineering](tools/loop-engineering.md) — Recurring systems that prompt agents instead of you: five-stage lineage (ReAct → AutoGPT → Ralph → /goal → orchestration), four-level stack, open vs. closed loops, four-box test, autonomy ladder, five building blocks, verification, business loops
 - [AI-Native Product Development](tools/ai-native-product-development.md) — Docs-to-demos; AI-native company observations (Ann Miura-Ko); Delta Force teams (Owner); AI evals as PRD; Team OS
 - [AI Evals](tools/ai-evals.md) — Floor-raising vs benchmark-maxxing; trace review → LLM-as-judge pipeline; golden cases; code-aware offline evals; containerized evals (Harbor); automated eval engineering; reward hacking; eval suite pruning; collapse of harnesses
-- [Voice AI Infrastructure](tools/voice-ai-infrastructure.md) — OpenAI's relay + transceiver WebRTC architecture; GPT-Live full-duplex voice and delegation model; voice architecture evolution (cascaded → turn-based → full-duplex); ICE ufrag routing; Global Relay geo-steering
+- [Voice AI Infrastructure](tools/voice-ai-infrastructure.md) — OpenAI's relay + transceiver WebRTC architecture; GPT-Live full-duplex voice and delegation model; voice as orchestration layer; reasoning effort levels; voice architecture evolution (cascaded → turn-based → full-duplex); ICE ufrag routing; Global Relay geo-steering
 
 ## Models & Safety
 

@@ -1,6 +1,29 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
-### ▶ Next-session opening list (Wed 2026-08-05) — coverage judging is LIVE; next is the bar
+### ▶ Next-session opening list (Thu 2026-08-06) — the bar is BUILT; review is next
+`feat/coverage-read-path` is **built, live-tested on the phone, and intentionally unmerged awaiting review** — that is expected state, not unfinished work. Seven commits, suite 643 green (+58), `main` untouched at `769efee` and in sync. The live checkout sits on `main` and is clean, so an unplanned production restart serves shipped code. Production was never restarted this session (pid 63191, up since Aug 5 11:37).
+
+Next up, in rough priority:
+1. **Review `feat/coverage-read-path` — fresh session, before any merge.** Point the reviewer at three things: the read path's degradation rules (a bad sidecar must cost only itself), the as-of snapshot arithmetic behind the past-session number, and the archive/restore path, which moves real user files.
+2. **What only Claude has verified:** the swipe gesture, the desktop hover reveal, the undo toast, and the shared-doc 409 refusal. The earlier surfaces were checked on Matt's phone; these four were not. The dev lane is down — bringing it back up is `./dev.sh` in the worktree plus `tailscale serve --bg --https=8444 http://127.0.0.1:7861`.
+3. **One timestamp format across the system** — decided, not built, deliberately off this branch: [2026-08-06-timestamp-format-consistency](products/voice-tutor/planning/2026-08-06-timestamp-format-consistency.md).
+4. **`backfill_coverage.py` still writes no ledger row** — pre-existing, close it before any large backfill.
+5. **False-negative probe** and the **anchor spot-check** — unchanged, still ~10 min of Matt's judgment each.
+
+Carried forward: does Deepgram bill for an idle open live-stream connection? Teardown holds the pipeline ~50s past the conversation while the judge runs.
+
+### August 6, 2026 — the coverage bar, built end to end and left awaiting review
+- **Fixed the read path before it had an audience.** `union_for_document` promised to degrade and instead raised: one structurally-invalid sidecar killed the whole document's number, and `source_hash=None` raised in exactly the case it existed for. Both reproduced, both fixed — the merge now runs one sidecar at a time so a broken file costs only itself, and `source_hash=None` answers from the newest claim-map version rather than merging across versions. Skipped files are counted **separately** from stale ones (stale is the system working; invalid is the system losing data) and each is logged with its path, because a counter alone never says which file to fix.
+- **Two routes.** `GET /api/coverage` serves every document's number in one directory scan, so the picker cannot become an N+1. The ended view gets a coverage block inside the telemetry it already polls, carrying the document total, this session's snapshot, and this session's delta. `expects_coverage` mirrors `expects_summary` so the client waits only for a sidecar that is actually coming.
+- **The `?doc=` parameter is load-bearing, not convenience.** The server can only learn a session's document from the ledger row, which teardown writes LAST — so coverage would have been absent for the entire polling window, the same late-write trap that once made `/telemetry` 404 for 60s. The client passes the document it already knows; the ledger stays the fallback.
+- **Four display surfaces:** the picker (a bar per row; a never-studied document shows nothing, not 0%), the pre-connect screen (where you stand, before you start), the freshly-ended view (current total leads — that IS the live number then), and a past session (where the document stood **when that session ended**). The last one came from Matt's phone check: every past session had been showing today's total, which is the same number on all of them and says nothing about the one on screen. Real history now ascends 1.6% → 17.5% → 25.4% → 28.6%.
+- **Fresh vs past is decided by how the screen was reached**, not by inspecting data — no timestamp comparison, no staleness threshold to drift.
+- **Documents can be put away.** Swipe on touch, hover-reveal on pointer, one tap plus an undo toast — no confirm modal, because archiving is genuinely reversible. Transcripts, coverage sidecars and ledger rows stay: they are records of sessions that really happened. Shared documents refuse with 409 rather than disappearing for every user.
+- **Removed a self-inflicted hack rather than documenting it.** The past-session meter was first *moved* into the rendered recap at runtime, which left an obligation to move it back. Replaced by rendering the recap in two pieces with the meter between them — nothing moves, and the header shown is the recap's own text, so it cannot disagree with the recap about which document the session was on. Checked against all 33 artifacts on disk.
+- **A 1:40am scare that was a timezone label, not an event.** A session reported as judged at "01:40" was a UTC value quoted without its timezone; it was 6:40pm local, 72 seconds after a real 21-minute session. Investigated read-only: 182 turns, $1.25, served by the dev lane from Matt's phone. Nothing self-started. The underlying inconsistency — ledger in naive local, sidecars in UTC — is now a decided, unbuilt change: [2026-08-06-timestamp-format-consistency](products/voice-tutor/planning/2026-08-06-timestamp-format-consistency.md).
+- **Dev lane put up and taken down.** `dev.sh` on `127.0.0.1:7861` exposed tailnet-only at `:8444` for the phone check, torn down after confirming idle. Production untouched throughout.
+
+### Superseded — opening list (Wed 2026-08-05) — coverage judging is LIVE; next is the bar
 Phase 1 of live coverage is **merged, pushed, and running on production**. `main` is at `7425536`, clean and in sync; suite 585 green; production restarted 11:37 (pid 63191) after a verified-idle check, serving the merged code with the coverage flag confirmed ON. Nothing is mid-flight.
 
 Next up, in rough priority:

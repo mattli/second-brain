@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-13
-last_updated: 2026-07-21
+last_updated: 2026-08-06
 ---
 
 # AI User Perspectives
@@ -9,6 +9,7 @@ last_updated: 2026-07-21
 
 ## Recent Updates
 
+- **2026-08-06:** Added voice mode UX observations and social AI gap thesis to [Voice as Modality Shift](#voice-as-modality-shift)
 - **2026-07-21:** Added Anish Acharya's making-over-consuming thesis to [The Creation Thesis](#the-creation-thesis)
 
 ## The Study
@@ -96,7 +97,22 @@ The survey data above captures what people *report* wanting from AI. Anish Achar
 
 See also: [Knowledge Work Future](../concepts/knowledge-work-future.md), [AI Careers](ai-careers.md)
 
+## Voice as Modality Shift
+
+The survey data captures what people type about AI. Voice mode reveals a different layer: how AI behaves when it's ambient — running alongside physical life rather than replacing it at a desk.
+
+OpenAI's GPT-Live voice mode lets users have natural conversations with ChatGPT, including interruptions, follow-ups, and redirections. Within the desktop app, voice can find tasks, kick off threads, and delegate complex work to frontier models in the background. The Every team stress-tested the feature across a range of real tasks: fixing bugs, drafting article outlines, meal prep, booking flights, and orchestrating agents while cooking.
+
+**Where voice delivers.** The strongest use case is bridging reading and doing. One engineer uploaded a technical book (*Designing Data-Intensive Applications*) while voice mode had access to his working codebase, then read and asked questions aloud — exploring unfamiliar ideas and connecting book insights to his own code without switching to text. "Shifting from text to voice is different from shifting from text to text for me," he noted. "Reading something and then having a conversation is different from typing something and then having to parse more text." This echoes the survey's cognitive partnership finding (17%) — AI as a patient, available collaborator — but adds a modality dimension: voice makes the partnership feel conversational rather than transactional.
+
+**Where voice falls short.** Context isolation is the biggest friction. The mobile app's voice mode can read a thread's visible history but can't access projects, files, or tools from [Codex](../tools/agentic-engineering.md) unless the host computer is awake and running the desktop app via a Remote connection. The mobile app also has a separate "ordinary voice mode" that uses cloud conversation but not local context — a confusing split. Ambient speech filtering is inconsistent: one user found it good at ignoring conversations with his wife; another had the opposite experience. Latency makes voice impractical for writing and editing tasks, and some responses felt shallow compared with text-mode GPT-5.6 Sol. These map directly to the light-and-shade framework: voice extends AI's reach into physical life (benefit) while introducing new unreliability surfaces (harm).
+
+**The verdict** captures the page's core tension: "It's both not quite there yet and obviously the future." A week of use was enough to make users who couldn't previously imagine good voice AI see exactly what it would look like — echoing the survey's finding that 81% report AI has already taken a step toward their vision.
+
+**The social gap.** Benchmark partner Sarah Tavel argues that the next breakthrough AI product won't be smarter — it will be social. Even power users use tools like ChatGPT in rudimentary ways, and the bottleneck isn't model capability but the absence of a social layer for learning from other users. She envisions a "follow button for prompts": following trusted experts in healthcare, finance, or law the way you follow creators today, and automatically gaining access to the prompts they use. Prompt libraries appeared early after ChatGPT's launch but arrived before mainstream users had developed real AI habits; Tavel sees a second window opening now. This connects to the survey's professional excellence hope (19%): users want to do better work, but discovering *how* other people use AI to do better work remains unsolved. The pattern mirrors earlier consumer tech cycles — Google was a technical breakthrough, Facebook was product-polished, Pinterest and Snap were built by "product geniuses, not technical founders" — and Tavel believes AI is entering that same product-design phase. See also: [Voice AI Infrastructure](../tools/voice-ai-infrastructure.md), [AI-Native Product Development](../tools/ai-native-product-development.md).
+
 ## Sources
 
 - "What 81,000 people want from AI" — Anthropic (Dec 2025 survey, published 2026) ([link](https://www.anthropic.com/research/what-81000-people-want-from-ai))
 - "The Most Human Technology Ever Made" — Anish Acharya (a16z) ([link](https://anishacharya.com/the-most-human-technology-ever-made)). Making-over-consuming thesis; AI as paintbrush technology; execution bottleneck collapse; individuality at scale.
+- "Mini-Vibe Check: ChatGPT Voice Mode" — Laura Entis (Every). Voice mode UX observations from the Every team; Sarah Tavel's social AI thesis; voice as ambient modality shift.

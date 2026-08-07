@@ -1,6 +1,6 @@
 ---
 created_at: 2026-05-28
-last_updated: 2026-07-26
+last_updated: 2026-08-07
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-07-26
 
 ## Recent Updates
 
+- **2026-08-07:** Added criteria drift, five-part judge prompt structure, and "God Evaluator" anti-pattern from Langfuse eval methodology to [Building an LLM Judge](#building-an-llm-judge) and [Common Anti-Patterns](#common-anti-patterns); added asymmetry of verification to [Two Types of Evals](#two-types-of-evals)
 - **2026-07-26:** Added [Shadow Testing](#shadow-testing) and [Red Teaming](#red-teaming) sections; added OSS tool references to [Eval Tooling Landscape](#eval-tooling-landscape)
 - **2026-07-23:** Added Viv/LangChain eval engineering skill coverage to [Containerized Evals](#containerized-evals-harbor), [Automated Eval Engineering](#automated-eval-engineering), and [Reward Hacking](#reward-hacking); removed stale Overview; folded three-activities framing into [Floor-Raising vs Benchmark-Maxxing](#floor-raising-vs-benchmark-maxxing)
 
@@ -55,7 +56,7 @@ Ask something like: "You were wrong. The answer was X. What would I need to have
 
 ## Two Types of Evals
 
-**Code-based evals (reference-based):** When there's a clear right answer — dates, specific data lookups, format compliance — write deterministic assertions. These are cheap, fast, and don't need LLM judges. Fix the bug, write the test, move on.
+**Code-based evals (reference-based):** When there's a clear right answer — dates, specific data lookups, format compliance — write deterministic assertions. These are cheap, fast, and don't need LLM judges. Fix the bug, write the test, move on. Many things are hard to produce but cheap to check once someone has done the preparation — the **asymmetry of verification**. If you have an expected output, every future evaluation run becomes a cheap deterministic check rather than an expensive LLM judgment [[source]](https://langfuse.com/academy/evaluate/writing-evaluators).
 
 Organize assertions by feature and scenario. For a real estate listing finder: "only one listing matches query" → assert `len(results) == 1`; "multiple matches" → assert `len(results) > 1`; "no matches" → assert `len(results) == 0`. Generic assertions (e.g., regex-checking that UUIDs aren't leaked in user-facing output) apply across all features [[source]](https://hamel.dev/blog/posts/evals/). Hundreds of these tests, continuously updated as new failure modes appear in production data, provide rapid feedback when iterating on prompts or RAG.
 
@@ -95,7 +96,17 @@ The resulting loop is: mine traces → identify a failure → build an eval → 
 
 Write a judge prompt that specifies the exact criteria for pass/fail. For a human-handoff judge: list the specific failure modes (user requested transfer but was ignored, too many loops before handoff, etc.) and the conditions under which there is no failure.
 
-**Always output binary (pass/fail).** Continuous scales (1–5) introduce enormous complexity. LLMs are poor at consistent numeric scoring, the results aren't actionable ("3.2 vs 3.7 — is that better?"), and they create false precision that erodes stakeholder trust. If you can't define a clear pass/fail threshold, you probably don't understand the problem well enough yet.
+**Label real cases before writing the prompt.** Evaluation criteria should not come exclusively from your head. *Criteria drift* is the catch-22: you need criteria to grade outputs, but grading outputs is what teaches you your criteria [[source]](https://langfuse.com/academy/evaluate/writing-evaluators). Take 10–20 real cases of the failure mode you want to evaluate and label each one with a short comment. That's enough to build a robust judge. If you already did error analysis, most of this exists already.
+
+**Write the prompt like onboarding material.** The bar: a new colleague could read it and reach the same verdicts you would [[source]](https://hamel.dev/blog/posts/llm-judge/). A judge prompt has five parts [[source]](https://langfuse.com/academy/evaluate/writing-evaluators):
+
+1. **Context** — what the application does and the domain knowledge needed to check the criterion.
+2. **A precise criterion, including what to ignore** — "Is the response high quality?" is a question two people would answer differently. "The response cites at least one source document. Ignore formatting issues." gets you the same answer every time.
+3. **Labeled examples with reasons (optional)** — 2–4 of your labeled cases mixing pass and fail. Start without them; add only when the judge isn't accurate enough, since they increase token consumption.
+4. **Reasoning first, verdict last** — reasoning-first prompting measurably improves judge accuracy [[source]](https://eugeneyan.com/writing/llm-evaluators/). The reasoning is also the first thing you read when you disagree with a verdict.
+5. **An explicit way out** — let the judge answer "unknown" when information is missing instead of guessing.
+
+**Always output binary or categorical.** Continuous scales (1–5) introduce enormous complexity. LLMs are poor at consistent numeric scoring — they even develop favorite numbers (GPT-3.5 has a [documented preference for the number 7](https://leehanchung.github.io/blogs/2024/08/11/llm-as-a-judge/)) — the results aren't actionable ("3.2 vs 3.7 — is that better?"), and they create false precision that erodes stakeholder trust. A pass/fail verdict is easily verifiable: you can count exactly how often the evaluator catches a failure and how often it clears a pass. There is no equivalent test for whether a 7 was the right score. When one event has several mutually exclusive outcomes, use a single categorical evaluator that picks one label per case (resolved / abandoned / handed_off) rather than several overlapping binary ones [[source]](https://langfuse.com/academy/evaluate/writing-evaluators). If you can't define a clear pass/fail threshold, you probably don't understand the problem well enough yet.
 
 **Add explanations alongside the score.** Have the judge output a structured response with both an explanation field and a binary score. The explanation helps you debug the judge's reasoning when it disagrees with your labels.
 
@@ -169,6 +180,7 @@ The implication: end-to-end evaluation becomes even more important. If you canno
 
 ## Common Anti-Patterns
 
+- **"God Evaluator":** A single judge that rates accuracy, tone, and completeness together on a 1–10 scale [[source]](https://langfuse.com/academy/evaluate/writing-evaluators). The resulting score doesn't tell you what to fix. Narrow judges that each check one criterion are also easier to build — getting a judge to agree with you on one specific criterion is a much lower bar than agreeing on "quality" [[source]](https://eugeneyan.com/writing/product-evals/).
 - **Generic metrics first:** Starting with helpfulness/toxicity/coherence dashboards instead of looking at actual traces. These generic scores rarely match the real problems in your application.
 - **Skipping annotation:** Jumping straight to automated evals without manually reviewing traces. The annotation step is the single most valuable part of the process — even without building any judges, it produces actionable insights.
 - **Continuous scoring:** Using 1–5 scales instead of binary pass/fail. Adds exponential complexity for marginal benefit. Teams must be "extremely disciplined" to use Likert scales correctly, and most aren't.
@@ -210,3 +222,4 @@ A non-exhaustive map of OSS tools to eval categories covered on this page:
 - [How to evaluate AI agents](https://howtoeval.com) | howtoeval.com — floor-raising vs benchmark-maxxing frame; golden cases; code-aware offline evals (test the agent, not the LLM); asking your agent directly; eval suite pruning; production monitoring at scale; collapse of harnesses
 - [Towards Automating Eval Engineering](https://x.com/vtrivedy10/status/2079976006644072796/) | Viv (LangChain) — Eval Engineering Skill for coding agents; Harbor containerized eval format (instruction + Dockerfile + verifier); interview-driven eval design; reward hacking patterns; continual-learning-as-data-mining loop
 - [10 agent evals every AI engineer should know](https://x.com/elune0x/status/2079923329633313196) | elune — beginner-level overview of 10 eval categories with OSS tool recommendations; shadow testing and red teaming concepts; specific tooling landscape
+- [Good evals are boring](https://langfuse.com/academy/evaluate/writing-evaluators) | Lotte (Langfuse Academy) — practical eval methodology: asymmetry of verification; "God Evaluator" anti-pattern; criteria drift; five-part judge prompt structure; categorical scoring; labeled-case calibration workflow

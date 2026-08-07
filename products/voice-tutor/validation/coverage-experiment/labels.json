@@ -8,32 +8,252 @@
   "scope": "PRIMARY union — the 17 claims the judge marked covered by >=1 of the 4 judged primary sessions (f6148c26, 7beee170, d33800bf, bb979045).",
   "method_note": "Human audit of the judge's PRIMARY-union verdicts against audit-sheet.md. matt_verdict is the ground-truth label; judge_verdict is judge-prompt-v1's call. confidence records how the human verdict was reached: 'familiarity' = single-pass recognition by someone who knows the source doc; 'verified' = checked against the session transcript AND the source document. 16 rows were upheld on a familiarity pass; c30 was rejected after transcript- and source-verification (see its note). Post-audit the covered union drops from 17 to 16 (c30 removed entirely — both of its citations fail).",
   "labels": [
-    {"claim_id": "c1",  "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c2",  "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c3",  "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c5",  "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c6",  "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c8",  "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c9",  "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c15", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c17", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c21", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c27", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c28", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c30", "judge_verdict": "covered", "matt_verdict": "not_covered", "confidence": "verified",
-      "note": "REJECTED. The doc (2aa66acc, source line 86) splits verification three ways as correctness / currency / source-authenticity ('is it correct? Is it current? Is the source real?'); correctness/security/reproducibility appear only as the example lenses of ONE sub-pattern, perspective-diverse verify. The tutor (7beee170 turn 28) taught that inner triad as the headline three-way split — a faithful-sounding conflation — and never named currency or source-authenticity. The second citation (bb979045 turn 2) is the generic kickoff turn and does not deliver the split either. The judge credited it on shape + keyword match over content match. Claim c30 is itself a FAITHFUL extraction (claims.json anchor resolution 'exact', anchor_unresolved false) — this is a JUDGE error, not a bad claim. MANDATORY regression case for any judge-prompt v2: v2 must mark c30 NOT covered."},
-    {"claim_id": "c31", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c46", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c47", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"},
-    {"claim_id": "c48", "judge_verdict": "covered", "matt_verdict": "covered",     "confidence": "familiarity"}
+    {
+      "claim_id": "c1",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c2",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c3",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c5",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c6",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c8",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c9",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c15",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c17",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c21",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c27",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c28",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c30",
+      "judge_verdict": "covered",
+      "matt_verdict": "not_covered",
+      "confidence": "verified",
+      "note": "REJECTED. The doc (2aa66acc, source line 86) splits verification three ways as correctness / currency / source-authenticity ('is it correct? Is it current? Is the source real?'); correctness/security/reproducibility appear only as the example lenses of ONE sub-pattern, perspective-diverse verify. The tutor (7beee170 turn 28) taught that inner triad as the headline three-way split — a faithful-sounding conflation — and never named currency or source-authenticity. The second citation (bb979045 turn 2) is the generic kickoff turn and does not deliver the split either. The judge credited it on shape + keyword match over content match. Claim c30 is itself a FAITHFUL extraction (claims.json anchor resolution 'exact', anchor_unresolved false) — this is a JUDGE error, not a bad claim. MANDATORY regression case for any judge-prompt v2: v2 must mark c30 NOT covered."
+    },
+    {
+      "claim_id": "c31",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c46",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c47",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    },
+    {
+      "claim_id": "c48",
+      "judge_verdict": "covered",
+      "matt_verdict": "covered",
+      "confidence": "familiarity"
+    }
   ],
   "summary": {
     "union_pre_audit": 17,
     "union_post_audit": 16,
     "rows_upheld": 16,
     "rows_rejected": 1,
-    "rejected_claim_ids": ["c30"],
+    "rejected_claim_ids": [
+      "c30"
+    ],
     "post_audit_coverage_pct_over_63": 25.4,
     "tutor_recap_estimate_pct": 40
+  },
+  "schema_version": 2,
+  "eras_note": "This file now has TWO eras and they are scoped differently — do not merge their rows. ERA 1 (`labels` + `summary`, 2026-08-03, judge prompt 632b73a34b1a22b1): the COVERED-ONLY answer key over the 4 PRIMARY sessions. Left byte-identical; the repo's frozen fixture copy at tests/fixtures/coverage/labels.json is guarded by a test asserting its contents, so era 1 must never be edited in place. ERA 2 (`not_covered_review`, 2026-08-07, judge prompt 5b9090d7a60ce5d1): the NOT-COVERED half, over all 10 sessions. A claim can appear in both with different judge verdicts — c31 does — because the judge PROMPT CHANGED between them. When they disagree, the era tells you which prompt produced which call.",
+  "not_covered_review": {
+    "era": 2,
+    "date": "2026-08-07",
+    "judge_prompt_hash": "5b9090d7a60ce5d1",
+    "scope": "NOT-COVERED review. 10 claims the LIVE judge (prompt 5b9090d7a60ce5d1) marked not covered in ALL TEN judged sessions on this document — the 4 PRIMARY sessions of era 1 plus d33800bf, bb979045, 6e9d58c5, 5004cb13, 9a2d38d0, 0ca94682, 9aa3ad47. Sampled from the 42 never-covered claims, deliberately mixed between genuine judgment calls and controls expected to be easy.",
+    "why": "Era 1 labelled only claims the judge marked COVERED, so the eval could catch the judge getting looser and was structurally blind to it getting stricter — a false negative under-fills the bar and reads to a tester as no progress. These rows are the not-covered half of the answer key, so the eval can fail in both directions.",
+    "method_note": "matt_verdict is ground truth; judge_verdict is the live prompt's call. confidence is 'transcript-verified' for all ten: every claim was checked against ALL 625 turns across all ten sessions. c45 was verified by READING every turn, not by keyword search, after Matt recalled it coming up — the recollection traced to a Mike Krieger mention that is evidence for c62, not for c45. That read also surfaced c61 and c62, which similarity ranking had missed. Evidence and verbatim quotes: 2026-08-07-false-negative-review-sheet.md.",
+    "coverage_rule_v1": "WAS THE CLAIM EXPLAINED? The test judges the TUTOR's output. There is no student-engagement term — whether the student took the topic up is not part of it — and delivery framing is irrelevant. Mentioning is not explaining.",
+    "labels": [
+      {
+        "claim_id": "c4",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "mentioned-only",
+        "note": "The tutor RECITED both clauses verbatim in its first substantive turn and handed them back as a question ('what do you make of that framing?'), then never unpacked what an anchor is or why verifying against reality differs from verifying against other model outputs. Headline, not lesson. `anchor` appears in only two other turns, both sign-offs promising the section 'next time'. This claim SETS THE v1 RULE: mentioning is not explaining."
+      },
+      {
+        "claim_id": "c11",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "mechanism-absent",
+        "note": "Nodes, edges, bounded jobs and the fake-edge test are all explained repeatedly. The claim's mechanism — that both carry CONTRACTS enforced by a schema, letting you swap nodes without breaking the graph — never appears. The single `schema` hit in ten sessions is about structured extraction to avoid context collapse, a different subject."
+      },
+      {
+        "claim_id": "c20",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "compound-half-absent",
+        "note": "Compound claim. The skeleton half (fan-out/reduce/synthesize, and the job types it names) is explained well and often. The cost half — cheap models on boring nodes, the strong model only where judgment matters — never appears; the one cost-adjacent hit is 'cheap enough to use routinely', about the economics of parallelism, not model selection."
+      },
+      {
+        "claim_id": "c25",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "absent",
+        "control": true,
+        "note": "Control. The go-to-market kit is one of the document's three worked builds and none of it appears: zero hits for go-to-market, landing copy, launch posts, or buyer profiling."
+      },
+      {
+        "claim_id": "c31",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "covered",
+        "confidence": "transcript-verified",
+        "shape": "explained-as-digression",
+        "false_negative": true,
+        "note": "THE SOLE FALSE NEGATIVE of this review, and a MANDATORY regression case for any judge-prompt v2: v2 must mark c31 COVERED. In 7beee170 turn 40 the tutor explained the human-gate principle AND both of its failure directions — approving every step kills the graph's value, too few gates leave irreversible actions unwatched — which is the claim's entire content. It arrived as an aside while answering a question about the limits of AI judgment, and the judge appears to have discounted it for that. Delivery framing is irrelevant; explanation is the whole test. NOTE THE ERA-1 ROW: under prompt 632b73a34b1a22b1 the judge marked c31 COVERED and it was upheld on a familiarity pass. The live prompt 5b9090d7a60ce5d1 REGRESSED on it."
+      },
+      {
+        "claim_id": "c41",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "absent",
+        "control": true,
+        "note": "Control. Zero hits for rule citations on review findings."
+      },
+      {
+        "claim_id": "c45",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "absent",
+        "control": true,
+        "note": "Control, and the most heavily verified row: all 625 turns were READ, not searched, because Matt recalled the topic coming up. No turn discusses role-based model selection in any phrasing. The recollection traced to the single Mike Krieger mention, which is evidence for c62 — this claim names Krieger, which is how the memory attached to it."
+      },
+      {
+        "claim_id": "c56",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "mechanism-absent",
+        "note": "The ingredients are explained — the fake-edge test, loop versus graph. The claim states them as a DECISION RULE for whether a graph is warranted at all, and that framing returns zero hits across ten sessions ('two jobs', 'no edge between', 'warranted', 'just a loop')."
+      },
+      {
+        "claim_id": "c61",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "used-as-evidence-for-a-different-argument",
+        "note": "The defining example of its shape, and a case the judge gets RIGHT — a v2 prompt must not lose it. The tutor named Sumner, 'a million lines of code from one language to another', and 'in two weeks', then explained a DIFFERENT point: that one-time migrations don't transfer to VoiceTutor. The example was used as evidence, not taught. The claim's own content — Zig→Rust, the CI test-suite gate, the token and cost figures — never appears. (Bun is named in four other turns, but in the false-independence/worktree discussion, never connected to this migration.)"
+      },
+      {
+        "claim_id": "c62",
+        "judge_verdict": "not_covered",
+        "matt_verdict": "not_covered",
+        "confidence": "transcript-verified",
+        "shape": "mentioned-only",
+        "note": "Five words in a list — 'Mike Krieger converting Python to TypeScript' — and nothing else. None of the method the claim is actually about (165,000 lines, the weekend, hundreds of agents, eight phase gates, three adversarial review rounds, the output-diff check) appears anywhere in ten sessions. Not even a headline was stated."
+      }
+    ],
+    "summary": {
+      "rows": 10,
+      "judge_agreed": 9,
+      "false_negatives": 1,
+      "false_negative_claim_ids": [
+        "c31"
+      ],
+      "false_negative_rate_on_sampled_hard_cases": "1 of 10",
+      "rate_note": "NOT a population rate. These 10 were sampled from 42 never-covered claims and deliberately weighted toward hard cases, so the true false-negative rate over all 42 is likely LOWER. Do not quote this as the judge's error rate.",
+      "shapes_confirmed": {
+        "mentioned-only": {
+          "claims": [
+            "c4",
+            "c62"
+          ],
+          "correct_verdict": "not_covered",
+          "judge": "right"
+        },
+        "used-as-evidence-for-a-different-argument": {
+          "claims": [
+            "c61"
+          ],
+          "correct_verdict": "not_covered",
+          "judge": "right"
+        },
+        "explained-as-digression": {
+          "claims": [
+            "c31"
+          ],
+          "correct_verdict": "covered",
+          "judge": "WRONG — the one bias to fix"
+        }
+      },
+      "cross_era_finding_c30": "The era-1 answer key made it MANDATORY that a v2 prompt mark c30 NOT covered. Verified 2026-08-07: the live prompt 5b9090d7a60ce5d1 marks c30 not covered in all four PRIMARY sessions, where prompt 632b73a34b1a22b1 had marked it covered in 7beee170 and bb979045. THE LIVE PROMPT PASSES THAT REGRESSION CASE.",
+      "cross_era_finding_c31": "The same prompt change REGRESSED on c31: covered under 632b73a34b1a22b1 (era 1, upheld by Matt), not covered under 5b9090d7a60ce5d1 (era 2, contradicted by Matt). Both flips are on the same session, 7beee170. The v1→live change traded a false positive for a false negative; a v2 prompt must hold c30 not-covered AND restore c31 covered at the same time."
+    }
   }
 }

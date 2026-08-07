@@ -16,6 +16,24 @@ that preceded it.
 > transcript context; his marks become the not-covered half of the answer key.
 > Nothing is written to `labels.json` until then.
 
+## The shapes — how a claim can appear without being covered
+
+Three distinct ways a claim's material shows up in a transcript. They are not
+degrees of the same thing; they fail differently, and the judge handles them
+differently. All confirmed against Matt's verdicts 2026-08-07.
+
+| shape | what happens | example | correct verdict | judge |
+|---|---|---|---|---|
+| **Mentioned only** | The words appear — recited, or a bare name-drop — and are never unpacked. | `c4` (both clauses recited, then handed back as a question), `c62` (five words in a list) | not covered | ✅ right |
+| **Used as evidence for a different argument** | The claim's subject is invoked, and something *is* explained — but the thing explained is a different point the example was recruited to support. The claim's own content is never taught. | `c61` — Sumner's migration is named and used to argue that one-time migrations don't transfer to VoiceTutor; Zig→Rust, the CI gate and the cost figures never appear | not covered | ✅ right |
+| **Explained as a digression** | The claim's content *is* genuinely taught, but as an aside inside a conversation about something else rather than as the session's declared subject. | `c31` (human-gate principle and both failure directions, while answering a question about the limits of AI judgment) | **covered** | ❌ wrong |
+
+The middle shape is the subtle one, and worth stating plainly because it is the
+easiest to mislabel in either direction: **explanation happened, but not of this
+claim.** A judge that asks "was there teaching near this material?" credits it; a
+judge that asks "was THIS claim's content taught?" does not. The live judge gets
+it right, so a v2 prompt must not lose that.
+
 ## Known judge biases
 
 Findings that call for a change to [[judge-prompt-v1]] rather than to the labels.

@@ -1,7 +1,7 @@
 ---
 created: 2026-08-07
 type: validation
-status: AWAITING MATT'S MARKS — nothing written to labels.json yet
+status: COMPLETE 2026-08-07 — all 10 marked; written to labels.json as era 2
 document: Graph Engineering (2aa66acc), 63-claim map
 ---
 
@@ -32,7 +32,7 @@ search that establishes the absence — kept separate from **the judgment call**
 so you're weighing the gap rather than my reading of it. Add a note wherever the
 reason matters more than the verdict.
 
-Nothing here has been written to `labels.json`. That happens after you mark it.
+**Marked and closed 2026-08-07.** All ten verdicts are written to `labels.json` as `not_covered_review` (era 2). Nine upheld the judge; `c31` is the sole false negative. Era 1's covered-only rows are untouched.
 
 Context for why this exists: [[2026-08-06-coverage-read-path-review]] — a
 22-minute, 83-user-turn session scored 3 covered claims, which is what prompted
@@ -239,9 +239,14 @@ The turn both rest on (2026-08-06, assistant), plus its follow-up:
 > “…the demos are impressive — **“we ported a million lines in two weeks”** — but
 > that doesn't mean it's what most builders need right now.”
 
-### `c61` — Jarred Sumner / Bun
+### `c61` — Jarred Sumner / Bun — ✅ RESOLVED: JUDGE WAS RIGHT
 
-- [ ] **I agree this was not covered.**
+**Matt's verdict:** the tutor mentioned the name and the scale, then explained a
+DIFFERENT point — that one-time migrations don't transfer to VoiceTutor. The
+claim's own content (Zig→Rust, the CI gate, the cost figures) never appeared.
+**The example was used as evidence, not taught.**
+
+- [x] **I agree this was not covered.**
 
 > **Claim.** Jarred Sumner ported Bun from Zig to Rust — a million lines of code in under two weeks with the full existing test suite passing in CI before merge — burning 5.9 billion uncached input tokens and 690 million output tokens (~$165,000 at API pricing).
 
@@ -261,9 +266,11 @@ explained. The migration itself is not.
 **The judgment call.** Whether explaining what an example *demonstrates* covers a
 claim whose content is the example's own specifics.
 
-### `c62` — Mike Krieger
+### `c62` — Mike Krieger — ✅ RESOLVED: JUDGE WAS RIGHT
 
-- [ ] **I agree this was not covered.**
+**Matt's verdict:** five words in a list, no method, not even a headline.
+
+- [x] **I agree this was not covered.**
 
 > **Claim.** Mike Krieger converted a Python codebase to 165,000 lines of TypeScript over a weekend using hundreds of agents, eight phase gates, three adversarial review rounds, and a final check diffing every command's output against the Python original.
 

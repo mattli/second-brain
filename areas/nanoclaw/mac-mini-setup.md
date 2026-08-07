@@ -15,13 +15,15 @@ An always-on personal intelligence system that keeps you informed, surfaces prod
 
 ## Current Status
 
+> **Stale as of 2026-08-06.** This table was last maintained 2026-03-18 and several rows no longer reflect reality — NanoClaw and Telegram are both long since running, and "Cron jobs" are NanoClaw scheduled tasks, not cron. Treat [[README]] as the live source for what actually runs; this doc is kept for the setup narrative and the vision.
+
 | Component | Status |
 |---|---|
 | Daily briefing | ✅ Running (Mac Mini, v2.1) |
 | Weekly summary | ✅ Running (Mac Mini, v3.3, Saturdays 8am) |
 | GitHub private repo (`second-brain`) | ✅ Set up |
 | Obsidian vault structure | ✅ Set up 2026-02-26 |
-| Obsidian Git plugin | ✅ Set up |
+| Obsidian Git plugin | ❌ Not in use — verified 2026-08-06: `~/second-brain/.obsidian/plugins/` does not exist. Vault git commits come from the NanoClaw `vault-sync` task, not this plugin. See [[README]] § Scheduled Tasks. |
 | Mac Mini | ✅ Arrived and set up |
 | NanoClaw | ⬜ Not yet set up |
 | Telegram integration | ⬜ Not yet set up |

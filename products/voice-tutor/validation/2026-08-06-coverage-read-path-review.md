@@ -217,10 +217,68 @@ Also pinned: the transcript fallback for pre-`session_start` sidecars, the refus
 mix naive session time with UTC `judged_at`, all four coverage states, the
 withhold/release policy, and the `session_start` stamp on new sidecars.
 
+---
+
+## Real-session verification (2026-08-06 evening) — and what it found
+
+Run on the isolated dev lane (`127.0.0.1:7861`, tailnet `:8444`), production untouched.
+Graph Engineering, the only document with judged history. 22-minute session, 125 turns,
+83 of them user turns. Disconnect **18:55:00 PDT**.
+
+| artifact | landed |
+|---|---|
+| transcript | +0.0s |
+| recap | +5.0s |
+| cost + summary | +23.7s |
+| **coverage sidecar** | **+61.5s** |
+
+**The withhold fix worked exactly as designed — no wrong number was shown.** On the
+old code the pre-session figure (`28.6% · 18 of 63 claims · 9 sessions`) would have
+appeared at ~5s and, once polling stopped, stayed there permanently.
+
+**But the card never appeared at all**, because the poll gave up at 60s and the
+sidecar landed at 61.5s. Confirmed by Matt from the phone.
+
+The data was all correct — 18/63 → 21/63 (28.6% → 33.3%), 9 → 10 sessions, +3 new
+claims, and the sidecar carried `session_start`, so the ordering fix works on fresh
+data too. It was visible immediately on reopening the session from history. Only the
+freshly-ended screen lost it.
+
+### The durable finding: a step whose cost grows with the work
+
+The two earlier teardown failures ([[2026-08-04-coverage-teardown-judge-review]]) were
+**ordering** — fixable by moving things. This one is not. Judge latency scales with
+**both** transcript turns **and** claim-map size, because it emits one verdict per
+claim, so its output grows with the map (6,315 output tokens here, $0.0403). The
+documented 10–40s is a short-session figure.
+
+A teardown step whose cost scales with session length or document size cannot be sized
+against a constant deadline. **Measure it at the largest realistic input, not a
+convenient one.**
+
+`COVERAGE_MAX_POLL_ATTEMPTS` (120s, coverage only, added 2026-08-06) buys headroom and
+**does not solve this** — the race returns on a longer document or a longer session.
+Incremental judging during the session (phase 2 of
+[[2026-08-02-live-coverage-design]]) is the actual fix, because it removes the work
+from teardown rather than giving it more room.
+
+Recorded as a third numbered trap in the project CLAUDE.md's teardown section.
+
+### Also observed, not concluded
+
+83 user turns over 22 minutes produced **3 covered claims**. That may be correct — the
+conversation may have stayed on already-covered ground — but it is the direction the
+[[backlog]] item *"false-negative probe for the coverage-judge answer key"* flags as a
+structural blind spot: `labels.json` holds only claims marked *covered*, so the eval
+can catch the judge getting looser and is blind to it getting stricter. This session is
+a reason to build that probe, not evidence on its own.
+
+---
+
 ## Still open
 
 - Not merged. Branch `feat/coverage-read-path`.
-- Not verified in a browser or against a real session end-to-end. Per the standing
-  rule a green suite proves nothing about `bot.py` or the browser — **time a real
-  session and compare artifact mtimes against the disconnect timestamp** before
-  trusting the teardown behaviour, since both mediums touch the teardown window.
+- The 120s poll extension has NOT yet been exercised on a real session — it was written
+  after the run above. Needs one more long session to confirm the card now appears.
+- Browser surfaces beyond the ended view (swipe-to-archive, undo toast, desktop hover)
+  still only verified by probe, not by hand.

@@ -10,6 +10,12 @@ of each document's **claim map** a study-tutor session actually *explained* — 
 strictly by one Haiku call per session. See [[backlog]] and the two-doc version check
 that preceded it.
 
+> **Open (2026-08-07):** [[2026-08-07-false-negative-review-sheet]] — `labels.json`
+> holds only *covered* claims, so the eval is structurally blind to the judge getting
+> stricter. The sheet puts 8 judge-denied claims in front of Matt with their verbatim
+> transcript context; his marks become the not-covered half of the answer key.
+> Nothing is written to `labels.json` until then.
+
 ## Baseline decision — each roster judged against its OWN doc's map
 
 Two "Graph Engineering" documents exist (a `matt` doc and a newer `_shared`

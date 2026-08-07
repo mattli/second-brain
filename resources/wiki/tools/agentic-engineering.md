@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-08-04
+last_updated: 2026-08-07
 ---
 
 # Agentic Engineering
@@ -9,6 +9,7 @@ last_updated: 2026-08-04
 
 ## Recent Updates
 
+- **2026-08-07:** Added bb self-customizing agent orchestrator to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-08-04:** Added Spotify's enterprise fleet management case study — Honk agent platform evolution, deterministic-ceiling-to-LLM transition, verification investment at scale, standardization-multiplies-agents thesis, 75% PR frequency lift, prototyping infrastructure — to [Enterprise Fleet Management](#enterprise-fleet-management-spotify)
 - **2026-07-31:** Added four-loop stacking hierarchy, evidence-over-confidence principle, and five anti-patterns to [Three Engineering Layers](#three-engineering-layers-environment--feedback--flow)
 - **2026-07-30:** Added agent factory architecture — two-neck certification model, five-station production line, sealed eval suites, permission broker, autonomy tiers (C0–C3), mid-run routing, self-staffing meta-agents — to [Agent Factory Architecture](#agent-factory-architecture-avid)
@@ -18,7 +19,6 @@ last_updated: 2026-08-04
 - **2026-07-26:** Added three-layer taxonomy (harness/loop/graph = environment/feedback/flow) with nesting model and failure-diagnosis framework to [Three Engineering Layers](#three-engineering-layers-environment--feedback--flow)
 - **2026-07-26:** Added Karpathy–Cherny context engineering framework — four operations (Write/Select/Compress/Isolate), Software 3.0, context rot, three-paradigm timeline — to [Context Engineering: The Unifying Layer](#context-engineering-the-unifying-layer-karpathycherny)
 - **2026-07-25:** Added Dex's software factory failure thesis — lights-off factory experience, RL maintainability gap, benchmark blindness to code quality — to [Why Software Factories Fail](#why-software-factories-fail-dex)
-- **2026-07-23:** Added Machina's graph engineering principles — diamond pattern, stop rule, human gate, fake-edge audit — to [Graph Engineering](#graph-engineering-machina)
 
 
 
@@ -376,6 +376,8 @@ Niklas Gustavsson (Spotify) describes the most concrete enterprise case study of
 
 **MiroFish** — Swarm intelligence prediction engine. Creates multi-agent simulations with independent personalities and long-term memory to predict outcomes from seed information (news, policies, financial signals).
 
+**bb** (Sawyer Hood / ymichael) — Open-source, MIT-licensed agent orchestrator designed to be customized by its own agents. Works with any coding agent (Codex, Claude Code, Cursor) and any ACP-compatible agent on your own subscriptions. The distinguishing feature is self-modification: users ask bb to build new capabilities for itself — task management GUIs, tiling thread navigation, GitHub webhook code review, an Obsidian-like markdown editor, a DAW for music production — and the extension system that enables this is the same one that ships core features (provider-agnostic workflows, crons, inline previews, remote access are all plugins). The thesis: software that you use needs to get the fundamentals right and then be malleable enough to adapt — "no two installs look alike." https://github.com/get-bb/bb
+
 ### Agent Composition Template (Machina)
 
 A practitioner template for standing up named agents as teammates rather than disposable sessions. Every agent is assembled from the same five parts:
@@ -701,3 +703,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "How to Build Your First Agent Factory (Builder's Guide)" — Avid (tweet thread, Jul 2026) ([link](https://x.com/Av1dlive/status/2082505465569910850/)) — five-station agent production line (spec/stamp/prove/certify/operate), two-neck certification model, sealed eval suites, permission broker enforcing grants outside the model, four autonomy tiers (C0–C3), mid-run proxy router with five local detectors, self-staffing meta-agents that write eval proposals
 - "LOOP vs GRAPH vs HARNESS ENGINEERING" — rari / @0xwhrrari (tweet thread, Jul 2026) ([link](https://x.com/0xwhrrari/status/2082096897964306572/?rw_tt_thread=True)) — three engineering layers with detailed component lists, four-loop stacking hierarchy (agent/verification/event/improvement), seven-part loop anatomy, evidence-over-confidence principle, five anti-patterns, production checklist
 - "How Spotify runs agents across 20M+ lines of code, with Niklas Gustavsson" — Claude (video, 2026) ([link](https://www.youtube.com/watch?v=9DHZLw5653E)) — enterprise fleet management case study: deterministic script ceiling, Honk agent platform (Agent SDK + Kubernetes), judge removal as models improved, verification investment for auto-merged PRs, standardization-multiplies-agents thesis, 75% PR frequency lift, 73% AI-authored PRs, 4,500 daily deployments, prototyping infrastructure for non-engineers
+- "An Agentic IDE that builds itself" — Sawyer Hood (tweet, Aug 2026) — bb open-source self-customizing agent orchestrator: extension system powering both core and user features, agent-built task management/code review/DAW, ACP support, "no two installs look alike" thesis

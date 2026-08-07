@@ -1,6 +1,7 @@
 ---
 created_at: 2026-04-05
 last_updated: 2026-08-07
+
 ---
 
 # Agentic Engineering
@@ -9,6 +10,7 @@ last_updated: 2026-08-07
 
 ## Recent Updates
 
+- **2026-08-07:** Added LangChain's three-layer open-source stack (Deep Agents / LangChain / LangGraph) as concrete implementation of the taxonomy to [Three Engineering Layers](#three-engineering-layers-environment--feedback--flow)
 - **2026-08-07:** Added bb self-customizing agent orchestrator to [Other Orchestration Tools](#other-orchestration-tools)
 - **2026-08-04:** Added Spotify's enterprise fleet management case study — Honk agent platform evolution, deterministic-ceiling-to-LLM transition, verification investment at scale, standardization-multiplies-agents thesis, 75% PR frequency lift, prototyping infrastructure — to [Enterprise Fleet Management](#enterprise-fleet-management-spotify)
 - **2026-07-31:** Added four-loop stacking hierarchy, evidence-over-confidence principle, and five anti-patterns to [Three Engineering Layers](#three-engineering-layers-environment--feedback--flow)
@@ -121,6 +123,8 @@ The three disciplines that keep appearing across this page — [harness](agent-h
 - The process has meaningful branches, parallel work, approvals, or recovery paths that are currently encoded as ad-hoc conditionals → **graph** problem.
 
 This diagnostic framing complements the [context engineering](#context-engineering-the-unifying-layer-karpathycherny) paradigm timeline (prompt → context → loop): context engineering is the foundation that all three layers depend on, while the three layers are the structural decisions about how to *apply* that context in a running system.
+
+**LangChain's three-layer stack.** LangChain's open-source agent stack ships the three-layer taxonomy as distinct packages sitting on a determinism–agency spectrum. **LangGraph** (runtime) offers maximal determinism — a graph-based framework for custom workflows where the topology encodes domain logic, with durable execution, human-in-the-loop, and fault tolerance as first-class primitives. **LangChain** (framework) sits in the middle — a minimal agent abstraction (LLM in a loop calling tools) with *middleware* hooks that let you inject deterministic steps (summarization, verification, compliance checks) around the core non-deterministic loop. **Deep Agents** (harness) offers maximal agency — the same core loop plus bundled context management: a filesystem for reading and writing context outside the window, subagents for isolated specialized work, skills for on-demand instructions, and cross-run memory. Deep Agents is implemented as the LangChain agent plus a stack of middleware — you can drop down from Deep Agents to LangChain to LangGraph as you need more control, or compose them (a `create_deep_agent` inside a LangGraph workflow, or a LangGraph subgraph inside a Deep Agent). The middleware mechanism is the key architectural decision: rather than forking the agent loop for every customization, middleware provides named hooks that modify the loop's behavior at defined points — the same pattern that makes harness engineering composable rather than monolithic [[source]](https://x.com/sydneyrunkle/status/2085425145209143338/?rw_tt_thread=True).
 
 ## Discovering Unknowns (Thariq)
 
@@ -624,6 +628,7 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 
 ## Tools Noted
 
+- **Deep Agents** (LangChain) — Off-the-shelf agent harness with bundled context management (filesystem, subagents, skills, memory). Built as LangChain's core agent loop plus middleware. https://docs.langchain.com/oss/python/deepagents/overview
 - **agents.md** — Agent instruction file spec/community resource. https://agents.md
 - **Claude Agent SDK — Channels docs** — Official Anthropic documentation for Claude Agent SDK channels architecture. https://code.claude.com/docs/en/channels
 - **mozilla-ai/cq** — "Stack Overflow for agents" — shared knowledge commons where agents query and contribute learnings to avoid repeating solved problems. https://github.com/mozilla-ai/cq
@@ -704,3 +709,4 @@ Rungs 3–5 only work because data lives in a local SQLite store — compound qu
 - "LOOP vs GRAPH vs HARNESS ENGINEERING" — rari / @0xwhrrari (tweet thread, Jul 2026) ([link](https://x.com/0xwhrrari/status/2082096897964306572/?rw_tt_thread=True)) — three engineering layers with detailed component lists, four-loop stacking hierarchy (agent/verification/event/improvement), seven-part loop anatomy, evidence-over-confidence principle, five anti-patterns, production checklist
 - "How Spotify runs agents across 20M+ lines of code, with Niklas Gustavsson" — Claude (video, 2026) ([link](https://www.youtube.com/watch?v=9DHZLw5653E)) — enterprise fleet management case study: deterministic script ceiling, Honk agent platform (Agent SDK + Kubernetes), judge removal as models improved, verification investment for auto-merged PRs, standardization-multiplies-agents thesis, 75% PR frequency lift, 73% AI-authored PRs, 4,500 daily deployments, prototyping infrastructure for non-engineers
 - "An Agentic IDE that builds itself" — Sawyer Hood (tweet, Aug 2026) — bb open-source self-customizing agent orchestrator: extension system powering both core and user features, agent-built task management/code review/DAW, ACP support, "no two installs look alike" thesis
+- "Deep Agents vs LangChain vs LangGraph" — Sydney Runkle / LangChain (tweet thread, Aug 2026) ([link](https://x.com/sydneyrunkle/status/2085425145209143338/?rw_tt_thread=True)) — three-layer open-source agent stack mapping to determinism–agency spectrum: LangGraph (runtime, maximal determinism), LangChain (framework, middleware hooks), Deep Agents (harness, maximal agency with bundled context management)

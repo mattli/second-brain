@@ -16,6 +16,41 @@ that preceded it.
 > transcript context; his marks become the not-covered half of the answer key.
 > Nothing is written to `labels.json` until then.
 
+## Known judge biases
+
+Findings that call for a change to [[judge-prompt-v1]] rather than to the labels.
+Each one needs a confirmed false negative behind it, not a suspicion.
+
+- **Under-credits digressions** (confirmed 2026-08-07, claim `c31`). A claim the
+  tutor genuinely *explained* — including both of its failure directions — is
+  marked not covered when the explanation arrives as an aside inside a
+  conversation about something else. Not covered in any of the ten sessions. The
+  judge appears to weight topical framing over whether an explanation happened.
+  Evidence and the verbatim turn: [[2026-08-07-false-negative-review-sheet]].
+
+## What coverage means — the v1 rule, restated
+
+**The rule is unchanged: was the claim EXPLAINED?** Coverage judges the TUTOR's
+output. There is no student-engagement variable — whether Matt took the topic up
+is not part of the test.
+
+**Mentioning is not explaining.** `c4` is the clean instance (Matt's verdict,
+2026-08-07): the tutor recited both clauses of the claim verbatim and asked "what
+do you make of that framing?" — but never unpacked what an anchor *is*, or why
+verifying against reality differs from verifying against other model outputs.
+A headline, not a lesson. Correctly not covered.
+
+`c31` is the same rule reaching the opposite verdict, not a competing one: there
+the tutor actually explained the principle and both of its failure directions. It
+arrived as an aside inside another conversation, and the judge appears to have
+discounted it for that — which is the bias recorded above. **Delivery framing is
+irrelevant; explanation is the whole test.**
+
+So the two findings agree: c31 was explained (though as a digression) and should
+count; c4 was mentioned but never explained and should not. This is also the
+question to apply to `c61`/`c62` — did the tutor explain the claim's content, not
+did it say the name.
+
 ## Baseline decision — each roster judged against its OWN doc's map
 
 Two "Graph Engineering" documents exist (a `matt` doc and a newer `_shared`

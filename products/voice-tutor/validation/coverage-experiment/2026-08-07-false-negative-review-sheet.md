@@ -40,13 +40,23 @@ building this now.
 
 ---
 
-## `c4` — borderline
+## `c4` — borderline — ✅ RESOLVED 2026-08-07: JUDGE WAS RIGHT
 
-- [ ] **I agree this was not covered.**
+**Matt's verdict: correctly not covered. Mentioning is not explaining.** The turn
+recites both clauses and asks "what do you make of that framing?" — it never
+unpacks what an anchor *is*, or why verifying against reality differs from
+verifying against model outputs. Headline, not lesson.
+
+This settles the test for the whole map, and it is **not** about student
+engagement — the judgment is on the TUTOR's output. The question is only ever
+*was the claim explained?* My earlier framing of this as a stated-versus-engaged
+question was wrong; it is corrected below and in the README.
+
+- [x] **I agree this was not covered.**
 
 > **Claim.** Graph engineering buys breadth and speed, not better judgment, and a graph is only as honest as its anchors — outputs verified against reality, not against other model outputs.
 
-**What the transcript has.** **Both** clauses of this claim were stated verbatim by the tutor, in its very first substantive turn — including the anchors clause. You then said you didn't know and asked to start from basics, and the topic was never returned to in any session. A keyword search for `anchor` across all ten sessions finds only this turn plus two sign-offs promising to cover the anchors section "next time."
+**What the transcript has.** **Both** clauses of this claim were RECITED verbatim by the tutor, in its very first substantive turn — including the anchors clause — and then handed straight back as a question. Neither clause is explained anywhere: a keyword search for `anchor` across all ten sessions finds only this turn plus two sign-offs promising to cover the anchors section "next time." So the words appear and the lesson never does.
 
 **Closest the conversation came:**
 
@@ -58,15 +68,19 @@ building this now.
 
 - *2026-07-26, assistant:* “Fair. A **graph** here is just a network of tasks — nodes and edges. Each node is one bounded job with an input and output. An edge is a real data dependency: one node waits because it actually needs what another produced. If there's no data passing along that arrow, the edge is fake — and the wait is wasted time. Does that land, or want an example?”
 
-**The judgment call.** Whether a claim the tutor states, unengaged and immediately dropped, is covered. This is the calibration question for the whole map: if stating counts, coverage measures what the tutor said; if engagement is required, it measures what you actually worked through.
+**The judgment call.** Whether reciting a claim and asking about it is explaining it. *(Answered: no.)*
 
-**Notes:**
+**Notes:** yes, the tutor did mention it (in the first substantive turn), but mentioning it does not equate to explaining it.
 
 ---
 
-## `c31` — borderline
+## `c31` — borderline — ✅ RESOLVED 2026-08-07: CONFIRMED FALSE NEGATIVE
 
-- [ ] **I agree this was not covered.**
+**Matt's verdict: the judge was too strict.** The turn states the principle and
+both failure directions — that is the claim's full content. Encode as
+not-covered-but-should-be. See [[#Judge bias — under-crediting digressions]].
+
+- [ ] ~~I agree this was not covered.~~ — *answered: no.*
 
 > **Claim.** The human gate principle is to place approval where a mistake would be expensive to undo, not on every step — too many gates create a bottleneck defeating the graph's purpose, while too few gates leave irreversible actions unwatched.
 
@@ -78,13 +92,13 @@ building this now.
 
 **The judgment call.** Whether a fully-stated principle delivered as a digression counts, when the session never treated it as a subject in its own right.
 
-**Notes:**
+**Notes:** This is still borderline, but it feels natural enough that I would call it covered.
 
 ---
 
 ## `c20` — borderline
 
-- [ ] **I agree this was not covered.**
+- [x] **I agree this was not covered.**
 
 > **Claim.** Cost-conscious diamond design uses cheap models on boring nodes and the strong model only where judgment matters, with the fan-out → reduce → verify → synthesize skeleton applying across job types like market scans, code review, or research reports.
 
@@ -98,13 +112,13 @@ building this now.
 
 **The judgment call.** Whether a compound claim is covered when one half is thoroughly covered and the other never comes up at all.
 
-**Notes:**
+**Notes:** I agree, what is missing is specific mention of the "cheap models on boring nodes and the strong model only where judgment matters" portion of the claim.
 
 ---
 
 ## `c11` — borderline
 
-- [ ] **I agree this was not covered.**
+- [x] **I agree this was not covered.**
 
 > **Claim.** Nodes and edges both carry contracts: a node contract enforces bounded input, bounded output, and exactly one job via a schema; an edge contract names the data shape crossing it, which lets you verify the edge is real and swap nodes without breaking the graph.
 
@@ -124,7 +138,7 @@ building this now.
 
 ## `c56` — borderline
 
-- [ ] **I agree this was not covered.**
+- [x] **I agree this was not covered.**
 
 > **Claim.** The tell for whether a graph is warranted is whether you can find two jobs with no edge between them; if not, it's just a loop, and that's fine.
 
@@ -140,9 +154,24 @@ building this now.
 
 ---
 
-## `c45` — clear-negative
+## `c45` — clear-negative — ✅ VERIFIED BY READING 2026-08-07
 
-- [ ] **I agree this was not covered.**
+Matt had a faint recollection this came up, so all 625 turns across all ten
+sessions were **read in full**, not searched. **Nothing exists.** No turn
+discusses choosing different models for different roles, in any phrasing —
+no cheap-model-for-bulk / strong-model-for-review distinction, no rule-writer
+role, no twelve subagents, no Sonnet. The nearest thing is one turn about
+parallelism becoming "cheap enough to use routinely", which is about the
+economics of spinning up workers, not about which model to spend on where.
+
+**The recollection is real but attaches to a different turn.** Mike Krieger —
+who this claim names — *is* mentioned once, in a passing list of migration
+examples. That mention is the likely source of the memory, and it is evidence
+for **c62**, not for this claim. See the addendum.
+
+**Matt's verdict 2026-08-07: confirmed not covered.**
+
+- [x] **I agree this was not covered.**
 
 > **Claim.** Model selection should match role: cheap, fast models for the main transformation work, and the strongest model reserved for reviewers and rule-writers, since a bad rule propagates downstream; Mike Krieger fanned out twelve subagents on Sonnet for the main migration while reserving the larger model for review.
 
@@ -152,13 +181,13 @@ _No turn in any session discusses this. Quotes omitted rather than padded with u
 
 **The judgment call.** Expected: not covered. Here as a control — if this one comes back covered, the problem is the labelling, not the judge.
 
-**Notes:**
+**Notes:** Let's double check this one. I faintly recall the claim coming up in conversation, but I'm not sure.
 
 ---
 
 ## `c41` — clear-negative
 
-- [ ] **I agree this was not covered.**
+- [x] **I agree this was not covered.**
 
 > **Claim.** Forcing a rule citation on every review finding turns vague complaints into actionable queue items, reveals that a rule cited across multiple files is one badly written rule rather than many problems, and treats reviewer disagreement as a sign of rulebook ambiguity requiring an edit rather than a coin flip.
 
@@ -174,7 +203,7 @@ _No turn in any session discusses this. Quotes omitted rather than padded with u
 
 ## `c25` — clear-negative
 
-- [ ] **I agree this was not covered.**
+- [x] **I agree this was not covered.**
 
 > **Claim.** In the go-to-market kit build, three researchers profile the buyer, map channels, and collect competitor positioning in parallel, merging into a positioning document that requires human approval before three writers draft landing copy, launch posts, and outreach messages, checked against the approved positioning.
 
@@ -187,6 +216,100 @@ _No turn in any session discusses this. Quotes omitted rather than padded with u
 **Notes:**
 
 ---
+
+## Addendum — two claims the c45 read surfaced (added 2026-08-07)
+
+Reading all 625 turns turned up a turn that matters for two claims **not** in the
+original eight. Both ranked mid-pack on word overlap (0.20, 0.24) so the
+similarity method didn't surface them, and both name a person the transcript
+actually names — which is exactly why they need marking rather than assuming.
+
+**The question is the c4 question, applied here: did the tutor EXPLAIN the
+claim's content?** Not did it say the name. Both claims below are mostly
+*specifics* — figures, methods, gates — so the test is whether any of that was
+taught, not whether the example was invoked.
+
+The turn both rest on (2026-08-06, assistant), plus its follow-up:
+
+> “Most of the public examples are migrations — **Jarred Sumner porting a million
+> lines of code from one language to another, Mike Krieger converting Python to
+> TypeScript**. Those are real, but they're also one-time projects where you
+> already know the shape of the work.”
+
+> “…the demos are impressive — **“we ported a million lines in two weeks”** — but
+> that doesn't mean it's what most builders need right now.”
+
+### `c61` — Jarred Sumner / Bun
+
+- [ ] **I agree this was not covered.**
+
+> **Claim.** Jarred Sumner ported Bun from Zig to Rust — a million lines of code in under two weeks with the full existing test suite passing in CI before merge — burning 5.9 billion uncached input tokens and 690 million output tokens (~$165,000 at API pricing).
+
+**Mentioned:** Sumner by name, "a million lines of code from one language to
+another", and "in two weeks" (in the follow-up turn). Bun is also named in *four
+other turns* — but in the false-independence/worktree discussion, never
+connected to this migration.
+
+**Never explained:** Zig→Rust, the CI test-suite gate, and every cost figure —
+which is the bulk of what the claim asserts.
+
+**What the tutor did with it.** It used the migration as an *illustration for a
+different point* — that public examples are one-time projects where you already
+know the shape of the work, and so don't apply to VoiceTutor. That point is
+explained. The migration itself is not.
+
+**The judgment call.** Whether explaining what an example *demonstrates* covers a
+claim whose content is the example's own specifics.
+
+### `c62` — Mike Krieger
+
+- [ ] **I agree this was not covered.**
+
+> **Claim.** Mike Krieger converted a Python codebase to 165,000 lines of TypeScript over a weekend using hundreds of agents, eight phase gates, three adversarial review rounds, and a final check diffing every command's output against the Python original.
+
+**Mentioned:** Krieger by name, and "converting Python to TypeScript". That is the
+entire appearance — a five-word clause inside a list.
+
+**Never explained:** 165,000 lines, the weekend, hundreds of agents, eight phase
+gates, three adversarial review rounds, the diff check. The claim's substance is
+the *method*, and none of the method appears anywhere in ten sessions.
+
+**The judgment call.** Whether a name-drop is coverage. Under c4's answer this
+looks like the clearest "no" of the three, since not even the headline was
+stated — only the person and the direction of the migration.
+
+---
+
+## Judge bias — under-crediting digressions
+
+**Confirmed 2026-08-07 from c31.** The judge under-credits a claim the tutor
+genuinely **explained** when the explanation arrives as an **aside inside a
+conversation about something else** rather than as the session's declared
+subject. In c31 the tutor explained the human-gate principle and both of its
+failure directions — the claim's entire content — while answering a question
+about the limits of AI judgment. Marked not covered in all ten sessions.
+
+This is a **judge-prompt** finding, not a labelling one: the fix is to stop the
+judge weighting topical framing over whether an explanation happened, not to
+hand-label around it.
+
+### The rule these all sit under
+
+**Was the claim EXPLAINED?** That is the whole v1 test. It judges the TUTOR's
+output — there is no student-engagement term, and delivery framing is irrelevant.
+
+The two confirmed verdicts are the same rule reaching opposite answers, not
+competing rules:
+
+| | what happened | verdict |
+|---|---|---|
+| `c31` | explained, but as a digression | **should count** — judge was wrong |
+| `c4` | recited verbatim, never explained | **should not count** — judge was right |
+
+An earlier draft of this sheet framed c4 as a stated-versus-engaged question.
+That was wrong: Matt's c4 mark is about the tutor mentioning without explaining,
+not about whether he took the topic up. Corrected here and in the README so the
+judge-prompt work aims at the right target.
 
 ## After you mark this
 

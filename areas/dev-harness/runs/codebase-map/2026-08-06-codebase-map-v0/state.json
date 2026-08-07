@@ -33,11 +33,15 @@
       "description": "Prove the tool works against reality. Run the real CLI with live Haiku calls against a small real target and assert: every source file gets a non-empty, well-formed summary; an immediate second run re-uses the cache with zero model calls; and the emitted HTML opens and contains every scanned file. Report the actual dollar cost. Then scan both generic targets strictly read-only: /Users/mattli/development/voice-tutor (Python — must exclude the gitignored ~12.6k-file .venv, doubling as the ignore-logic proof) and /Users/mattli/development/dev-harness (TypeScript — must exclude gitignored node_modules); assert both scan cleanly with sane file counts and never write into either repo or ~/.voice-tutor/. Capture these as a credentialed test path (skips cleanly when no key) plus recorded manual-run evidence with cost."
     }
   ],
-  "currentSprint": 0,
+  "currentSprint": 3,
   "contractVersion": 2,
-  "scores": [],
+  "scores": [
+    96,
+    96,
+    98
+  ],
   "iterations": 0,
-  "budgetSpentUsd": 0,
+  "budgetSpentUsd": 11.583723150000003,
   "haltReason": null,
   "contractFreezeReason": "agreement"
 }

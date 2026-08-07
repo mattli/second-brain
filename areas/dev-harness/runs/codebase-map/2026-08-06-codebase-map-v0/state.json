@@ -4,7 +4,7 @@
   "title": "codebase map v0",
   "startedAt": "2026-08-06T23:55:34.790Z",
   "runDir": "runs/codebase-map/2026-08-06-codebase-map-v0",
-  "status": "running",
+  "status": "passed",
   "projectPath": "/Users/mattli/development/codebase-map",
   "sprints": [
     {
@@ -33,15 +33,17 @@
       "description": "Prove the tool works against reality. Run the real CLI with live Haiku calls against a small real target and assert: every source file gets a non-empty, well-formed summary; an immediate second run re-uses the cache with zero model calls; and the emitted HTML opens and contains every scanned file. Report the actual dollar cost. Then scan both generic targets strictly read-only: /Users/mattli/development/voice-tutor (Python — must exclude the gitignored ~12.6k-file .venv, doubling as the ignore-logic proof) and /Users/mattli/development/dev-harness (TypeScript — must exclude gitignored node_modules); assert both scan cleanly with sane file counts and never write into either repo or ~/.voice-tutor/. Capture these as a credentialed test path (skips cleanly when no key) plus recorded manual-run evidence with cost."
     }
   ],
-  "currentSprint": 3,
-  "contractVersion": 2,
+  "currentSprint": 4,
+  "contractVersion": 5,
   "scores": [
     96,
     96,
-    98
+    98,
+    96,
+    90
   ],
   "iterations": 0,
-  "budgetSpentUsd": 11.583723150000003,
+  "budgetSpentUsd": 24.126737500000004,
   "haltReason": null,
-  "contractFreezeReason": "agreement"
+  "contractFreezeReason": "round-cap"
 }

@@ -253,7 +253,69 @@
         }
       },
       "cross_era_finding_c30": "The era-1 answer key made it MANDATORY that a v2 prompt mark c30 NOT covered. Verified 2026-08-07: the live prompt 5b9090d7a60ce5d1 marks c30 not covered in all four PRIMARY sessions, where prompt 632b73a34b1a22b1 had marked it covered in 7beee170 and bb979045. THE LIVE PROMPT PASSES THAT REGRESSION CASE.",
-      "cross_era_finding_c31": "The same prompt change REGRESSED on c31: covered under 632b73a34b1a22b1 (era 1, upheld by Matt), not covered under 5b9090d7a60ce5d1 (era 2, contradicted by Matt). Both flips are on the same session, 7beee170. The v1→live change traded a false positive for a false negative; a v2 prompt must hold c30 not-covered AND restore c31 covered at the same time."
+      "cross_era_finding_c31_original_2026_08_07": "The same prompt change REGRESSED on c31: covered under 632b73a34b1a22b1 (era 1, upheld by Matt), not covered under 5b9090d7a60ce5d1 (era 2, contradicted by Matt). Both flips are on the same session, 7beee170. The v1→live change traded a false positive for a false negative; a v2 prompt must hold c30 not-covered AND restore c31 covered at the same time.",
+      "cross_era_finding_c31_amended_2026_08_07": "AMENDED after a 7-run variance measurement on session 7beee170 (both prompts, same session, same model, temperature 0). The original finding above is UPHELD in substance — v2 did regress on c31 — but it described the regression as a clean flip, and it is not: it is a VARIANCE regression. Measured: v1 marks c31 covered 7/7 (perfectly stable, the correct answer); v2 marks it covered 3/7 (a coin flip that leans wrong). The interesting part is what else moved. v1 was DETERMINISTIC on this session — 12 covered, identical in all 7 runs, ZERO unstable claims. v2 is not: 3 of its claims flip (c31 3/7, c28 5/7, c9 6/7) and its per-run total ranges 9-11. All three unstable claims are era-1 COVERED rows, so the instability costs recall on claims v1 got right every time. The v1->v2 change therefore bought a correct and STABLE c30 (v1 7/7 covered = wrong; v2 0/7 = right, no flipping) at the price of introducing variance on three claims that were previously stable. A v3 must be judged on flip RATES over repeated runs, never on single verdicts — and note the product stores ONE run per session, so today a session's number varies by ~+/-1.5 claims (~2.4 points of the 63-claim bar) for reasons that have nothing to do with the session.",
+      "cross_era_finding_c31_amendment_note": "Why the original was imprecise, kept because the mistake is instructive: it rested on the single stored sidecar verdict. An intermediate 3-run check then produced [False, True, True] and briefly suggested the regression was not real at all — that reading was WRONG, and wrong in the same way: 3 samples of a 3/7 claim is not a measurement. Both errors have one cause, sampling an unstable claim too few times. This is the concrete case behind the repo rule that a single-run label disagreement is not evidence."
+    },
+    "variance_measurement_2026_08_07": {
+      "session": "7beee170",
+      "runs_per_prompt": 7,
+      "model": "claude-haiku-4-5-20251001",
+      "temperature": 0,
+      "v1_note": "v1 here is the published transcription in judge-prompt-v1.md, which is NOT byte-reproducible to the original 632b73a34b1a22b1 hand-run hash (see that file's header). Its numbers are indicative of v1's behaviour, not a byte-exact replay.",
+      "v1": {
+        "per_run_totals": [
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "unstable_claims": {},
+        "always_covered": [
+          "c2",
+          "c3",
+          "c9",
+          "c15",
+          "c21",
+          "c27",
+          "c28",
+          "c30",
+          "c31",
+          "c46",
+          "c47",
+          "c48"
+        ]
+      },
+      "v2": {
+        "per_run_totals": [
+          9,
+          10,
+          9,
+          11,
+          11,
+          10,
+          10
+        ],
+        "unstable_claims": {
+          "c9": "6/7",
+          "c28": "5/7",
+          "c31": "3/7"
+        },
+        "always_covered": [
+          "c2",
+          "c3",
+          "c15",
+          "c21",
+          "c27",
+          "c46",
+          "c47",
+          "c48"
+        ]
+      },
+      "headline": "v1 deterministic (0 unstable claims), v2 not (3 unstable, all of them era-1 covered rows). c30 fixed stably by v2 (v1 7/7 wrong -> v2 0/7 right)."
     }
   }
 }

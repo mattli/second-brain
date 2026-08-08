@@ -10,11 +10,17 @@ of each document's **claim map** a study-tutor session actually *explained* — 
 strictly by one Haiku call per session. See [[backlog]] and the two-doc version check
 that preceded it.
 
-> **Open (2026-08-07):** [[2026-08-07-false-negative-review-sheet]] — `labels.json`
-> holds only *covered* claims, so the eval is structurally blind to the judge getting
-> stricter. The sheet puts 8 judge-denied claims in front of Matt with their verbatim
-> transcript context; his marks become the not-covered half of the answer key.
-> Nothing is written to `labels.json` until then.
+> **Closed (2026-08-07):** [[2026-08-07-false-negative-review-sheet]] — the
+> not-covered half of the answer key is built. 10 claims marked, 9 upheld the judge,
+> `c31` the sole false negative; written to `labels.json` as era 2.
+>
+> **Now open — the judge is UNSTABLE, and that outranks the prompt work.** A 7-run
+> measurement (2026-08-07) found v1 deterministic on session `7beee170` and v2 not:
+> `c31` 3/7, `c28` 5/7, `c9` 6/7, all three of them era-1 *covered* rows. Since the
+> product stores one run per session, a session's number moves ~±1.5 claims for
+> reasons unrelated to the session. **No prompt change is measurable until this is
+> addressed** — a 1-claim diff is inside the noise. Numbers in `labels.json` under
+> `variance_measurement_2026_08_07`.
 
 ## The shapes — how a claim can appear without being covered
 
@@ -39,12 +45,113 @@ it right, so a v2 prompt must not lose that.
 Findings that call for a change to [[judge-prompt-v1]] rather than to the labels.
 Each one needs a confirmed false negative behind it, not a suspicion.
 
-- **Under-credits digressions** (confirmed 2026-08-07, claim `c31`). A claim the
-  tutor genuinely *explained* — including both of its failure directions — is
-  marked not covered when the explanation arrives as an aside inside a
-  conversation about something else. Not covered in any of the ten sessions. The
-  judge appears to weight topical framing over whether an explanation happened.
-  Evidence and the verbatim turn: [[2026-08-07-false-negative-review-sheet]].
+- **Over-decomposes multi-clause claims — and does it UNRELIABLY** (measured
+  2026-08-07, claims `c31`, `c28`, `c9`). Originally recorded as "under-credits
+  digressions", which the judge's own reasoning does not support. Its recorded
+  reason for `c31` is not about framing at all: *"delivers the core principle but
+  does not explicitly address the tradeoff between too many gates and too few…
+  the claim's full substance is not delivered."* It split a single principle's two
+  consequence clauses into separately-required parts. Both consequences **were**
+  conveyed, just not framed as a tradeoff — so this is a **form** requirement
+  masquerading as a substance one.
+
+  The 7-run measurement then showed it is not even a consistent bias: v2 marks
+  `c31` covered 3/7, `c28` 5/7, `c9` 6/7, while v1 marked all three covered 7/7.
+  So v2 does not reliably over-decompose — it over-decomposes *sometimes*, which
+  is worse than a stable bias because it cannot be corrected by a label.
+
+  Structure is general, not a `c31` quirk: **33 of the 63 claims** carry a
+  subordinate consequence/contrast/rationale clause, so any prompt that treats
+  such clauses as required parts is unstable across half the map.
+
+## The brief for v3 (set 2026-08-07 — supersedes "fix the digression bias")
+
+**Start from v1's simplicity, add back only content-match, and measure variance
+rather than correctness alone.**
+
+This replaces the earlier brief. "Fix the digression bias" was written before the
+judge's own reasoning was read and before anything was measured; both turned out
+to point elsewhere. What the evidence supports:
+
+1. **v1 was deterministic** on the measured session (12 covered, 7/7 identical,
+   zero unstable claims). v2 is not (3 unstable, all era-1 *covered* rows).
+   Simplicity is doing work here — treat every v2 addition as suspect until it
+   earns its place.
+2. **Content match earned its place.** It is the one v2 rule with a proven,
+   stable win: `c30` went 7/7 wrong under v1 to 0/7 wrong under v2. Keep it.
+3. **Everything else v2 added is unproven** — the enumeration rules, the
+   decomposition procedure, the required `reason` field — and the variance
+   arrived alongside them.
+4. **Acceptance is a flip RATE, not a verdict.** Run N times per session and
+   compare per-claim rates. A one-claim difference between two prompts is inside
+   the noise and means nothing; this session produced two wrong conclusions
+   (in opposite directions) by sampling an unstable claim too few times.
+
+Unchanged acceptance targets: `c30` stays not-covered, `c31` returns to covered,
+era-1 covered rows hold, the `12f3a30d` strictness trap stays ≤2, and `c61`'s
+shape does not regress.
+
+## Open design question — one run per session puts luck in the number
+
+The product stores **one** judge run per session, so an unstable prompt makes a
+session's coverage partly luck. Measured today: v2's per-run total on one session
+ranges 9–11 of 63, roughly ±2.4 points of the bar, for reasons having nothing to
+do with the session.
+
+**Majority-of-N judging is the obvious answer and costs N×.** At today's ~$0.04
+per judged session, 3× is ~$0.12 — cheap in isolation, but it lands on the
+teardown path that already loses the 60s display race, so it is a latency
+decision as much as a cost one.
+
+**Decide once v3's variance is known, not before.** If v3 recovers v1's
+determinism the question disappears; if it does not, N-of-3 with the existing
+append-only sidecar is the fallback. Related: the teardown-latency trap in the
+project CLAUDE.md, and phase 2's incremental judging, which would move the work
+off teardown entirely.
+
+## Prompt-authoring lessons — read before attempting v3
+
+### Telling the model to enumerate "required parts" makes it enumerate MORE
+
+**Measured 2026-08-07 on a v3 draft that was abandoned.** The draft tried to make
+the judge *narrower* about which parts of a claim it demands, by adding an
+explicit step — "work out the claim's REQUIRED PARTS using an independent-substance
+test" — plus a rule saying consequences, failure modes and contrasts are
+elaboration, not extra parts.
+
+It did the opposite. Giving the model a checklist-building instruction made it
+build **longer** checklists; the elaboration rule sat right beside it and lost.
+The draft's own reasoning on `c31` enumerated four required parts, including the
+two consequence clauses the new rule was written to exempt, and marked it not
+covered 3/3 — worse than the prompt it was meant to fix. It also **lost `c28`**
+(which v2 held) for exactly the same reason, decomposing a metaphorical
+restatement into a required part.
+
+**The lesson generalises past this prompt:** an instruction to *identify parts*
+is an instruction to *find parts*, and the model will satisfy it. Exemption rules
+placed alongside a decomposition step do not restrain it — the decomposition step
+sets the task and the exemption reads as an edge case. If the goal is less
+decomposition, remove the decomposition instruction rather than qualifying it.
+
+Do not re-run this experiment expecting a different result. If a future v3 needs
+tighter part-matching, change what the model is asked to *do*, not what it is
+told to *avoid*.
+
+### The variance evidence points the same way
+
+The 7-run measurement puts this in context. v1 — the *shorter* prompt, with no
+`reason` field and no decomposition rules — was **deterministic** (12 covered,
+identical across 7 runs). v2 added enumeration rules and a required reasoning
+field, and became unstable on exactly the claims those rules bear on. The v3
+draft pushed further in the same direction and was the most decompositional of
+the three (`c31` not covered 3/3, and it lost `c28` outright).
+
+So the gradient is consistent across all three prompts: **more decomposition
+instruction → more enumeration → more borderline calls → more variance.** The
+design direction for a real v3 is therefore *back toward v1's simplicity*, while
+keeping the one v2 rule that demonstrably earned its place — content match, which
+fixed `c30` stably (v1 7/7 wrong → v2 0/7 right). Everything else v2 added should
+be treated as suspect until measured.
 
 ## What coverage means — the v1 rule, restated
 

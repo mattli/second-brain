@@ -4,7 +4,7 @@
   "title": "incremental coverage judging",
   "startedAt": "2026-08-08T00:10:02.692Z",
   "runDir": "runs/voice-tutor/2026-08-08-incremental-coverage-judging",
-  "status": "running",
+  "status": "halted",
   "projectPath": "/Users/mattli/development/voice-tutor",
   "sprints": [
     {
@@ -39,10 +39,11 @@
     96,
     96,
     92,
-    93
+    93,
+    22
   ],
   "iterations": 0,
   "budgetSpentUsd": 23.065234050000004,
-  "haltReason": null,
+  "haltReason": "wall-clock",
   "contractFreezeReason": "round-cap"
 }

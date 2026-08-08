@@ -113,9 +113,23 @@ How much should measured coverage influence steering? Decided in layers:
 - **Steering intensity is a dial, not a switch.** Curiosity-led with a closing sweep at one end (the default — matches "just a conversation" and the generation effect); rubric-march (claims-first from minute one) at the other — legitimate for exam-prep/compliance/"make sure I get all of it" intents, where wandering is the failure mode. Where the dial sits should eventually follow user intent (explicit mode or inferred from session open), not be hardcoded. v2+ segmentation question; test on real users.
 
 ### The asymptote constraint (display design, 2026-08-04)
-
 The meter will likely never reach 100% for most users on most documents: the claim map is exhaustive by design (majors + minors + asides), conversations naturally cover the majors and never naturally arrive at the parenthetical details, and the strict judge caps the ceiling further. Shape: fast early progress, long tail that never closes. A progress bar that can't fill reads as failure. Display directions open, to be tested on humans at the bar-design session: (1) topics as the completable unit ("Verification: 6/6 ✓") with the overall number as quiet inventory ("16 of 63 covered"), never framed as a goal; (2) color rating per topic — ordinal, not arithmetic, so it makes no promise about a terminal state (cost: loses the crisp count that makes the differentiator legible in a demo); (3) some hybrid. Related copy constraint already recorded: the number can jump up at teardown. The threshold-sweep above is the steering-side answer to the same problem.
 
+### The hands-free tension (Matt, 2026-08-08 — after the first live session)
+
+**The coverage map is a visual differentiator for a product whose core experience is hands-free speech-to-speech.** Watching the live meter climb during a real session, Matt's own observation: *"I wouldn't have been made aware of the meter increasing if I wasn't looking for it. Most people, if they use this at all, won't be looking at the screen."* Someone studying while walking, driving, or with the phone in a pocket sees none of it.
+
+This doesn't retire the coverage map — it's still what makes Voice Tutor unlike okti and Novis, and it's the differentiator the positioning rests on. But it reframes *when* the map matters:
+
+- **Before a session** — what's left to cover. The pre-connect meter and the picker are glanceable at a moment when the user IS looking at the screen.
+- **After a session** — what got covered. The ended view and past sessions, also screen-moments.
+- **During a session** — possibly nobody is watching. The live meter may matter mostly for the demo, and for the minority of users who do keep the screen up.
+
+**What would change the answer: navigation.** A map you *tap to steer with* is a reason to look at the screen; a meter that reports progress isn't. That's the difference between the Spotify-lyrics framing (a seek bar — a control surface) and a progress bar (a report card), and it's why topics-as-navigation was separated from topics-as-coverage in the first place. If navigation ships, the screen earns attention during the session; without it, the in-session visual may be largely unused.
+
+**It also strengthens the case for the spoken close-out** as the real end-of-session payoff — it reaches a user whose phone is in their pocket, which no visual can.
+
+**Not decidable without testers.** Recorded so the tension is visible rather than assumed away. The question to put to the first testers who use this in a real setting: did you look at the screen during the session at all, and if so, what were you looking for?
 
 ## Open questions
 

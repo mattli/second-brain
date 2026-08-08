@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-27
+last_updated: 2026-08-08
 ---
 
 # Agent Proficiency
@@ -9,6 +9,7 @@ last_updated: 2026-06-27
 
 ## Recent Updates
 
+- **2026-08-08:** Added Varick's enterprise barbell distribution (5-10% / 20% / 70%), adoption-metric critique (McKinsey 88%/6% gap), and background-AI deployment thesis to [Corporate Adoption](#corporate-adoption) and [Organizational Asymmetry](#organizational-asymmetry).
 - **2026-06-27:** Added Sean Goedecke's staff-engineer delegation patterns and review discipline to [What It Looks Like in Practice](#what-it-looks-like-in-practice) and [Staying in the Loop](#staying-in-the-loop). Removed stale Overview; folded Karpathy attribution into TLDR.
 
 ## The Shift
@@ -97,6 +98,8 @@ In large organizations, feedback loops are slower and alignment is weaker. The b
 
 This dynamic suggests agent proficiency may be most valuable not as an individual skill but as an organizational capability — the ability to maintain quality standards when the tools make it trivially easy to ship without them. The [Corporate Adoption](#corporate-adoption) trend of evaluating employees on AI usage needs the complementary metric: evaluating whether that usage actually produces good outcomes.
 
+Vas argues the solution isn't to train the majority into power users — at least half of any organization will never use AI well, because using it well is a craft that takes enormous iteration. Instead, the AI goes into the background: build agents directly into the systems of record employees already use (Salesforce, NetSuite, Dynamics), and reduce the human role to approving, rejecting, or editing agent output. An AP team of dozens moving invoices all day doesn't need to learn prompting — they need agents that run daily, with humans providing the second glance. For the top slice (power users), the play is publishing: a shared database where every skill file gets posted, ranked, and installed by others. Power users will trade their edge for status. But the background-agent path is what actually moves the organizational needle, because people are not in the market for a tool that helps them get the work done — they just want the work done. [[source]](https://x.com/vas/status/thread)
+
 ## The Frustration Trap
 
 The conversational UX of coding agents creates a specific emotional hazard. Because agents speak in a relaxed, friendly tone — praising your ideas, apologizing for mistakes, promising to do better — they trigger the same social instincts you'd have with a human colleague. Paolo Scanferla calls this out directly: the illusion holds until things go wrong, and then the mismatch becomes infuriating.
@@ -118,6 +121,10 @@ Using AI tools without a structured system doesn't make you more productive — 
 Companies are now evaluating employees on AI proficiency directly. Zapier and Shopify rate employees specifically on AI tool usage. Aakash Gupta's framework for PM AI tool proficiency identifies three tiers: (1) chat-based agents (ChatGPT agent mode), (2) no-code/low-code agent builders (Lindy, Relay.app, Zapier, Make.com), and (3) coding agents (Claude Code, Cursor). The shift from "prompt engineering" to "context engineering" reflects the same evolution: the skill is in structuring what the agent knows, not just what you ask it.
 
 [DHH](../people/dhh.md) frames it from the senior developer angle: agent proficiency lets senior developers "5x 10x their individual productivity" — the skill is knowing what to direct agents toward and how to evaluate their output. See [Knowledge Work Future](knowledge-work-future.md) for the broader implications.
+
+Vas (Varick Agents CEO) reports the same barbell across every enterprise rollout they've touched — 50-person teams and 5,000-person orgs alike. A typical Claude Cowork deployment: 5–10% become power users (leveraging skill files, connectors, daily usage), 20% use it a couple of times a day but poorly, and 70% don't use it at all. The dashboards show "adoption," but nothing actually gets faster. One executive's eight-figure annual AI commitment saw 10% of employees burn 90% of tokens — if the other 90% used it at the same rate, the $10M commitment would become $100M. [[source]](https://x.com/vas/status/thread)
+
+The adoption-metric critique sharpens this: McKinsey's 2025 survey shows 88% of organizations use AI in at least one business function, but only 6% see more than 5% of EBIT come from it. MIT's GenAI Divide report: 5% of integrated pilots extract millions in value; the other 95% show no measurable P&L impact. Adoption metrics collapse an entire spectrum into binary (did they log in? did they send five prompts?) — which is how 88% adoption coexists with 6% impact. The metric that matters is not adoption but skill: how proficient is each person, and what is their ROI per token?
 
 The restructuring is no longer theoretical. In mid-2026, ClickUp laid off 22% of its workforce and introduced $1M salary bands specifically to attract "agentic-native" hires — people who can use AI to compress headcount into leverage. Wix, Webflow, and Meta followed with similar moves the same week. The pattern: flatten the org, cut entry-level and white-collar roles that AI can approximate, and reinvest the budget into AI infrastructure and the smaller number of high-leverage people who can direct it. The ClickUp CEO's framing was explicit — create budget for AI infra, attract agent-native talent fast, and become the first in their vertical to grow through AI-restructured productivity.
 
@@ -149,3 +156,4 @@ The role description is essentially the enterprise version of what Karpathy call
 - "The Eight Levels of AI Adoption" — Mike Taylor, Every (article, May 2026) ([link](https://every.to/guides/the-eight-levels-of-ai-adoption)) — eight-level framework from chatbot to orchestrator; trust-stakes calculus for choosing delegation level; role asymmetry between knowledge workers and engineers
 - "How I use LLMs as a staff engineer in 2026" — Sean Goedecke (article, Jun 2026) ([link](https://www.seangoedecke.com/how-i-use-llms-in-2026/)) — concrete 2025→2026 delegation shift: every code change starts with an agent, 80% of bugs diagnosed autonomously, but all communication and code review stays human; review discipline of rapid rejection and editing passes
 - "5 AI Skills That Will Pay Six Figures By 2027" — Zephyr (tweet, Jun 2026) — practitioner checklist distilling agent proficiency into five sequential skills: context files, scheduled automation, tool integration, custom tool building, model selection
+- "AI Adoption is a Myth" — Vas, Varick Agents (tweet thread, Aug 2026) — enterprise barbell distribution (5-10% power users / 20% poor users / 70% non-users); adoption metrics vs skill spectrum (McKinsey 88%/6% gap, MIT 5%/95%); background-AI deployment as solution over training the majority

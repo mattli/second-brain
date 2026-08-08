@@ -33,15 +33,16 @@
       "description": "Add the required credentialed smoke test (skips cleanly, not errors, when no key is reachable; a skipped smoke is not evidence of passing). Resolve ANTHROPIC_API_KEY via the same helper the existing coverage modules use, else environment first then fallback to the absolute path /Users/mattli/development/voice-tutor/.env — never print, log, echo, or persist the key. Run the real Haiku path against real read-only stored transcripts from ~/.voice-tutor/transcripts/matt/ (session f6148c26 long-session for flat per-pass cost across a simulated live loop; session 6e9d58c5 the 17-turn c49 case), reading turns and claim map by absolute path only, writing nothing under ~/.voice-tutor/. Assert: passes produce well-formed additions, the covered set grows monotonically across the simulated session, per-pass cost does NOT grow with session length, and total incremental cost is materially below a full re-judge; report actual measured dollar cost per call and in total. Finalize the module docstring/contract documentation covering the six pinned mechanics, the versioned-prompt-as-input rule, and the accepted-under-credit direction. Leave the branch unmerged and unpushed; full pinned suite green and additive."
     }
   ],
-  "currentSprint": 3,
-  "contractVersion": 4,
+  "currentSprint": 4,
+  "contractVersion": 5,
   "scores": [
     96,
     96,
-    92
+    92,
+    93
   ],
   "iterations": 0,
-  "budgetSpentUsd": 20.574674050000006,
+  "budgetSpentUsd": 23.065234050000004,
   "haltReason": null,
-  "contractFreezeReason": "agreement"
+  "contractFreezeReason": "round-cap"
 }

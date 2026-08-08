@@ -107,7 +107,6 @@ added to `reconcile_costs`' reporting, but as display, not as a correctness
 dependency.
 
 ## Make teardown a background correction, not something the user waits for
-
 **This is a goal of this session, not an afterthought.** Today the ended view polls for the teardown judge and gives up at 60s — a 22-minute session lost that race at 61.5s, and the poll cap had to be extended to 120s as a patch. The latency scales with turns × claims, so a fixed display budget keeps losing on longer sessions.
 
 Once a live bar exists, that shape should change: **show the live number immediately on the ended view, and let the strict teardown pass settle in the background.** Same work, no waiting. The user sees their coverage the instant they hang up; the number may tick up a little when the strict pass lands.

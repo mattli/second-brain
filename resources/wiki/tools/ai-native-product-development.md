@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-08-06
+last_updated: 2026-08-08
 ---
 
 # AI-Native Product Development
@@ -9,12 +9,12 @@ last_updated: 2026-08-06
 
 ## Recent Updates
 
+- **2026-08-08:** Added Steven Haney's agent-native design tooling model — HTML/CSS rendering for agents, curation design process, AI design anti-patterns checklist, code-as-source-of-truth for design — to [Agent-Native Design Tooling](#agent-native-design-tooling-steven-haney--paper)
 - **2026-08-06:** Added Sarah Tavel's social product thesis — technical-to-product-genius continuum, multiplayer network effects as the big consumer AI opportunity, UGC communities over single-player chat — to [The Social Product Thesis](#the-social-product-thesis-sarah-tavel)
 - **2026-07-30:** Added Peter Yang's six-step AI-native design process — Claude Design prototyping, spec-as-HTML, 50% planning principle, component libraries for consistency — to [The Six-Step AI-Native Design Process](#the-six-step-ai-native-design-process-peter-yang)
 - **2026-07-28:** Added Dianne Penn's product-research integration model — feedback decomposition, building for 2028, verification over authorship, PM role endurance — to [Product Leadership Inside the Research Lab](#product-leadership-inside-the-research-lab-dianne-penn)
 - **2026-07-23:** Added Christine Zhu's systems thinking framework — Meadows-derived truths, product decomposition for AX, contracts over features, correction loops — to [Systems Thinking for AI Products](#systems-thinking-for-ai-products)
 - **2026-07-14:** Added Anish A's "paintbrush thesis" — AI as creation-over-consumption technology, execution cost collapse enabling individuality at scale — to [The Paintbrush Thesis](#the-paintbrush-thesis-creation-over-consumption)
-- **2026-07-13:** Added Leon Lin's three-tier AI design workflow (skills → inspiration board → component-by-component) to [The AI-Generated Sameness Problem](#the-ai-generated-sameness-problem)
 
 ## Anthropic's PDLC ("Docs to Demos")
 
@@ -416,6 +416,32 @@ The emerging practitioner response is a **specialization stack** — separate to
 
 The four-way sync pattern addresses Saarinen's iteration problem directly: instead of code → refresh → inspect → repeat, some tools now maintain bidirectional sync between design canvas, source code, and rendered UI — editing any one updates the others. This shortens the feedback loop for the dozens of frontend decisions made daily and keeps the design system as the source of truth rather than the prompt.
 
+## Agent-Native Design Tooling (Steven Haney / Paper)
+
+Steven Haney (founder of Paper, previously Radix UI) demonstrates what it looks like to build a design tool from the ground up for agent workflows — and argues that design is the competitive differentiator that most AI-accelerated teams are neglecting.
+
+**HTML/CSS as the rendering engine.** Paper's core architectural bet: use the browser's own rendering engine instead of a custom one. This means every artifact on the canvas is literally HTML and CSS — the same formats that sit in AI training data. When an agent operates on a Paper file, it reads and writes native web code with no translation layer. The result is lower token spend, faster execution, and fewer hallucinations compared to tools with proprietary rendering formats. The MCP integration goes further: agents can receive tool calls to query available fonts, read the canvas state, and write HTML directly into frames. What was built to improve designer-developer handoff for humans turned out to be an equally good handoff for agents, because both understand the same medium.
+
+**The curation design process.** Agent-native tooling enables a new workflow that inverts the traditional design process. Instead of designing from scratch, designers generate many variations via agents — sometimes running overnight loops that produce hundreds of options — then curate the best ideas and customize by hand. The creative act shifts from production to selection and refinement. A designer leaves comments on a frame, sets agents running, and wakes up to addressed feedback or multiple iterations ready for review. This parallels [code-native visual generation](#code-native-visual-generation) but applied to the design workflow itself: the agent produces the raw material, the human applies taste.
+
+**AI design anti-patterns.** Haney identifies specific visual markers — "tells" — that reveal vibe-coded design and erode user trust:
+
+- **Bold overuse.** Models default to heavy font weights everywhere. Pull weights back to regular or light; the design immediately looks more intentional.
+- **Too many font sizes.** Models use five to eight different sizes. Consolidate to three. This single constraint produces the most visible improvement.
+- **Purple gradients.** Linear made this style iconic; it got encoded into training data and now appears on every AI-generated SaaS page.
+- **Widget clutter.** Unnecessary badges, small numbers, icons, and decorative elements that communicate nothing. Models are "insecure designers" that fill space with anchoring elements. Delete them.
+- **Gratuitous dark mode.** Every vibe-coded app ships light and dark mode because the model generates it for free — but a bad dark mode (literally reversed colors, true black backgrounds) hurts more than it helps.
+- **Uppercase kickers with extra letter spacing.** A beginner design pattern that models reproduce endlessly.
+- **Side swoops of color on cards.** A two-pixel decorative element that appears on every card in every AI-generated layout.
+
+The fix is remarkably simple: pull font weights back, limit to three sizes, and check contrast. These three rules move AI output from "recognizably generated" to "looks designed." Paper embeds these rules as model instructions — senior designers distilled their judgment into the system prompt, which is effectively the [DESIGN.md pattern](#designmd--text-based-design-systems-for-agents) applied at the tool level.
+
+**Code-as-source-of-truth.** Newer agentic teams are abandoning the dual design-system pattern (one in the design tool, one in code) and treating the codebase as the single source of truth. Paper's snapshot feature grabs live sites as editable layers — not screenshots — so designers iterate on what users actually see. When the design is ready, the agent pulls it back into the codebase, matching existing coding conventions. The handoff collapses: one person designs, iterates, and ships, and the code is always the canonical artifact. This extends the [keeping-artifacts-in-sync](#the-six-step-ai-native-design-process-peter-yang) discipline from Peter Yang's workflow into the tool layer itself.
+
+**Design as competitive moat.** Haney's central argument: every great company of the last 10–20 years has exceptional design. When AI makes building easy, the quality of design is what separates companies that earn trust from those that look like "one of a million other projects." This is especially acute in trust-sensitive domains — healthcare, fintech — where vibe-coded aesthetics actively undermine credibility. The [paintbrush thesis](#the-paintbrush-thesis-creation-over-consumption) frames AI as an amplifier of individual creativity; Haney adds the corollary that amplification cuts both ways — it amplifies carelessness just as easily as care.
+
+**Small team, high taste bar.** Paper operates with 12 people, all designers and engineers, reading every line of code — including agent-generated code. The team uses agents extensively for marketing (the brand designer shipped the entire website solo in a week using Paper + prompting) and coding, but still applies human review to the core product where precision matters (120 FPS, reliable rendering). The strategy: use agents to amplify a small elite team rather than to replace headcount, and invest marketing budget in open-source artifacts (shader libraries, fonts like Paper Mono) that demonstrate values rather than buying ads. Values-aligned community building — talking about design craft, showing up in Discord — built 25,000 followers before the product even launched.
+
 ## DESIGN.md — Text-Based Design Systems for Agents
 
 When agents generate UI, each screen can look fine in isolation but feel like a different product when combined. George (prodmgmt.world, Apr 2026) describes DESIGN.md — a concept originating from Google's Stitch team — as a plain-text design system file that sits in the repo where agents can actually read it. It's the design counterpart to AGENTS.md: README.md tells humans what the project is, AGENTS.md tells coding agents how to work in the repo, DESIGN.md tells design and coding agents what the product should look like.
@@ -602,3 +628,4 @@ This extends the page's recurring tension between technical capability and produ
 - "Full Tutorial: From Idea to App with Claude Design and Claude Code in 25 Minutes" — Peter Yang (video, Jul 2026) — six-step AI-native design process (problem → design.md → Claude Design prototyping → HTML spec → all screens → build), 50% planning principle, component library for design consistency, waterfall-accelerated-not-eliminated framing
 - "What systems thinking looks like for PM'ing AI products" — Christine Zhu (tweet, Jul 2026) ([link](https://x.com/christinezhuu)) — Meadows-derived systems truths for AI PM, product decomposition for AX (agent experience), contracts over features, correction loops as compounding moat, pace layers velocity argument
 - "Why the Next Hit AI Product Will Be Social" — Every / Dan Shipper & Sarah Tavel (video, Aug 2026) — technical-to-product-genius continuum (Google → Pinterest), social product thesis for consumer AI, UGC community over prompt libraries, status-seeking work (Eugene Wei), trust gap in custom GPTs, personal vs. work AI bifurcation, incumbent gravity problem
+- "How To Design In The Agent Era" — Y Combinator / Steven Haney (video, Aug 2026) — agent-native design tooling (HTML/CSS rendering engine, MCP integration), curation design process, AI design anti-patterns checklist (bold overuse, font size proliferation, purple gradients, widget clutter), code-as-source-of-truth for design, design as competitive moat, small elite team model

@@ -90,6 +90,54 @@ not "materially below," and the committed log has a real internal inconsistency
 (20 passes but a 21-entry turns-sent list) against a criterion demanding
 coherence.
 
+## The under-credit question is NOT settled by these runs
+
+A standalone credentialed smoke was run by hand on 2026-08-08 against the same
+session (`f6148c26`), passing: 20 passes, flat per-pass work, **$0.598**, and
+**33.9% cheaper** than a full re-judge at live cadence (vs 22% in the harness
+run — same direction, still nowhere near the predicted 4×).
+
+It also produced a coverage comparison that is tempting to read as an answer and
+is not one:
+
+| | covered | vs teardown |
+|---|---|---|
+| Standalone smoke (2026-08-08) | **11** | missed 0, extra 1 (`c4`) |
+| Harness run (2026-08-07) | **9** | missed 2, extra 1 (`c4`) |
+| Teardown ground truth | 10 | — |
+
+Read alone, the standalone run says live judging *over*-credits rather than
+under-credits — the opposite of the design's stated expectation. **That reading is
+not supportable**, for three reasons:
+
+1. **It is a single sample of a nondeterministic judge.** Two runs of the same
+   code over the same transcript returned 11 and 9. The difference between them
+   is larger than the difference either has with teardown.
+2. **The noise band is already measured and it swallows this.** The 7-run
+   variance measurement (2026-08-07, session `7beee170`) found a session's number
+   moves **~±1.5 claims** for reasons unrelated to the session, and concluded
+   *"no prompt change is measurable until this is addressed — a 1-claim diff is
+   inside the noise."* An 11-vs-10 gap is a 1-claim diff.
+3. **The one persistent signal is a false positive, not an under-credit.** `c4`
+   appeared as extra in BOTH runs. It is a documented *mentioned-only* case in the
+   coverage-experiment README — the tutor recited both clauses and asked "what do
+   you make of that framing?" without unpacking them — whose correct verdict is
+   NOT covered, and which the teardown judge gets right. So the reproducible
+   finding is that incremental passes can wrongly credit a claim the strict pass
+   correctly rejects, which is exactly the risk the design accepted ("a live pass
+   that wrongly credits a claim stays wrong on the bar until teardown").
+
+**Answering the under-credit question properly requires the multi-run protocol
+from the variance work, not a single comparison** — the same N-run, per-claim
+frequency method used on `7beee170`, applied to incremental-vs-teardown across
+several sessions. Until then, treat the direction and magnitude of the live-vs-
+teardown gap as unmeasured. See the coverage-experiment README's variance section
+and `variance_measurement_2026_08_07` in `labels.json`.
+
+Worth noting the flatness result does NOT carry this caveat: per-pass turns-sent
+and input tokens are deterministic properties of the windowing code, not judge
+verdicts, and both held on every pass of both runs.
+
 ## A cost-accounting anomaly worth a look
 
 Per-sprint generation cost was $10.43, $5.69, $4.45, $2.49 — and **$0.00 recorded

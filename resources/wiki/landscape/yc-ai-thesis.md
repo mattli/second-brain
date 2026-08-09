@@ -1,14 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-08-07
+last_updated: 2026-08-09
 ---
 
 # Y Combinator AI Thesis (2026)
 
-> TLDR: YC's 2026 bet areas span AI-native agencies, "Cursor for PM," AI hedge funds, government AI tools, spatial reasoning models, and reindustrialized manufacturing. The S26 batch confirms the thesis at scale: 95% of 196 companies touch AI, 70% build LLM agents, and 44% are B2B Agent-as-a-Service plays. Garry Tan's "totality threshold" frames the meta-shift: AI collapsed the cost of building, so the scarce skill moved from *can you build it* to *can you finish it* at 100%. The "20x company" pattern shows what this looks like in practice: tiny teams using AI teammates, unified internal systems, and custom per-employee agents to outperform incumbents at 20x their headcount.
+> TLDR: YC's 2026 bet areas span AI-native agencies, "Cursor for PM," AI hedge funds, government AI tools, spatial reasoning models, and reindustrialized manufacturing. The S26 batch confirms the thesis at scale: 95% of 196 companies touch AI, 70% build LLM agents, and 44% are B2B Agent-as-a-Service plays. Garry Tan's "totality threshold" frames the meta-shift: AI collapsed the cost of building, so the scarce skill moved from *can you build it* to *can you finish it* at 100%. His "personal context thesis" extends this to individuals: the gap between users is now bigger than the gap between models, and the moat is your accumulated context and reusable skill files. The "20x company" pattern shows what this looks like in practice: tiny teams using AI teammates, unified internal systems, and custom per-employee agents to outperform incumbents at 20x their headcount.
 
 ## Recent Updates
 
+- **2026-08-09:** Added Garry Tan's Startup School 2026 talk on context-as-moat and skill files to [The Personal Context Thesis](#the-personal-context-thesis-context-as-moat)
 - **2026-08-07:** Added 20x company pattern (Giga ML, Legion Health, Phase Shift) to [The 20x Company](#the-20x-company-internal-automation-as-superpower); removed stale Overview; folded framing into TLDR.
 
 ## Key RFS Areas
@@ -111,6 +112,22 @@ Three patterns emerge for how 20x companies build their internal automation:
 
 These approaches aren't mutually exclusive. The companies that combine all three — AI teammates, a unified system, and custom per-employee agents — are staying lean while setting record growth rates. Their leanness itself becomes the superpower: lower payroll, tighter culture, faster decisions. This validates the [services-as-software](../landscape/services-as-software.md) thesis from the demand side — when your internal team operates at 20x, you can deliver service-level outcomes at software-level margins.
 
+## The Personal Context Thesis: Context as Moat
+
+At Startup School 2026, Garry Tan laid out a thesis about individual AI leverage that complements the totality threshold at the company level. The core claim: "There are 2x people and there are 100x people who are using the same Claude. Same weights, same context window size, same API. But the leverage is not in the weights." [[source]](https://x.com/Alex_Prompter/status/2075165785291743443) The gap between users is now bigger than the gap between models.
+
+Tan grounds this in his own numbers. In 2013, as a YC partner, he shipped roughly 14 useful lines of code a day — dead on the median for programmer productivity. By 2026 he estimates his output at 400x that baseline. The difference isn't a better model; it's accumulated [context](../concepts/context-engineering.md).
+
+Three principles define how he operationalizes this:
+
+**Your history is your moat.** Tan's agent runs on a personal wiki of roughly 220,000 markdown pages covering 25 years of email, meetings, notes, and decisions. "When my agent does anything, it does knowing everything I know. And that's the difference between an assistant and a colleague." No frontier model can replicate your personal context — it's the one asset that's genuinely non-fungible. See [LLM Knowledge Bases](../concepts/llm-knowledge-bases.md).
+
+**Markdown is code.** Tan's stack is mostly [skill files](../tools/claude-code-skill-frameworks.md): pages of plain English that an agent can execute. "If you can write clear instructions in English, you're a programmer. The compiler is a language model." At YC, finance and events staff who never opened a terminal are building automations. This collapses the boundary between technical and non-technical — the new literacy is writing instructions clearly enough for an agent to follow.
+
+**Never do one-off work.** Most people run a task with an agent, close the window, and throw the learning away. Tan ends every task by having the agent turn what it did into a reusable skill file. "If you have to ask for something twice, you failed." Captured skills compound daily; amnesia resets you to zero every morning. This is the individual-level version of the [20x company](#the-20x-company-internal-automation-as-superpower) pattern — internal automation applied to a single person's workflow.
+
+The strategic corollary cuts both ways: "Own your skills because if you don't, your job becomes a skill file." A skill file is your judgment, extracted and executable. Files in your repo compound your career; files in the company's repo run your judgment without you.
+
 ## Sources
 
 - "Requests for Startups" — Y Combinator (2026) ([link](https://www.ycombinator.com/rfs))
@@ -120,3 +137,4 @@ These approaches aren't mutually exclusive. The companies that combine all three
 - "Here's YC's official advice about being truthful…" — Garry Tan (tweet, Apr 2026) — pilot/bookings/revenue terminology precision
 - "The New Way To Build A Startup" — Y Combinator (2026) — 20x company pattern: Giga ML (Atlas agent, DoorDash with 5 engineers), Legion Health (4x growth, zero new hires), Phase Shift (12-person team, custom per-employee agents).
 - "YC on how to build a company with AI" — Ben Lang (tweet, Apr 2026) — pointer to YC video on AI-native building
+- "Y Combinator CEO, Garry Tan, took the stage for 42 minutes…" — Alex Prompter (tweet thread, Jul 2026) ([link](https://x.com/Alex_Prompter/status/2075165785291743443)) — Startup School 2026: personal context as moat, skill files, 400x productivity, "never do one-off work."

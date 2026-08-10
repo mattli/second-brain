@@ -64,6 +64,7 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 ## Science & Health
 
 - [AI Drug Discovery](science/ai-drug-discovery.md) — Insilico Medicine pipeline (PandaOmics + Chemistry42); 18-month vs. 5–6 year discovery timeline; Eli Lilly $2.75B deal; Rentosertib Phase 2a results; no approved AI drugs yet
+- [Neuroplasticity](science/neuroplasticity.md) — Three rewiring mechanisms (synaptic, structural, neurogenesis); brain imaging evidence; anterior midcingulate cortex as trainable willpower substrate; acetylcholine learning window; bidirectional plasticity
 
 ## Writing
 

@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-04-13
+last_updated: 2026-08-10
 ---
 
 # DHH (David Heinemeier Hansson)
 
-> TLDR: Creator of Ruby on Rails and co-founder of 37signals. Did a public 180-turn on AI coding tools over the 2025 winter break — from deep skeptic to "AI-first on everything." His framing: AI amplifies senior developers 5-10x, taste and craft become *more* important (not less), and beautiful software matters because "aesthetics is truth."
+> TLDR: Creator of Ruby on Rails, co-founder of 37signals (Basecamp, HEY), and one of tech's most opinionated voices on software craft for two decades. Did a public 180-turn on AI coding tools over the 2025 winter break — from deep skeptic to "AI-first on everything." His framing: AI amplifies senior developers 5-10x, taste and craft become *more* important (not less), and the power to execute every idea instantly is "the most fun I've ever had with a computer."
 
-## Overview
+## Recent Updates
 
-DHH created Ruby on Rails, co-founded 37signals (Basecamp, HEY), and has been one of tech's most opinionated voices on software craft for two decades. His rapid conversion from AI skeptic to AI-first practitioner is notable because of his credibility and the specific framework he brings.
+- **2026-08-10:** Added "Endless Execution" essay — DHH's phenomenological frame on agents as liberation for people with endless ideas — to [Endless Execution](#endless-execution)
 
 ## The 180-Turn
 
@@ -58,7 +58,18 @@ DHH's AI enthusiasm is genuine but has clear limits — especially visible in th
 
 *Gratitude framing:* "I've been a programmer for nearly 30 years. If that's over tomorrow, I shouldn't look at that with regret. I should look at it with gratitude." This is a notably mature stance — 30 years of economically valuable work doing exactly what he loved.
 
+## Endless Execution
+
+In a mid-2026 essay, DHH distills his agent experience into a single frame: **endless execution**. Every idea, hunch, and experiment is now within immediate reach — and for someone with endless ideas, "this is nirvana."
+
+The essay is notable for its unguarded awe. DHH — who has loved computers for forty years, loved programming them himself, loved the games, the configuration, the tactile experience — says none of it compares to "the power to execute every idea that crosses my mind." He describes a "little genie trapped in my machine" that fulfills every wish and whim, and says it took months to internalize the liberation this grants.
+
+He explicitly declines to dwell on caveats, calling it "an insult to the marvel of this moment." On the AGI question: "I'm not sure how different whatever definition we eventually settle on will look from what I'm already experiencing on the daily." This maps directly to the pragmatic-AGI stance visible in the broader [AGI definitions](../landscape/agi-definitions.md) debate — the gap between current [agentic engineering](../tools/agentic-engineering.md) capabilities and whatever AGI turns out to mean is narrower than definitional arguments suggest.
+
+The contrast with his [competence preservation](#nuances-and-tensions-lex-fridman-interview) concern is striking: the Lex Fridman interview warned about losing touch through over-delegation, yet the "Endless Execution" essay is pure celebration of delegation as liberation. Both are genuine — the tension between craft preservation and execution intoxication is the live wire in DHH's AI position [[source]](https://world.hey.com/dhh/endless-execution-4157e065).
+
 ## Sources
 
 - "DHH's new way of writing code" — The Pragmatic Engineer / DHH (video, Apr 2026) ([link](https://youtube.com/watch?v=JiWgKRgdgpI&si=aXXPl8vlQLvfLDqn))
 - "DHH: Future of Programming, AI, Ruby on Rails..." — Lex Fridman Podcast (video, 2026)
+- "Endless execution" — DHH / world.hey.com (Aug 2026) ([link](https://world.hey.com/dhh/endless-execution-4157e065)) — "Endless execution" phenomenological frame: agents as genie-in-the-machine, liberation for people with endless ideas, pragmatic-AGI stance

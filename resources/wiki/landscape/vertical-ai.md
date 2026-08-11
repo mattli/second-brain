@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-07-22
+last_updated: 2026-08-11
 ---
 
 # Vertical AI
@@ -9,6 +9,7 @@ last_updated: 2026-07-22
 
 ## Recent Updates
 
+- **2026-08-11:** Added Tunguz valuation multiple data (25–125x ARR at scale, multiples re-accelerating in 2026) to [Harvey AI](#harvey-ai-the-vertical-ai-playbook)
 - **2026-07-22:** Added cost-per-task architecture reframe (Chamath, Arora data) to [Enterprise AI Adoption](#enterprise-ai-adoption-2026-data), Glean context layer benchmarks, and open-model routing evidence (GLM-5.2, Kimi K3, Waldo) to [Harvey's Vertical Model U-Turn](#harveys-vertical-model-u-turn-2025-2026)
 - **2026-07-17:** Added Sierra's Horizon platform (long-horizon agent goals, context engine, outcome-based pricing expansion) to [Sierra: Customer Service Vertical AI](#sierra-customer-service-vertical-ai)
 - **2026-07-11:** Added low-margin traditional industries (manufacturing, logistics, staffing) as coordination-cost thesis to [Low-Margin Industries](#low-margin-industries-the-coordination-cost-thesis)
@@ -62,6 +63,8 @@ Harvey ($0 → $200M+ ARR in 36 months; ~$11B valuation) is the canonical vertic
 7. **Selling work, not just software** — Revenue-share model where Harvey builds custom workflows with law firms, law firms sell to clients. Budget comes from professional services spend (billions) not tech budget (millions).
 
 **Competitive landscape:** Harvey vs. Legora. Harvey: ~$200M ARR, backed by Sequoia/a16z/Kleiner. Legora: ~$100M ARR est., backed by Benchmark/Bessemer. Both using Claude heavily.
+
+**Valuation multiples at scale:** Tomasz Tunguz analyzed post-money valuations against ARR for the leading AI harness companies. Harvey, Legora, and [Sierra](#sierra-customer-service-vertical-ai) each crossed $100M ARR within nine months of each other (Harvey Aug 2025, Sierra Nov 2025, Legora Apr 2026), with Ramp ($1.4B ARR) and Decagon ($35M ARR) bracketing them. The market is pricing these companies at 25–125x current ARR — and each company tends to trade within just one or two multiple bands even as ARR scales, defying the typical pattern where multiples compress with growth. Valuations at the time of their $100M milestones: Harvey at ~$5B (Series E, Jun 2025, ~67x on ~$75M revenue at pricing), Sierra at ~$10B (Sep 2025), Legora at ~$5.6B (Series D, Apr 2026). Starting in January 2026, multiples re-accelerated for Legora, Sierra, and Ramp — driven partly by sustained growth acceleration and partly by a more favorable fundraising market. Tunguz notes these are comparable to the 100x ARR multiples of the 2021 era, but the underlying growth rates are roughly 3x faster [[source]](https://x.com/ttunguz).
 
 ## Harvey's Cloud Agent Infrastructure
 
@@ -300,3 +303,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "AI's Biggest Winners Have the Lowest Margins" — Daniel Kornum (tweet, 2026) ([link](https://x.com)). Low-margin traditional industries (manufacturing, logistics, staffing, field services) as largest AI profit-impact opportunity; coordination cost thesis (~6% of revenue); AI as infrastructure vs. software; first-mover advantage in commodity markets.
 - "The Next Horizon in Agents" — Bret Taylor (tweet, Jul 2026) ([link](https://sierra.ai/product/horizon)). Sierra Horizon platform: long-horizon agent goals, context engine, long-horizon planning, outcome-based pricing extended beyond CX, customer interaction data as compounding moat.
 - "Enterprise AI economics is an architecture problem" — Arvind Jain / Glean (tweet, Jul 2026). Cost-per-task reframe (Chamath "doubling every 45 days" quote, Arora 90% price drop needed); Glean context layer benchmarks (2.5x preference, 30% fewer tokens vs off-the-shelf MCP); open-model competitiveness (GLM-5.2, Kimi K3); Waldo specialized routing model (25% token reduction); Model Hub (30+ models, one governed layer).
+- "AI Harness' ARR Multiples" — Tomasz Tunguz (tweet, Aug 2026) ([link](https://x.com/ttunguz)). Post-money valuation vs ARR analysis for Harvey, Legora, Sierra, Ramp, Decagon; 25–125x ARR multiples at scale; multiple-band persistence defying compression; 2026 re-acceleration; 3x faster growth than the 2021 100x ARR era.

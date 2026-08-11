@@ -1,37 +1,37 @@
 ---
-run_date: 2026-08-10
-run_start: "2026-08-10T08:01:33Z"
-run_end: "2026-08-10T08:01:50Z"
-updated_after: "2026-08-09T08:01:55Z"
+run_date: 2026-08-11
+run_start: "2026-08-11T08:01:26Z"
+run_end: "2026-08-11T08:01:50Z"
+updated_after: "2026-08-10T08:01:50Z"
 items_total: 3
 workers_dispatched: 2
-items_dropped: 0
-items_skipped: 1
+items_dropped: 1
+items_skipped: 0
 ---
 
-# List-Maker Run — 2026-08-10
+# List-Maker Run — 2026-08-11
 
 ## Run Notes
 
-Cutoff from previous run_end: 2026-08-09T08:01:55Z. 3 saves returned — 1 was already dispatched in the previous run (Dan Koe strategy vs tactics), skipped. 2 new items dispatched.
+Cutoff from previous run_end: 2026-08-10T08:01:50Z. 3 saves returned — 1 dropped (Readwise changelog), 2 dispatched as updates to existing pages.
 
 ## Workers Dispatched
 
 | Doc ID | Hint | Target | Rationale |
 |--------|------|--------|-----------|
-| 01kzmk1yg9yewnf83k7qvtybx4 | update | tools/agentic-engineering.md | Short essay on AI agents enabling instant idea execution — experiential shift fits within 1 hop of agentic engineering |
-| 01kzm048ff4hmcg22mtx2ttsj9 | create | science/neuroplasticity.md | Tweet-thread on neuroplasticity, habit formation through repetition, deliberate practice — no existing page covers neuroscience |
+| 01kzq4ka8vsstv8ersyqga0rxp | update | landscape/vertical-ai.md | Tomasz Tunguz tweet on AI harness ARR multiples (Harvey, Legora, Sierra at 25–125x ARR) — vertical-ai page already covers Harvey/Sierra ARR milestones |
+| 01kydntsv1mbsezzzb984fxqkw | update | tools/graph-engineering.md | Anatoli Kopadze tweet-thread explaining graph engineering — exact topic match with existing page |
 
 ## Skipped
 
 | ID | Title | Reason |
 |----|-------|--------|
-| 01kzhxteyb03hxz9x1vnva8dty | Strategy vs tactics: How to actually get ahead of 99% of people | duplicate_in_run — already dispatched in 2026-08-09 run to landscape/solo-business.md |
 
 ## Dropped (pre-filter)
 
 | ID | Title | Pattern |
 |----|-------|---------|
+| 01kzpegvbpf5h60y207h4vzk3s | August 7, 2026 | Readwise & Reader Changelog |
 
 ## Carry-Over (deferred to next run)
 

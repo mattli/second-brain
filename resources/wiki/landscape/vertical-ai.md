@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-09
-last_updated: 2026-08-11
+last_updated: 2026-08-12
 ---
 
 # Vertical AI
@@ -9,10 +9,10 @@ last_updated: 2026-08-11
 
 ## Recent Updates
 
+- **2026-08-12:** Added Palantir FDE model, discovery-vs-services diagnostic, and Decagon's product-first alternative to [Forward Deployed Engineers](#forward-deployed-engineers-discovery-not-services)
 - **2026-08-11:** Added Tunguz valuation multiple data (25–125x ARR at scale, multiples re-accelerating in 2026) to [Harvey AI](#harvey-ai-the-vertical-ai-playbook)
 - **2026-07-22:** Added cost-per-task architecture reframe (Chamath, Arora data) to [Enterprise AI Adoption](#enterprise-ai-adoption-2026-data), Glean context layer benchmarks, and open-model routing evidence (GLM-5.2, Kimi K3, Waldo) to [Harvey's Vertical Model U-Turn](#harveys-vertical-model-u-turn-2025-2026)
 - **2026-07-17:** Added Sierra's Horizon platform (long-horizon agent goals, context engine, outcome-based pricing expansion) to [Sierra: Customer Service Vertical AI](#sierra-customer-service-vertical-ai)
-- **2026-07-11:** Added low-margin traditional industries (manufacturing, logistics, staffing) as coordination-cost thesis to [Low-Margin Industries](#low-margin-industries-the-coordination-cost-thesis)
 
 ## Enterprise AI Adoption (2026 Data)
 
@@ -269,9 +269,25 @@ The rest of the opportunity ("the rest of Oz") is complex, often vertical proble
 
 3. **Hedge fund / P&L test:** If your customer's success metric is a workflow-specific outcome (closed deal, correctly redlined contract, bound policy) rather than a generic capability benchmark, you're in the rest of Oz. The best vertical AI companies execute like hedge funds — winning on alpha measured in customer P&L, not benchmark scores.
 
+## Forward Deployed Engineers: Discovery, Not Services
+
+"Forward deployed engineer" has become the default answer to almost every hard question in AI go-to-market. Deployments painful? Hire FDEs. Customers can't self-serve? FDEs. Product not ready? FDEs. Anthropic and OpenAI both stood up enterprise deployment arms explicitly modeled on Palantir, and job postings for the title are reportedly up several hundred percent year-over-year. What was until recently a sign you didn't have a real product — deploying engineers into customers, capping margins, lowering revenue quality — is now the consensus playbook.
+
+**The Palantir origin: "FDEs eat pain and excrete product."** Palantir popularized the role in the mid-2000s selling Gotham into the CIA and Army intelligence units. Early deployments were deeply bespoke — built to answer one intelligence question for one unit. But Palantir encoded the problems they saw as platform primitives: ontology, object models, permissioning, workflow engines, provenance tracking. Those primitives became Foundry. Foundry became the commercially sellable product. Apollo and AIP followed the same path. As Foundry matured, standardized deployments reduced the need for custom work, gross margins climbed into the 80s, and many FDEs migrated into core engineering. Palantir famously turned down contracts where the customer just wanted Accenture with better software [[source]](https://x.com/jesseziyuzhang/status/1925252282158498242).
+
+**Why AI startups genuinely need FDEs now:** Building a SaaS CRM in 2015 required no workflow discovery — twenty years of people had already defined what a pipeline, a stage, and a lead handoff look like. Building an AI agent for accounting in 2026 is different: nobody has ever used one, nobody knows what the user journey looks like, and the customer can't tell you what they want because the thing they'd want doesn't have a shape yet. In a genuinely new category, the last mile isn't a delivery problem — it's a discovery problem, and there is no substitute for being there.
+
+**The trap is not starting — it's not stopping.** Once the user journeys are known, FDEs should come out. Keeping them avoids every hard product tradeoff: you never decide what the product does, which customer request wins, or where the configuration surface ends. It feels free, but every bespoke fix in the field is a product decision you chose not to make. Cost to serve doesn't decline, margins stay capped, growth is bounded by hiring. Each deployment should make the next one easier — if it doesn't, you have a services business.
+
+**FDE ≠ implementation.** "Build this integration into their ticketing system" is execution against a known spec, not discovery of an unknown one. Bundling both under one title is how companies convince themselves a growing services org is a product investment. Models now write code well enough that much of what an implementation team did in 2023 is becoming something the product does itself.
+
+**Decagon's product-first alternative:** Decagon (customer service AI) took the opposite path. Rather than deploying FDEs, they made the explicit decision that their core value prop would be having the best product — still partnering with customers end-to-end on outcomes, but owning the build while enabling the customer's team on the product and handing them the keys. Two-thirds of deployment work now happens autonomously through Duet (configuration, iteration, long-tail tuning), and first launches take just days even for large banks, airlines, and telcos. The tradeoff: slower in the short term (escalations become requirements instead of patches), but structurally declining cost to serve.
+
+**The diagnostic:** Are your FDEs discovering something, or absorbing something? What got built into the product the last time one of them came back? If yours are eating pain and excreting more pain, you don't have an FDE team — you have a services business. This connects directly to the [Yellow Brick Road](#why-vertical-beats-horizontal-the-yellow-brick-road-framework) framework: the labs launching FDE-style deployment arms confirms that vertical configuration is not a problem the next model release solves, but the test for any vertical company is whether FDE-gathered signal is compounding into product or just subsidizing delivery. See also: [Services as Software](services-as-software.md) for the broader copilot→autopilot transition that FDE-to-product follows.
+
 ## Comparable Cases
 
-- **Customer service:** Sierra ($165M+ ARR in 26 months), Decagon, Ada Support. Outcome-based pricing and omnichannel collapse make CX a natural vertical for managed AI agents. Salesforce Agentforce is the incumbent response but deploys on multi-quarter timelines.
+- **Customer service:** Sierra ($165M+ ARR in 26 months), [Decagon](#forward-deployed-engineers-discovery-not-services) (product-first alternative to FDE model, 2/3 of deployments autonomous via Duet), Ada Support. Outcome-based pricing and omnichannel collapse make CX a natural vertical for managed AI agents. Salesforce Agentforce is the incumbent response but deploys on multi-quarter timelines.
 - **Healthcare:** Abridge (clinical intelligence layer, 100M+ conversations), Ambience Healthcare, OpenEvidence (medical search), Tennr (back-office healthcare admin). All grew rapidly on discrete, text-heavy use cases that circumvent the EHR system of record. See also [AI Drug Discovery](../science/ai-drug-discovery.md) for how generative AI is compressing preclinical timelines in pharma.
 - **Sales:** 11x (AI SDR platform, CEO Prabhav Jain). Decomposes pipeline generation into agentic and non-agentic tasks — lead prospecting, enrichment, account research, CRM context, message writing, qualification, deliverability. Roughly half of any real workflow is non-agentic deterministic software where labs hold no advantage; the agentic half requires domain-specific skills that evolve as markets change. Positive reply rates up 4x in recent months despite market-wide AI email fatigue, generating hundreds of millions in pipeline.
 - **Insurance:** FurtherAI (CEO Aman Gour). Builds agentic workflows for insurance operations — submission, review, quote, bind — where carrier-specific logic (risk escalation, appetite rules, underwriting philosophy) is spread across SOPs, manager reviews, and years of operational experience. The workflow-plus-agent hybrid gives repeatability and auditability from the workflow, variability handling from the agent, and human-in-the-loop for judgment calls. The production loop — where every escalation becomes a signal and every human correction shows where the runbook was incomplete — is the moat, not the day-one workflow.
@@ -285,7 +301,7 @@ The rest of the opportunity ("the rest of Oz") is complex, often vertical proble
 - Watch where labs focus research: long-horizon agents, computer use, spreadsheet/presentation interfaces signal next unlocks
 - Avoid the Yellow Brick Road: if your product is a high-performing model plus off-the-shelf connectors plus agentic orchestration with no sub-agents, no vertical configuration, and no distribution, the labs will eat you
 - Focus compounds: vertical (insurance, legal, accounting) or functional (sales, customer support, finance) — either way, the work needs a team heads-down on one customer set, its workflows, edge cases, and regulations
-- Guardrails are the product, not just safety rails — per use case, per customer, continuously audited. This is where forward-deployed engineering and technical deployment strategists earn their keep
+- Guardrails are the product, not just safety rails — per use case, per customer, continuously audited. This is where [forward-deployed engineering](#forward-deployed-engineers-discovery-not-services) earns its keep — but the test is whether each deployment makes the next one easier
 
 See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Startup Distribution](ai-startup-distribution.md)
 
@@ -304,3 +320,4 @@ See also: [Business Moats in AI](../concepts/business-moats-in-ai.md), [AI Start
 - "The Next Horizon in Agents" — Bret Taylor (tweet, Jul 2026) ([link](https://sierra.ai/product/horizon)). Sierra Horizon platform: long-horizon agent goals, context engine, long-horizon planning, outcome-based pricing extended beyond CX, customer interaction data as compounding moat.
 - "Enterprise AI economics is an architecture problem" — Arvind Jain / Glean (tweet, Jul 2026). Cost-per-task reframe (Chamath "doubling every 45 days" quote, Arora 90% price drop needed); Glean context layer benchmarks (2.5x preference, 30% fewer tokens vs off-the-shelf MCP); open-model competitiveness (GLM-5.2, Kimi K3); Waldo specialized routing model (25% token reduction); Model Hub (30+ models, one governed layer).
 - "AI Harness' ARR Multiples" — Tomasz Tunguz (tweet, Aug 2026) ([link](https://x.com/ttunguz)). Post-money valuation vs ARR analysis for Harvey, Legora, Sierra, Ramp, Decagon; 25–125x ARR multiples at scale; multiple-band persistence defying compression; 2026 re-acceleration; 3x faster growth than the 2021 100x ARR era.
+- "To FDE, or not to FDE?" — Jesse Zhang / Decagon (tweet thread, Aug 2026) ([link](https://x.com/jesseziyuzhang/status/1925252282158498242)). Palantir FDE origin ("eat pain, excrete product"), FDE as discovery not delivery, the trap of not stopping, FDE ≠ implementation, Decagon's product-first alternative (2/3 autonomous via Duet), diagnostic for discovery vs. services.

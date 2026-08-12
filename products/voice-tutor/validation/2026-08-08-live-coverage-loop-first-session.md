@@ -4,9 +4,20 @@ type: findings
 status: built on `feat/live-coverage-loop`, unmerged, unreviewed; one real session run
 session: e5b75522
 branch: feat/live-coverage-loop
+amended: 2026-08-12
 ---
 
 # Live coverage loop — wiring, and what the first real session showed
+
+> **Amended 2026-08-12 — finding 2's diagnosis was wrong, and the correction is
+> load-bearing.** This note reads the live/strict disagreement as the live judge
+> being more lenient. It is not. **Live and strict run the identical prompt**
+> (v2, hash `5b9090d7a60ce5d1`, same model) — verified from code against the hash
+> stored in the sidecars. The difference is *visibility*, not strictness: live
+> sees ~10 turns, strict sees the whole transcript. Two later-found defects
+> explain the gap, and a third of the live spend was avoidable. See
+> [[2026-08-12-live-judge-two-defects]]. The original text below is preserved
+> unchanged.
 
 Phase 2 of [[2026-08-02-live-coverage-design]], built against
 [[2026-08-08-wiring-brief-live-coverage-loop]]. The module it wires
@@ -52,6 +63,13 @@ inflated 25 exists solely in memory, while the picker, the pre-connect meter and
 the next session's opener all read the stored union, which is 22.
 
 ### 2. The strict pass rejected 3 of 4 live credits — the opposite of the design's prediction
+
+> **Superseded 2026-08-12.** The framing below ("the live judge over-credits") is
+> the wrong diagnosis. Same prompt, same model — the live judge simply cannot see
+> whether the session ever returns to material named early. Note also that `c58`,
+> recorded here as the one claim strict *upheld*, was **already in the stored
+> union** and should never have been judged at all: the live judge is never
+> seeded with prior coverage. See [[2026-08-12-live-judge-two-defects]].
 
 The design expects live to UNDER-credit (a windowed pass cannot see an explanation
 spread across a session) and teardown to correct upward. This session went the
@@ -121,7 +139,10 @@ construction; the 3-consecutive-failure budget bounds the total.
 ## Open
 
 - **The display decision** — which number the post-session surfaces show.
+  *(2026-08-12: may be smaller than it looked — part of the divergence was the
+  two defects, not an inherent live/strict gap.)*
 - **Independent review in fresh context** (Phase D) has not run. The branch touches
   the live session lifecycle and has had only its author as a reader.
 - **Evidence has zero files on disk** — the recorder postdates the only session
   run so far. A few more sessions make findings 2 answerable.
+  *(2026-08-12: closed — two evidence files now exist and were analyzed.)*

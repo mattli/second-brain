@@ -40,6 +40,64 @@ Met at the same meetup. Closer to the ICP than John — plausibly has a pile of 
 - Token was exposed in a chat log on send; rotated same day, corrected link to follow.
 - Matt replied to Jorge Fri 7/31; deliberately giving him space — no nudge planned for now.
 
+## Meetup 2026-08-11 — five contacts, links not yet sent
+
+Three hours, a lot of socializing, socially anxious throughout. Matt's read on his
+own performance: talked anxiously and self-deprecatingly at times. Worth recording
+that the outputs — five contacts, several open to trying it — do not match that
+self-assessment.
+
+**The ask used:** *"Do you have any documents you're trying to study?"* → *"Would
+you be willing? Can I send you a link to try it sometime this week?"* Matt did
+**not** ask what they'd study — judged (reasonably) as a strange question to put
+to a stranger at a networking event. That question moves to the follow-up message.
+
+**Status: LinkedIn connections in progress, some not yet formalized. No links sent.**
+Plan is to send on the weekend (Sat 2026-08-15), which also allows time to mint
+per-person tokens and swap in a more broadly appealing sample document.
+
+| Name | Who they are | Notes |
+|---|---|---|
+| **Chelsea Eiling** | Product designer, early career | Kind. |
+| **Mike Lindle** | Ex-Deloitte → ad producer → vibe coder | |
+| **Abhiraj Parikh** | Data scientist — predictive coffee bean quality | |
+| **Lucy Zhang** | — | Hard to understand in conversation; may need written follow-up to do the work. |
+| **Ethan Sokol** | Senior at NYU; Harvard-Westlake | Wants to share a private LinkedIn product with Matt — he has an ask too, which is a reason to expect a reply. |
+
+Notes recorded 2026-08-12, the day after, from memory. What each person said about
+their own study material was **not captured** — the ask didn't include it.
+
+### What to do with these
+
+The follow-up message has to do the qualifying work the room didn't. Draft shape:
+
+> Good to meet you last night. You mentioned you'd be up for trying the study
+> tool — do you have a document you're actually trying to get into your head
+> right now? Happy to send you a link.
+
+Lead with their own document; keep the sample as the fallback, not the headline.
+Ask **nothing else** up front — every question is a tax on opening the link at all.
+
+**Afterwards, one open question only:** *"How'd it go? Anything weird or confusing?"*
+Not "what did you think" — that gets politeness. A story is where the signal is.
+
+**Do not ask "would you use it again."** Asking corrupts the answer. The two things
+worth learning are observable, not askable:
+
+1. **Did they upload their own document or use a sample?** Own document = they had
+   real material and this was the tool for it.
+2. **Did they come back unprompted?** That is the gate.
+
+### A framing tension worth holding
+
+Matt's own description of what he wants from these: *does it solve a problem for
+them, could they foresee it solving one, is there a version that would.* That is
+**problem discovery**, which sits earlier than the stated validation gate. Both are
+legitimate; they need different things. Discovery can happen without anyone opening
+the app. The gate needs a solo session on their own material. Aiming at both in one
+message tends to produce a polite "yeah, I could see that being useful" and no
+session.
+
 ## Channels
 
 ### Reddit — r/PKMS (cold)
@@ -56,10 +114,12 @@ Met at the same meetup. Closer to the ICP than John — plausibly has a pile of 
   - **Next cold move, if any: student/deadline spaces, not PKM spaces** — pending the meetup's evidence on which framing (vault-substrate vs. deadline-pain) lands. No cross-posting this week.
 - **Remaining thread obligation:** two optional warm thank-yous (YouWillConcur, Early_Key_823). Everything else is closed — no further replies.
 
-### Meetup — 2026-08-11 (warm)
+### Meetup — 2026-08-11 (warm) — RAN
 
-- Next warm channel; produced John and Jorge last time. Goal: links out within a day or two of the event, ideally onto the coverage-bar build if it ships in time.
-- Next input to the validation gate most likely comes from here.
+Produced five contacts (above). Confirms the doctrine: warm rooms are the only
+channel that has produced testers. Ran three hours; the tagline
+*"No decks. No quizzes. No flashcards. Just a conversation."* went out to live
+humans for the first time — no recorded read on how it landed.
 
 ## Leads (not yet testers)
 
@@ -71,5 +131,6 @@ Met at the same meetup. Closer to the ICP than John — plausibly has a pile of 
 ## What the record says so far
 
 - Two people have a link. One has used it, briefly, on a real document of his own.
+- Five more agreed to try it and are awaiting links.
 - Every session to date has been shorter than 2 minutes. Nobody has worked through a document.
 - The differentiation question — does claim-map steering help someone retain their reading pile — remains **structurally unanswered**. It is not answerable by building; only a tester answers it.

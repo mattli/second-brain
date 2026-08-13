@@ -1,6 +1,6 @@
 ---
 created_at: 2026-05-28
-last_updated: 2026-08-07
+last_updated: 2026-08-13
 
 ---
 
@@ -10,6 +10,7 @@ last_updated: 2026-08-07
 
 ## Recent Updates
 
+- **2026-08-13:** Added [Evals as Product Management Artifacts](#evals-as-product-management-artifacts) — Anthropic's PM workflow where evals replace PRDs; user-feedback-to-eval pipeline; "sweat the tokens" principle
 - **2026-08-07:** Added criteria drift, five-part judge prompt structure, and "God Evaluator" anti-pattern from Langfuse eval methodology to [Building an LLM Judge](#building-an-llm-judge) and [Common Anti-Patterns](#common-anti-patterns); added asymmetry of verification to [Two Types of Evals](#two-types-of-evals)
 - **2026-07-26:** Added [Shadow Testing](#shadow-testing) and [Red Teaming](#red-teaming) sections; added OSS tool references to [Eval Tooling Landscape](#eval-tooling-landscape)
 - **2026-07-23:** Added Viv/LangChain eval engineering skill coverage to [Containerized Evals](#containerized-evals-harbor), [Automated Eval Engineering](#automated-eval-engineering), and [Reward Hacking](#reward-hacking); removed stale Overview; folded three-activities framing into [Floor-Raising vs Benchmark-Maxxing](#floor-raising-vs-benchmark-maxxing)
@@ -33,6 +34,16 @@ One of the lowest-hanging floor-raising techniques: teaching your agent to refus
 Before trusting an agent in production, write down 5–10 cases that represent your critical paths. Start with the simplest version: a single common user question the agent should always handle correctly. If your agent starts failing golden cases, you do not ship [[source]](https://howtoeval.com).
 
 For each golden case, don't just check the final output — inspect the full trajectory: user message, tool calls, retrieved context, reasoning chain. The path matters as much as the answer.
+
+## Evals as Product Management Artifacts
+
+At Anthropic, the research product management team operates under the principle that "evals are the new PRDs." The traditional PM artifact — the product requirements document — assumed deterministic software where specifying inputs and expected outputs was sufficient. With non-deterministic AI systems, the eval *is* the specification: it captures user need, defines success criteria, and provides the measurement loop that researchers use to improve the model.
+
+The process starts with user pain. Rather than running traditional user interviews, PMs read model interaction transcripts — full trajectories of what the user asked, what the model did, and where it failed. The guiding principle: **sweat the tokens as much as you sweat the pixels.** Failure modes in AI products have nuance that surface-level feedback obscures — a user reporting "Claude doesn't follow instructions" might mean hallucination, overconfidence, schema non-compliance, or something else entirely. Only reading the actual token-level trajectory reveals the real category.
+
+Once a failure pattern is identified, PMs generate 30–40 examples of the failure and assemble them into an eval set — each with a prompt, a model response, and the expected correct answer. This eval set becomes the durable artifact: it enters the repository, runs against every new model version, and tracks whether the pain point has been resolved. Early Claude models, for instance, struggled with JSON schema compliance — a pain point that surfaced from user complaints about "not following instructions." The resulting eval now consistently passes at ~100%, confirming the issue is resolved.
+
+This is essentially test-driven development for product management. The PM writes the test (the eval) before the fix ships, and the test remains as a regression guard. Because AI outputs are non-deterministic, evals must describe success broadly rather than matching exact outputs — making eval design a skill that blends product judgment with technical specification. The approach extends beyond model teams: any product built at the intersection of models, harnesses, context, and users benefits from evals as the core quality loop, since "you can't improve what you can't measure" and measurement in AI products requires staying close to the failure details. For more on how this fits into broader [AI-native product development](ai-native-product-development.md), see the team-level workflow patterns there.
 
 ## Three Levels of Evaluation
 
@@ -223,3 +234,4 @@ A non-exhaustive map of OSS tools to eval categories covered on this page:
 - [Towards Automating Eval Engineering](https://x.com/vtrivedy10/status/2079976006644072796/) | Viv (LangChain) — Eval Engineering Skill for coding agents; Harbor containerized eval format (instruction + Dockerfile + verifier); interview-driven eval design; reward hacking patterns; continual-learning-as-data-mining loop
 - [10 agent evals every AI engineer should know](https://x.com/elune0x/status/2079923329633313196) | elune — beginner-level overview of 10 eval categories with OSS tool recommendations; shadow testing and red teaming concepts; specific tooling landscape
 - [Good evals are boring](https://langfuse.com/academy/evaluate/writing-evaluators) | Lotte (Langfuse Academy) — practical eval methodology: asymmetry of verification; "God Evaluator" anti-pattern; criteria drift; five-part judge prompt structure; categorical scoring; labeled-case calibration workflow
+- Evals are the new PRDs: how AI is rewriting the PM job | Dianne Penn (Lenny's Podcast, video) — Anthropic's PM workflow where evals replace PRDs; user-feedback-to-eval pipeline; "sweat the tokens" principle; JSON schema compliance as origin case study; test-driven development analogy for PM work

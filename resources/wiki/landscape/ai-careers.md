@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-22
+last_updated: 2026-08-15
 ---
 
 # AI Careers
@@ -9,6 +9,7 @@ last_updated: 2026-07-22
 
 ## Recent Updates
 
+- **2026-08-15:** Integrated Andrew Ng's AI Engineering Skills Map (four-skill taxonomy from 10K+ job postings) into [What Gets You Hired](#what-gets-you-hired)
 - **2026-07-22:** Added FDE role as a hybrid archetype with a 30-day builder playbook to [The Forward Deployed Engineer](#the-forward-deployed-engineer); removed stale Overview; folded framing into TLDR
 
 ## The Golden Age Argument
@@ -36,6 +37,13 @@ Three things that matter more than technical depth alone:
 3. **Delivery skills** — The people who got jobs in Moroney's examples were the ones with half-baked ideas that were well-grounded, not the ones with impressive but unshippable demos
 
 Anti-pattern: technically brilliant candidates who fail interviews because they can't collaborate or communicate. Teamwork is non-negotiable.
+
+Ng's AI Engineering Skills Map formalizes these intuitions into a data-driven taxonomy, synthesized from over 10,000 job postings, dozens of structured interviews with hiring managers and AI experts, and survey data. A key framing choice: "AI engineering skills" rather than the "AI Engineer" role, because every developer — full-stack, data, DevOps, ML — needs these skills, just as every developer today needs cloud skills even without a "Cloud Engineer" title. The four skills:
+
+1. **Building and deploying AI applications** — The core differentiator of AI applications is unpredictable outputs. Skill here means understanding LLMs, [context engineering](../concepts/context-engineering.md), RAG, [agentic workflows](../tools/agentic-engineering.md), and — critically — using statistical techniques (evals, error analysis loops) to measure, steer, and govern AI systems so they behave more predictably.
+2. **Software engineering fundamentals** — Deep understanding of how software works enables better tradeoff decisions across cost, scalability, reliability, speed, security, and privacy. Without this, developers who vibe-code with AI agents produce poor results because they can't recognize the tradeoffs their coding agent is making or steer it with the precise language of software engineering.
+3. **Using coding agents** — Effective [agent proficiency](../concepts/agent-proficiency.md) requires a mental model for how agents work, understanding their limitations, managing agent context, making planning-vs.-execution tradeoffs, providing verifiers for autonomous loop closure, orchestrating multi-agent workflows, and continuously evolving workflows as best practices change.
+4. **Shaping the build** — As coding agents improve at delivering to spec, the engineer's work shifts toward deciding what should be in the spec. This requires product sense, business context, customer understanding, and knowing when to build a quick MVP for user testing versus when to slow down and build carefully. Engineers should no longer expect to be handed a pixel-perfect design and asked only to implement it.
 
 ## Navigating Hype
 
@@ -162,3 +170,4 @@ This reframes the page's career strategy advice: the skills roadmaps, role arche
 - "How to Get Discovered in AI Search (and Why It Matters for Your Career)" — Jeff Rumage, Built In ([link](https://builtin.com/articles/linkedin-chatgpt-ai-search-careers)) — LinkedIn's rise as top AI-cited domain for professional queries; profile optimization and content strategy for AI discoverability
 - "On mid-career satisfaction" — Shreyas Doshi (tweet) — external vs. intrinsic career satisfaction markers; career envy as the hidden driver of mid-career dissatisfaction, amplified by AI's polarized outcomes
 - "FDE: The $1M/Year AI Job Explained" — The Startup Ideas Podcast (tweet) — Forward Deployed Engineer role; three-stage engagement model (audit → evals → deployment); 30-day builder playbook; Palantir origins
+- "The AI Engineering Skills Map" — Andrew Ng (tweet) — Four-skill taxonomy (building/deploying AI apps, software engineering fundamentals, using coding agents, shaping the build) derived from 10K+ job postings and expert interviews

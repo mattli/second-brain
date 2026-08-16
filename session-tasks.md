@@ -1,6 +1,21 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
-### ▶ Next-session opening list (Wed 2026-08-12, late) — the lane is honest again; `main` carries one unpushed doc commit
+### ▶ Next-session opening list (Fri 2026-08-15) — two commits ready on `main`, production still on Aug-7 code and never restarted
+Three worktrees, all clean. `main` is **3 ahead of `origin/main`** and unpushed by instruction; nothing was merged, pushed, or restarted this session.
+
+- **`~/development/voice-tutor` (`main`)** — clean at `71c9426`. Three unpushed commits: `cdd99f7` (doc-only, from 8/12), `3b8d60c` (coverage layout, **already live** — static is served per-request), `71c9426` (TTS speed 0.9, **not live** — needs a kickstart).
+- **`~/development/voice-tutor-dev` (`local-dev`)** — clean; the TTS edit that was auditioned here was reverted after landing on `main`. **Still pointed at `feat/live-coverage-loop` + `dev.sh`**, so re-point it before testing anything from `main`.
+- **`~/development/voice-tutor-livecov` (`feat/live-coverage-loop`)** — clean at `33750ec`, still unmerged and unpushed.
+
+Next up, in rough priority:
+1. **Restart production to make the TTS change live** — `launchctl kickstart -k gui/$(id -u)/com.voice-tutor.server`, only when confirmed idle. It was idle at 18:53 PDT (0 UDP sockets, 6 total — the non-zero total is what proves the probe ran) but that was hours ago; **re-check, don't carry it forward**. The restart is unusually low-risk: of the nine commits landed since production started, only `71c9426` changes runtime behavior.
+2. **Push `main`** (three commits) when convenient.
+3. **`chmod 640` both `voice-tutor.log` files** — the cheap half of the access-log item (backlog line ~75). They are mode `644` and hold every `?u=` token ever issued in cleartext.
+4. **Everything on the 8/12 list below still stands** — the opener guard, the direction question, Phase D review, the display decision, and the `dev.sh` branch-independence item are all unchanged.
+
+Carried forward: does Deepgram bill for an idle open live-stream connection?
+
+### ▶ Superseded opening list (Wed 2026-08-12, late) — the lane is honest again; `main` carries one unpushed doc commit
 Three worktrees, all clean, nothing pushed this session, production untouched and never restarted.
 
 - **`~/development/voice-tutor` (`main`)** — clean, **1 commit ahead of `origin/main`**: `cdd99f7`, the rewritten dev-lane doctrine in `CLAUDE.md`. Unpushed by instruction.
@@ -27,6 +42,16 @@ Next up, in rough priority:
 Not re-verified this session: the dev lane / tailnet bind state, `main`'s commit, and production's process — the 8/09 list below is the last word on those.
 
 Carried forward: does Deepgram bill for an idle open live-stream connection?
+
+### August 15, 2026 — a knob that was already plumbed and never turned; a security question whose premise had expired; and a `||` that faked an all-clear
+- **The TTS speed fix was one character of logic, and the interesting part is why it had never happened.** `VOICE_TUTOR_TTS_SPEED` had been wired through to Sonic-3's `GenerationConfig(speed=…)` since the flag landed — but the unset fallback was `None`, which *omits* the field and lets Cartesia apply its 1.0 default. The knob existed, was reachable, and was documented; nothing was turning it. Default now **0.9**, one notch, with 0.85/0.8 in reserve above the 0.6 floor. Committed `71c9426`; env override still wins, `1.0` restores the old cadence. Verified all four precedence paths (unset / `0.85` / `1.0` / empty string).
+- **Checked Pipecat's installed source rather than answering from memory**, as asked: `speed` on `GenerationConfig`, range `[0.6, 1.5]`, Sonic-3 only, sent per TTS request from `self._settings`. Pinning it to the installed 0.0.108 rather than to recollection is what made "the plumbing already exists" discoverable at all.
+- **The alias-token security question had already been answered by the morning's rotation.** Asked whether a memorable alias mapping to `matt` was a risk; the registry holds **9 tokens, 9 users, exactly one each** — no alias, no user with two tokens. It survives only in `tokens.json.bak`: **9 characters, one `@`, segments of 6 and 2, seven distinct characters.** Not diceware, not a passphrase — a weak password, and genuinely dangerous had it stayed live. `resolve_cookie` re-reads the registry every request, so removal took effect instantly; being "still logged in" was the new token in the cookie, not the alias surviving.
+- **A `||` fallback manufactured a false all-clear, and it was caught by the rule that exists for it.** A grep for whether anything imports `incremental_coverage_judge` used `--include=*.py`, which zsh rejected outright — so the grep never ran and the `|| echo "NOBODY"` branch fired on a *failed command*, printing a clean bill of health for a check that hadn't happened. Re-run with a positive control (`grep` does find `import coverage_store`) the answer held: genuinely unimported. **Same shape as the `lsof` false all-clears already logged twice on this project** — the failure is `||` treating "command errored" and "no matches" as one outcome.
+- **Two standing weaknesses recorded, neither new today.** (1) **No rate limiting anywhere on the auth path** — `/study/` → `resolve_cookie` → dict lookup, no limiter middleware, no failed-attempt counter, no delay; unlimited free guesses against the public Funnel. What protects the current tokens is **length alone**. (2) **Every `?u=` token sits in cleartext in `voice-tutor.log`**, both copies mode `644`, one ~116MB — local exposure only (gitignored, untracked), mitigated cheaply by `chmod 640`.
+- **The scanners are being repelled, and that's worth having measured.** 54 distinct public IPs; probes for 38 secret-file paths (`/.env`, `/.git/config`, `/.aws/credentials`, `/.ssh/id_rsa`, database backups) — **every one 404, zero 2xx**. No brute-force signature either: the busiest public IP made 9 `?u=` requests, all 303s, i.e. real testers. Public client IPs *are* preserved through Funnel, which is what makes "the alias was never used from outside" a real finding rather than a blind spot.
+- **The coverage-layout commit was cherry-picked only after proving it was self-contained.** `1e00349` sits directly on top of the live-coverage wiring commit, which was the actual risk — but that commit's frontend work touches the *pre-connect* meter and the live poll, while this one touches the *ended-view* renderer. No overlap, every element and data field it needs already on `main`, and a repo-wide grep confirmed the markup it deletes is referenced nowhere else. Applied clean (offsets only) → `3b8d60c`.
+- **Sized the pending restart honestly.** Production has run since **Fri Aug 7 18:16 PDT**; nine commits landed on `main` since. Three are `CLAUDE.md` only, four are the incremental-coverage module and its tests — **merged but imported by nothing that runs** (`live_coverage.py`, which would wire it in, is still only on the feature branch) — one is static and already live. **Exactly one commit changes production behavior**, the TTS default. A restart that looks like eight days of accumulated risk is one line of voice config.
 
 ### August 12, 2026 — the live judge is not optimistic, it is short-sighted; and it was never told what it already knew
 - **The Saturday framing was wrong, and the correction is the finding.** Live and strict run the **identical prompt** — v2, hash `5b9090d7a60ce5d1`, same Haiku model, verified from code against the hash stored in both sidecars and both evidence files. The live judge is not a laxer judge; it is the same judge with a ten-turn horizon. A **visibility defect, not a strictness defect**. This corrects [[2026-08-08-live-coverage-loop-first-session]]. Full write-up: [[2026-08-12-live-judge-two-defects]].

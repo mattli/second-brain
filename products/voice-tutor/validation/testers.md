@@ -52,20 +52,47 @@ you be willing? Can I send you a link to try it sometime this week?"* Matt did
 **not** ask what they'd study — judged (reasonably) as a strange question to put
 to a stranger at a networking event. That question moves to the follow-up message.
 
-**Status: LinkedIn connections in progress, some not yet formalized. No links sent.**
-Plan is to send on the weekend (Sat 2026-08-15), which also allows time to mint
-per-person tokens and swap in a more broadly appealing sample document.
+**Status: links sent Sat 2026-08-15.** All five, LinkedIn DM, same message with the name swapped.
+Per-person tokens minted the same afternoon; `matt`'s token rotated at the same time (and with it a
+weak 9-character alias that had been a second live credential).
+
+**What the message said.** Body: what it is (talk through a document, it tracks which claims you've
+covered), upload your own or use the sample, and a heads-up that the recap takes a few seconds to
+appear so don't close the tab. Then a plain disclosure block — runs off a Mac Mini in his apartment
+(hence the odd link), uploads and transcripts are stored there and he can read them, voice passes
+through third-party speech and AI services, and the link is effectively a password so don't forward
+it. Closed with *"let me know how it goes or if you run into any trouble."*
+
+That closer was a deliberate choice over *"does this solve a real or imagined problem for you"* —
+the latter is answerable **without opening the link**, which is exactly the polite non-signal to
+avoid. "How did it go" requires use, and "or if you run into any trouble" gives an easy way to
+report a dead link rather than silently giving up. That silent-giving-up is what cost the John
+session in July.
+
+Ethan's was the only one meaningfully different: it opened by asking to see **his** LinkedIn
+product, since he'd offered. He has an ask of his own, which makes him the most likely to reply.
+
+**What to watch for, per the gate:** whether they upload their own document or use the sample, and
+whether anyone returns unprompted. Do **not** ask "would you use it again" — asking corrupts the
+answer.
 
 | Name | Who they are | Notes |
 |---|---|---|
 | **Chelsea Eiling** | Product designer, early career | Kind. |
 | **Mike Lindle** | Ex-Deloitte → ad producer → vibe coder | |
 | **Abhiraj Parikh** | Data scientist — predictive coffee bean quality | |
-| **Lucy Zhang** | — | Hard to understand in conversation; may need written follow-up to do the work. |
-| **Ethan Sokol** | Senior at NYU; Harvard-Westlake | Wants to share a private LinkedIn product with Matt — he has an ask too, which is a reason to expect a reply. |
+| **Lucy Zhang** | — | Hard to understand in conversation; talked at length about investing, thin LinkedIn. Sent anyway: credentials don't predict whether someone will talk through a document and come back, and if transcription mangles her that is itself real signal about who the product works for. |
+| **Ethan Sokol** | Senior at NYU; Harvard-Westlake | Wanted to share a private LinkedIn product — his message led with that. |
 
-Notes recorded 2026-08-12, the day after, from memory. What each person said about
-their own study material was **not captured** — the ask didn't include it.
+Notes recorded 2026-08-12, the day after the meetup, from memory. What each person said about their
+own study material was **not captured** — the ask in the room didn't include it, which was the right
+call for a networking setting. The follow-up message carries that question instead.
+
+**What they're getting:** production on `main` (`:7860`), not the live-coverage branch. Coverage
+appears on the picker, the pre-connect screen and after the session ends — but **no live meter
+during the conversation**. Shipped the same afternoon: TTS speed dropped to 0.9 (the tutor had been
+talking too fast), and the ended-view coverage layout unified so the inline bar shows without a
+manual refresh.
 
 ### What to do with these
 

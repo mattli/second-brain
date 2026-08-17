@@ -1,15 +1,15 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-06-22
+last_updated: 2026-08-17
 ---
 
 # Peter Steinberger
 
-> TLDR: Prolific builder of AI developer tools and creator of OpenClaw. Ex-PSPDFKit founder who pivoted to "polyagentmorous" development — building 50+ open-source tools at extreme velocity using AI agents.
+> TLDR: Vienna/London-based developer, ex-PSPDFKit founder (PDF SDK, exited 2021), now building AI-native developer tools at extreme velocity. Creator of OpenClaw and 50+ open-source repos. Self-describes as "polyagentmorous builder" — 660K+ GitHub contributions in a year, running 3-6 Claude instances concurrently.
 
-## Overview
+## Recent Updates
 
-Vienna/London-based developer. Founded PSPDFKit (PDF SDK, exited 2021 via TechCrunch-reported deal). Now building AI-native developer tools at ludicrous speed. Self-describes as "polyagentmorous builder." 660K+ GitHub contributions in the last year. Runs 3-6 Claude instances concurrently.
+- **2026-08-17:** Expanded [Notable OpenClaw Use Cases](#notable-openclaw-use-cases) with Peter Yang's multi-channel architecture, Twilio voice integration, and app-displacement thesis from a16z interview. Removed stale Overview; folded framing into TLDR.
 
 ## Current Work
 
@@ -50,7 +50,13 @@ Memory layer: flat markdown files (daily notes + MEMORY.md). Observable, git-bac
 
 The triad — identity, experience, integration — works across Claude, GPT, Grok, Gemma, open-weight models. The soul layer is the part that doesn't move while models change underneath.
 
-**User experience reality check (Peter Yang, a16z Show):** Despite enthusiasm, practical limitations persist. The default memory system (daily MEMORY.md files) "tends to forget things a lot." Yang installed a three-layer memory system with vector search to improve recall. The agent also "tends to forget that it can do stuff" — requiring explicit reminders in agents.md. Yang estimates 70-80% of OpenClaw's value is "just the personable part" (Telegram integration making it feel like texting a friend), with tool capabilities secondary. See [LLM Knowledge Bases](../concepts/llm-knowledge-bases.md).
+**Peter Yang's OpenClaw setup (a16z Show):** Yang (PM at Roblox, creator-builder) runs OpenClaw as "Zoe" across multiple Telegram channels — one for casual voice replies, one for active project work, one public channel for demos without leaking private context. The agent pulls analytics from YouTube and Mercury banking, updates Google Docs, and builds small web tools. Yang also wired up Twilio for live phone calls ("not very good — the latency is bad, but the fact I was able to get it going is pretty impressive"), demonstrating OpenClaw's extend-anything architecture.
+
+Despite enthusiasm, practical limitations persist. The default memory system (daily MEMORY.md files) "tends to forget things a lot." Yang installed a three-layer memory system with vector search to improve recall. The agent also "tends to forget that it can do stuff" — requiring explicit reminders in agents.md to check capabilities before answering. Yang estimates 70-80% of OpenClaw's value is "just the personable part" (Telegram making it feel like texting a friend), with tool capabilities secondary. See [LLM Knowledge Bases](../concepts/llm-knowledge-bases.md).
+
+Yang's "apps will die" thesis: task-completion apps lose usage first because "it's just way easier to text my agent to do it for me." Entertainment apps survive longer. After connecting Mercury, calendar, and other MCPs, Yang stopped opening those apps directly. The customization loop creates lock-in — "once you customize it, you kind of feel like it's part of you, so it's kind of hard to turn." Yang also compares coding agents to slot machines: variable outputs plus variable wait times create the same variable-scheduled-reward pattern that made social feeds addictive.
+
+On the future of companies: Yang hopes "more companies will stay small" — two or three person product teams with agents instead of ten-person teams. Agents handle cross-functional alignment better because "it takes the emotion out of it." Send your agent to negotiate with their agent; the conclusion is objective, not emotional. Yang sees coding eating all [knowledge work](../concepts/knowledge-work-future.md): "I never start from zero — I always get the first 80% from AI," even for blog posts written in Claude Code. His plan for his kids: "build bootstrap businesses in high school" and skip the corporate path entirely. See [Solo Business](../landscape/solo-business.md).
 
 **Lex Fridman Podcast appearance (Podcast #491):** Peter discussed OpenClaw's rapid growth, its self-modifying capability, and his vision of it as "a powerful tool that works like a helpful coworker." See also the a16z Show interview with Peter Yang.
 

@@ -82,4 +82,5 @@ A persistent, interlinked knowledge base compiled from Readwise saves.
 ## Personal
 
 - [Recipes](personal/recipes.md) — Personal recipe bookmarks worth keeping
+- [Life Design](personal/life-design.md) — Identity-level change as prerequisite to behavior change; teleological psychology; ego development stages; cybernetics model of intelligence; one-day life-redesign protocol
 - [Personal Tool Bookmarks](personal/tools.md) — Tools/products bookmarked but not yet evaluated (Ghostty, Perplexity Comet, x-bookmarks)

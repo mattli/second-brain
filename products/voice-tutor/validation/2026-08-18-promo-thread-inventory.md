@@ -4,6 +4,28 @@
 
 **Scope:** 12 study/deadline subreddits. Read-only research. Nothing was posted anywhere.
 
+## What to do with this — read first
+
+**Nothing gets posted yet.** All three workable doors want a product with a real tester
+story behind it. This inventory is the map for when that exists, not a to-do list for
+this week.
+
+- **r/Anki is the strongest door — but rule 5 bans research for "an Anki competitor."**
+  Any post there must lead with the no-cards distinction, up front and unambiguously.
+  If it reads as a flashcard replacement, rule 5 applies and the post is gone.
+- **r/NCLEX is one-shot by rule.** Free resources are explicitly permitted; the same rule
+  defines repetition as spam. That is one post, ever, until the product changes. Do not
+  spend it early on a weak version.
+- **r/medicalschoolanki: mod approval first**, and per rule 9 the ask must disclose all
+  current pricing tiers plus any plan to charge later. Slowest path, cleanest outcome.
+- **r/studytips is saturated.** Four AI study apps launched there on 2026-08-18 alone,
+  scoring 4, 2, 1 and 0 comments. Permission to post is not the scarce thing there.
+- **r/medicalschool and r/MCAT: do not post.** Their rules name our category directly —
+  r/medicalschool rule 13 ("Requests to promote AI tools for studying, note-taking, etc.
+  will be declined"), r/MCAT rule 6 (paid *or free*, banned without warning).
+
+---
+
 **Method:** subreddit rules, descriptions, and activity pulled from the ScrapeCreators
 `/v1/reddit/subreddit/details` endpoint (verbatim rule text, fetched 2026-08-18).
 Thread discovery via `/v1/reddit/subreddit/search` across two vocabulary sweeps

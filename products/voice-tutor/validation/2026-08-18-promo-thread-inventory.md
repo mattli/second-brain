@@ -177,3 +177,166 @@ Two gotchas worth keeping:
 2. **The 404 is indistinguishable from a genuinely missing sub.** A sub that silently
    fails looks identical to one that does not exist — worth an explicit positive control
    before reading any absence as a finding.
+
+---
+
+# Addendum — 2026-08-19: sweep for recurring "self promotion" threads beyond the original 12
+
+**Question this addendum answers:** the 2026-08-18 pass concluded that the recurring
+sanctioned-promo-thread pattern "does not exist in study spaces," on a sample of 12 subs.
+That was a claim about a category made from a small sample. This pass tests it against
+**115 additional subreddits**, none of them in the original 12.
+
+**Read-only. Nothing was posted anywhere.**
+
+## Verdict, stated flat
+
+**The original conclusion was too broad, and the correction is narrow but useful.**
+
+The recurring sanctioned self-promo thread **does exist in study spaces — but only in
+language-learning ones.** Two are live, weekly, and running right now:
+**r/LearnJapanese** (Wednesdays, unbroken since at least July 2023) and **r/Spanish**
+(Sundays, started July 2026). A third, **r/ELATeachers**, ran one weekly for 15 months
+and is now effectively dead.
+
+**For exam-prep, medical, legal, graduate and general-study subs, the negative holds and
+is now much better evidenced.** Across every LSAT / GRE / GMAT / SAT / ACT / AP / bar /
+USMLE / NCLEX-adjacent / nursing / dental / pharmacy / PA / accounting / IT-cert /
+PhD / academia / homework-help / general-study sub swept, **not one recurring
+self-promotion thread was found.** The pattern's boundary is not "builder subs vs. study
+subs" as the 08-18 pass framed it. It is **language-learning subs vs. everything else in
+education** — language subs have a large population of small tool-builders and tutors, so
+they evolved a containment lane; exam-prep subs solved the same pressure with bans.
+
+**What this changes for Voice Tutor: nothing this week, one thing later.** These are
+language-learning audiences, not the deadline-driven exam studier the product targets.
+They are a real, rule-sanctioned door — but into a different room than r/Anki or r/NCLEX.
+If a language-learning use case is ever in scope, r/LearnJapanese and r/Spanish are the
+two best-documented promo lanes found in any education sub to date. If it is not, this
+line of inquiry is now **closed**, and the 08-18 recommendations stand unchanged.
+
+## Method, and what the probe can and cannot see
+
+- **Post discovery:** ScrapeCreators `/v1/reddit/subreddit/search` with Reddit's
+  `title:"…"` operator, and `/v1/reddit/search` for the cross-Reddit sweep.
+  Phrases: `self promotion`, `self-promotion`, `self promo`, `promo thread`,
+  `promotion thread`, `share your project`, `what are you working on`, `showcase`.
+- **Volume:** 783 title queries across 115 candidate subs in two waves, plus 17
+  cross-Reddit global queries. 307 unique title-matching posts returned (210 excluding the builder-sub controls).
+- **Rules:** `/v1/reddit/subreddit/details`, verbatim, fetched 2026-08-19.
+- **Engagement inside threads:** `/v1/reddit/post/comments`.
+
+**Three probe limits worth stating, because they bound the confidence:**
+
+1. **The search endpoint returns a hard maximum of 7 posts per query** — verified, every
+   saturated query returned exactly 7. The 115-sub discovery sweep therefore ran one
+   `sort=new`/`timeframe=year` query per phrase — enough to detect *whether* a thread
+   exists. **Recurrence** was then established separately, only for the candidates that
+   hit, by re-querying each across five `sort`×`timeframe` combinations and
+   de-duplicating (`new/year`, `new/all`, `top/year`, `top/all`, `relevance/all`), which
+   was verified to vary the result set. A sub whose promo thread is titled in wording none of the eight phrases
+   match would still be missed.
+2. **Positive control on discovery:** r/SideProject, r/SaaS and r/indiehackers were swept
+   with the identical query set and saturated at 7/7 on nearly every phrase. The absence
+   of hits in exam-prep subs is a real absence, not a broken probe.
+3. **`subreddit/details` returned an empty rules array for r/LearnJapanese,
+   r/languagelearning, r/ELATeachers and r/Korean** — while returning full rule text for
+   r/Spanish and r/Notion in the same batch. So the endpoint works and those four subs
+   simply expose no structured rules; their policies live in sidebars/wikis this machine
+   cannot reach. **For r/LearnJapanese there is therefore no quotable rule below — the
+   sanction is the mod-run thread itself, not a rule I can cite.**
+
+## What was found
+
+| Sub | Thread | Cadence & currency | Recurrence evidence | Engagement on the latest instances | Rule (verbatim) |
+|---|---|---|---|---|---|
+| **r/LearnJapanese**<br>227,648 weekly actives / 1,905 contributions | [Weekly Thread: Material Recs and Self-Promo Wednesdays!](https://reddit.com/r/LearnJapanese/comments/1vs6bev/weekly_thread_material_recs_and_selfpromo/) | **Weekly, Wednesdays. Live — latest instance 2026-08-19 (today).** | **Unbroken.** 20 distinct instances recovered, from [2023-07-12](https://reddit.com/r/LearnJapanese/comments/14xo0jd/weekly_thread_selfpromotion_wednesdays/) (then titled *Self-Promotion Wednesdays!*) through 2026-08-19. Part of a full weekday set (Study Buddy Tuesdays, Writing Practice Monday, Victory Thursday, Meme Friday). | 14, 16, 30, 15, 29, 18, 17, 21 comments over the last 8 weekly instances. Median ~17. | **None retrievable** — see probe limit 3. The thread title is the permission. |
+| **r/Spanish**<br>373,354 weekly actives / 3,026 contributions | [Weekly Self-Promotion Mega Thread](https://reddit.com/r/Spanish/comments/1vpnzvy/weekly_selfpromotion_mega_thread/) | **Weekly, Sundays. Live — latest 2026-08-16.** | **Recurring but young.** 6 instances found, every Sunday from 2026-07-12 to 2026-08-16. Preceded by a pinned policy post, [SELF PROMOTION, FINDING TUTORS, OFFERING SERVICES](https://reddit.com/r/Spanish/comments/1u1cuks/self_promotion_finding_tutors_offering_services/) (2026-06-09, 73 comments) — that post appears to be where the thread was instituted. | 17, 24, 21, 21, 18, 20 comments across all 6 instances. Median 20.5. | Rule 4: *"**Post self-promotion only in the self-promotion megathread.** A more effective way to get customers would be to develop a track record of helpful, friendly posts, and present your contact information in your profile. Feel free to also use the self-promotion megathread."* Rule 2 also bans *"content that resembles AI-generated slop"* and requires disclosing AI assistance. |
+| **r/ELATeachers**<br>25,098 weekly actives / 951 contributions | [Self-Promotion Friday](https://reddit.com/r/ELATeachers/comments/1vnwr6v/selfpromotion_friday/) | **Weekly Fridays 2022-12 → 2024-03, then a ~29-month gap, then one instance 2026-08-14.** | 22 instances recovered, densely weekly through the 2022–2024 run. | **Dead.** 0–3 comments on *every* instance across four years; the 2026-08-14 revival got 2. | **None retrievable** — see probe limit 3. |
+| **r/Notion**<br>115,596 weekly actives / 1,126 contributions | [📣 Self-promo & Showcase · Share your Notion content here!](https://reddit.com/r/Notion/comments/1vrwu7f/selfpromo_showcase_share_your_notion_content_here/) | **Fortnightly. Live — latest 2026-08-18.** Ancestor format ran fortnightly through 2022–2023. | 8 recent instances (2026-06-09 → 2026-08-18) plus 7 from the 2022–23 *Self-promo Thread* era. | 48, 39, 30, 44, 34, 11 comments on the 2026 run; the 2022–23 era ran 59–85. | Rule 4: *"**No self-promotion.** Self-promotional and showcase content is only allowed in the fortnightly pinned Self-promo & Showcase threads. This includes, but is not limited to, free and paid templates, third-party integrations, and dashboard showcases."* |
+
+**Adjacent but not a thread — r/languagelearning** (283,273 weekly actives): no promo
+thread, but a live **flair convention** where standalone posts prefixed `(self-promotion)`
+are tolerated — five such posts on 2026-08-17/18 alone, scoring 1–29 comments. Note the
+sub [announced it is *tightening* self-promo rules on 2026-06-13](https://reddit.com/r/languagelearning/comments/1u537kp/announcement_we_are_tightening_the_rules_around/) (60 comments), following a
+[ban-self-promo-completely push](https://reddit.com/r/languagelearning/comments/1lsqez1/meta_can_we_please_ban_selfpromo_completely/) in July 2025. The lane is open but narrowing;
+`subreddit/details` returns no rules for it, so the current policy cannot be quoted here.
+
+## Do posts inside these threads actually get replies?
+
+**Almost never. They are posting boards, not conversations.**
+
+Measured across six instances (three r/LearnJapanese, three r/Spanish), using
+`/v1/reddit/post/comments` and counting how many top-level comments carry a non-empty
+`replies` field:
+
+| Instance | Top-level promo posts | How many got ≥1 reply | Score range |
+|---|---|---|---|
+| r/LearnJapanese 2026-08-19 | 12 | **0** | 1–2 |
+| r/LearnJapanese 2026-08-12 | 7 | 1 | 0–3 |
+| r/LearnJapanese 2026-08-05 | 17 | 4 | −1–4 |
+| r/Spanish 2026-08-16 | 13 | 1 | 1–2 |
+| r/Spanish 2026-08-09 | 22 | 2 | 0–2 |
+| r/Spanish 2026-08-02 | 17 | 1 | 1–4 |
+| **Total** | **88** | **9 (10%)** | mostly 1 pt |
+
+*Positive control:* the same probe on r/Spanish's pinned policy post shows 3 of 22 top-level
+comments carrying replies, with `has_more: true` — so the field does populate when replies
+exist. The near-zero result above is a measurement, not a null response.
+
+**Read that honestly.** A healthy comment count on the *thread* (17–30) is the count of
+**people advertising**, not people engaging. Nine replies across 88 posts, with almost
+every post sitting at exactly 1 point (the author's own upvote), means posting here buys
+a listing, not a conversation. That is still worth something — it is a permitted link in
+front of a large audience — but it will not produce the tester feedback the 08-18 note
+says all three workable doors require.
+
+## Where the pattern is definitively absent
+
+Swept with the full phrase set and no recurring promo thread found in any of:
+
+- **Test prep:** r/LSAT, r/GRE, r/GMAT, r/Sat, r/ACT, r/APStudents, r/TOEFL, r/IELTS,
+  r/CFA, r/CPA, r/cpaexam, r/barexam, r/CFP, r/Series7, r/PMP, r/actuary
+- **Health professions:** r/USMLE, r/Step2, r/Step3, r/nursing, r/StudentNurse,
+  r/nursingstudent, r/Residency, r/physicianassistant, r/predental, r/dentistry,
+  r/pharmacy, r/PharmacySchool, r/OptometrySchool, r/veterinaryschool, r/NPschool,
+  r/medlabprofessionals, r/NREMT, r/EMS, r/PTschool, r/OTschool
+- **IT certs:** r/comptia, r/ccna, r/AWSCertifications, r/AzureCertification
+- **Academia / general study:** r/studying, r/college, r/AskAcademia, r/PhD,
+  r/GradSchoolAdvice, r/HomeworkHelp, r/StudentsHelpingStudents, r/education, r/edtech,
+  r/Professors, r/university, r/learnmath, r/learnprogramming, r/matheducation,
+  r/homeschool, r/teaching, r/ScienceTeachers, r/Physics, r/biology, r/socialwork, r/MSW
+- **Other language subs:** r/Korean, r/German, r/French, r/Italian, r/russian,
+  r/Portuguese, r/ChineseLanguage, r/arabic, r/hindi, r/turkish, r/EnglishLearning,
+  r/duolingo, r/WriteStreakEN and eight more
+
+Three near-misses worth naming so nobody re-checks them:
+
+- **r/matheducation** has a `[Saturday self-promotion]` **flair convention** on standalone
+  posts (2021–2025), not a thread.
+- **r/Physics** ran a *What are you working on? — Weekly Discussion Thread*, but it is a
+  research-discussion thread, not a promo lane, and its last instance was 2024-04-01.
+- **r/productivity** ran a *Self-promotion/shout out thread* twice in November 2021 and
+  never again.
+
+## What this means for the 08-18 headline finding
+
+The 08-18 doc's sentence — *"the 'monthly what-are-you-building thread' pattern is a
+**builder-sub** convention; it does not exist in study spaces"* — should be read as
+**correct for the subs it sampled and for the whole exam-prep category, but wrong as a
+statement about study spaces generally.** Language-learning subs are study spaces and they
+run this pattern. The 08-18 record is left as written per the records-vs-live-pointers
+rule; this addendum is the correction.
+
+The sharper version of the rule: **a sub runs a sanctioned promo thread when it has enough
+resident builders to make banning them costly.** Language-learning subs are full of small
+app-makers and tutors, so they built a containment lane. Exam-prep subs have far fewer
+resident builders and far more drive-by advertisers, so they ban instead. That predicts
+where to look next, if anyone ever needs to.
+
+**Method note for this repo:** this pass used one capability the existing helpers lack —
+cross-Reddit global search (`/v1/reddit/search`), reached via `lib/reddit._global_search`.
+`reddit_search.py` wraps only the subreddit-scoped primitive and requires a sub name, so
+"search all of Reddit" is not currently expressible through it. It ultimately mattered
+less than expected: the global endpoint's 7-result cap makes it a discovery hint at best,
+and every finding above came from the per-subreddit sweep.

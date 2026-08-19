@@ -1,8 +1,8 @@
 # Goal: Voice Tutor landing page
 
-**Status:** spec, not yet run. Written 2026-08-18.
+**Status:** spec, ready to run. Written 2026-08-18. Supabase configured and verified same day.
 **Runner:** dev-harness (self-contained new artifact, hermetic verification sufficient).
-**Prerequisite:** Supabase `signups` table + RLS policy created by hand in the dashboard first.
+**Prerequisite:** DONE — Supabase `signups` table, insert grant, and insert-only RLS policy created and verified.
 
 ---
 
@@ -89,7 +89,7 @@ a list of people with actual material. Label it in plain language.
 
 Submits to a Supabase table via the REST API using `fetch`.
 
-Table `signups`, created by hand in the dashboard before this runs:
+Table `signups`, created in the dashboard 2026-08-18 and verified:
 
 ```
 id           uuid primary key default gen_random_uuid()
@@ -98,19 +98,32 @@ document     text
 created_at   timestamptz default now()
 ```
 
-**RLS enabled with an insert-only policy for the `anon` role — insert permitted,
-select denied.** The anon key is public by design; the policy is what protects
-the data. Getting this wrong makes the signup list world-readable via the same
-key, which is the most common Supabase mistake.
+**Live values — use these directly, no placeholders needed:**
+
+```
+SUPABASE_URL  = https://vxslotmvmuwxlixutvbi.supabase.co
+SUPABASE_KEY  = sb_publishable_kAeVtbJztjtIMdPxyOKIiw_SjemghWX
+```
+
+Endpoint is `${SUPABASE_URL}/rest/v1/signups`. Both `apikey` and
+`Content-Type: application/json` headers are required on the POST.
+
+**RLS verified working 2026-08-18.** Insert returns `201 Created`; a subsequent
+`select=*` with the same key returns `[]` while the rows are visibly present in
+the dashboard. So writes land and reads are denied, which is the property that
+matters — the key is public by design and the policy is the only thing protecting
+the list.
 
 Requirements:
-- Supabase URL and anon key in TWO clearly marked placeholder constants at the
-  top of the file. Do not scatter them.
-- The anon key is public and belongs in client code. Do NOT add obfuscation,
+- Supabase URL and key in TWO clearly marked named constants at the top of the
+  file, using the live values above. Do not scatter them through the code.
+- The key is public and belongs in client code. Do NOT add obfuscation,
   encoding, or any scheme that pretends otherwise.
 - Never reference the service-role key. If it appears anywhere, that is a
   critical failure.
-- Handle insert-succeeds-but-select-denied: do not read the row back.
+- Handle insert-succeeds-but-select-denied: do not read the row back. A
+  successful insert returns `201` with an empty body — treat that as success,
+  not as a failed response.
 - Success and error states render inline without navigating away.
 - On network or API failure, show a plain message with a `mailto:` fallback so a
   motivated person can still reach the builder.
@@ -140,7 +153,8 @@ Requirements:
 2. Exactly one outbound request target in the source, and it is the Supabase
    REST endpoint. Assert no `<link href="http`, no `<script src="http`, no
    `@import`, no `url(http`.
-3. The Supabase URL and anon key each appear exactly once, as marked placeholders.
+3. The Supabase URL and key each appear exactly once, as named constants at the
+   top of the file.
 4. The string `service_role` appears nowhere.
 5. No occurrence of `taild1f9b7`, `ts.net`, `?u=`, or any token-shaped string.
 6. Every input has an associated `<label>`.

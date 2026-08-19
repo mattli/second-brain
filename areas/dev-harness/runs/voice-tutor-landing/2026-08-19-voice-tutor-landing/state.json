@@ -4,7 +4,7 @@
   "title": "voice tutor landing",
   "startedAt": "2026-08-19T00:55:33.318Z",
   "runDir": "runs/voice-tutor-landing/2026-08-19-voice-tutor-landing",
-  "status": "running",
+  "status": "halted",
   "projectPath": "/Users/mattli/development/voice-tutor-landing",
   "sprints": [
     {
@@ -28,11 +28,16 @@
       "description": "Finalize the CSS in the <style> block: mobile-first layout that reads well at 375px and does not overflow horizontally at 375/768/1280px; visible focus states, adequate contrast, keyboard navigability; support both prefers-color-scheme light and dark; respect prefers-reduced-motion; keep the whole file under 50KB with system font stack only and no stock imagery/placeholders/lorem (CSS-only visuals if any). Confirm the disclosure section renders at full body size (not footer/modal/small text). Do a final pass removing any stray external URLs, inline style attributes, or forbidden strings. Acceptance: node verify.mjs exits 0 with all 30 checks passing across HTML validity, layout at all three widths, theming, and console cleanliness."
     }
   ],
-  "currentSprint": 0,
-  "contractVersion": 0,
-  "scores": [],
+  "currentSprint": 1,
+  "contractVersion": 5,
+  "scores": [
+    98,
+    0,
+    0,
+    0
+  ],
   "iterations": 0,
-  "budgetSpentUsd": 0,
-  "haltReason": null,
-  "contractFreezeReason": null
+  "budgetSpentUsd": 2.9317422500000005,
+  "haltReason": "no-progress",
+  "contractFreezeReason": "round-cap"
 }

@@ -1,6 +1,34 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
-### ▶ Next-session opening list (Tue 2026-08-18) — Voice Tutor has a public front door; the harness surfaced a real planning defect
+### ▶ Next-session opening list (Wed 2026-08-19) — the landing page now looks like the product
+
+**getvoicetutor.com is on the app's design system.** Nine commits `f5b5d68`..`22de3d2`, all live: the page was restyled from the app's own tokens, the hero and signup centered, all em-dashes removed from copy, and the first product screenshot added. Full pass: [[2026-08-19-landing-page-design-pass]].
+
+State:
+- **`~/development/voice-tutor-landing` (`main`)** — clean, in sync with `origin/main`. Now carries `DESIGN.md` (the app's tokens, extracted verbatim) and `screenshot-recap.webp`. The source PNG is gitignored and confirmed 404 on the live site.
+- **`~/development/voice-tutor`** — **untouched, read-only all session**, verified: HEAD still `3fc0ea2`, clean tree. The design system was read out of `static/study.html` and nothing was written back.
+- **Page weight ceiling deliberately raised 50KB → 150KB** to fit the screenshot; currently 56.7KB. Zero-external-requests unchanged (image is same-origin).
+
+Next up:
+1. **Clear the `test@example.com` rows** from the Supabase `signups` table. (Carried from 8/18, still open.)
+2. **Everything on the 8/18 landing-page open list still stands** — form placement, the invite email's missing data disclosure, and the link-preview image. None were touched today.
+3. **The harness planning defect is still unresolved** and will recur on the next single-artifact goal.
+4. **Everything on the 8/15 list below still stands.** Production was never touched this session.
+
+Carried forward: does Deepgram bill for an idle open live-stream connection?
+
+### August 19, 2026 — the landing page gets the app's design system, and a centering bug that was never in the CSS
+- **The page and the app now read as one product.** Tokens extracted read-only from `voice-tutor` `static/study.html` (`3fc0ea2`) into a `DESIGN.md` in the landing repo: warm paper ground, serif headings, navy accent, hairline rules, no shadows. Full detail: [[2026-08-19-landing-page-design-pass]].
+- **The app has no green in it, anywhere.** The brief asked for "the coverage-bar green"; sweeping every hex/`rgb()`/`rgba()` plus a word search returned zero hits. The coverage meter is the navy accent at 75% opacity. The green was the *landing page's* old accent — so the largest visual change in the whole pass was recoloring something the app never had.
+- **A "not centered" bug reported three times, where the container was centered the whole time.** `getBoundingClientRect` said equal gaps at every width; the eye said otherwise, and the eye was right. Every hero element was narrower than the one above it (H1 656px → button 222px), all left-aligned, so a centered box held a left-weighted staircase. **Decoding the rendered PNG and measuring non-background pixels** found the real asymmetry: 82px on the H1. Two passes were spent re-asserting "it is centered" from DOM geometry before switching to pixels. Fixed by centering the hero text: 82px → 1px.
+- **The same trap fired a second time in one session.** `.brand` is a `<p>`, so the global `p { max-width: 60ch }` capped its box at ~330px; the box hugged left while `text-align: center` centered the text *inside that narrow box*. Correct in the DOM, visibly wrong on screen. Caught only because the check measured rendered geometry rather than the rule.
+- **The ink probe itself produced a false failure.** It reported 76px asymmetry on the signup section — because the scroll hadn't moved and it was measuring "Who it's for", which is *supposed* to be left-aligned. A positive control in the same run (left-aligned section reads 76px, centered section reads 1px) is what made the negative meaningful.
+- **The centered/left/centered rhythm is deliberate**, confirmed at session end: hero and signup are ceremony, the middle is reading, and steps/cards/multi-line paragraphs need their left edge. Not an oversight for a future pass to "fix."
+- **WebP encoding had no working tool and one silent liar.** No `cwebp`, no ImageMagick, no PIL; `sips` lists WebP in `--formats` and silently writes nothing. Encoded via Chromium canvas instead — where `toDataURL('image/webp')` **silently falls back to PNG** if unsupported, yielding a `.webp` that isn't one. Checked the returned MIME type and confirmed with `file`.
+- **Layout shift was proven rather than assumed.** CLS 0 means little for an image loading instantly off disk, so the request was delayed 2.5s: with the image unloaded the box already reserved 420x515 and the next section sat at the identical y. Intrinsic `width`/`height` do the work; `loading="lazy"` deliberately not set.
+- **All six em-dashes are gone from the copy.** Four became commas; two appositives became colons instead, because a comma muddied a comma-heavy list and a period left a verbless fragment — a deviation from the instruction, flagged when applied.
+
+### ▶ (superseded) Next-session opening list (Tue 2026-08-18) — Voice Tutor has a public front door; the harness surfaced a real planning defect
 
 **getvoicetutor.com is live.** Built by dev-harness run `mszdr5c6` ($2.93), deployed on Vercel from the private repo `mattli/voice-tutor-landing`, auto-deploying on push to `main`. Full outcome, domain reasoning, and open copy edits: [[2026-08-18-landing-page-goal]].
 

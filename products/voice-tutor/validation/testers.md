@@ -192,9 +192,55 @@ r/barexam), fresh comments over old viral threads.
 
 - **RecentPhilosopher851** (Reddit, r/indiehackers) — asked the sharpest question yet: how is this different from NotebookLM's interactive mode. Year-old account, thin history, possibly a shell. Answered publicly 7/31; the reply doubles as findable positioning. Offer a link if they respond like a human.
 - **FaithlessnessNeat725** (r/studytips) — med student, uses NotebookLM podcasts on lecture PDFs, names their failure ("gloss over the entire lecture without much depth"). Profile not yet checked; candidate for the Friday batch.
+- ~~**Unable-Connection-58** (r/Learning)~~ — **DISQUALIFIED 2026-08-19 on profile check.** Karma-farming content account, not a student: 7mo old, "content writing enthusiast" bio, every post a first-person crisis story in a different sub (finance, marketing, corporate, investing, studying) with the identical malformed closer ("I am very curious to know about your thoughts and personal stories that how...") and "got depressed" as a verbatim tic across four posts. The studying post was manufactured engagement bait — which is itself a signal: the illusion-of-productivity story performs so reliably that farmers write it. New disqualifier for the pipeline gate: **same-shaped emotional posts across unrelated subs = content farm**, distinct from the app-seeder pattern.
+- **AccomplishedTune3297** (r/csMajors, StudyBuddyCS launch thread) — asked for the podcast to "quiz you and ask if you understood" — interactive checking requested by name. Profile check Friday.
+- **Emotional-Sundae-777** (same thread) — nurse (NRP cert), "helpful for things I need to have down by memory." Deadline-segment, retention frame verbatim. Profile check Friday.
+- **StudyBuddyCS OP** (peer, not target) — built the passive half (notes→podcast), independently discovered "the conversation is what taught me best," shipped the one-way version anyway. Builder conversation, low priority. Market signal worth keeping: a listening tool's own users immediately asked for quizzing — the passive pole generates demand for the active one.
+- **No_Woodpecker_3571** (r/UPSC) — UPSC Mains aspirant, posted a full workaround spec (PDF → prompt → active-recall notes, 59 upvotes). Profile hidden, so exam cycle unverifiable — and Mains is Aug 21, so **do not DM before then**. Queue for after 08-21 with "how did Mains go" as the opener. Honest bridge required: their ask is notes-generation, not conversation.
+- **r/UPSC as a pond** (found 2026-08-19, outside the 115-sub sweep, which was Western-exam shaped): 436k subs, 126k weekly visitors, 7.1k weekly contributions — an order of magnitude more active than any sub profiled. Massive text volumes, workaround-industrious, already deep in AI-PDF workflows. Rule 5 bans commercial promotion → DM-and-asking-threads only, never posts. Friday's sweep should add the Indian exam ecosystem: r/UPSC, state-PSC subs, r/CAT and adjacent.
 - **Justin Sung's orbit** — learning-science practitioner named in the r/PKMS thread; audience is exactly "people who care how learning works." Unexplored since 08-03.
 
 ---
+
+## External evidence — the effort-direction argument (added 2026-08-19)
+
+A large-scale study published this week lands directly on Voice Tutor's founding
+premise, and is the citation for the standing objection ("doesn't AI-assisted
+studying hurt learning?").
+
+**The pair of findings, and why the pair is the point:**
+
+- **China study (Stromberg / Lei / Wu, 27,000 students aged 12–18, 6 months):**
+  students using AI on homework scored +18% on homework, finished faster (64 → 45
+  min) — and scored **−20% on exams** versus non-users. The AI did the cognitive
+  work; nothing was retained.
+  https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6868618
+- **Middlebury study (Contractor / Reyes):** students taught an unfamiliar topic
+  *with* an AI chatbot beat controls on tests **and held the gain a week later**.
+  Same technology, opposite outcome — there the AI made them think rather than
+  thinking for them.
+- **Economist write-up of both:**
+  https://www.economist.com/graphic-detail/2026/08/18/does-ai-stop-children-from-learning
+  Its closer is the tagline's argument in a broadsheet's voice: *"Students must
+  resist the temptation to reach for an AI-generated answer before thinking
+  things through for themselves."*
+- Color, for a post someday: NY Post piece on a professor catching 32 of 35
+  students using AI on a final via the same lazy mistake:
+  https://nypost.com/2026/07/28/opinion/college-professor-busted-32-out-of-35-students-using-ai-on-a-final-after-they-all-made-the-same-lazy-mistake/
+
+**The axis the two studies draw is Voice Tutor's positioning axis:** which
+direction the effort flows. Card-generators (the entire "free AI study tools"
+SERP: Penseum, Turbo, StudyFetch, Studyable, okti et al.) remove the effortful
+step and sell the removal — the China-study product. Voice Tutor forces the
+effortful step (you explain, out loud, checked against the source) and measures
+it. Usable line: **"AI that does the studying for you makes exam scores worse.
+This one makes you do it."**
+
+**Caveats, so this doesn't get overclaimed later:** the China study is homework-
+*writing*, closer to cheating displacement than study-tool use — the analogy
+transfers at the framing level, not as proof Voice Tutor works. Middlebury
+supports "AI tutoring can produce durable learning" but n/design unverified.
+Narrative, not evidence.
 
 ## What the record says so far (updated 2026-08-19)
 

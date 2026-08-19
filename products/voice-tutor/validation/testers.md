@@ -40,7 +40,7 @@ Met at the same meetup. Closer to the ICP than John — plausibly has a pile of 
 - Token was exposed in a chat log on send; rotated same day, corrected link to follow.
 - Matt replied to Jorge Fri 7/31; deliberately giving him space — no nudge planned for now.
 
-## Meetup 2026-08-11 — five contacts, links not yet sent
+## Meetup 2026-08-11 — five contacts
 
 Three hours, a lot of socializing, socially anxious throughout. Matt's read on his
 own performance: talked anxiously and self-deprecatingly at times. Worth recording
@@ -78,15 +78,26 @@ answer.
 
 | Name | Who they are | Notes |
 |---|---|---|
-| **Chelsea Eiling** | Product designer, early career | Kind. |
+| **Chelsea Eiling** | Product designer, early career | Kind. Said she'd try it "this week" (w/o 08-17). |
 | **Mike Lindle** | Ex-Deloitte → ad producer → vibe coder | |
 | **Abhiraj Parikh** | Data scientist — predictive coffee bean quality | |
-| **Lucy Zhang** | — | Hard to understand in conversation; talked at length about investing, thin LinkedIn. Sent anyway: credentials don't predict whether someone will talk through a document and come back, and if transcription mangles her that is itself real signal about who the product works for. |
-| **Ethan Sokol** | Senior at NYU; Harvard-Westlake | Wanted to share a private LinkedIn product — his message led with that. |
+| **Lucy Zhang** | — | Sent same as the others; see caveat below on note reliability. |
+| **Ethan Sokol** | Senior at NYU; Harvard-Westlake | Wanted to share a private LinkedIn product — his message led with that. Matt signed up for it ~08-15 and pitched Voice Tutor in the same exchange; Ethan owes the reply. When he responds, the ask: anyone in his program this would help. |
 
-Notes recorded 2026-08-12, the day after the meetup, from memory. What each person said about their
-own study material was **not captured** — the ask in the room didn't include it, which was the right
-call for a networking setting. The follow-up message carries that question instead.
+Notes recorded 2026-08-12, the day after, from memory, and **per-person accuracy is
+unverified** — the "hard to understand" and investing details attached to Lucy may
+belong to a different conversation from that night. Names and the agreed-to-try
+list are solid; personal details are best-effort. What each person said about their
+own study material was **not captured** — the ask in the room didn't include it,
+which was the right call for a networking setting.
+
+**What happened after the send (from the server log, checked 08-17 and 08-19):**
+four of the five links were opened in real browsers (chelsea, ethan, mike, abhiraj
+— lucy's link was also loaded, though one public IP opened three different links,
+so the person-count is uncertain). **Zero connect attempts, zero uploads, zero
+sessions from any of them.** The one "lucy" session on 08-15 (10.7s, no speech)
+was Matt's own incognito link-check from his MacBook. Everyone who reached the app
+stopped at the first screen.
 
 **What they're getting:** production on `main` (`:7860`), not the live-coverage branch. Coverage
 appears on the picker, the pre-connect screen and after the session ends — but **no live meter
@@ -96,14 +107,9 @@ manual refresh.
 
 ### What to do with these
 
-The follow-up message has to do the qualifying work the room didn't. Draft shape:
-
-> Good to meet you last night. You mentioned you'd be up for trying the study
-> tool — do you have a document you're actually trying to get into your head
-> right now? Happy to send you a link.
-
-Lead with their own document; keep the sample as the fallback, not the headline.
-Ask **nothing else** up front — every question is a tax on opening the link at all.
+The qualifying question (what document would you bring) was carried by the 08-15
+message itself — "upload whatever you're actually trying to learn." Nobody has
+answered it with behavior yet.
 
 **Afterwards, one open question only:** *"How'd it go? Anything weird or confusing?"*
 Not "what did you think" — that gets politeness. A story is where the signal is.
@@ -148,16 +154,51 @@ channel that has produced testers. Ran three hours; the tagline
 *"No decks. No quizzes. No flashcards. Just a conversation."* went out to live
 humans for the first time — no recorded read on how it landed.
 
+### Reddit DMs — targeted, profile-verified (2026-08-18 → 08-19)
+
+Six cold DMs sent across two days, every recipient profile-checked before sending.
+The check earned its keep: **five candidate reads were reversed by it** — connerpro
+(advice-giver, not sufferer), Ok_Necessary6426 (competitor doing his own discovery),
+Inspector3949 (shell account), Rare_Dependent4686 (app-seeding account),
+deer-wolf/Longjumping_Bee (same). The formal rule that fell out: **no DM without a
+profile read; repeated product mentions across unrelated threads disqualifies the
+account as evidence, whatever it is.**
+
+| Sent | Who | Why them | Status |
+|---|---|---|---|
+| 08-18 | **connerpro** (r/GetStudying) | "Fluency theater without an external check" — states the thesis. Advice-giver, not in-segment; treated as conversation, not tester | **Replied 08-19** ("sounds cool! what is it") → sent description + landing page |
+| 08-18 | **DocTaufeek** (r/Anki) | Med student, hand-built chapter→ChatGPT→mindmap→cards pipeline. Workaround-builder | No reply yet |
+| 08-18 | **Aromatic-Swan-7525** (r/Anki) | Med student, ERPM licensing exam, 100–300pp lecture PDFs, asked publicly for a workflow. Strongest candidate | No reply yet |
+| 08-19 | **Professional_Dare904** (r/GetStudying) | ACCA + full-time work, £1000 iPad workaround history, stated intent to record herself. First stranger routed **page-first** | No reply yet |
+| 08-19 | **Head_Ad1010** (r/studytips) | Struggling CS undergrad, exams close, asking-thread OP. More charity than validation | No reply yet |
+| 08-19 | **-pocoto** (r/studytips, 10mo-old post) | Ran the exact use case as a personal experiment across five AI tools, documented each failure, "beginning to lose hope." Heavy intended usage, price-sensitive | No reply yet |
+
+All six got the landing page (getvoicetutor.com), not an app token — the page is the
+front door; signup → minted token + full disclosure in the invite message.
+
+**Sourcing lesson, twice-confirmed (2026-08-19): asking-threads select for real
+humans; advice-threads select for marketers.** Both genuine finds came from
+someone asking a question. Every advice-thread swept was seeded (WillowVoice,
+blekota, mildliner, studybuddy.vc, okti, villson, revisionfy — seven products
+across four threads). okti is marketing directly on the explain-out-loud thesis
+with cards bolted on: the positioning ground is contested, and the no-cards line
+does real work.
+
+Next sweep ~Fri 08-21, after this batch resolves: question-shaped queries
+("how do I", "what should I use") against deadline subs (r/ACCA, r/CFA, r/Step1,
+r/barexam), fresh comments over old viral threads.
+
 ## Leads (not yet testers)
 
 - **RecentPhilosopher851** (Reddit, r/indiehackers) — asked the sharpest question yet: how is this different from NotebookLM's interactive mode. Year-old account, thin history, possibly a shell. Answered publicly 7/31; the reply doubles as findable positioning. Offer a link if they respond like a human.
-- **PKM subreddits** — participation not started. Planned: a problem-first post (capture outran retention) in r/PKMS or r/ObsidianMD, no product link, DMs only after genuine thread participation.
+- **FaithlessnessNeat725** (r/studytips) — med student, uses NotebookLM podcasts on lecture PDFs, names their failure ("gloss over the entire lecture without much depth"). Profile not yet checked; candidate for the Friday batch.
+- **Justin Sung's orbit** — learning-science practitioner named in the r/PKMS thread; audience is exactly "people who care how learning works." Unexplored since 08-03.
 
 ---
 
-## What the record says so far
+## What the record says so far (updated 2026-08-19)
 
-- Two people have a link. One has used it, briefly, on a real document of his own.
-- Five more agreed to try it and are awaiting links.
-- Every session to date has been shorter than 2 minutes. Nobody has worked through a document.
-- The differentiation question — does claim-map steering help someone retain their reading pile — remains **structurally unanswered**. It is not answerable by building; only a tester answers it.
+- Seven meetup/warm contacts hold app links (John, Jorge, + five from 08-11). Four of the five opened the page; **zero connected, zero uploaded**. Nobody has used the product. Chelsea's "this week" runs out ~Fri 08-21; one light follow-up is legitimate then.
+- Six Reddit strangers have the landing page. One replied within a day (connerpro). The landing page (live 08-18, getvoicetutor.com, analytics on) is now the front door for all cold outreach.
+- No session to date belongs to an outside user working their own document. The 08-15 "lucy" session was Matt's own incognito check.
+- The gate remains **0/1**: no recruited tester has completed a session on their own document and returned. The differentiation question is not answerable by building; only a tester answers it.

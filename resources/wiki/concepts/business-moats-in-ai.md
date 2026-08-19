@@ -1,6 +1,6 @@
 ---
 created_at: 2026-04-05
-last_updated: 2026-07-14
+last_updated: 2026-08-19
 ---
 
 # Business Moats in AI
@@ -9,6 +9,7 @@ last_updated: 2026-07-14
 
 ## Recent Updates
 
+- **2026-08-19:** Added Kepano's 80-strategy competitive taxonomy from biology and business to [The Broader Competitive Strategy Taxonomy](#the-broader-competitive-strategy-taxonomy) — maps the five AI moats onto a general framework and surfaces underrepresented vectors (deception, timing, transformation).
 - **2026-07-14:** Added Peter Wang's startup structural advantages framework to [The Focused Harness Advantage](#the-focused-harness-advantage) — lean context, model agnosticism, and customer workflow loops as moats against big labs. Removed stale Overview; framing already present in body sections.
 
 ## Platform Shifts and Value Capture
@@ -212,6 +213,27 @@ Chamath Palihapitiya inverts the entire moat framework with a thought experiment
 
 The tension with the five durable moats above is productive: Chamath's framework doesn't invalidate them so much as compress the timeline over which they compound. The meta-question becomes whether any moat can accumulate fast enough to outrun the accelerating disruption cycle — or whether the cycle itself is self-limiting.
 
+## The Broader Competitive Strategy Taxonomy
+
+Kepano's "Many ways to win" catalogues eighty competitive strategies drawn from both biology and business, grouped into thirteen categories: Accumulation, Price, Time, Uniqueness, Offense, Defense, Deception, Timing, Accreditation, Collaboration, Speed & Scale, Ease, and Transformation. The taxonomy is useful because it reveals which vectors the AI moat conversation emphasizes — and which it ignores.
+
+**Where the five AI moats sit in the broader taxonomy:**
+
+- **Compounding proprietary data** → Accumulation (usership, completeness) + Uniqueness (secrecy, rarity)
+- **Network effects** → Accumulation (usership, aggregation, omnipresence)
+- **Regulatory permission** → Accreditation (monopoly, prestige) + Defense (deterrence)
+- **Capital at scale** → Offense (highest bidder, chokepoint) + Defense (durability, endurance)
+- **Physical infrastructure** → Time (organic growth, endurance) + Defense (decentralization, durability)
+
+**Underrepresented vectors in the AI moat debate:**
+
+- **Deception strategies** (camouflage, mimicry, lure, infiltration) — in business terms, these map to stealth-mode startups, strategic misdirection, and honeypot competitive dynamics. The AI landscape sees this in practice (labs keeping capabilities private, strategic benchmark sandbagging) but it rarely enters moat analysis.
+- **Timing strategies** (first-mover, second-mover, last-mover) — the page already captures this implicitly through Evans' platform-shift framing and Chen's "what if Big Co builds this," but Kepano's framing makes the three timing archetypes explicit. Apple as last-mover (waiting until competitors exhaust failed approaches) maps directly to the AI model market: the lab that lets others burn through scaling dead-ends and then deploys capital on the proven path.
+- **Transformation strategies** (malleability, metamorphosis, copycat) — AI companies that can pivot their model architecture or business model mid-flight (Anthropic's shift from research lab to product company, Meta's open-weights pivot and then partial reversal) are exercising metamorphosis as a competitive advantage.
+- **Ease strategies** (intuitiveness, fun, simplicity, low-friction, charm) — largely absent from the moat conversation, which skews toward structural and capital advantages. Yet ChatGPT's dominance in consumer adoption is substantially a charm and low-friction play. The opinionated perspective moat is really a compound of uniqueness (divergence, authenticity) and ease (intuitiveness).
+
+**The biological framing reinforces the meta-moat thesis:** organisms succeed by optimizing a *narrow, unusual combination* of strategies — not by being good at everything. The AI companies with durable moats are those combining two or three vectors that rarely appear together (e.g., Anduril: regulatory permission + physical infrastructure + iteration speed; Harvey: specialization + secrecy + prestige). The taxonomy suggests that moat analysis should ask not just "which moat?" but "which *combination* is hard to replicate?"
+
 ## The Meta-Moat
 
 "Time that can't be parallelized." Network density takes years of human adoption. Regulatory approval takes years of political process. Infrastructure takes years to build. Data takes years to compound. Capital relationships take decades to earn.
@@ -232,3 +254,4 @@ The tension with the five durable moats above is productive: Chamath's framework
 - "The Untrainable" — Sarah Guo (essay, Jun 2026) ([link](https://open.substack.com/pub/saranormous/p/the-untrainable)) — Private correctness as moat framework, the legibility trap (measurable work → commodity), permission/accountability > intelligence, trust as deadbolt, absorption frontier, private evals as defensibility, MIT coding agent data (180% written / 30% shipped)
 - "The Collapse of Terminal Value" — Chamath Palihapitiya (tweet, Jun 2026) — Disruption repricing framework: if AI makes moats temporary, equities compress to 2–7x FCF; historical precedents (newspapers, retail, energy, taxi medallions); self-defeating paradox of AI capex; capital rotation to physical assets and sovereign investors
 - "Building against the big labs that are trying to eat you" — Peter Wang (tweet, Jul 2026) ([link](https://x.com/BrainsAndTennis)) — Focused harness advantage: lean context beats broad tooling on cost and accuracy; model agnosticism as structural advantage; customer workflow loop as operational moat; Shortcut vs Claude for Excel benchmarks
+- "Many ways to win" — Kepano (tweet, Aug 2026) ([link](https://x.com/kepano)) — 80 competitive strategies from biology and business in 13 categories; maps the five AI moats onto a general taxonomy; surfaces underrepresented vectors (deception, timing, transformation, ease)

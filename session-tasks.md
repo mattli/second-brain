@@ -1,5 +1,33 @@
 > Older entries are archived by month in [_archive/session-tasks/](_archive/session-tasks/). This file keeps roughly the last 2 weeks.
 
+### ▶ Next-session opening list (Tue 2026-08-18) — Voice Tutor has a public front door; the harness surfaced a real planning defect
+
+**getvoicetutor.com is live.** Built by dev-harness run `mszdr5c6` ($2.93), deployed on Vercel from the private repo `mattli/voice-tutor-landing`, auto-deploying on push to `main`. Full outcome, domain reasoning, and open copy edits: [[2026-08-18-landing-page-goal]].
+
+State:
+- **`~/development/voice-tutor-landing` (`main`)** — clean, in sync with `origin/main`. History is a **single commit** containing only `index.html`, `README.md`, `.gitignore`. The harness's `run-mszdr5c6` branch is still local and **deliberately unpushed**.
+- **`~/development/voice-tutor`** — **untouched all session**, verified: same HEAD `3fc0ea2`, clean tree, no new reflog entries. The landing page work never entered that repo.
+- **`~/development/dev-harness` (`main`)** — clean, in sync.
+- **Playwright + Chromium now installed** at `~/.node-tools/playwright` (browsers in `~/Library/Caches/ms-playwright`), alongside `~/.node-tools/html-validate`. Both live **outside any repo** because the harness runs verifiers inside a worktree holding tracked files only.
+
+Next up, in rough priority:
+1. **Tear down the temporary tailnet preview** — a `python3 -m http.server` on `:7862` fronted by `tailscale serve` on `:8445`, created only to view the page from the MacBook before the domain existed. Superseded by getvoicetutor.com. Remove with `tailscale serve --https=8445 off` and kill the server. **Still running as of session end.**
+2. **Clear the `test@example.com` rows** from the Supabase `signups` table.
+3. **The three copy edits** recorded in the goal doc — hero subhead doing four jobs, tracks/tracks repetition, and the above-the-fold form question. The page shipped as generated.
+4. **The harness planning defect is unresolved** and will recur on the next single-artifact goal — see the backlog item added today.
+5. **Everything on the 8/15 list below still stands.** Production was never touched this session.
+
+Carried forward: does Deepgram bill for an idle open live-stream connection?
+
+### August 18, 2026 — a landing page in one sprint, and a pre-push check that caught the checker
+- **The goal doc was stopped before launch, not interpreted.** Four items in its Verification section were unrunnable as written: the 375px check needed a layout engine (nothing installed), "valid HTML5" had no validator (only Apple's 2006 `tidy`, which predates HTML5 and would have rejected correct markup), "six sections in order" had no anchors to key on, and **criterion 5 contradicted criterion 3** — it banned "any token-shaped string" while criterion 3 required the Supabase publishable key, which is token-shaped. That last one is unwinnable-contract cause #4 and would have failed correct work for containing exactly what the spec demanded. Resolutions recorded in a separate [[2026-08-18-landing-page-goal-addendum]]; the goal doc was left unedited as a record.
+- **The verifier was preflighted for satisfiability, not just startup.** Run against a missing file, a junk stub, and a hand-written minimal page: failed the first two legibly, passed the third **30/30**. Both tools were positive-controlled first — Chromium correctly caught a 2008px overflow and 2 console errors on a deliberately broken fixture. A contract proven winnable before sprint 1 is what the "preflight the verifier" rule was asking for.
+- **The run's own summary read as failure and wasn't.** "Stopped — the score stopped improving. Scored 98, 0, 0, 0." The planner split the work into four sprints, but the verifier is **all-or-nothing** — sprint 1 couldn't exit green without building the entire page, so it did, scored 98, and sprints 2–4 had no work left. Three empty attempts tripped the no-progress guard. **The verifier is the trustworthy signal**: re-run on the branch it passed 32/32 (32 not 30 — two checks scale with field count, and the form appears twice). Cost ~$1.79 in wasted retries.
+- **The pre-push secret check failed on the checker, not the page.** `index.html` was clean of `taild1f9b7` / `ts.net` / `?u=` / `service_role`. `verify.mjs` contained all four — **because it was the blocklist**. The reason it mattered: **Vercel serves the whole repo root**, so it would have been fetchable at `getvoicetutor.com/verify.mjs`, publishing the tailnet name on the public site. A merge could not fix it (deleting a file doesn't remove it from history), so `main` was rebuilt as a single clean commit. The verifier is preserved with the run records.
+- **A history scan returned clean on every pattern while being completely broken.** zsh does **not** word-split unquoted `$VAR`, so `git grep … $ALL` passed the whole newline-joined commit list as one argument and every grep died `rc=128` — printing per-pattern results that looked like a scan. Only the positive control exposed it. Same family as the 8/15 `||` false all-clear, different mechanism: there the command never ran, here it ran and errored.
+- **Playwright earned its place as a verifier lane.** The July backlog item's trigger ("first UI run where fetch-level verification proves insufficient") fired exactly as written. Real Chromium against a `file://` URL checked overflow at 375/768/1280px and console errors, with a request listener failing the run on any non-`file://` request — so the browser stage cannot silently become a network test.
+
+
 ### ▶ Next-session opening list (Fri 2026-08-15) — production is CURRENT, pushed, and now carrying real outside testers
 **The premise has changed: Voice Tutor is reachable by outsiders and they are arriving.** Five tester links went out today (**chelsea, mike, abhiraj, lucy, ethan**) and one produced a real connection tonight — a 10.7-second bounce, not a session. **Nobody has used the product yet.** But the door is open and traffic is landing unannounced, so anything that lands on `main` from here lands under real people, and the deploy discipline below is no longer theoretical.
 

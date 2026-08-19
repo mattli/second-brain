@@ -1,8 +1,57 @@
 # Goal: Voice Tutor landing page
 
-**Status:** spec, ready to run. Written 2026-08-18. Supabase configured and verified same day.
+**Status:** SHIPPED 2026-08-18. Live at **https://getvoicetutor.com**
 **Runner:** dev-harness (self-contained new artifact, hermetic verification sufficient).
 **Prerequisite:** DONE — Supabase `signups` table, insert grant, and insert-only RLS policy created and verified.
+
+---
+
+## Outcome
+
+Built by dev-harness run `mszdr5c6`, $2.93, 32/32 verification checks passing.
+Deployed on Vercel from a private GitHub repo (`mattli/voice-tutor-landing`),
+auto-deploying on push to `main`. Domain `getvoicetutor.com`, ~$10/yr.
+
+**Domain decision:** `voicetutor.ai` was available at $70–180/yr and passed over.
+The reasoning: the `.ai` signal tells the audience something they already assume
+(nobody thinks a voice tutor has a human on the line), and "AI product" is the
+category Voice Tutor competes *in*, not the thing that distinguishes it —
+okti and Novis are AI too. `.com` is more trusted by students and self-learners,
+who are the actual audience. Upgrade later with evidence if it's ever worth it.
+
+**The catch that mattered.** The pre-push check for `taild1f9b7` / `ts.net` /
+`?u=` failed — not in `index.html`, which was clean, but in `verify.mjs`. That
+file contained all three strings *because it was the blocklist*. Vercel serves
+everything at the repo root, so it would have been fetchable at
+`getvoicetutor.com/verify.mjs`, publishing the tailnet name on the public site.
+Fixed by rebuilding `main` as a single commit containing only `index.html`,
+`README.md`, and `.gitignore` — a merge wouldn't have worked, since deleting a
+file doesn't remove it from history and the repo's history is public once the
+repo is. **Generalizable: a static host serves the whole repo, so "what's in the
+repo" and "what's published" are the same question.**
+
+Also worth recording: the first history scan returned clean on every pattern
+while being broken — zsh wasn't word-splitting the commit list, so every grep
+errored. The positive control caught it. That's the `||` false-all-clear rule
+added to `CLAUDE.shared.md` on 2026-08-15 firing in a different repo three days
+later.
+
+**Harness finding, unresolved:** the planner split the job into four sprints, but
+the verifier is all-or-nothing — sprint one couldn't pass without building the
+whole page, so it did, scored 98, and sprints two through four had no work left.
+The run reported "Scored 98, 0, 0, 0" and stopped on the no-progress guard, which
+reads as failure and isn't. Cost ~$1.79 in wasted retries. An all-or-nothing
+contract and an incremental sprint plan are in tension.
+
+**Copy edits still open** (page shipped as generated):
+- Hero subhead is one sentence doing four jobs, in the position where people
+  decide whether to keep reading. Cut to two short sentences.
+- "keeps the conversation on track and tracks what you've actually covered" —
+  tracks/tracks.
+- The form sits above the fold before anyone knows what this is. The bottom
+  form, after the context and the disclosure, is the one doing real work.
+
+**Housekeeping:** clear the `test@example.com` rows from the Supabase table.
 
 ---
 

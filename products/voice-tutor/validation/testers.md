@@ -166,12 +166,13 @@ account as evidence, whatever it is.**
 
 | Sent | Who | Why them | Status |
 |---|---|---|---|
-| 08-18 | **connerpro** (r/GetStudying) | "Fluency theater without an external check" — states the thesis. Advice-giver, not in-segment; treated as conversation, not tester | **Replied 08-19** ("sounds cool! what is it") → sent description + landing page |
-| 08-18 | **DocTaufeek** (r/Anki) | Med student, hand-built chapter→ChatGPT→mindmap→cards pipeline. Workaround-builder | No reply yet |
-| 08-18 | **Aromatic-Swan-7525** (r/Anki) | Med student, ERPM licensing exam, 100–300pp lecture PDFs, asked publicly for a workflow. Strongest candidate | No reply yet |
-| 08-19 | **Professional_Dare904** (r/GetStudying) | ACCA + full-time work, £1000 iPad workaround history, stated intent to record herself. First stranger routed **page-first** | No reply yet |
-| 08-19 | **Head_Ad1010** (r/studytips) | Struggling CS undergrad, exams close, asking-thread OP. More charity than validation | No reply yet |
-| 08-19 | **-pocoto** (r/studytips, 10mo-old post) | Ran the exact use case as a personal experiment across five AI tools, documented each failure, "beginning to lose hope." Heavy intended usage, price-sensitive | No reply yet |
+| 08-18 | **connerpro** (r/GetStudying) | "Fluency theater without an external check" — states the thesis. Advice-giver, not in-segment; treated as conversation, not tester | **Replied 08-19** ("sounds cool! what is it") → sent description + landing page. Quiet since. |
+| 08-18 | **DocTaufeek** (r/Anki) | Med student, hand-built chapter→ChatGPT→mindmap→cards pipeline. Workaround-builder | No reply |
+| 08-18 | **Aromatic-Swan-7525** (r/Anki) | Med student, ERPM licensing exam, 100–300pp lecture PDFs, asked publicly for a workflow. Strongest candidate | No reply |
+| 08-19 | **Professional_Dare904** (r/GetStudying) | ACCA + full-time work, £1000 iPad workaround history, stated intent to record herself. First stranger routed **page-first** | No reply |
+| 08-19 | **Head_Ad1010** (r/studytips) | Struggling CS undergrad, exams close, asking-thread OP. More charity than validation | **Replied 08-20** ("will I be paid to try this?") — gig-interest, not product-need. Marked cold, no reply sent, no block. Confirms the "charity not validation" read. |
+| 08-19 | **-pocoto** (r/studytips, 10mo-old post) | Ran the exact use case as a personal experiment across five AI tools, documented each failure, "beginning to lose hope." Heavy intended usage, price-sensitive | No reply |
+| 08-21 | **No_Woodpecker_3571** (r/UPSC) | Workaround-architect, full PDF→notes spec (59 upvotes). Held until after Mains (Aug 21) per plan; sent day after, without the exam opener by Matt's choice | No reply yet |
 
 All six got the landing page (getvoicetutor.com), not an app token — the page is the
 front door; signup → minted token + full disclosure in the invite message.
@@ -188,6 +189,25 @@ Next sweep ~Fri 08-21, after this batch resolves: question-shaped queries
 ("how do I", "what should I use") against deadline subs (r/ACCA, r/CFA, r/Step1,
 r/barexam), fresh comments over old viral threads.
 
+### Public comment play — r/studytips (2026-08-21/22)
+
+First use of the participate-first pattern in a live thread ("I used AI to study
+and it gave me the illusion of knowledge," ~1 day old, promo legal under rule 3).
+Matt seeded a genuine comment as himself (ml8020) describing speech-to-speech
+studying; **TheLazyWaffle_ (real med student, "very auditory person") engaged
+honestly**. Follow-up posted Sat 08-22: asked if they'd try the tool —
+**deliberately without the link** (public-comment nuance: link-on-ask reads as ad;
+link follows only on a yes). Awaiting reply.
+
+Same thread, lead worth checking: **Few-Painter-9804** (thread OP) — "it gave me
+a huge illusion of knowledge exactly because I was applying active methods — I was
+explaining to it, doing flashcards, answering questions. I don't know why it
+didn't work." The sharpest live fluency-theater testimony yet: explain-to-AI
+**without a source check** felt like it worked and didn't. Profile check Monday.
+Also **Fabulous_Insect_8621** (different thread, 7mo): "I explain a concept to the
+model and ask it to speak up if anything feels fuzzy" — reverse-Feynman workaround
+with two me-too replies. Profile check Monday.
+
 ## Leads (not yet testers)
 
 - **RecentPhilosopher851** (Reddit, r/indiehackers) — asked the sharpest question yet: how is this different from NotebookLM's interactive mode. Year-old account, thin history, possibly a shell. Answered publicly 7/31; the reply doubles as findable positioning. Offer a link if they respond like a human.
@@ -196,7 +216,7 @@ r/barexam), fresh comments over old viral threads.
 - ~~**AccomplishedTune3297**~~ — see above; unfindable 08-19.
 - ~~**Emotional-Sundae-777**~~ — see above; unfindable 08-19.
 - **StudyBuddyCS OP** (peer, not target) — built the passive half (notes→podcast), independently discovered "the conversation is what taught me best," shipped the one-way version anyway. Builder conversation, low priority. Market signal worth keeping: a listening tool's own users immediately asked for quizzing — the passive pole generates demand for the active one.
-- **No_Woodpecker_3571** (r/UPSC) — UPSC Mains aspirant, posted a full workaround spec (PDF → prompt → active-recall notes, 59 upvotes). Profile hidden, so exam cycle unverifiable — and Mains is Aug 21, so **do not DM before then**. Queue for after 08-21 with "how did Mains go" as the opener. Honest bridge required: their ask is notes-generation, not conversation.
+- **No_Woodpecker_3571** — moved to the DM table above; sent 08-21.
 - **r/UPSC as a pond** (found 2026-08-19, outside the 115-sub sweep, which was Western-exam shaped): 436k subs, 126k weekly visitors, 7.1k weekly contributions — an order of magnitude more active than any sub profiled. Massive text volumes, workaround-industrious, already deep in AI-PDF workflows. Rule 5 bans commercial promotion → DM-and-asking-threads only, never posts. Friday's sweep should add the Indian exam ecosystem: r/UPSC, state-PSC subs, r/CAT and adjacent.
 - **Justin Sung's orbit** — learning-science practitioner named in the r/PKMS thread; audience is exactly "people who care how learning works." Unexplored since 08-03.
 
@@ -242,9 +262,11 @@ transfers at the framing level, not as proof Voice Tutor works. Middlebury
 supports "AI tutoring can produce durable learning" but n/design unverified.
 Narrative, not evidence.
 
-## What the record says so far (updated 2026-08-19)
+## What the record says so far (updated 2026-08-22)
 
-- Seven meetup/warm contacts hold app links (John, Jorge, + five from 08-11). Four of the five opened the page; **zero connected, zero uploaded**. Nobody has used the product. Chelsea's "this week" runs out ~Fri 08-21; one light follow-up is legitimate then.
-- Six Reddit strangers have the landing page. One replied within a day (connerpro). The landing page (live 08-18, getvoicetutor.com, analytics on) is now the front door for all cold outreach.
+- **The meetup channel is closed as a question (decided 08-22).** Five yeses produced zero attempts; even the four "opens" may partly have been Matt's own off-tailnet checks. Lesson recorded: **in-person yeses measure the room's warmth, not intent** — conversion without stakes is ~zero. No follow-ups to any of the five (Chelsea's expired window deliberately not chased); doors stay open, nobody gets nudged. Warm rooms remain a channel — but only stakes-first.
+- Seven Reddit strangers DM'd, all profile-verified. Two replied: connerpro (holds the link, quiet) and Head_Ad1010 (wanted payment; cold). Landing page (getvoicetutor.com, analytics on) is the front door; ~13 visitors from founder-thread drops, zero signups — expected for mismatched traffic, rung-two confirmation that the pitch pulls clicks.
+- **Notilo (notilo.ai/tutor, by Jenni AI) identified 08-19 as competitor #1** — voice tutoring over uploaded documents at claimed 100k+ students / 500k+ sessions. Their check is quizzes; no coverage-against-source anywhere. Category validated at scale; the empty square (conversation-with-coverage, no quizzes) still empty. The no-quizzes tagline now positions against the biggest player in the niche. TODO: use their product for 15 minutes.
 - No session to date belongs to an outside user working their own document. The 08-15 "lucy" session was Matt's own incognito check.
-- The gate remains **0/1**: no recruited tester has completed a session on their own document and returned. The differentiation question is not answerable by building; only a tester answers it.
+- The gate remains **0/1**. The differentiation question is not answerable by building; only a tester answers it.
+- Next actions: Monday — the sweep (spec in the DM section above, plus "Feynman technique AI" as a query and the two profile checks); ongoing — watch for replies and Supabase rows.
